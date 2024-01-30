@@ -96,7 +96,7 @@ const PrimaryHeader = () => {
             />
           </div>
           <div className="" onClick={() => router.push('/login')}>
-            {screenSize > 767 && 'Login'}
+            {screenSize > 767 && <button className={styles.top_barbtn}>Login</button>}
             {screenSize <= 767 && (
               <span className={styles.cursor_pointer}>
                 <Image src={loginIcon} alt="login" width={13} height={13} />
@@ -108,7 +108,7 @@ const PrimaryHeader = () => {
             className={styles.cursor_pointer}
             onClick={() => router.push('/register')}
           >
-            {screenSize > 991 && <button>SignUp</button>}
+            {screenSize > 991 && <button className={styles.top_barbtn}>SignUp</button>}
             {screenSize <= 991 && (
               <span>
                 <button>
