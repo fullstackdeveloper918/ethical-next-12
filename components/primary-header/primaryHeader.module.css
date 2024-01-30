@@ -1,0 +1,112 @@
+/* h1, h2, h3, h4, h5{
+    font-family: Poppins;
+  } */
+  /* p, div, span {
+    font-family: '__DM_Sans_ae0b6a';
+  } */
+
+  
+  .top_bar {
+    background-color: #a2d061;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .primary_header_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    width: 100%;
+    max-width: 1368px;
+    padding: 0 15px;
+    margin: 0 auto;
+    font-family: DM Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: .14px;
+    text-transform: capitalize;
+    min-height: 45px;
+  }
+  .top-bar .container {
+    height: 50px;
+  }
+  .tap_annument {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.14px;
+    background: transparent;
+    display: flex;
+    gap: 10px;
+  }
+  .tap_annument:hover{
+    background: transparent;
+    color: #fff;
+  }
+  
+  .annument_dropdown {
+    min-width: 10rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,.2);
+  }
+  /* .tap_annument:focus-visible, button:focus-visible {
+    --tw-ring-shadow: none;
+  }
+   */
+  .container_left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .offer_container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .container_right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .search_container {
+    border-bottom: 1px solid #FFF;
+    padding: 5px 0px;
+    display: flex;
+    gap: 5px;
+  }
+  .container_right .login-signup img, .container_right .cursor_pointer img{
+    filter: invert(1);
+  }
+  .container_right input {
+    color: rgba(255, 255, 255, 0.40);
+    font-family: "DM Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.1px;
+    background: transparent;
+  }
+  
+  /* input[type="text"]:focus {
+    border: none;
+    outline: none;
+  }
+   */
+  /* input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  } */
+  @media (max-width:767px){
+    .container_right .search_container, .container_left .tap_annument {
+      display: none;
+  }
+  }
