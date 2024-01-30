@@ -66,16 +66,17 @@
   }
 }
 body{
-  margin: 0px;
-  padding: 0px;
+  margin: 0px !important;
+  padding: 0px !important;
   box-sizing: border-box;
 }
-@layer base {
+
+/* @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
   }
-}
+} */
 
