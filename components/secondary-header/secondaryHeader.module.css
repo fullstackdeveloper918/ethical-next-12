@@ -14,15 +14,6 @@
   .secondaryHeader_countries span {
     margin-bottom: 4px !important;
 }
-.countries_dropdown_container{
-  background-color: #fff;
-  border-radius: 1rem;
-  padding: 0.5rem;
-  box-shadow: 0 10px 20px rgba(0,0,0,.2);
-  max-width: 300px;
-  text-align: center;
-  width: 75px;
-}
   .primary_header_container {
     display: flex;
     justify-content: space-between;
@@ -156,6 +147,7 @@
     gap: 10px;
     background: transparent;
     cursor:pointer;
+    align-items: center;
   }
   .language_dropdown:hover {
     background: transparent;
@@ -164,19 +156,15 @@
     width: 30px;
   }
   .language_wrapdropdown {
-    min-width: 5rem;
-    width: 5rem;
-    padding: 0px;
-  }
-  
-  .language_wrapdropdown>div {
-    padding: 6px;
-    border-radius: 8px;
-    cursor: pointer;
+    width: 4rem;
+    background-color: #fff;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,.2);
   }
   
   .language_wrapdropdown>div img {
-    width: 100%;
+    width: 100% !important;
   }
   .language_dropdown:focus-visible {
     --tw-ring-shadow: none;
