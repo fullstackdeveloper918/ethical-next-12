@@ -175,7 +175,7 @@ const SecondaryHeader = () => {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" className={styles.shop_menu}>
-                        About
+                       About 
                         <span>
                           <Image
                             src={downIcon}
@@ -215,7 +215,7 @@ const SecondaryHeader = () => {
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className={styles.language_dropdown}>
+                  <Button variant="ghost" className={`${styles.language_dropdown} ${styles.mobile_menu}`}>
                     <span className="flag-img">
                       <Image
                         src={country === 'canada' ? Canada : Usa}
@@ -234,7 +234,7 @@ const SecondaryHeader = () => {
                     </span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56 language-wrapdropdown">
+                <DropdownMenuContent className={styles.language_wrapdropdown}>
                   <DropdownMenuRadioGroup
                     value={country}
                     onValueChange={setCountry}
@@ -287,21 +287,27 @@ const SecondaryHeader = () => {
                   value={country}
                   onValueChange={setCountry}
                 >
+                  <div className={styles.countries_dropdown_container}>
+
                   {countries.map((c) => {
                     return (
                       <DropdownMenuRadioItem
-                        value={c.country}
-                        // style={{ display: "none" }}
+                      value={c.country}
+                      // style={{ display: "none" }}
                       >
+                      
+
                         <Image
                           src={c.imageSrc}
                           width={30}
                           height={22}
                           alt="like"
-                        />
+                          />
+                          
                       </DropdownMenuRadioItem>
                     )
                   })}
+                  </div>
                 </DropdownMenuRadioGroup>
               </DropdownMenuContent>
             </DropdownMenu>

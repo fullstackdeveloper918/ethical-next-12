@@ -5,7 +5,7 @@
     font-family: '__DM_Sans_ae0b6a';
   } */
 
-  
+
   .top_bar {
     background-color: #a2d061;
     position: sticky;
@@ -21,7 +21,7 @@
     max-width: 1368px;
     padding: 0 15px;
     margin: 0 auto;
-    font-family: DM Sans;
+    font-family: '__DM_Sans_ae0b6a';
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -33,6 +33,11 @@
   .top-bar .container {
     height: 50px;
   }
+  .top_barbtn{
+    background:transparent;
+    border: 0px;
+    color: #fff;
+  }
   .tap_annument {
     font-size: 14px;
     font-style: normal;
@@ -42,6 +47,8 @@
     background: transparent;
     display: flex;
     gap: 10px;
+    color: #fff;
+    border: 0px ;
   }
   .tap_annument:hover{
     background: transparent;
@@ -87,24 +94,27 @@
     filter: invert(1);
   }
   .container_right input {
-    color: rgba(255, 255, 255, 0.40);
-    font-family: "DM Sans";
+    color: #fff;
+    font-family: '__DM_Sans_ae0b6a';
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     letter-spacing: 0.1px;
     background: transparent;
+    border: 0px;
   }
-  
+  .container_right input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  .container_right input:focus-visible{
+    outline: 0px;
+  }
   /* input[type="text"]:focus {
     border: none;
     outline: none;
-  }
-   */
-  /* input[type="text"]::placeholder {
-    color: rgba(255, 255, 255, 0.4);
   } */
+
   @media (max-width:767px){
     .container_right .search_container, .container_left .tap_annument {
       display: none;
