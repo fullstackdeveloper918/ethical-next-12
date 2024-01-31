@@ -319,8 +319,8 @@ const SecondaryHeader = () => {
                   <Input placeholder="Search our store" />
                   <Image
                     src={searchImg}
-                    width={24}
-                    height={24}
+                    width={30}
+                    height={30}
                     alt="search"
                     onClick={() => {
                       setShowSearchInput(!showSearchInput)
