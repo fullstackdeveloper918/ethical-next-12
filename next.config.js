@@ -4,8 +4,9 @@ const bundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = bundleAnalyzer({
   images: {
-    domains: ['cdn.builder.io'],
+    domains: ['cdn.builder.io', 'test.cybersify.tech'],
   },
+
   async headers() {
     return [
       {

@@ -6,7 +6,7 @@ import linkdin from '../../assets/footerPics/linkdin.svg'
 import youtube from '../../assets/footerPics/youtube.svg'
 import banks from '../../assets/footerPics/banks.svg'
 import Image from 'next/image'
-import styles from '../../styles/footer.module.css'
+import styles from './footer.module.css'
 
 const Footer = () => {
   return (
