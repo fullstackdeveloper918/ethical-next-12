@@ -49,10 +49,10 @@ const Certified = () => {
               ssr={false} // means to render carousel on server-side.
               infinite={true}
               // autoPlay={this.props.deviceType !== 'mobile' ? true : false}
-              autoPlay
+              // autoPlay
               autoPlaySpeed={1000}
               keyBoardControl={true}
-              customTransition="all .5"
+              customTransition="all .5s"
               transitionDuration={500}
               containerClass="carousel-container"
               removeArrowOnDeviceType={['tablet', 'mobile']}
