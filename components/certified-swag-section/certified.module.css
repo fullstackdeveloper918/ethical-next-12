@@ -1,0 +1,44 @@
+.container{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.heading{
+    color: #111;
+    font-family: Poppins;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 133.38%; /* 61.355px */
+    letter-spacing: 0.46px;
+    text-transform: uppercase;
+}
+
+.heading_colored{
+    color: #A2D061;
+    font-family: Poppins;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 133.38%;
+    letter-spacing: 0.46px;
+    text-transform: uppercase;
+}
+
+.btn{
+    color: #FFF;
+text-align: center;
+font-family: Poppins;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: 0.18px;
+border-radius: 30px;
+border: 1px solid var(--green, #A2D061);
+background: var(--green, #A2D061);
+max-width: max-content;
+padding: 8px 25px;
+}

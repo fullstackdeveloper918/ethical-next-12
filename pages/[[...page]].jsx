@@ -13,6 +13,7 @@ import '@builder.io/widgets/dist/lib/builder-widgets-async'
 import Footer from '@components/footer/Footer'
 import PrimaryHeader from '@components/primary-header/PrimaryHeader'
 import SecondaryHeader from '@components/secondary-header/SecondaryHeader'
+import Certified from '@components/certified-swag-section/certified'
 builder.init(builderConfig.apiKey)
 
 export async function getStaticProps({ params }) {
@@ -59,6 +60,11 @@ Builder.registerComponent(PrimaryHeader, {
 Builder.registerComponent(SecondaryHeader, {
   name: 'SecondaryHeader',
 })
+
+Builder.registerComponent(Certified, {
+  name: 'Certified',
+})
+
 export default function Page({ page }) {
   const router = useRouter()
   const isPreviewingInBuilder = useIsPreviewing()
