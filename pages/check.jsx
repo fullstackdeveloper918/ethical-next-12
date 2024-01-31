@@ -3,8 +3,7 @@ import Certified from '../components/certified-swag-section/certified'
 import { useSelector } from 'react-redux'
 
 const check = () => {
-  const country = useSelector((state) => state.country)
-  console.log(country, 'countrycountrycountrycountry')
+  const country = useSelector((state) => state.auth.role)
   return (
     <div>
       <Certified />

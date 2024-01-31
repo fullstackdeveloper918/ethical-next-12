@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import useFetch from '../lib/useFetch'
+import { useDispatch } from 'react-redux'
+
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email('Please enter email in correct format')
@@ -21,33 +23,29 @@ const initialValues = {
   confirmPassword: '',
 }
 const login = () => {
+  const dispatch = useDispatch()
+  const [loginRes, setLoginRes] = useState(null)
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/auth/login`,
     {
       method: 'post',
-    }
+    },
+    'formdata'
   )
 
-  //   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
-  //     `/testproducts`,
-  //     {
-  //       method: 'get',
-  //     }
-  //   )
+  useEffect(() => {
+    console.log(response, 'response from effect')
+  }, [response])
 
-  //   useEffect(() => {
-  //     loadQuery()
-  //   }, [])
+  //41|8cLanTcOxJsjhCCiAR681bvopIqwO32VvphZPU1Kbd1582a3
 
-  console.log(response, 'response')
-
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     try {
-      const data = {
-        email: values.email,
-        password: values.password,
-      }
-      loadQuery(data)
+      let formData = new FormData()
+      formData.append('email', values.email)
+      formData.append('password', values.password)
+
+      loadQuery(formData)
     } catch (error) {
       console.log(error)
     } finally {
@@ -59,7 +57,7 @@ const login = () => {
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {({ isSubmitting }) => (
+      {() => (
         <Form>
           <div>
             <label htmlFor="email">email:</label>
@@ -87,7 +85,9 @@ const login = () => {
           </div>
 
           <div>
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={loading}>
+              Submit
+            </button>
           </div>
         </Form>
       )}
