@@ -52,9 +52,9 @@ const SecondaryHeader = () => {
   const [country, setCountry] = useState('usa')
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(selectCountry(country))
-  }, [country])
+  // useEffect(() => {
+  //   dispatch(selectCountry(country))
+  // }, [country])
 
   const [screenSize, setScreenSize] = useState(992)
   const handleResize = () => {
@@ -175,7 +175,7 @@ const SecondaryHeader = () => {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" className={styles.shop_menu}>
-                       About 
+                        About
                         <span>
                           <Image
                             src={downIcon}
@@ -215,7 +215,10 @@ const SecondaryHeader = () => {
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className={`${styles.language_dropdown} ${styles.mobile_menu}`}>
+                  <Button
+                    variant="ghost"
+                    className={`${styles.language_dropdown} ${styles.mobile_menu}`}
+                  >
                     <span className="flag-img">
                       <Image
                         src={country === 'canada' ? Canada : Usa}
@@ -288,25 +291,21 @@ const SecondaryHeader = () => {
                   onValueChange={setCountry}
                 >
                   <div className={styles.countries_dropdown_container}>
-
-                  {countries.map((c) => {
-                    return (
-                      <DropdownMenuRadioItem
-                      value={c.country}
-                      // style={{ display: "none" }}
-                      >
-                      
-
-                        <Image
-                          src={c.imageSrc}
-                          width={30}
-                          height={22}
-                          alt="like"
+                    {countries.map((c) => {
+                      return (
+                        <DropdownMenuRadioItem
+                          value={c.country}
+                          // style={{ display: "none" }}
+                        >
+                          <Image
+                            src={c.imageSrc}
+                            width={30}
+                            height={22}
+                            alt="like"
                           />
-                          
-                      </DropdownMenuRadioItem>
-                    )
-                  })}
+                        </DropdownMenuRadioItem>
+                      )
+                    })}
                   </div>
                 </DropdownMenuRadioGroup>
               </DropdownMenuContent>
