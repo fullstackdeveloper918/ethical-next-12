@@ -6,6 +6,7 @@ module.exports = bundleAnalyzer({
   images: {
     domains: ['cdn.builder.io', 'test.cybersify.tech'],
   },
+
   async headers() {
     return [
       {

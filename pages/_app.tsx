@@ -16,6 +16,7 @@ import {
 } from 'redux-persist'
 import countrySlice from '../redux-setup/countrySlice'
 import authSlice from '../redux-setup/authSlice'
+import filterSlice from '../redux-setup/FiltersSlice'
 import storage from 'redux-persist/lib/storage'
 import { PersistGate } from 'redux-persist/integration/react'
 builder.init(builderConfig.apiKey)
@@ -23,6 +24,7 @@ builder.init(builderConfig.apiKey)
 const combinedReducer = combineReducers({
   country: countrySlice,
   auth: authSlice,
+  filter: filterSlice,
 })
 
 const persistConfig = { key: 'root', storage, version: 1 }
