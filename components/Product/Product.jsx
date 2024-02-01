@@ -424,7 +424,7 @@ const Product = ({ product, loading, error }) => {
                 <div className={Styles.add_to_bulk_container}>
                   <button>Add to bulk estimate</button>
                 </div>
-                <div>
+                <div className={Styles.total_estimate_container}>
                   <p className={Styles.total_estimate_container_text}>
                     Total estimate doesn't include taxes and shipping fees.
                     Payment is made after mockups are approved.

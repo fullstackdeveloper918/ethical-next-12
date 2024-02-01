@@ -536,8 +536,13 @@
   line-height: 16px; /* 100% */
 }
 
+.total_estimate_container {
+  width: 100%;
+}
+
 .total_estimate_container_text {
-  width: 60%;
+  width: 47%;
+  text-align: center;
   margin: 0 auto;
 }
 

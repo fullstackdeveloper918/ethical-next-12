@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Styles from './../Filter/Filter.module.css'
 import Dot from '../custom-colored-dot/Dot'
 import Image from 'next/image'
+import { MdOutlineFavoriteBorder } from 'react-icons/md'
+import { CiSearch } from 'react-icons/ci'
+import { CiShare2 } from 'react-icons/ci'
 // import { useRouter } from 'next/navigation'
 
 const ProductCard = ({ item }) => {
+  const [ActiveOption, setActiveOption] = useState(false)
   // const router = useRouter()
 
   return (
@@ -34,11 +38,32 @@ const ProductCard = ({ item }) => {
             </div>
           </div>
 
-          <div
-            className="hidden_icons"
-            onClick={() => router.push(`products/${item?.id}`)}
-          >
-            <button className="btn">View Product</button>
+          <div className={Styles.hidden_icons}>
+            <div className={Styles.icons}>
+              <span>
+                <MdOutlineFavoriteBorder
+                  fontSize={25}
+                  color="#d3d3d3"
+                  className={Styles.icon}
+                />
+              </span>
+              <span>
+                <CiSearch
+                  fontSize={25}
+                  color="#d3d3d3"
+                  className={Styles.icon}
+                />
+              </span>
+              <span>
+                <CiShare2
+                  fontSize={25}
+                  color="#d3d3d3"
+                  className={Styles.icon}
+                />
+              </span>
+            </div>
+
+            <button className={Styles.viewProduct_btn}>View Product</button>
           </div>
         </div>
       </Link>

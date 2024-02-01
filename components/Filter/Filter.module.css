@@ -41,9 +41,18 @@
 .filter_input > input {
   width: 100%;
   height: 100%;
+  font-size: 18px;
   border-radius: 10px;
+  padding-left: 1rem;
+  box-sizing: border-box;
   border: 1px solid #d8d8d8;
   background: #fff;
+}
+
+.filter_input > input[type='text']:focus {
+  outline: none;
+  border-color: #d8c2c2;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
 }
 
 .filter_select {
@@ -51,14 +60,15 @@
   border-radius: 10px;
   border: 1px solid #d8d8d8;
   background: #f6f6f6;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
-.filter_select > select {
-  border: none;
-  background: transparent;
+.filter_select > div {
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .horizontal {
@@ -470,7 +480,9 @@
 .collection_items:hover .hidden_icons {
   display: flex;
 }
-.collection_items:hover .hidden_icons > .btn {
+
+.collection_items:hover .hidden_icons > .icons,
+.collection_items:hover .hidden_icons > .viewProduct_btn {
   opacity: 1;
   transform: scale(1);
 }
@@ -499,6 +511,7 @@
   line-height: normal;
   letter-spacing: 0.178px;
   margin-top: 20%;
+  cursor: pointer;
 }
 
 /* Product Card Css */
@@ -558,7 +571,27 @@
   transition: all 0.3s ease;
 }
 
-.hidden_icons > .btn {
+.hidden_icons .icons {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.hidden_icons .icons .icon {
+  transform: scale(0.8);
+  transition: transform 0.3s ease-in;
+}
+
+.hidden_icons .icons .icon:hover {
+  transform: scale(1);
+}
+
+.hidden_icons > .viewProduct_btn {
   color: #fff;
   text-align: center;
   font-family: Poppins;
@@ -569,13 +602,14 @@
   letter-spacing: 0.176px;
   width: 162px;
   height: 48px;
+  cursor: pointer;
   flex-shrink: 0;
   border-radius: 142.594px;
   border: 1px solid #a2d061;
   background: #a2d061;
   transform: scale(0);
   opacity: 0;
-  transition: opacity 0.6s ease, scale 1s ease;
+  transition: opacity 1s ease-in, transform 1s ease-in;
 }
 
 /* Filter Panel Css */
