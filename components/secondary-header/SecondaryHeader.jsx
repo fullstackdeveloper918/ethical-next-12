@@ -52,10 +52,6 @@ const SecondaryHeader = () => {
   const [country, setCountry] = useState('usa')
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   dispatch(selectCountry(country))
-  // }, [country])
-
   const [screenSize, setScreenSize] = useState(992)
   const handleResize = () => {
     setScreenSize(window.innerWidth)
@@ -213,12 +209,9 @@ const SecondaryHeader = () => {
                 Contact
               </Button>
 
-              <DropdownMenu>
+              {/* <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className={`${styles.language_dropdown} ${styles.mobile_menu}`}
-                  >
+                  <Button variant="ghost" className={`${styles.language_dropdown} ${styles.mobile_menu}`}>
                     <span className="flag-img">
                       <Image
                         src={country === 'canada' ? Canada : Usa}
@@ -259,7 +252,7 @@ const SecondaryHeader = () => {
                     })}
                   </DropdownMenuRadioGroup>
                 </DropdownMenuContent>
-              </DropdownMenu>
+              </DropdownMenu> */}
             </div>
           </div>
         </>
@@ -318,8 +311,8 @@ const SecondaryHeader = () => {
                   <Input placeholder="Search our store" />
                   <Image
                     src={searchImg}
-                    width={24}
-                    height={24}
+                    width={30}
+                    height={30}
                     alt="search"
                     onClick={() => {
                       setShowSearchInput(!showSearchInput)
