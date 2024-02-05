@@ -68,6 +68,8 @@ const SecondaryHeader = () => {
     }
   }, [])
 
+  const selectedCountry = useSelector((state) => state.country.country)
+
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
