@@ -19,6 +19,8 @@ import loginIcon from '../../assets/login-icon.svg'
 import signIcon from '../../assets/headerPics/Sign-up.svg'
 import { usePathname, useRouter } from 'next/router'
 import { Button } from '@/components/ui/button'
+import downIcon from '../../assets/headerPics/down-black.svg'
+import useFetch from '../../lib/useFetch'
 
 const PrimaryHeader = () => {
   const [position, setPosition] = React.useState('bottom')
@@ -35,6 +37,28 @@ const PrimaryHeader = () => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
+
+  const isLoggedIn = !!localStorage.getItem('token_swag')
+
+  const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
+    `/auth/logout`,
+    {
+      method: 'get',
+    }
+  )
+
+  const logout = () => {
+    console.log('i am called')
+    loadQuery()
+    if (response) {
+      console.log(response, 'from logout api')
+    }
+    if (error) {
+      console.log(error, 'from logout api')
+    }
+    // localStorage.clear()
+    // router.push('/login')
+  }
 
   return (
     <div className={`${styles.top_bar} ${styles.container}`}>
@@ -72,9 +96,7 @@ const PrimaryHeader = () => {
                 <DropdownMenuRadioItem
                   value="top"
                   className={styles.shop_submenu}
-                >
-                  Top
-                </DropdownMenuRadioItem>
+                ></DropdownMenuRadioItem>
                 <DropdownMenuRadioItem
                   value="bottom"
                   className={styles.shop_submenu}
@@ -101,42 +123,85 @@ const PrimaryHeader = () => {
               className={styles.cursor_pointer}
             />
           </div>
-          <div className="" onClick={() => router.push('/login')}>
-            {screenSize > 767 && (
-              <button
-                className={styles.top_barbtn}
-                style={{ cursor: 'pointer' }}
-              >
-                Login
+          {isLoggedIn ? (
+            <div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className={styles.shop_menu}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    Shop
+                    <span>
+                      <Image src={downIcon} width={8} height={8} alt="search" />
+                    </span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className={styles.header_menu}>
+                  <DropdownMenuRadioItem
+                    value="top"
+                    className={styles.shop_submenu}
+                  >
+                    DashBoard
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem
+                    value="bottom"
+                    className={styles.shop_submenu}
+                  >
+                    Settings
+                  </DropdownMenuRadioItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <button onClick={logout} style={{ cursor: 'pointer' }}>
+                logout
               </button>
-            )}
-            {screenSize <= 767 && (
-              <span className={styles.cursor_pointer}>
-                <Image src={loginIcon} alt="login" width={13} height={13} />
-              </span>
-            )}
-          </div>
+            </div>
+          ) : (
+            <>
+              <div className="" onClick={() => router.push('/login')}>
+                {screenSize > 767 && (
+                  <button
+                    className={styles.top_barbtn}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    Login
+                  </button>
+                )}
+                {screenSize <= 767 && (
+                  <span className={styles.cursor_pointer}>
+                    <Image src={loginIcon} alt="login" width={13} height={13} />
+                  </span>
+                )}
+              </div>
 
-          <div
-            className={styles.cursor_pointer}
-            onClick={() => router.push('/register')}
-          >
-            {screenSize > 991 && (
-              <button
-                className={styles.top_barbtn}
-                style={{ cursor: 'pointer' }}
+              <div
+                className={styles.cursor_pointer}
+                onClick={() => router.push('/register')}
               >
-                SignUp
-              </button>
-            )}
-            {screenSize <= 991 && (
-              <span>
-                <button style={{ cursor: 'pointer' }}>
-                  <Image src={signIcon} alt="Register" width={18} height={18} />
-                </button>
-              </span>
-            )}
-          </div>
+                {screenSize > 991 && (
+                  <button
+                    className={styles.top_barbtn}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    SignUp
+                  </button>
+                )}
+                {screenSize <= 991 && (
+                  <span>
+                    <button style={{ cursor: 'pointer' }}>
+                      <Image
+                        src={signIcon}
+                        alt="Register"
+                        width={18}
+                        height={18}
+                      />
+                    </button>
+                  </span>
+                )}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

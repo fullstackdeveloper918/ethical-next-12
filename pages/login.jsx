@@ -26,6 +26,7 @@ const initialValues = {
 const login = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+  const [terms, setTerms] = useState(false)
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/auth/login`,
     {
@@ -49,9 +50,10 @@ const login = () => {
       router.push('/')
     }
     if (error) {
-      console.log(errorMessage, 'errorMessage')
+      console.log(error, 'errorMessage')
+      toast.error(error.message)
     }
-  }, [response])
+  }, [response, error])
 
   const onSubmit = async (values) => {
     try {
@@ -65,6 +67,16 @@ const login = () => {
     } finally {
     }
   }
+
+  const handleChange = (event) => {
+    if (event.target.checked) {
+      console.log('✅ Checkbox is checked')
+    } else {
+      console.log('⛔️ Checkbox is NOT checked')
+    }
+    setTerms((current) => !current)
+  }
+
   return (
     <>
       <div className={Styles.login_wrapper}>
@@ -109,7 +121,12 @@ const login = () => {
                       />
                     </div>
                     <div className={Styles.input_radio_content}>
-                      <input type="radio" name="radio" />
+                      <input
+                        type="checkbox"
+                        name="terms"
+                        value={terms}
+                        onChange={handleChange}
+                      />
                       <p>
                         I agree to the{' '}
                         <a>terms & conditions | privacy policy</a>
@@ -117,7 +134,7 @@ const login = () => {
                     </div>
 
                     <div className={Styles.input_box}>
-                      <button type="submit" disabled={loading}>
+                      <button type="submit" disabled={loading || !terms}>
                         Login
                       </button>
                     </div>
