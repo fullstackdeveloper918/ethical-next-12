@@ -53,10 +53,20 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
         </div>
         <div className={Styles.filter_select}>
           <div>
-            <span>Select an Option</span>
-            <span>
-              <IoIosArrowDown fontSize={18} />
-            </span>
+            <select name="" id="" className={Styles.Select_inputs}>
+              <option defaultValue value="">
+                Select an Option
+              </option>
+              <option value="sort">Sort</option>
+              <option value="featured">Featured</option>
+              <option value="best_selling">Best Selling</option>
+              <option value="asc">Alphabetically, A-Z</option>
+              <option value="des">Alphabetically, Z-A</option>
+              <option value="price-low">Price, low to high</option>
+              <option value="price-high">Price, high to low </option>
+              <option value="date-old">Date, old to new </option>
+              <option value="date-new">Date, new to old </option>
+            </select>
           </div>
         </div>
       </div>

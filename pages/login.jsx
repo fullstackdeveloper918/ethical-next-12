@@ -91,7 +91,7 @@ const login = () => {
                       <ErrorMessage
                         name="email"
                         component="div"
-                        className="error"
+                        className={Styles.error}
                       />
                     </div>
 
@@ -105,7 +105,7 @@ const login = () => {
                       <ErrorMessage
                         name="password"
                         component="div"
-                        className="error"
+                        className={Styles.error}
                       />
                     </div>
                     <div className={Styles.input_radio_content}>

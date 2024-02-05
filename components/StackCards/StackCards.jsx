@@ -47,8 +47,8 @@ const StackCards = () => {
           <div className={Styles.stack_card_wrapper}>
             {Stack_Card_Data.map((card) => (
               <>
-                {console.log(`${Styles.img}${card.ID}`)}
-                <div key={card.ID} className={`${Styles.img}${card.ID}`}>
+                {console.log(Styles.stack_left_content)}
+                <div key={card.ID} className={`${Styles.img}`}>
                   <Image src={card.src} alt="Stack_Card_Image" fill />
                   <span>{card.btn}</span>
                   <div className={Styles.bottom_card_content}>
