@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import useFetch from '../lib/useFetch'
 import { useDispatch } from 'react-redux'
+import { setRole } from '../redux-setup/authSlice'
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -24,7 +25,6 @@ const initialValues = {
 }
 const login = () => {
   const dispatch = useDispatch()
-  const [loginRes, setLoginRes] = useState(null)
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/auth/login`,
     {
@@ -34,10 +34,14 @@ const login = () => {
   )
 
   useEffect(() => {
-    console.log(response, 'response from effect')
+    if (response) {
+      localStorage.setItem('token_swag', response?.data?.accessToken)
+      dispatch(setRole(response?.data?.role))
+    }
+    if (error) {
+      console.log(errorMessage, 'errorMessage')
+    }
   }, [response])
-
-  //41|8cLanTcOxJsjhCCiAR681bvopIqwO32VvphZPU1Kbd1582a3
 
   const onSubmit = async (values) => {
     try {
@@ -47,7 +51,7 @@ const login = () => {
 
       loadQuery(formData)
     } catch (error) {
-      console.log(error)
+      console.log(error, 'from login api')
     } finally {
     }
   }
