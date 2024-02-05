@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form, Field, ErrorMessage, resetForm } from 'formik'
 import * as Yup from 'yup'
 import useFetch from '../lib/useFetch'
 import { useDispatch } from 'react-redux'
 import { setRole } from '../redux-setup/authSlice'
-
+import { ToastContainer, toast } from 'react-toastify'
+import { useRouter } from 'next/router'
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email('Please enter email in correct format')
@@ -25,6 +26,7 @@ const initialValues = {
 }
 const login = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/auth/login`,
     {
@@ -37,6 +39,9 @@ const login = () => {
     if (response) {
       localStorage.setItem('token_swag', response?.data?.accessToken)
       dispatch(setRole(response?.data?.role))
+      toast.success('Logged in sucessfully')
+
+      router.push('/')
     }
     if (error) {
       console.log(errorMessage, 'errorMessage')
