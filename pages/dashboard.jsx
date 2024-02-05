@@ -5,7 +5,10 @@ const dashboard = () => {
   return (
     <div className="text-green-50">
       dashboard
-      <LeftSideBar />
+      <div className="" style={{ display: 'flex' }}>
+        <LeftSideBar />
+        <div className=""></div>
+      </div>
     </div>
   )
 }
