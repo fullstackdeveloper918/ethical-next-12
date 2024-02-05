@@ -32,6 +32,7 @@ const initialValues = {
 const register = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+  const [terms, setTerms] = useState(false)
 
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/auth/register`,
@@ -77,6 +78,15 @@ const register = () => {
     } finally {
     }
   }
+
+  const handleChange = (event) => {
+    if (event.target.checked) {
+      console.log('✅ Checkbox is checked')
+    } else {
+      console.log('⛔️ Checkbox is NOT checked')
+    }
+    setTerms((current) => !current)
+  }
   return (
     <>
       <div className={Styles.login_wrapper}>
@@ -102,7 +112,7 @@ const register = () => {
                     <ErrorMessage
                       name="name"
                       component="div"
-                      className="error"
+                      className={Styles.error}
                     />
                   </div>
 
@@ -116,7 +126,7 @@ const register = () => {
                     <ErrorMessage
                       name="email"
                       component="div"
-                      className="error"
+                      className={Styles.error}
                     />
                   </div>
 
@@ -130,7 +140,7 @@ const register = () => {
                     <ErrorMessage
                       name="password"
                       component="div"
-                      className="error"
+                      className={Styles.error}
                     />
                   </div>
                   <div className={Styles.input_box}>
@@ -143,18 +153,23 @@ const register = () => {
                     <ErrorMessage
                       name="c_password"
                       component="div"
-                      className="error"
+                      className={Styles.error}
                     />
                   </div>
                   <div className={Styles.input_radio_content}>
-                    <input type="radio" name="radio" />
+                    <input
+                      type="checkbox"
+                      name="terms"
+                      value={terms}
+                      onChange={handleChange}
+                    />
                     <p>
                       I agree to the <a>terms & conditions | privacy policy</a>
                     </p>
                   </div>
 
                   <div className={Styles.input_box}>
-                    <button type="submit" disabled={false}>
+                    <button type="submit" disabled={loading || !terms}>
                       Submit
                     </button>
                   </div>
