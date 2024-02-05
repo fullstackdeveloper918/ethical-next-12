@@ -33,6 +33,12 @@ const login = () => {
     },
     'formdata'
   )
+  useEffect(() => {
+    const token = localStorage.getItem('token_swag')
+    if (token) {
+      router.push('/')
+    }
+  }, [])
 
   useEffect(() => {
     if (response) {

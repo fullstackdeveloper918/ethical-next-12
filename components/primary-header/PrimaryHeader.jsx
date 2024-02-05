@@ -45,12 +45,18 @@ const PrimaryHeader = () => {
             <div className="">
               <Image src={phoneImg} alt="down arrow" width={16} height={15} />
             </div>
-            <div className="">1-877-256-6998</div>
+            <div className="" style={{ cursor: 'pointer' }}>
+              1-877-256-6998
+            </div>
           </div>
           <div className={styles.offer_container}>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className={styles.tap_annument}>
+                <Button
+                  variant="ghost"
+                  className={styles.tap_annument}
+                  style={{ cursor: 'pointer' }}
+                >
                   What we Offer
                   <span>
                     <Image
@@ -96,7 +102,14 @@ const PrimaryHeader = () => {
             />
           </div>
           <div className="" onClick={() => router.push('/login')}>
-            {screenSize > 767 && <button className={styles.top_barbtn}>Login</button>}
+            {screenSize > 767 && (
+              <button
+                className={styles.top_barbtn}
+                style={{ cursor: 'pointer' }}
+              >
+                Login
+              </button>
+            )}
             {screenSize <= 767 && (
               <span className={styles.cursor_pointer}>
                 <Image src={loginIcon} alt="login" width={13} height={13} />
@@ -108,10 +121,17 @@ const PrimaryHeader = () => {
             className={styles.cursor_pointer}
             onClick={() => router.push('/register')}
           >
-            {screenSize > 991 && <button className={styles.top_barbtn}>SignUp</button>}
+            {screenSize > 991 && (
+              <button
+                className={styles.top_barbtn}
+                style={{ cursor: 'pointer' }}
+              >
+                SignUp
+              </button>
+            )}
             {screenSize <= 991 && (
               <span>
-                <button>
+                <button style={{ cursor: 'pointer' }}>
                   <Image src={signIcon} alt="Register" width={18} height={18} />
                 </button>
               </span>
