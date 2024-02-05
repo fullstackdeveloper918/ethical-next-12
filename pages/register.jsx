@@ -52,15 +52,16 @@ const register = () => {
     if (response) {
       localStorage.setItem('token_swag', response?.data?.accessToken)
       //   dispatch(setRole(response?.data?.role))
-      toast.success(response?.data?.message)
+      toast.success(response?.message)
 
       router.push('/')
-      console.log(response)
+      console.log(response, 'responseeeeee')
     }
     if (error) {
-      console.log(errorMessage, 'errorMessage from register api')
+      console.log(error?.error?.email[0], 'errorMessage from register api')
+      toast.error(error?.error?.email[0])
     }
-  }, [response])
+  }, [response, error])
 
   const onSubmit = async (values) => {
     try {
