@@ -9,9 +9,9 @@ import Products from '../components/Products/Products'
 // import { useRouter, useParams } from 'next/navigation'
 import useFetch from '../lib/useFetch'
 import Loaders from '../components/loaders/Loaders'
-import PrimaryHeader from '../components/primary-header/PrimaryHeader'
 import SecondaryHeader from '../components/secondary-header/SecondaryHeader'
-
+import PrimaryHeader from '../components/primary-header/PrimaryHeader'
+import Footer from '../components/footer/Footer'
 const products = () => {
   const [activeFilter, setActiveFilter] = useState(false)
   // const router = useRouter()
@@ -49,6 +49,7 @@ const products = () => {
             <Products response={response} loading={loading} error={error} />
             {/* <Pagination /> */}
           </section>
+          <Footer />
         </>
       )}
     </>

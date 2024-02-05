@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Formik, Form, Field, ErrorMessage, resetForm } from 'formik'
 import * as Yup from 'yup'
 import useFetch from '../lib/useFetch'
+import Styles from '../styles/Login.module.css'
 import { useDispatch } from 'react-redux'
 import { setRole } from '../redux-setup/authSlice'
 import { ToastContainer, toast } from 'react-toastify'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
+import images from '../constants/images'
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email('Please enter email in correct format')
@@ -14,15 +17,11 @@ const validationSchema = Yup.object().shape({
     .required('Password is required')
     .min(3, 'Password must be at least 8 characters')
     .max(50, 'Too Long!'),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Confirm Password is required'),
 })
 
 const initialValues = {
   email: '',
   password: '',
-  confirmPassword: '',
 }
 const login = () => {
   const dispatch = useDispatch()
@@ -67,46 +66,69 @@ const login = () => {
     }
   }
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      {() => (
-        <Form>
-          <div>
-            <label htmlFor="email">email:</label>
-            <Field type="text" id="email" name="email" />
-            <ErrorMessage name="email" component="div" className="error" />
-          </div>
+    <>
+      <div className={Styles.login_wrapper}>
+        <div className={Styles.login_container}>
+          <div className={Styles.login_content}>
+            <div className={Styles.login_img_content}>
+              <Image src={images.ethical_swag} />
+            </div>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
+            >
+              {() => (
+                <>
+                  <Form className={Styles.form}>
+                    <div className={Styles.input_box}>
+                      <Field
+                        type="text"
+                        id="email"
+                        name="email"
+                        placeholder="Enter email"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="error"
+                      />
+                    </div>
 
-          <div>
-            <label htmlFor="password">Password:</label>
-            <Field type="password" id="password" name="password" />
-            <ErrorMessage name="password" component="div" className="error" />
-          </div>
-          <div>
-            <label htmlFor="confirmPassword">confirmPassword:</label>
-            <Field
-              type="confirmPassword"
-              id="confirmPassword"
-              name="confirmPassword"
-            />
-            <ErrorMessage
-              name="confirmPassword"
-              component="div"
-              className="error"
-            />
-          </div>
+                    <div className={Styles.input_box}>
+                      <Field
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter Password"
+                      />
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className="error"
+                      />
+                    </div>
+                    <div className={Styles.input_radio_content}>
+                      <input type="radio" name="radio" />
+                      <p>
+                        I agree to the{' '}
+                        <a>terms & conditions | privacy policy</a>
+                      </p>
+                    </div>
 
-          <div>
-            <button type="submit" disabled={loading}>
-              Submit
-            </button>
+                    <div className={Styles.input_box}>
+                      <button type="submit" disabled={loading}>
+                        Login
+                      </button>
+                    </div>
+                  </Form>
+                </>
+              )}
+            </Formik>
           </div>
-        </Form>
-      )}
-    </Formik>
+        </div>
+      </div>
+    </>
   )
 }
 

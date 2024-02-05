@@ -1,19 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  country: "usa",
-};
+  country: 'usa',
+}
 
 export const CountrySlice = createSlice({
-  name: "country",
+  name: 'country',
   initialState,
   reducers: {
     selectCountry: (state, action) => {
-      state.country = action.payload;
+      state.country = action.payload
     },
   },
-});
+})
 
-export const { selectCountry } = CountrySlice.actions;
+export const { selectCountry } = CountrySlice.actions
 
-export default CountrySlice.reducer;
+export default CountrySlice.reducer
