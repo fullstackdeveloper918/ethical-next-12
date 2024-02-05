@@ -11,16 +11,12 @@ const productID = () => {
   const { query } = params ?? {}
   const { productID } = query ?? {}
 
-  console.log(productID)
-
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products/${productID}`,
     {
       method: 'get',
     }
   )
-
-  console.log('response', response?.data)
 
   useEffect(() => {
     loadQuery()
