@@ -52,10 +52,6 @@ const SecondaryHeader = () => {
   const [country, setCountry] = useState('usa')
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(selectCountry(country))
-  }, [country])
-
   const [screenSize, setScreenSize] = useState(992)
   const handleResize = () => {
     setScreenSize(window.innerWidth)
