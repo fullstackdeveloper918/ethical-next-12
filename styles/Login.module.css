@@ -1,0 +1,75 @@
+.login_wrapper {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_container {
+  min-width: 713px;
+  background-color: #fff;
+  border-radius: 30px;
+  padding-block: 66px;
+}
+
+.login_content {
+  width: 100%;
+}
+
+.login_img_content {
+  width: 100%;
+  text-align: center;
+}
+
+.form {
+  margin-top: 25px;
+  padding-inline: 3.5rem;
+}
+.form .input_box {
+  height: 50px;
+  width: 100%;
+  margin-top: 1rem;
+}
+.input_box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: 1px solid lightgrey;
+  border-radius: 30px;
+  padding-left: 1.5rem;
+  font-size: 17px;
+  transition: all 0.3s ease;
+}
+
+.input_radio_content {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.input_box button {
+  margin-top: 2.7rem;
+  padding: 1rem 0;
+  border-radius: 130px;
+  background: var(--green, #a2d061);
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  font-weight: 500;
+  width: 30%;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.input_box button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.error {
+  color: red;
+}
