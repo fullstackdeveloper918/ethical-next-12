@@ -1,15 +1,16 @@
 import React from 'react'
-import LeftSideBar from '../components/admin/left-side-bar/LeftSideBar'
+import SideBar from '../components/admin/SideBar/SideBar'
+import DashBoard from '../components/admin/DashBoard/DashBoard'
+import Styles from '../styles/AdminDashboard.module.css'
 
 const dashboard = () => {
   return (
-    <div className="text-green-50">
-      dashboard
-      <div className="" style={{ display: 'flex' }}>
-        <LeftSideBar />
-        <div className=""></div>
-      </div>
-    </div>
+    <>
+      <section className={Styles.admin_dashboard_container}>
+        <SideBar />
+        <DashBoard />
+      </section>
+    </>
   )
 }
 

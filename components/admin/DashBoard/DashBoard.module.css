@@ -1,0 +1,43 @@
+.DashBoard_container {
+  flex: 6;
+  width: 100%;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.top_content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.purchase_button {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding-left: 2.5rem;
+}
+
+.purchase_button button {
+  width: fit-content;
+  color: #fff;
+  background-color: #a2d061;
+  padding: 10px;
+  border-radius: 30px;
+  border: none;
+}
+
+.purchase_card {
+  width: 100%;
+  background-color: #fff;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.purchase_card .nav_content button {
+  width: fit-content;
+  color: #fff;
+  background-color: #007bff;
+  padding: 10px;
+  border-radius: 30px;
+  border: none;
+}

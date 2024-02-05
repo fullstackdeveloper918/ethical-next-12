@@ -1,0 +1,86 @@
+.Sidebar_container {
+  flex: 1;
+  width: 100%;
+  height: 100vh;
+  border-radius: 30px;
+  box-sizing: border-box;
+  background-color: #fff;
+  padding-inline: 10px;
+}
+
+.sidebar_content {
+  width: 100%;
+  padding-block: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.horizontal_line {
+  width: 100%;
+  height: 1px;
+  background-color: #cccccc;
+}
+
+.Sidebar_data {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.sidebar_data_content {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.sidebar_data_content.active {
+  background-color: #f8f8f8;
+}
+
+.sidebar_icon {
+  box-shadow: 1px 1px 2px #ccc;
+}
+
+.sidebar_data_content:hover {
+  background-color: #f8f8f8;
+}
+
+.Sidebar_links {
+  font-size: 18px;
+  font-weight: 500;
+  color: #858585;
+}
+
+.bottom_container {
+  background-color: #a2d061;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.bottom_container .content .top_content p {
+  color: #fff;
+}
+
+.bottom_container .content .top_content p:nth-child(2) {
+  font-size: 13px;
+}
+
+.bottom_container .content .bottom_content {
+  width: 100%;
+}
+
+.bottom_container .content .bottom_content button {
+  width: 100%;
+  background-color: #fff;
+  color: #a2d061;
+  font-size: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 39px;
+  font-weight: 600;
+}

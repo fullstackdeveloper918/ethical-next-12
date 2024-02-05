@@ -86,8 +86,6 @@ export const LIST = [
   },
 ]
 
-export const PRODUCT_TYPE_LIST = []
-
 export const Collection_data = [
   {
     src: images.Shirt,
@@ -104,4 +102,11 @@ export const Collection_data = [
     text: 'Zama Flannel Plaid Button Down Shirt - Unisex',
     colors: images.different_colors,
   },
+]
+
+export const Sidebar_Data = [
+  { id: 1, text: 'Dashboard', icon: images.Livello_1 },
+  { id: 1, text: 'Message', icon: images.Livello_1 },
+  { id: 1, text: 'Orders', icon: images.Livello_1 },
+  { id: 1, text: 'History', icon: images.Livello_1 },
 ]
