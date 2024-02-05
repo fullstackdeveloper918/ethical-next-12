@@ -36,9 +36,9 @@ const Certified = () => {
   return (
     <>
       <div className={styles.heading}>
-        Certified <span className={styles.heading_colored}>CORP SWAGa</span>
+        Certified <span className={styles.heading_colored}>CORP SWAG</span>
       </div>
-      <div className="" style={{ width: '1800px' }}>
+      <div className="" style={{ width: '1600px', margin: 'auto' }}>
         {data && (
           <div>
             <Carousel
