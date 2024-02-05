@@ -12,7 +12,7 @@ import ProductCard from '../ProductCard/ProductCard'
 import { useSelector } from 'react-redux'
 
 const Products = ({ response, error, loading }) => {
-  const inputPrice = useSelector((state) => state.filter.Price)
+  const inputPrice = useSelector((state) => state.filter?.Price)
 
   const filterProducts = response?.data?.data?.filter(
     (p) => p?.unit_price > inputPrice
