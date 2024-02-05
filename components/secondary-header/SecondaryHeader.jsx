@@ -89,7 +89,7 @@ const SecondaryHeader = () => {
               width={220}
               height={50}
               alt="search"
-              onClick={() => router.push('/home')}
+              onClick={() => router.push('/')}
               style={{ cursor: 'pointer' }}
             />
           </div>
@@ -133,7 +133,11 @@ const SecondaryHeader = () => {
                   <>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className={styles.shop_menu}>
+                        <Button
+                          variant="ghost"
+                          className={styles.shop_menu}
+                          style={{ cursor: 'pointer' }}
+                        >
                           Shop
                           <span>
                             <Image
@@ -176,7 +180,11 @@ const SecondaryHeader = () => {
                 <div className="text_with_down_icon">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className={styles.shop_menu}>
+                      <Button
+                        variant="ghost"
+                        className={styles.shop_menu}
+                        style={{ cursor: 'pointer' }}
+                      >
                         About
                         <span>
                           <Image
@@ -211,7 +219,11 @@ const SecondaryHeader = () => {
                   </DropdownMenu>
                 </div>
               )}
-              <Button variant="ghost" className={styles.shop_menu}>
+              <Button
+                variant="ghost"
+                className={styles.shop_menu}
+                style={{ cursor: 'pointer' }}
+              >
                 Contact
               </Button>
 
