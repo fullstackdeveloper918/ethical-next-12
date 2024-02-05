@@ -3,13 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Styles from './Filter.module.css'
 import Image from 'next/image'
 import downIcon from '../../assets/headerPics/down-black.svg'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+import { IoIosArrowDown } from 'react-icons/io'
 import { Button } from '@/components/ui/button'
 import FilterPanel from '../FilterPanel/FilterPanel'
 import images from '../../constants/images'
@@ -58,36 +52,12 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
           <input type="text" />
         </div>
         <div className={Styles.filter_select}>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className={Styles.shop_menu}>
-                Select Option
-                <span>
-                  <Image src={downIcon} width={8} height={8} alt="search" />
-                </span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className={Styles.header_menu}>
-              <DropdownMenuRadioItem
-                value="top"
-                className={Styles.shop_submenu}
-              >
-                Top
-              </DropdownMenuRadioItem>
-              <DropdownMenuRadioItem
-                value="bottom"
-                className={Styles.shop_submenu}
-              >
-                Bottom
-              </DropdownMenuRadioItem>
-              <DropdownMenuRadioItem
-                value="right"
-                className={Styles.shop_submenu}
-              >
-                Right
-              </DropdownMenuRadioItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div>
+            <span>Select an Option</span>
+            <span>
+              <IoIosArrowDown fontSize={18} />
+            </span>
+          </div>
         </div>
       </div>
       <div className={Styles.filter_panel_wrap}>

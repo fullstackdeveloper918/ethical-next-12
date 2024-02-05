@@ -175,7 +175,7 @@ const SecondaryHeader = () => {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" className={styles.shop_menu}>
-                       About 
+                        About
                         <span>
                           <Image
                             src={downIcon}
@@ -213,7 +213,7 @@ const SecondaryHeader = () => {
                 Contact
               </Button>
 
-              <DropdownMenu>
+              {/* <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className={`${styles.language_dropdown} ${styles.mobile_menu}`}>
                     <span className="flag-img">
@@ -256,7 +256,7 @@ const SecondaryHeader = () => {
                     })}
                   </DropdownMenuRadioGroup>
                 </DropdownMenuContent>
-              </DropdownMenu>
+              </DropdownMenu> */}
             </div>
           </div>
         </>
@@ -288,25 +288,21 @@ const SecondaryHeader = () => {
                   onValueChange={setCountry}
                 >
                   <div className={styles.countries_dropdown_container}>
-
-                  {countries.map((c) => {
-                    return (
-                      <DropdownMenuRadioItem
-                      value={c.country}
-                      // style={{ display: "none" }}
-                      >
-                      
-
-                        <Image
-                          src={c.imageSrc}
-                          width={30}
-                          height={22}
-                          alt="like"
+                    {countries.map((c) => {
+                      return (
+                        <DropdownMenuRadioItem
+                          value={c.country}
+                          // style={{ display: "none" }}
+                        >
+                          <Image
+                            src={c.imageSrc}
+                            width={30}
+                            height={22}
+                            alt="like"
                           />
-                          
-                      </DropdownMenuRadioItem>
-                    )
-                  })}
+                        </DropdownMenuRadioItem>
+                      )
+                    })}
                   </div>
                 </DropdownMenuRadioGroup>
               </DropdownMenuContent>
