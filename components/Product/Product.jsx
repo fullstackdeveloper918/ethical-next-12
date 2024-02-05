@@ -60,18 +60,6 @@ const Product = ({ product, loading, error }) => {
     return () => clearTimeout(getData)
   }, [orderQuantity])
 
-  const goToPrev = () => {
-    const isFirstSlide = currentIndex === 0
-    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1
-    setCurrentIndex(newIndex)
-  }
-
-  const goToNext = () => {
-    const isLastSlide = currentIndex === slides.length - 1
-    const newIndex = isLastSlide ? 0 : currentIndex + 1
-    setCurrentIndex(newIndex)
-  }
-
   const setQuantity = (e) => {
     e.preventDefault()
     setOrderQuantity(e.target.value)
@@ -162,8 +150,8 @@ const Product = ({ product, loading, error }) => {
                     {imageUrl && (
                       <Image
                         src={imageUrl}
-                        width={500}
-                        height={500}
+                        width={400}
+                        height={560}
                         alt="Single_Product_Image"
                       />
                     )}

@@ -9,7 +9,9 @@ import Products from '../components/Products/Products'
 // import { useRouter, useParams } from 'next/navigation'
 import useFetch from '../lib/useFetch'
 import Loaders from '../components/loaders/Loaders'
-
+import SecondaryHeader from '../components/secondary-header/SecondaryHeader'
+import PrimaryHeader from '../components/primary-header/PrimaryHeader'
+import Footer from '../components/footer/Footer'
 const products = () => {
   const [activeFilter, setActiveFilter] = useState(false)
   // const router = useRouter()
@@ -31,19 +33,24 @@ const products = () => {
           <Loaders />
         </div>
       ) : (
-        <section
-          className={`${global.container} ${
-            activeFilter ? Styles.category_section : ''
-          }`}
-          style={{ overflow: 'hidden' }}
-        >
-          <Filter
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
-          />
-          <Products response={response} loading={loading} error={error} />
-          {/* <Pagination /> */}
-        </section>
+        <>
+          <PrimaryHeader />
+          <SecondaryHeader />
+          <section
+            className={`${global.container} ${
+              activeFilter ? Styles.category_section : ''
+            }`}
+            style={{ overflow: 'hidden' }}
+          >
+            <Filter
+              activeFilter={activeFilter}
+              setActiveFilter={setActiveFilter}
+            />
+            <Products response={response} loading={loading} error={error} />
+            {/* <Pagination /> */}
+          </section>
+          <Footer />
+        </>
       )}
     </>
   )

@@ -2,6 +2,9 @@ import React, { useEffect } from 'react'
 import Product from '../../components/Product/Product'
 import useFetch from '../../lib/useFetch'
 import { useRouter } from 'next/router'
+import PrimaryHeader from '../../components/primary-header/PrimaryHeader'
+import SecondaryHeader from '../../components/secondary-header/SecondaryHeader'
+import Footer from '../../components/footer/Footer'
 
 const productID = () => {
   const params = useRouter()
@@ -25,7 +28,10 @@ const productID = () => {
 
   return (
     <>
+      <PrimaryHeader />
+      <SecondaryHeader />
       <Product product={response?.data} loading={loading} error={error} />
+      <Footer />
     </>
   )
 }
