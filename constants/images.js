@@ -22,6 +22,7 @@ import Replacement_Icon from '../assets/Replacement_Icon.svg'
 import Fast_Delivery_Icon from '../assets/Fast_Delivery_Icon.svg'
 import Bell_Icon from '../assets/bell_icon.svg'
 import User_icon from '../assets/User_Icon.png'
+import Young_man from '../assets/Young_Man.jpg'
 
 const images = {
   ethical_swag,
@@ -48,6 +49,7 @@ const images = {
   Fast_Delivery_Icon,
   Bell_Icon,
   User_icon,
+  Young_man,
 }
 
 export default images
