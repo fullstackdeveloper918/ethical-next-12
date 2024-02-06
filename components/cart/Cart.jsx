@@ -122,31 +122,35 @@ const Cart = ({ token, selectedOption }) => {
                 <>
                   <Form className={Styles.form}>
                     <div className={Styles.form_inputs}>
-                      <Field
-                        type="text"
-                        id="email"
-                        name="email"
-                        placeholder="Enter email"
-                      />
-                      <ErrorMessage
-                        name="email"
-                        component="div"
-                        className={Styles.error}
-                      />
-                    </div>
+                      <div className={Styles.inputField}>
+                        <Field
+                          type="text"
+                          id="email"
+                          name="email"
+                          placeholder="Enter email"
+                          className={Styles.input}
+                        />
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className={Styles.error}
+                        />
+                      </div>
 
-                    <div className={Styles.form_inputs}>
-                      <Field
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter Password"
-                      />
-                      <ErrorMessage
-                        name="password"
-                        component="div"
-                        className={Styles.error}
-                      />
+                      <div className={Styles.inputField}>
+                        <Field
+                          type="password"
+                          id="password"
+                          name="password"
+                          placeholder="Enter Password"
+                          className={Styles.input}
+                        />
+                        <ErrorMessage
+                          name="password"
+                          component="div"
+                          className={Styles.error}
+                        />
+                      </div>
                     </div>
 
                     <div className={Styles.form_inputs}>

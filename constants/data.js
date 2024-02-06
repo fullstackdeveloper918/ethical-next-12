@@ -110,3 +110,105 @@ export const Sidebar_Data = [
   { id: 1, text: 'Orders', icon: images.Livello_1 },
   { id: 1, text: 'History', icon: images.Livello_1 },
 ]
+
+export const Dashboard_table = [
+  {
+    SL: 1,
+    Supplier: 'John Doe',
+    Warehouse: 'warehouse 1',
+    Grand_total: '$720',
+    Status: 'Pending',
+    bgColor: '#f5365c',
+  },
+  {
+    SL: 2,
+    Supplier: 'Thomas Mour',
+    Warehouse: 'warehouse 1',
+    Grand_total: '$720',
+    Status: 'Received',
+    bgColor: '#2dce89',
+  },
+  {
+    SL: 3,
+    Supplier: 'Jhon Smith',
+    Warehouse: 'warehouse 1',
+    Grand_total: '$720',
+    Status: 'Ordered',
+    bgColor: '#fb6340',
+  },
+  {
+    SL: 4,
+    Supplier: 'Alexander Cook',
+    Warehouse: 'warehouse 1',
+    Grand_total: '$720',
+    Status: 'Received',
+    bgColor: '#2dce89',
+  },
+  {
+    SL: 5,
+    Supplier: 'John Doe',
+    Warehouse: 'warehouse 1',
+    Grand_total: '$720',
+    Status: 'Pending',
+    bgColor: '#f5365c',
+  },
+  {
+    SL: 6,
+    Supplier: 'Stuart Brod',
+    Warehouse: 'warehouse 1',
+    Grand_total: '$720',
+    Status: 'Received',
+    bgColor: '#2dce89',
+  },
+  {
+    SL: 7,
+    Supplier: 'John Doe',
+    Warehouse: 'warehouse 1',
+    Grand_total: '$720',
+    Status: 'Pending',
+    bgColor: '#f5365c',
+  },
+]
+
+export const Dashboard_User_Data = [
+  { id: 1, Name: 'Alex Thmpson', Message: 'Cheers!', src: images.Young_man },
+  {
+    id: 2,
+    Name: 'John Dogue',
+    Message: 'stay hungry stay foolish!',
+    src: images.Young_man,
+  },
+  { id: 3, Name: 'Alex Thmpson', Message: 'Cheers!', src: images.Young_man },
+  { id: 4, Name: 'Alex Thmpson', Message: 'Cheers!', src: images.Young_man },
+]
+
+export const Application_Sales = [
+  {
+    id: 1,
+    Application_Name: 'Able Pro',
+    Application_software: 'Powerful Admin Theme',
+    Sales: '16,300',
+    Price: '$53',
+  },
+  {
+    id: 2,
+    Application_Name: 'Photoshop',
+    Application_software: 'Design Software',
+    Sales: '26,421',
+    Price: '$35',
+  },
+  {
+    id: 3,
+    Application_Name: 'Guruable',
+    Application_software: 'Best Admin Template',
+    Sales: '8,265',
+    Price: '$98',
+  },
+  {
+    id: 4,
+    Application_Name: 'Flatable',
+    Application_software: 'Admin App',
+    Sales: '10,652',
+    Price: '$20',
+  },
+]

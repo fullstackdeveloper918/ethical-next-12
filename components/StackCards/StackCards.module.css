@@ -81,37 +81,37 @@
 
 @keyframes onTop {
   5% {
-    transform: translateY(-300px);
+    transform: translateX(-300px);
     z-index: 1;
     left: 20px;
     top: 20px;
   }
   10% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 0;
     left: 40px;
     top: 40px;
   }
   40% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 0;
     left: 40px;
     top: 40px;
   }
   50% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 1;
     left: 20px;
     top: 20px;
   }
   70% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 1;
     left: 20px;
     top: 20px;
   }
   80% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 2;
     left: 0;
     top: 0;
@@ -119,37 +119,37 @@
 }
 @keyframes onMiddle {
   10% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 2;
     left: 0;
     top: 0;
   }
   40% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 2;
     left: 0;
     top: 0;
   }
   45% {
-    transform: translateY(-300px);
+    transform: translateX(-300px);
     z-index: 1;
     left: 20px;
     top: 20px;
   }
   50% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 0;
     left: 40px;
     top: 40px;
   }
   70% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 0;
     left: 40px;
     top: 40px;
   }
   80% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 1;
     left: 20px;
     top: 20px;
@@ -157,37 +157,37 @@
 }
 @keyframes onBottom {
   10% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 0;
     left: 20px;
     top: 20px;
   }
   40% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 1;
     left: 20px;
     top: 20px;
   }
   50% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 2;
     left: 0;
     top: 0;
   }
   70% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 2;
     left: 0;
     top: 0;
   }
   75% {
-    transform: translateY(-300px);
+    transform: translateX(-300px);
     z-index: 1;
     left: 20px;
     top: 20px;
   }
   80% {
-    transform: translateY(0);
+    transform: translateX(0);
     z-index: 0;
     left: 40px;
     top: 40px;
