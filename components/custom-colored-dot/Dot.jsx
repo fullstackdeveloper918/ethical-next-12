@@ -1,8 +1,5 @@
-import { useState } from 'react'
 import Styles from './Dot.module.css'
 const Dot = ({ color, activeColor, setActiveColor }) => {
-  // const [outline, setOutline] = useState(false);
-
   const btnClicked = () => {
     setActiveColor(color)
   }

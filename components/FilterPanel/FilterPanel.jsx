@@ -1,11 +1,7 @@
-import Image from 'next/image'
 import Styles from '../Filter/Filter.module.css'
 import React, { useEffect, useState } from 'react'
-import images from '../../constants/images'
-import { LIST, PRODUCT_TYPE_LIST } from '../../constants/data'
-import { Label } from '@radix-ui/react-dropdown-menu'
-import { Button } from '@/components/ui/button'
-import { useSelector, useDispatch } from 'react-redux'
+import { LIST } from '../../constants/data'
+import { useDispatch } from 'react-redux'
 import { filterPrice } from '../../redux-setup/FiltersSlice'
 
 const FilterPanel = () => {
@@ -39,10 +35,7 @@ const FilterPanel = () => {
     }))
   }
 
-  const handleSliderChange = (e) => {
-    setPrice(e.target.value)
-  }
-
+ 
   const toggleAccordion = (index) => {
     setOpenIndex(index)
     setIsActive(!isActive)

@@ -6,11 +6,9 @@ import Image from 'next/image'
 import { MdOutlineFavoriteBorder } from 'react-icons/md'
 import { CiSearch } from 'react-icons/ci'
 import { CiShare2 } from 'react-icons/ci'
-// import { useRouter } from 'next/navigation'
 
 const ProductCard = ({ item }) => {
   const [ActiveOption, setActiveOption] = useState(false)
-  // const router = useRouter()
 
   return (
     <>

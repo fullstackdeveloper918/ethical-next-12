@@ -11,7 +11,7 @@ import CrossIcon from '../../assets/headerPics/corss.svg'
 import Humburg from '../../assets/headerPics/menu-bar.png'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import styles from './secondaryHeader.module.css'
 
 import {
@@ -22,15 +22,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-// import {
-//   Accordion,
-//   AccordionContent,
-//   AccordionItem,
-//   AccordionTrigger,
-// } from '@/components/ui/accordion'
 import { useRouter } from 'next/router'
 import { Input } from '@/components/ui/input'
-import { selectCountry } from '../../redux-setup/countrySlice'
 
 const countries = [
   {
@@ -50,7 +43,6 @@ const SecondaryHeader = () => {
   const [openLinks, setOpenLinks] = useState(false)
   const router = useRouter()
   const [country, setCountry] = useState('usa')
-  const dispatch = useDispatch()
 
   const [screenSize, setScreenSize] = useState(992)
   const handleResize = () => {
@@ -63,8 +55,6 @@ const SecondaryHeader = () => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
-
-  const selectedCountry = useSelector((state) => state.country.country)
 
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>

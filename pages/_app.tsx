@@ -14,14 +14,13 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import countrySlice from '../redux-setup/countrySlice'
 import authSlice from '../redux-setup/authSlice'
 import filterSlice from '../redux-setup/FiltersSlice'
 import storage from 'redux-persist/lib/storage'
 import { PersistGate } from 'redux-persist/integration/react'
-import { useEffect } from 'react'
 builder.init(builderConfig.apiKey)
 
 const combinedReducer = combineReducers({

@@ -10,7 +10,6 @@ import {
 } from '../../lib/validationSchemas'
 import useFetch from '../../lib/useFetch'
 import { toast } from 'react-toastify'
-import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { setRole } from '../../redux-setup/authSlice'
 
@@ -33,7 +32,7 @@ const Cart = ({ token, selectedOption }) => {
     }))
   }
 
-  const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
+  const [loadQuery, { response, loading, error }] = useFetch(
     `/auth/login`,
     {
       method: 'post',
@@ -61,15 +60,11 @@ const Cart = ({ token, selectedOption }) => {
       localStorage.setItem('token_swag', response?.data?.accessToken)
       dispatch(setRole(response?.data?.role))
       toast.success('Logged in sucessfully')
-
-      // router.push('/')
     }
     if (registerResponse) {
       localStorage.setItem('token_swag', registerResponse?.data?.accessToken)
       dispatch(setRole(registerResponse?.data?.role))
       toast.success(registerResponse?.message)
-
-      // router.push('/')
     }
     if (error) {
       console.log(error, 'errorMessage')

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Formik, Form, Field, ErrorMessage, resetForm } from 'formik'
-import * as Yup from 'yup'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import useFetch from '../lib/useFetch'
 import Styles from '../styles/Login.module.css'
 import { useDispatch } from 'react-redux'
 import { setRole } from '../redux-setup/authSlice'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import images from '../constants/images'
@@ -15,7 +14,7 @@ const login = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [terms, setTerms] = useState(false)
-  const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
+  const [loadQuery, { response, loading, error }] = useFetch(
     `/auth/login`,
     {
       method: 'post',
@@ -52,16 +51,10 @@ const login = () => {
       loadQuery(formData)
     } catch (error) {
       console.log(error, 'from login api')
-    } finally {
     }
   }
 
   const handleChange = (event) => {
-    if (event.target.checked) {
-      console.log('✅ Checkbox is checked')
-    } else {
-      console.log('⛔️ Checkbox is NOT checked')
-    }
     setTerms((current) => !current)
   }
 

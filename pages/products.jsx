@@ -6,7 +6,6 @@ import Styles from '../components/Filter/Filter.module.css'
 import Filter from '../components/Filter/Filter'
 // import Pagination from '../../components/Pagination/Pagination'
 import Products from '../components/Products/Products'
-// import { useRouter, useParams } from 'next/navigation'
 import useFetch from '../lib/useFetch'
 import Loaders from '../components/loaders/Loaders'
 import SecondaryHeader from '../components/secondary-header/SecondaryHeader'
@@ -14,7 +13,6 @@ import PrimaryHeader from '../components/primary-header/PrimaryHeader'
 import Footer from '../components/footer/Footer'
 const products = () => {
   const [activeFilter, setActiveFilter] = useState(false)
-  // const router = useRouter()
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products`,
     {

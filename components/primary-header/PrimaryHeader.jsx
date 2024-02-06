@@ -9,22 +9,17 @@ import styles from './primaryHeader.module.css'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import loginIcon from '../../assets/login-icon.svg'
 import signIcon from '../../assets/headerPics/Sign-up.svg'
-import { usePathname, useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { Button } from '@/components/ui/button'
 import downIcon from '../../assets/headerPics/down-black.svg'
 import useFetch from '../../lib/useFetch'
 
 const PrimaryHeader = () => {
-  const [position, setPosition] = React.useState('bottom')
-
   const router = useRouter()
   const [screenSize, setScreenSize] = useState(992)
   const handleResize = () => {
@@ -40,12 +35,9 @@ const PrimaryHeader = () => {
 
   const isLoggedIn = !!localStorage.getItem('token_swag')
 
-  const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
-    `/auth/logout`,
-    {
-      method: 'get',
-    }
-  )
+  const [loadQuery, { response, loading, error }] = useFetch(`/auth/logout`, {
+    method: 'get',
+  })
 
   const logout = () => {
     console.log('i am called')

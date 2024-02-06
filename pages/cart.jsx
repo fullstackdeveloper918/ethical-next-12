@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PrimaryHeader from '../components/primary-header/PrimaryHeader'
 import SecondaryHeader from '../components/secondary-header/SecondaryHeader'
 import Footer from '../components/footer/Footer'
@@ -15,7 +15,6 @@ const cart = () => {
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)
   }
-  //New_client //Existing_client
 
   return (
     <>
