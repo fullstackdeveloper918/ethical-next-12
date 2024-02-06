@@ -129,6 +129,7 @@ const Cart = ({ token, selectedOption }) => {
                           name="email"
                           placeholder="Enter email"
                           className={Styles.input}
+                          autocomplete="off"
                         />
                         <ErrorMessage
                           name="email"
@@ -144,6 +145,7 @@ const Cart = ({ token, selectedOption }) => {
                           name="password"
                           placeholder="Enter Password"
                           className={Styles.input}
+                          autocomplete="off"
                         />
                         <ErrorMessage
                           name="password"

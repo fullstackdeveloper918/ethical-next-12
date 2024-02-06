@@ -23,6 +23,7 @@
 .form_inputs > .inputField {
   width: 50%;
   height: 100%;
+  margin-bottom: 1rem;
 }
 
 .form_inputs .inputField:nth-child(1) {
@@ -38,7 +39,11 @@
   background: #f7f7f7;
 }
 
-.form_inputs > input:focus {
+.form_inputs .inputField.button {
+  margin-top: 2rem;
+}
+
+.form_inputs .inputField .input:focus {
   outline: none;
 }
 
@@ -53,7 +58,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 25px;
-  margin-top: 1rem;
+  margin-top: 2rem;
   border-radius: 30px;
   border: 1px solid var(--green, #a2d061);
 }

@@ -1,0 +1,14 @@
+.Contact_container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.left_Section {
+  flex: 1;
+}
+
+.right_Section {
+  flex: 1;
+}
