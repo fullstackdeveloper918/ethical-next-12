@@ -266,6 +266,7 @@
 .bottom_table {
   background-color: #fff;
   margin-top: 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .bottom_data_heading {
