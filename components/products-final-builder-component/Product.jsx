@@ -1,17 +1,13 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import global from '../styles/global.module.css'
-import Styles from '../components/Filter/Filter.module.css'
+import useFetch from '../../lib/useFetch'
+import Loaders from '../loaders/Loaders'
+import Filter from '../Filter/Filter'
+import Products from '../Products/Products'
+import global from '../../styles/global.module.css'
+import Styles from '../Filter/Filter.module.css'
 
-import Filter from '../components/Filter/Filter'
-// import Pagination from '../../components/Pagination/Pagination'
-import Products from '../components/Products/Products'
-import useFetch from '../lib/useFetch'
-import Loaders from '../components/loaders/Loaders'
-import SecondaryHeader from '../components/secondary-header/SecondaryHeader'
-import PrimaryHeader from '../components/primary-header/PrimaryHeader'
-import Footer from '../components/footer/Footer'
-const products = () => {
+const Product = () => {
   const [activeFilter, setActiveFilter] = useState(false)
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products`,
@@ -32,8 +28,6 @@ const products = () => {
         </div>
       ) : (
         <>
-          <PrimaryHeader />
-          <SecondaryHeader />
           <section
             className={`${global.container} ${
               activeFilter ? Styles.category_section : ''
@@ -47,11 +41,10 @@ const products = () => {
             <Products response={response} loading={loading} error={error} />
             {/* <Pagination /> */}
           </section>
-          <Footer />
         </>
       )}
     </>
   )
 }
 
-export default products
+export default Product

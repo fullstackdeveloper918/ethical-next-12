@@ -13,6 +13,8 @@ import Footer from '@components/footer/Footer'
 import PrimaryHeader from '@components/primary-header/PrimaryHeader'
 import SecondaryHeader from '@components/secondary-header/SecondaryHeader'
 import Certified from '@components/certified-swag-section/certified'
+import StackCards from '../components/StackCards/StackCards'
+import Product from '../components/products-final-builder-component/Product'
 builder.init(builderConfig.apiKey)
 
 export async function getStaticProps({ params }) {
@@ -62,6 +64,14 @@ Builder.registerComponent(SecondaryHeader, {
 
 Builder.registerComponent(Certified, {
   name: 'Certified',
+})
+
+Builder.registerComponent(StackCards, {
+  name: 'StackCards',
+})
+
+Builder.registerComponent(Product, {
+  name: 'Products-page',
 })
 
 export default function Page({ page }) {
