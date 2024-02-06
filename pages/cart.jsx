@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PrimaryHeader from '../components/primary-header/PrimaryHeader'
 import SecondaryHeader from '../components/secondary-header/SecondaryHeader'
 import Footer from '../components/footer/Footer'
@@ -10,6 +10,8 @@ import Styles from '../components/cart/Cart.module.css'
 import Button from '../components/Button/Button'
 
 const cart = () => {
+  const token = localStorage.getItem('token_swag')
+
   return (
     <>
       <PrimaryHeader />
@@ -17,8 +19,8 @@ const cart = () => {
       <section className={Styles.cart_section}>
         <div>
           <QuotationSubmissionHeader />
-          <ClientTypeSelector />
-          <Cart />
+          {!token && <ClientTypeSelector />}
+          <Cart token={token} />
           <Button />
         </div>
         <EstimateCard />

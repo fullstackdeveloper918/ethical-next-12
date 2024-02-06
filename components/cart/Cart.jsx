@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Styles from './Cart.module.css'
 
-const Cart = () => {
+const Cart = ({ token }) => {
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -40,40 +40,41 @@ const Cart = () => {
         {/* Left Section  */}
         <div className={Styles.cart_left}>
           {/* <QuotationSubmissionHeader /> */}
-
-          <form className={Styles.form}>
-            <div className={Styles.form_inputs}>
-              <input
-                type="text"
-                placeholder="Email Address"
-                required
-                autoComplete="off"
-                name="email"
-                value={values.email}
-                onChange={handleInputChange}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                required
-                autoComplete="off"
-                name="password"
-                value={values.password}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className={Styles.form_inputs}>
-              <button
-                className={Styles.form_button}
-                style={{ cursor: totalValues ? 'pointer' : 'default' }}
-                disabled={!totalValues}
-                onClick={handleSubmit}
-              >
-                Login
-              </button>
-            </div>
-            <div className={`${Styles.horizontal_line} ${Styles.last}`}></div>
-          </form>
+          {!token && (
+            <form className={Styles.form}>
+              <div className={Styles.form_inputs}>
+                <input
+                  type="text"
+                  placeholder="Email Address"
+                  required
+                  autoComplete="off"
+                  name="email"
+                  value={values.email}
+                  onChange={handleInputChange}
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  required
+                  autoComplete="off"
+                  name="password"
+                  value={values.password}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className={Styles.form_inputs}>
+                <button
+                  className={Styles.form_button}
+                  style={{ cursor: totalValues ? 'pointer' : 'default' }}
+                  disabled={!totalValues}
+                  onClick={handleSubmit}
+                >
+                  Login
+                </button>
+              </div>
+              <div className={`${Styles.horizontal_line} ${Styles.last}`}></div>
+            </form>
+          )}
           <div className={Styles.cart_left_FAQ}>
             <h3>1. Tell us about your Swag Project</h3>
             <div className={Styles.cart_left_faqInput}>

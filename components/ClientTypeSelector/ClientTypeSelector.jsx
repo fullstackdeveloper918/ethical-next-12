@@ -2,8 +2,6 @@ import React from 'react'
 import Styles from './ClientTypeSelector.module.css'
 
 const ClientTypeSelector = ({ selectedValue, onRadioChange }) => {
-  console.log('ClientTypeSelector is called')
-
   const handleRadioChange = (event) => {
     const { value } = event.target
     onRadioChange(value)
