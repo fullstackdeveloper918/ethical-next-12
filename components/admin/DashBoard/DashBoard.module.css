@@ -33,7 +33,51 @@
   margin-top: 1rem;
 }
 
-.purchase_card .nav_content button {
+.purchase_card .nav_content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 8x;
+}
+
+.left_section {
+  flex: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.middle_section {
+  flex: 6;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 20px;
+}
+
+.middle_section input {
+  width: 85%;
+  height: 100%;
+}
+
+.middle_section input:focus {
+  outline: none;
+}
+
+.middle_section button {
+  border: none;
+  padding: 6px;
+}
+
+.right_section {
+  flex: 3;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.purchase_card .nav_content .Add_Purchase_btn {
   width: fit-content;
   color: #fff;
   background-color: #007bff;
