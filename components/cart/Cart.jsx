@@ -1,8 +1,20 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Styles from './Cart.module.css'
+import { Formik, Form, Field, ErrorMessage, resetForm } from 'formik'
+import {
+  initialValuesLogin,
+  validationSchema,
+} from '../../lib/validationSchemas'
+import useFetch from '../../lib/useFetch'
+import { toast } from 'react-toastify'
+import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
+import { setRole } from '../../redux-setup/authSlice'
 
 const Cart = ({ token }) => {
+  const router = useRouter()
+  const dispatch = useDispatch()
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -34,6 +46,41 @@ const Cart = ({ token }) => {
     console.log(values)
   }
 
+  const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
+    `/auth/login`,
+    {
+      method: 'post',
+    },
+    'formdata'
+  )
+
+  useEffect(() => {
+    if (response) {
+      localStorage.setItem('token_swag', response?.data?.accessToken)
+      dispatch(setRole(response?.data?.role))
+      toast.success('Logged in sucessfully')
+
+      // router.push('/')
+    }
+    if (error) {
+      console.log(error, 'errorMessage')
+      toast.error(error.message)
+    }
+  }, [response, error])
+
+  const onSubmit = async (values) => {
+    try {
+      let formData = new FormData()
+      formData.append('email', values.email)
+      formData.append('password', values.password)
+
+      loadQuery(formData)
+    } catch (error) {
+      console.log(error, 'from login api')
+    } finally {
+    }
+  }
+
   return (
     <>
       <section className={Styles.cart_section}>
@@ -41,40 +88,57 @@ const Cart = ({ token }) => {
         <div className={Styles.cart_left}>
           {/* <QuotationSubmissionHeader /> */}
           {!token && (
-            <form className={Styles.form}>
-              <div className={Styles.form_inputs}>
-                <input
-                  type="text"
-                  placeholder="Email Address"
-                  required
-                  autoComplete="off"
-                  name="email"
-                  value={values.email}
-                  onChange={handleInputChange}
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  required
-                  autoComplete="off"
-                  name="password"
-                  value={values.password}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className={Styles.form_inputs}>
-                <button
-                  className={Styles.form_button}
-                  style={{ cursor: totalValues ? 'pointer' : 'default' }}
-                  disabled={!totalValues}
-                  onClick={handleSubmit}
-                >
-                  Login
-                </button>
-              </div>
-              <div className={`${Styles.horizontal_line} ${Styles.last}`}></div>
-            </form>
+            <Formik
+              initialValues={initialValuesLogin}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
+            >
+              {() => (
+                <>
+                  <Form className={Styles.form}>
+                    <div className={Styles.form_inputs}>
+                      <Field
+                        type="text"
+                        id="email"
+                        name="email"
+                        placeholder="Enter email"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
+
+                    <div className={Styles.form_inputs}>
+                      <Field
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter Password"
+                      />
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
+
+                    <div className={Styles.form_inputs}>
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className={Styles.form_button}
+                      >
+                        Login
+                      </button>
+                    </div>
+                  </Form>
+                </>
+              )}
+            </Formik>
           )}
+
           <div className={Styles.cart_left_FAQ}>
             <h3>1. Tell us about your Swag Project</h3>
             <div className={Styles.cart_left_faqInput}>
