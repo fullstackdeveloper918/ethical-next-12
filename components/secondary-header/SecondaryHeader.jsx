@@ -309,34 +309,8 @@ const SecondaryHeader = () => {
             </DropdownMenu>
           </div>
           <div className={styles.header_searchicon}>
-            {showSearchInput ? (
-              <div className={styles.header_search}>
-                <div>
-                  <Input placeholder="Search our store" />
-                  <Image
-                    src={searchImg}
-                    width={30}
-                    height={30}
-                    alt="search"
-                    onClick={() => {
-                      setShowSearchInput(!showSearchInput)
-                    }}
-                  />
-                  <span>
-                    <Image
-                      src={CrossIcon}
-                      width={20}
-                      height={20}
-                      alt="cross_Icon"
-                      onClick={() => {
-                        setShowSearchInput(false)
-                      }}
-                    />
-                  </span>
-                </div>
-              </div>
-            ) : (
-              <Image
+           <span>
+           <Image
                 src={searchImg}
                 width={24}
                 height={24}
@@ -345,7 +319,7 @@ const SecondaryHeader = () => {
                   setShowSearchInput(!showSearchInput)
                 }}
               />
-            )}
+                  </span>
           </div>
 
           {screenSize > 767 && (
