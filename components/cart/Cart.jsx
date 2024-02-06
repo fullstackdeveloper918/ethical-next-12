@@ -13,7 +13,6 @@ import { useDispatch } from 'react-redux'
 import { setRole } from '../../redux-setup/authSlice'
 
 const Cart = ({ token, selectedOption }) => {
-  const router = useRouter()
   const dispatch = useDispatch()
   const [values, setValues] = useState({
     email: '',
@@ -21,10 +20,6 @@ const Cart = ({ token, selectedOption }) => {
     selectedDate: new Date().toISOString().split('T')[0],
     content: '',
   })
-  const [selectedValue, setSelectedValue] = useState('')
-
-  console.log(selectedOption, 'selectedOption from Cart')
-
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setValues((prev) => ({
@@ -34,18 +29,6 @@ const Cart = ({ token, selectedOption }) => {
           ? new Date(value).toISOString().split('T')[0]
           : value,
     }))
-  }
-
-  const handleRadioChangeFromChild = (value) => {
-    console.log('value', value)
-    setSelectedValue(value)
-  }
-
-  const totalValues = Boolean(values.email) && Boolean(values.password)
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(values)
   }
 
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
@@ -112,6 +95,84 @@ const Cart = ({ token, selectedOption }) => {
                       />
                     </div>
 
+                    <div className={Styles.form_inputs}>
+                      <Field
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter Password"
+                      />
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
+
+                    <div className={Styles.form_inputs}>
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className={Styles.form_button}
+                      >
+                        Login
+                      </button>
+                    </div>
+                  </Form>
+                </>
+              )}
+            </Formik>
+          )}
+
+          {!token && selectedOption === 'New_client' && (
+            <Formik
+              initialValues={initialValuesLogin}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
+            >
+              {() => (
+                <>
+                  <Form className={Styles.form}>
+                    <div className={Styles.form_inputs}>
+                      <Field
+                        type="text"
+                        id="email"
+                        name="email"
+                        placeholder="Enter email"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
+
+                    <div className={Styles.form_inputs}>
+                      <Field
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter Password"
+                      />
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
+                    <div className={Styles.form_inputs}>
+                      <Field
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter Password"
+                      />
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
                     <div className={Styles.form_inputs}>
                       <Field
                         type="password"
