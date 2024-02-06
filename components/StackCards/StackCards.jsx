@@ -9,27 +9,32 @@ const Stack_Card_Data = [
     ID: 1,
     src: images.Stack_Card1,
     btn: 'Flat 25% off',
+    text: 'one',
   },
   {
     ID: 2,
     src: images.Stack_Card2,
     btn: 'Flat 25% off',
+    text: 'two',
   },
   {
     ID: 3,
     src: images.Stack_Card3,
     btn: 'Flat 25% off',
+    text: 'three',
   },
-  {
-    ID: 4,
-    src: images.Stack_Card4,
-    btn: 'Flat 25% off',
-  },
-  {
-    ID: 5,
-    src: images.Stack_Card5,
-    btn: 'Flat 25% off',
-  },
+  // {
+  //   ID: 4,
+  //   src: images.Stack_Card4,
+  //   btn: 'Flat 25% off',
+  //   text: 'four',
+  // },
+  // {
+  //   ID: 5,
+  //   src: images.Stack_Card5,
+  //   btn: 'Flat 25% off',
+  //   text: 'five',
+  // },
 ]
 
 const StackCards = () => {
@@ -45,20 +50,22 @@ const StackCards = () => {
         </div>
         <div className={Styles.stack_right_content}>
           <div className={Styles.stack_card_wrapper}>
-            {Stack_Card_Data.map((card) => (
-              <>
-                {console.log(Styles.stack_left_content)}
-                <div key={card.ID} className={`${Styles.img}`}>
-                  <Image src={card.src} alt="Stack_Card_Image" fill />
-                  <span>{card.btn}</span>
-                  <div className={Styles.bottom_card_content}>
-                    <h3>Cup design</h3>
-                    <p>Lorem Ipsum is typesetting industry.</p>
-                    <button>View Products</button>
+            <figure className={Styles.stack}>
+              {Stack_Card_Data.map((card) => (
+                <>
+                  <div className={`${Styles.card} ${Styles[card.text]}`}>
+                    <span className={Styles.span}>
+                      <Image
+                        src={card.src}
+                        width={300}
+                        height={400}
+                        alt="stack-cards"
+                      />
+                    </span>
                   </div>
-                </div>
-              </>
-            ))}
+                </>
+              ))}
+            </figure>
           </div>
         </div>
       </div>
