@@ -1,10 +1,12 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Styles from './Cart.module.css'
-import { Formik, Form, Field, ErrorMessage, resetForm } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import {
   initialValuesLogin,
+  initialValuesRegister,
   validationSchema,
+  validationSchemaRegister,
 } from '../../lib/validationSchemas'
 import useFetch from '../../lib/useFetch'
 import { toast } from 'react-toastify'
@@ -39,6 +41,21 @@ const Cart = ({ token, selectedOption }) => {
     'formdata'
   )
 
+  const [
+    register,
+    {
+      response: registerResponse,
+      loading: registerLoading,
+      error: registerError,
+    },
+  ] = useFetch(
+    `/auth/register`,
+    {
+      method: 'post',
+    },
+    'formdata'
+  )
+
   useEffect(() => {
     if (response) {
       localStorage.setItem('token_swag', response?.data?.accessToken)
@@ -47,11 +64,25 @@ const Cart = ({ token, selectedOption }) => {
 
       // router.push('/')
     }
+    if (registerResponse) {
+      localStorage.setItem('token_swag', registerResponse?.data?.accessToken)
+      dispatch(setRole(registerResponse?.data?.role))
+      toast.success(registerResponse?.message)
+
+      // router.push('/')
+    }
     if (error) {
       console.log(error, 'errorMessage')
       toast.error(error.message)
     }
-  }, [response, error])
+    if (registerError) {
+      console.log(
+        registerError?.error?.email[0],
+        'errorMessage from register api'
+      )
+      toast.error(registerError?.error?.email[0])
+    }
+  }, [response, error, registerLoading, registerError])
 
   const onSubmit = async (values) => {
     try {
@@ -62,6 +93,20 @@ const Cart = ({ token, selectedOption }) => {
       loadQuery(formData)
     } catch (error) {
       console.log(error, 'from login api')
+    } finally {
+    }
+  }
+  const onSubmitRegister = async (values) => {
+    try {
+      let formData = new FormData()
+      formData.append('name', values.name)
+      formData.append('email', values.email)
+      formData.append('password', values.password)
+      formData.append('c_password', values.c_password)
+
+      register(formData)
+    } catch (error) {
+      console.log(error, 'from registerapi api')
     } finally {
     }
   }
@@ -126,13 +171,27 @@ const Cart = ({ token, selectedOption }) => {
 
           {!token && selectedOption === 'New_client' && (
             <Formik
-              initialValues={initialValuesLogin}
-              validationSchema={validationSchema}
-              onSubmit={onSubmit}
+              initialValues={initialValuesRegister}
+              validationSchema={validationSchemaRegister}
+              onSubmit={onSubmitRegister}
             >
               {() => (
                 <>
                   <Form className={Styles.form}>
+                    <div className={Styles.form_inputs}>
+                      <Field
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter name"
+                      />
+                      <ErrorMessage
+                        name="name"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
+
                     <div className={Styles.form_inputs}>
                       <Field
                         type="text"
@@ -163,25 +222,12 @@ const Cart = ({ token, selectedOption }) => {
                     <div className={Styles.form_inputs}>
                       <Field
                         type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter Password"
+                        id="c_password"
+                        name="c_password"
+                        placeholder="confirm password"
                       />
                       <ErrorMessage
-                        name="password"
-                        component="div"
-                        className={Styles.error}
-                      />
-                    </div>
-                    <div className={Styles.form_inputs}>
-                      <Field
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter Password"
-                      />
-                      <ErrorMessage
-                        name="password"
+                        name="c_password"
                         component="div"
                         className={Styles.error}
                       />
@@ -190,10 +236,10 @@ const Cart = ({ token, selectedOption }) => {
                     <div className={Styles.form_inputs}>
                       <button
                         type="submit"
-                        disabled={loading}
+                        disabled={registerLoading}
                         className={Styles.form_button}
                       >
-                        Login
+                        Register
                       </button>
                     </div>
                   </Form>
