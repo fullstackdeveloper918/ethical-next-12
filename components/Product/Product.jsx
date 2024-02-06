@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import images from '../../constants/images'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Styles from './Product.module.css'
 import Loaders from '../../components/loaders/Loaders'
 import Dot from '../custom-colored-dot/Dot'
 
 const Product = ({ product, loading, error }) => {
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [ReadMore, setIsReadMore] = useState(false)
   const [orderQuantity, setOrderQuantity] = useState(
     +product?.column_1_qty || 200
@@ -43,12 +42,7 @@ const Product = ({ product, loading, error }) => {
     }
   }
 
-  const slides = [
-    { url: images.shirt_small },
-    { url: images.Cup1 },
-    { url: images.Stack_Card2 },
-    { url: images.Stack_Card1 },
-  ]
+ 
 
   useEffect(() => {
     const getData = setTimeout(() => {

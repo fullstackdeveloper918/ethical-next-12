@@ -2,29 +2,21 @@
 import React, { useEffect, useState } from 'react'
 import Styles from './Filter.module.css'
 import Image from 'next/image'
-import downIcon from '../../assets/headerPics/down-black.svg'
-import { IoIosArrowDown } from 'react-icons/io'
-import { Button } from '@/components/ui/button'
 import FilterPanel from '../FilterPanel/FilterPanel'
 import images from '../../constants/images'
-// import { LIST, PRODUCT_TYPE_LIST } from '../../constants/data'
 
 const Filter = ({ activeFilter, setActiveFilter }) => {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      // Calculate the scroll position, you can adjust the threshold as needed
       const isScrolled = window.scrollY > 100
 
-      // Set the state based on the scroll position
       setScrolled(isScrolled)
     }
 
-    // Add the event listener when the component mounts
     window.addEventListener('scroll', handleScroll)
 
-    // Remove the event listener when the component unmounts
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }

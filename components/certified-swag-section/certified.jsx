@@ -5,7 +5,6 @@ import 'react-multi-carousel/lib/styles.css'
 import styles from './certified.module.css'
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 6,
   },
@@ -30,8 +29,6 @@ const Certified = () => {
       .then((res) => res.json())
       .then((r) => setData(r?.data?.data))
   }, [])
-
-  console.log(data, 'length')
 
   return (
     <>

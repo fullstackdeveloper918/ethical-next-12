@@ -2,12 +2,7 @@
 import React from 'react'
 import Styles from '../Filter/Filter.module.css'
 import Image from 'next/image'
-import images from '../../constants/images'
-import { Collection_data } from '../../constants/data'
 import Featured_product from '../../assets/headerPics/main-product.png'
-import useFetch from '../../lib/useFetch'
-import Dot from '../custom-colored-dot/Dot'
-import Loaders from '../../components/loaders/Loaders'
 import ProductCard from '../ProductCard/ProductCard'
 import { useSelector } from 'react-redux'
 

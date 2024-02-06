@@ -1,13 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Styles from './ClientTypeSelector.module.css'
 
-const ClientTypeSelector = ({
-  setSelectedOption,
-  selectedOption,
-  handleOptionChange,
-}) => {
-  console.log(selectedOption, 'selectedOptionselectedOption after')
-
+const ClientTypeSelector = ({ selectedOption, handleOptionChange }) => {
   return (
     <>
       <p className={Styles.cart_left_desc}>Are you a...</p>
