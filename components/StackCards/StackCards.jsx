@@ -46,27 +46,25 @@ const StackCards = () => {
           <h3>
             Show me <b> Products that...</b>
           </h3>
-          <button>View Products</button>
+          <button className={Styles.btnn}>View Products</button>
         </div>
-        <div className={Styles.stack_right_content}>
-          <div className={Styles.stack_card_wrapper}>
-            <figure className={Styles.stack}>
-              {Stack_Card_Data.map((card) => (
-                <>
-                  <div className={`${Styles.card} ${Styles[card.text]}`}>
-                    <span className={Styles.span}>
-                      <Image
-                        src={card.src}
-                        width={300}
-                        height={400}
-                        alt="stack-cards"
-                      />
-                    </span>
-                  </div>
-                </>
-              ))}
-            </figure>
-          </div>
+        <div className={Styles.stack_card_wrapper}>
+          <figure className={Styles.stack}>
+            {Stack_Card_Data.map((card) => (
+              <>
+                <div className={`${Styles.card} ${Styles[card.text]}`}>
+                  <span className={Styles.span}>
+                    <Image
+                      src={card.src}
+                      width={300}
+                      height={400}
+                      alt="stack-cards"
+                    />
+                  </span>
+                </div>
+              </>
+            ))}
+          </figure>
         </div>
       </div>
     </>
