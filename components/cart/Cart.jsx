@@ -12,7 +12,7 @@ import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { setRole } from '../../redux-setup/authSlice'
 
-const Cart = ({ token }) => {
+const Cart = ({ token, selectedOption }) => {
   const router = useRouter()
   const dispatch = useDispatch()
   const [values, setValues] = useState({
@@ -22,6 +22,8 @@ const Cart = ({ token }) => {
     content: '',
   })
   const [selectedValue, setSelectedValue] = useState('')
+
+  console.log(selectedOption, 'selectedOption from Cart')
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -87,7 +89,7 @@ const Cart = ({ token }) => {
         {/* Left Section  */}
         <div className={Styles.cart_left}>
           {/* <QuotationSubmissionHeader /> */}
-          {!token && (
+          {!token && selectedOption === 'Existing_client' && (
             <Formik
               initialValues={initialValuesLogin}
               validationSchema={validationSchema}

@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Styles from './ClientTypeSelector.module.css'
 
-const ClientTypeSelector = ({ selectedValue, onRadioChange }) => {
-  const handleRadioChange = (event) => {
-    const { value } = event.target
-    onRadioChange(value)
-  }
+const ClientTypeSelector = ({
+  setSelectedOption,
+  selectedOption,
+  handleOptionChange,
+}) => {
+  console.log(selectedOption, 'selectedOptionselectedOption after')
 
   return (
     <>
@@ -15,10 +16,10 @@ const ClientTypeSelector = ({ selectedValue, onRadioChange }) => {
           <input
             type="radio"
             className={Styles.cart_left_radio_btn}
-            name="client"
+            name="Existing_client"
             value="Existing_client"
-            checked={selectedValue === 'Existing_client'}
-            onChange={handleRadioChange}
+            checked={selectedOption === 'Existing_client'}
+            onChange={handleOptionChange}
           />
           <span className={Styles.cart_left_text}>Existing Client</span>
         </div>
@@ -26,10 +27,10 @@ const ClientTypeSelector = ({ selectedValue, onRadioChange }) => {
           <input
             type="radio"
             className={Styles.cart_left_radio_btn}
-            name="client"
+            name="New_client"
             value="New_client"
-            checked={selectedValue === 'New_client'}
-            onChange={handleRadioChange}
+            checked={selectedOption === 'New_client'}
+            onChange={handleOptionChange}
           />
           <span className={Styles.cart_left_text}>New Client</span>
         </div>
