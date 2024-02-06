@@ -8,27 +8,11 @@ import { ToastContainer, toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import images from '../constants/images'
+import {
+  initialValuesRegister,
+  validationSchemaRegister,
+} from '../lib/validationSchemas'
 
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required().min(3).max(20),
-  email: Yup.string()
-    .email('Please enter email in correct format')
-    .required('email is required'),
-  password: Yup.string()
-    .required('Password is required')
-    .min(3, 'Password must be at least 8 characters')
-    .max(50, 'Too Long!'),
-  c_password: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Confirm Password is required'),
-})
-
-const initialValues = {
-  name: '',
-  email: '',
-  password: '',
-  c_password: '',
-}
 const register = () => {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -96,8 +80,8 @@ const register = () => {
               <Image src={images.ethical_swag} />
             </div>
             <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
+              initialValues={initialValuesRegister}
+              validationSchema={validationSchemaRegister}
               onSubmit={onSubmit}
             >
               {() => (
