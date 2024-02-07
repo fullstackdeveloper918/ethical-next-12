@@ -13,8 +13,8 @@ const SingleProduct = ({ product }) => {
           alt="product_image"
         />
       </div>
-      <div className="">{product?.product_title || 'fghjk'}</div>
-      <div className="">as low as ${product?.unit_price || 678}</div>
+      <div className={styles.product_name}>{product?.product_title || 'fghjk'}</div>
+      <div className={styles.textCenter}>as low as $<span className="">{product?.unit_price || 678}</span></div>
     </div>
   )
 }

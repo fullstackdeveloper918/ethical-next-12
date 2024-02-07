@@ -42,11 +42,13 @@ const StackCards = () => {
     <>
       <div className={Styles.stack_container}>
         <div className={Styles.stack_left_content}>
+          <div className={Styles.text_left}>
           <p>Explore our collections</p>
           <h3>
             Show me <b> Products that...</b>
           </h3>
           <button className={Styles.btnn}>View Products</button>
+          </div>
         </div>
         <div className={Styles.stack_card_wrapper}>
           <figure className={Styles.stack}>

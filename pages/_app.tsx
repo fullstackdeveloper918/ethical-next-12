@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app'
 import { builder } from '@builder.io/react'
 import builderConfig from '@config/builder'
+import '../global.css'
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import { combineReducers } from 'redux'
@@ -43,7 +44,7 @@ const store = configureStore({
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div>
+    <div >
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistStore(store)}>
           <Component {...pageProps} suppressHydrationWarning />
