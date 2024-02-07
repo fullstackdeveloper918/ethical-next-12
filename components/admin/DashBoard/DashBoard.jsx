@@ -3,7 +3,6 @@ import Styles from './DashBoard.module.css'
 import { IoSearchOutline } from 'react-icons/io5'
 import { IoIosArrowBack } from 'react-icons/io'
 import { IoIosArrowForward } from 'react-icons/io'
-import Icons from '../Icons/Icons'
 import Image from 'next/image'
 import {
   Application_Sales,
@@ -11,17 +10,16 @@ import {
   Dashboard_table,
 } from '../../../constants/data'
 import images from '../../../constants/images'
+import Navbar from '../Navbar/Navbar'
 
 const DashBoard = () => {
   const [leftCardColor, setLeftCard] = useState(0)
   const [bottomCardColor, setBottomCardColor] = useState(0)
   return (
     <>
+      {/* <Layout> */}
       <div className={Styles.DashBoard_container}>
-        <div className={Styles.top_content}>
-          <h2>Dashboard</h2>
-          <Icons />
-        </div>
+        <div className={Styles.top_content}></div>
         <div className={Styles.purchase_card}>
           <nav className={Styles.nav_content}>
             <div className={Styles.left_section}>
@@ -161,7 +159,6 @@ const DashBoard = () => {
             </div>
           </div>
         </div>
-
         <div className={Styles.bottom_table}>
           <div className={Styles.Application_data_heading}>
             <div className={Styles.bottom_data_heading}>
@@ -199,6 +196,7 @@ const DashBoard = () => {
           </div>
         </div>
       </div>
+      {/* </Layout> */}
     </>
   )
 }

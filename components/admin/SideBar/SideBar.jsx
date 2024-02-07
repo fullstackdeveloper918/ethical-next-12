@@ -4,19 +4,15 @@ import Styles from './Sidebar.module.css'
 import images from '../../../constants/images'
 import { Sidebar_Data } from '../../../constants/data'
 
-const SideBar = () => {
+const SideBar = ({ data }) => {
   const [isActive, setIsActive] = useState(0)
+
   return (
     <>
       <div className={Styles.Sidebar_container}>
         <div className={Styles.sidebar_content}>
           <div className={Styles.top_container}>
-            <Image
-              src={images.ethical_swag}
-              width={255}
-              height={53}
-              alt="logo"
-            />
+            {data && <Image src={data} width={255} height={53} alt="logo" />}
             <div className={Styles.horizontal_line}></div>
             <div className={Styles.Sidebar_data}>
               {Sidebar_Data.map((item, index) => (
