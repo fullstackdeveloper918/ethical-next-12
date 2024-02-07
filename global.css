@@ -96,8 +96,6 @@ span {
 }
 
 }
-
-
 .dropemnu_design{
   width: auto;
 }
@@ -107,5 +105,10 @@ span {
 }
 
 .react-multi-carousel-track{
-  height: 400px !important;
+  height: 420px !important;
+}
+
+html, body{
+  width: 100%;
+  overflow-x: hidden;
 }
