@@ -35,9 +35,9 @@ const Certified = () => {
       <div className={styles.heading}>
         Certified <span className={styles.heading_colored}>CORP SWAG</span>
       </div>
-      <div className="" style={{ width: '1600px', margin: 'auto' }}>
+      <div className="" style={{ width: '100%', }}>
         {data && (
-          <div>
+          <div className={styles.slider_space}>
             <Carousel
               swipeable={false}
               draggable={false}

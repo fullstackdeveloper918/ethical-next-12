@@ -10,6 +10,7 @@ import styles from './footer.module.css'
 
 const Footer = () => {
   return (
+    <div className={styles.footer_section}>
     <div className={styles.footer_container}>
       <div className={styles.main_footer_container}>
         <div className={styles.container_column_1}>
@@ -114,6 +115,7 @@ const Footer = () => {
           <Image src={banks} alt="bank logo" width={228} height={30} />
         </div>
       </div>
+    </div>
     </div>
   )
 }

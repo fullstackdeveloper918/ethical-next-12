@@ -1,10 +1,11 @@
 .stack_container{
   height: 500px;
   overflow: hidden;
-  width: 100vw;
   display: flex;
   justify-content: space-between;
   margin: 30px;
+  width: 90%;
+  margin: auto;
 
 }
 .stack_left_content{
@@ -16,21 +17,56 @@
 }
 
 .btnn{
-  width: max-content;
-  padding: 5px 8px;
+    border-radius: 130px;
+    border: 1px solid var(--green,#A2D061);
+    text-align: center;
+    display: inline-block;
+    padding:18px 37px;
+    align-items: stretch;
+    /* margin-top: 35px; */
+    font-weight: 600;
+    color: #A2D061;
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.18px;
+  white-space: nowrap;
+  
 }
 .stack_card_wrapper{
   flex: 1;
   display: flex;
+  justify-content: center;
+  margin-top: 5%;
 
 }
 .stack {
   position: relative;
-  margin-top: 30vh;
+  /* margin-top: 30vh;
   margin-left: 10vw;
-  transform: translate(-50%, -50%);
-  width: 340px;
-  height: 440px;
+  transform: translate(-50%, -50%); */
+  width: 400px;
+  height: 520px;
+  text-align: left;
+}
+.text_left{
+  text-align: left;
+}
+.text_left p{
+  font-size: 30px;
+  font-weight: 400;
+
+}
+.text_left h3{
+  font-size: 46px;
+  line-height: 52px;
+  margin: 10px 0 35px 0;
+  letter-spacing: 1px;
+}
+.text_left h3 b{
+  display: block;
 }
 .card {
   width: 300px;
@@ -55,14 +91,15 @@
   animation-name: onTop;
 }
 .card.two {
-  left: 20px;
-  top: 20px;
+  left: -20px;
+  top: -20px;
   z-index: 1;
-  animation-name: onMiddle;
+  animation-name: onMiddle
+
 }
 .card.three {
-  left: 40px;
-  top: 40px;
+  left: -40px;
+  top: -40px;
   z-index: 0;
   animation-name: onBottom;
 }
@@ -83,32 +120,32 @@
   5% {
     transform: translateX(-300px);
     z-index: 1;
-    left: 20px;
-    top: 20px;
+    left: -20px;
+    top: -20px;
   }
   10% {
     transform: translateX(0);
     z-index: 0;
-    left: 40px;
-    top: 40px;
+    left: -40px;
+    top: -40px;
   }
   40% {
     transform: translateX(0);
     z-index: 0;
-    left: 40px;
-    top: 40px;
+    left: -40px;
+    top: -40px;
   }
   50% {
     transform: translateX(0);
     z-index: 1;
-    left: 20px;
-    top: 20px;
+    left: -20px;
+    top: -20px;
   }
   70% {
     transform: translateX(0);
     z-index: 1;
-    left: 20px;
-    top: 20px;
+    left: -20px;
+    top: -20px;
   }
   80% {
     transform: translateX(0);
@@ -133,40 +170,40 @@
   45% {
     transform: translateX(-300px);
     z-index: 1;
-    left: 20px;
-    top: 20px;
+    left: -20px;
+    top: -20px;
   }
   50% {
     transform: translateX(0);
     z-index: 0;
-    left: 40px;
-    top: 40px;
+    left: -40px;
+    top: -40px;
   }
   70% {
     transform: translateX(0);
     z-index: 0;
-    left: 40px;
-    top: 40px;
+    left: -40px;
+    top: -40px;
   }
   80% {
     transform: translateX(0);
     z-index: 1;
-    left: 20px;
-    top: 20px;
+    left: -20px;
+    top: -20px;
   }
 }
 @keyframes onBottom {
   10% {
     transform: translateX(0);
     z-index: 0;
-    left: 20px;
-    top: 20px;
+    left: -20px;
+    top: -20px;
   }
   40% {
     transform: translateX(0);
     z-index: 1;
-    left: 20px;
-    top: 20px;
+    left: -20px;
+    top: -20px;
   }
   50% {
     transform: translateX(0);
@@ -183,13 +220,13 @@
   75% {
     transform: translateX(-300px);
     z-index: 1;
-    left: 20px;
-    top: 20px;
+    left: -20px;
+    top: -20px;
   }
   80% {
     transform: translateX(0);
     z-index: 0;
-    left: 40px;
-    top: 40px;
+    left: -40px;
+    top: -40px;
   }
 }
