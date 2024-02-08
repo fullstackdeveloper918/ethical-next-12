@@ -1,6 +1,7 @@
 .company_section_container {
-  max-width: 1368px;
+  max-width: 1480px;
   margin: 0 auto;
+  padding: 2rem;
 }
 
 .company_content {

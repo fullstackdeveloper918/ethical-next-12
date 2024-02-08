@@ -1,7 +1,19 @@
 .navbar_container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.7rem;
+}
+
+.navbar_container h2 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .icon {
@@ -9,8 +21,9 @@
   height: 40px;
   background-color: #fff;
   border-radius: 9px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }

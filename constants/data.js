@@ -106,9 +106,16 @@ export const Collection_data = [
 
 export const Sidebar_Data = [
   { id: 1, text: 'Dashboard', icon: images.Livello_1 },
-  { id: 1, text: 'Message', icon: images.Livello_1 },
-  { id: 1, text: 'Orders', icon: images.Livello_1 },
-  { id: 1, text: 'History', icon: images.Livello_1 },
+  { id: 2, text: 'Orders', icon: images.Livello_1 },
+  { id: 3, text: 'Message', icon: images.Livello_1 },
+  { id: 4, text: 'History', icon: images.Livello_1 },
+  { id: 5, text: 'Customers', icon: images.Livello_1 },
+  { id: 6, text: 'Pages', icon: images.Livello_1 },
+  { id: 7, text: 'Blogs', icon: images.Livello_1 },
+  { id: 8, text: 'Invoices', icon: images.Livello_1 },
+  { id: 9, text: 'All Notification', icon: images.Livello_1 },
+  { id: 10, text: 'Store', icon: images.Livello_1 },
+  { id: 11, text: 'Administrator', icon: images.Livello_1 },
 ]
 
 export const Dashboard_table = [

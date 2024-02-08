@@ -14,7 +14,7 @@ const company = () => {
             <SideBar data={images.ethical_swag} />
           </div>
           <div className={Styles.company_right_content}>
-            <Navbar />
+            <Navbar data="Dashboard" thumbnail={images.User_icon} />
             <DashBoard />
           </div>
         </div>
