@@ -1,9 +1,9 @@
 import React from 'react'
-import SideBar from '../../components/admin/SideBar/SideBar'
-import DashBoard from '../../components/admin/DashBoard/DashBoard'
+import SideBar from '../../../components/admin/SideBar/SideBar'
+import DashBoard from '../../../components/admin/DashBoard/DashBoard'
 import Styles from './company.module.css'
-import images from '../../constants/images'
-import Navbar from '../../components/admin/Navbar/Navbar'
+import Navbar from '../../../components/admin/Navbar/Navbar'
+import images from '../../../constants/images'
 
 const company = () => {
   return (

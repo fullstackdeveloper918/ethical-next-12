@@ -1,13 +1,13 @@
 import React from 'react'
-import images from '../../constants/images'
-import SideBar from '../../components/admin/SideBar/SideBar'
-import Navbar from '../../components/admin/Navbar/Navbar'
+import SideBar from '../../../components/admin/SideBar/SideBar'
+import Navbar from '../../../components/admin/Navbar/Navbar'
 import Styles from './dashboard.module.css'
 import Image from 'next/image'
 import { GoDotFill } from 'react-icons/go'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { FaRegEdit } from 'react-icons/fa'
-import { New_Customers, SuperAdmin_data } from '../../constants/data'
+import { New_Customers, SuperAdmin_data } from '../../../constants/data'
+import images from '../../../constants/images'
 
 const Dashboard = () => {
   return (
