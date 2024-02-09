@@ -43,15 +43,15 @@ const Navbar = ({ data, thumbnail }) => {
               <button className={Styles.button}>Add New</button>
             </>
           )}
-          {data === 'Users' ||
+          {(data === 'Users' ||
             data === 'Add New Users' ||
-            (data === 'Add roles' && (
-              <>
-                <button className={Styles.button}>Upload CSV</button>
-                <button className={Styles.button}>Add New Print</button>
-                <button className={Styles.button}>Print</button>
-              </>
-            ))}
+            data === 'Add roles') && (
+            <>
+              <button className={Styles.button}>Upload CSV</button>
+              <button className={Styles.button}>Add New Print</button>
+              <button className={Styles.button}>Print</button>
+            </>
+          )}
           <span className={Styles.icon}>
             <Image
               src={images.Bell_Icon}
