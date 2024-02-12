@@ -672,3 +672,12 @@ export const Invoice_Data = [
     status: 'Declined',
   },
 ]
+
+export const Store_Detail_Data = [
+  { id: 1, text: 'Products I buy or make myself' },
+  { id: 2, text: 'Digital products' },
+  { id: 3, text: 'Dropshipping products' },
+  { id: 4, text: 'Print-on-demand products' },
+  { id: 5, text: "I 'll decide later" },
+  { id: 6, text: "I 'll decide later" },
+]

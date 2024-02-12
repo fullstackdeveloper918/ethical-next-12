@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Styles from './store.module.css'
-import SideBar from '../../../../components/admin/SideBar/SideBar'
-import Navbar from '../../../../components/admin/Navbar/Navbar'
-import images from '../../../../constants/images'
+import Styles from './admin.module.css'
 import { GoPlus } from 'react-icons/go'
 import Image from 'next/image'
+import SideBar from '../../../components/admin/SideBar/SideBar'
+import Navbar from '../../../components/admin/Navbar/Navbar'
+import images from '../../../constants/images'
 
 const Store = () => {
   const [selectedFile, setSelectedFile] = useState('')
@@ -12,10 +12,8 @@ const Store = () => {
   const handleFileChange = (event) => {
     // Access the selected file from event.target.files
     const file = event.target.files[0]
-    setSelectedFile(URL.createObjectURL(file))
+    setSelectedFile(file)
   }
-
-  console.log(selectedFile, 'selectedFile')
 
   return (
     <>
@@ -23,7 +21,7 @@ const Store = () => {
         <div className={Styles.Store_section_container}>
           <div className={Styles.Store_content}>
             <div className={Styles.Store_left_content}>
-              <SideBar data={images.ethical_swag} />
+              <SideBar data={images.Louis_Lara} />
             </div>
             <div className={Styles.Store_right_content}>
               <Navbar data="Store Detail" thumbnail={images.User_icon} />
@@ -55,7 +53,7 @@ const Store = () => {
                             <>
                               <div className={Styles.preview_image}>
                                 <Image
-                                  src={selectedFile}
+                                  src={URL.createObjectURL(selectedFile)}
                                   layout="fill"
                                   alt="selected_image"
                                 />
@@ -69,6 +67,27 @@ const Store = () => {
                           <p>{selectedFile.name}</p>
                         </div>
                       )}
+                    </div>
+                    <div className={Styles.desc_container}>
+                      <p>
+                        Let’s get started. Which of these best describes you?
+                      </p>
+                      <div className={Styles.desc}>
+                        <span>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat. Duis aute irure dolor in
+                          reprehenderit in voluptate velit esse cillum dolore eu
+                          fugiat nulla pariatur. Excepteur sint occaecat
+                          cupidatat non proident.
+                        </span>
+                      </div>
+                    </div>
+                    <div className={Styles.bottom_buttons}>
+                      <button>Next</button>
+                      <button>Cancel</button>
                     </div>
                   </div>
                 </div>

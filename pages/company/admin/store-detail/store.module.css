@@ -1,0 +1,48 @@
+.Store_section {
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f8f8;
+  padding-block: 1rem;
+}
+
+.Store_section_container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.Store_content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.Store_left_content {
+  flex: 2;
+}
+
+.Store_right_content {
+  flex: 7;
+}
+
+.planning_section {
+  background-color: #fff;
+  padding: 2rem;
+  margin-top: 2rem;
+  border-radius: 30px;
+}
+
+.planning_section_content {
+  margin-top: 1rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.planning_section_content .detail_content {
+  min-width: 368px;
+  border: 1px solid black;
+}
