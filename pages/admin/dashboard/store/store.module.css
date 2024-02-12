@@ -1,0 +1,113 @@
+.Store_section {
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f8f8;
+  padding-block: 1rem;
+}
+
+.Store_section_container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.Store_content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.Store_left_content {
+  flex: 2;
+}
+
+.Store_right_content {
+  flex: 7;
+}
+
+.middle_section {
+  background-color: #fff;
+  width: 100%;
+  padding: 3rem;
+  margin-top: 1.5rem;
+  border-radius: 30px;
+}
+
+.middle_section_container {
+  width: 100%;
+}
+
+.text_content {
+  width: 100%;
+}
+
+.text_content p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.text_content input {
+  width: 100%;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #f0f0f0;
+  padding-left: 1.5rem;
+}
+
+.text_content input:focus {
+  outline: none;
+}
+
+.middle_content {
+  margin-top: 2rem;
+}
+
+.middle_content p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.middle_content .file_Container {
+  width: 100%;
+}
+
+.middle_content .file_Container label {
+  width: 100%;
+  height: 155px;
+  display: inline-block;
+  border: 2px dashed #a2d061;
+  border-radius: 30px;
+  cursor: pointer;
+  background: #f6faef;
+}
+
+.middle_content .file_Container label input {
+  display: none;
+}
+
+.line_container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.add_icon {
+  position: relative;
+  width: 20%;
+}
+.add_buton {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.show_file {
+  width: 100%;
+}
+
+.selectedFile {
+  padding-left: 1rem;
+}
