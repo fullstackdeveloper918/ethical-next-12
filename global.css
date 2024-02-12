@@ -114,7 +114,9 @@ html, body{
 .react-multi-carousel-track {
   height: 400px !important;
 }
-
+.carousel-container{
+  height: 480px !important;
+}
 /* stack card css */
 
 .stack_container {

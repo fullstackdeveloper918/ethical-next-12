@@ -2,7 +2,7 @@
     font-family: Poppins;
   } */
   /* p, div, span {
-    font-family: '__DM_Sans_ae0b6a';
+    font-family: 'DM Sans', sans-serif;
   } */
 
 
@@ -21,7 +21,7 @@
     max-width: 1368px;
     padding: 0 15px;
     margin: 0 auto;
-    font-family: '__DM_Sans_ae0b6a';
+    font-family: 'DM Sans', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -95,7 +95,7 @@
   }
   .container_right input {
     color: #fff;
-    font-family: '__DM_Sans_ae0b6a';
+    font-family: 'DM Sans', sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;

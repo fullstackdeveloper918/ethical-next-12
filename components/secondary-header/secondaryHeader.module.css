@@ -2,7 +2,7 @@
     font-family: Poppins;
   } */
 /* p, div, span {
-    font-family: '__DM_Sans_ae0b6a';
+    font-family: 'DM Sans', sans-serif;
   }
    */
 .container11 {
@@ -87,7 +87,7 @@
   background: transparent;
   display: flex;
   gap: 10px;
-  font-family: '__DM_Sans_ae0b6a';
+  font-family: 'DM Sans', sans-serif;
   border: 0px;
 }
 .header .shop_menu:focus-visible {
@@ -310,7 +310,7 @@
     background: transparent;
     display: flex;
     gap: 10px;
-    font-family: '__DM_Sans_ae0b6a';
+    font-family: 'DM Sans', sans-serif;
     border: 0px;
   }
   .header .shop_menu:focus-visible {
@@ -479,7 +479,7 @@
     font-weight: 400;
     line-height: normal;
     letter-spacing: 0.14px;
-    font-family: '__DM_Sans_ae0b6a';
+    font-family: 'DM Sans', sans-serif;
     border: 0px;
   }
   .menu_center .shop_menu {
