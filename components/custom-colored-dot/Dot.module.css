@@ -1,9 +1,11 @@
 .colored_dot {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   flex-shrink: 0;
   border-radius: 50%;
   cursor: pointer;
+  outline: 1.27px solid #D0D0CC;
+  outline-offset: 3px;
 }
 
 .colored_dot.active {

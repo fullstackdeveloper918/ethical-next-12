@@ -38,21 +38,21 @@ const ProductCard = ({ item }) => {
 
           <div className={Styles.hidden_icons}>
             <div className={Styles.icons}>
-              <span>
+              <span className={Styles.border_svg}>
                 <MdOutlineFavoriteBorder
                   fontSize={25}
                   color="#d3d3d3"
                   className={Styles.icon}
                 />
               </span>
-              <span>
+              <span className={Styles.border_svg}>
                 <CiSearch
                   fontSize={25}
                   color="#d3d3d3"
                   className={Styles.icon}
                 />
               </span>
-              <span>
+              <span className={Styles.border_svg}>
                 <CiShare2
                   fontSize={25}
                   color="#d3d3d3"

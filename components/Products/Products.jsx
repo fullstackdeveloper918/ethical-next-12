@@ -29,6 +29,7 @@ const Products = ({ response, error, loading }) => {
                 alt="cup"
                 className={Styles.img}
               />
+              <span className={Styles.badget}>Sale 30%</span>
             </div>
             <div className={Styles.textContent}>
               <h4 className={Styles.textContent_title}>
@@ -104,7 +105,7 @@ const Products = ({ response, error, loading }) => {
                 />
               </svg>
               <div className={Styles.checkbtn}>
-                <button>check it out</button>
+                <button>Check it out</button>
               </div>
             </div>
           </div>
