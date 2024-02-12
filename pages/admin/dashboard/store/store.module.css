@@ -111,3 +111,9 @@
 .selectedFile {
   padding-left: 1rem;
 }
+
+.preview_image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}

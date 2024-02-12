@@ -12,8 +12,10 @@ const Store = () => {
   const handleFileChange = (event) => {
     // Access the selected file from event.target.files
     const file = event.target.files[0]
-    setSelectedFile(file)
+    setSelectedFile(URL.createObjectURL(file))
   }
+
+  console.log(selectedFile, 'selectedFile')
 
   return (
     <>
@@ -48,16 +50,18 @@ const Store = () => {
                               width={60}
                               height={60}
                             />
-                            {selectedFile && (
-                              <>
+                          </div>
+                          {selectedFile && (
+                            <>
+                              <div className={Styles.preview_image}>
                                 <Image
                                   src={selectedFile}
-                                  width={100}
-                                  height={100}
+                                  layout="fill"
+                                  alt="selected_image"
                                 />
-                              </>
-                            )}
-                          </div>
+                              </div>
+                            </>
+                          )}
                         </label>
                       </div>
                       {selectedFile && (
