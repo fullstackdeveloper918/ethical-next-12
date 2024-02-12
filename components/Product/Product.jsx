@@ -8,7 +8,7 @@ import Dot from '../custom-colored-dot/Dot'
 
 const Product = ({ product, loading, error }) => {
   const [ReadMore, setIsReadMore] = useState(false)
-  const [imageUrl, setImageUrl] = useState(product?.image)
+  // const [imageUrl, setImageUrl] = useState(product?.image)
   const [orderQuantity, setOrderQuantity] = useState(
     +product?.column_1_qty || 200
   )
@@ -133,6 +133,8 @@ const Product = ({ product, loading, error }) => {
       ? 4
       : 0
 
+  const imageUrl = product?.image
+
   return (
     <>
       {loading ? (
@@ -146,14 +148,14 @@ const Product = ({ product, loading, error }) => {
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
                   <div className={Styles.detail_page_image_content}>
-                    {/* {imageUrl && ( */}
-                    <Image
-                      src={imageUrl}
-                      width={400}
-                      height={560}
-                      alt="Single_Product_Image"
-                    />
-                    {/* )} */}
+                    {imageUrl && (
+                      <Image
+                        src={imageUrl}
+                        width={400}
+                        height={560}
+                        alt="Single_Product_Image"
+                      />
+                    )}
                   </div>
                   <div className={Styles.images_container}>
                     {Slides.map((img, index) => (
@@ -164,36 +166,10 @@ const Product = ({ product, loading, error }) => {
                             alt="Single_Product_Small_Images"
                             width={61}
                             height={81}
-                            onClick={() => setImageUrl(Slides[index].src)}
                           />
                         </div>
                       </>
                     ))}
-
-                    {/* <div className={Styles.img}>
-                      <Image
-                        src={images.shirt_small}
-                        alt="Single_Product_Small_Images"
-                        width={61}
-                        height={81}
-                      />
-                    </div> */}
-                    {/* <div className={Styles.img}>
-                      <Image
-                        src={images.shirt_small}
-                        alt="Single_Product_Small_Images"
-                        width={61}
-                        height={81}
-                      />
-                    </div> */}
-                    {/* <div className={Styles.img}>
-                      <Image
-                        src={images.shirt_small}
-                        alt="Single_Product_Small_Images"
-                        width={61}
-                        height={81}
-                      />
-                    </div> */}
                   </div>
                 </div>
               </div>
