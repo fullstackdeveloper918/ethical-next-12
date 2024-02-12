@@ -123,6 +123,11 @@ const Cart = ({ token, selectedOption }) => {
                   <Form className={Styles.form}>
                     <div className={Styles.form_inputs}>
                       <div className={Styles.inputField}>
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className={Styles.error}
+                        />
                         <Field
                           type="text"
                           id="email"
@@ -131,14 +136,15 @@ const Cart = ({ token, selectedOption }) => {
                           className={Styles.input}
                           autocomplete="off"
                         />
+                      </div>
+                    </div>
+                    <div className={Styles.form_inputs}>
+                      <div className={Styles.inputField}>
                         <ErrorMessage
-                          name="email"
+                          name="password"
                           component="div"
                           className={Styles.error}
                         />
-                      </div>
-
-                      <div className={Styles.inputField}>
                         <Field
                           type="password"
                           id="password"
@@ -146,11 +152,6 @@ const Cart = ({ token, selectedOption }) => {
                           placeholder="Enter Password"
                           className={Styles.input}
                           autocomplete="off"
-                        />
-                        <ErrorMessage
-                          name="password"
-                          component="div"
-                          className={Styles.error}
                         />
                       </div>
                     </div>
@@ -180,58 +181,68 @@ const Cart = ({ token, selectedOption }) => {
                 <>
                   <Form className={Styles.form}>
                     <div className={Styles.form_inputs}>
-                      <Field
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Enter name"
-                      />
-                      <ErrorMessage
-                        name="name"
-                        component="div"
-                        className={Styles.error}
-                      />
-                    </div>
-
-                    <div className={Styles.form_inputs}>
-                      <Field
-                        type="text"
-                        id="email"
-                        name="email"
-                        placeholder="Enter email"
-                      />
-                      <ErrorMessage
-                        name="email"
-                        component="div"
-                        className={Styles.error}
-                      />
-                    </div>
-
-                    <div className={Styles.form_inputs}>
-                      <Field
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter Password"
-                      />
-                      <ErrorMessage
-                        name="password"
-                        component="div"
-                        className={Styles.error}
-                      />
+                      <div className={Styles.inputField}>
+                        <ErrorMessage
+                          name="name"
+                          component="div"
+                          className={Styles.error}
+                        />
+                        <Field
+                          type="text"
+                          id="name"
+                          name="name"
+                          placeholder="Enter name"
+                          className={Styles.input}
+                        />
+                      </div>
                     </div>
                     <div className={Styles.form_inputs}>
-                      <Field
-                        type="password"
-                        id="c_password"
-                        name="c_password"
-                        placeholder="confirm password"
-                      />
-                      <ErrorMessage
-                        name="c_password"
-                        component="div"
-                        className={Styles.error}
-                      />
+                      <div className={Styles.inputField}>
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className={Styles.error}
+                        />
+                        <Field
+                          type="text"
+                          id="email"
+                          name="email"
+                          placeholder="Enter email"
+                          className={Styles.input}
+                        />
+                      </div>
+                    </div>
+                    <div className={Styles.form_inputs}>
+                      <div className={Styles.inputField}>
+                        <ErrorMessage
+                          name="password"
+                          component="div"
+                          className={Styles.error}
+                        />
+                        <Field
+                          type="password"
+                          id="password"
+                          name="password"
+                          placeholder="Enter Password"
+                          className={Styles.input}
+                        />
+                      </div>
+                    </div>
+                    <div className={Styles.form_inputs}>
+                      <div className={Styles.inputField}>
+                        <ErrorMessage
+                          name="c_password"
+                          component="div"
+                          className={Styles.error}
+                        />
+                        <Field
+                          type="password"
+                          id="c_password"
+                          name="c_password"
+                          placeholder="confirm password"
+                          className={Styles.input}
+                        />
+                      </div>
                     </div>
 
                     <div className={Styles.form_inputs}>

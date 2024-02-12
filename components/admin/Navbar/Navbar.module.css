@@ -1,0 +1,41 @@
+.navbar_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar_container h2 {
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 9px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.button {
+  background-color: #a2d061;
+  color: #fff;
+  padding: 7px 17px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  border-radius: 8px;
+  margin-right: 5px;
+}
