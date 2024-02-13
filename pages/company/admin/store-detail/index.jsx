@@ -22,11 +22,15 @@ const Store = () => {
                   {Store_Detail_Data.map((data) => (
                     <>
                       <div className={Styles.detail_content} key={data.id}>
-                        <input type="radio" name="" id="" />
+                        <input type="radio" name="questions" id="" />
                         <p>{data.text}</p>
                       </div>
                     </>
                   ))}
+                </div>
+                <div className={Styles.bottom_buttons}>
+                  <button>Back</button>
+                  <button>Next</button>
                 </div>
               </div>
             </div>

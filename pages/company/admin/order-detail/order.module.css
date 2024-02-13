@@ -1,0 +1,329 @@
+.Order_section {
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f8f8;
+  padding-block: 1rem;
+}
+
+.Order_section_container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.Order_content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.Order_left_content {
+  flex: 2;
+}
+
+.Order_right_content {
+  flex: 7;
+}
+
+.middle_section {
+  padding: 2.5rem;
+  background-color: #fff;
+  margin-top: 2rem;
+  border-radius: 30px;
+}
+
+.middle_section .order_completion {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.middle_section .order_completion p {
+  font-size: 1.3rem;
+}
+
+.middle_section .order_detail_content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.middle_section .order_detail_content span {
+  font-size: 0.9rem;
+  color: #828282;
+}
+
+.ordered_products {
+  margin-top: 2rem;
+}
+
+.ordered_products p {
+  font-size: 1.1rem;
+}
+
+.ordered_products .content {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+
+.ordered_products .imgContent {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  border-radius: 30px;
+  background-color: #f6faef;
+}
+
+.ordered_products .text_container {
+  width: 100%;
+}
+
+.ordered_products .text_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #828282;
+  font-size: 0.9rem;
+  width: 49%;
+}
+
+.ordered_products .text_content p {
+  color: black;
+  font-size: 1.2rem;
+}
+
+.ordered_products .button_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ordered_products .button_section {
+  margin-top: 1rem;
+}
+
+.button_section {
+  width: 100%;
+}
+
+.button_section .buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 2rem;
+  gap: 1rem;
+}
+
+.button_section .buttons button {
+  padding: 0.6rem 1rem;
+  width: 106px;
+  border: 1px solid #a2d061;
+  border-radius: 30px;
+  color: #a2d061;
+  font-size: 0.7rem;
+}
+
+.button_section .buttons button:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.button_section .buttons button:last-child {
+  background-color: #a2d061;
+  color: #fff;
+}
+
+.logo_section {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.logo_section .logo {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6faef;
+  border-radius: 0.6rem;
+  border: 1px dashed #a2d061;
+}
+
+.logo .cross_icon {
+  position: absolute;
+  z-index: 1;
+  right: 5px;
+  top: -3px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.ordered_products .price_section {
+  width: 100%;
+  display: flex;
+  border: 1px solid #cacaca;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+}
+
+.price_section p {
+  font-size: 1.3rem;
+}
+
+.price_section button {
+  font-size: 0.8rem;
+  width: 100px;
+  border: 1px solid #a2d061;
+  border-radius: 20px;
+  color: #a2d061;
+}
+
+.shipping_address_section {
+  margin-top: 3.5rem;
+}
+
+.shipping_address_section > p {
+  font-size: 1.2rem;
+}
+
+.shipping_address_section .content {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background-color: #f7f7f7;
+  border: 1px solid #cacaca;
+  display: flex;
+  border-radius: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.address_content p {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.address_content span {
+  font-size: 0.8rem;
+  width: 369px;
+  display: block;
+  line-height: 28px;
+}
+
+.shipping_address_section .button_content button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid #a2d061;
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
+  color: #fff;
+  background-color: #a2d061;
+}
+
+.tax_exemption_detail {
+  margin-top: 3rem;
+}
+
+.tax_exemption_detail > p {
+  font-size: 1.2rem;
+}
+
+.tax_exemption_detail .tax_exemption_input {
+  margin-top: 0.7rem;
+  width: 100%;
+}
+
+.tax_exemption_input input[type='text'] {
+  width: 100%;
+  padding-left: 1.5rem;
+  height: 60px;
+  border-radius: 30px;
+  border: 1px solid #cacaca;
+  background-color: #f7f7f7;
+}
+
+.tax_exemption_detail .tax_exemption_input input[type='text']:focus {
+  outline: none;
+}
+
+.tax_exemption_detail .radio_button {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.other_info_container {
+  margin-top: 2rem;
+}
+
+.other_info_container > p {
+  font-size: 1.2rem;
+}
+
+.other_info_container .content {
+  margin-top: 1rem;
+  background-color: #f0f0f0;
+  padding: 1rem 2rem;
+  border: 1px solid #cacaca;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.other_info_container .content p {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.other_info_container .content span {
+  font-size: 0.8rem;
+  color: #bbb;
+}
+
+.cancelation_request_container {
+  margin-top: 2rem;
+}
+
+.cancelation_request_container > p {
+  font-size: 1.2rem;
+}
+
+.cancelation_request_container .content {
+  margin-top: 1rem;
+  background-color: #f0f0f0;
+  border: 1px solid #cacaca;
+  padding: 1.5rem 1rem;
+  display: flex;
+  border-radius: 10px;
+  line-height: 20px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.cancelation_request_container .content p {
+  flex: 6;
+}
+
+.cancelation_request_container .content button {
+  flex: 1;
+  background-color: #a2d061;
+  padding: 0.7rem 0.5rem;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 0.8rem;
+}

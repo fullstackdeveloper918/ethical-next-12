@@ -237,9 +237,9 @@
   transition: 0.3s all ease-in-out;
 }
 
-.collection_Single> .imgContent span.badget{
-  background-color: #EAFBD2;
-  border: 1px solid #A2D061;
+.collection_Single > .imgContent span.badget {
+  background-color: #eafbd2;
+  border: 1px solid #a2d061;
   font-size: 15px;
   color: #111111;
   display: inline-block;
@@ -253,7 +253,9 @@
   font-family: Poppins;
   width: unset !important;
 }
-
+.panel_wrap::-webkit-scrollbar {
+  display: none;
+}
 /* responsive start */
 @media only screen and (max-width: 1300px) {
   .filterPanel {
@@ -316,13 +318,12 @@
   }
   .collection_container {
     grid-template-columns: repeat(2, 1fr) !important;
-}
+  }
 }
 @media only screen and (max-width: 850px) {
   .filterPanel {
     width: 257px;
   }
-
 }
 
 @media only screen and (max-width: 767px) {
@@ -395,7 +396,7 @@
     gap: 20px !important;
     padding: 1rem;
   }
-  .badget{
+  .badget {
     left: 15px;
   }
 }
@@ -419,25 +420,24 @@
     height: auto;
     margin: 0 auto;
   }
-    .collection_container {
+  .collection_container {
     width: 100%;
     display: flex !important;
     flex-direction: column !important;
   }
   .textContent,
-  .collection_items{
+  .collection_items {
     text-align: center;
   }
-  .checkbtn{
+  .checkbtn {
     margin-top: 20px;
   }
-  .badget{
+  .badget {
     left: 20px;
     transform: rotate(-30deg);
     top: 16px;
   }
 }
-
 
 /* Products css starts here */
 .collection_wrapper {
@@ -521,7 +521,7 @@
   width: 50%;
   position: relative;
 }
-.collection_Single > .imgContent  span{
+.collection_Single > .imgContent span {
   width: 100% !important;
 }
 
@@ -676,17 +676,17 @@
   opacity: 0;
   transition: opacity 1s ease-in, transform 1s ease-in;
 }
-.border_svg{
-  border: 0.36px solid #DDD;
+.border_svg {
+  border: 0.36px solid #ddd;
   border-radius: 50%;
   padding: 3px;
-  transition: all .3s ease-in;
+  transition: all 0.3s ease-in;
 }
-.border_svg:hover{
- background-color: #a2d061;
- box-shadow: 0 4px 4px rgba(0, 0, 0, 0.10);
+.border_svg:hover {
+  background-color: #a2d061;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
-.border_svg:hover .icon{
+.border_svg:hover .icon {
   filter: brightness(100);
 }
 /* Filter Panel Css */

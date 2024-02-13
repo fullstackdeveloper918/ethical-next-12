@@ -12,8 +12,11 @@ import useFetch from '../../lib/useFetch'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { setRole } from '../../redux-setup/authSlice'
+import axios from 'axios'
 
 const Cart = ({ token, selectedOption }) => {
+  //  const [tokenLocally,setTokenLocally] = useState('')
+
   const dispatch = useDispatch()
   const [values, setValues] = useState({
     email: '',
@@ -55,11 +58,29 @@ const Cart = ({ token, selectedOption }) => {
     'formdata'
   )
 
+  const user_Id = 915
+
   useEffect(() => {
     if (response) {
-      localStorage.setItem('token_swag', response?.data?.accessToken)
+      // localStorage.setItem('token_swag', response?.data?.accessToken)
       dispatch(setRole(response?.data?.role))
       toast.success('Logged in sucessfully')
+      console.log(response.data?.accessToken, 'token')
+      axios
+        .get(`https://test.cybersify.tech/Eswag/public/api/cart/${user_Id}`, {
+          headers: {
+            Authorization: response?.data?.accessToken,
+            'Access-Control-Allow-Origin': '*',
+          },
+        })
+        .then((res) => {
+          console.log('Response:', res.data)
+          // Handle the response data here
+        })
+        .catch((err) => {
+          console.error('Error:', err)
+          // Handle errors here
+        })
     }
     if (registerResponse) {
       localStorage.setItem('token_swag', registerResponse?.data?.accessToken)
@@ -306,8 +327,6 @@ const Cart = ({ token, selectedOption }) => {
                 </div>
               </div>
             </div>
-
-            {/* <Button /> */}
           </div>
         </div>
       </section>

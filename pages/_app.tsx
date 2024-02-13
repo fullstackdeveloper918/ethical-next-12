@@ -20,6 +20,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import countrySlice from '../redux-setup/countrySlice'
 import authSlice from '../redux-setup/authSlice'
 import filterSlice from '../redux-setup/FiltersSlice'
+import tokenReducer from '../redux-setup/tokenSlice'
 import storage from 'redux-persist/lib/storage'
 import { PersistGate } from 'redux-persist/integration/react'
 builder.init(builderConfig.apiKey)
@@ -28,6 +29,7 @@ const combinedReducer = combineReducers({
   country: countrySlice,
   auth: authSlice,
   filter: filterSlice,
+  token: tokenReducer,
 })
 
 const persistConfig = { key: 'root', storage, version: 1 }
@@ -44,7 +46,7 @@ const store = configureStore({
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div >
+    <div>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistStore(store)}>
           <Component {...pageProps} suppressHydrationWarning />
