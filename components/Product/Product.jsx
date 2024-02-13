@@ -130,8 +130,8 @@ const Product = ({ product, loading, error }) => {
     custumize === 'Embroidery'
       ? 2
       : custumize === 'Full Color Decoration'
-      ? 4
-      : 0
+        ? 4
+        : 0
 
   const imageUrl = product?.image
 
@@ -221,7 +221,11 @@ const Product = ({ product, loading, error }) => {
                   <span>Is this a sample ?</span>
                 </div>
                 <div className={Styles.select_color_section}>
-                  <p>Select Color</p>
+                  <div className={Styles.common_header}>
+                    <p>Select Color
+                    </p>
+                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  </div>
                   <div className={Styles.colors_container}>
                     {colors &&
                       colors.map((color, index) => (
@@ -237,24 +241,30 @@ const Product = ({ product, loading, error }) => {
                   </div>
                 </div>
                 <div className={Styles.cart_left_swift}>
-                  <p>Swift swag?</p>
+                  <div className={Styles.common_header}>
+                    <h6>Swift swag</h6>
+                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  </div>
                   <div className={Styles.cart_left_swift_content}>
                     <input type="checkbox" name="" id="" />
-                    <p>
+                    <label>
                       Checking this box will override the date selected above to
                       within 10 business days if you have gone through the Swift
                       Swag process. Please note additional charges will apply.
-                    </p>
+                    </label>
                   </div>
                 </div>
                 <div className={Styles.customization_text}>
-                  <p>Select Customization</p>
+                  <div className={Styles.common_header}>
+                    <p>Select Customization</p>
+                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  </div>
+
                   <div className={Styles.buttons}>
                     {customizations.map((button, index) => (
                       <button
-                        className={`${Styles.btn} ${
-                          activeBtn === index ? Styles.active : ''
-                        }`}
+                        className={`${Styles.btn} ${activeBtn === index ? Styles.active : ''
+                          }`}
                         onClick={() => btnClicked(index, button)}
                       >
                         {button}
@@ -263,10 +273,14 @@ const Product = ({ product, loading, error }) => {
                   </div>
                 </div>
                 <div className={Styles.para_text}>
-                  <p>
-                    How many areas of the product would you like to add a logo
-                    to?
-                  </p>
+                  <div className={Styles.common_header}>
+                    <p>
+                      How many areas of the product would you like to add a logo
+                      to?
+                    </p>
+                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  </div>
+
                   <input
                     type="number"
                     className={Styles.input}
@@ -274,7 +288,10 @@ const Product = ({ product, loading, error }) => {
                   />
                 </div>
                 <div className={Styles.para_text}>
-                  <p>Select location from the dropdown below</p>
+                  <div className={Styles.common_header}>
+                    <p>Select location from the dropdown below</p>
+                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  </div>
                   <div className={Styles.inputs}>
                     <div>
                       <input
@@ -283,17 +300,17 @@ const Product = ({ product, loading, error }) => {
                         name="location"
                         value="HTML"
                       />
-                        <label for="html">Front</label>
+                      <label for="html">Front</label>
                     </div>
                     <div>
-                       
+
                       <input
                         type="checkbox"
                         id="css"
                         name="location"
                         value="CSS"
                       />
-                        <label for="css">Back</label>
+                      <label for="css">Back</label>
                     </div>
                     <div>
                       <input
@@ -302,27 +319,36 @@ const Product = ({ product, loading, error }) => {
                         name="location"
                         value="JavaScript"
                       />
-                        <label for="javascript">Left Sleeve</label>
+                      <label for="javascript">Left Sleeve</label>
                     </div>
                   </div>
                 </div>
                 <div className={Styles.para_text}>
-                  <p>Upload Logo/ Artwork (.AI or .EPS vector format)</p>
+                <div className={Styles.common_header}>
+                <p>Upload Logo/ Artwork <span className={Styles.fw400}>(.AI or .EPS vector format)</span></p>
+                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  </div>
+                
                   <div className={Styles.upload_logo}>
                     <label htmlFor="file">
-                      <p> Drop your front design</p>
-                      <p>or browse your files</p>
+                      <p><span className={Styles.colorLight}> Drop your</span> front <span className={Styles.colorLight}>design</span></p>
+                      <p className={Styles.fw400}><span className={`${Styles.colorLight} ${Styles.fw400}`}> or </span> browse <span className={`${Styles.colorLight} ${Styles.fw400}`}>your files </span></p>
                       <input type="file" name="" id="file" />
                     </label>
                     <label htmlFor="file">
-                      <p>Drop your back design</p>
-                      <p>or browse your files</p>
+                      <p><span className={Styles.colorLight}> Drop your</span> back <span className={Styles.colorLight}>design</span></p>
+                      <p className={Styles.fw400}><span className={`${Styles.colorLight} ${Styles.fw400}`}> or </span> browse <span className={`${Styles.colorLight} ${Styles.fw400}`}>your files </span></p>
+
                       <input type="file" name="" id="file" />
                     </label>
                   </div>
                 </div>
                 <div className={Styles.number_of_units}>
-                  <p>Enter the number of units you need?</p>
+                <div className={Styles.common_header}>
+                <p>Enter the number of units you need?</p>
+                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  </div>
+                 
                   <button>Price break</button>
                 </div>
                 <div className={Styles.input_data_required}>
@@ -338,7 +364,11 @@ const Product = ({ product, loading, error }) => {
                   <span>(minimum {+product?.column_1_qty} units required)</span>
                 </div>
                 <div className={Styles.select_size_quantity}>
-                  <p>Select sizes quantity</p>
+                <div className={Styles.common_header}>
+                <p>Select sizes quantity</p>
+                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  </div>
+                
                   <div className={Styles.inputs}>
                     <input
                       placeholder="S"
@@ -377,7 +407,11 @@ const Product = ({ product, loading, error }) => {
                   </div>
                 </div>
                 <div className={Styles.standard_business_section}>
-                  <p>Production time</p>
+                <div className={Styles.common_header}>
+                <p>Production time</p>
+                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  </div>
+                 
                   <p>Standard - 15 Business days</p>
                 </div>
                 <div className={Styles.standard_down_line}></div>

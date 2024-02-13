@@ -93,29 +93,7 @@ const SecondaryHeader = () => {
                 />
               </span>
               <div className={styles.text_with_down_icon}>
-                {openLinks ? (
-                  <>
-                    {/* <Accordion
-                      type="single"
-                      collapsible
-                      className="mobil-menuwrap"
-                    >
-                      <AccordionItem value="item-1" className="w-full">
-                        <AccordionTrigger>Shop</AccordionTrigger>
-                        <AccordionContent>Top</AccordionContent>
-                        <AccordionContent>Bottom</AccordionContent>
-                        <AccordionContent>Right</AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="item-2" className="w-full">
-                        <AccordionTrigger>About</AccordionTrigger>
-                        <AccordionContent>Top</AccordionContent>
-                        <AccordionContent>Bottom</AccordionContent>
-                        <AccordionContent>Right</AccordionContent>
-                      </AccordionItem>
-                    </Accordion> */}
-                    {null}
-                  </>
-                ) : (
+                
                   <>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -150,19 +128,16 @@ const SecondaryHeader = () => {
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
-                          className={styles.shop_submenu}
+                          className={` ${styles.shop_submenu} ${styles.active}`}
                         >
                           Right
                         </DropdownMenuRadioItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </>
-                )}
               </div>
 
-              {openLinks ? (
-                ''
-              ) : (
+            
                 <div className="text_with_down_icon">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -182,7 +157,7 @@ const SecondaryHeader = () => {
                         </span>
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className={styles.header_menu}>
+                    <DropdownMenuContent className={`${styles.header_menu}`}>
                       <DropdownMenuRadioItem
                         value="top"
                         className={styles.shop_submenu}
@@ -197,14 +172,13 @@ const SecondaryHeader = () => {
                       </DropdownMenuRadioItem>
                       <DropdownMenuRadioItem
                         value="right"
-                        className={styles.shop_submenu}
+                        className={` ${styles.shop_submenu} ${styles.active}`}
                       >
                         Right
                       </DropdownMenuRadioItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
-              )}
               <Button
                 variant="ghost"
                 className={styles.shop_menu}
@@ -213,50 +187,7 @@ const SecondaryHeader = () => {
                 Contact
               </Button>
 
-              {/* <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className={`${styles.language_dropdown} ${styles.mobile_menu}`}>
-                    <span className="flag-img">
-                      <Image
-                        src={country === 'canada' ? Canada : Usa}
-                        width={30}
-                        height={22}
-                        alt="like"
-                      />
-                    </span>
-                    <span className={styles.dropdown_icon}>
-                      <Image
-                        src={downIcon}
-                        width={14}
-                        height={14}
-                        alt="search"
-                      />
-                    </span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className={styles.language_wrapdropdown}>
-                  <DropdownMenuRadioGroup
-                    value={country}
-                    onValueChange={setCountry}
-                  >
-                    {countries.map((c) => {
-                      return (
-                        <DropdownMenuRadioItem
-                          value={c.country}
-                          // style={{ display: "none" }}
-                        >
-                          <Image
-                            src={c.imageSrc}
-                            width={30}
-                            height={22}
-                            alt="like"
-                          />
-                        </DropdownMenuRadioItem>
-                      )
-                    })}
-                  </DropdownMenuRadioGroup>
-                </DropdownMenuContent>
-              </DropdownMenu> */}
+              
             </div>
           </div>
         </>
@@ -292,7 +223,7 @@ const SecondaryHeader = () => {
                       return (
                         <DropdownMenuRadioItem
                           value={c.country}
-                          // style={{ display: "none" }}
+                        
                         >
                           <Image
                             src={c.imageSrc}

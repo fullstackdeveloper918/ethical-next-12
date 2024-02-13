@@ -53,7 +53,7 @@ const FilterPanel = () => {
         <div className={Styles.filterPanel_top}>
           <h4 className={Styles.filterPanel_title}>Clear All</h4>
         </div>
-        <div className={Styles.filterPanel_Product_Section}></div>
+        {/* <div className={Styles.filterPanel_Product_Section}></div> */}
         <div className={Styles.filterPanel_ProductCollection_list}>
           {LIST.map((item, index) => (
             <>
