@@ -37,9 +37,22 @@
   margin-bottom: 0.5rem;
   cursor: pointer;
 }
+.top_container {
+  width: 100%;
+}
+
+.User_info {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+}
 
 .sidebar_data_content.active {
   background-color: #f8f8f8;
+}
+
+.logo {
+  object-fit: contain;
 }
 
 .sidebar_icon {

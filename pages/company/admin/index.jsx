@@ -21,7 +21,7 @@ const Store = () => {
         <div className={Styles.Store_section_container}>
           <div className={Styles.Store_content}>
             <div className={Styles.Store_left_content}>
-              <SideBar data={images.Louis_Lara} />
+              <SideBar data={images.Louis_Lara} imageData="image" />
             </div>
             <div className={Styles.Store_right_content}>
               <Navbar data="Store Detail" thumbnail={images.User_icon} />

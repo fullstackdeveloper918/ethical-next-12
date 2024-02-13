@@ -4,7 +4,7 @@ import Styles from './Sidebar.module.css'
 import images from '../../../constants/images'
 import { Sidebar_Data } from '../../../constants/data'
 
-const SideBar = ({ data }) => {
+const SideBar = ({ data, imageData }) => {
   const [isActive, setIsActive] = useState(0)
 
   return (
@@ -12,7 +12,25 @@ const SideBar = ({ data }) => {
       <div className={Styles.Sidebar_container}>
         <div className={Styles.sidebar_content}>
           <div className={Styles.top_container}>
-            {data && <Image src={data} width={255} height={53} alt="logo" />}
+            {data && (
+              <Image
+                src={data}
+                width={255}
+                height={53}
+                alt="logo"
+                className={Styles.logo}
+              />
+            )}
+            {/*  */}
+            {imageData === 'image' && (
+              <>
+                <div className={Styles.User_info}>
+                  <p>Louis Lara</p>
+                  <span>Member since 2014</span>
+                </div>
+              </>
+            )}
+            {/*  */}
             <div className={Styles.horizontal_line}></div>
             <div className={Styles.Sidebar_data}>
               {Sidebar_Data.map((item, index) => (
