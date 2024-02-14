@@ -11,24 +11,12 @@ import Button from '../components/Button/Button'
 import { useSelector } from 'react-redux'
 
 const cart = () => {
-  const [tokenLocally, setTokenLocally] = useState('')
   const token = localStorage.getItem('token_swag')
   const [selectedOption, setSelectedOption] = useState('Existing_client')
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)
   }
 
-  const tokenLocal = useSelector((state) => state.token.value)
-
-  console.log('tokenLocal', tokenLocal)
-
-  useEffect(() => {
-    setTokenLocally(tokenLocal)
-  }, [tokenLocal])
-
-  // useEffect(() => {
-  //   console.log(tokenLocally, 'hello')
-  // }, [])
   return (
     <>
       <PrimaryHeader />
@@ -46,7 +34,7 @@ const cart = () => {
           <Cart token={token} selectedOption={selectedOption} />
           <Button />
         </div>
-        {tokenLocally && <EstimateCard />}
+        <EstimateCard />
       </section>
       <Footer />
     </>
