@@ -2,7 +2,6 @@ import React from 'react'
 import Styles from './QuotationSubmissionHeader.module.css'
 
 const QuotationSubmissionHeader = () => {
-  console.log('QuotationSubmissionHeader component is called')
   return (
     <>
       <div className={Styles.QuotationSubmissionHeader}>

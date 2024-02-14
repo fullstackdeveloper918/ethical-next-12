@@ -18,6 +18,10 @@
   align-items: flex-start;
 }
 
+.step_form_container {
+  margin-bottom: 2rem;
+}
+
 .Order_left_content {
   flex: 2;
 }

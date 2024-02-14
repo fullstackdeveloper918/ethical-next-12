@@ -13,9 +13,16 @@ import { useSelector } from 'react-redux'
 const cart = () => {
   const token = localStorage.getItem('token_swag')
   const [selectedOption, setSelectedOption] = useState('Existing_client')
+  const [showEstimateCart, setShowEstimateCart] = useState(false)
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)
   }
+  console.log(showEstimateCart, 'showEstimateCart')
+  useEffect(() => {
+    setShowEstimateCart(false)
+  }, [])
+
+  console.count()
 
   return (
     <>
@@ -31,10 +38,14 @@ const cart = () => {
               handleOptionChange={handleOptionChange}
             />
           )}
-          <Cart token={token} selectedOption={selectedOption} />
+          <Cart
+            token={token}
+            selectedOption={selectedOption}
+            setShowEstimateCart={setShowEstimateCart}
+          />
           <Button />
         </div>
-        <EstimateCard />
+        {(showEstimateCart || token) && <EstimateCard />}
       </section>
       <Footer />
     </>

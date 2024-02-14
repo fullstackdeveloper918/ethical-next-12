@@ -49,3 +49,79 @@
   font-size: 0.9rem;
   color: #828282;
 }
+
+.edit_product_container {
+  margin-top: 1rem;
+  padding-top: 2rem;
+}
+
+.edit_product_container > p {
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.edit_product_container .file_container {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.edit_product_container .file_container p {
+  font-size: 14px;
+}
+
+.edit_product_container .file_container label {
+  width: 30%;
+  background-color: #f6faef;
+  border: 1px dashed #a2d061;
+  cursor: pointer;
+  margin-top: 0.8rem;
+  display: inline-block;
+  height: 194px;
+  border-spacing: 5px;
+  border-radius: 20px;
+}
+
+.edit_product_container .file_container label input {
+  display: none;
+}
+
+.edit_product_container .add_more_section {
+  margin-top: 1rem;
+}
+
+.edit_product_container .add_more_section p {
+  font-size: 13px;
+}
+
+.edit_product_container .add_more_section textarea {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  border: 1px solid #837676;
+  resize: none;
+  border-radius: 10px;
+}
+
+.edit_product_container .add_more_section textarea:focus {
+  outline: none;
+}
+
+.edit_product_container .buttons {
+  width: 100%;
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.edit_product_container .buttons button {
+  padding: 0.7rem 1.5rem;
+  border: 1px solid #a2d061;
+  border-radius: 30px;
+  font-size: 14px;
+  color: #a2d061;
+}
+
+.edit_product_container .buttons button:last-child {
+  margin-left: 1rem;
+  background-color: #a2d061;
+  color: #fff;
+}
