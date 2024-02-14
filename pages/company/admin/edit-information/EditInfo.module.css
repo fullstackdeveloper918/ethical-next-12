@@ -1,0 +1,51 @@
+.EditInfo_section {
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f8f8;
+  padding-block: 1rem;
+}
+
+.EditInfo_section_container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.EditInfo_content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.EditInfo_left_content {
+  flex: 2;
+}
+
+.EditInfo_right_content {
+  flex: 7;
+}
+
+.middle_section {
+  padding: 2.5rem;
+  background-color: #fff;
+  margin-top: 2rem;
+  border-radius: 30px;
+}
+.middle_section .order_completion {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.middle_section .order_completion p {
+  font-size: 1.3rem;
+}
+
+.middle_section .order_detail_content {
+  display: flex;
+  justify-content: space-between;
+}
+.middle_section .order_detail_content span {
+  font-size: 0.9rem;
+  color: #828282;
+}
