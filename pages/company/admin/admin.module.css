@@ -117,3 +117,48 @@
   width: 100%;
   height: 100%;
 }
+
+.desc_container {
+  margin-top: 2rem;
+}
+
+.desc_container p {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.desc_container .desc {
+  padding: 1rem 2rem;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+}
+
+.desc_container .desc span {
+  font-size: 0.8rem;
+  display: block;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.bottom_buttons {
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.bottom_buttons button {
+  width: 10%;
+  border: 1px solid #a2d061;
+  height: 47px;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.bottom_buttons button:first-child {
+  margin-right: 15px;
+  background-color: #a2d061;
+}
+
+.bottom_buttons button:last-child {
+  color: #a2d061;
+}

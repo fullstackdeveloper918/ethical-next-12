@@ -27,6 +27,7 @@ import Calender from '../assets/Calender.svg'
 import Louis_Lara from '../assets/Louis_Lara.png'
 import Plus_Icon from '../assets/Plus_Icon.svg'
 import Info_Icon from '../assets/info.svg'
+import Ethical_swag_small_logo from '../assets/Ethical_Swag_small_logo.svg'
 
 const images = {
   ethical_swag,
@@ -58,6 +59,7 @@ const images = {
   Louis_Lara,
   Plus_Icon,
   Info_Icon,
+  Ethical_swag_small_logo,
 }
 
 export default images
