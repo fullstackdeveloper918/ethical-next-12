@@ -186,6 +186,10 @@ html, body{
 .text_left h3 b {
   display: block;
 }
+input:focus{
+  outline: none;
+  box-shadow: none;
+}
 
 /* .card {
   width: 300px;
@@ -434,6 +438,14 @@ input::-webkit-inner-spin-button {
   outline: none;
 }
 
+input[type=radio]{
+  accent-color: green;
+}
+
+
+
+
+/* responsive start */
 
 @media screen and (max-width:767px) {
   .dropemnu_design{
@@ -472,3 +484,4 @@ input::-webkit-inner-spin-button {
     width: 200px;
 }
 }
+

@@ -26,3 +26,10 @@
   width: 161px;
   color: #fff;
 }
+
+
+@media screen and (max-width:991px) {
+  .cart_left_butttons {
+    margin:40px 0;
+  }
+}

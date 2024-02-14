@@ -239,6 +239,23 @@ const SecondaryHeader = () => {
                   setShowSearchInput(!showSearchInput)
                 }}
               />
+              {
+                showSearchInput && (
+                  <>
+                   <div className={styles.searchInput}>
+                  <div className={styles.centerField}>
+                  <input type="search" placeholder='Search'/><Image
+                src={searchImg}
+                width={24}
+                height={24}
+                className={styles.searchIcon}
+                alt="search" />
+
+                  </div>
+                   </div>
+                  </>
+                )
+              }
             </span>
           </div>
           {screenSize > 767 && (

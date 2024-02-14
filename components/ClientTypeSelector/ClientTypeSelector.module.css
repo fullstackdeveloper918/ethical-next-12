@@ -6,7 +6,7 @@
   font-weight: 400;
   line-height: 16px; /* 100% */
   letter-spacing: 0.16px;
-  margin: 40px 0 14px;
+ 
 }
 
 .cart_left_radio_buttons {
@@ -23,3 +23,34 @@
   align-items: center;
   gap: 4px;
 }
+
+
+.viewCart{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40px 0 14px;
+}
+.viewCart button{
+font-size: 18px;
+font-weight: 600;
+background: var(--green, #a2d061);
+color: #fff;
+text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.5px;
+    border-radius: 130px;
+    padding: 8px 26px;
+    display: none;
+}
+
+/* @media screen and (max-width:991px) {
+  .viewCart button{
+    display: block;
+  }
+  
+} */

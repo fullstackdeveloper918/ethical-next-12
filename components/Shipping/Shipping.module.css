@@ -1,14 +1,27 @@
+.cart_section div{
+  width: 100%;
+}
+
 .shipping_container {
   width: 100%;
 }
 
 .title {
-  font-size: 32px;
+  font-size: 28px;
+  font-family: Poppins;
+  margin: 50px 0 40px 0;
   font-weight: 400;
 }
 
 .form {
   width: 100%;
+}
+.form_title{
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 400;
+  font-family: 'DM Sans', sans-serif;
+  margin: 5px 0 10px 0;
 }
 
 .form_inputs {
@@ -16,11 +29,20 @@
   margin-bottom: 10px;
 }
 .form_inputs input {
-  padding: 20px;
+  padding: 18px;
   width: 100%;
-  max-width: -webkit-fill-available;
+  max-width: 100%;
   border-radius: 36px;
-  border: 1px solid #d8d8d8;
+  border: 1px solid #CACACA;
+  background-color: #F7F7F7;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: 'DM Sans', sans-serif;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+.form_inputs input::placeholder {
+ color: #949090;
 }
 
 .form_inputs.flexInputs {
@@ -29,4 +51,54 @@
   gap: 1rem;
   align-items: center;
   justify-content: flex-start;
+}
+.form_inputs.flexInputs div {
+  width: 100%;
+}
+.flexInputs.agreecheck {
+display: flex;
+align-items: baseline;
+justify-content: flex-start;
+}
+.flexInputs.agreecheck input{
+width: unset;
+margin-right: 7px;
+transform: scale(1.4);
+border: 0;
+}
+.flexInputs.agreecheck p{
+color: #949090;
+font-size: 14px;
+font-weight: 400;
+}
+
+.textUnderline{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width:1340px) {
+  .title {
+    font-size: 24px;
+    margin:40px 0 20px 0;
+  }
+  .form_inputs input {
+    padding: 14px 18px;
+  }
+  
+}
+
+@media screen and (max-width:767px) {
+  .form_inputs input {
+    margin-bottom:10px ;
+  }
+  .error {
+    margin-bottom: 5px;
+  }
 }

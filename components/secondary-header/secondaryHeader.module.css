@@ -245,8 +245,39 @@
   border-radius: 0 8px 8px 0;
 }
 
+.searchInput{
+  position: absolute;
+  width: 100%;
+  background-color: #fff;
+  top: 50px;
+  height: 100px;
+  box-shadow:0 10px 20px rgba(182, 182, 182, 0.2);
+  z-index: 99;
+  left: 0;
+  margin: auto;
+}
 
+.centerField{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  position: relative;
+}
+.searchInput input{
+  width: 430px;
+  border-bottom: 1px solid #bbb;
+  padding: 10px 20px 10px 0;
+  border-radius: 0;
+  color: #111;
+  font-size: 14px;
+  outline: 0;
+}
 
+.searchIcon{
+  position: absolute;
+  right: 0;
+}
 /* responsive */
 
 @media (min-width: 768px) {

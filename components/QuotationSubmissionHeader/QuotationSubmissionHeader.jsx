@@ -5,9 +5,16 @@ const QuotationSubmissionHeader = () => {
   console.log('QuotationSubmissionHeader component is called')
   return (
     <>
+   
       <div className={Styles.QuotationSubmissionHeader}>
         <h4 className={Styles.heading}>Home {'>'} Submit Quotation Request</h4>
-        <div className={Styles.horizontal_line}></div>
+        <div className={Styles.horizontal_line}>
+          <div className={Styles.stepCount}>
+            <span className={Styles.active}>1</span>
+            <span>2</span>
+            <span>3</span>
+          </div>
+        </div>
       </div>
     </>
   )

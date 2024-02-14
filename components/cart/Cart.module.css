@@ -1,19 +1,20 @@
 .cart_section {
   max-width: 1480px;
   min-height: 100vh;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 3fr 1fr;
+  margin: 40px auto 130px auto;
+  display: flex;
+  /* grid-template-columns: 2.5fr 1fr; */
   /* padding: 1rem; */
   gap: 5.3rem;
+  justify-content: space-between;
 }
-
+.widthFull{
+  width: 65%;
+}
 /* Left section */
 
 .form_inputs {
   width: 100%;
-  height: 60px;
-  margin-bottom: 1rem;
 }
 
 .form_inputs > .inputField {
@@ -22,16 +23,18 @@
 }
 
 .form_inputs .inputField:nth-child(1) {
-  margin-right: 2rem;
+  /* margin-right: 10px; */
+  width: 100%;
 }
 
 .form_inputs .inputField .input {
   width: 100%;
-  height: 100%;
+  height: 60px;
   border-radius: 30px;
   border: 1px solid #cacaca;
   padding-left: 1.2rem;
   background: #f7f7f7;
+  width: 100%;
 }
 
 .form_inputs .inputField .input:focus {
@@ -40,7 +43,7 @@
 
 .form_inputs > .form_button {
   width: 20%;
-  height: 100%;
+  padding: 16px;
   border: 1px solid #cacaca;
   color: var(--green, #a2d061);
   text-align: center;
@@ -49,23 +52,31 @@
   font-style: normal;
   font-weight: 400;
   line-height: 25px;
-  margin-top: 2rem;
+  margin-top: 18px;
   border-radius: 30px;
   border: 1px solid var(--green, #a2d061);
 }
 
 .form_inputs:nth-child(2) {
-  margin-bottom: 2.5rem;
+  /* margin-bottom: 2.5rem; */
 }
 
 .horizontal_line.last {
   background-color: #d9d9d9;
 }
+.flexform{
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 10px;
+}
 
 .cart_left_FAQ {
   width: 100%;
-  margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  border-top: 1px solid #D9D9D9;
+  padding-bottom: 40px;
+  padding-top: 40px;
 }
 
 .cart_left_FAQ > h3 {
@@ -76,6 +87,7 @@
   line-height: 28px;
   letter-spacing: 0.28px;
   margin-bottom: 2.3rem;
+  font-family: Poppins;
 }
 
 .cart_left_faqInput {
@@ -83,7 +95,7 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 1.3rem;
-  margin-bottom: 2.3rem;
+  margin-bottom: 40px;
 }
 
 .cart_left_faqInput > p {
@@ -97,7 +109,7 @@
 .cart_left_faqInput > input {
   width: 100%;
   height: 60px;
-  padding-inline: 1.2rem;
+  padding-inline: 22px;
   flex-shrink: 0;
   border-radius: 30px;
   border: 1px solid #cacaca;
@@ -124,8 +136,12 @@
   border-radius: 20px;
   border: 1px solid #cacaca;
   background: rgba(247, 247, 247, 0.97);
-  padding: 2rem;
+  padding: 22px;
   resize: none;
+  font-size: 14px;
+  color: #949090;
+  letter-spacing: 5px;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .cart_left_need > textarea:focus {
@@ -171,12 +187,155 @@
   border: 1px solid var(--green, #a2d061);
   box-shadow: -1px -1px 8px 0px rgba(0, 0, 0, 0.06) inset,
     0px 4px 37px 0px rgba(0, 0, 0, 0.06);
-  margin-top: 0.9rem;
-  padding-left: 1rem;
+  /* margin-top: 0.9rem; */
+  padding-left: 10px;
+  background-color: #F9F9F9;
+  accent-color:  #a2d061;
 }
 .error {
   color: red;
   padding-left: 10px;
+  margin-bottom: 10px;
+}
+.cart_left_swift_content{
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
 }
 
+
 /* Right Section */
+.custom_checkbox {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px; 
+  display: flex;
+  align-content: center;
+}
+
+.custom_checkbox input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+.custom_checkbox label {
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  color: #949090;
+  font-size: 14px;
+  color: #949090;
+  font-weight: 400;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.custom_checkbox label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+  background-color: #F9F9F9;
+}
+
+.custom_checkbox input[type="checkbox"]:checked + label:before {
+  background-color: #a2d061;
+  border-color: #a2d061;
+}
+
+.custom_checkbox label:after {
+  content: '\2713'; 
+  font-size: 14px;
+  color: #fff; 
+  position: absolute;
+  top: 0;
+  left: 4px;
+  line-height: 18px;
+  visibility: hidden;
+}
+
+.custom_checkbox input[type="checkbox"]:checked + label:after {
+  visibility: visible;
+}
+
+
+@media screen and (max-width:1600px) {
+ 
+    .cart_section {
+      max-width: 1260px;
+      gap: 2rem;
+    }
+  }
+
+@media screen and (max-width:1340px) {
+ 
+    .cart_section {
+      max-width: 1140px;
+      gap: 2rem;
+    }
+      .form_inputs > .form_button{
+      width: 40%;
+      padding: 12px;
+    }
+    .cart_left_FAQ > h3 {
+      font-size: 24px;
+      margin-bottom: 1.8rem;
+    }
+    .widthFull{
+      width: 80%;
+    }
+}
+@media screen and (max-width:1200px) {
+ 
+    .cart_section {
+      max-width: 990px;
+      gap: 2rem;
+    } 
+    .form_inputs > .form_button {
+      width: 20%;
+      padding: 16px;
+    }
+    .flexwrap{
+      flex-wrap: wrap;
+    }
+
+  }
+@media screen and (max-width:1100px) {
+ 
+    .cart_section {
+      max-width: 900px;
+      gap: 1rem;
+    }
+  
+}
+@media screen and (max-width:991px) {
+    .cart_section{
+      margin-bottom:40px ;
+    }
+    .cart_section {
+      max-width: 95%;
+      margin: auto;
+    } 
+    .cart_left_interested_section_fields {
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+      justify-content: flex-start;
+      gap: 15px;
+    }
+    .cart_left_FAQ > h3 {
+      font-size: 20px;
+      margin-bottom: 1rem;
+    }
+    .widthFull{
+      width: 100%;
+    }
+}
+@media screen and (max-width:767px) {
+    .cart_section {
+      max-width: 94%;
+    } 
+}

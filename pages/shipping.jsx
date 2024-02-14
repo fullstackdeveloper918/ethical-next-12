@@ -12,7 +12,7 @@ const shipping = () => {
       <PrimaryHeader />
       <SecondaryHeader />
       <section className={Styles.cart_section}>
-        <div>
+        <div className={Styles.widthFull}>
           <QuotationSubmissionHeader />
           <Shipping />
           <Button />

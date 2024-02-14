@@ -143,37 +143,42 @@ const Cart = ({ token, selectedOption }) => {
                 <>
                   <Form className={Styles.form}>
                     <div className={Styles.form_inputs}>
-                      <div className={Styles.inputField}>
-                        <ErrorMessage
-                          name="email"
-                          component="div"
-                          className={Styles.error}
-                        />
-                        <Field
-                          type="text"
-                          id="email"
-                          name="email"
-                          placeholder="Enter email"
-                          className={Styles.input}
-                          autocomplete="off"
-                        />
-                      </div>
-                    </div>
-                    <div className={Styles.form_inputs}>
-                      <div className={Styles.inputField}>
-                        <ErrorMessage
-                          name="password"
-                          component="div"
-                          className={Styles.error}
-                        />
-                        <Field
-                          type="password"
-                          id="password"
-                          name="password"
-                          placeholder="Enter Password"
-                          className={Styles.input}
-                          autocomplete="off"
-                        />
+                      <div className={Styles.flexform}>
+                        <div className={Styles.inputField}>
+
+                          <Field
+                            type="text"
+                            id="email"
+                            name="email"
+                            placeholder="Enter email"
+                            className={Styles.input}
+                            autocomplete="off"
+                          />
+                          <ErrorMessage
+                            name="email"
+                            component="div"
+                            className={Styles.error}
+                          />
+                        </div>
+
+                        <div className={Styles.form_inputs}>
+                          <div className={Styles.inputField}>
+
+                            <Field
+                              type="password"
+                              id="password"
+                              name="password"
+                              placeholder="Enter Password"
+                              className={Styles.input}
+                              autocomplete="off"
+                            />
+                            <ErrorMessage
+                              name="password"
+                              component="div"
+                              className={Styles.error}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
 
@@ -186,6 +191,7 @@ const Cart = ({ token, selectedOption }) => {
                         Login
                       </button>
                     </div>
+
                   </Form>
                 </>
               )}
@@ -202,12 +208,9 @@ const Cart = ({ token, selectedOption }) => {
                 <>
                   <Form className={Styles.form}>
                     <div className={Styles.form_inputs}>
+                    <div className={`${Styles.flexform} ${Styles.flexwrap}`}>
                       <div className={Styles.inputField}>
-                        <ErrorMessage
-                          name="name"
-                          component="div"
-                          className={Styles.error}
-                        />
+                       
                         <Field
                           type="text"
                           id="name"
@@ -215,15 +218,16 @@ const Cart = ({ token, selectedOption }) => {
                           placeholder="Enter name"
                           className={Styles.input}
                         />
-                      </div>
-                    </div>
-                    <div className={Styles.form_inputs}>
-                      <div className={Styles.inputField}>
-                        <ErrorMessage
-                          name="email"
+                         <ErrorMessage
+                          name="name"
                           component="div"
                           className={Styles.error}
                         />
+                      </div>
+                   
+                    <div className={Styles.form_inputs}>
+                      <div className={Styles.inputField}>
+                       
                         <Field
                           type="text"
                           id="email"
@@ -231,15 +235,16 @@ const Cart = ({ token, selectedOption }) => {
                           placeholder="Enter email"
                           className={Styles.input}
                         />
+                         <ErrorMessage
+                          name="email"
+                          component="div"
+                          className={Styles.error}
+                        />
                       </div>
                     </div>
                     <div className={Styles.form_inputs}>
                       <div className={Styles.inputField}>
-                        <ErrorMessage
-                          name="password"
-                          component="div"
-                          className={Styles.error}
-                        />
+                        
                         <Field
                           type="password"
                           id="password"
@@ -247,15 +252,16 @@ const Cart = ({ token, selectedOption }) => {
                           placeholder="Enter Password"
                           className={Styles.input}
                         />
+                        <ErrorMessage
+                          name="password"
+                          component="div"
+                          className={Styles.error}
+                        />
                       </div>
                     </div>
                     <div className={Styles.form_inputs}>
                       <div className={Styles.inputField}>
-                        <ErrorMessage
-                          name="c_password"
-                          component="div"
-                          className={Styles.error}
-                        />
+                        
                         <Field
                           type="password"
                           id="c_password"
@@ -263,7 +269,14 @@ const Cart = ({ token, selectedOption }) => {
                           placeholder="confirm password"
                           className={Styles.input}
                         />
+                        <ErrorMessage
+                          name="c_password"
+                          component="div"
+                          className={Styles.error}
+                        />
                       </div>
+                    </div>
+                    </div>
                     </div>
 
                     <div className={Styles.form_inputs}>
@@ -292,6 +305,23 @@ const Cart = ({ token, selectedOption }) => {
                 onChange={handleInputChange}
               />
             </div>
+            <div className={Styles.cart_left_faqInput}>
+              <p>Swift swag?</p>
+              <div className={Styles.cart_left_swift_content}>
+                {/* <input type="checkbox" name="" id="" />
+                <label>
+                  Checking this box will override the date selected above to
+                  within 10 business days if you have gone through the Swift
+                  Swag process. Please note additional charges will apply.
+                </label> */}
+                <div className={Styles.custom_checkbox}>
+                  <input type="checkbox" name="services" id="swift_swag" />
+                  <label for="swift_swag">  Checking this box will override the date selected above to
+                    within 10 business days if you have gone through the Swift
+                    Swag process. Please note additional charges will apply.</label>
+                </div>
+              </div>
+            </div>
             <div className={Styles.cart_left_need}>
               <p>Notes about your order:</p>
               <textarea
@@ -306,24 +336,42 @@ const Cart = ({ token, selectedOption }) => {
               <p>Are you interested in additional services?</p>
               <div className={Styles.cart_left_interested_section_fields}>
                 <div className={Styles.inputs}>
-                  <input type="checkbox" name="services" id="" />
-                  <h6>Swag Pack Kitting</h6>
+                  {/* <input type="checkbox" name="services" id="" />
+                  <h6>Swag Pack Kitting</h6> */}
+                  <div className={Styles.custom_checkbox}>
+                    <input type="checkbox" name="services" id="swapPack" />
+                    <label for="swapPack">Swag Pack Kitting</label>
+                  </div>
                 </div>
                 <div className={Styles.inputs}>
-                  <input type="checkbox" name="services" id="" />
-                  <h6>Warehousing</h6>
+                  {/* <input type="checkbox" name="services" id="" />
+                  <h6>Warehousing</h6> */}
+                  <div className={Styles.custom_checkbox}>
+                    <input type="checkbox" name="services" id="Warehousing" />
+                    <label for="Warehousing">Warehousing</label>
+                  </div>
                 </div>
                 <div className={Styles.inputs}>
-                  <input type="checkbox" name="services" id="" />
-                  <h6>Graphic Design</h6>
+                  {/* <input type="checkbox" name="services" id="" />
+                  <h6>Graphic Design</h6> */}
+                  <div className={Styles.custom_checkbox}>
+                    <input type="checkbox" name="services" id="graphicDesign" />
+                    <label for="graphicDesign">Graphic Design</label>
+                  </div>
                 </div>
                 <div className={Styles.inputs}>
-                  <input type="checkbox" name="services" id="" />
-                  <h6>Pick and Pack</h6>
+                  {/* <input type="checkbox" name="services" id="" />
+                  <h6>Pick and Pack</h6> */}
+                  <div className={Styles.custom_checkbox}>
+                    <input type="checkbox" name="services" id="services" />
+                    <label for="services">Pick and Pack</label>
+                  </div>
                 </div>
                 <div className={Styles.inputs}>
-                  <input type="checkbox" name="services" id="" />
-                  <h6>Not Sure</h6>
+                  <div className={Styles.custom_checkbox}>
+                    <input type="checkbox" id="myCheckbox" />
+                    <label for="myCheckbox">Not Sure</label>
+                  </div>
                 </div>
               </div>
             </div>
