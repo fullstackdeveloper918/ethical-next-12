@@ -158,3 +158,48 @@
   align-items: flex-start;
   gap: 0.8rem;
 }
+
+.address_container span {
+  color: #707070;
+  font-size: 0.89rem;
+}
+
+.user_content {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.user_content table {
+  width: 100%;
+}
+
+.user_content table tr:first-child {
+  background-color: #f7f7f7;
+}
+
+.user_content table th {
+  padding: 2rem;
+  text-align: left;
+  border-top: 2px solid #cacaca;
+}
+
+.user_content table td {
+  text-align: left;
+  padding: 3rem 2rem;
+  border-bottom: 1px solid #cacaca;
+}
+
+.total_amount_section {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.total_amount_section .content {
+  width: 20%;
+  display: flex;
+  text-align: right;
+  justify-content: space-between;
+  gap: 1rem;
+}
