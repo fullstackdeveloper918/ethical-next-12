@@ -5,6 +5,7 @@ import SideBar from '../../../../components/admin/SideBar/SideBar'
 import Navbar from '../../../../components/admin/Navbar/Navbar'
 import images from '../../../../constants/images'
 import Image from 'next/image'
+import StepForm from '../../../../components/admin/step-form/StepForm'
 
 const OrderDetail = () => {
   return (
@@ -25,6 +26,9 @@ const OrderDetail = () => {
                 <div className={Styles.order_detail_content}>
                   <span>order id - OD233873648734687289</span>
                   <span>Dec 12, 2023</span>
+                </div>
+                <div className={Styles.step_form_container}>
+                  <StepForm />
                 </div>
                 {/* Ordered Products */}
                 <div className={Styles.ordered_products}>

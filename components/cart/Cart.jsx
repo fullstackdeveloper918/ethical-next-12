@@ -14,10 +14,16 @@ import { useDispatch } from 'react-redux'
 import { setRole } from '../../redux-setup/authSlice'
 import axios from 'axios'
 
-const Cart = ({ token, selectedOption }) => {
+const Cart = ({
+  token,
+  selectedOption,
+  setShowEstimateCart,
+  showEstimateCart,
+}) => {
   //  const [tokenLocally,setTokenLocally] = useState('')
 
   const dispatch = useDispatch()
+  const [showLogin, setShowLogin] = useState(true)
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -62,10 +68,11 @@ const Cart = ({ token, selectedOption }) => {
 
   useEffect(() => {
     if (response) {
-      // localStorage.setItem('token_swag', response?.data?.accessToken)
+      localStorage.setItem('token_swag', response?.data?.accessToken)
       dispatch(setRole(response?.data?.role))
+      setShowLogin(false)
+
       toast.success('Logged in sucessfully')
-      console.log(response.data?.accessToken, 'token')
       axios
         .get(`https://test.cybersify.tech/Eswag/public/api/cart/${user_Id}`, {
           headers: {
@@ -107,11 +114,13 @@ const Cart = ({ token, selectedOption }) => {
       formData.append('password', values.password)
 
       loadQuery(formData)
+      setShowEstimateCart(true)
     } catch (error) {
       console.log(error, 'from login api')
     } finally {
     }
   }
+
   const onSubmitRegister = async (values) => {
     try {
       let formData = new FormData()
@@ -133,7 +142,7 @@ const Cart = ({ token, selectedOption }) => {
         {/* Left Section  */}
         <div className={Styles.cart_left}>
           {/* <QuotationSubmissionHeader /> */}
-          {!token && selectedOption === 'Existing_client' && (
+          {showLogin && selectedOption === 'Existing_client' && (
             <Formik
               initialValues={initialValuesLogin}
               validationSchema={validationSchema}
@@ -198,7 +207,7 @@ const Cart = ({ token, selectedOption }) => {
             </Formik>
           )}
 
-          {!token && selectedOption === 'New_client' && (
+          {showLogin && selectedOption === 'New_client' && (
             <Formik
               initialValues={initialValuesRegister}
               validationSchema={validationSchemaRegister}

@@ -4,6 +4,7 @@ import SideBar from '../../../../components/admin/SideBar/SideBar'
 import Navbar from '../../../../components/admin/Navbar/Navbar'
 import images from '../../../../constants/images'
 import Image from 'next/image'
+import StepForm from '../../../../components/admin/step-form/StepForm'
 
 const Approval = () => {
   const [activeBtn, setActiveBtn] = useState(0)
@@ -27,6 +28,9 @@ const Approval = () => {
                 <div className={Styles.Approval_detail_content}>
                   <span>Order id - OD233873648734687289</span>
                   <span>Dec 12, 2023</span>
+                </div>
+                <div className={Styles.step_form_container}>
+                  <StepForm />
                 </div>
                 {/* Overview Products */}
                 <div className={Styles.overview_products}>
