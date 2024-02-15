@@ -1,23 +1,23 @@
 import React from 'react'
-import Styles from './ShippingStatus.module.css'
+import Styles from './OrderStatus.module.css'
 import SideBar from '../../../../components/admin/SideBar/SideBar'
 import Navbar from '../../../../components/admin/Navbar/Navbar'
-import { FaArrowLeftLong } from 'react-icons/fa6'
-import StepForm from '../../../../components/admin/step-form/StepForm'
-import images from '../../../../constants/images'
 import Image from 'next/image'
+import images from '../../../../constants/images'
+import StepForm from '../../../../components/admin/step-form/StepForm'
+import { FaArrowLeftLong } from 'react-icons/fa6'
 
-const ShippingStatus = () => {
+const OrderStatus = () => {
   return (
     <>
-      <section className={Styles.ShippingStatus_section}>
-        <div className={Styles.ShippingStatus_section_container}>
-          <div className={Styles.ShippingStatus_content}>
-            <div className={Styles.ShippingStatus_left_content}>
+      <section className={Styles.OrderStatus_section}>
+        <div className={Styles.OrderStatus_section_container}>
+          <div className={Styles.OrderStatus_content}>
+            <div className={Styles.OrderStatus_left_content}>
               <SideBar data={images.Louis_Lara} />
             </div>
-            <div className={Styles.ShippingStatus_right_content}>
-              <Navbar data="Shipping Status" thumbnail={images.User_icon} />
+            <div className={Styles.OrderStatus_right_content}>
+              <Navbar data="Order Status" thumbnail={images.User_icon} />
               <div className={Styles.middle_section}>
                 <div className={Styles.right_icon}>
                   <FaArrowLeftLong color="#fff" fontSize={14} />
@@ -30,7 +30,6 @@ const ShippingStatus = () => {
                   <span>order id - OD233873648734687289</span>
                   <span>Dec 12, 2023</span>
                 </div>
-
                 <div className={Styles.step_form_container}>
                   <StepForm />
                 </div>
@@ -43,19 +42,14 @@ const ShippingStatus = () => {
                       width={60}
                       height={60}
                     />
-                    <p>Delivery by UPS</p>
-                    <span>Tracking ID : #3547789</span>
+                    <p>Status Status</p>
+                    <p>Order id - OD233873648734687289</p>
+                    <span>Updated Dec 21,2023</span>
                   </div>
                   <div className={Styles.address_container}>
-                    <p>
-                      Invoice: <span>#3547789</span>
-                    </p>
-                    <p>
-                      Email: <span>info@ethicalswag.com</span>
-                    </p>
-                    <p>
-                      Web: <span>www.ethicalswag.com</span>
-                    </p>
+                    <p>Shipping Address</p>
+                    <p>Brendon Morris</p>
+                    <p>209 Street Avenue,Philadelphia USA, Zip : PQ243</p>
                   </div>
                 </div>
 
@@ -68,7 +62,7 @@ const ShippingStatus = () => {
                       <th>Quantity</th>
                       <th>Price</th>
                     </tr>
-                    {Array.from({ length: 2 }).map((item, index) => (
+                    {Array.from({ length: 1 }).map((item, index) => (
                       <>
                         <tr>
                           <td>
@@ -87,9 +81,10 @@ const ShippingStatus = () => {
                     ))}
                   </table>
                 </div>
-
-                {/* total amount container */}
-                <div className={Styles.total_amount_section}></div>
+                {/* Order OrderStatus */}
+                <div className={Styles.order_OrderStatus_content}>
+                  <p>Your order has been placed!</p>
+                </div>
               </div>
             </div>
           </div>
@@ -99,4 +94,4 @@ const ShippingStatus = () => {
   )
 }
 
-export default ShippingStatus
+export default OrderStatus
