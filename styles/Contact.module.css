@@ -116,7 +116,7 @@
   fill: #666666 !important;
 }
 .meeting_section span{
-  width: -webkit-fill-available;
+  width: -webkit-fill-available !important; 
 }
 .meeting_section span img{
  object-fit: contain;

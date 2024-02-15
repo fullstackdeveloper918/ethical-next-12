@@ -72,7 +72,7 @@ const FilterPanel = () => {
                 </div>
                 {isActive &&
                   openIndex === index &&
-                  item.children.map((child) => (
+                  item.children.map((child, index) => (
                     <>
                       {item.label === 'Price' ? (
                         <>
@@ -99,24 +99,41 @@ const FilterPanel = () => {
                         </>
                       ) : (
                         <>
-                          <li
-                            key={item.id}
-                            className={Styles.filterPanel_list_item}
-                          >
-                            <input
+                         
+                            {/* <input
                               type="checkbox"
-                              id="checkbox_id"
+                              id={`checkbox_id_${index}`}
                               name={child.label}
                               checked={isChecked[item.label]}
                               onChange={handleCheckboxChange}
                             />
                             <label
-                              htmlFor="checkbox_id"
+                              htmlFor={`checkbox_id_${index}`}
+                              onClick={() => handleAddLists(child.label)}
+                            >
+                              {child.label}
+                            </label> */}
+                             <div className={Styles.custom_checkbox}>
+                             <li
+                            key={item.id}
+                            className={Styles.filterPanel_list_item}
+                          >
+                             <input
+                              type="checkbox"
+                              id={`checkbox_id_${index}`}
+                              name={child.label}
+                              checked={isChecked[item.label]}
+                              onChange={handleCheckboxChange}
+                            />
+                    <label
+                              htmlFor={`checkbox_id_${index}`}
                               onClick={() => handleAddLists(child.label)}
                             >
                               {child.label}
                             </label>
-                          </li>
+                            </li>
+                  </div>
+                        
                         </>
                       )}
                     </>
