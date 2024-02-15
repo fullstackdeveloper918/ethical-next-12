@@ -1,4 +1,4 @@
-.cart_section div{
+.cart_section div {
   width: 100%;
 }
 
@@ -16,7 +16,7 @@
 .form {
   width: 100%;
 }
-.form_title{
+.form_title {
   font-size: 18px;
   line-height: 25px;
   font-weight: 400;
@@ -33,8 +33,8 @@
   width: 100%;
   max-width: 100%;
   border-radius: 36px;
-  border: 1px solid #CACACA;
-  background-color: #F7F7F7;
+  border: 1px solid #cacaca;
+  background-color: #f7f7f7;
   font-size: 15px;
   font-weight: 400;
   font-family: 'DM Sans', sans-serif;
@@ -42,7 +42,7 @@
   letter-spacing: 1px;
 }
 .form_inputs input::placeholder {
- color: #949090;
+  color: #949090;
 }
 
 .form_inputs.flexInputs {
@@ -56,23 +56,23 @@
   width: 100%;
 }
 .flexInputs.agreecheck {
-display: flex;
-align-items: baseline;
-justify-content: flex-start;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
 }
-.flexInputs.agreecheck input{
-width: unset;
-margin-right: 7px;
-transform: scale(1.4);
-border: 0;
+.flexInputs.agreecheck input {
+  width: unset;
+  margin-right: 7px;
+  transform: scale(1.4);
+  border: 0;
 }
-.flexInputs.agreecheck p{
-color: #949090;
-font-size: 14px;
-font-weight: 400;
+.flexInputs.agreecheck p {
+  color: #949090;
+  font-size: 14px;
+  font-weight: 400;
 }
 
-.textUnderline{
+.textUnderline {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -83,20 +83,19 @@ font-weight: 400;
   margin-bottom: 10px;
 }
 
-@media screen and (max-width:1340px) {
+@media screen and (max-width: 1340px) {
   .title {
     font-size: 24px;
-    margin:40px 0 20px 0;
+    margin: 40px 0 20px 0;
   }
   .form_inputs input {
     padding: 14px 18px;
   }
-  
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width: 767px) {
   .form_inputs input {
-    margin-bottom:10px ;
+    margin-bottom: 10px;
   }
   .error {
     margin-bottom: 5px;
