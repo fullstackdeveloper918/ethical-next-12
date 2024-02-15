@@ -572,14 +572,20 @@
 
 @media (max-width: 479px) {
   .header_logo {
-    width: 150px;
+    width: 140px;
   }
+  .container_1 {
+    left: -70px;
+  } 
 
 }
 @media (max-width: 375px) {
   .header_logo {
     width: 150px;
   }
+  .container_1 {
+    left: -90px;
+  } 
 }
 
 
