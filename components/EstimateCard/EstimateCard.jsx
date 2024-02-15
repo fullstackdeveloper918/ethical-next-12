@@ -3,7 +3,7 @@ import Styles from './EstimateCard.module.css'
 import images from '../../constants/images'
 import Image from 'next/image'
 
-const EstimateCard = () => {
+const EstimateCard = ({showEstimate}) => {
   const [quantity, setQuantity] = useState(2)
   const [buttonIndex, setButtonIndex] = useState(null)
 
@@ -25,6 +25,7 @@ const EstimateCard = () => {
   let arr = ['a', 'b', 'c', 'd', 'e']
   return (
     <>
+   
       <div className={Styles.estimate_wrapper}>
         <h3 className={Styles.estimate_title}>Estimate</h3>
         <div className={Styles.estimate_horizontal_line}></div>
@@ -39,7 +40,7 @@ const EstimateCard = () => {
                       width={49}
                       height={66}
                       alt="product_image"
-                    />
+                      />
                   </div>
                   <div className={Styles.estimate_content_textContent}>
                     <h4 className={Styles.title}>
@@ -53,7 +54,7 @@ const EstimateCard = () => {
                         <div
                           className={Styles.decrease_amount}
                           onClick={() => handleQuantity(index, 'dec')}
-                        >
+                          >
                           -
                         </div>
 
@@ -62,7 +63,7 @@ const EstimateCard = () => {
                         <div
                           className={Styles.increase_amount}
                           onClick={() => handleQuantity(index, 'inc')}
-                        >
+                          >
                           +
                         </div>
                       </div>
@@ -72,7 +73,7 @@ const EstimateCard = () => {
                           width={14}
                           height={16}
                           alt="delete_icon"
-                        />
+                          />
                       </div>
                     </div>
                   </div>

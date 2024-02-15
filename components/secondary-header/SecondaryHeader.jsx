@@ -13,7 +13,6 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { useSelector } from 'react-redux'
 import styles from './secondaryHeader.module.css'
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,10 +20,8 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-
 import { useRouter } from 'next/router'
 import { Input } from '@/components/ui/input'
-
 const countries = [
   {
     id: 1,
@@ -37,25 +34,21 @@ const countries = [
     imageSrc: Canada,
   },
 ]
-
 const SecondaryHeader = () => {
   const [showSearchInput, setShowSearchInput] = useState(false)
   const [openLinks, setOpenLinks] = useState(false)
   const router = useRouter()
   const [country, setCountry] = useState('usa')
-
   const [screenSize, setScreenSize] = useState(992)
   const handleResize = () => {
     setScreenSize(window.innerWidth)
   }
   useEffect(() => {
     window.addEventListener('resize', handleResize)
-
     return () => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
-
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
@@ -137,7 +130,6 @@ const SecondaryHeader = () => {
                   </DropdownMenu>
                 </>
               </div>
-
               <div className="text_with_down_icon">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -189,7 +181,6 @@ const SecondaryHeader = () => {
             </div>
           </div>
         </>
-
         <div className={styles.container_3}>
           <div className="">
             <DropdownMenu>
@@ -248,9 +239,25 @@ const SecondaryHeader = () => {
                   setShowSearchInput(!showSearchInput)
                 }}
               />
+              {
+                showSearchInput && (
+                  <>
+                   <div className={styles.searchInput}>
+                  <div className={styles.centerField}>
+                  <input type="search" placeholder='Search'/><Image
+                src={searchImg}
+                width={24}
+                height={24}
+                className={styles.searchIcon}
+                alt="search" />
+
+                  </div>
+                   </div>
+                  </>
+                )
+              }
             </span>
           </div>
-
           {screenSize > 767 && (
             <div
               className=""
@@ -284,5 +291,4 @@ const SecondaryHeader = () => {
     </div>
   )
 }
-
 export default SecondaryHeader

@@ -96,7 +96,12 @@ span {
 }
 
 .dropemnu_design {
-  width: auto;
+  width: 130px;
+  border-radius: 11px;
+  padding: 0px;
+  box-shadow: 0 0 13px rgb(207 207 207 / 80%);
+  padding: 5px;
+  background: #ffff;
 }
 
 .displayProperty {
@@ -181,6 +186,11 @@ html, body{
 .text_left h3 b {
   display: block;
 }
+input:focus{
+  outline: none;
+  box-shadow: none;
+}
+
 /* .card {
   width: 300px;
   height: 400px;
@@ -416,3 +426,62 @@ html, body{
     z-index: -4;
   }
 }
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+ input[type=number] {
+  -moz-appearance: textfield;
+  outline: none;
+}
+
+input[type=radio]{
+  accent-color: green;
+}
+
+
+
+
+/* responsive start */
+
+@media screen and (max-width:767px) {
+  .dropemnu_design{
+    width: 500px;
+    z-index: 999;
+    margin-top: -37px;
+  }  
+}
+@media screen and (max-width:676px) {
+  .dropemnu_design{
+    width: 300px;
+  }  
+}
+/* @media screen and (max-width:545px) {
+  .dropemnu_design{
+    width: 360px;
+  }  
+} */
+@media screen and (max-width:500px) {
+  .dropemnu_design{
+    width: 200px;
+  }  
+}
+@media screen and (max-width:425px) {
+  .dropemnu_design{
+    width: 290px;
+  }  
+}
+@media screen and (max-width: 390px){
+.dropemnu_design {
+    width: 240px;
+}
+}
+@media screen and (max-width: 320px){
+.dropemnu_design {
+    width: 200px;
+}
+}
+

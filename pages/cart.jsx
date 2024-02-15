@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux'
 
 const cart = () => {
   const token = localStorage.getItem('token_swag')
+  const [showEstimate, setShowEstimate] = useState(true)
   const [selectedOption, setSelectedOption] = useState('Existing_client')
   const [showEstimateCart, setShowEstimateCart] = useState(false)
   const handleOptionChange = (event) => {
@@ -28,7 +29,7 @@ const cart = () => {
     <>
       <PrimaryHeader />
       <SecondaryHeader />
-      <section className={Styles.cart_section}>
+      <section className={Styles.cart_section} >
         <div>
           <QuotationSubmissionHeader />
           {!token && (

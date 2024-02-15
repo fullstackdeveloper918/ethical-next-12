@@ -257,9 +257,17 @@
   display: none;
 }
 /* responsive start */
+@media only screen and (max-width: 1400px) {
+  .category_section .collection_wrapper {
+    margin-left: 35%;
+  }
+}
 @media only screen and (max-width: 1300px) {
   .filterPanel {
     width: 364px;
+  }
+  .category_section .collection_wrapper {
+    margin-left: 40%;
   }
 }
 
@@ -267,6 +275,7 @@
   .filterPanel {
     width: 322px;
   }
+ 
 }
 
 @media only screen and (max-width: 1100px) {
@@ -318,12 +327,20 @@
   }
   .collection_container {
     grid-template-columns: repeat(2, 1fr) !important;
-  }
 }
+.category_section .collection_wrapper {
+  margin-left: 26%;
+}
+  }
+
 @media only screen and (max-width: 850px) {
   .filterPanel {
     width: 257px;
   }
+  .category_section .collection_wrapper {
+    margin-left: 30%;
+  }
+
 }
 
 @media only screen and (max-width: 767px) {
@@ -741,6 +758,7 @@
 .filter_panel_price_input_section {
   width: 100%;
   margin: 0 auto;
+  padding: 0 20px 10px;
 }
 
 .filter_panel_price_input {
@@ -770,6 +788,7 @@
   gap: 0.5rem;
   align-items: center;
   transition: all 0.3s ease;
+  padding: 10px 15px; 
 }
 
 .filterPanel_list_item input[type='checkbox'] {
@@ -779,4 +798,14 @@
 .accordion_transition {
   width: 100%;
   transition: all 0.3s ease;
+}
+
+.filter_list{
+  display: flex;
+}
+
+@media screen and (max-width:767px) {
+  .filterPanel_list_item {
+    padding: 10px;
+  }
 }

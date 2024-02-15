@@ -1,6 +1,7 @@
 import React from 'react'
 import Styles from './Shipping.module.css'
 
+
 const Shipping = () => {
   return (
     <>
@@ -10,13 +11,21 @@ const Shipping = () => {
           <h3 className={Styles.form_title}>Ship order to *</h3>
           <div className={Styles.form_inputs}>
             <input type="text" placeholder="Single Addresses" />
+            {/* <p className={Styles.error}>svdghsdvdbdsc</p> */}
           </div>
           <div className={Styles.form_inputs}>
             <input type="text" placeholder="Country/region" />
+            {/* <p className={Styles.error}>svdghsdvdbdsc</p> */}
           </div>
           <div className={`${Styles.form_inputs} ${Styles.flexInputs}`}>
+            <div>
             <input type="text" placeholder="First name" />
-            <input type="text" placeholder="Last name" />
+            {/* <p className={Styles.error}>svdghsdvdbdsc</p> */}
+            </div>
+           <div>
+           <input type="text" placeholder="Last name" />
+           {/* <p className={Styles.error}>svdghsdvdbdsc</p> */}
+           </div>
           </div>
           <div className={Styles.form_inputs}>
             <input type="text" placeholder="Phone number" />
@@ -41,9 +50,11 @@ const Shipping = () => {
             <input type="text" placeholder="State" />
             <input type="text" placeholder="PIN Code" />
           </div>
-          <div className={`${Styles.form_inputs} ${Styles.flexInputs}`}>
+          <div className={`${Styles.form_inputs}`}>
+            <div className={` ${Styles.flexInputs}  ${Styles.agreecheck}`}> 
             <input type="radio" />
-            <p>I agree to the terms & conditions | privacy policy</p>
+            <p>I agree to the <span className={Styles.textUnderline}>terms & conditions | privacy policy</span></p>
+            </div>
           </div>
         </form>
       </div>
