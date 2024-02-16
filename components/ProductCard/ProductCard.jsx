@@ -8,8 +8,6 @@ import { CiSearch } from 'react-icons/ci'
 import { CiShare2 } from 'react-icons/ci'
 
 const ProductCard = ({ item }) => {
-  const [ActiveOption, setActiveOption] = useState(false)
-
   return (
     <>
       <Link href={`products/${item?.id}`}>
