@@ -150,14 +150,14 @@ const SecondaryHeader = () => {
                       onClick={() => router.push('/about-us')}
                     >
                       About
-                      <span>
+                      {/* <span>
                         <Image
                           src={downIcon}
                           width={8}
                           height={8}
                           alt="search"
                         />
-                      </span>
+                      </span> */}
                     </Button>
                   </DropdownMenuTrigger>
                   {/* <DropdownMenuContent className={styles.header_menu}>
