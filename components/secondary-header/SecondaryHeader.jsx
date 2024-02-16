@@ -110,20 +110,27 @@ const SecondaryHeader = () => {
                         <DropdownMenuRadioItem
                           value="top"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
                         >
-                          Top
+                          BAGS
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="bottom"
                           className={styles.shop_submenu}
                         >
-                          Bottom
+                          APPAREL
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
                           className={styles.shop_submenu}
                         >
-                          Right
+                          SHOP BY
+                        </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem
+                          value="right"
+                          className={styles.shop_submenu}
+                        >
+                          OTHERS
                         </DropdownMenuRadioItem>
                       </DropdownMenuRadioGroup>
                     </DropdownMenuContent>
@@ -137,6 +144,7 @@ const SecondaryHeader = () => {
                       variant="ghost"
                       className={styles.shop_menu}
                       style={{ cursor: 'pointer' }}
+                      onClick={() => router.push('/about-us')}
                     >
                       About
                       <span>
@@ -149,7 +157,7 @@ const SecondaryHeader = () => {
                       </span>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className={styles.header_menu}>
+                  {/* <DropdownMenuContent className={styles.header_menu}>
                     <DropdownMenuRadioItem
                       value="top"
                       className={styles.shop_submenu}
@@ -168,13 +176,14 @@ const SecondaryHeader = () => {
                     >
                       Right
                     </DropdownMenuRadioItem>
-                  </DropdownMenuContent>
+                  </DropdownMenuContent> */}
                 </DropdownMenu>
               </div>
               <Button
                 variant="ghost"
                 className={styles.shop_menu}
                 style={{ cursor: 'pointer' }}
+                onClick={() => router.push('/contact')}
               >
                 Contact
               </Button>
@@ -239,23 +248,22 @@ const SecondaryHeader = () => {
                   setShowSearchInput(!showSearchInput)
                 }}
               />
-              {
-                showSearchInput && (
-                  <>
-                   <div className={styles.searchInput}>
-                  <div className={styles.centerField}>
-                  <input type="search" placeholder='Search'/><Image
-                src={searchImg}
-                width={24}
-                height={24}
-                className={styles.searchIcon}
-                alt="search" />
-
+              {showSearchInput && (
+                <>
+                  <div className={styles.searchInput}>
+                    <div className={styles.centerField}>
+                      <input type="search" placeholder="Search" />
+                      <Image
+                        src={searchImg}
+                        width={24}
+                        height={24}
+                        className={styles.searchIcon}
+                        alt="search"
+                      />
+                    </div>
                   </div>
-                   </div>
-                  </>
-                )
-              }
+                </>
+              )}
             </span>
           </div>
           {screenSize > 767 && (

@@ -195,7 +195,7 @@ const Shipping = () => {
                   <div
                     className={` ${Styles.flexInputs}  ${Styles.agreecheck}`}
                   >
-                    <input type="radio" name="radio" id="radio" />
+                    <Field type="radio" name="radio" id="radio" value={false} />
                     <p>
                       I agree to the{' '}
                       <span className={Styles.textUnderline}>

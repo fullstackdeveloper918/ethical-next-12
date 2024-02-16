@@ -80,6 +80,7 @@ const login = () => {
                         id="email"
                         name="email"
                         placeholder="Enter email"
+                        autocomplete="off"
                       />
                       <ErrorMessage
                         name="email"
@@ -94,6 +95,7 @@ const login = () => {
                         id="password"
                         name="password"
                         placeholder="Enter Password"
+                        autocomplete="off"
                       />
                       <ErrorMessage
                         name="password"
@@ -110,7 +112,9 @@ const login = () => {
                       />
                       <p>
                         I agree to the{' '}
-                        <a>terms & conditions | privacy policy</a>
+                        <span style={{ textDecoration: 'underline' }}>
+                          terms & conditions | privacy policy
+                        </span>
                       </p>
                     </div>
 

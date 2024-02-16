@@ -48,8 +48,8 @@ const PrimaryHeader = () => {
     if (error) {
       console.log(error, 'from logout api')
     }
-    // localStorage.clear()
-    // router.push('/login')
+    localStorage.clear()
+    router.push('/login')
   }
 
   return (
@@ -92,14 +92,31 @@ const PrimaryHeader = () => {
                 <DropdownMenuRadioItem
                   value="bottom"
                   className={styles.shop_submenu}
+                  onClick={() => router.push('/products')}
                 >
-                  Bottom
+                  BAGS
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem
                   value="right"
                   className={styles.shop_submenu}
+                  onClick={() => router.push('/products')}
                 >
-                  Right
+                  DRINKWARE
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem
+                  value="right"
+                  className={styles.shop_submenu}
+                  s
+                  onClick={() => router.push('/products')}
+                >
+                  WELLNESS
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem
+                  value="right"
+                  className={styles.shop_submenu}
+                  onClick={() => router.push('/products')}
+                >
+                  SHOP BY
                 </DropdownMenuRadioItem>
               </DropdownMenuContent>
             </DropdownMenu>

@@ -77,11 +77,11 @@ const Cart = ({
         .get(`https://test.cybersify.tech/Eswag/public/api/cart/${user_Id}`, {
           headers: {
             Authorization: response?.data?.accessToken,
-            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
           },
         })
         .then((res) => {
-          console.log('Response:', res.data)
+          console.log('Response from cart:', res.data)
           // Handle the response data here
         })
         .catch((err) => {
@@ -154,7 +154,6 @@ const Cart = ({
                     <div className={Styles.form_inputs}>
                       <div className={Styles.flexform}>
                         <div className={Styles.inputField}>
-
                           <Field
                             type="text"
                             id="email"
@@ -172,7 +171,6 @@ const Cart = ({
 
                         <div className={Styles.form_inputs}>
                           <div className={Styles.inputField}>
-
                             <Field
                               type="password"
                               id="password"
@@ -200,7 +198,6 @@ const Cart = ({
                         Login
                       </button>
                     </div>
-
                   </Form>
                 </>
               )}
@@ -217,75 +214,71 @@ const Cart = ({
                 <>
                   <Form className={Styles.form}>
                     <div className={Styles.form_inputs}>
-                    <div className={`${Styles.flexform} ${Styles.flexwrap}`}>
-                      <div className={Styles.inputField}>
-                       
-                        <Field
-                          type="text"
-                          id="name"
-                          name="name"
-                          placeholder="Enter name"
-                          className={Styles.input}
-                        />
-                         <ErrorMessage
-                          name="name"
-                          component="div"
-                          className={Styles.error}
-                        />
+                      <div className={`${Styles.flexform} ${Styles.flexwrap}`}>
+                        <div className={Styles.inputField}>
+                          <Field
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter name"
+                            className={Styles.input}
+                          />
+                          <ErrorMessage
+                            name="name"
+                            component="div"
+                            className={Styles.error}
+                          />
+                        </div>
+
+                        <div className={Styles.form_inputs}>
+                          <div className={Styles.inputField}>
+                            <Field
+                              type="text"
+                              id="email"
+                              name="email"
+                              placeholder="Enter email"
+                              className={Styles.input}
+                            />
+                            <ErrorMessage
+                              name="email"
+                              component="div"
+                              className={Styles.error}
+                            />
+                          </div>
+                        </div>
+                        <div className={Styles.form_inputs}>
+                          <div className={Styles.inputField}>
+                            <Field
+                              type="password"
+                              id="password"
+                              name="password"
+                              placeholder="Enter Password"
+                              className={Styles.input}
+                            />
+                            <ErrorMessage
+                              name="password"
+                              component="div"
+                              className={Styles.error}
+                            />
+                          </div>
+                        </div>
+                        <div className={Styles.form_inputs}>
+                          <div className={Styles.inputField}>
+                            <Field
+                              type="password"
+                              id="c_password"
+                              name="c_password"
+                              placeholder="confirm password"
+                              className={Styles.input}
+                            />
+                            <ErrorMessage
+                              name="c_password"
+                              component="div"
+                              className={Styles.error}
+                            />
+                          </div>
+                        </div>
                       </div>
-                   
-                    <div className={Styles.form_inputs}>
-                      <div className={Styles.inputField}>
-                       
-                        <Field
-                          type="text"
-                          id="email"
-                          name="email"
-                          placeholder="Enter email"
-                          className={Styles.input}
-                        />
-                         <ErrorMessage
-                          name="email"
-                          component="div"
-                          className={Styles.error}
-                        />
-                      </div>
-                    </div>
-                    <div className={Styles.form_inputs}>
-                      <div className={Styles.inputField}>
-                        
-                        <Field
-                          type="password"
-                          id="password"
-                          name="password"
-                          placeholder="Enter Password"
-                          className={Styles.input}
-                        />
-                        <ErrorMessage
-                          name="password"
-                          component="div"
-                          className={Styles.error}
-                        />
-                      </div>
-                    </div>
-                    <div className={Styles.form_inputs}>
-                      <div className={Styles.inputField}>
-                        
-                        <Field
-                          type="password"
-                          id="c_password"
-                          name="c_password"
-                          placeholder="confirm password"
-                          className={Styles.input}
-                        />
-                        <ErrorMessage
-                          name="c_password"
-                          component="div"
-                          className={Styles.error}
-                        />
-                      </div>
-                    </div>
-                    </div>
                     </div>
 
                     <div className={Styles.form_inputs}>
@@ -315,7 +308,7 @@ const Cart = ({
               />
             </div>
             <div className={Styles.cart_left_faqInput}>
-              <p>Swift swag?</p>
+              {/* <p>Swift swag?</p> */}
               <div className={Styles.cart_left_swift_content}>
                 {/* <input type="checkbox" name="" id="" />
                 <label>
@@ -323,12 +316,15 @@ const Cart = ({
                   within 10 business days if you have gone through the Swift
                   Swag process. Please note additional charges will apply.
                 </label> */}
-                <div className={Styles.custom_checkbox}>
+                {/* <div className={Styles.custom_checkbox}>
                   <input type="checkbox" name="services" id="swift_swag" />
-                  <label for="swift_swag">  Checking this box will override the date selected above to
+                  <label for="swift_swag">
+                    {' '}
+                    Checking this box will override the date selected above to
                     within 10 business days if you have gone through the Swift
-                    Swag process. Please note additional charges will apply.</label>
-                </div>
+                    Swag process. Please note additional charges will apply.
+                  </label>
+                </div> */}
               </div>
             </div>
             <div className={Styles.cart_left_need}>
