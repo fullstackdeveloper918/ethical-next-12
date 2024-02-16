@@ -44,7 +44,7 @@ const Payment = () => {
                         <span>Wire Transfer</span>
                       </div>
                       <div className={Styles.wire_transfer}>
-                        <div>
+                        <div className={Styles.wire_transfer_wrapper}>
                           <div className={Styles.imgContent}>
                             <Image
                               src={images.Wire_transfer_icon}
@@ -54,18 +54,16 @@ const Payment = () => {
                             />
                           </div>
                           <div className={Styles.textContent}>
-                            <p>Wire Transfer (USD)</p>
-                            <div>
-                              green tick icon
-                              <span>
-                                Send funds via wire to any bank in USD
-                              </span>
-                            </div>
+                            <h4>Wire Transfer (USD)</h4>
+                            <p>
+                              <span></span>
+                              Send funds via wire to any bank in USD
+                            </p>
                             <button>Setup</button>
                           </div>
                         </div>
                         <div className={Styles.horizontal_line}></div>
-                        <div>
+                        <div className={Styles.wire_transfer_wrapper}>
                           <div className={Styles.imgContent}>
                             <Image
                               src={images.Wire_transfer_icon}
@@ -75,13 +73,11 @@ const Payment = () => {
                             />
                           </div>
                           <div className={Styles.textContent}>
-                            <p>Wire Transfer (CAD)</p>
-                            <div>
-                              green tick icon
-                              <span>
-                                Send funds via wire to any bank in CAD
-                              </span>
-                            </div>
+                            <h4>Wire Transfer (CAD)</h4>
+                            <p>
+                              <span></span>
+                              Send funds via wire to any bank in CAD
+                            </p>
                             <button>Setup</button>
                           </div>
                         </div>
