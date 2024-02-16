@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import cartImg from '../../assets/headerPics/cart.svg'
 import searchImg from '../../assets/headerPics/Search-black.svg'
 import heartImg from '../../assets/headerPics/Heart.svg'
@@ -40,6 +40,8 @@ const SecondaryHeader = () => {
   const router = useRouter()
   const [country, setCountry] = useState('usa')
   const [screenSize, setScreenSize] = useState(992)
+
+  const popupRef = useRef(null)
   const handleResize = () => {
     setScreenSize(window.innerWidth)
   }
@@ -49,6 +51,22 @@ const SecondaryHeader = () => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef?.current?.contains(event.target)) {
+        setShowSearchInput(true)
+      } else {
+        setShowSearchInput(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
@@ -254,7 +272,7 @@ const SecondaryHeader = () => {
               {showSearchInput && (
                 <>
                   <div className={styles.searchInput}>
-                    <div className={styles.centerField}>
+                    <div className={styles.centerField} ref={popupRef}>
                       <input type="search" placeholder="Search" />
                       <Image
                         src={searchImg}
