@@ -40,7 +40,6 @@ const SecondaryHeader = () => {
   const router = useRouter()
   const [country, setCountry] = useState('usa')
   const [screenSize, setScreenSize] = useState(992)
-
   const popupRef = useRef(null)
   const handleResize = () => {
     setScreenSize(window.innerWidth)
