@@ -117,18 +117,21 @@ const SecondaryHeader = () => {
                         <DropdownMenuRadioItem
                           value="bottom"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
                         >
                           APPAREL
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
                         >
                           SHOP BY
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
                         >
                           OTHERS
                         </DropdownMenuRadioItem>
