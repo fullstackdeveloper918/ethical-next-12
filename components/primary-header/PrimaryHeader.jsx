@@ -86,10 +86,6 @@ const PrimaryHeader = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent className={styles.annument_dropdown}>
                 <DropdownMenuRadioItem
-                  value="top"
-                  className={styles.shop_submenu}
-                ></DropdownMenuRadioItem>
-                <DropdownMenuRadioItem
                   value="bottom"
                   className={styles.shop_submenu}
                   onClick={() => router.push('/products')}

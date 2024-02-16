@@ -17,7 +17,15 @@
 .secondaryHeader_countries span {
   margin-bottom: 4px !important;
 }
-.countries_dropdown_container {
+.language_wrapdropdown .dropemnu_design {
+  width: fit-content;
+  border-radius: 11px;
+  padding: 0px;
+  box-shadow: 0 0 13px rgb(207 207 207 / 80%);
+  padding: 5px;
+  background: #ffff;
+}
+/* .countries_dropdown_container {
   background-color: #fff;
   border-radius: 11px;
   padding: 0.5rem;
@@ -25,7 +33,7 @@
   max-width: 320px;
   text-align: center;
   width: 119px;
-}
+} */
 .primary_header_container {
   display: flex;
   justify-content: space-between;
@@ -274,7 +282,9 @@
   font-size: 14px;
   outline: 0;
 }
-
+.language_wrapdropdown {
+  background-color: red;
+}
 .searchIcon {
   position: absolute;
   right: 0;
