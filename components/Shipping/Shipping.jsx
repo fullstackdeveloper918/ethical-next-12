@@ -209,16 +209,6 @@ const Shipping = () => {
                     />
                   </div>
                 </div>
-                <button
-                  type="submit"
-                  style={{
-                    padding: '1rem',
-                    backgroundColor: 'black',
-                    color: '#fff',
-                  }}
-                >
-                  Login
-                </button>
               </Form>
             </>
           )}

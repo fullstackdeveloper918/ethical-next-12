@@ -23,16 +23,16 @@ const cart = () => {
     setShowEstimateCart(false)
   }, [])
 
-  console.count()
+  useEffect(() => {}, [token])
 
   return (
     <>
       <PrimaryHeader />
       <SecondaryHeader />
-      <section className={Styles.cart_section} >
+      <section className={Styles.cart_section}>
         <div>
           <QuotationSubmissionHeader />
-          {!token && (
+          {!Boolean(token) && (
             <ClientTypeSelector
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}

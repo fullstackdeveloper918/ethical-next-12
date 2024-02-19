@@ -4,19 +4,16 @@ import Styles from './ClientTypeSelector.module.css'
 const ClientTypeSelector = ({ selectedOption, handleOptionChange }) => {
   return (
     <>
-   
-     
       {/* <div className={Styles.viewCart}>
       
       <p className={Styles.cart_left_desc}>Are you a...</p>
       <button className={Styles.btnCart}>View Cart</button>
     </div> */}
-    <div className={Styles.viewCart}> 
-      
-      <p className={Styles.cart_left_desc}>Are you a...</p>
-    </div>
+      <div className={Styles.viewCart}>
+        <p className={Styles.cart_left_desc}>Are you a...</p>
+      </div>
 
-    {/* <p className={Styles.cart_left_desc}>Are you a...</p> */}
+      {/* <p className={Styles.cart_left_desc}>Are you a...</p> */}
 
       <div className={Styles.cart_left_radio_buttons}>
         <div className={Styles.cart_left_btn}>

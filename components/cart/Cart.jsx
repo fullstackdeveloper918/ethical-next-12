@@ -142,7 +142,7 @@ const Cart = ({
         {/* Left Section  */}
         <div className={Styles.cart_left}>
           {/* <QuotationSubmissionHeader /> */}
-          {showLogin && selectedOption === 'Existing_client' && (
+          {!Boolean(token) && selectedOption === 'Existing_client' && (
             <Formik
               initialValues={initialValuesLogin}
               validationSchema={validationSchema}
@@ -204,7 +204,7 @@ const Cart = ({
             </Formik>
           )}
 
-          {showLogin && selectedOption === 'New_client' && (
+          {!Boolean(token) && selectedOption === 'New_client' && (
             <Formik
               initialValues={initialValuesRegister}
               validationSchema={validationSchemaRegister}
