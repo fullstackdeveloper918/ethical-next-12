@@ -19,7 +19,7 @@ const BillingAddress = () => {
           <QuotationSubmissionHeader />
           <ReviewEstimate />
           <div className={Styles.cart_left_FAQ}>
-            <h3>1. Tell us about your Swag Project</h3>
+            <h3>Other Info</h3>
             <div className={Styles.cart_left_faqInput}>
               <p>When do you need this order? *</p>
               <input type="date" name="selectedDate" />

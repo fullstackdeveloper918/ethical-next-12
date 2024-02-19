@@ -26,20 +26,24 @@ const contact = () => {
     setTerms((current) => !current)
   }
 
+  const submitClicked = () => {
+    console.log('submit clicked')
+  }
+
   return (
     <>
       <PrimaryHeader />
       <SecondaryHeader />
       <div className={Styles.container_div}>
         <div className={Styles.Contact_container}>
-
           <div className={Styles.left_Section}>
             <div className={Styles.left_Section_Content}>
               <h2 className={Styles.heading}>Contact Information</h2>
               <p className={Styles.text_content}>
-                Use the form to send your message. A member of our team will reach
-                out to you within 1 business day. If you don't hear from us in
-                this time frame, please check your spam box. Prefer to call?
+                Use the form to send your message. A member of our team will
+                reach out to you within 1 business day. If you don't hear from
+                us in this time frame, please check your spam box. Prefer to
+                call?
               </p>
               <div className={Styles.horizontal_line}></div>
               <div className={Styles.contact_numbers_container}>
@@ -182,18 +186,22 @@ const contact = () => {
                       />
                     </div>
                     <div className={Styles.input_radio}>
-                      <Field type="radio" id="radio" name="radio" />
+                      <Field
+                        type="radio"
+                        id="radio"
+                        name="radio"
+                        onChnage={handleChange}
+                      />
                       <p>I agree to the terms & conditions | privacy policy</p>
                     </div>
                     <div className={Styles.inputs}>
-                      <button>Submit</button>
+                      <button onClick={submitClicked}>Submit</button>
                     </div>
                   </Form>
                 </>
               )}
             </Formik>
           </div>
-
         </div>
         <div className={Styles.iconBox}>
           <div className={Styles.info_section}>
