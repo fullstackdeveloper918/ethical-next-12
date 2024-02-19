@@ -138,9 +138,9 @@ const PrimaryHeader = () => {
                     style={{ cursor: 'pointer' }}
                   >
                     Shop
-                    <span>
+                    {/* <span>
                       <Image src={downIcon} width={8} height={8} alt="search" />
-                    </span>
+                    </span> */}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className={styles.header_menu}>
