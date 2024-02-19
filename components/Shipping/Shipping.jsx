@@ -208,6 +208,7 @@ const Shipping = () => {
                       className={Styles.error}
                     />
                   </div>
+                  {/* Shipping Form */}
                 </div>
               </Form>
             </>
