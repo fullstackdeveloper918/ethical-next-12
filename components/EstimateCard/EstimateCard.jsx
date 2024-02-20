@@ -1,10 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Styles from './EstimateCard.module.css'
 import images from '../../constants/images'
 import Image from 'next/image'
+import useFetch from '../../lib/useFetch'
+import axios from 'axios'
 
 const EstimateCard = ({ showEstimate }) => {
   const [quantities, setQuantities] = useState({})
+  const token = localStorage.getItem('token_swag')
+  console.log(token, 'token')
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const id = 915
+        const response = await axios.get(
+          `https://test.cybersify.tech/Eswag/public/api/cart/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer 18|WU8z64Zck04CwXgjMymJGYtzJGk2cV7W9VU87fNV1cf54a13`,
+              'Content-Type': 'application/json', // You can add more headers as needed
+            },
+          }
+        )
+        // setData(response.data)
+      } catch (error) {
+        // setError(error)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   const handleQuantity = (index, type) => {
     setQuantities((prevQuantities) => {
@@ -23,6 +49,7 @@ const EstimateCard = ({ showEstimate }) => {
   }
 
   let arr = ['a', 'b', 'c', 'd', 'e']
+
   return (
     <>
       <div className={Styles.estimate_wrapper}>

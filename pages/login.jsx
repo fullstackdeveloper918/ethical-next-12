@@ -30,6 +30,7 @@ const login = () => {
 
   useEffect(() => {
     if (response) {
+      console.log('response', response)
       localStorage.setItem('token_swag', response?.data?.accessToken)
       dispatch(setRole(response?.data?.role))
       toast.success('Logged in sucessfully')
