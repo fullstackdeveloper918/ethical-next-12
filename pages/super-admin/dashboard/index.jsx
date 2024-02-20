@@ -16,7 +16,10 @@ const Dashboard = () => {
         <div className={Styles.dashboard_section_container}>
           <div className={Styles.dashboard_content}>
             <div className={Styles.dashboard_left_content}>
-              <SideBar data={images.ethical_swag} />
+              <SideBar
+                data={images.ethical_swag}
+                pageRouteProps="/super-admin/dashboard"
+              />
             </div>
             <div className={Styles.dashboard_right_content}>
               <Navbar data="Super Admin" thumbnail={images.User_icon} />
