@@ -28,6 +28,7 @@ import Louis_Lara from '../assets/Louis_Lara.png'
 import Plus_Icon from '../assets/Plus_Icon.svg'
 import Info_Icon from '../assets/info.svg'
 import Ethical_swag_small_logo from '../assets/Ethical_Swag_small_logo.svg'
+import Browse_file from '../assets/Browse File.png'
 import Wire_transfer_icon from '../assets/Wire_transfer_icon.svg'
 
 const images = {
@@ -62,6 +63,7 @@ const images = {
   Info_Icon,
   Ethical_swag_small_logo,
   Wire_transfer_icon,
+  Browse_file,
 }
 
 export default images

@@ -15,6 +15,7 @@ import SecondaryHeader from '@components/secondary-header/SecondaryHeader'
 import Certified from '@components/certified-swag-section/certified'
 import StackCards from '../components/StackCards/StackCards'
 import Product from '../components/products-final-builder-component/Product'
+import Input from '../components/input/Input'
 builder.init(builderConfig.apiKey)
 
 export async function getStaticProps({ params }) {
@@ -74,6 +75,9 @@ Builder.registerComponent(Product, {
   name: 'Products-page',
 })
 
+Builder.registerComponent(Input, {
+  name: 'Services-Input',
+})
 export default function Page({ page }) {
   const router = useRouter()
   const isPreviewingInBuilder = useIsPreviewing()
