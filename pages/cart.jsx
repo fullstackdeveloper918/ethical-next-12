@@ -18,12 +18,17 @@ const cart = () => {
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)
   }
+  const [showLoginComponent, setShowLoginComponent] = useState(true)
   console.log(showEstimateCart, 'showEstimateCart')
   useEffect(() => {
     setShowEstimateCart(false)
   }, [])
 
-  useEffect(() => {}, [token])
+  useEffect(() => {
+    if (token || showEstimateCart) {
+      setShowLoginComponent(false)
+    }
+  }, [showEstimateCart])
 
   return (
     <>
@@ -32,7 +37,7 @@ const cart = () => {
       <section className={Styles.cart_section}>
         <div>
           <QuotationSubmissionHeader />
-          {!Boolean(token) && (
+          {showLoginComponent && (
             <ClientTypeSelector
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}
@@ -43,6 +48,7 @@ const cart = () => {
             token={token}
             selectedOption={selectedOption}
             setShowEstimateCart={setShowEstimateCart}
+            showLoginComponent={showLoginComponent}
           />
           <Button />
         </div>
