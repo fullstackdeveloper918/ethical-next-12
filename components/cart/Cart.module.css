@@ -247,16 +247,23 @@
   background-color: #a2d061;
   border-color: #a2d061;
 }
-
 .custom_checkbox label:after {
-  content: '\2713';
+  content: ' ';
   font-size: 14px;
   color: #fff;
   position: absolute;
-  top: 0;
-  left: 4px;
   line-height: 18px;
-  visibility: hidden;
+  left: 6px;
+  top: 4px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+    border-top-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+    border-left-width: medium;
+  border-width: 0 2px 2px 0;
+  transform: rotate(35deg);
 }
 
 .custom_checkbox input[type='checkbox']:checked + label:after {

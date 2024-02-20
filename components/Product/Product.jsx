@@ -217,8 +217,12 @@ const Product = ({ product, loading, error }) => {
                   </p>
                 </div>
                 <div className={Styles.input_checkbox}>
-                  <input type="checkbox" name="" id="" />
-                  <span>Is this a sample ?</span>
+                  {/* <input type="checkbox" name="" id="" />
+                  <span>Is this a sample ?</span> */}
+                  <div className={Styles.custom_checkbox}>
+                    <input type="checkbox" name="services" id="sample" />
+                    <label for="sample">Is this a sample? </label>
+                  </div>
                 </div>
                 <div className={Styles.select_color_section}>
                   <div className={Styles.common_header}>
@@ -294,16 +298,14 @@ const Product = ({ product, loading, error }) => {
                   </div>
                   <div className={Styles.inputs}>
                     <div>
-                      <input
-                        type="checkbox"
-                        id="html"
+                      <div className={Styles.custom_checkbox}>
+                    <input type="checkbox"  id="html"
                         name="location"
-                        value="HTML"
-                      />
-                      <label for="html">Front</label>
+                        value="HTML" />
+             <label for="html">Front</label>
+                  </div>
                     </div>
-                    <div>
-
+                    <div className={Styles.custom_checkbox}>
                       <input
                         type="checkbox"
                         id="css"
@@ -311,8 +313,10 @@ const Product = ({ product, loading, error }) => {
                         value="CSS"
                       />
                       <label for="css">Back</label>
+
                     </div>
                     <div>
+                    <div className={Styles.custom_checkbox}>
                       <input
                         type="checkbox"
                         id="javascript"
@@ -321,6 +325,7 @@ const Product = ({ product, loading, error }) => {
                       />
                       <label for="javascript">Left Sleeve</label>
                     </div>
+                  </div>
                   </div>
                 </div>
                 <div className={Styles.para_text}>
