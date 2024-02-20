@@ -272,14 +272,15 @@ const SecondaryHeader = () => {
                 <>
                   <div className={styles.searchInput}>
                     <div className={styles.centerField} ref={popupRef}>
-                      <input type="search" placeholder="Search" />
-                      <Image
+                    <Image
                         src={searchImg}
                         width={24}
                         height={24}
                         className={styles.searchIcon}
                         alt="search"
                       />
+                      <input type="search" placeholder="Search" />
+                      
                     </div>
                   </div>
                 </>

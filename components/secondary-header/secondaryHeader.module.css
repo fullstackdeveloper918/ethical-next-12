@@ -254,15 +254,16 @@
 }
 
 .searchInput {
-  position: absolute;
+  position: fixed;
   width: 100%;
-  /* background-color: #fff; */
-  top: 50px;
   height: 100vh;
   box-shadow: 0 10px 20px rgba(182, 182, 182, 0.2);
   z-index: 99;
   left: 0;
   margin: auto;
+  transition: all .3s ease;
+  animation: centerFieldanime .5s ;
+  top: 120px;
 }
 
 .centerField {
@@ -272,11 +273,12 @@
   position: relative;
   background: #ffff;
   height: 160px;
+  
 }
 .searchInput input {
-  width: 430px;
+  width:60%;
   border-bottom: 1px solid #bbb;
-  padding: 10px 20px 10px 0;
+  padding: 10px 20px 10px 10px;
   border-radius: 0;
   color: #111;
   font-size: 14px;
@@ -289,6 +291,15 @@
   position: absolute;
   right: 0;
 }
+
+/* animation start*/
+@keyframes centerFieldanime {
+  from {top:0}
+  to { top: 120px;}
+  
+}
+/* animation end */
+
 /* responsive */
 
 @media (min-width: 768px) {
