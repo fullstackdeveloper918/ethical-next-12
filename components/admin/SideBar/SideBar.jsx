@@ -3,9 +3,45 @@ import Image from 'next/image'
 import Styles from './Sidebar.module.css'
 import images from '../../../constants/images'
 import { Sidebar_Data } from '../../../constants/data'
+import { useRouter } from 'next/router'
 
 const SideBar = ({ data, imageData }) => {
   const [isActive, setIsActive] = useState(0)
+  const router = useRouter()
+
+  const sidebarContentMap = {
+    '/super-admin/dashboard': [0, 1, 2, 3, 4, 5, 6],
+    '/super-admin/customer': [0, 1, 2, 3, 4, 5, 6],
+    '/super-admin/invoice': [0, 1, 2, 3, 4, 5, 6],
+    '/super-admin/pages': [0, 1, 2, 3, 4, 5, 6],
+    '/super-admin/blog': [0, 1, 2, 3, 4, 5, 6],
+    '/super-admin/categories': [0, 1, 2, 3, 4, 5, 8, 6],
+    '/super-admin/orders': [0, 1, 2, 3, 4, 5, 6],
+    '/super-admin/users': [0, 1, 3, 4, 5, 6, 7, 9],
+    '/super-admin/add-users': [0, 1, 2, 3, 4, 5, 6, 9],
+    '/super-admin/add-roles': [0, 1, 2, 3, 4, 5, 6, 9],
+    '/company': [0, 7, 1, 2],
+    '/company/admin': [0, 1, 2, 10, 11],
+    '/company/admin/store-detail': [0, 1, 2, 10, 11],
+    '/company/admin/approval': [0, 7, 1, 2, 10, 11],
+    '/company/admin/delivered': [0, 7, 1, 2, 10, 11],
+    '/company/admin/edit-information': [0, 7, 1, 2, 10, 11],
+    '/company/admin/all-products': [0, 7, 1, 2, 10, 11],
+    '/company/admin/edit-product': [0, 7, 1, 2, 10, 11],
+    '/company/admin/invoice': [0, 7, 1, 2, 10, 11],
+    '/company/admin/order-detail': [0, 1, 2, 10, 11],
+    '/company/admin/order-status': [0, 7, 1, 2, 10, 11],
+    '/company/admin/payment': [0, 7, 1, 2, 10, 11],
+    '/company/admin/shipping-status': [0, 7, 1, 2, 10, 11],
+    '/company/admin/store-detail': [0, 1, 2, 10, 11],
+  }
+
+  const currentPage = router?.pathname
+
+  console.log('currentPage', currentPage)
+  const sidebarIndices = sidebarContentMap[currentPage] || []
+
+  console.log(sidebarIndices, 'sidebarIndices')
 
   return (
     <>
@@ -33,23 +69,25 @@ const SideBar = ({ data, imageData }) => {
             {/*  */}
             <div className={Styles.horizontal_line}></div>
             <div className={Styles.Sidebar_data}>
-              {Sidebar_Data.map((item, index) => (
+              {sidebarIndices.map((item, index) => (
                 <>
                   <div
                     className={`${Styles.sidebar_data_content} ${
                       isActive === index ? Styles.active : ''
                     }`}
-                    key={item.id}
+                    key={index}
                     onClick={() => setIsActive(index)}
                   >
                     <Image
                       className={Styles.sidebar_icon}
-                      src={item.icon}
+                      src={images.Livello_1}
                       alt="icons"
                       width={40}
                       height={40}
                     />
-                    <span className={Styles.Sidebar_links}>{item.text}</span>
+                    <span className={Styles.Sidebar_links}>
+                      {Sidebar_Data[item].text}
+                    </span>
                   </div>
                 </>
               ))}
