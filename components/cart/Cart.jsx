@@ -19,6 +19,7 @@ const Cart = ({
   selectedOption,
   setShowEstimateCart,
   showEstimateCart,
+  showLoginComponent,
 }) => {
   //  const [tokenLocally,setTokenLocally] = useState('')
 
@@ -142,7 +143,7 @@ const Cart = ({
         {/* Left Section  */}
         <div className={Styles.cart_left}>
           {/* <QuotationSubmissionHeader /> */}
-          {!Boolean(token) && selectedOption === 'Existing_client' && (
+          {showLoginComponent && selectedOption === 'Existing_client' && (
             <Formik
               initialValues={initialValuesLogin}
               validationSchema={validationSchema}
@@ -204,7 +205,7 @@ const Cart = ({
             </Formik>
           )}
 
-          {!Boolean(token) && selectedOption === 'New_client' && (
+          {showLoginComponent && selectedOption === 'New_client' && (
             <Formik
               initialValues={initialValuesRegister}
               validationSchema={validationSchemaRegister}
