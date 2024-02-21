@@ -72,37 +72,88 @@ const Cart = ({
       localStorage.setItem('token_swag', response?.data?.accessToken)
       dispatch(setRole(response?.data?.role))
       setShowLogin(false)
-
       toast.success('Logged in sucessfully')
-      axios
-        .get(`https://test.cybersify.tech/Eswag/public/api/cart/${user_Id}`, {
-          headers: {
-            Authorization: response?.data?.accessToken,
-            'Content-Type': 'application/json',
-          },
-        })
-        .then((res) => {
-          console.log('Response from cart:', res.data)
-          // Handle the response data here
-        })
-        .catch((err) => {
-          console.error('Error:', err)
-          // Handle errors here
-        })
-    }
-    if (registerResponse) {
-      localStorage.setItem('token_swag', registerResponse?.data?.accessToken)
-      dispatch(setRole(registerResponse?.data?.role))
-      toast.success(registerResponse?.message)
+      // axios
+      //   .get(`https://test.cybersify.tech/Eswag/public/api/cart/${user_Id}`, {
+      //     headers: {
+      //       Authorization: response?.data?.accessToken,
+      //       'Content-Type': 'application/json',
+      //     },
+      //   })
+      //   .then((res) => {
+      //     console.log('Response from cart:', res.data)
+      //     // Handle the response data here
+      //   })
+      //   .catch((err) => {
+      //     console.error('Error:', err)
+      //     // Handle errors here
+      //   })
     }
     if (error) {
       console.log(error, 'errorMessage')
       toast.error(error.message)
     }
+  }, [response, error])
+
+  useEffect(() => {
+    if (registerResponse) {
+      localStorage.setItem('token_swag', registerResponse?.data?.accessToken)
+      dispatch(setRole(registerResponse?.data?.role))
+      toast.success(registerResponse?.message)
+    }
     if (registerError) {
       toast.error(registerError?.error?.email[0])
     }
-  }, [response, error, registerLoading, registerError])
+  }, [registerError, registerResponse])
+
+  const a = async () => {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users')
+    const movies = await response.json()
+    console.log(movies, 'finallll')
+  }
+
+  const b = async () => {
+    console.log('hellllllllllllllllllllllllllo  sss')
+    const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization:
+          'Bearer 21|XB68xij6UIIBp93Ov4Dsh92cgNC17fJ5Y9UdwvO6185d91b8',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    })
+    const movies = await response.json()
+    console.log(movies, 'finallll satish bhai')
+  }
+  useEffect(() => {
+    b()
+    // postData()
+  }, [])
+
+  async function postData(
+    url = 'https://test.cybersify.tech/Eswag/public/api/cart/915',
+    data = {} //api/sadm/product/count
+  ) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+      method: 'GET', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      // body: JSON.stringify(data), // body data type must match "Content-Type" header
+    })
+    let a = response.json()
+
+    console.log(a, 'response.json() f apna')
+    // return response.json()
+    // parses JSON response into native JavaScript objects
+  }
 
   const onSubmit = async (values) => {
     try {
