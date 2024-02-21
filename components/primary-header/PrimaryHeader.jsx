@@ -18,9 +18,12 @@ import { useRouter } from 'next/router'
 import { Button } from '@/components/ui/button'
 import downIcon from '../../assets/headerPics/down-black.svg'
 import useFetch from '../../lib/useFetch'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCurrentPage } from 'redux-setup/authSlice'
 
 const PrimaryHeader = () => {
   const router = useRouter()
+  const dispatch = useDispatch()
   const [screenSize, setScreenSize] = useState(992)
   const handleResize = () => {
     setScreenSize(window.innerWidth)
@@ -33,20 +36,22 @@ const PrimaryHeader = () => {
     }
   }, [])
 
+  useEffect(() => {
+    dispatch(setCurrentPage(router.asPath))
+  }, [])
+
   const isLoggedIn = !!localStorage.getItem('token_swag')
 
   const [loadQuery, { response, loading, error }] = useFetch(`/auth/logout`, {
     method: 'get',
   })
 
+  const page = useSelector((state) => state.auth.currentPage)
   const logout = () => {
-    console.log('i am called')
     loadQuery()
     if (response) {
-      console.log(response, 'from logout api')
     }
     if (error) {
-      console.log(error, 'from logout api')
     }
     localStorage.clear()
     router.push('/login')
@@ -88,7 +93,7 @@ const PrimaryHeader = () => {
                 <DropdownMenuRadioItem
                   value="bottom"
                   className={styles.shop_submenu}
-                  onClick={() => router.push('/products')}
+                  onClick={() => router.push('/bags')}
                 >
                   BAGS
                 </DropdownMenuRadioItem>
@@ -97,22 +102,22 @@ const PrimaryHeader = () => {
                   className={styles.shop_submenu}
                   onClick={() => router.push('/products')}
                 >
-                  DRINKWARE
+                  ALL Swag
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem
                   value="right"
                   className={styles.shop_submenu}
                   s
-                  onClick={() => router.push('/products')}
+                  onClick={() => router.push('/wellness')}
                 >
                   WELLNESS
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem
                   value="right"
                   className={styles.shop_submenu}
-                  onClick={() => router.push('/products')}
+                  onClick={() => router.push('/plants-seeds')}
                 >
-                  SHOP BY
+                  Plants & Seeds
                 </DropdownMenuRadioItem>
               </DropdownMenuContent>
             </DropdownMenu>

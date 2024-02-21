@@ -37,10 +37,8 @@ const register = () => {
       toast.success(response?.message)
 
       router.push('/')
-      console.log(response, 'responseeeeee')
     }
     if (error) {
-      console.log(error?.error?.email[0], 'errorMessage from register api')
       toast.error(error?.error?.email[0])
     }
   }, [response, error])

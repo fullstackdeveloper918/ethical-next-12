@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Styles from './Shipping.module.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import {
   initialValuesShipping,
   validationSchemaShipping,
 } from '../../lib/validationSchemas'
+import Button from '../Button/Button'
 
 const Shipping = () => {
-  const onSubmit = (values) => {
-    console.log(values, 'values')
-  }
+  const onSubmit = (values) => {}
+  const [errorLength, setErrorLength] = useState(false)
+
+  console.log(validationSchemaShipping, 'initialValuesShipping')
 
   return (
     <>
@@ -21,8 +23,9 @@ const Shipping = () => {
           validationSchema={validationSchemaShipping}
           onSubmit={onSubmit}
         >
-          {() => (
+          {({ errors }) => (
             <>
+              {setErrorLength(Object.keys(errors).length)}
               <Form className={Styles.form}>
                 <h3 className={Styles.form_title}>Ship order to *</h3>
                 <div className={Styles.form_inputs}>
@@ -53,36 +56,42 @@ const Shipping = () => {
                     className={Styles.error}
                   />
                 </div>
+
                 <div className={`${Styles.form_inputs} ${Styles.flexInputs}`}>
-                  <div>
-                    <Field
-                      type="text"
-                      placeholder="First name"
-                      name="firstName"
-                      id="firstName"
-                      autocomplete="off"
-                    />
-                    <ErrorMessage
-                      name="firstName"
-                      component="div"
-                      className={Styles.error}
-                    />
-                  </div>
-                  <div>
-                    <Field
-                      type="text"
-                      placeholder="Last name"
-                      name="lastName"
-                      id="lastName"
-                      autocomplete="off"
-                    />
-                    <ErrorMessage
-                      name="lastName"
-                      component="div"
-                      className={Styles.error}
-                    />
+                  <Field
+                    type="text"
+                    placeholder="First name"
+                    name="firstName"
+                    id="firstName"
+                    autocomplete="off"
+                  />
+                  <Field
+                    type="text"
+                    placeholder="Last name"
+                    name="lastName"
+                    id="lastName"
+                    autocomplete="off"
+                  />
+                </div>
+                <div className="">
+                  <div className={`${Styles.form_inputs} ${Styles.flexInputs}`}>
+                    <div className="">
+                      <ErrorMessage
+                        name="firstName"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
+                    <div className="">
+                      <ErrorMessage
+                        name="lastName"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
                   </div>
                 </div>
+
                 <div className={Styles.form_inputs}>
                   <Field
                     type="number"
@@ -214,6 +223,7 @@ const Shipping = () => {
             </>
           )}
         </Formik>
+        <Button disabled={errorLength !== 0} />
       </div>
     </>
   )

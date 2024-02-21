@@ -9,7 +9,7 @@ import Usa from '../../assets/headerPics/use_flag.svg'
 import Canada from '../../assets/headerPics/canada-flag.svg'
 import CrossIcon from '../../assets/headerPics/corss.svg'
 import Humburg from '../../assets/headerPics/menu-bar.png'
-import { RxCross2 } from "react-icons/rx";
+import { RxCross2 } from 'react-icons/rx'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { useSelector } from 'react-redux'
@@ -128,14 +128,14 @@ const SecondaryHeader = () => {
                         <DropdownMenuRadioItem
                           value="top"
                           className={styles.shop_submenu}
-                          onClick={() => router.push('/products')}
+                          onClick={() => router.push('/bags')}
                         >
                           BAGS
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="bottom"
                           className={styles.shop_submenu}
-                          onClick={() => router.push('/products')}
+                          onClick={() => router.push('/apparel')}
                         >
                           APPAREL
                         </DropdownMenuRadioItem>
@@ -144,14 +144,14 @@ const SecondaryHeader = () => {
                           className={styles.shop_submenu}
                           onClick={() => router.push('/products')}
                         >
-                          SHOP BY
+                          All Swag
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
                           className={styles.shop_submenu}
-                          onClick={() => router.push('/products')}
+                          onClick={() => router.push('/wellness')}
                         >
-                          OTHERS
+                          Wellness
                         </DropdownMenuRadioItem>
                       </DropdownMenuRadioGroup>
                     </DropdownMenuContent>
@@ -273,7 +273,7 @@ const SecondaryHeader = () => {
                 <>
                   <div className={styles.searchInput}>
                     <div className={styles.centerField} ref={popupRef}>
-                    <Image
+                      <Image
                         src={searchImg}
                         width={24}
                         height={24}
@@ -281,9 +281,9 @@ const SecondaryHeader = () => {
                         alt="search"
                       />
                       <input type="search" placeholder="Search" />
-                     <span>
-                      <RxCross2 color='black' fontSize={28}/>
-                     </span>
+                      <span>
+                        <RxCross2 color="black" fontSize={28} />
+                      </span>
                     </div>
                   </div>
                 </>

@@ -63,7 +63,6 @@ const Product = ({ product, loading, error }) => {
   useEffect(() => {
     fetchPrice()
   }, [orderQuantity, product, country])
-  console.log(product, 'product?.column_1_retail_price_usd')
 
   const fetchPrice = () => {
     if (orderQuantity <= product?.column_1_qty) {
@@ -106,7 +105,6 @@ const Product = ({ product, loading, error }) => {
     'Full Color Decoration',
     'No Decoration',
   ]
-  console.log(typeof product?.image, 'undefined image')
 
   const Slides = [
     { id: 1, src: images.shirt_small },
@@ -130,8 +128,8 @@ const Product = ({ product, loading, error }) => {
     custumize === 'Embroidery'
       ? 2
       : custumize === 'Full Color Decoration'
-        ? 4
-        : 0
+      ? 4
+      : 0
 
   const imageUrl = product?.image
 
@@ -154,6 +152,7 @@ const Product = ({ product, loading, error }) => {
                         width={400}
                         height={560}
                         alt="Single_Product_Image"
+                        className={Styles.product_image}
                       />
                     )}
                   </div>
@@ -211,6 +210,7 @@ const Product = ({ product, loading, error }) => {
                     <span
                       className={Styles.read_more}
                       onClick={() => setIsReadMore(!ReadMore)}
+                      style={{ cursor: 'pointer' }}
                     >
                       {ReadMore ? 'Read Less' : '...Read More'}
                     </span>
@@ -226,9 +226,13 @@ const Product = ({ product, loading, error }) => {
                 </div>
                 <div className={Styles.select_color_section}>
                   <div className={Styles.common_header}>
-                    <p>Select Color
-                    </p>
-                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                    <p>Select Color</p>
+                    <Image
+                      src={images.Info_Icon}
+                      width={18}
+                      height={18}
+                      alt="info_icon"
+                    />
                   </div>
                   <div className={Styles.colors_container}>
                     {colors &&
@@ -247,7 +251,12 @@ const Product = ({ product, loading, error }) => {
                 <div className={Styles.cart_left_swift}>
                   <div className={Styles.common_header}>
                     <h6>Swift swag</h6>
-                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                    <Image
+                      src={images.Info_Icon}
+                      width={18}
+                      height={18}
+                      alt="info_icon"
+                    />
                   </div>
                   <div className={Styles.cart_left_swift_content}>
                     <input type="checkbox" name="" id="" />
@@ -261,14 +270,20 @@ const Product = ({ product, loading, error }) => {
                 <div className={Styles.customization_text}>
                   <div className={Styles.common_header}>
                     <p>Select Customization</p>
-                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                    <Image
+                      src={images.Info_Icon}
+                      width={18}
+                      height={18}
+                      alt="info_icon"
+                    />
                   </div>
 
                   <div className={Styles.buttons}>
                     {customizations.map((button, index) => (
                       <button
-                        className={`${Styles.btn} ${activeBtn === index ? Styles.active : ''
-                          }`}
+                        className={`${Styles.btn} ${
+                          activeBtn === index ? Styles.active : ''
+                        }`}
                         onClick={() => btnClicked(index, button)}
                       >
                         {button}
@@ -282,7 +297,12 @@ const Product = ({ product, loading, error }) => {
                       How many areas of the product would you like to add a logo
                       to?
                     </p>
-                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                    <Image
+                      src={images.Info_Icon}
+                      width={18}
+                      height={18}
+                      alt="info_icon"
+                    />
                   </div>
 
                   <input
@@ -294,16 +314,24 @@ const Product = ({ product, loading, error }) => {
                 <div className={Styles.para_text}>
                   <div className={Styles.common_header}>
                     <p>Select location from the dropdown below</p>
-                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                    <Image
+                      src={images.Info_Icon}
+                      width={18}
+                      height={18}
+                      alt="info_icon"
+                    />
                   </div>
                   <div className={Styles.inputs}>
                     <div>
                       <div className={Styles.custom_checkbox}>
-                    <input type="checkbox"  id="html"
-                        name="location"
-                        value="HTML" />
-             <label for="html">Front</label>
-                  </div>
+                        <input
+                          type="checkbox"
+                          id="html"
+                          name="location"
+                          value="HTML"
+                        />
+                        <label for="html">Front</label>
+                      </div>
                     </div>
                     <div className={Styles.custom_checkbox}>
                       <input
@@ -313,47 +341,93 @@ const Product = ({ product, loading, error }) => {
                         value="CSS"
                       />
                       <label for="css">Back</label>
-
                     </div>
                     <div>
-                    <div className={Styles.custom_checkbox}>
-                      <input
-                        type="checkbox"
-                        id="javascript"
-                        name="location"
-                        value="JavaScript"
-                      />
-                      <label for="javascript">Left Sleeve</label>
+                      <div className={Styles.custom_checkbox}>
+                        <input
+                          type="checkbox"
+                          id="javascript"
+                          name="location"
+                          value="JavaScript"
+                        />
+                        <label for="javascript">Left Sleeve</label>
+                      </div>
                     </div>
-                  </div>
                   </div>
                 </div>
                 <div className={Styles.para_text}>
-                <div className={Styles.common_header}>
-                <p>Upload Logo/ Artwork <span className={Styles.fw400}>(.AI or .EPS vector format)</span></p>
-                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  <div className={Styles.common_header}>
+                    <p>
+                      Upload Logo/ Artwork{' '}
+                      <span className={Styles.fw400}>
+                        (.AI or .EPS vector format)
+                      </span>
+                    </p>
+                    <Image
+                      src={images.Info_Icon}
+                      width={18}
+                      height={18}
+                      alt="info_icon"
+                    />
                   </div>
-                
+
                   <div className={Styles.upload_logo}>
                     <label htmlFor="file">
-                      <p><span className={Styles.colorLight}> Drop your</span> front <span className={Styles.colorLight}>design</span></p>
-                      <p className={Styles.fw400}><span className={`${Styles.colorLight} ${Styles.fw400}`}> or </span> browse <span className={`${Styles.colorLight} ${Styles.fw400}`}>your files </span></p>
+                      <p>
+                        <span className={Styles.colorLight}> Drop your</span>{' '}
+                        front <span className={Styles.colorLight}>design</span>
+                      </p>
+                      <p className={Styles.fw400}>
+                        <span
+                          className={`${Styles.colorLight} ${Styles.fw400}`}
+                        >
+                          {' '}
+                          or{' '}
+                        </span>{' '}
+                        browse{' '}
+                        <span
+                          className={`${Styles.colorLight} ${Styles.fw400}`}
+                        >
+                          your files{' '}
+                        </span>
+                      </p>
                       <input type="file" name="" id="file" />
                     </label>
                     <label htmlFor="file">
-                      <p><span className={Styles.colorLight}> Drop your</span> back <span className={Styles.colorLight}>design</span></p>
-                      <p className={Styles.fw400}><span className={`${Styles.colorLight} ${Styles.fw400}`}> or </span> browse <span className={`${Styles.colorLight} ${Styles.fw400}`}>your files </span></p>
+                      <p>
+                        <span className={Styles.colorLight}> Drop your</span>{' '}
+                        back <span className={Styles.colorLight}>design</span>
+                      </p>
+                      <p className={Styles.fw400}>
+                        <span
+                          className={`${Styles.colorLight} ${Styles.fw400}`}
+                        >
+                          {' '}
+                          or{' '}
+                        </span>{' '}
+                        browse{' '}
+                        <span
+                          className={`${Styles.colorLight} ${Styles.fw400}`}
+                        >
+                          your files{' '}
+                        </span>
+                      </p>
 
                       <input type="file" name="" id="file" />
                     </label>
                   </div>
                 </div>
                 <div className={Styles.number_of_units}>
-                <div className={Styles.common_header}>
-                <p>Enter the number of units you need?</p>
-                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  <div className={Styles.common_header}>
+                    <p>Enter the number of units you need?</p>
+                    <Image
+                      src={images.Info_Icon}
+                      width={18}
+                      height={18}
+                      alt="info_icon"
+                    />
                   </div>
-                 
+
                   <button>Price break</button>
                 </div>
                 <div className={Styles.input_data_required}>
@@ -369,11 +443,16 @@ const Product = ({ product, loading, error }) => {
                   <span>(minimum {+product?.column_1_qty} units required)</span>
                 </div>
                 <div className={Styles.select_size_quantity}>
-                <div className={Styles.common_header}>
-                <p>Select sizes quantity</p>
-                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  <div className={Styles.common_header}>
+                    <p>Select sizes quantity</p>
+                    <Image
+                      src={images.Info_Icon}
+                      width={18}
+                      height={18}
+                      alt="info_icon"
+                    />
                   </div>
-                
+
                   <div className={Styles.inputs}>
                     <input
                       placeholder="S"
@@ -412,11 +491,16 @@ const Product = ({ product, loading, error }) => {
                   </div>
                 </div>
                 <div className={Styles.standard_business_section}>
-                <div className={Styles.common_header}>
-                <p>Production time</p>
-                    <Image src={images.Info_Icon} width={18} height={18} alt='info_icon' />
+                  <div className={Styles.common_header}>
+                    <p>Production time</p>
+                    <Image
+                      src={images.Info_Icon}
+                      width={18}
+                      height={18}
+                      alt="info_icon"
+                    />
                   </div>
-                 
+
                   <p>Standard - 15 Business days</p>
                 </div>
                 <div className={Styles.standard_down_line}></div>

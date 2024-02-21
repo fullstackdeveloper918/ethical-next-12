@@ -16,6 +16,7 @@ import Certified from '@components/certified-swag-section/certified'
 import StackCards from '../components/StackCards/StackCards'
 import Product from '../components/products-final-builder-component/Product'
 import Input from '../components/input/Input'
+import Loaders from '@components/loaders/Loaders'
 builder.init(builderConfig.apiKey)
 
 export async function getStaticProps({ params }) {
@@ -84,7 +85,11 @@ export default function Page({ page }) {
   const show404 = !page && !isPreviewingInBuilder
 
   if (router.isFallback) {
-    return <h1>Loading...</h1>
+    return (
+      <>
+        <Loaders />
+      </>
+    )
   }
 
   return (
