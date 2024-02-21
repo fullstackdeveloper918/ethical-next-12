@@ -79,7 +79,7 @@
 
 .detail_page_right_section .tag p {
   color: rgba(17, 17, 17, 0.7);
-  /* font-family: 'DM Sans'; */
+  font-family: 'DM Sans';
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -123,7 +123,7 @@
 .text_content p {
   color: #22202f;
   transition: all 0.4s ease-in;
-  /* font-family: "DM Sans"; */
+  font-family: "DM Sans";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -132,14 +132,15 @@
 
 .text_content .read_more {
   color: #a2d061;
-  /* font-family: 'DM Sans'; */
+  font-family: 'DM Sans';
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: 26px;
   text-decoration-line: underline;
-  cursor: pointer;
+  cursor: 'pointer';
   display: inline-flex;
+  
 }
 
 .reviews {
@@ -386,7 +387,7 @@
   box-shadow: -1px -1px 8px 0px rgba(0, 0, 0, 0.06) inset,
     0px 4px 37px 0px rgba(0, 0, 0, 0.06);
   color: rgba(17, 17, 17, 0.3);
-  /* font-family: 'DM Sans'; */
+  font-family: 'DM Sans';
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -608,7 +609,7 @@
 
 .bottom_icons .container .content span:nth-child(2) {
   color: #242424;
-  /* font-family: 'DM Sans'; */
+  font-family: 'DM Sans';
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

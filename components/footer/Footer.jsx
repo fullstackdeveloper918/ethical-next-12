@@ -26,7 +26,10 @@ const Footer = () => {
               We are formally committed to donate more than 20% of profits to
               charity each year.
             </div>
-            <div className="">input box</div>
+            <div className={styles.inputContainer}>
+              <input type="text" placeholder="Join Our Newsletter" />
+              <button>Send</button>
+            </div>
 
             <div className={styles.social_links}>
               <div className="">
@@ -39,7 +42,7 @@ const Footer = () => {
               </div>
               <div className="">
                 <Image
-                  src={instagram}
+                  src={linkdin}
                   height={16}
                   width={16}
                   alt="certified corporation logo"
@@ -47,7 +50,7 @@ const Footer = () => {
               </div>
               <div className="">
                 <Image
-                  src={linkdin}
+                  src={instagram}
                   height={16}
                   width={16}
                   alt="certified corporation logo"
@@ -90,9 +93,8 @@ const Footer = () => {
           </div>
           <div className={styles.container_column_4}>
             <div className={styles.column_4_1st_part}>
-              <div className={styles.heading_footer_2}>
-                Frequently Asked Questions
-              </div>
+              <div className={styles.heading_footer_2}>Sustainability</div>
+              <div className="">Frequently Asked Questions</div>
               <div className="">Terms of Service</div>
               <div className="">Privacy Policy</div>
               <div className="">Do not sell my personal information</div>

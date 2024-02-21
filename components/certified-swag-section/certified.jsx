@@ -3,6 +3,7 @@ import SingleProduct from '../certified-swag-single-product/SingleProduct'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import styles from './certified.module.css'
+import { useRouter } from 'next/router'
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
@@ -24,6 +25,8 @@ const responsive = {
 
 const Certified = () => {
   const [data, setData] = useState(null)
+  const router = useRouter()
+
   useEffect(() => {
     fetch('https://test.cybersify.tech/Eswag/public/api/testproducts')
       .then((res) => res.json())
@@ -35,7 +38,7 @@ const Certified = () => {
       <div className={styles.heading}>
         Certified <span className={styles.heading_colored}>CORP SWAG</span>
       </div>
-      <div className="" style={{ width: '100%', }}>
+      <div className="" style={{ width: '100%' }}>
         {data && (
           <div className={styles.slider_space}>
             <Carousel
@@ -66,7 +69,13 @@ const Certified = () => {
           </div>
         )}
       </div>
-      <div className={styles.btn}>View All</div>
+      <div
+        className={styles.btn}
+        style={{ cursor: 'pointer' }}
+        onClick={() => router.push('/products')}
+      >
+        View All
+      </div>
     </>
   )
 }

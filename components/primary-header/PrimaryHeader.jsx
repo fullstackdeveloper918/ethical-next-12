@@ -18,9 +18,12 @@ import { useRouter } from 'next/router'
 import { Button } from '@/components/ui/button'
 import downIcon from '../../assets/headerPics/down-black.svg'
 import useFetch from '../../lib/useFetch'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCurrentPage } from 'redux-setup/authSlice'
 
 const PrimaryHeader = () => {
   const router = useRouter()
+  const dispatch = useDispatch()
   const [screenSize, setScreenSize] = useState(992)
   const handleResize = () => {
     setScreenSize(window.innerWidth)
@@ -33,12 +36,17 @@ const PrimaryHeader = () => {
     }
   }, [])
 
+  useEffect(() => {
+    dispatch(setCurrentPage(router.asPath))
+  }, [])
+
   const isLoggedIn = !!localStorage.getItem('token_swag')
 
   const [loadQuery, { response, loading, error }] = useFetch(`/auth/logout`, {
     method: 'get',
   })
 
+  const page = useSelector((state) => state.auth.currentPage)
   const logout = () => {
     loadQuery()
     if (response) {
