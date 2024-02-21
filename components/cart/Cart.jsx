@@ -72,37 +72,62 @@ const Cart = ({
       localStorage.setItem('token_swag', response?.data?.accessToken)
       dispatch(setRole(response?.data?.role))
       setShowLogin(false)
-
       toast.success('Logged in sucessfully')
-      axios
-        .get(`https://test.cybersify.tech/Eswag/public/api/cart/${user_Id}`, {
-          headers: {
-            Authorization: response?.data?.accessToken,
-            'Content-Type': 'application/json',
-          },
-        })
-        .then((res) => {
-          console.log('Response from cart:', res.data)
-          // Handle the response data here
-        })
-        .catch((err) => {
-          console.error('Error:', err)
-          // Handle errors here
-        })
-    }
-    if (registerResponse) {
-      localStorage.setItem('token_swag', registerResponse?.data?.accessToken)
-      dispatch(setRole(registerResponse?.data?.role))
-      toast.success(registerResponse?.message)
+      // axios
+      //   .get(`https://test.cybersify.tech/Eswag/public/api/cart/${user_Id}`, {
+      //     headers: {
+      //       Authorization: response?.data?.accessToken,
+      //       'Content-Type': 'application/json',
+      //     },
+      //   })
+      //   .then((res) => {
+      //     console.log('Response from cart:', res.data)
+      //     // Handle the response data here
+      //   })
+      //   .catch((err) => {
+      //     console.error('Error:', err)
+      //     // Handle errors here
+      //   })
     }
     if (error) {
       console.log(error, 'errorMessage')
       toast.error(error.message)
     }
+  }, [response, error])
+
+  useEffect(() => {
+    if (registerResponse) {
+      localStorage.setItem('token_swag', registerResponse?.data?.accessToken)
+      dispatch(setRole(registerResponse?.data?.role))
+      toast.success(registerResponse?.message)
+    }
     if (registerError) {
       toast.error(registerError?.error?.email[0])
     }
-  }, [response, error, registerLoading, registerError])
+  }, [registerError, registerResponse])
+
+  const b = async () => {
+    console.log('b func')
+    const response = await fetch(
+      'https://test.cybersify.tech/Eswag/public/api/sadm/product/count'
+    )
+    const movies = await response.json()
+    console.log(movies, 'plz dummy')
+  }
+
+  const c = async () => {
+    console.log('c func')
+    const response = await fetch(
+      'https://test.cybersify.tech/Eswag/public/api/cart/918'
+    )
+    const movies = await response.json()
+    console.log(movies, 'plz final s')
+  }
+  useEffect(() => {
+    b()
+    c()
+    // postData()
+  }, [])
 
   const onSubmit = async (values) => {
     try {
