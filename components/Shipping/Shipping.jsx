@@ -9,6 +9,8 @@ import {
 const Shipping = () => {
   const onSubmit = (values) => {}
 
+  console.log(validationSchemaShipping, 'initialValuesShipping')
+
   return (
     <>
       <div className={Styles.shipping_container}>

@@ -10,25 +10,27 @@ const EstimateCard = ({ showEstimate }) => {
   const token = localStorage.getItem('token_swag')
   console.log(token, 'token')
 
-  // useEffect(() => {
-  //   const datafetch = async () => {
-  //     const res = await fetch(
-  //       'https://test.cybersify.tech/Eswag/public/api/cart/915',
-  //       {
-  //         method: 'GET',
-  //         headers: {
-  //           Authorization: token,
-  //           'Content-Type': 'application/json',
-  //           // Add any other headers as needed
-  //         },
-  //       }
-  //     )
-  //       .then((response) => response.json())
-  //       .then((json) => console.log(json))
-  //   }
+  useEffect(() => {
+    const datafetch = async () => {
+      const res = await fetch(
+        'https://test.cybersify.tech/Eswag/public/api/cart/918',
 
-  //   datafetch()
-  // }, [])
+        {
+          'Access-Control-Allow-Origin': '*',
+          mode: 'no-cors',
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      console.log('res', res)
+      // .then((response) => console.log(response, 'bro'))
+      // .then((json) => console.log(json, 'helo brio'))
+    }
+
+    datafetch()
+  }, [])
 
   const handleQuantity = (index, type) => {
     setQuantities((prevQuantities) => {
@@ -45,22 +47,6 @@ const EstimateCard = ({ showEstimate }) => {
       return newQuantities
     })
   }
-
-  // const handleDelete = (index) => {
-  //   setQuantities((prevQuantities) => {
-  //     const newQuantities = prevQuantities
-  //     console
-  //       .log(newQuantities)
-
-  //       .filter(([key]) => key !== index.toString()) // Remove the entry with the specified index
-  //       .reduce((acc, [key, value]) => {
-  //         acc[key] = value
-  //         return acc
-  //       }, {})
-
-  //     return newQuantities
-  //   })
-  // }
 
   let arr = ['a', 'b', 'c', 'd', 'e']
 

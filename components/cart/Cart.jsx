@@ -42,6 +42,8 @@ const Cart = ({
     }))
   }
 
+  console.log(ErrorMessage(), 'ErrorMessage')
+
   const [loadQuery, { response, loading, error }] = useFetch(
     `/auth/login`,
     {
