@@ -9,6 +9,7 @@ import Usa from '../../assets/headerPics/use_flag.svg'
 import Canada from '../../assets/headerPics/canada-flag.svg'
 import CrossIcon from '../../assets/headerPics/corss.svg'
 import Humburg from '../../assets/headerPics/menu-bar.png'
+import { RxCross2 } from "react-icons/rx";
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { useSelector } from 'react-redux'
@@ -272,14 +273,17 @@ const SecondaryHeader = () => {
                 <>
                   <div className={styles.searchInput}>
                     <div className={styles.centerField} ref={popupRef}>
-                      <input type="search" placeholder="Search" />
-                      <Image
+                    <Image
                         src={searchImg}
                         width={24}
                         height={24}
                         className={styles.searchIcon}
                         alt="search"
                       />
+                      <input type="search" placeholder="Search" />
+                     <span>
+                      <RxCross2 color='black' fontSize={28}/>
+                     </span>
                     </div>
                   </div>
                 </>

@@ -47,7 +47,7 @@ const StackCards = () => {
             <h3>
               Show me <b> Products that...</b>
             </h3>
-            <button className={Styles.btnn}>View Products</button>
+            <button className={Styles.btnn}>View All Products</button>
           </div>
         </div>
         <div className={Styles.stack_card_wrapper}>

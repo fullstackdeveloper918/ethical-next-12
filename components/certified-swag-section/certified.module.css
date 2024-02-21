@@ -40,11 +40,22 @@ letter-spacing: 0.18px;
 border-radius: 30px;
 border: 1px solid var(--green, #A2D061);
 background: var(--green, #A2D061);
-max-width: max-content;
-padding: 8px 25px;
-margin: auto;
+padding: 12px;
+  margin: auto;
+  width: 100%;
+  max-width: 172px;
+  min-height: 49px;
+  height: 49px;
+  transition: all .3s ease-in;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  transition: all .3s ease-in;
 }
-
+.btn:hover{
+background-color: transparent;
+color: #A2D061;
+}
 .slider_space{
     margin-bottom: 40px;
 }

@@ -100,6 +100,15 @@ span {
   box-shadow: 0 0 13px rgb(207 207 207 / 80%);
   padding: 5px;
   background: #ffff;
+  max-height: 180px;
+  overflow-y: clip;
+  overflow: hidden;
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE 11 */
+    scrollbar-width: none;
+}
+.dropemnu_design::-webkit-scrollbar{
+  display: none !important;
 }
 
 .displayProperty {
@@ -189,7 +198,10 @@ input:focus {
   outline: none;
   box-shadow: none;
 }
-
+/* ::-webkit-calendar-picker-indicator {
+  background-image: url('./assets/Calender.svg');
+  width:50px;
+} */
 /* .card {
   width: 300px;
   height: 400px;
