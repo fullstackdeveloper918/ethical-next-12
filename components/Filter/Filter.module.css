@@ -312,10 +312,10 @@
   width: 6px;
   height: 10px;
   border: solid white;
-    border-top-width: medium;
-    border-right-width: medium;
-    border-bottom-width: medium;
-    border-left-width: medium;
+  border-top-width: medium;
+  border-right-width: medium;
+  border-bottom-width: medium;
+  border-left-width: medium;
   border-width: 0 2px 2px 0;
   transform: rotate(35deg);
 }
@@ -675,10 +675,10 @@
   letter-spacing: 0.178px;
   margin-top: 20%;
   cursor: pointer;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .checkbtn button:hover {
-  background-color:  #111;
+  background-color: #111;
   color: #fff;
 }
 
@@ -725,7 +725,7 @@
 }
 
 .product_card_content > .colors {
-  margin-top:30px
+  margin-top: 30px;
 }
 
 .hidden_icons {
@@ -778,11 +778,11 @@
   background: #a2d061;
   transform: scale(0);
   opacity: 0;
-  transition:all .3s ease;
+  transition: all 0.3s ease;
 }
 .hidden_icons > .viewProduct_btn:hover {
-  color: #a2d061;
-  background: transparent;
+  color: #fff;
+  background: black;
 }
 .border_svg {
   border: 0.36px solid #ddd;
@@ -793,7 +793,7 @@
 .border_svg:hover {
   background-color: #a2d061;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-  border-color: #A2D061;
+  border-color: #a2d061;
 }
 .border_svg:hover .icon {
   filter: brightness(100);

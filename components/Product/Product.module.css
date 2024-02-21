@@ -6,7 +6,7 @@
   margin-top: 20px;
 }
 .detail_page_wrapper::-webkit-scrollbar {
- display: none;
+  display: none;
 }
 .detail_page_container {
   width: 100%;
@@ -115,6 +115,10 @@
   line-height: 26px;
 }
 
+.product_image {
+  object-fit: contain;
+}
+
 .detail_page_right_section .text_content {
   margin-top: 1.5rem;
   flex-shrink: 0;
@@ -123,7 +127,7 @@
 .text_content p {
   color: #22202f;
   transition: all 0.4s ease-in;
-  font-family: "DM Sans";
+  font-family: 'DM Sans';
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -140,7 +144,6 @@
   text-decoration-line: underline;
   cursor: 'pointer';
   display: inline-flex;
-  
 }
 
 .reviews {
@@ -489,9 +492,9 @@
   text-transform: capitalize;
   cursor: pointer;
   margin-bottom: 1.4rem;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
-.add_to_bulk_container button:hover{
+.add_to_bulk_container button:hover {
   background-color: transparent;
   color: #a2d061;
 }
@@ -692,7 +695,6 @@ p.fw400 {
   font-weight: 400;
 }
 
-
 /* custom checkbox */
 
 .custom_checkbox {
@@ -746,10 +748,10 @@ p.fw400 {
   width: 6px;
   height: 10px;
   border: solid white;
-    border-top-width: medium;
-    border-right-width: medium;
-    border-bottom-width: medium;
-    border-left-width: medium;
+  border-top-width: medium;
+  border-right-width: medium;
+  border-bottom-width: medium;
+  border-left-width: medium;
   border-width: 0 2px 2px 0;
   transform: rotate(35deg);
 }

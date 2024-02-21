@@ -152,6 +152,7 @@ const Product = ({ product, loading, error }) => {
                         width={400}
                         height={560}
                         alt="Single_Product_Image"
+                        className={Styles.product_image}
                       />
                     )}
                   </div>
