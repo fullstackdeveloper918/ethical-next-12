@@ -38,10 +38,7 @@ const SideBar = ({ data, imageData }) => {
 
   const currentPage = router?.pathname
 
-  console.log('currentPage', currentPage)
   const sidebarIndices = sidebarContentMap[currentPage] || []
-
-  console.log(sidebarIndices, 'sidebarIndices')
 
   return (
     <>

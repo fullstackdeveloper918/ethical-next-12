@@ -8,13 +8,11 @@ const Input = () => {
 
   const selectdFile = (event) => {
     const file = event.target.files[0]
-    console.log(file.name)
     if (file.size / (1024 * 1024) > 2) {
       setImgContent(null)
       alert('Please select an image file less than 2MB.')
     } else {
       setImgContent(file)
-      console.log(`File size: ${(file.size / (1024 * 1024)).toFixed(2)} MB`)
     }
   }
 

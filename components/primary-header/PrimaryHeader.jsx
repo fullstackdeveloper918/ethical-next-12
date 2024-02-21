@@ -40,13 +40,10 @@ const PrimaryHeader = () => {
   })
 
   const logout = () => {
-    console.log('i am called')
     loadQuery()
     if (response) {
-      console.log(response, 'from logout api')
     }
     if (error) {
-      console.log(error, 'from logout api')
     }
     localStorage.clear()
     router.push('/login')

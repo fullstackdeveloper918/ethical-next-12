@@ -7,9 +7,7 @@ import {
 } from '../../lib/validationSchemas'
 
 const Shipping = () => {
-  const onSubmit = (values) => {
-    console.log(values, 'values')
-  }
+  const onSubmit = (values) => {}
 
   return (
     <>

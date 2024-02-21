@@ -100,10 +100,6 @@ const Cart = ({
       toast.error(error.message)
     }
     if (registerError) {
-      console.log(
-        registerError?.error?.email[0],
-        'errorMessage from register api'
-      )
       toast.error(registerError?.error?.email[0])
     }
   }, [response, error, registerLoading, registerError])

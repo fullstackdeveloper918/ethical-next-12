@@ -19,7 +19,6 @@ const cart = () => {
     setSelectedOption(event.target.value)
   }
   const [showLoginComponent, setShowLoginComponent] = useState(true)
-  console.log(showEstimateCart, 'showEstimateCart')
   useEffect(() => {
     setShowEstimateCart(false)
   }, [])
