@@ -8,7 +8,9 @@ const Button = ({ disabled }) => {
         <button className={Styles.button}>Back</button>
         <button
           className={Styles.button}
-          disabled={disabled ? disabled : false}
+          disabled={disabled}
+          style={{ opacity: disabled ? '0.7' : '1' }}
+          onClick={() => console.log('hello i am here')}
         >
           Continue
         </button>

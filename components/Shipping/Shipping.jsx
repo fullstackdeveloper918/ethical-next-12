@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Styles from './Shipping.module.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import {
   initialValuesShipping,
   validationSchemaShipping,
 } from '../../lib/validationSchemas'
+import Button from '../Button/Button'
 
 const Shipping = () => {
   const onSubmit = (values) => {}
+  const [errorLength, setErrorLength] = useState(false)
 
   console.log(validationSchemaShipping, 'initialValuesShipping')
 
@@ -21,8 +23,9 @@ const Shipping = () => {
           validationSchema={validationSchemaShipping}
           onSubmit={onSubmit}
         >
-          {() => (
+          {({ errors }) => (
             <>
+              {setErrorLength(Object.keys(errors).length)}
               <Form className={Styles.form}>
                 <h3 className={Styles.form_title}>Ship order to *</h3>
                 <div className={Styles.form_inputs}>
@@ -220,6 +223,7 @@ const Shipping = () => {
             </>
           )}
         </Formik>
+        <Button disabled={errorLength !== 0} />
       </div>
     </>
   )

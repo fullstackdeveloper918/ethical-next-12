@@ -15,7 +15,6 @@ const shipping = () => {
         <div className={Styles.widthFull}>
           <QuotationSubmissionHeader />
           <Shipping />
-          <Button />
         </div>
         <EstimateCard />
       </section>
