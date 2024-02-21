@@ -125,7 +125,6 @@ const Cart = ({
   }
   useEffect(() => {
     b()
-    c()
     // postData()
   }, [])
 

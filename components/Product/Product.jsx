@@ -209,6 +209,7 @@ const Product = ({ product, loading, error }) => {
                     <span
                       className={Styles.read_more}
                       onClick={() => setIsReadMore(!ReadMore)}
+                      style={{ cursor: 'pointer' }}
                     >
                       {ReadMore ? 'Read Less' : '...Read More'}
                     </span>

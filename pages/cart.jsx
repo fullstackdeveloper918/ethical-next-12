@@ -51,7 +51,7 @@ const cart = () => {
           />
           <Button />
         </div>
-        {(showEstimateCart || token) && <EstimateCard />}
+        <EstimateCard />
       </section>
       <Footer />
     </>
