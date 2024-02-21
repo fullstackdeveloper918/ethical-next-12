@@ -114,16 +114,19 @@ const Cart = ({
 
   const b = async () => {
     console.log('hellllllllllllllllllllllllllo  sss')
-    const response = await fetch('https://jsonplaceholder.typicode.com/users', {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization:
-          'Bearer 21|XB68xij6UIIBp93Ov4Dsh92cgNC17fJ5Y9UdwvO6185d91b8',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    })
+    const response = await fetch(
+      'https://test.cybersify.tech/Eswag/public/api/sadm/product/count',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization:
+            'Bearer 22|XkN5B3e2PY8qzoJtLPTCJNvUqE2iNQbYvk5Cdk3n2df6bdcf',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    )
     const movies = await response.json()
-    console.log(movies, 'finallll satish bhai')
+    console.log(movies, 'finallll satish bhai asli api')
   }
   useEffect(() => {
     b()
