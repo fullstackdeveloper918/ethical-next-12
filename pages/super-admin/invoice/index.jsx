@@ -48,7 +48,6 @@ const Invoice = () => {
                   </tr>
                   {Invoice_Data.map((data) => (
                     <>
-                      {console.log(getStatusColor(data.status))}
                       <tr>
                         <td>
                           <input type="checkbox" name="" id="" />

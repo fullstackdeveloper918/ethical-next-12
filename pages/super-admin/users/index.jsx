@@ -42,11 +42,6 @@ const Users = () => {
                   </tr>
                   {Array.from({ length: 13 }).map((data, index) => (
                     <>
-                      {console.log(
-                        index === 2 || index === 4 || index === 6
-                          ? 'Low'
-                          : 'Normal'
-                      )}
                       <tr>
                         <td>
                           <div className={Styles.name_cell}>
