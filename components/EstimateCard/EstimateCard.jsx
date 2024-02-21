@@ -10,27 +10,21 @@ const EstimateCard = ({ showEstimate }) => {
   const token = localStorage.getItem('token_swag')
   console.log(token, 'token')
 
-  useEffect(() => {
-    const datafetch = async () => {
-      const res = await fetch(
-        'https://test.cybersify.tech/Eswag/public/api/cart/918',
+  // useEffect(() => {
+  //   const datafetch = async () => {
+  //     try {
+  //       const res = await axios.get(
+  //         'https://test.cybersify.tech/Eswag/public/api/cart/918'
+  //       )
 
-        {
-          'Access-Control-Allow-Origin': '*',
-          mode: 'no-cors',
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-      console.log('res', res)
-      // .then((response) => console.log(response, 'bro'))
-      // .then((json) => console.log(json, 'helo brio'))
-    }
+  //       console.log(res, 'res')
+  //     } catch (err) {
+  //       console.log('err', err)
+  //     }
+  //   }
 
-    datafetch()
-  }, [])
+  //   datafetch()
+  // }, [])
 
   const handleQuantity = (index, type) => {
     setQuantities((prevQuantities) => {

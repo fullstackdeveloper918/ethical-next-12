@@ -85,7 +85,7 @@ const PrimaryHeader = () => {
                 <DropdownMenuRadioItem
                   value="bottom"
                   className={styles.shop_submenu}
-                  onClick={() => router.push('/products')}
+                  onClick={() => router.push('/bags')}
                 >
                   BAGS
                 </DropdownMenuRadioItem>
@@ -94,22 +94,22 @@ const PrimaryHeader = () => {
                   className={styles.shop_submenu}
                   onClick={() => router.push('/products')}
                 >
-                  DRINKWARE
+                  ALL Swag
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem
                   value="right"
                   className={styles.shop_submenu}
                   s
-                  onClick={() => router.push('/products')}
+                  onClick={() => router.push('/wellness')}
                 >
                   WELLNESS
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem
                   value="right"
                   className={styles.shop_submenu}
-                  onClick={() => router.push('/products')}
+                  onClick={() => router.push('/plants-seeds')}
                 >
-                  SHOP BY
+                  Plants & Seeds
                 </DropdownMenuRadioItem>
               </DropdownMenuContent>
             </DropdownMenu>

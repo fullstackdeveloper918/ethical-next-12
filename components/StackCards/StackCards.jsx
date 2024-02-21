@@ -9,7 +9,7 @@ const Stack_Card_Data = [
     ID: 1,
     src: images.Stack_Card1,
     btn: 'Flat 25% off',
-    text: 'one',
+    text: '',
   },
   {
     ID: 2,
@@ -63,6 +63,7 @@ const StackCards = () => {
                       alt="stack-cards"
                     />
                   </span>
+                  <p>{card.btn}</p>
                 </div>
               </>
             ))}
