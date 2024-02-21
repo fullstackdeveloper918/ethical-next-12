@@ -61,6 +61,20 @@
     gap: 20px;
     flex: 1;
   }
+
+  .inputContainer{
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+  }
+
+  .inputContainer input{
+    background: transparent;
+    border: 1px solid #fff;
+    height: 50px;
+    border-radius: 30px;
+    padding-left: 1rem;
+  }
   
   .container_column_4 {
     display: flex;
