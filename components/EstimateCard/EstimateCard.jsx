@@ -11,25 +11,16 @@ const EstimateCard = ({ showEstimate }) => {
   console.log(token, 'token')
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const id = 915
-        const response = await axios.get(
-          `https://test.cybersify.tech/Eswag/public/api/cart/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer 18|WU8z64Zck04CwXgjMymJGYtzJGk2cV7W9VU87fNV1cf54a13`,
-              'Content-Type': 'application/json', // You can add more headers as needed
-            },
-          }
-        )
-        // setData(response.data)
-      } catch (error) {
-        // setError(error)
-      }
-    }
-
-    fetchData()
+    fetch('https://jsonplaceholder.typicode.com/todos/1', {
+      method: 'GET',
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+        // Add any other headers as needed
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json))
   }, [])
 
   const handleQuantity = (index, type) => {
