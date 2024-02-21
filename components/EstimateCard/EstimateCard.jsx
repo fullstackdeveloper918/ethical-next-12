@@ -6,22 +6,29 @@ import useFetch from '../../lib/useFetch'
 import axios from 'axios'
 
 const EstimateCard = ({ showEstimate }) => {
-  const [quantities, setQuantities] = useState({})
+  const [quantities, setQuantities] = useState([])
   const token = localStorage.getItem('token_swag')
   console.log(token, 'token')
 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos/1', {
-      method: 'GET',
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json',
-        // Add any other headers as needed
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json))
-  }, [])
+  // useEffect(() => {
+  //   const datafetch = async () => {
+  //     const res = await fetch(
+  //       'https://test.cybersify.tech/Eswag/public/api/cart/915',
+  //       {
+  //         method: 'GET',
+  //         headers: {
+  //           Authorization: token,
+  //           'Content-Type': 'application/json',
+  //           // Add any other headers as needed
+  //         },
+  //       }
+  //     )
+  //       .then((response) => response.json())
+  //       .then((json) => console.log(json))
+  //   }
+
+  //   datafetch()
+  // }, [])
 
   const handleQuantity = (index, type) => {
     setQuantities((prevQuantities) => {
@@ -38,6 +45,22 @@ const EstimateCard = ({ showEstimate }) => {
       return newQuantities
     })
   }
+
+  // const handleDelete = (index) => {
+  //   setQuantities((prevQuantities) => {
+  //     const newQuantities = prevQuantities
+  //     console
+  //       .log(newQuantities)
+
+  //       .filter(([key]) => key !== index.toString()) // Remove the entry with the specified index
+  //       .reduce((acc, [key, value]) => {
+  //         acc[key] = value
+  //         return acc
+  //       }, {})
+
+  //     return newQuantities
+  //   })
+  // }
 
   let arr = ['a', 'b', 'c', 'd', 'e']
 
@@ -89,6 +112,7 @@ const EstimateCard = ({ showEstimate }) => {
                         width={14}
                         height={16}
                         alt="delete_icon"
+                        onClick={() => handleDelete(index)}
                       />
                     </div>
                   </div>
