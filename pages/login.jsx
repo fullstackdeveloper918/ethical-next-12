@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import useFetch from '../lib/useFetch'
 import Styles from '../styles/Login.module.css'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setRole } from '../redux-setup/authSlice'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
@@ -14,6 +14,7 @@ const login = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [terms, setTerms] = useState(false)
+
   const [loadQuery, { response, loading, error }] = useFetch(
     `/auth/login`,
     {
@@ -24,17 +25,25 @@ const login = () => {
   useEffect(() => {
     const token = localStorage.getItem('token_swag')
     if (token) {
-      router.push('/')
+      if (page) {
+        router.push(`/${page}`)
+      } else {
+        router.push(`/`)
+      }
     }
   }, [])
-
+  const page = useSelector((state) => state.auth.currentPage)
   useEffect(() => {
     if (response) {
       localStorage.setItem('token_swag', response?.data?.accessToken)
       dispatch(setRole(response?.data?.role))
       toast.success('Logged in sucessfully')
 
-      router.push('/')
+      if (page) {
+        router.push(`/${page}`)
+      } else {
+        router.push(`/`)
+      }
     }
     if (error) {
       console.log(error, 'errorMessage')
