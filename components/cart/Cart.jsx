@@ -106,57 +106,28 @@ const Cart = ({
     }
   }, [registerError, registerResponse])
 
-  const a = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users')
-    const movies = await response.json()
-    console.log(movies, 'finallll')
-  }
-
   const b = async () => {
-    console.log('hellllllllllllllllllllllllllo  sss')
+    console.log('b func')
     const response = await fetch(
-      'https://test.cybersify.tech/Eswag/public/api/sadm/product/count',
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization:
-            'Bearer 22|XkN5B3e2PY8qzoJtLPTCJNvUqE2iNQbYvk5Cdk3n2df6bdcf',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      }
+      'https://test.cybersify.tech/Eswag/public/api/sadm/product/count'
     )
     const movies = await response.json()
-    console.log(movies, 'finallll satish bhai asli api')
+    console.log(movies, 'plz dummy')
+  }
+
+  const c = async () => {
+    console.log('c func')
+    const response = await fetch(
+      'https://test.cybersify.tech/Eswag/public/api/cart/918'
+    )
+    const movies = await response.json()
+    console.log(movies, 'plz final s')
   }
   useEffect(() => {
     b()
+    c()
     // postData()
   }, [])
-
-  async function postData(
-    url = 'https://test.cybersify.tech/Eswag/public/api/cart/915',
-    data = {} //api/sadm/product/count
-  ) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      // body: JSON.stringify(data), // body data type must match "Content-Type" header
-    })
-    let a = response.json()
-
-    console.log(a, 'response.json() f apna')
-    // return response.json()
-    // parses JSON response into native JavaScript objects
-  }
 
   const onSubmit = async (values) => {
     try {

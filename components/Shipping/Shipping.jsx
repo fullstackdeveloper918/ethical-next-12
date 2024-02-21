@@ -51,36 +51,42 @@ const Shipping = () => {
                     className={Styles.error}
                   />
                 </div>
+
                 <div className={`${Styles.form_inputs} ${Styles.flexInputs}`}>
-                  <div>
-                    <Field
-                      type="text"
-                      placeholder="First name"
-                      name="firstName"
-                      id="firstName"
-                      autocomplete="off"
-                    />
-                    <ErrorMessage
-                      name="firstName"
-                      component="div"
-                      className={Styles.error}
-                    />
-                  </div>
-                  <div>
-                    <Field
-                      type="text"
-                      placeholder="Last name"
-                      name="lastName"
-                      id="lastName"
-                      autocomplete="off"
-                    />
-                    <ErrorMessage
-                      name="lastName"
-                      component="div"
-                      className={Styles.error}
-                    />
+                  <Field
+                    type="text"
+                    placeholder="First name"
+                    name="firstName"
+                    id="firstName"
+                    autocomplete="off"
+                  />
+                  <Field
+                    type="text"
+                    placeholder="Last name"
+                    name="lastName"
+                    id="lastName"
+                    autocomplete="off"
+                  />
+                </div>
+                <div className="">
+                  <div className={`${Styles.form_inputs} ${Styles.flexInputs}`}>
+                    <div className="">
+                      <ErrorMessage
+                        name="firstName"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
+                    <div className="">
+                      <ErrorMessage
+                        name="lastName"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
                   </div>
                 </div>
+
                 <div className={Styles.form_inputs}>
                   <Field
                     type="number"
