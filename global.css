@@ -66,6 +66,10 @@
   }
 }
 
+html.inputAdded {
+  overflow: hidden;
+}
+
 body {
   margin: 0px !important;
   padding: 0px !important;
@@ -105,9 +109,9 @@ span {
   overflow: hidden;
   overflow-y: auto;
   -ms-overflow-style: none; /* IE 11 */
-    scrollbar-width: none;
+  scrollbar-width: none;
 }
-.dropemnu_design::-webkit-scrollbar{
+.dropemnu_design::-webkit-scrollbar {
   display: none !important;
 }
 

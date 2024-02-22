@@ -39,31 +39,41 @@ const SecondaryHeader = () => {
   const [showSearchInput, setShowSearchInput] = useState(false)
   const [openLinks, setOpenLinks] = useState(false)
   const router = useRouter()
+  const [inputbtn, setInputBtn] = useState(false)
   const [country, setCountry] = useState('usa')
   const [screenSize, setScreenSize] = useState(992)
   const popupRef = useRef(null)
+
+  useEffect(() => {
+    if (inputbtn) {
+      document.documentElement.classList.add('inputAdded')
+    } else {
+      document.documentElement.classList.remove('inputAdded')
+    }
+
+    return () => {
+      document.documentElement.classList.remove('inputAdded')
+    }
+  }, [inputbtn])
+
   const handleResize = () => {
     setScreenSize(window.innerWidth)
   }
+
+  const handleInput = (boolean) => {
+    setShowSearchInput(boolean)
+    setInputBtn(boolean)
+  }
+
+  // const handleCross = () => {
+  //   setShowSearchInput(false)
+  //   setInputBtn(false)
+  // }
+
   useEffect(() => {
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (popupRef?.current?.contains(event.target)) {
-        setShowSearchInput(true)
-      } else {
-        setShowSearchInput(false)
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
 
@@ -265,9 +275,7 @@ const SecondaryHeader = () => {
                 width={24}
                 height={24}
                 alt="search"
-                onClick={() => {
-                  setShowSearchInput(!showSearchInput)
-                }}
+                onClick={() => handleInput(true)}
               />
               {showSearchInput && (
                 <>
@@ -282,7 +290,11 @@ const SecondaryHeader = () => {
                       />
                       <input type="search" placeholder="Search" />
                       <span>
-                        <RxCross2 color="black" fontSize={28} />
+                        <RxCross2
+                          color="black"
+                          fontSize={28}
+                          onClick={() => handleInput(false)}
+                        />
                       </span>
                     </div>
                   </div>
