@@ -147,6 +147,12 @@ const register = () => {
                       Submit
                     </button>
                   </div>
+                  <div className={Styles.input_box}>
+                    <p>
+                      Already have an account?
+                      <span onClick={() => router.push('/login')}>Login</span>
+                    </p>
+                  </div>
                 </Form>
               )}
             </Formik>

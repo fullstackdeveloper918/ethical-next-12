@@ -30,6 +30,7 @@ const Certified = () => {
   useEffect(() => {
     fetch('https://test.cybersify.tech/Eswag/public/api/testproducts')
       .then((res) => res.json())
+
       .then((r) => setData(r?.data?.data))
   }, [])
 
@@ -51,6 +52,7 @@ const Certified = () => {
               // autoPlay={this.props.deviceType !== 'mobile' ? true : false}
               // autoPlay
               autoPlaySpeed={1000}
+              arrows={false}
               keyBoardControl={true}
               customTransition="all .5s"
               transitionDuration={500}

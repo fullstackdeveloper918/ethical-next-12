@@ -105,124 +105,59 @@ const login = () => {
               {() => (
                 <>
                   <Form className={Styles.form}>
-                    {registered && (
-                      <div className={Styles.input_box}>
-                        <Field
-                          type="text"
-                          id="name"
-                          name="name"
-                          placeholder="Enter name"
-                          autocomplete="off"
-                        />
-                        <ErrorMessage
-                          name="email"
-                          component="div"
-                          className={Styles.error}
-                        />
-                      </div>
-                    )}
-                    {(registered || isLogin || forgot_password) && (
-                      <div className={Styles.input_box}>
-                        <Field
-                          type="text"
-                          id="email"
-                          name="email"
-                          placeholder="Enter email"
-                          autocomplete="off"
-                        />
-                        <ErrorMessage
-                          name="email"
-                          component="div"
-                          className={Styles.error}
-                        />
-                      </div>
-                    )}
-                    {(registered || isLogin) && (
-                      <div className={Styles.input_box}>
-                        <Field
-                          type="password"
-                          id="password"
-                          name="password"
-                          placeholder="Enter Password"
-                          autocomplete="off"
-                        />
-                        <ErrorMessage
-                          name="password"
-                          component="div"
-                          className={Styles.error}
-                        />
-                      </div>
-                    )}
-                    {registered && (
-                      <div className={Styles.input_box}>
-                        <Field
-                          type="confirm password"
-                          id="confirm password"
-                          name="confirm password"
-                          placeholder="Enter Password"
-                          autocomplete="off"
-                        />
-                        <ErrorMessage
-                          name="confirm password"
-                          component="div"
-                          className={Styles.error}
-                        />
-                      </div>
-                    )}
-                    {registered && (
-                      <div className={Styles.input_radio_content}>
-                        <label htmlFor="checkbox">
-                          <input
-                            type="checkbox"
-                            id="checkbox"
-                            name="terms"
-                            value={terms}
-                            onChange={handleChange}
-                          />
-                          I agree to the{' '}
-                          <span style={{ textDecoration: 'underline' }}>
-                            terms & conditions | privacy policy
-                          </span>
-                        </label>
-                      </div>
-                    )}
+                    <div className={Styles.input_box}>
+                      <Field
+                        type="text"
+                        id="email"
+                        name="email"
+                        placeholder="Enter email"
+                        autocomplete="off"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
 
-                    {isLogin && !registered && (
-                      <div className={Styles.input_box}>
-                        <p
-                          className={Styles.forgot_password}
-                          onClick={() => handleFormType('forgot')}
-                        >
-                          Forgot Password?
-                        </p>
-                      </div>
-                    )}
+                    <div className={Styles.input_box}>
+                      <Field
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter Password"
+                        autocomplete="off"
+                      />
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
+
+                    <div className={Styles.input_box}>
+                      <p
+                        className={Styles.forgot_password}
+                        onClick={() => handleFormType('forgot')}
+                      >
+                        Forgot Password?
+                      </p>
+                    </div>
 
                     <div className={Styles.input_box}>
                       <button type="submit" disabled={loading || isDisabled}>
-                        {registered ? 'Submit' : 'Login'}
+                        Login
                       </button>
                     </div>
 
-                    {(registered || isLogin || forgot_password) && (
-                      <div className={Styles.input_box}>
-                        {forgot_password || !registered ? (
-                          <p>
-                            Dont have an account?
-                            <span onClick={() => handleFormType('register')}>
-                              Register
-                            </span>
-                          </p>
-                        ) : (
-                          <p>
-                            Already have an account?
-                            <span onClick={() => handleFormType('login')}>
-                              Login
-                            </span>
-                          </p>
-                        )}
-                      </div>
-                    )}
+                    <div className={Styles.input_box}>
+                      <p>
+                        Dont have an account?
+                        <span onClick={() => router.push('/register')}>
+                          Register
+                        </span>
+                      </p>
+                    </div>
                   </Form>
                 </>
               )}

@@ -7,8 +7,10 @@ import youtube from '../../assets/footerPics/youtube.svg'
 import banks from '../../assets/footerPics/banks.svg'
 import Image from 'next/image'
 import styles from './footer.module.css'
+import { useRouter } from 'next/router'
 
 const Footer = () => {
+  const router = useRouter()
   return (
     <div className={styles.footer_section}>
       <div className={styles.footer_container}>
@@ -68,21 +70,98 @@ const Footer = () => {
           </div>
           <div className={styles.container_column_2}>
             <div className={styles.heading_footer_2}>Quick Links</div>
-            <div className="">Swag Packs </div>
-            <div className="">Plants & Seeds</div>
-            <div className="">Apparel </div>
-            <div className="">At Home </div>
-            <div className="">Office </div>
-            <div className="">Others</div>
-            <div className="">Shop by</div>
+            <div className="">
+              <span
+                style={{ cursor: 'pointer' }}
+                onClick={() => router.push('/products')}
+              >
+                Swag Packs
+              </span>
+            </div>
+            <div className="">
+              <span
+                style={{ cursor: 'pointer' }}
+                onClick={() => router.push('/plants-seeds')}
+              >
+                Plants & Seeds
+              </span>
+            </div>
+            <div className="">
+              <span
+                style={{ cursor: 'pointer' }}
+                onClick={() => router.push('/apparel')}
+              >
+                Apparel
+              </span>
+            </div>
+            <div className="">
+              <span
+                style={{ cursor: 'pointer' }}
+                onClick={() => router.push('/')}
+              >
+                At Home
+              </span>
+            </div>
+            <div className="">
+              <span
+                style={{ cursor: 'pointer' }}
+                onClick={() => router.push('/apparel')}
+              >
+                Office
+              </span>
+            </div>
+            <div className="">
+              <span
+                style={{ cursor: 'pointer' }}
+                onClick={() => router.push('/apparel')}
+              >
+                Others
+              </span>
+            </div>
+            <div className="">
+              <span
+                style={{ cursor: 'pointer' }}
+                onClick={() => router.push('/products')}
+              >
+                Shop by
+              </span>
+            </div>
           </div>
           <div className={styles.container_column_3}>
             <div className={styles.column_1}>
               <div className={styles.heading_footer_2}>Customer Support</div>
-              <div className="">Frequently Asked Questions</div>
-              <div className="">Terms of Service</div>
-              <div className="">Privacy Policy</div>
-              <div className="">Do not sell my personal information</div>
+              <div className="">
+                <span
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => router.push('/faq')}
+                >
+                  Frequently Asked Questions
+                </span>
+              </div>
+              <div className="">
+                <span
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => router.push('/terms-of-service')}
+                >
+                  Terms of Service
+                </span>
+              </div>
+              <div className="">
+                <span
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => router.push('/privacy-policy')}
+                >
+                  Privacy Policy
+                </span>
+              </div>
+              <div className="">
+                <span
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => router.push('/privacy-policy')}
+                >
+                  Do not sell my personal information
+                </span>
+              </div>
             </div>
             <div className={styles.column_2}>
               <div className={styles.heading_footer_2}>Reach Out</div>
@@ -94,10 +173,26 @@ const Footer = () => {
           <div className={styles.container_column_4}>
             <div className={styles.column_4_1st_part}>
               <div className={styles.heading_footer_2}>Sustainability</div>
-              <div className="">Frequently Asked Questions</div>
-              <div className="">Terms of Service</div>
-              <div className="">Privacy Policy</div>
-              <div className="">Do not sell my personal information</div>
+              <div className="">
+                <span onClick={() => router.push('/faq')}>
+                  Frequently Asked Questions
+                </span>
+              </div>
+              <div className="">
+                <span onClick={() => router.push('/terms-of-service')}>
+                  Terms of Service
+                </span>
+              </div>
+              <div className="">
+                <span onClick={() => router.push('/privacy-policy')}>
+                  Privacy Policy
+                </span>
+              </div>
+              <div className="">
+                <span onClick={() => router.push('/privacy-policy')}>
+                  Do not sell my personal information
+                </span>
+              </div>
             </div>
             <div className={styles.column_4_2nd_part}>
               <div className={styles.heading_footer_2}>Resources</div>
