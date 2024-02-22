@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styles from './StackCards.module.css'
-import CardOne from '../../assets/headerPics/card_one.svg'
-import CardTwo from '../../assets/headerPics/card_two.svg'
-import CardThree from '../../assets/headerPics/card_three.svg'
-import CardFour from '../../assets/headerPics/card_four.svg'
-import CardFive from '../../assets/headerPics/card_five.svg'
+import CardOne from '../../assets/headerPics/card_one.png'
+import CardTwo from '../../assets/headerPics/card_two.png'
+import CardThree from '../../assets/headerPics/card_three.png'
+import CardFour from '../../assets/headerPics/card_four.png'
+import CardFive from '../../assets/headerPics/card_five.png'
 import Image from 'next/image'
 
 let imagesList = [
@@ -111,15 +111,6 @@ const Dummy = () => {
                       width={400}
                       className={styles.cardImage}
                     />
-                    <p>Flat 25% off</p>
-                    <div>
-                      <p>Cup design</p>
-                      <p>
-                        Lorem ipsum is simply dummy text of the printing and
-                        typesetting industry.
-                      </p>
-                      <button>View Products</button>
-                    </div>
                   </li>
                 )
               })

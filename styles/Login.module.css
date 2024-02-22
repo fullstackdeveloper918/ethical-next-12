@@ -87,7 +87,7 @@
 }
 
 .input_box .forgot_password {
-  text-align: right;
+  text-align: left;
   text-decoration: underline;
   cursor: pointer;
 }
