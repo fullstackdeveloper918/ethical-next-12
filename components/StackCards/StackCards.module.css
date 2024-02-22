@@ -1,14 +1,14 @@
 .text ul {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 600px;
+  height: 600px;
   padding: 0;
 }
 .text ul li {
   list-style: none;
   position: absolute;
-  width: 300px;
-  height: 400px;
+  width: 500px;
+  height: 600px;
   transition: transform 5s, z-index 1s;
   display: inline-block;
   z-index: 0;
@@ -40,23 +40,22 @@
 }
 
 .cardImage {
-  width: 400px;
-  height: 400px;
+  width: 600px;
+  height: 600px;
+  object-fit: contain;
 }
 
-.text {
-  padding-left: 200px;
-}
 .text_animation {
   animation: rightAnimate 5s linear;
   animation-fill-mode: forwards;
   position: absolute;
-  width: 300px;
-  height: 400px;
+  width: 500px;
+  height: 600px;
 }
 .text_animation_img {
-  width: 300px;
-  height: 400px;
+  width: 500px;
+  height: 600px;
+  object-fit: contain;
 }
 @keyframes rightAnimate {
   0% {
@@ -80,3 +79,82 @@
     z-index: -4;
   }
 }
+@media (max-width:767px){
+  .text ul {
+    width: 400px;
+    height: 330px;
+}
+
+.text ul li {
+    width: 300px;
+    height: 400px;
+}
+.text_animation_img {
+  width: 300px;
+  height: 400px;
+}
+.text_animation {
+  width: 300px;
+  height: 400px;
+}
+.cardImage {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+}
+}
+
+
+
+@media (max-width:576px){
+  .text ul {
+    width: 270px;
+    height: 270px;
+}
+
+.text ul li {
+    width: 270px;
+    height: 370px;
+}
+.text_animation_img {
+    width: 270px;
+    height: 370px;
+}
+.text_animation {
+    width: 270px;
+    height: 370px;
+}
+.cardImage {
+  width: 270px;
+  height: 270px;
+  object-fit: contain;
+}
+}
+
+
+@media (max-width:497px){
+  .text ul {
+    width: 220px;
+    height: 220px;
+}
+
+.text ul li {
+    width: 220px;
+    height: 320px;
+}
+.text_animation_img {
+    width: 220px;
+    height: 320px;
+}
+.text_animation {
+    width: 220px;
+    height: 320px;
+}
+.cardImage {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+}
+}
+
+
