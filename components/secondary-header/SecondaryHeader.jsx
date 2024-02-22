@@ -43,40 +43,33 @@ const SecondaryHeader = () => {
   const [country, setCountry] = useState('usa')
   const [screenSize, setScreenSize] = useState(992)
   const popupRef = useRef(null)
-
   useEffect(() => {
     if (inputbtn) {
       document.documentElement.classList.add('inputAdded')
     } else {
       document.documentElement.classList.remove('inputAdded')
     }
-
     return () => {
       document.documentElement.classList.remove('inputAdded')
     }
   }, [inputbtn])
-
   const handleResize = () => {
     setScreenSize(window.innerWidth)
   }
-
   const handleInput = (boolean) => {
     setShowSearchInput(boolean)
     setInputBtn(boolean)
   }
-
   // const handleCross = () => {
   //   setShowSearchInput(false)
   //   setInputBtn(false)
   // }
-
   useEffect(() => {
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
-
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
@@ -281,19 +274,20 @@ const SecondaryHeader = () => {
                 <>
                   <div className={styles.searchInput}>
                     <div className={styles.centerField} ref={popupRef}>
-                      <Image
+                      {/* <Image
                         src={searchImg}
                         width={24}
                         height={24}
                         className={styles.searchIcon}
                         alt="search"
-                      />
+                      /> */}
                       <input type="search" placeholder="Search" />
                       <span>
                         <RxCross2
                           color="black"
                           fontSize={28}
                           onClick={() => handleInput(false)}
+                          className={styles.cross_search}
                         />
                       </span>
                     </div>
