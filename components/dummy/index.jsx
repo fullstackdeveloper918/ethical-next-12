@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styles from './StackCards.module.css'
+import styles from './dummy.module.css'
 import CardOne from '../../assets/headerPics/card_one.svg'
 import CardTwo from '../../assets/headerPics/card_two.svg'
 import CardThree from '../../assets/headerPics/card_three.svg'

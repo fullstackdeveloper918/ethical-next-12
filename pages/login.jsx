@@ -17,6 +17,7 @@ const login = () => {
   const [registered, setRegistered] = useState(false)
   const [forgot_password, setForgotPassword] = useState(false)
   const [isLogin, setIsLogin] = useState(true)
+  const [isDisabled, setIsDisabled] = useState(true)
 
   const [loadQuery, { response, loading, error }] = useFetch(
     `/auth/login`,
@@ -69,6 +70,8 @@ const login = () => {
   const handleChange = (event) => {
     setTerms((current) => !current)
   }
+
+  const handleDisableBtn = (type) => {}
 
   const handleFormType = (type) => {
     if (type === 'login') {
@@ -184,7 +187,7 @@ const login = () => {
                       </div>
                     )}
 
-                    {isLogin && (
+                    {isLogin && !registered && (
                       <div className={Styles.input_box}>
                         <p
                           className={Styles.forgot_password}
@@ -196,7 +199,7 @@ const login = () => {
                     )}
 
                     <div className={Styles.input_box}>
-                      <button type="submit" disabled={loading || !terms}>
+                      <button type="submit" disabled={loading || isDisabled}>
                         {registered ? 'Submit' : 'Login'}
                       </button>
                     </div>
