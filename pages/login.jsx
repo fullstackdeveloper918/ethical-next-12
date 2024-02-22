@@ -138,7 +138,7 @@ const login = () => {
                     <div className={Styles.input_box}>
                       <p
                         className={Styles.forgot_password}
-                        onClick={() => handleFormType('forgot')}
+                        onClick={() => router.push('/forgot')}
                       >
                         Forgot Password?
                       </p>

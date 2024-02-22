@@ -97,3 +97,7 @@
   text-decoration: underline;
   color: #a2d061;
 }
+
+.input_box .reset_password {
+  width: 100%;
+}
