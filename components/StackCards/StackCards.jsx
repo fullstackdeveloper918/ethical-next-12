@@ -85,15 +85,15 @@ const Dummy = () => {
   }, [])
 
   return (
-    <div style={{ marginTop: '300px' }}>
+    <div>
       <div className={styles.text}>
         {first ? (
           <div className={styles.text_animation}>
             <Image
               src={first[0].img}
               alt=""
-              height={400}
-              width={400}
+              height={600}
+              width={600}
               className={styles.text_animation_img}
             />
           </div>
@@ -107,8 +107,8 @@ const Dummy = () => {
                     <Image
                       src={item.img}
                       alt=""
-                      height={400}
-                      width={400}
+                      height={600}
+                      width={600}
                       className={styles.cardImage}
                     />
                   </li>
