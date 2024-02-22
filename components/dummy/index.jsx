@@ -111,15 +111,6 @@ const Dummy = () => {
                       width={400}
                       className={styles.cardImage}
                     />
-                    <p>Flat 25% off</p>
-                    <div>
-                      <p>Cup design</p>
-                      <p>
-                        Lorem ipsum is simply dummy text of the printing and
-                        typesetting industry.
-                      </p>
-                      <button>View Products</button>
-                    </div>
                   </li>
                 )
               })
