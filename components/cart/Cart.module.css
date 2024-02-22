@@ -140,7 +140,7 @@
   resize: none;
   font-size: 14px;
   color: #949090;
-  letter-spacing: 5px;
+
   font-family: 'DM Sans', sans-serif;
 }
 
@@ -258,10 +258,10 @@
   width: 6px;
   height: 10px;
   border: solid white;
-    border-top-width: medium;
-    border-right-width: medium;
-    border-bottom-width: medium;
-    border-left-width: medium;
+  border-top-width: medium;
+  border-right-width: medium;
+  border-bottom-width: medium;
+  border-left-width: medium;
   border-width: 0 2px 2px 0;
   transform: rotate(35deg);
 }

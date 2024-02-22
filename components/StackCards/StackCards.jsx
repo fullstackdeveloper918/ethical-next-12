@@ -1,77 +1,133 @@
-'use client'
-import React from 'react'
-import Styles from './StackCards.module.css'
+import React, { useEffect, useState } from 'react'
+import styles from './StackCards.module.css'
+import CardOne from '../../assets/headerPics/card_one.svg'
+import CardTwo from '../../assets/headerPics/card_two.svg'
+import CardThree from '../../assets/headerPics/card_three.svg'
+import CardFour from '../../assets/headerPics/card_four.svg'
+import CardFive from '../../assets/headerPics/card_five.svg'
 import Image from 'next/image'
-import images from '../../constants/images'
 
-const Stack_Card_Data = [
+let imagesList = [
   {
-    ID: 1,
-    src: images.Stack_Card1,
-    btn: 'Flat 25% off',
-    text: '',
+    id: 1,
+    img: CardOne,
+    className: '',
+    textContent: '',
   },
   {
-    ID: 2,
-    src: images.Stack_Card2,
-    btn: 'Flat 25% off',
-    text: 'two',
+    id: 2,
+    img: CardTwo,
+    className: '',
   },
   {
-    ID: 3,
-    src: images.Stack_Card3,
-    btn: 'Flat 25% off',
-    text: 'three',
+    id: 3,
+    img: CardThree,
+    className: '',
   },
-  // {
-  //   ID: 4,
-  //   src: images.Stack_Card4,
-  //   btn: 'Flat 25% off',
-  //   text: 'four',
-  // },
-  // {
-  //   ID: 5,
-  //   src: images.Stack_Card5,
-  //   btn: 'Flat 25% off',
-  //   text: 'five',
-  // },
+  {
+    id: 4,
+    img: CardFour,
+    className: '',
+  },
+  {
+    id: 5,
+    img: CardFive,
+    className: '',
+  },
 ]
 
-const StackCards = () => {
+let tt
+
+const splitArrayByIndex = (arr, index) => {
+  if (index < arr.length) {
+    return [arr.slice(0, index), arr.slice(-1 * (arr.length - index))]
+  }
+}
+
+const arraySplitFromIndexAndJoinToLast = (array, index) => {
+  let arr = [...array]
+  let [first, last] = splitArrayByIndex(arr, index)
+  return [...last, ...first]
+}
+
+let animiationTiming = 3000
+const Dummy = () => {
+  const [list, setList] = useState(imagesList)
+
+  const [first, setFirst] = useState()
+
+  useEffect(() => {
+    clearInterval(tt)
+
+    let currentIndex = 0
+    tt = setInterval(() => {
+      let moveFirstIndexToLastArr = arraySplitFromIndexAndJoinToLast(
+        imagesList,
+        currentIndex
+      )
+      let [first, last] = splitArrayByIndex(moveFirstIndexToLastArr, 1)
+      setList(last)
+      setFirst(false)
+      setTimeout(() => {
+        setFirst(first)
+      }, 1)
+
+      // setTimeout(() => { // for stack animation
+      //   setList([...last,...first]);
+      // }, animiationTiming-1000);
+
+      if (imagesList.length - 1 === currentIndex) {
+        currentIndex = 0
+      } else {
+        currentIndex++
+      }
+    }, animiationTiming)
+  }, [])
+
   return (
-    <>
-      <div className={Styles.stack_container}>
-        <div className={Styles.stack_left_content}>
-          <div className={Styles.text_left}>
-            <p>Explore our collections</p>
-            <h3>
-              Show me <b> Products that...</b>
-            </h3>
-            <button className={Styles.btnn}>View All Products</button>
+    <div style={{ marginTop: '300px' }}>
+      <div className={styles.text}>
+        {first ? (
+          <div className={styles.text_animation}>
+            <Image
+              src={first[0].img}
+              alt=""
+              height={400}
+              width={400}
+              className={styles.text_animation_img}
+            />
           </div>
-        </div>
-        <div className={Styles.stack_card_wrapper}>
-          <figure className={Styles.stack}>
-            {Stack_Card_Data.map((card) => (
-              <>
-                <div className={`${Styles.card} ${Styles[card.text]}`}>
-                  <span className={Styles.span}>
+        ) : null}
+
+        <ul>
+          {list.length
+            ? list.map((item, ind) => {
+                return (
+                  <li key={ind} className={`card${item.id} ${item.className}`}>
                     <Image
-                      src={card.src}
-                      width={300}
+                      src={item.img}
+                      alt=""
                       height={400}
-                      alt="stack-cards"
+                      width={400}
+                      className={styles.cardImage}
                     />
-                  </span>
-                  <p>{card.btn}</p>
-                </div>
-              </>
-            ))}
-          </figure>
-        </div>
+                    <p>Flat 25% off</p>
+                    <div>
+                      <p>Cup design</p>
+                      <p>
+                        Lorem ipsum is simply dummy text of the printing and
+                        typesetting industry.
+                      </p>
+                      <button>View Products</button>
+                    </div>
+                  </li>
+                )
+              })
+            : null}
+        </ul>
       </div>
-    </>
+    </div>
   )
 }
 
-export default StackCards
+export default Dummy

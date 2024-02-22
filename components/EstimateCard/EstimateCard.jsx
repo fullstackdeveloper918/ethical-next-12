@@ -3,28 +3,11 @@ import Styles from './EstimateCard.module.css'
 import images from '../../constants/images'
 import Image from 'next/image'
 import useFetch from '../../lib/useFetch'
-import axios from 'axios'
 
 const EstimateCard = ({ showEstimate }) => {
   const [quantities, setQuantities] = useState([])
   const token = localStorage.getItem('token_swag')
   console.log(token, 'token')
-
-  // useEffect(() => {
-  //   const datafetch = async () => {
-  //     try {
-  //       const res = await axios.get(
-  //         'https://test.cybersify.tech/Eswag/public/api/cart/918'
-  //       )
-
-  //       console.log(res, 'res')
-  //     } catch (err) {
-  //       console.log('err', err)
-  //     }
-  //   }
-
-  //   datafetch()
-  // }, [])
 
   const handleQuantity = (index, type) => {
     setQuantities((prevQuantities) => {

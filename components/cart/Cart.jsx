@@ -28,8 +28,6 @@ const Cart = ({
   const [values, setValues] = useState({
     email: '',
     password: '',
-    selectedDate: new Date().toISOString().split('T')[0],
-    content: '',
   })
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -43,6 +41,8 @@ const Cart = ({
   }
 
   console.log(ErrorMessage(), 'ErrorMessage')
+
+  console.log(values)
 
   const [loadQuery, { response, loading, error }] = useFetch(
     `/auth/login`,
@@ -75,21 +75,6 @@ const Cart = ({
       dispatch(setRole(response?.data?.role))
       setShowLogin(false)
       toast.success('Logged in sucessfully')
-      // axios
-      //   .get(`https://test.cybersify.tech/Eswag/public/api/cart/${user_Id}`, {
-      //     headers: {
-      //       Authorization: response?.data?.accessToken,
-      //       'Content-Type': 'application/json',
-      //     },
-      //   })
-      //   .then((res) => {
-      //     console.log('Response from cart:', res.data)
-      //     // Handle the response data here
-      //   })
-      //   .catch((err) => {
-      //     console.error('Error:', err)
-      //     // Handle errors here
-      //   })
     }
     if (error) {
       console.log(error, 'errorMessage')
