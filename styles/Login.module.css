@@ -75,3 +75,19 @@
   margin-top: 5px;
   padding-left: 10px;
 }
+
+.input_box:last-child {
+  text-align: center;
+}
+
+.input_box:last-child p span {
+  color: #a2d061;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.input_box .forgot_password {
+  text-align: right;
+  text-decoration: underline;
+  cursor: pointer;
+}

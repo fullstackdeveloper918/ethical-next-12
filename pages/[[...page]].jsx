@@ -68,16 +68,16 @@ Builder.registerComponent(Certified, {
   name: 'Certified',
 })
 
-Builder.registerComponent(StackCards, {
-  name: 'StackCards',
-})
-
 Builder.registerComponent(Product, {
   name: 'Products-page',
 })
 
 Builder.registerComponent(Input, {
   name: 'Services-Input',
+})
+
+Builder.registerComponent(StackCards, {
+  name: 'StackCards',
 })
 export default function Page({ page }) {
   const router = useRouter()
