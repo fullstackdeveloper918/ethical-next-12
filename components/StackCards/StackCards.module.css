@@ -1,0 +1,82 @@
+.text ul {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  padding: 0;
+}
+.text ul li {
+  list-style: none;
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  transition: transform 5s, z-index 1s;
+  display: inline-block;
+  z-index: 0;
+  transform: translateX(0);
+}
+.text ul li:nth-child(2) {
+  z-index: -1;
+  transform: scale(0.95) translateX(-35px);
+}
+.text ul li:nth-child(3) {
+  z-index: -2;
+  transform: scale(0.9) translateX(-70px);
+}
+.text ul li:nth-child(4) {
+  z-index: -3;
+  transform: scale(0.85) translateX(-105px);
+}
+.text ul li:nth-child(5) {
+  z-index: -4;
+  transform: scale(0.8) translateX(-140px);
+}
+
+.text ul li p {
+  position: absolute;
+}
+
+.text ul li div {
+  position: absolute;
+}
+
+.cardImage {
+  width: 400px;
+  height: 400px;
+}
+
+.text {
+  padding-left: 200px;
+}
+.text_animation {
+  animation: rightAnimate 5s linear;
+  animation-fill-mode: forwards;
+  position: absolute;
+  width: 300px;
+  height: 400px;
+}
+.text_animation_img {
+  width: 300px;
+  height: 400px;
+}
+@keyframes rightAnimate {
+  0% {
+    z-index: 100;
+    transform: translateX(0);
+  }
+  25% {
+    z-index: -4;
+    transform: translateX(50px) scale(1.05);
+  }
+  50% {
+    z-index: -4;
+    transform: translateX(-75px) scale(0.9);
+  }
+  75% {
+    z-index: -4;
+    transform: translateX(-100px) scale(0.85);
+  }
+  100% {
+    transform: scale(0.8) translateX(-140px);
+    z-index: -4;
+  }
+}
