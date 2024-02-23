@@ -95,14 +95,14 @@ const PrimaryHeader = () => {
                   className={styles.shop_submenu}
                   onClick={() => router.push('/bags')}
                 >
-                  BAGS
+                  Bags
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem
                   value="right"
                   className={styles.shop_submenu}
                   onClick={() => router.push('/products')}
                 >
-                  ALL Swag
+                  All Swags
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem
                   value="right"
@@ -110,7 +110,7 @@ const PrimaryHeader = () => {
                   s
                   onClick={() => router.push('/wellness')}
                 >
-                  WELLNESS
+                  Wellness
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem
                   value="right"
