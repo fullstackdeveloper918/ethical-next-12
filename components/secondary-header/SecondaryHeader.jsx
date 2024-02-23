@@ -56,14 +56,14 @@ const SecondaryHeader = () => {
   const handleResize = () => {
     setScreenSize(window.innerWidth)
   }
-  const handleInput = (boolean) => {
-    setShowSearchInput(boolean)
-    setInputBtn(boolean)
-  }
-  // const handleCross = () => {
-  //   setShowSearchInput(false)
-  //   setInputBtn(false)
-  // }
+ 
+ const handleInput = (boolean) => {
+  setShowSearchInput(boolean)
+  setInputBtn(boolean)
+ }
+
+  console.log(showSearchInput, 'mani sir')
+ 
   useEffect(() => {
     window.addEventListener('resize', handleResize)
     return () => {
@@ -133,14 +133,14 @@ const SecondaryHeader = () => {
                           className={styles.shop_submenu}
                           onClick={() => router.push('/bags')}
                         >
-                          BAGS
+                          Bags
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="bottom"
                           className={styles.shop_submenu}
                           onClick={() => router.push('/apparel')}
                         >
-                          APPAREL
+                          Apparel
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
@@ -270,9 +270,8 @@ const SecondaryHeader = () => {
                 alt="search"
                 onClick={() => handleInput(true)}
               />
-              {showSearchInput && (
-                <>
-                  <div className={styles.searchInput}>
+                
+                  <div className={`${styles.searchInput} ${showSearchInput ? styles.show_input: ''}`} >
                     <div className={styles.centerField} ref={popupRef}>
                       {/* <Image
                         src={searchImg}
@@ -282,18 +281,19 @@ const SecondaryHeader = () => {
                         alt="search"
                       /> */}
                       <input type="search" placeholder="Search" />
+                          
                       <span>
                         <RxCross2
                           color="black"
                           fontSize={28}
-                          onClick={() => handleInput(false)}
                           className={styles.cross_search}
+                          onClick={() => handleInput(false)}
                         />
                       </span>
                     </div>
                   </div>
-                </>
-              )}
+                
+              
             </span>
           </div>
           {screenSize > 767 && (
