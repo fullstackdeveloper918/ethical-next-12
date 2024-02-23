@@ -23,6 +23,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { useRouter } from 'next/router'
 import { Input } from '@/components/ui/input'
+import useFetch from '@lib/useFetch'
 const countries = [
   {
     id: 1,
@@ -36,6 +37,15 @@ const countries = [
   },
 ]
 const SecondaryHeader = () => {
+  const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
+    `/products`,
+    {
+      method: 'get',
+    }
+  )
+  const [showResults, setShowResults] = useState(false)
+  const [searchProduct, setSearchProduct] = useState('')
+  const [data, setData] = useState([])
   const [showSearchInput, setShowSearchInput] = useState(false)
   const [openLinks, setOpenLinks] = useState(false)
   const router = useRouter()
@@ -53,17 +63,39 @@ const SecondaryHeader = () => {
       document.documentElement.classList.remove('inputAdded')
     }
   }, [inputbtn])
+
+  useEffect(() => {
+    loadQuery()
+    setData(response?.data)
+  }, [searchProduct])
+
+  console.log(data, 'data bro')
+
   const handleResize = () => {
     setScreenSize(window.innerWidth)
   }
- 
- const handleInput = (boolean) => {
-  setShowSearchInput(boolean)
-  setInputBtn(boolean)
- }
 
-  console.log(showSearchInput, 'mani sir')
- 
+  const handleInput = (boolean) => {
+    setShowSearchInput(boolean)
+    setInputBtn(boolean)
+  }
+
+  const handleInputChange = (e) => {
+    if (e.target.value.trim() !== '') {
+      setShowResults(true) // Set showResults to true if the input value is not empty
+      setSearchProduct(e.target.value)
+    } else {
+      setShowResults(false) // Set showResults to false if the input value is empty
+      setSearchProduct('') // Optionally, you can reset the searchProducts state here
+    }
+  }
+
+  console.log(searchProduct)
+
+  const filteredProducts = data?.data?.filter((product) =>
+    product.title.toLowerCase().includes(searchProduct.toLowerCase())
+  )
+
   useEffect(() => {
     window.addEventListener('resize', handleResize)
     return () => {
@@ -270,36 +302,73 @@ const SecondaryHeader = () => {
                 alt="search"
                 onClick={() => handleInput(true)}
               />
-                
-                  <div className={`${styles.searchInput} ${showSearchInput ? styles.show_input: ''}`} >
-                    <div className={styles.centerField} ref={popupRef}>
-                      {/* <Image
-                        src={searchImg}
-                        width={24}
-                        height={24}
-                        className={styles.searchIcon}
-                        alt="search"
-                      /> */}
-                      <input type="search" placeholder="Search" />
-                          
-                      <span>
-                        <RxCross2
-                          color="black"
-                          fontSize={28}
-                          className={styles.cross_search}
-                          onClick={() => handleInput(false)}
-                        />
-                      </span>
+
+              <div
+                className={`${styles.searchInput} ${
+                  showSearchInput ? styles.show_input : ''
+                }`}
+              >
+                <div className={styles.centerField} ref={popupRef}>
+                  <input
+                    type="search"
+                    placeholder="Search"
+                    value={searchProduct}
+                    onChange={handleInputChange}
+                  />
+
+                  <span>
+                    <RxCross2
+                      color="black"
+                      fontSize={28}
+                      className={styles.cross_search}
+                      onClick={() => handleInput(false)}
+                    />
+                  </span>
+
+                  {showResults && (
+                    <div className={styles.search_results}>
+                      <ul>
+                        {filteredProducts?.length !== 0 ? (
+                          filteredProducts?.map((item) => (
+                            <>
+                              <li
+                                className={styles.search_productlist}
+                                onClick={() =>
+                                  router.push(`/products/${item?.id}`)
+                                }
+                              >
+                                <Image
+                                  src={item?.image}
+                                  width={80}
+                                  height={80}
+                                />
+                                <div className={styles.search_productcontent}>
+                                  <h4>{item?.title}</h4>
+                                  <p>
+                                    {(item?.product_description).slice(0, 100)}
+                                  </p>
+                                </div>
+                              </li>
+                            </>
+                          ))
+                        ) : (
+                          <>
+                            <h4 className={styles.empty_Products}>
+                              No products available
+                            </h4>
+                          </>
+                        )}
+                      </ul>
                     </div>
-                  </div>
-                
-              
+                  )}
+                </div>
+              </div>
             </span>
           </div>
           {screenSize > 767 && (
             <div
               className=""
-              onClick={() => router.push('/cart')}
+              onClick={() => router.push('/wishlist')}
               style={{ cursor: 'pointer' }}
             >
               <Image

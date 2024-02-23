@@ -1,0 +1,14 @@
+.common_emptyProducts {
+  min-height: 200px;
+  text-align: center;
+  font-size: 40px;
+  color: #313131;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 767px) {
+  .common_emptyProducts {
+    font-size: 26px;
+  }
+}

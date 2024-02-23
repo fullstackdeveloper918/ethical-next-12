@@ -6,6 +6,7 @@ import CardThree from '../../assets/headerPics/card_three.png'
 import CardFour from '../../assets/headerPics/card_four.png'
 import CardFive from '../../assets/headerPics/card_five.png'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 let imagesList = [
   {
@@ -52,6 +53,7 @@ const arraySplitFromIndexAndJoinToLast = (array, index) => {
 
 let animiationTiming = 3000
 const Dummy = () => {
+  const router = useRouter()
   const [list, setList] = useState(imagesList)
 
   const [first, setFirst] = useState()
@@ -110,6 +112,7 @@ const Dummy = () => {
                       height={600}
                       width={600}
                       className={styles.cardImage}
+                      onClick={() => router.push('/products')}
                     />
                   </li>
                 )

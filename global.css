@@ -69,7 +69,7 @@
 html.inputAdded {
   overflow: hidden;
   position: relative;
-  transition: .5s all ease-in-out;
+  transition: 0.5s all ease-in-out;
 }
 .inputAdded::after {
   position: absolute;
@@ -81,7 +81,7 @@ html.inputAdded {
   left: 0;
   bottom: 0;
   z-index: 1;
-  transition: .5s all ease-in-out;
+  transition: 0.5s all ease-in-out;
 }
 
 body {
@@ -124,7 +124,12 @@ span {
   scrollbar-width: none;
 }
 .primary_header_container .countries_dropdown_container .dropemnu_design {
-  width:80px !important;
+  width: 80px !important;
+}
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0px auto;
 }
 
 .dropemnu_design::-webkit-scrollbar {

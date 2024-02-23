@@ -124,7 +124,7 @@ const PrimaryHeader = () => {
           </div>
         </div>
         <div className={styles.container_right}>
-          <div className={styles.search_container}>
+          {/* <div className={styles.search_container}>
             <Image src={searchImg} alt="down arrow" width={16} height={16} />
 
             <input
@@ -132,7 +132,7 @@ const PrimaryHeader = () => {
               placeholder="Search for product..."
               className={styles.cursor_pointer}
             />
-          </div>
+          </div> */}
           {isLoggedIn ? (
             <div>
               <DropdownMenu>
