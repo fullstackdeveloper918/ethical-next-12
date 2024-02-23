@@ -6,14 +6,15 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import images from '../constants/images'
-// import {
-//   initialValuesRegister,
-//   validationSchemaRegister,
-// } from '../lib/validationSchemas'
+import {
+  initialValuesForgot,
+  validationSchemaForgot,
+} from '../lib/validationSchemas'
 
 const forgot = () => {
   const router = useRouter()
   const [terms, setTerms] = useState(false)
+  const [showPasswords, setShowPasswords] = useState(false)
 
   //   const [loadQuery, { response, loading, error }] = useFetch(
   //     `/auth/register`,
@@ -43,24 +44,10 @@ const forgot = () => {
   //     }
   //   }, [response, error])
 
-  //   const onSubmit = async (values) => {
-  //     try {
-  //       let formData = new FormData()
-  //       formData.append('name', values.name)
-  //       formData.append('email', values.email)
-  //       formData.append('password', values.password)
-  //       formData.append('c_password', values.c_password)
+  const onSubmit = async (values) => {
+    console.log(values)
+  }
 
-  //       loadQuery(formData)
-  //     } catch (error) {
-  //       console.log(error, 'from registerapi api')
-  //     } finally {
-  //     }
-  //   }
-
-  //   const handleChange = (event) => {
-  //     setTerms((current) => !current)
-  //   }
   return (
     <>
       <div className={Styles.login_wrapper}>
@@ -70,35 +57,69 @@ const forgot = () => {
               <Image src={images.ethical_swag} />
             </div>
             <Formik
-            //   initialValues={initialValuesRegister}
-            //   validationSchema={validationSchemaRegister}
-            //   onSubmit={onSubmit}
+              initialValues={initialValuesForgot}
+              validationSchema={validationSchemaForgot}
+              onSubmit={onSubmit}
             >
               {() => (
                 <Form className={Styles.form}>
-                  <div className={Styles.input_box}>
-                    <Field
-                      type="text"
-                      id="email"
-                      name="email"
-                      placeholder="Enter email"
-                    />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className={Styles.error}
-                    />
-                  </div>
-
+                  {showPasswords ? (
+                    <>
+                      <div className={Styles.input_box}>
+                        <Field
+                          type="password"
+                          id="email"
+                          name="new_password"
+                          placeholder="Enter new password"
+                        />
+                        <ErrorMessage
+                          name="new_password"
+                          component="div"
+                          className={Styles.error}
+                        />
+                      </div>
+                      <div className={Styles.input_box}>
+                        <Field
+                          type="password"
+                          id="password"
+                          name="confirm_password"
+                          placeholder="Confirm new password"
+                        />
+                        <ErrorMessage
+                          name="confirm_password"
+                          component="div"
+                          className={Styles.error}
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className={Styles.input_box}>
+                        <Field
+                          type="text"
+                          id="email"
+                          name="email"
+                          placeholder="Enter email"
+                        />
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className={Styles.error}
+                        />
+                      </div>
+                    </>
+                  )}
                   <div className={Styles.input_box}>
                     <button type="submit" className={Styles.reset_password}>
-                      Reset Password
+                      Submit
                     </button>
                   </div>
                   <div className={Styles.input_box}>
                     <p>
-                      Already have an account?
-                      <span onClick={() => router.push('/login')}>Login</span>
+                      Don't have an account?
+                      <span onClick={() => router.push('/register')}>
+                        Register
+                      </span>
                     </p>
                   </div>
                 </Form>

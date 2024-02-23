@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import certifiedLogo from '../../assets/footerPics/certified.svg'
 import facebook from '../../assets/footerPics/facebook.svg'
 import instagram from '../../assets/footerPics/instagram.svg'
@@ -11,6 +11,21 @@ import { useRouter } from 'next/router'
 
 const Footer = () => {
   const router = useRouter()
+
+  const [email, setEmail] = useState('')
+  const [disabled, setDisabled] = useState(true)
+
+  console.log(email)
+
+  const onSubmitEmail = () => {
+    if (email.length < 1) {
+      setDisabled(true)
+    } else {
+      setDisabled(false)
+    }
+    setEmail('')
+  }
+
   return (
     <div className={styles.footer_section}>
       <div className={styles.footer_container}>
@@ -29,40 +44,45 @@ const Footer = () => {
               charity each year.
             </div>
             <div className={styles.inputContainer}>
-              <input type="text" placeholder="Join Our Newsletter" />
-              <button>Send</button>
+              <input
+                type="text"
+                placeholder="Join Our Newsletter"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <button onClick={onSubmitEmail}>Send</button>
             </div>
 
             <div className={styles.social_links}>
               <div className="">
                 <Image
                   src={facebook}
-                  height={16}
-                  width={16}
+                  height={20}
+                  width={20}
                   alt="certified corporation logo"
                 />
               </div>
               <div className="">
                 <Image
                   src={linkdin}
-                  height={16}
-                  width={16}
+                  height={20}
+                  width={20}
                   alt="certified corporation logo"
                 />
               </div>
               <div className="">
                 <Image
                   src={instagram}
-                  height={16}
-                  width={16}
+                  height={20}
+                  width={20}
                   alt="certified corporation logo"
                 />
               </div>
               <div className="">
                 <Image
                   src={youtube}
-                  height={16}
-                  width={16}
+                  height={20}
+                  width={20}
                   alt="certified corporation logo"
                 />
               </div>
@@ -154,19 +174,11 @@ const Footer = () => {
                   Privacy Policy
                 </span>
               </div>
-              <div className="">
-                <span
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => router.push('/privacy-policy')}
-                >
-                  Do not sell my personal information
-                </span>
-              </div>
             </div>
             <div className={styles.column_2}>
               <div className={styles.heading_footer_2}>Reach Out</div>
               <div className="">info@ethicalswag.com</div>
-              <div className="">1-877-256-6998</div>
+              <div className="">1-877-206-6998</div>
               <div className="">1-902-500-1086</div>
             </div>
           </div>
@@ -174,29 +186,40 @@ const Footer = () => {
             <div className={styles.column_4_1st_part}>
               <div className={styles.heading_footer_2}>Sustainability</div>
               <div className="">
-                <span onClick={() => router.push('/faq')}>
+                <span
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => router.push('/faq')}
+                >
                   Frequently Asked Questions
                 </span>
               </div>
               <div className="">
-                <span onClick={() => router.push('/terms-of-service')}>
+                <span
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => router.push('/terms-of-service')}
+                >
                   Terms of Service
                 </span>
               </div>
               <div className="">
-                <span onClick={() => router.push('/privacy-policy')}>
+                <span
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => router.push('/privacy-policy')}
+                >
                   Privacy Policy
-                </span>
-              </div>
-              <div className="">
-                <span onClick={() => router.push('/privacy-policy')}>
-                  Do not sell my personal information
                 </span>
               </div>
             </div>
             <div className={styles.column_4_2nd_part}>
               <div className={styles.heading_footer_2}>Resources</div>
-              <div className="">How to Order</div>
+              <div className="">
+                <span
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => router.push('/what-to-expect')}
+                >
+                  How to Order
+                </span>
+              </div>
             </div>
           </div>
         </div>
