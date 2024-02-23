@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { LIST } from '../../constants/data'
 import { useDispatch } from 'react-redux'
 import { filterPrice } from '../../redux-setup/FiltersSlice'
+import { RxCross2 } from "react-icons/rx";
 
-const FilterPanel = () => {
+const FilterPanel = ({setActiveFilter}) => {
   const dispatch = useDispatch()
   const [inputSlider, setInputSlider] = useState(0)
 
@@ -52,6 +53,8 @@ const FilterPanel = () => {
       <div className={Styles.filterPanel}>
         <div className={Styles.filterPanel_top}>
           <h4 className={Styles.filterPanel_title}>Clear All</h4>
+          <RxCross2 fontSize={25} onClick={() => setActiveFilter(false)}/>
+          
         </div>
         {/* <div className={Styles.filterPanel_Product_Section}></div> */}
         <div className={Styles.filterPanel_ProductCollection_list}>

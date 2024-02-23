@@ -63,7 +63,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
         </div>
       </div>
       <div className={Styles.filter_panel_wrap}>
-        {activeFilter && <FilterPanel />}
+        {activeFilter && <FilterPanel setActiveFilter={setActiveFilter}/>}
       </div>
     </>
   )
