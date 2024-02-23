@@ -272,7 +272,7 @@ const SecondaryHeader = () => {
                   value={country}
                   onValueChange={setCountry}
                 >
-                  <div className={styles.countries_dropdown_container}>
+                  <div className={styles.countries_dropdown_container} >
                     {countries.map((c) => {
                       return (
                         <DropdownMenuRadioItem

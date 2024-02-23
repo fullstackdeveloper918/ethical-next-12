@@ -478,41 +478,18 @@ input[type='radio'] {
 }
 
 /* responsive start */
+@media (min-width:768px){
+  .filterPanel_top svg{
+    display: none !important;
+  }
+}
 
 @media screen and (max-width: 767px) {
   .dropemnu_design {
-    width: 500px;
+    width: 100%;
     z-index: 999;
-    margin-top: -37px;
+    min-width: 290px !important;
+    margin-top: -30px;
   }
-}
-@media screen and (max-width: 676px) {
-  .dropemnu_design {
-    width: 300px;
-  }
-}
-/* @media screen and (max-width:545px) {
-  .dropemnu_design{
-    width: 360px;
-  }  
-} */
-@media screen and (max-width: 500px) {
-  .dropemnu_design {
-    width: 200px;
-  }
-}
-@media screen and (max-width: 425px) {
-  .dropemnu_design {
-    width: 290px;
-  }
-}
-@media screen and (max-width: 390px) {
-  .dropemnu_design {
-    width: 240px;
-  }
-}
-@media screen and (max-width: 320px) {
-  .dropemnu_design {
-    width: 200px;
-  }
+  
 }
