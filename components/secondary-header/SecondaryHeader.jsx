@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import cartImg from '../../assets/headerPics/cart.svg'
 import searchImg from '../../assets/headerPics/Search-black.svg'
 import heartImg from '../../assets/headerPics/Heart.svg'
@@ -37,14 +37,9 @@ const countries = [
   },
 ]
 const SecondaryHeader = () => {
-  const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
-    `/products`,
-    {
-      method: 'get',
-    }
-  )
   const [showResults, setShowResults] = useState(false)
   const [searchProduct, setSearchProduct] = useState('')
+  const [inputValue, setInputValue] = useState(searchProduct)
   const [data, setData] = useState([])
   const [showSearchInput, setShowSearchInput] = useState(false)
   const [openLinks, setOpenLinks] = useState(false)
@@ -64,12 +59,12 @@ const SecondaryHeader = () => {
     }
   }, [inputbtn])
 
-  useEffect(() => {
-    loadQuery()
-    setData(response?.data)
-  }, [searchProduct])
-
-  console.log(data, 'data bro')
+  const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
+    `/products?q=${searchProduct}`,
+    {
+      method: 'get',
+    }
+  )
 
   const handleResize = () => {
     setScreenSize(window.innerWidth)
@@ -80,17 +75,37 @@ const SecondaryHeader = () => {
     setInputBtn(boolean)
   }
 
-  const handleInputChange = (e) => {
-    if (e.target.value.trim() !== '') {
-      setShowResults(true) // Set showResults to true if the input value is not empty
-      setSearchProduct(e.target.value)
-    } else {
-      setShowResults(false) // Set showResults to false if the input value is empty
-      setSearchProduct('') // Optionally, you can reset the searchProducts state here
+  const debounce = (func) => {
+    let timer
+    return function (...args) {
+      const context = this
+      if (timer) clearTimeout(timer)
+      timer = setTimeout(() => {
+        timer = null
+        func.apply(context, args)
+      }, 500)
     }
   }
 
-  console.log(searchProduct)
+  const handleChange = (value) => {
+    // loadQuery()
+    fetch(`https://demo.dataverse.org/api/search?q=${value}`).then((res) =>
+      res.json()
+    )
+    // .then((json) => setSuggestions(json.data.items))
+  }
+
+  const optimizedFn = useCallback(debounce(handleChange), [])
+
+  // const handleChange = () => {
+  //   if (searchProduct !== '') {
+  //     setShowResults(true)
+  //     loadQuery()
+  //     setData(response?.data)
+  //   } else {
+  //     setShowResults(false)
+  //   }
+  // }
 
   const filteredProducts = data?.data?.filter((product) =>
     product.title.toLowerCase().includes(searchProduct.toLowerCase())
@@ -272,7 +287,7 @@ const SecondaryHeader = () => {
                   value={country}
                   onValueChange={setCountry}
                 >
-                  <div className={styles.countries_dropdown_container} >
+                  <div className={styles.countries_dropdown_container}>
                     {countries.map((c) => {
                       return (
                         <DropdownMenuRadioItem
@@ -312,8 +327,11 @@ const SecondaryHeader = () => {
                   <input
                     type="search"
                     placeholder="Search"
-                    value={searchProduct}
-                    onChange={handleInputChange}
+                    // value={searchProduct}
+                    onChange={(e) => {
+                      setSearchProduct(e.target.value)
+                      optimizedFn(e.target.value)
+                    }}
                   />
 
                   <span>
