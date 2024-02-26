@@ -1,0 +1,11 @@
+.pagination_container {
+  width: 100%;
+}
+
+.pagination_container .pagination_content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}

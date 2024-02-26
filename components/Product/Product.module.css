@@ -316,6 +316,12 @@
   line-height: 16px; /* 100% */
 }
 
+.certBy {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
 .number_of_units button {
   padding: 6px 11px;
   border-radius: 30px;

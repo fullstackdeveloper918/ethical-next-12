@@ -6,6 +6,9 @@ import Filter from '../Filter/Filter'
 import Products from '../Products/Products'
 import global from '../../styles/global.module.css'
 import Styles from '../Filter/Filter.module.css'
+import { MdArrowBackIos } from 'react-icons/md'
+import Pagination from '../pagination/Pagination'
+import { IoChevronForwardSharp } from 'react-icons/io5'
 
 const Product = () => {
   const [activeFilter, setActiveFilter] = useState(false)
@@ -40,6 +43,7 @@ const Product = () => {
             />
             <Products response={response} loading={loading} error={error} />
             {/* <Pagination /> */}
+            <Pagination />
           </section>
         </>
       )}

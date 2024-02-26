@@ -9,7 +9,7 @@ import { RxCross2 } from 'react-icons/rx'
 
 const Product = ({ product, loading, error }) => {
   // console.log(Array.isArray(product?.images_ca))
-
+  console.log(product?.certBy)
   const [ReadMore, setIsReadMore] = useState(false)
   // const [imageUrl, setImageUrl] = useState(product?.image)
   const [orderQuantity, setOrderQuantity] = useState(
@@ -195,11 +195,17 @@ const Product = ({ product, loading, error }) => {
               </div>
 
               <div className={Styles.detail_page_right_section}>
-                {product?.certBy && (
-                  <div className={Styles.tag}>
-                    <p>Certified B Corporation</p>
-                  </div>
-                )}
+                <div className={Styles.certBy}>
+                  {product?.certBy &&
+                    JSON.parse(product?.certBy).map((data) => (
+                      <>
+                        <div className={Styles.tag}>
+                          <p>{data}</p>
+                        </div>
+                      </>
+                    ))}
+                </div>
+
                 <div className={Styles.title}>
                   <h4>{product?.title}</h4>
                 </div>
