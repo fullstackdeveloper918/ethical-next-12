@@ -11,24 +11,29 @@
   height: 600px;
   transition: transform 5s, z-index 1s;
   display: inline-block;
+  cursor: pointer;
   z-index: 0;
   transform: translateX(0);
 }
 .text ul li:nth-child(2) {
   z-index: -1;
   transform: scale(0.95) translateX(-35px);
+  cursor: pointer;
 }
 .text ul li:nth-child(3) {
   z-index: -2;
   transform: scale(0.9) translateX(-70px);
+  cursor: pointer;
 }
 .text ul li:nth-child(4) {
   z-index: -3;
   transform: scale(0.85) translateX(-105px);
+  cursor: pointer;
 }
 .text ul li:nth-child(5) {
   z-index: -4;
   transform: scale(0.8) translateX(-140px);
+  cursor: pointer;
 }
 
 .text ul li p {
@@ -61,100 +66,100 @@
   0% {
     z-index: 100;
     transform: translateX(0);
+    cursor: pointer;
   }
   25% {
     z-index: -4;
     transform: translateX(50px) scale(1.05);
+    cursor: pointer;
   }
   50% {
     z-index: -4;
     transform: translateX(-75px) scale(0.9);
+    cursor: pointer;
   }
   75% {
     z-index: -4;
     transform: translateX(-100px) scale(0.85);
+    cursor: pointer;
   }
   100% {
     transform: scale(0.8) translateX(-140px);
     z-index: -4;
+    cursor: pointer;
   }
 }
-@media (max-width:767px){
+@media (max-width: 767px) {
   .text ul {
     width: 400px;
     height: 330px;
-}
+  }
 
-.text ul li {
+  .text ul li {
     width: 300px;
     height: 400px;
-}
-.text_animation_img {
-  width: 300px;
-  height: 400px;
-}
-.text_animation {
-  width: 300px;
-  height: 400px;
-}
-.cardImage {
-  width: 400px;
-  height: 400px;
-  object-fit: contain;
-}
+  }
+  .text_animation_img {
+    width: 300px;
+    height: 400px;
+  }
+  .text_animation {
+    width: 300px;
+    height: 400px;
+  }
+  .cardImage {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+  }
 }
 
-
-
-@media (max-width:576px){
+@media (max-width: 576px) {
   .text ul {
     width: 270px;
     height: 270px;
-}
+  }
 
-.text ul li {
+  .text ul li {
     width: 270px;
     height: 370px;
-}
-.text_animation_img {
+  }
+  .text_animation_img {
     width: 270px;
     height: 370px;
-}
-.text_animation {
+  }
+  .text_animation {
     width: 270px;
     height: 370px;
-}
-.cardImage {
-  width: 270px;
-  height: 270px;
-  object-fit: contain;
-}
+  }
+  .cardImage {
+    width: 270px;
+    height: 270px;
+    object-fit: contain;
+  }
 }
 
-
-@media (max-width:497px){
+@media (max-width: 497px) {
   .text ul {
     width: 220px;
     height: 220px;
-}
+  }
 
-.text ul li {
+  .text ul li {
     width: 220px;
     height: 320px;
-}
-.text_animation_img {
+  }
+  .text_animation_img {
     width: 220px;
     height: 320px;
-}
-.text_animation {
+  }
+  .text_animation {
     width: 220px;
     height: 320px;
+  }
+  .cardImage {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+  }
 }
-.cardImage {
-  width: 220px;
-  height: 220px;
-  object-fit: contain;
-}
-}
-
-

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import Styles from './Product.module.css'
 import Loaders from '../../components/loaders/Loaders'
 import Dot from '../custom-colored-dot/Dot'
+import { RxCross2 } from 'react-icons/rx'
 
 const Product = ({ product, loading, error }) => {
   const [ReadMore, setIsReadMore] = useState(false)
@@ -13,6 +14,8 @@ const Product = ({ product, loading, error }) => {
     +product?.column_1_qty || 200
   )
   const [price, setPrice] = useState(0)
+  const [uploadFirstLogo, setUploadFirstLogo] = useState('')
+  const [uploadSecondLogo, setUploadSecondLogo] = useState('')
   const [activeBtn, setActiveBtn] = useState(0)
   const [custumize, setCustomize] = useState('No Decoration')
   const [activeColor, setActiveColor] = useState()
@@ -96,6 +99,18 @@ const Product = ({ product, loading, error }) => {
           : product?.column_5_retail_price_cad?.replace(/[^0-9.]/g, '')
       )
     }
+  }
+
+  const uploadFirstFile = (e) => {
+    setUploadFirstLogo(e.target.files[0])
+  }
+
+  const uploadSecondFile = (e) => {
+    setUploadSecondLogo(e.target.files[0])
+  }
+
+  const removeLogo = (state) => {
+    state('')
   }
 
   const colors = product?.colours?.split(',')
@@ -372,49 +387,101 @@ const Product = ({ product, loading, error }) => {
                   </div>
 
                   <div className={Styles.upload_logo}>
-                    <label htmlFor="file">
-                      <p>
-                        <span className={Styles.colorLight}> Drop your</span>{' '}
-                        front <span className={Styles.colorLight}>design</span>
-                      </p>
-                      <p className={Styles.fw400}>
-                        <span
-                          className={`${Styles.colorLight} ${Styles.fw400}`}
-                        >
-                          {' '}
-                          or{' '}
-                        </span>{' '}
-                        browse{' '}
-                        <span
-                          className={`${Styles.colorLight} ${Styles.fw400}`}
-                        >
-                          your files{' '}
-                        </span>
-                      </p>
-                      <input type="file" name="" id="file" />
-                    </label>
-                    <label htmlFor="file">
-                      <p>
-                        <span className={Styles.colorLight}> Drop your</span>{' '}
-                        back <span className={Styles.colorLight}>design</span>
-                      </p>
-                      <p className={Styles.fw400}>
-                        <span
-                          className={`${Styles.colorLight} ${Styles.fw400}`}
-                        >
-                          {' '}
-                          or{' '}
-                        </span>{' '}
-                        browse{' '}
-                        <span
-                          className={`${Styles.colorLight} ${Styles.fw400}`}
-                        >
-                          your files{' '}
-                        </span>
-                      </p>
+                    <div>
+                      {uploadFirstLogo ? (
+                        <>
+                          <Image
+                            src={URL.createObjectURL(uploadFirstLogo)}
+                            width={150}
+                            height={150}
+                          />
+                          <RxCross2
+                            onClick={() => removeLogo(setUploadFirstLogo)}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <label htmlFor="file1">
+                            <p>
+                              <span className={Styles.colorLight}>
+                                {' '}
+                                Drop your
+                              </span>{' '}
+                              front{' '}
+                              <span className={Styles.colorLight}>design</span>
+                            </p>
+                            <p className={Styles.fw400}>
+                              <span
+                                className={`${Styles.colorLight} ${Styles.fw400}`}
+                              >
+                                or
+                              </span>
+                              browse
+                              <span
+                                className={`${Styles.colorLight} ${Styles.fw400}`}
+                              >
+                                your files
+                              </span>
+                            </p>
+                            <input
+                              type="file"
+                              name=""
+                              id="file1"
+                              onChange={uploadFirstFile}
+                            />
+                          </label>
+                        </>
+                      )}
+                    </div>
 
-                      <input type="file" name="" id="file" />
-                    </label>
+                    <div>
+                      {uploadSecondLogo ? (
+                        <>
+                          <Image
+                            src={URL.createObjectURL(uploadSecondLogo)}
+                            width={150}
+                            height={150}
+                          />
+                          <RxCross2
+                            onClick={() => removeLogo(setUploadSecondLogo)}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <label htmlFor="file2">
+                            <p>
+                              <span className={Styles.colorLight}>
+                                {' '}
+                                Drop your
+                              </span>{' '}
+                              back{' '}
+                              <span className={Styles.colorLight}>design</span>
+                            </p>
+                            <p className={Styles.fw400}>
+                              <span
+                                className={`${Styles.colorLight} ${Styles.fw400}`}
+                              >
+                                {' '}
+                                or{' '}
+                              </span>{' '}
+                              browse{' '}
+                              <span
+                                className={`${Styles.colorLight} ${Styles.fw400}`}
+                              >
+                                your files{' '}
+                              </span>
+                            </p>
+
+                            <input
+                              type="file"
+                              name=""
+                              id="file2"
+                              onChange={uploadSecondFile}
+                            />
+                          </label>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className={Styles.number_of_units}>

@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { LIST } from '../../constants/data'
 import { useDispatch } from 'react-redux'
 import { filterPrice } from '../../redux-setup/FiltersSlice'
-import { RxCross2 } from "react-icons/rx";
+import { RxCross2 } from 'react-icons/rx'
 
-const FilterPanel = ({setActiveFilter}) => {
+const FilterPanel = ({ setActiveFilter }) => {
   const dispatch = useDispatch()
   const [inputSlider, setInputSlider] = useState(0)
 
@@ -36,7 +36,6 @@ const FilterPanel = ({setActiveFilter}) => {
     }))
   }
 
- 
   const toggleAccordion = (index) => {
     setOpenIndex(index)
     setIsActive(!isActive)
@@ -53,8 +52,7 @@ const FilterPanel = ({setActiveFilter}) => {
       <div className={Styles.filterPanel}>
         <div className={Styles.filterPanel_top}>
           <h4 className={Styles.filterPanel_title}>Clear All</h4>
-          <RxCross2 fontSize={25} onClick={() => setActiveFilter(false)}/>
-          
+          <RxCross2 fontSize={25} onClick={() => setActiveFilter(false)} />
         </div>
         {/* <div className={Styles.filterPanel_Product_Section}></div> */}
         <div className={Styles.filterPanel_ProductCollection_list}>
@@ -102,8 +100,7 @@ const FilterPanel = ({setActiveFilter}) => {
                         </>
                       ) : (
                         <>
-                         
-                            {/* <input
+                          {/* <input
                               type="checkbox"
                               id={`checkbox_id_${index}`}
                               name={child.label}
@@ -116,27 +113,26 @@ const FilterPanel = ({setActiveFilter}) => {
                             >
                               {child.label}
                             </label> */}
-                             <div className={Styles.custom_checkbox}>
-                             <li
-                            key={item.id}
-                            className={Styles.filterPanel_list_item}
-                          >
-                             <input
-                              type="checkbox"
-                              id={`checkbox_id_${index}`}
-                              name={child.label}
-                              checked={isChecked[item.label]}
-                              onChange={handleCheckboxChange}
-                            />
-                    <label
-                              htmlFor={`checkbox_id_${index}`}
-                              onClick={() => handleAddLists(child.label)}
+                          <div className={Styles.custom_checkbox}>
+                            <li
+                              key={item.id}
+                              className={Styles.filterPanel_list_item}
                             >
-                              {child.label}
-                            </label>
+                              <input
+                                type="checkbox"
+                                id={`checkbox_id_${index}`}
+                                name={child.label}
+                                checked={isChecked[item.label]}
+                                onChange={handleCheckboxChange}
+                              />
+                              <label
+                                htmlFor={`checkbox_id_${index}`}
+                                onClick={() => handleAddLists(child.label)}
+                              >
+                                {child.label}
+                              </label>
                             </li>
-                  </div>
-                        
+                          </div>
                         </>
                       )}
                     </>

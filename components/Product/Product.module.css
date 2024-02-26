@@ -274,9 +274,9 @@
   gap: 1.2rem;
 }
 
-.para_text .upload_logo label {
-  width: 100%;
-  max-width: 50%;
+.para_text .upload_logo div {
+  flex: 1;
+  position: relative;
   min-height: 180px;
   cursor: pointer;
   flex-shrink: 0;
@@ -287,6 +287,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.para_text .upload_logo div img {
+  object-fit: contain;
 }
 
 .para_text .upload_logo label p:nth-child(1) {

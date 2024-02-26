@@ -345,7 +345,7 @@
     grid-template-columns: repeat(2, 1fr) !important;
     transition: 0.3s all ease-in-out;
   }
- 
+
   .collection_items > img {
     height: auto !important;
     width: 100%;
@@ -401,9 +401,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-
   .filter_panel_wrap {
-
     padding: 0px 20px 0px 0px;
     background: #fff;
     z-index: 1;
@@ -417,7 +415,6 @@
     max-width: 100% !important;
     margin-left: 0px;
   }
-
 
   .filterPanel {
     width: 100% !important;
@@ -482,14 +479,14 @@
     padding: 15px;
     overflow-y: auto;
     transform: translateX(0%) !important;
-    transition: .5s all ease-in-out;
+    transition: 0.5s all ease-in-out;
   }
-  .filterPanel_top{
+  .filterPanel_top {
     display: flex;
     align-items: center;
     padding-right: 15px;
   }
-  .filter_panel_wrap{
+  .filter_panel_wrap {
     background: #fff;
     z-index: 1;
     height: 100vh;
@@ -502,8 +499,7 @@
     padding: 15px;
     overflow-y: auto;
     transform: translateX(-100%) !important;
-    transition: .5s all ease-in-out;
-
+    transition: 0.5s all ease-in-out;
   }
 }
 
@@ -910,5 +906,11 @@
 @media screen and (max-width: 767px) {
   .filterPanel_list_item {
     padding: 10px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .filterPanel .filterPanel_top svg {
+    display: none;
   }
 }
