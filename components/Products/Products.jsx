@@ -7,6 +7,8 @@ import ProductCard from '../ProductCard/ProductCard'
 import { useSelector } from 'react-redux'
 
 const Products = ({ response, error, loading }) => {
+  console.log(response?.data?.data, 'mil gya')
+
   const inputPrice = useSelector((state) => state.filter?.Price)
 
   const filterProducts = response?.data?.data?.filter(
@@ -110,7 +112,7 @@ const Products = ({ response, error, loading }) => {
             </div>
           </div>
 
-          {filterProducts?.map((item) => (
+          {response?.data?.data?.map((item) => (
             <>
               <ProductCard item={item} key={item.id} />
             </>

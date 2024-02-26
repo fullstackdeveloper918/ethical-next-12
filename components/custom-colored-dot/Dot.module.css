@@ -4,11 +4,20 @@
   flex-shrink: 0;
   border-radius: 50%;
   cursor: pointer;
-  outline: 1.27px solid #D0D0CC;
+  outline: 1.27px solid #d0d0cc;
   outline-offset: 3px;
+  position: relative;
 }
 
 .colored_dot.active {
   outline-color: red;
   outline-offset: 3px;
+}
+
+.colored_dot img {
+  display: inline-block;
+  object-fit: cover;
+  position: absolute;
+  border-radius: 10px;
+  border: 1px solid #0003 !important;
 }

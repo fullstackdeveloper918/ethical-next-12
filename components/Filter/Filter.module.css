@@ -660,6 +660,7 @@
   align-items: center;
   width: 100%;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .checkbtn button {
@@ -792,6 +793,7 @@
   border-radius: 50%;
   padding: 3px;
   transition: all 0.3s ease-in;
+  background-color: #fff;
 }
 .border_svg:hover {
   background-color: #a2d061;

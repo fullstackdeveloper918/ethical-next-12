@@ -89,11 +89,13 @@ const SecondaryHeader = () => {
 
   const handleChange = (value) => {
     // loadQuery()
-    fetch(`https://demo.dataverse.org/api/search?q=${value}`).then((res) =>
-      res.json()
-    )
+    fetch(`https://test.cybersify.tech/Eswag/public/api/products?q=${value}`)
+      .then((res) => res.json())
+      .then((data) => setData(data?.data?.data))
     // .then((json) => setSuggestions(json.data.items))
   }
+
+  console.log(data)
 
   const optimizedFn = useCallback(debounce(handleChange), [])
 
@@ -107,7 +109,7 @@ const SecondaryHeader = () => {
   //   }
   // }
 
-  const filteredProducts = data?.data?.filter((product) =>
+  const filteredProducts = data?.filter((product) =>
     product.title.toLowerCase().includes(searchProduct.toLowerCase())
   )
 

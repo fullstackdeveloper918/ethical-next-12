@@ -4,7 +4,11 @@ const bundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = bundleAnalyzer({
   images: {
-    domains: ['cdn.builder.io', 'test.cybersify.tech'],
+    domains: [
+      'cdn.builder.io',
+      'test.cybersify.tech',
+      'v5.airtableusercontent.com',
+    ],
   },
 
   async headers() {

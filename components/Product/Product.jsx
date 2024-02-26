@@ -8,6 +8,8 @@ import Dot from '../custom-colored-dot/Dot'
 import { RxCross2 } from 'react-icons/rx'
 
 const Product = ({ product, loading, error }) => {
+  // console.log(Array.isArray(product?.images_ca))
+
   const [ReadMore, setIsReadMore] = useState(false)
   // const [imageUrl, setImageUrl] = useState(product?.image)
   const [orderQuantity, setOrderQuantity] = useState(
@@ -113,7 +115,7 @@ const Product = ({ product, loading, error }) => {
     state('')
   }
 
-  const colors = product?.colours?.split(',')
+  console.log(product, 'singlke')
 
   const customizations = [
     'Embroidery',
@@ -121,12 +123,12 @@ const Product = ({ product, loading, error }) => {
     'No Decoration',
   ]
 
-  const Slides = [
-    { id: 1, src: images.shirt_small },
-    { id: 2, src: images.shirt_small },
-    { id: 3, src: images.shirt_small },
-    { id: 4, src: images.shirt_small },
-  ]
+  // const Slides = [
+  //   { id: 1, src: images.shirt_small },
+  //   { id: 2, src: images.shirt_small },
+  //   { id: 3, src: images.shirt_small },
+  //   { id: 4, src: images.shirt_small },
+  // ]
 
   const btnClicked = (index, val) => {
     if (val === 'Embroidery') {
@@ -146,7 +148,9 @@ const Product = ({ product, loading, error }) => {
       ? 4
       : 0
 
-  const imageUrl = product?.image
+  // const parsedImages = Array.isArray(product?.images_ca)
+  //   ? images
+  //   : JSON.parse(product?.images_ca)
 
   return (
     <>
@@ -161,9 +165,9 @@ const Product = ({ product, loading, error }) => {
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
                   <div className={Styles.detail_page_image_content}>
-                    {imageUrl && (
+                    {product?.image && (
                       <Image
-                        src={imageUrl}
+                        src={product?.image}
                         width={400}
                         height={560}
                         alt="Single_Product_Image"
@@ -172,18 +176,20 @@ const Product = ({ product, loading, error }) => {
                     )}
                   </div>
                   <div className={Styles.images_container}>
-                    {Slides.map((img, index) => (
-                      <>
-                        <div className={Styles.img}>
-                          <Image
-                            src={img.src}
-                            alt="Single_Product_Small_Images"
-                            width={61}
-                            height={81}
-                          />
-                        </div>
-                      </>
-                    ))}
+                    {/* {parsedImages &&
+                      parsedImages?.map((imgData, index) => (
+                        <>
+                          {(console.log(img), 'cash')}
+                          <div className={Styles.img}>
+                            <Image
+                              src={imgData?.url}
+                              alt="Single_Product_Small_Images"
+                              width={61}
+                              height={81}
+                            />
+                          </div>
+                        </>
+                      ))} */}
                   </div>
                 </div>
               </div>
@@ -250,17 +256,19 @@ const Product = ({ product, loading, error }) => {
                     />
                   </div>
                   <div className={Styles.colors_container}>
-                    {colors &&
-                      colors.map((color, index) => (
-                        <>
-                          <Dot
-                            color={color}
-                            key={index}
-                            activeColor={activeColor}
-                            setActiveColor={setActiveColor}
-                          />
-                        </>
-                      ))}
+                    {product?.colours &&
+                      Object.entries(product?.colours).map(
+                        ([color, imageUrl]) => {
+                          {
+                            console.log(color, 'hahaha')
+                          }
+                          return (
+                            <>
+                              <Dot color={imageUrl} />
+                            </>
+                          )
+                        }
+                      )}
                   </div>
                 </div>
                 <div className={Styles.cart_left_swift}>
@@ -443,6 +451,7 @@ const Product = ({ product, loading, error }) => {
                             height={150}
                           />
                           <RxCross2
+                            className=""
                             onClick={() => removeLogo(setUploadSecondLogo)}
                           />
                         </>
