@@ -1,5 +1,5 @@
 .cart_section div {
-  width: 100%;
+  width: 100% !important;
 }
 
 .shipping_container {

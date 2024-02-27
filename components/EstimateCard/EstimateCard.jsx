@@ -100,8 +100,10 @@ const EstimateCard = () => {
               ))
             ) : (
               <>
+              <div className={Styles.nothing_show}>
                 <div>Nothing in Cart!</div>
                 <div>Start adding your favs to cart</div>
+                </div>
               </>
             )}
           </div>
