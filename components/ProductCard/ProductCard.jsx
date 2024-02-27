@@ -26,9 +26,15 @@ const ProductCard = ({ item }) => {
 
           <div className={Styles.product_card_content}>
             <h4 className={Styles.title}>{item?.product_title}</h4>
-            <div className={Styles.small_text}>
-              as low as ${item?.unit_price || 0}
-            </div>
+            {item?.unit_price ? (
+              <>
+                <div className={Styles.small_text}>
+                  as low as ${item?.unit_price}
+                </div>
+              </>
+            ) : (
+              ''
+            )}
             <div className={Styles.colors}>
               {item?.colours &&
                 Object.entries(item?.colours).map(([color, imageUrl]) => {

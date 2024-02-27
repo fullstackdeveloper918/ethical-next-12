@@ -71,24 +71,6 @@ const login = () => {
     setTerms((current) => !current)
   }
 
-  const handleDisableBtn = (type) => {}
-
-  const handleFormType = (type) => {
-    if (type === 'login') {
-      setIsLogin(true)
-      setForgotPassword(false)
-      setRegistered(false)
-    } else if (type === 'register') {
-      setIsLogin(true)
-      setForgotPassword(false)
-      setRegistered(true)
-    } else if (type === 'forgot') {
-      setIsLogin(false)
-      setRegistered(false)
-      setForgotPassword(true)
-    }
-  }
-
   return (
     <>
       <div className={Styles.login_wrapper}>
@@ -102,7 +84,7 @@ const login = () => {
               validationSchema={validationSchema}
               onSubmit={onSubmit}
             >
-              {() => (
+              {({ values }) => (
                 <>
                   <Form className={Styles.form}>
                     <div className={Styles.input_box}>
@@ -136,16 +118,21 @@ const login = () => {
                     </div>
 
                     <div className={Styles.input_box}>
-                      <p
+                      <label
                         className={Styles.forgot_password}
                         onClick={() => router.push('/forgot')}
                       >
                         Forgot Password?
-                      </p>
+                      </label>
                     </div>
 
                     <div className={Styles.input_box}>
-                      <button type="submit" disabled={loading || isDisabled}>
+                      <button
+                        type="submit"
+                        disabled={
+                          loading || values.email == '' || values.password == ''
+                        }
+                      >
                         Login
                       </button>
                     </div>

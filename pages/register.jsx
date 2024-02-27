@@ -44,6 +44,7 @@ const register = () => {
   }, [response, error])
 
   const onSubmit = async (values) => {
+    console.log(values, 'helo values')
     try {
       let formData = new FormData()
       formData.append('name', values.name)
@@ -58,7 +59,7 @@ const register = () => {
     }
   }
 
-  const handleChange = (event) => {
+  const handleCheckboxChange = (event) => {
     setTerms((current) => !current)
   }
   return (
@@ -74,7 +75,15 @@ const register = () => {
               validationSchema={validationSchemaRegister}
               onSubmit={onSubmit}
             >
-              {() => (
+              {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting,
+              }) => (
                 <Form className={Styles.form}>
                   <div className={Styles.input_box}>
                     <Field
@@ -119,7 +128,7 @@ const register = () => {
                   </div>
                   <div className={Styles.input_box}>
                     <Field
-                      type="c_password"
+                      type="password"
                       id="c_password"
                       name="c_password"
                       placeholder="Confirm password"
@@ -131,19 +140,33 @@ const register = () => {
                     />
                   </div>
                   <div className={Styles.input_radio_content}>
-                    <input
-                      type="checkbox"
-                      name="terms"
-                      value={terms}
-                      onChange={handleChange}
-                    />
-                    <p>
-                      I agree to the <a>terms & conditions | privacy policy</a>
-                    </p>
+                    <div className={Styles.custom_checkbox}>
+                      <input
+                        type="checkbox"
+                        name="terms"
+                        value={terms}
+                        onChange={handleCheckboxChange}
+                        id="checkBox"
+                      />
+                      <label htmlFor="checkBox">
+                        I agree to the<a>terms & conditions | privacy policy</a>
+                      </label>
+                    </div>
                   </div>
 
                   <div className={Styles.input_box}>
-                    <button type="submit" disabled={loading || !terms}>
+                    <button
+                      type="submit"
+                      disabled={
+                        loading ||
+                        !terms ||
+                        values.name == '' ||
+                        values.email == '' ||
+                        values.password == '' ||
+                        values.c_password == '' ||
+                        values.password !== values.c_password
+                      }
+                    >
                       Submit
                     </button>
                   </div>

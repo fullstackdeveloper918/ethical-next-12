@@ -12,3 +12,9 @@
     font-size: 26px;
   }
 }
+
+.product_section {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
