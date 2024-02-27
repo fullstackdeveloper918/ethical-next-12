@@ -15,8 +15,6 @@ const Footer = () => {
   const [email, setEmail] = useState('')
   const [disabled, setDisabled] = useState(true)
 
-  console.log(email)
-
   const onSubmitEmail = () => {
     if (email.length < 1) {
       setDisabled(true)
