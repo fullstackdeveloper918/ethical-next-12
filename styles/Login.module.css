@@ -36,7 +36,7 @@
   height: 60px;
   width: 100%;
   outline: none;
-  border: 1px solid #CACACA;
+  border: 1px solid #cacaca;
   border-radius: 30px;
   padding-left: 1.5rem;
   font-size: 17px;
@@ -105,10 +105,9 @@
   width: 100%;
 }
 
-
-.registered_text{
+.registered_text {
   color: #949090;
 }
-.registered_text span{
-font-weight: 500;
+.registered_text span {
+  font-weight: 500;
 }
