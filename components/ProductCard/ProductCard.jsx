@@ -21,7 +21,7 @@ const ProductCard = ({ item }) => {
               alt="products_images"
             />
           ) : (
-            <Image src={images.shirt_small} width={278} height={311} />
+            <Image src={images.No_product} width={278} height={311} />
           )}
 
           <div className={Styles.product_card_content}>

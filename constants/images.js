@@ -30,6 +30,7 @@ import Info_Icon from '../assets/info.svg'
 import Ethical_swag_small_logo from '../assets/Ethical_Swag_small_logo.svg'
 import Browse_file from '../assets/Browse File.png'
 import Wire_transfer_icon from '../assets/Wire_transfer_icon.svg'
+import No_product from '../assets/stop.svg'
 
 const images = {
   ethical_swag,
@@ -48,6 +49,7 @@ const images = {
   star,
   shirt_small,
   Stack_Card1,
+  No_product,
   Stack_Card2,
   Stack_Card3,
   Stack_Card4,
