@@ -95,14 +95,16 @@
 }
 
 .amountwrapper > .amountContainer {
-  display: grid;
+  /* display: grid; */
+  display: flex;
   align-items: center;
-  grid-template-columns: 1fr 3fr 1fr;
-  min-width: 81px;
+  /* grid-template-columns: 1fr 3fr 1fr; */
+  min-width: max-content;
   border-radius: 4.301px;
   border: 0.717px solid rgba(162, 208, 97, 0.5);
   text-align: center;
   font-size: 12px;
+  padding: 5px 10px;
 }
 
 .decrease_amount,

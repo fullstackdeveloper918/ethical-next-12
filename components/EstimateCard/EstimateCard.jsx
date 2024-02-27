@@ -5,16 +5,31 @@ import Image from 'next/image'
 import useFetch from '../../lib/useFetch'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteCartItem } from '../../redux-setup/cartSlice'
+import { useRouter } from 'next/router'
 
 const EstimateCard = () => {
   const dispatch = useDispatch()
-  const cartItems = useSelector((state) => state.cart.cartItems)
-  console.log(cartItems, 'cartItems from estimate')
+  const router = useRouter()
 
+  const cartItems = useSelector((state) => state.cart.cartItems)
+  const [totalCartPrice, setTotalCartPrice] = useState(0)
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))
   }
 
+  useEffect(() => {
+    totalPriceOfCart()
+  }, [cartItems])
+
+  const totalPriceOfCart = () => {
+    let totalPrice = 0
+    for (let i = 0; i < cartItems.length; i++) {
+      let tempPrice = cartItems[i]
+      let a = tempPrice.quantity * tempPrice.price
+      totalPrice += a
+    }
+    setTotalCartPrice(totalPrice)
+  }
   return (
     <>
       <div className={Styles.estimate_wrapper}>
@@ -25,7 +40,11 @@ const EstimateCard = () => {
             {cartItems.length > 0 ? (
               cartItems.map((item, index) => (
                 <div className={Styles.estimate_content} key={item.id}>
-                  <div className={Styles.estimate_content_imgContent}>
+                  <div
+                    className={Styles.estimate_content_imgContent}
+                    onClick={() => router.push(`/products/${item.id}`)}
+                    style={{ cursor: 'pointer' }}
+                  >
                     <Image
                       src={item.image ? item.image : images.cart_image}
                       width={49}
@@ -34,7 +53,11 @@ const EstimateCard = () => {
                     />
                   </div>
                   <div className={Styles.estimate_content_textContent}>
-                    <h4 className={Styles.title}>
+                    <h4
+                      className={Styles.title}
+                      onClick={() => router.push(`/products/${item.id}`)}
+                      style={{ cursor: 'pointer' }}
+                    >
                       {item.heading.slice(0, 70) + '...'}
                     </h4>
                     <span className={Styles.price}>
@@ -42,23 +65,23 @@ const EstimateCard = () => {
                     </span>
                     <div className={Styles.amountwrapper}>
                       <div className={Styles.amountContainer}>
-                        <div
+                        {/* <div
                           className={Styles.decrease_amount}
                           onClick={() => handleQuantity(index, 'dec')}
                         >
                           -
-                        </div>
+                        </div> */}
 
                         <div className={Styles.amount_number}>
                           {item.quantity}
                         </div>
 
-                        <div
+                        {/* <div
                           className={Styles.increase_amount}
                           onClick={() => handleQuantity(index, 'inc')}
                         >
                           +
-                        </div>
+                        </div> */}
                       </div>
                       <div
                         style={{ cursor: 'pointer' }}
@@ -86,7 +109,7 @@ const EstimateCard = () => {
             <div className={Styles.estimate_horizontal_line}></div>
             <div className={Styles.total_amount_container}>
               <span className={Styles.text}>Total Estimate</span>
-              <span className={Styles.price}>$11670</span>
+              <span className={Styles.price}>${totalCartPrice}</span>
             </div>
             <button className={Styles.estimate_bottom_btn}>
               Submit Estimate Request

@@ -9,8 +9,6 @@ import { CiShare2 } from 'react-icons/ci'
 import images from 'constants/images'
 
 const ProductCard = ({ item }) => {
-  console.log(item?.image, 'mani sir')
-
   return (
     <>
       <Link href={`products/${item?.id}`}>
@@ -34,9 +32,6 @@ const ProductCard = ({ item }) => {
             <div className={Styles.colors}>
               {item?.colours &&
                 Object.entries(item?.colours).map(([color, imageUrl]) => {
-                  {
-                    console.log(color, 'hahaha')
-                  }
                   return (
                     <>
                       <Dot color={imageUrl} />
