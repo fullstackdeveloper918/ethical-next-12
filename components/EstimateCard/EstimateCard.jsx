@@ -9,7 +9,6 @@ import { deleteCartItem } from '../../redux-setup/cartSlice'
 const EstimateCard = () => {
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart.cartItems)
-  console.log(cartItems, 'cartItems from estimate')
 
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))

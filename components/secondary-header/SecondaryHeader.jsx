@@ -117,6 +117,8 @@ const SecondaryHeader = () => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
+
+  const cartItems = useSelector((state) => state.cart.cartItems.length)
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
@@ -401,7 +403,7 @@ const SecondaryHeader = () => {
           <div
             className=""
             onClick={() => router.push('/cart')}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: 'pointer', position: 'relative' }}
           >
             <Image
               src={cartImg}
@@ -410,6 +412,24 @@ const SecondaryHeader = () => {
               alt="cart"
               className={styles.cursor_pointer}
             />
+            <span
+              style={{
+                color: '#fff',
+                position: 'absolute',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '20px',
+                height: '20px',
+                top: '-3px',
+                right: '-8px',
+                borderRadius: '50%',
+                background: 'red',
+                padding: '5px',
+              }}
+            >
+              {cartItems}
+            </span>
           </div>
         </div>
       </div>
