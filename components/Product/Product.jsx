@@ -128,13 +128,6 @@ const Product = ({ product, loading, error }) => {
     'No Decoration',
   ]
 
-  // const Slides = [
-  //   { id: 1, src: images.shirt_small },
-  //   { id: 2, src: images.shirt_small },
-  //   { id: 3, src: images.shirt_small },
-  //   { id: 4, src: images.shirt_small },
-  // ]
-
   const btnClicked = (index, val) => {
     if (val === 'Embroidery') {
       setCustomize('Embroidery')
@@ -273,14 +266,6 @@ const Product = ({ product, loading, error }) => {
                 </div>
                 <div className={Styles.reviews}>
                   <div className={Styles.star_review}>
-                    {/* <span className="star_review_images">
-                 <Image
-                   src={images.star}
-                   width={20}
-                   height={20}
-                   alt="review_images"
-                 />
-             </span> */}
                     <span className={Styles.star_review_images}>
                       {product?.emoji_ratings}
                     </span>
@@ -306,8 +291,6 @@ const Product = ({ product, loading, error }) => {
                   </p>
                 </div>
                 <div className={Styles.input_checkbox}>
-                  {/* <input type="checkbox" name="" id="" />
-                  <span>Is this a sample ?</span> */}
                   <div className={Styles.custom_checkbox}>
                     <input type="checkbox" name="services" id="sample" />
                     <label for="sample">Is this a sample? </label>
@@ -627,8 +610,6 @@ const Product = ({ product, loading, error }) => {
                       onChange={handleQuantitySize}
                       min="0"
                     />
-                    {/* {product?.product_dimensions?.sizes === null &&
-                      product?.product_dimensions?.other} */}
                   </div>
                 </div>
                 <div className={Styles.standard_business_section}>

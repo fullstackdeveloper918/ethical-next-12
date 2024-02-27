@@ -400,6 +400,7 @@ const SecondaryHeader = () => {
               />
             </div>
           )}
+
           <div
             className=""
             onClick={() => router.push('/cart')}
@@ -412,24 +413,26 @@ const SecondaryHeader = () => {
               alt="cart"
               className={styles.cursor_pointer}
             />
-            <span
-              style={{
-                color: '#fff',
-                position: 'absolute',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '20px',
-                height: '20px',
-                top: '-3px',
-                right: '-8px',
-                borderRadius: '50%',
-                background: '#a2d061',
-                padding: '5px',
-              }}
-            >
-              {cartItems}
-            </span>
+            {cartItems && (
+              <span
+                style={{
+                  color: '#fff',
+                  position: 'absolute',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '20px',
+                  height: '20px',
+                  top: '-3px',
+                  right: '-8px',
+                  borderRadius: '50%',
+                  background: '#a2d061',
+                  padding: '5px',
+                }}
+              >
+                {cartItems}
+              </span>
+            )}
           </div>
         </div>
       </div>
