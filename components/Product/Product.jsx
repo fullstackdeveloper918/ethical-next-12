@@ -12,7 +12,7 @@ const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
   const [ReadMore, setIsReadMore] = useState(false)
   const [orderQuantity, setOrderQuantity] = useState(
-    +product?.column_1_qty || 200 
+    +product?.column_1_qty || 200
   )
   const [price, setPrice] = useState(0)
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
@@ -25,15 +25,13 @@ const Product = ({ product, loading, error }) => {
     L: 25,
     XL: 25,
   })
-  const [cartState, setCartState] = useState(
-    {
-      quantity: 0,
-      image: null,
-      heading: null,
-      price: null,
-      id: null
-    },
-  )
+  const [cartState, setCartState] = useState({
+    quantity: 0,
+    image: null,
+    heading: null,
+    price: null,
+    id: null,
+  })
   const [isItemInCart, setIsItemInCart] = useState(false)
 
   useEffect(() => {
@@ -80,8 +78,7 @@ const Product = ({ product, loading, error }) => {
     if (orderQuantity <= product?.column_1_qty) {
       setPrice(
         country === 'usa'
-          ? product?.column_1_retail_price_usd?
-          .replace(/[^0-9.]/g, '')
+          ? product?.column_1_retail_price_usd?.replace(/[^0-9.]/g, '')
           : product?.column_1_retail_price_cad?.replace(/[^0-9.]/g, '')
       )
     } else if (orderQuantity <= product?.column_2_qty) {
@@ -165,10 +162,9 @@ const Product = ({ product, loading, error }) => {
       image: product?.image,
       heading: product?.product_description,
       price: price,
-      id: product.id
+      id: product.id,
     })
   }
-
 
   useEffect(() => {
     if (cartState.quantity) {
@@ -176,16 +172,13 @@ const Product = ({ product, loading, error }) => {
     }
   }, [cartState])
 
-
   const cartItems = useSelector((state) => state.cart.cartItems)
   console.log(cartItems, 'cartItems')
 
   const checkFromCart = () => {
     const idToFind = product.id
-    const existingItemIndex = cartItems.find(
-      (item) => item.id === idToFind
-    )
-    if(existingItemIndex){
+    const existingItemIndex = cartItems.find((item) => item.id === idToFind)
+    if (existingItemIndex) {
       setIsItemInCart(existingItemIndex)
       setOrderQuantity(existingItemIndex.quantity)
       setPrice(existingItemIndex.price)
@@ -193,8 +186,7 @@ const Product = ({ product, loading, error }) => {
   }
 
   useEffect(() => {
-    if(product?.id){
-
+    if (product?.id) {
       checkFromCart()
     }
   }, [product?.id])
