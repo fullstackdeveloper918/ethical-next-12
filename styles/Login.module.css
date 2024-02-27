@@ -11,7 +11,7 @@
   min-width: 713px;
   background-color: #fff;
   border-radius: 30px;
-  padding-block: 66px;
+  padding-block: 60px;
 }
 
 .login_content {
@@ -24,24 +24,25 @@
 }
 
 .form {
-  margin-top: 25px;
+  margin-top: 30px;
   padding-inline: 3.5rem;
 }
 .form .input_box {
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 0;
   padding: 10px 0;
 }
 .input_box input {
-  height: 64px;
+  height: 60px;
   width: 100%;
   background-color: #f7f7f7;
   outline: none;
-  border: 1px solid lightgrey;
+  border: 1px solid #cacaca;
   border-radius: 30px;
   padding-left: 1.5rem;
   font-size: 17px;
   transition: all 0.3s ease;
+  background-color: #f7f7f7d7;
 }
 
 .input_radio_content {
@@ -91,6 +92,8 @@
   text-align: left;
   text-decoration: underline;
   cursor: pointer;
+  font-size: 14px;
+  color: #949090;
 }
 
 .input_box span {
@@ -167,4 +170,11 @@
 
 .custom_checkbox input[type='checkbox']:checked + label:after {
   visibility: visible;
+}
+
+.registered_text {
+  color: #949090;
+}
+.registered_text span {
+  font-weight: 500;
 }

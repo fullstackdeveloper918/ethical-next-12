@@ -138,7 +138,7 @@ const login = () => {
                     </div>
 
                     <div className={Styles.input_box}>
-                      <p>
+                      <p className={Styles.registered_text}>
                         Dont have an account?
                         <span onClick={() => router.push('/register')}>
                           Register
