@@ -171,7 +171,7 @@ const register = () => {
                     </button>
                   </div>
                   <div className={Styles.input_box}>
-                    <p>
+                    <p className={Styles.registered_text}>
                       Already have an account?
                       <span onClick={() => router.push('/login')}>Login</span>
                     </p>

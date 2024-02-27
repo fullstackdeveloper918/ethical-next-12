@@ -16,6 +16,9 @@
   margin-bottom: 1rem;
   border-top: 1px solid rgba(217, 217, 217, 0.5);
 }
+.detail_page_container::-webkit-scrollbar{
+  display: none;
+}
 
 .detail_page_left_top {
   width: 100%;
@@ -28,6 +31,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: calc(100vh - 218px);
 }
 
 .detail_page_left_top .images_container {
@@ -66,7 +70,6 @@
 }
 
 .detail_page_right_section .tag {
-  width: 149px;
   height: 28px;
   flex-shrink: 0;
   display: flex;
@@ -75,6 +78,7 @@
   border-radius: 30px;
   border: 1px solid var(--green, #a2d061);
   background: rgba(162, 208, 97, 0.15);
+  padding: 5px 20px;
 }
 
 .detail_page_right_section .tag p {

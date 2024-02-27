@@ -166,7 +166,7 @@ const Product = ({ product, loading, error }) => {
     } else {
       console.log('No image data available')
     }
-  }, [])
+  }, [product?.id])
 
   const handleAddToCart = (e) => {
     e.preventDefault()
@@ -335,12 +335,18 @@ const Product = ({ product, loading, error }) => {
                     />
                   </div>
                   <div className={Styles.cart_left_swift_content}>
-                    <input type="checkbox" name="" id="" />
-                    <label>
-                      Checking this box will override the date selected above to
+
+                  <div className={Styles.custom_checkbox}>
+                    <input type="checkbox" name="swiftContent" id="swiftContent" />
+                    <label for="swiftContent"> Checking this box will override the date selected above to
                       within 10 business days if you have gone through the Swift
-                      Swag process. Please note additional charges will apply.
-                    </label>
+                      Swag process. Please note additional charges will apply. </label>
+                  </div>
+
+                    {/* <input type="checkbox" name="" id="" />
+                    <label>
+                     
+                    </label> */}
                   </div>
                 </div>
                 <div className={Styles.customization_text}>
@@ -475,7 +481,7 @@ const Product = ({ product, loading, error }) => {
                               <span
                                 className={`${Styles.colorLight} ${Styles.fw400}`}
                               >
-                                or
+                                or 
                               </span>
                               browse
                               <span

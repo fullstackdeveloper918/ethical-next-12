@@ -25,7 +25,7 @@
 
 .form {
   margin-top: 30px;
-  padding-inline: 3.5rem;
+  padding-inline: 66px;
 }
 .form .input_box {
   width: 100%;
@@ -140,7 +140,7 @@
   top: 0;
   width: 20px;
   height: 20px;
-  border: 2px solid #aaa;
+  border: 1px solid #CACACA;
   border-radius: 50%;
   background-color: #f9f9f9;
 }
@@ -176,5 +176,6 @@
   color: #949090;
 }
 .registered_text span {
-  font-weight: 500;
+  font-weight: 500 ; 
+  margin-left: 2px;
 }
