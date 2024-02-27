@@ -15,6 +15,7 @@ const Product = ({ product, loading, error }) => {
     +product?.column_1_qty || 200
   )
   const [price, setPrice] = useState(0)
+  const [singleImage, setSingleImage] = useState('')
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
   const [productImages, setProductImages] = useState([])
   const [uploadSecondLogo, setUploadSecondLogo] = useState('')
@@ -166,6 +167,8 @@ const Product = ({ product, loading, error }) => {
     } else {
       console.log('No image data available')
     }
+
+    setSingleImage(product?.image)
   }, [product?.id])
 
   const handleAddToCart = (e) => {
@@ -204,6 +207,13 @@ const Product = ({ product, loading, error }) => {
     }
   }, [product?.id])
 
+  const updateImage = (index) => {
+    const selectedImage = productImages[index].url
+    setSingleImage(selectedImage)
+  }
+
+  console.log(singleImage, 'singleimage')
+
   return (
     <>
       {loading ? (
@@ -217,9 +227,9 @@ const Product = ({ product, loading, error }) => {
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
                   <div className={Styles.detail_page_image_content}>
-                    {product?.image && (
+                    {singleImage && (
                       <Image
-                        src={product?.image}
+                        src={singleImage}
                         width={400}
                         height={560}
                         alt="Single_Product_Image"
@@ -228,7 +238,7 @@ const Product = ({ product, loading, error }) => {
                     )}
                   </div>
                   <div className={Styles.images_container}>
-                    {productImages.map((image) => (
+                    {productImages.map((image, index) => (
                       <>
                         <div>
                           <Image
@@ -236,6 +246,8 @@ const Product = ({ product, loading, error }) => {
                             width={100}
                             height={100}
                             alt="product_image"
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => updateImage(index)}
                           />
                         </div>
                       </>
