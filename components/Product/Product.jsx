@@ -153,7 +153,7 @@ const Product = ({ product, loading, error }) => {
       : 0
 
   useEffect(() => {
-    const jsonData = product?.images_ca
+    const jsonData = product?.images_us
     if (jsonData) {
       console.log(jsonData, 'jsonData')
       try {
@@ -166,7 +166,7 @@ const Product = ({ product, loading, error }) => {
     } else {
       console.log('No image data available')
     }
-  }, [])
+  }, [product?.id])
 
   const handleAddToCart = (e) => {
     e.preventDefault()
@@ -257,7 +257,7 @@ const Product = ({ product, loading, error }) => {
                 </div>
 
                 <div className={Styles.title}>
-                  <h4>{product?.title}</h4>
+                  <h4>{product?.product_title}</h4>
                 </div>
                 <div className={Styles.reviews}>
                   <div className={Styles.star_review}>

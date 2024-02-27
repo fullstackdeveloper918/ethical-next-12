@@ -12,8 +12,10 @@ import { IoChevronForwardSharp } from 'react-icons/io5'
 
 const Product = () => {
   const [activeFilter, setActiveFilter] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalData, setTotalData] = useState(response?.data?.total)
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
-    `/products`,
+    `/products?page=${1}&pageSize=${12}`,
     {
       method: 'get',
     }
@@ -21,6 +23,16 @@ const Product = () => {
   useEffect(() => {
     loadQuery()
   }, [])
+
+  useEffect(() => {
+    if (response) {
+      setCurrentPage(response?.data?.current_page)
+      setTotalData(response?.data?.total)
+    }
+  }, [response])
+
+  console.log(currentPage, 'currentPage')
+  console.log(totalData, ' TotalData')
 
   return (
     <>
