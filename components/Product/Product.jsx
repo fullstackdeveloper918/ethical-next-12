@@ -160,6 +160,8 @@ const Product = ({ product, loading, error }) => {
     } else {
       console.log('No image data available')
     }
+
+    setSingleImage(product?.image)
   }, [product?.id])
 
   const handleAddToCart = (e) => {
