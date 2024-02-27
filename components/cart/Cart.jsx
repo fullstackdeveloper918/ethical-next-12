@@ -140,7 +140,7 @@ const Cart = ({
 
   return (
     <>
-      <section className={Styles.cart_section}>
+      <section className={Styles.cart_section} >
         {/* Left Section  */}
         <div className={Styles.cart_left}>
           {/* <QuotationSubmissionHeader /> */}
@@ -309,9 +309,9 @@ const Cart = ({
                 onChange={handleInputChange}
               />
             </div>
-            <div className={Styles.cart_left_faqInput}>
+            {/* <div className={Styles.cart_left_faqInput}> */}
               {/* <p>Swift swag?</p> */}
-              <div className={Styles.cart_left_swift_content}>
+              {/* <div className={Styles.cart_left_swift_content}> */}
                 {/* <input type="checkbox" name="" id="" />
                 <label>
                   Checking this box will override the date selected above to
@@ -327,8 +327,8 @@ const Cart = ({
                     Swag process. Please note additional charges will apply.
                   </label>
                 </div> */}
-              </div>
-            </div>
+              {/* </div> */}
+            {/* </div> */}
             <div className={Styles.cart_left_need}>
               <p>Notes about your order:</p>
               <textarea

@@ -42,8 +42,7 @@
 }
 
 .form_inputs > .form_button {
-  width: 20%;
-  padding: 16px;
+  padding: 12px 60px; 
   border: 1px solid #cacaca;
   color: var(--green, #a2d061);
   text-align: center;
@@ -269,7 +268,9 @@
 .custom_checkbox input[type='checkbox']:checked + label:after {
   visibility: visible;
 }
-
+.cart_section div {                                                         
+  width: 100% !important;
+}                                                     
 @media screen and (max-width: 1600px) {
   .cart_section {
     max-width: 1260px;
@@ -282,10 +283,10 @@
     max-width: 1140px;
     gap: 2rem;
   }
-  .form_inputs > .form_button {
-    width: 40%;
-    padding: 12px;
-  }
+  /* .form_inputs > .form_button {
+   
+    padding: 14px 12px;
+  } */
   .cart_left_FAQ > h3 {
     font-size: 24px;
     margin-bottom: 1.8rem;
@@ -300,8 +301,8 @@
     gap: 2rem;
   }
   .form_inputs > .form_button {
-    width: 20%;
-    padding: 16px;
+
+    padding: 12px 40px; 
   }
   .flexwrap {
     flex-wrap: wrap;
@@ -321,6 +322,10 @@
     max-width: 95%;
     margin: auto;
   }
+  .cart_section > div{
+    max-width: 100%;
+  width: 100%;
+  }
   .cart_left_interested_section_fields {
     flex-wrap: wrap;
     margin-top: 0.5rem;
@@ -334,6 +339,9 @@
   .widthFull {
     width: 100%;
   }
+.flexform {
+  flex-wrap: wrap;
+}
 }
 @media screen and (max-width: 767px) {
   .cart_section {
