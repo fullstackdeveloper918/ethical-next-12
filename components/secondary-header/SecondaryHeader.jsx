@@ -424,7 +424,7 @@ const SecondaryHeader = () => {
                 top: '-3px',
                 right: '-8px',
                 borderRadius: '50%',
-                background: 'red',
+                background: '#a2d061',
                 padding: '5px',
               }}
             >

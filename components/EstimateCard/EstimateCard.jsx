@@ -9,11 +9,24 @@ import { deleteCartItem } from '../../redux-setup/cartSlice'
 const EstimateCard = () => {
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart.cartItems)
-
+  const [totalCartPrice, setTotalCartPrice] = useState(0)
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))
   }
 
+  useEffect(() => {
+    totalPriceOfCart()
+  }, [cartItems])
+
+  const totalPriceOfCart = () => {
+    let totalPrice = 0
+    for (let i = 0; i < cartItems.length; i++) {
+      let tempPrice = cartItems[i]
+      let a = tempPrice.quantity * tempPrice.price
+      totalPrice += a
+    }
+    setTotalCartPrice(totalPrice)
+  }
   return (
     <>
       <div className={Styles.estimate_wrapper}>
@@ -41,23 +54,23 @@ const EstimateCard = () => {
                     </span>
                     <div className={Styles.amountwrapper}>
                       <div className={Styles.amountContainer}>
-                        <div
+                        {/* <div
                           className={Styles.decrease_amount}
                           onClick={() => handleQuantity(index, 'dec')}
                         >
                           -
-                        </div>
+                        </div> */}
 
                         <div className={Styles.amount_number}>
                           {item.quantity}
                         </div>
 
-                        <div
+                        {/* <div
                           className={Styles.increase_amount}
                           onClick={() => handleQuantity(index, 'inc')}
                         >
                           +
-                        </div>
+                        </div> */}
                       </div>
                       <div
                         style={{ cursor: 'pointer' }}
@@ -85,7 +98,7 @@ const EstimateCard = () => {
             <div className={Styles.estimate_horizontal_line}></div>
             <div className={Styles.total_amount_container}>
               <span className={Styles.text}>Total Estimate</span>
-              <span className={Styles.price}>$11670</span>
+              <span className={Styles.price}>${totalCartPrice}</span>
             </div>
             <button className={Styles.estimate_bottom_btn}>
               Submit Estimate Request
