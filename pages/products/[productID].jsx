@@ -22,6 +22,8 @@ const productID = () => {
     loadQuery()
   }, [productID])
 
+  
+
   return (
     <>
       <PrimaryHeader />

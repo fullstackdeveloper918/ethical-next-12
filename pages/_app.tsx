@@ -19,6 +19,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import countrySlice from '../redux-setup/countrySlice'
 import authSlice from '../redux-setup/authSlice'
+import cartSlice from '../redux-setup/cartSlice'
 import filterSlice from '../redux-setup/FiltersSlice'
 import tokenReducer from '../redux-setup/tokenSlice'
 import storage from 'redux-persist/lib/storage'
@@ -30,6 +31,7 @@ const combinedReducer = combineReducers({
   auth: authSlice,
   filter: filterSlice,
   token: tokenReducer,
+  cart: cartSlice,
 })
 
 const persistConfig = { key: 'root', storage, version: 1 }

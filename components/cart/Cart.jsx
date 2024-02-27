@@ -40,10 +40,6 @@ const Cart = ({
     }))
   }
 
-  console.log(ErrorMessage(), 'ErrorMessage')
-
-  console.log(values)
-
   const [loadQuery, { response, loading, error }] = useFetch(
     `/auth/login`,
     {
@@ -94,12 +90,10 @@ const Cart = ({
   }, [registerError, registerResponse])
 
   const b = async () => {
-    console.log('b func')
     const response = await fetch(
       'https://test.cybersify.tech/Eswag/public/api/sadm/product/count'
     )
     const movies = await response.json()
-    console.log(movies, 'plz dummy')
   }
 
   const c = async () => {

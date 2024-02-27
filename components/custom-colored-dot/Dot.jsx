@@ -1,7 +1,6 @@
 import Styles from './Dot.module.css'
 import Image from 'next/image'
 const Dot = ({ color, activeColor, setActiveColor }) => {
-  console.log(color, 'color bhai')
   const btnClicked = () => {
     setActiveColor(color)
   }

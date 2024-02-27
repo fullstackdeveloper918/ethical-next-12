@@ -95,8 +95,6 @@ const SecondaryHeader = () => {
     // .then((json) => setSuggestions(json.data.items))
   }
 
-  console.log(data)
-
   const optimizedFn = useCallback(debounce(handleChange), [])
 
   // const handleChange = () => {

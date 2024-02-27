@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import images from '../../constants/images'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Styles from './Product.module.css'
 import Loaders from '../../components/loaders/Loaders'
 import Dot from '../custom-colored-dot/Dot'
 import { RxCross2 } from 'react-icons/rx'
+import { setCartItems } from '../../redux-setup/cartSlice'
 
 const Product = ({ product, loading, error }) => {
-  // console.log(Array.isArray(product?.images_ca))
-  console.log(product?.certBy)
+  const dispatch = useDispatch()
   const [ReadMore, setIsReadMore] = useState(false)
-  // const [imageUrl, setImageUrl] = useState(product?.image)
   const [orderQuantity, setOrderQuantity] = useState(
     +product?.column_1_qty || 200
   )
@@ -27,6 +26,15 @@ const Product = ({ product, loading, error }) => {
     L: 25,
     XL: 25,
   })
+  const [cartState, setCartState] = useState(
+    {
+      quantity: 0,
+      image: null,
+      heading: null,
+      price: null,
+      id: null
+    },
+  )
 
   useEffect(() => {
     let total =
@@ -73,7 +81,8 @@ const Product = ({ product, loading, error }) => {
     if (orderQuantity <= product?.column_1_qty) {
       setPrice(
         country === 'usa'
-          ? product?.column_1_retail_price_usd?.replace(/[^0-9.]/g, '')
+          ? product?.column_1_retail_price_usd?
+          .replace(/[^0-9.]/g, '')
           : product?.column_1_retail_price_cad?.replace(/[^0-9.]/g, '')
       )
     } else if (orderQuantity <= product?.column_2_qty) {
@@ -115,8 +124,6 @@ const Product = ({ product, loading, error }) => {
     state('')
   }
 
-  console.log(product, 'singlke')
-
   const customizations = [
     'Embroidery',
     'Full Color Decoration',
@@ -151,6 +158,27 @@ const Product = ({ product, loading, error }) => {
   // const parsedImages = Array.isArray(product?.images_ca)
   //   ? images
   //   : JSON.parse(product?.images_ca)
+
+  const handleAddToCart = (e) => {
+    e.preventDefault()
+    setCartState({
+      quantity: orderQuantity,
+      image: product?.image,
+      heading: product?.product_description,
+      price: price,
+      id: product.id
+    })
+  }
+
+  useEffect(() => {
+    if (cartState.quantity) {
+      dispatch(setCartItems(cartState))
+    }
+  }, [cartState])
+
+
+  const cartItems = useSelector((state) => state.cart.cartItems)
+  console.log(cartItems, 'cartItems')
 
   return (
     <>
@@ -265,9 +293,6 @@ const Product = ({ product, loading, error }) => {
                     {product?.colours &&
                       Object.entries(product?.colours).map(
                         ([color, imageUrl]) => {
-                          {
-                            console.log(color, 'hahaha')
-                          }
                           return (
                             <>
                               <Dot color={imageUrl} />
@@ -596,7 +621,9 @@ const Product = ({ product, loading, error }) => {
                   </p>
                 </div>
                 <div className={Styles.add_to_bulk_container}>
-                  <button>Add to bulk estimate</button>
+                  <button onClick={handleAddToCart}>
+                    Add to bulk estimate
+                  </button>
                 </div>
                 <div className={Styles.total_estimate_container}>
                   <p className={Styles.total_estimate_container_text}>
