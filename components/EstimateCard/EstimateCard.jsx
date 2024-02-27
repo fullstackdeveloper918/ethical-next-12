@@ -5,9 +5,12 @@ import Image from 'next/image'
 import useFetch from '../../lib/useFetch'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteCartItem } from '../../redux-setup/cartSlice'
+import { useRouter } from 'next/router'
 
 const EstimateCard = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
+
   const cartItems = useSelector((state) => state.cart.cartItems)
   const [totalCartPrice, setTotalCartPrice] = useState(0)
   const handleDelete = (val) => {
@@ -37,7 +40,11 @@ const EstimateCard = () => {
             {cartItems.length > 0 ? (
               cartItems.map((item, index) => (
                 <div className={Styles.estimate_content} key={item.id}>
-                  <div className={Styles.estimate_content_imgContent}>
+                  <div
+                    className={Styles.estimate_content_imgContent}
+                    onClick={() => router.push(`/products/${item.id}`)}
+                    style={{ cursor: 'pointer' }}
+                  >
                     <Image
                       src={item.image ? item.image : images.cart_image}
                       width={49}
@@ -46,7 +53,11 @@ const EstimateCard = () => {
                     />
                   </div>
                   <div className={Styles.estimate_content_textContent}>
-                    <h4 className={Styles.title}>
+                    <h4
+                      className={Styles.title}
+                      onClick={() => router.push(`/products/${item.id}`)}
+                      style={{ cursor: 'pointer' }}
+                    >
                       {item.heading.slice(0, 70) + '...'}
                     </h4>
                     <span className={Styles.price}>

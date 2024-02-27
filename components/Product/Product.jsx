@@ -12,14 +12,13 @@ const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
   const [ReadMore, setIsReadMore] = useState(false)
   const [orderQuantity, setOrderQuantity] = useState(
-    +product?.column_1_qty || 200
+    +product?.column_1_qty || 200 
   )
   const [price, setPrice] = useState(0)
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
   const [uploadSecondLogo, setUploadSecondLogo] = useState('')
   const [activeBtn, setActiveBtn] = useState(0)
   const [custumize, setCustomize] = useState('No Decoration')
-  const [activeColor, setActiveColor] = useState()
   const [sizeQuantity, setSizeQuantity] = useState({
     S: 25,
     M: 25,
@@ -35,6 +34,7 @@ const Product = ({ product, loading, error }) => {
       id: null
     },
   )
+  const [isItemInCart, setIsItemInCart] = useState(false)
 
   useEffect(() => {
     let total =
@@ -76,7 +76,6 @@ const Product = ({ product, loading, error }) => {
   useEffect(() => {
     fetchPrice()
   }, [orderQuantity, product, country])
-
   const fetchPrice = () => {
     if (orderQuantity <= product?.column_1_qty) {
       setPrice(
@@ -170,6 +169,7 @@ const Product = ({ product, loading, error }) => {
     })
   }
 
+
   useEffect(() => {
     if (cartState.quantity) {
       dispatch(setCartItems(cartState))
@@ -179,6 +179,25 @@ const Product = ({ product, loading, error }) => {
 
   const cartItems = useSelector((state) => state.cart.cartItems)
   console.log(cartItems, 'cartItems')
+
+  const checkFromCart = () => {
+    const idToFind = product.id
+    const existingItemIndex = cartItems.find(
+      (item) => item.id === idToFind
+    )
+    if(existingItemIndex){
+      setIsItemInCart(existingItemIndex)
+      setOrderQuantity(existingItemIndex.quantity)
+      setPrice(existingItemIndex.price)
+    }
+  }
+
+  useEffect(() => {
+    if(product?.id){
+
+      checkFromCart()
+    }
+  }, [product?.id])
 
   return (
     <>
