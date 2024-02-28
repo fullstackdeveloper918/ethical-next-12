@@ -330,12 +330,15 @@ const Product = ({ product, loading, error }) => {
                     />
                   </div>
                   <div className={Styles.cart_left_swift_content}>
-                    <input type="checkbox" name="" id="" />
-                    <label>
-                      Checking this box will override the date selected above to
-                      within 10 business days if you have gone through the Swift
-                      Swag process. Please note additional charges will apply.
-                    </label>
+                    <div className={Styles.custom_checkbox}>
+                      <input type="checkbox" name="" id="swift_swag" />
+                      <label htmlFor="swift_swag">
+                        Checking this box will override the date selected above
+                        to within 10 business days if you have gone through the
+                        Swift Swag process. Please note additional charges will
+                        apply.
+                      </label>
+                    </div>
                   </div>
                 </div>
                 <div className={Styles.customization_text}>

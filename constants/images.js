@@ -30,7 +30,7 @@ import Info_Icon from '../assets/info.svg'
 import Ethical_swag_small_logo from '../assets/Ethical_Swag_small_logo.svg'
 import Browse_file from '../assets/Browse File.png'
 import Wire_transfer_icon from '../assets/Wire_transfer_icon.svg'
-import No_product from '../assets/loading.svg'
+import No_product from '../assets/No_Product.svg'
 
 const images = {
   ethical_swag,
