@@ -39,12 +39,22 @@ const productID = () => {
       <PrimaryHeader />
       <SecondaryHeader />
       <Product product={response?.data} loading={loading} error={error} />
-      <div className={Styles.product_section}>
-        {data?.length &&
-          data
-            ?.slice(0, 4)
-            .map((item) => <ProductCard item={item} key={item.id} />)}
-      </div>
+      <section className={Styles.product_section}>
+        <div className={Styles.heading_content}>
+          <h3>Newly Added Swag</h3>
+          <button>View All</button>
+        </div>
+        <div className={Styles.product_card_container}>
+          {data?.length &&
+            data?.slice(0, 5).map((item) => (
+              <>
+                <div className={Styles.product_content}>
+                  <ProductCard item={item} key={item.id} />
+                </div>
+              </>
+            ))}
+        </div>
+      </section>
       <Footer />
     </>
   )
