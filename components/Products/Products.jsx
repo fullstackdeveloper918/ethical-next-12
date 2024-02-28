@@ -7,7 +7,7 @@ import PromotionImg from '../../assets/products_promotion.svg'
 import ProductCard from '../ProductCard/ProductCard'
 import { useSelector } from 'react-redux'
 
-const Products = ({ response, error, loading }) => {
+const Products = ({ response, loading }) => {
   const inputPrice = useSelector((state) => state.filter?.Price)
 
   const filterProducts = response?.data?.data?.filter(

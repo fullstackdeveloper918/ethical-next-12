@@ -5,7 +5,13 @@ import Image from 'next/image'
 import FilterPanel from '../FilterPanel/FilterPanel'
 import images from '../../constants/images'
 
-const Filter = ({ activeFilter, setActiveFilter }) => {
+const Filter = ({
+  activeFilter,
+  setActiveFilter,
+  searchState,
+  setSearchState,
+  optimizedFn,
+}) => {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -41,7 +47,14 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
           <span>Filter</span>
         </button>
         <div className={Styles.filter_input}>
-          <input type="text" />
+          <input
+            type="text"
+            onChange={(e) => {
+              e.preventDefault()
+              setSearchState(e.target.value)
+              optimizedFn(e.target.value)
+            }}
+          />
         </div>
         <div className={Styles.filter_select}>
           <div>
