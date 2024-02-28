@@ -25,7 +25,7 @@ import { useRouter } from 'next/router'
 import { Input } from '@/components/ui/input'
 import useFetch from '@lib/useFetch'
 import { selectCountry } from 'redux-setup/countrySlice'
-import { debounce, optimizedFn } from '@lib/utils'
+import { debounce } from '@lib/utils'
 const countries = [
   {
     id: 1,
@@ -317,6 +317,7 @@ const SecondaryHeader = () => {
                     placeholder="Search"
                     // value={searchProduct}
                     onChange={(e) => {
+                      e.preventDefault()
                       setSearchProduct(e.target.value)
                       optimizedFn(e.target.value)
                     }}
