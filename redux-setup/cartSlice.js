@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { useSelector } from 'react-redux'
 
 const initialState = {
   cartItems: [],
@@ -15,7 +14,6 @@ const cartSlice = createSlice({
       )
       if (existingItemIndex === -1) {
         state.cartItems.push(action.payload)
-        console.log('if i do not exist')
       } else {
         state.cartItems = state.cartItems.filter((item) => item.id !== itemId)
         state.cartItems.push(action.payload)

@@ -46,7 +46,11 @@ const Pagination = ({
           </button>
 
           {arr.map((item, i) => (
-            <button onClick={() => setCurrentPage(i + 1)} disabled={loading}>
+            <button
+              onClick={() => setCurrentPage(i + 1)}
+              disabled={loading}
+              key={i}
+            >
               {item}
             </button>
           ))}

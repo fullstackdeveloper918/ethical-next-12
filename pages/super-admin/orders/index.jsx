@@ -1,13 +1,12 @@
 import React from 'react'
 import SideBar from '../../../components/admin/SideBar/SideBar'
 import Navbar from '../../../components/admin/Navbar/Navbar'
+import images from '../../../constants/images'
 import { MdArrowBackIos } from 'react-icons/md'
 import { IoChevronForwardSharp } from 'react-icons/io5'
-import Styles from './orders.module.css'
 import { FaEye, FaRegEdit } from 'react-icons/fa'
-import { PiImageThin } from 'react-icons/pi'
 import { RiDeleteBin6Line } from 'react-icons/ri'
-import images from '../../../constants/images'
+import Styles from './orders.module.css'
 
 const Orders = () => {
   const getStatusColor = (index) => {

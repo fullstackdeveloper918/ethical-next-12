@@ -1,25 +1,12 @@
 import React from 'react'
 import SideBar from '../../../components/admin/SideBar/SideBar'
 import Navbar from '../../../components/admin/Navbar/Navbar'
-import { MdArrowBackIos } from 'react-icons/md'
-import { IoChevronForwardSharp } from 'react-icons/io5'
 import Styles from './AddRoles.module.css'
 import { FaEye, FaRegEdit } from 'react-icons/fa'
-import { PiImageThin } from 'react-icons/pi'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import images from '../../../constants/images'
 
 const AddRoles = () => {
-  const getStatusColor = (index) => {
-    if (index < 6) {
-      return '#11CDEF'
-    } else if (index < 11) {
-      return '#A2D061'
-    } else {
-      return '#FB6340'
-    }
-  }
-
   return (
     <>
       <section className={Styles.AddRoles_section}>
@@ -30,7 +17,6 @@ const AddRoles = () => {
             </div>
             <div className={Styles.AddRoles_right_content}>
               <Navbar data="Add roles" thumbnail={images.User_icon} />
-              {/* Customer data table */}
               <div className={Styles.middle_section}>
                 <input type="text" placeholder="Role Name" />
                 <p>Assign Permissons</p>

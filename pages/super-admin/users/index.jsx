@@ -1,25 +1,14 @@
 import React from 'react'
+import images from '../../../constants/images'
 import SideBar from '../../../components/admin/SideBar/SideBar'
 import Navbar from '../../../components/admin/Navbar/Navbar'
 import { MdArrowBackIos } from 'react-icons/md'
 import { IoChevronForwardSharp } from 'react-icons/io5'
-import Styles from './users.module.css'
 import { FaEye, FaRegEdit } from 'react-icons/fa'
-import { PiImageThin } from 'react-icons/pi'
 import { RiDeleteBin6Line } from 'react-icons/ri'
-import images from '../../../constants/images'
+import Styles from './users.module.css'
 
 const Users = () => {
-  const getStatusColor = (index) => {
-    if (index < 6) {
-      return '#11CDEF'
-    } else if (index < 11) {
-      return '#A2D061'
-    } else {
-      return '#FB6340'
-    }
-  }
-
   return (
     <>
       <section className={Styles.Users_section}>

@@ -1,21 +1,20 @@
 import React from 'react'
+import Image from 'next/image'
 import Styles from './superadmin.module.css'
 import SideBar from '../../../components/admin/SideBar/SideBar'
 import Navbar from '../../../components/admin/Navbar/Navbar'
-import Image from 'next/image'
+import Card from '../../../components/admin/superAdmin/Card'
+import ActiveUsers from '../../../components/admin/superAdmin/ActiveUsers'
+import { HiOutlineDotsVertical } from 'react-icons/hi'
+import { BiUpArrowAlt } from 'react-icons/bi'
+import { FaCheck } from 'react-icons/fa6'
+import images from '../../../constants/images'
 import {
   Active_Users,
   Latest_Members,
   Orders_Preview,
   SuperAdmin_Cards,
 } from '../../../constants/data'
-import Card from '../../../components/admin/superAdmin/Card'
-import { HiOutlineDotsVertical } from 'react-icons/hi'
-import { BiUpArrowAlt } from 'react-icons/bi'
-import { FaCheck } from 'react-icons/fa6'
-import ActiveUsers from '../../../components/admin/superAdmin/ActiveUsers'
-import images from '../../../constants/images'
-
 const SuperAdmin = () => {
   return (
     <>

@@ -290,10 +290,11 @@ const SecondaryHeader = () => {
                   onValueChange={setCountry}
                 >
                   <div className={styles.countries_dropdown_container}>
-                    {countries.map((c) => {
+                    {countries.map((c, i) => {
                       return (
                         <DropdownMenuRadioItem
                           value={c.country}
+                          key={i}
                           // style={{ display: "none" }}
                         >
                           <Image

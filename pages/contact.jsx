@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import images from '../constants/images'
 import PrimaryHeader from '../components/primary-header/PrimaryHeader'
 import SecondaryHeader from '../components/secondary-header/SecondaryHeader'
 import Footer from '../components/footer/Footer'
 import Styles from './../styles/Contact.module.css'
-import Link from 'next/link'
-import Image from 'next/image'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import {
   FaFacebookF,
@@ -17,7 +18,6 @@ import {
   initialValuesContact,
   validationSchemaContact,
 } from '../lib/validationSchemas'
-import images from '../constants/images'
 
 const contact = () => {
   const [terms, setTerms] = useState(false)

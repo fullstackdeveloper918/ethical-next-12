@@ -2,13 +2,13 @@ import React from 'react'
 import Styles from './invoice.module.css'
 import SideBar from '../../../components/admin/SideBar/SideBar'
 import Navbar from '../../../components/admin/Navbar/Navbar'
+import images from '../../../constants/images'
 import { MdArrowBackIos } from 'react-icons/md'
 import { IoChevronForwardSharp } from 'react-icons/io5'
 import { FaRegEdit } from 'react-icons/fa'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { Invoice_Data } from '../../../constants/data'
 import { FaEye } from 'react-icons/fa'
-import images from '../../../constants/images'
 const Invoice = () => {
   const getStatusColor = (status) => {
     switch (status) {

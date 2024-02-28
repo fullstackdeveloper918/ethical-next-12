@@ -117,9 +117,7 @@ const Products = ({ response, error, loading }) => {
             </div>
 
             {response?.data?.data?.map((item) => (
-              <>
                 <ProductCard item={item} key={item.id} />
-              </>
             ))}
           </div>
         </div>

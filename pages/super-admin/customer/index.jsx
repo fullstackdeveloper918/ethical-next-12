@@ -2,12 +2,12 @@ import React from 'react'
 import Styles from './customer.module.css'
 import SideBar from '../../../components/admin/SideBar/SideBar'
 import Navbar from '../../../components/admin/Navbar/Navbar'
+import images from '../../../constants/images'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { FaRegEdit } from 'react-icons/fa'
 import { Customer_Data } from '../../../constants/data'
 import { MdArrowBackIos } from 'react-icons/md'
 import { IoChevronForwardSharp } from 'react-icons/io5'
-import images from '../../../constants/images'
 
 const Customer = () => {
   return (
