@@ -9,26 +9,41 @@ import Styles from '../Filter/Filter.module.css'
 import { MdArrowBackIos } from 'react-icons/md'
 import Pagination from '../pagination/Pagination'
 import { IoChevronForwardSharp } from 'react-icons/io5'
+import { useSelector } from 'react-redux'
 
 const Product = () => {
   const [activeFilter, setActiveFilter] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [totalData, setTotalData] = useState([])
   const [totalPages, setTotalPages] = useState('')
+  const [countryTosend, setCountryToSend] = useState(null)
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
-    `/products?page=${currentPage ? currentPage : 1}&pageSize=${10}`,
+    `/products?page=${
+      currentPage ? currentPage : 1
+    }&pageSize=${10}&${countryTosend}=1
+  `,
     {
       method: 'get',
     }
   )
+  const country = useSelector((state) => state.country.country)
   useEffect(() => {
-    loadQuery()
-    window.scrollTo({
-      top: '0',
-      left: '0',
-      behavior: 'smooth',
-    })
-  }, [currentPage])
+    if (country) {
+      setCountryToSend(
+        country === 'usa' ? 'available_in_usa' : 'available_in_canada'
+      )
+    }
+  }, [country])
+  useEffect(() => {
+    if (countryTosend) {
+      loadQuery()
+      window.scrollTo({
+        top: '0',
+        left: '0',
+        behavior: 'smooth',
+      })
+    }
+  }, [currentPage, countryTosend])
 
   useEffect(() => {
     if (response?.data) {
