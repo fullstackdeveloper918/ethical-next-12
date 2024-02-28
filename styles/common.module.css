@@ -21,10 +21,12 @@
 .heading_content {
   display: flex;
   justify-content: space-between;
+  margin: 0 50px;
 }
 
 .heading_content h3 {
   font-size: 2rem;
+  font-weight: 500;
 }
 
 .heading_content button {
@@ -39,6 +41,7 @@
   justify-content: space-between;
   gap: 1.5rem;
   align-items: center;
+  margin: 15px 0;
 }
 
 .product_card_container .product_content {

@@ -30,7 +30,7 @@
 .form .input_box {
   width: 100%;
   margin-top: 0;
-  padding: 10px 0;
+  padding: 8px 0;
 }
 .input_box input {
   height: 60px;
@@ -189,10 +189,26 @@
     }
   
 }
+@media screen and (max-width:1024px) {
+  .form .input_box {
+    padding: 6px 0;
+  }
+  .input_box input {
+    height: 55px;
+    padding-left: 1.3rem;
+    font-size: 16px;
+  }
+  .input_box button {
+    padding: 0.8rem 0;
+    font-size: 18px;
+  }
+}
 @media screen and (max-width:991px) {
   .login_container {
     min-width:60%
     }
+    
+
 }
 @media screen and (max-width:767px) {
   .login_container {
@@ -206,9 +222,7 @@
       margin-top: 1.7rem;
     }
     
-.form .input_box {
-  padding: 10px 0 0;
-}
+
 .input_box input {
   height: 50px;
   padding-left: 1.5rem;
@@ -225,7 +239,7 @@
     }
    
 }
-@media screen and (max-width:360px) {
+@media screen and (max-width:380px) {
   .login_container {
     min-width:85%;
     max-width: 94%;

@@ -226,7 +226,7 @@
 }
 
 .para_text {
-  margin-top: 60px;
+  margin-top: 1.8rem;
 }
 
 .para_text p {
@@ -276,7 +276,7 @@
 }
 
 .para_text .upload_logo {
-  margin-top: 30px;
+  margin-top: 25px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -313,7 +313,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 35px;
+  margin-top: 1.5rem;
 }
 
 .number_of_units p {
@@ -380,7 +380,7 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 0.5rem;
-  margin-top: 3.3rem;
+  margin-top: 1.5rem;
 }
 
 .select_size_quantity p {
@@ -639,7 +639,7 @@
 
 .cart_left_swift {
   width: 100%;
-  margin-bottom: 2.3rem;
+  margin-bottom: 1.5rem;
 }
 
 .cart_left_swift h6 {
@@ -701,6 +701,7 @@
 
 .colorLight {
   color: #949090;
+  margin: 0 2px ;
 }
 
 .common_header {
