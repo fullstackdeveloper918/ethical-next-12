@@ -20,7 +20,7 @@ const Product = () => {
   const [searchState, setSearchState] = useState('')
   const [productsData, setProductsData] = useState(null)
   const [Isloading, setIsloading] = useState(false)
-
+  const [selectedOptionValue, setSelectedOptionValue] = useState('')
   const country = useSelector((state) => state.country.country)
   useEffect(() => {
     if (country) {
@@ -30,14 +30,14 @@ const Product = () => {
     }
   }, [country])
 
-  const getProducts = async (value) => {
+  const getProducts = async (value = '') => {
     try {
       if (countryTosend) {
         setIsloading(true)
         const response = await axios.get(
           `https://test.cybersify.tech/Eswag/public/api/products?page=${
             currentPage ? currentPage : 1
-          }&pageSize=${10}&${countryTosend}=1&search_title=${value}`
+          }&pageSize=${10}&${countryTosend}=1&search_title=${value}&${selectedOptionValue}`
         )
         setProductsData(response.data)
         window.scrollTo({
@@ -55,7 +55,7 @@ const Product = () => {
 
   useEffect(() => {
     getProducts()
-  }, [currentPage, countryTosend])
+  }, [currentPage, countryTosend, selectedOptionValue])
 
   const optimizedFn = useCallback(debounce(getProducts), [])
 
@@ -66,6 +66,8 @@ const Product = () => {
       setTotalPages(productsData?.data?.last_page)
     }
   }, [productsData])
+
+  console.log(selectedOptionValue, 'selectedOptionValueselectedOptionValue')
 
   return (
     <>
@@ -88,6 +90,8 @@ const Product = () => {
               setSearchState={setSearchState}
               searchState={searchState}
               optimizedFn={optimizedFn}
+              setSelectedOptionValue={setSelectedOptionValue}
+              selectedOptionValue={selectedOptionValue}
             />
             <Products response={productsData} loading={Isloading} />
             <div className={Styles.pagination_section}>

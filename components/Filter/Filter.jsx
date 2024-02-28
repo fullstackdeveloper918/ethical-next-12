@@ -8,9 +8,10 @@ import images from '../../constants/images'
 const Filter = ({
   activeFilter,
   setActiveFilter,
-  searchState,
   setSearchState,
   optimizedFn,
+  setSelectedOptionValue,
+  selectedOptionValue,
 }) => {
   const [scrolled, setScrolled] = useState(false)
 
@@ -27,6 +28,11 @@ const Filter = ({
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+
+  const handleSelectChange = (event) => {
+    const value = event.target.value
+    setSelectedOptionValue(value)
+  }
 
   return (
     <>
@@ -58,19 +64,25 @@ const Filter = ({
         </div>
         <div className={Styles.filter_select}>
           <div>
-            <select name="" id="" className={Styles.Select_inputs}>
+            <select
+              name=""
+              id=""
+              className={Styles.Select_inputs}
+              value={selectedOptionValue}
+              onChange={handleSelectChange}
+            >
               <option defaultValue value="">
                 Select an Option
               </option>
-              <option value="sort">Sort</option>
+              {/* <option value="sort">Sort</option>
               <option value="featured">Featured</option>
-              <option value="best_selling">Best Selling</option>
+              <option value="best_selling">Best Selling</option> */}
               <option value="asc">Alphabetically, A-Z</option>
               <option value="des">Alphabetically, Z-A</option>
-              <option value="price-low">Price, low to high</option>
-              <option value="price-high">Price, high to low </option>
-              <option value="date-old">Date, old to new </option>
-              <option value="date-new">Date, new to old </option>
+              <option value="priceAsc">Price, low to high</option>
+              <option value="priceDes">Price, high to low </option>
+              <option value="dateAsc">Date, old to new </option>
+              <option value="dateDes">Date, new to old </option>
             </select>
           </div>
         </div>
