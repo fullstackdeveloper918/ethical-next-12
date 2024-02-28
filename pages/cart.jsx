@@ -8,11 +8,9 @@ import QuotationSubmissionHeader from '../components/QuotationSubmissionHeader/Q
 import ClientTypeSelector from '../components/ClientTypeSelector/ClientTypeSelector'
 import Styles from '../components/cart/Cart.module.css'
 import Button from '../components/Button/Button'
-import { useSelector } from 'react-redux'
 
 const cart = () => {
   const token = localStorage.getItem('token_swag')
-  const [showEstimate, setShowEstimate] = useState(true)
   const [selectedOption, setSelectedOption] = useState('Existing_client')
   const [showEstimateCart, setShowEstimateCart] = useState(false)
   const handleOptionChange = (event) => {

@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import useFetch from '../lib/useFetch'
-import Styles from '../styles/Login.module.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { setRole } from '../redux-setup/authSlice'
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import images from '../constants/images'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import useFetch from '../lib/useFetch'
+import { useDispatch, useSelector } from 'react-redux'
+import { setRole } from '../redux-setup/authSlice'
+import { toast } from 'react-toastify'
 import { initialValuesLogin, validationSchema } from '../lib/validationSchemas'
+import Styles from '../styles/Login.module.css'
 
 const login = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [terms, setTerms] = useState(false)
-  const [registered, setRegistered] = useState(false)
-  const [forgot_password, setForgotPassword] = useState(false)
-  const [isLogin, setIsLogin] = useState(true)
-  const [isDisabled, setIsDisabled] = useState(true)
 
   const [loadQuery, { response, loading, error }] = useFetch(
     `/auth/login`,
@@ -139,7 +135,7 @@ const login = () => {
 
                     <div className={Styles.input_box}>
                       <p className={Styles.registered_text}>
-                        Dont have an account? 
+                        Dont have an account?
                         <span onClick={() => router.push('/register')}>
                           Register
                         </span>

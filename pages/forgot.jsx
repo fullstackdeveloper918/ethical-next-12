@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import useFetch from '../lib/useFetch'
-import Styles from '../styles/Login.module.css'
-import { toast } from 'react-toastify'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import useFetch from '../lib/useFetch'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import Styles from '../styles/Login.module.css'
 import images from '../constants/images'
 import {
   initialValuesForgotEmail,
@@ -15,7 +14,6 @@ import {
 
 const forgot = () => {
   const router = useRouter()
-  const [terms, setTerms] = useState(false)
   const [isOtpSent, setIsOtpSent] = useState(false)
   const [showPasswords, setShowPasswords] = useState(false)
   const [isEmail, setIsEmail] = useState(true)
@@ -27,8 +25,6 @@ const forgot = () => {
     },
     'formdata'
   )
-
-  console.log(response, 'response from email api')
 
   const onEmailSubmit = async (values) => {
     try {

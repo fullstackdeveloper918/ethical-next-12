@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
+import images from '../constants/images'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import useFetch from '../lib/useFetch'
 import Styles from '../styles/Login.module.css'
 import { toast } from 'react-toastify'
-import { useRouter } from 'next/router'
-import Image from 'next/image'
-import images from '../constants/images'
 import {
   initialValuesRegister,
   validationSchemaRegister,

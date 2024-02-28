@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import Product from '../../components/Product/Product'
-import useFetch from '../../lib/useFetch'
-import { useRouter } from 'next/router'
 import PrimaryHeader from '../../components/primary-header/PrimaryHeader'
 import SecondaryHeader from '../../components/secondary-header/SecondaryHeader'
 import Footer from '../../components/footer/Footer'
-import Styles from '../../styles/common.module.css'
+import useFetch from '../../lib/useFetch'
+import Product from '../../components/Product/Product'
 import ProductCard from '../../components/ProductCard/ProductCard'
+import { useRouter } from 'next/router'
+import Styles from '../../styles/common.module.css'
+
 
 const productID = () => {
   const params = useRouter()

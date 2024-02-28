@@ -1,10 +1,18 @@
 import type { AppProps } from 'next/app'
 import { builder } from '@builder.io/react'
 import builderConfig from '@config/builder'
-import '../global.css'
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import { combineReducers } from 'redux'
+import storage from 'redux-persist/lib/storage'
+import { PersistGate } from 'redux-persist/integration/react'
+import countrySlice from '../redux-setup/countrySlice'
+import authSlice from '../redux-setup/authSlice'
+import cartSlice from '../redux-setup/cartSlice'
+import filterSlice from '../redux-setup/FiltersSlice'
+import tokenReducer from '../redux-setup/tokenSlice'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {
   persistStore,
   persistReducer,
@@ -15,15 +23,8 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import countrySlice from '../redux-setup/countrySlice'
-import authSlice from '../redux-setup/authSlice'
-import cartSlice from '../redux-setup/cartSlice'
-import filterSlice from '../redux-setup/FiltersSlice'
-import tokenReducer from '../redux-setup/tokenSlice'
-import storage from 'redux-persist/lib/storage'
-import { PersistGate } from 'redux-persist/integration/react'
+import '../global.css'
+
 builder.init(builderConfig.apiKey)
 
 const combinedReducer = combineReducers({

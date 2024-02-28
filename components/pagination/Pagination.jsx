@@ -52,6 +52,7 @@ const Pagination = ({
               onClick={() => setCurrentPage(i + 1)}
               disabled={loading}
               className={page === i + 1 ? Styles.current_page : ''}
+              key={i}
             >
               {item}
             </button>

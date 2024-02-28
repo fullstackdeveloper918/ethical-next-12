@@ -1,14 +1,7 @@
 import { useRouter } from 'next/router'
-import {
-  BuilderComponent,
-  builder,
-  useIsPreviewing,
-  Builder,
-} from '@builder.io/react'
-import DefaultErrorPage from 'next/error'
 import Head from 'next/head'
+import DefaultErrorPage from 'next/error'
 import builderConfig from '@config/builder'
-import '@builder.io/widgets/dist/lib/builder-widgets-async'
 import Footer from '@components/footer/Footer'
 import PrimaryHeader from '@components/primary-header/PrimaryHeader'
 import SecondaryHeader from '@components/secondary-header/SecondaryHeader'
@@ -17,6 +10,13 @@ import StackCards from '../components/StackCards/StackCards'
 import Product from '../components/products-final-builder-component/Product'
 import Input from '../components/input/Input'
 import Loaders from '@components/loaders/Loaders'
+import '@builder.io/widgets/dist/lib/builder-widgets-async'
+import {
+  BuilderComponent,
+  builder,
+  useIsPreviewing,
+  Builder,
+} from '@builder.io/react'
 builder.init(builderConfig.apiKey)
 
 export async function getStaticProps({ params }) {

@@ -37,12 +37,8 @@ const ProductCard = ({ item }) => {
             )}
             <div className={Styles.colors}>
               {item?.colours &&
-                Object.entries(item?.colours).map(([color, imageUrl]) => {
-                  return (
-                    <>
-                      <Dot color={imageUrl} />
-                    </>
-                  )
+                Object.entries(item?.colours).map(([color, imageUrl], i) => {
+                  return <Dot color={imageUrl} key={i} />
                 })}
             </div>
           </div>
