@@ -42,7 +42,7 @@
 }
 
 .form_inputs > .form_button {
-  padding: 12px 60px; 
+  padding: 12px 60px;
   border: 1px solid #cacaca;
   color: var(--green, #a2d061);
   text-align: center;
@@ -268,9 +268,9 @@
 .custom_checkbox input[type='checkbox']:checked + label:after {
   visibility: visible;
 }
-.cart_section div {                                                         
+.cart_section div {
   width: 100% !important;
-}                                                     
+}
 @media screen and (max-width: 1600px) {
   .cart_section {
     max-width: 1260px;
@@ -301,8 +301,7 @@
     gap: 2rem;
   }
   .form_inputs > .form_button {
-
-    padding: 12px 40px; 
+    padding: 12px 40px;
   }
   .flexwrap {
     flex-wrap: wrap;
@@ -322,9 +321,9 @@
     max-width: 95%;
     margin: auto;
   }
-  .cart_section > div{
+  .cart_section > div {
     max-width: 100%;
-  width: 100%;
+    width: 100%;
   }
   .cart_left_interested_section_fields {
     flex-wrap: wrap;
@@ -339,9 +338,9 @@
   .widthFull {
     width: 100%;
   }
-.flexform {
-  flex-wrap: wrap;
-}
+  .flexform {
+    flex-wrap: wrap;
+  }
 }
 @media screen and (max-width: 767px) {
   .cart_section {
