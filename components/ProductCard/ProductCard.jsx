@@ -9,7 +9,7 @@ import { CiShare2 } from 'react-icons/ci'
 import images from 'constants/images'
 
 const ProductCard = ({ item }) => {
-  console.log(item?.image, '')
+  console.log(item?.image, 'leading slash')
 
   return (
     <>
@@ -23,7 +23,12 @@ const ProductCard = ({ item }) => {
               alt="products_images"
             />
           ) : (
-            <Image src={images.No_product} width={278} height={311} />
+            <Image
+              src={images.No_product}
+              width={278}
+              height={311}
+              style={{ opacity: '0.1' }}
+            />
           )}
 
           <div className={Styles.product_card_content}>

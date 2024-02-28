@@ -149,7 +149,6 @@ const Product = ({ product, loading, error }) => {
   useEffect(() => {
     const jsonData = product?.images_us
     if (jsonData) {
-      console.log(jsonData, 'jsonData')
       try {
         const data = JSON.parse(jsonData)
         console.log('now the data of image', data)
@@ -204,8 +203,6 @@ const Product = ({ product, loading, error }) => {
     const selectedImage = productImages[index].url
     setSingleImage(selectedImage)
   }
-
-  console.log(singleImage, 'singleimage')
 
   return (
     <>
