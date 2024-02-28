@@ -59,13 +59,15 @@ const Product = () => {
             />
             <Products response={response} loading={loading} error={error} />
             {/* <Pagination /> */}
-            <Pagination
-              page={currentPage}
-              totalData={totalData}
-              totalPages={totalPages}
-              setCurrentPage={setCurrentPage}
-              loading={loading}
-            />
+            <div className={Styles.pagination_section}>
+              <Pagination
+                page={currentPage}
+                totalData={totalData}
+                totalPages={totalPages}
+                setCurrentPage={setCurrentPage}
+                loading={loading}
+              />
+            </div>
           </section>
         </>
       )}

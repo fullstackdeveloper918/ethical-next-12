@@ -33,6 +33,8 @@ const Pagination = ({
     }
   }
 
+  console.log('page number', page)
+
   return (
     <>
       <div className={Styles.pagination_container}>
@@ -46,7 +48,11 @@ const Pagination = ({
           </button>
 
           {arr.map((item, i) => (
-            <button onClick={() => setCurrentPage(i + 1)} disabled={loading}>
+            <button
+              onClick={() => setCurrentPage(i + 1)}
+              disabled={loading}
+              className={page === i + 1 ? Styles.current_page : ''}
+            >
               {item}
             </button>
           ))}

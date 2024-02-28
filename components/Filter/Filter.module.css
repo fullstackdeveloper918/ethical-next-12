@@ -922,3 +922,11 @@
     display: none;
   }
 }
+
+.pagination_section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
