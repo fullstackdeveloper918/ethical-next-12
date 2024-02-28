@@ -78,7 +78,7 @@
 
 .estimate_content_textContent > .price {
   color: #8f8f8f;
-  font-family: "DM Sans";
+  font-family: 'DM Sans';
   font-size: 12px;
   font-style: normal;
   display: inline-block;
@@ -115,7 +115,7 @@
 
 .decrease_amount::after,
 .increase_amount::before {
-  content: "";
+  content: '';
   position: absolute;
   right: -5px;
   width: 1px;
@@ -139,7 +139,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  border-top: 1px solid #EBEBEB;
+  border-top: 1px solid #ebebeb;
   padding: 40px 20px 20px 20px;
 }
 
@@ -195,19 +195,27 @@
   padding: 1rem 0;
 }
 
-.nothing_show{
+.nothing_show {
   text-align: center;
   font-size: 18px;
 }
 
+.nothing_show .shop_products {
+  width: 50%;
+  margin-top: 1rem;
+  background: #a2d061;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  font-size: 1.1rem;
+}
 
-@media screen and (max-width:1340px) {
-  .estimate_wrapper{
-min-width: auto;
+@media screen and (max-width: 1340px) {
+  .estimate_wrapper {
+    min-width: auto;
   }
 }
-@media screen and (max-width:991px) {
-  .estimate_wrapper{
- display: none;
+@media screen and (max-width: 991px) {
+  .estimate_wrapper {
+    display: none;
   }
 }

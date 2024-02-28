@@ -6,14 +6,17 @@ import useFetch from '../../lib/useFetch'
 import Product from '../../components/Product/Product'
 import ProductCard from '../../components/ProductCard/ProductCard'
 import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
 import Styles from '../../styles/common.module.css'
-
 
 const productID = () => {
   const params = useRouter()
   const { query } = params ?? {}
   const { productID } = query ?? {}
   const [data, setData] = useState([])
+
+  const country = useSelector((state) => state.country.country)
+  console.log(country, 'abhsihelk country')
 
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products/${productID}`,
@@ -26,13 +29,13 @@ const productID = () => {
     loadQuery()
   }, [productID])
 
-  console.log(response, 'single response')
-
   useEffect(() => {
-    fetch('https://test.cybersify.tech/Eswag/public/api/products')
+    fetch(
+      `https://test.cybersify.tech/Eswag/public/api/product/recent?pageSize=${10}&country=available_in_${country}`
+    )
       .then((res) => res.json())
-
-      .then((r) => setData(r?.data?.data))
+      .then((data) => console.log(data?.data[0].image, 'abhisk'))
+    // .then((r) => setData(r?.data?.data))
   }, [])
 
   return (
@@ -45,8 +48,9 @@ const productID = () => {
           <h3>Newly Added Swag</h3>
           <button>View All</button>
         </div>
+
         <div className={Styles.product_card_container}>
-          {data?.length &&
+          {data?.length > 0 &&
             data?.slice(0, 5).map((item) => (
               <>
                 <div className={Styles.product_content}>
