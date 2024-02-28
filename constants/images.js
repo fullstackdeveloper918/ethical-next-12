@@ -31,6 +31,7 @@ import Ethical_swag_small_logo from '../assets/Ethical_Swag_small_logo.svg'
 import Browse_file from '../assets/Browse File.png'
 import Wire_transfer_icon from '../assets/Wire_transfer_icon.svg'
 import No_product from '../assets/No_Product.svg'
+import Info_svg from '../assets/infosvg.svg'
 
 const images = {
   ethical_swag,
@@ -66,6 +67,7 @@ const images = {
   Ethical_swag_small_logo,
   Wire_transfer_icon,
   Browse_file,
+  Info_svg,
 }
 
 export default images

@@ -44,6 +44,9 @@
   letter-spacing: 4px;
   font-size: 12px;
   font-weight: 400;
+      display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .content input[type='file'] {
@@ -98,7 +101,9 @@
   font-size: 15px;
   color: #3d3d3d;
 }
-
+.bottom_content input{
+  accent-color: #484D74
+}
 .cross_icon {
   position: absolute;
   transform: rotate(45deg);

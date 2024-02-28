@@ -226,7 +226,7 @@
 }
 
 .para_text {
-  margin-top: 1.8rem;
+  margin-top: 60px;
 }
 
 .para_text p {
@@ -276,7 +276,7 @@
 }
 
 .para_text .upload_logo {
-  margin-top: 25px;
+  margin-top: 30px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -313,7 +313,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: 35px;
 }
 
 .number_of_units p {
@@ -380,7 +380,7 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 0.5rem;
-  margin-top: 1.5rem;
+  margin-top: 3.3rem;
 }
 
 .select_size_quantity p {
@@ -639,7 +639,7 @@
 
 .cart_left_swift {
   width: 100%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.3rem;
 }
 
 .cart_left_swift h6 {
@@ -732,7 +732,7 @@ p.fw400 {
 
 .custom_checkbox label {
   position: relative;
-  padding-left: 25px;
+  padding-left: 30px;
   cursor: pointer;
   color: #000000;
   font-size: 14px;

@@ -290,7 +290,7 @@ const Product = ({ product, loading, error }) => {
                 <div className={Styles.input_checkbox}>
                   <div className={Styles.custom_checkbox}>
                     <input type="checkbox" name="services" id="sample" />
-                    <label for="sample">Is this a sample? </label>
+                    <label for="sample" className={Styles.marinSpace}>Is this a sample? </label>
                   </div>
                 </div>
                 {product?.colours ? (
