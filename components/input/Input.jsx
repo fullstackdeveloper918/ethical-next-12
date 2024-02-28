@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Styles from './Input.module.css'
 import Image from 'next/image'
 import images from '../../constants/images'
+import Info_svg from '../../constants/images'
 
 const Input = () => {
   const [imgContent, setImgContent] = useState('')
@@ -28,7 +29,7 @@ const Input = () => {
             <div className={Styles.inner_content}>
               {Boolean(!imgContent) && (
                 <>
-                  <p>Upload Artwork</p>
+                  <p>Upload Artwork  <Image src={images.Info_svg} width={18} height={18}/> </p>
                   <label htmlFor="file">
                     <input
                       type="file"

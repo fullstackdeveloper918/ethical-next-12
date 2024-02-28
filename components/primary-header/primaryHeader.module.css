@@ -81,7 +81,7 @@
   .container_right {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 10px;
   }
   
   .search_container {
@@ -115,6 +115,11 @@
     outline: none;
   } */
 
+
+  .login_div{
+    border-left: 1px solid #ECF6DF;
+    padding-left: 15px;
+  }
   @media (max-width:767px){
     .container_right .search_container, .container_left .tap_annument {
       display: none;

@@ -169,7 +169,7 @@ const PrimaryHeader = () => {
             </div>
           ) : (
             <>
-              <div className="" onClick={() => router.push('/login')}>
+              <div className={styles.login_div} onClick={() => router.push('/login')}>
                 {screenSize > 767 && (
                   <button
                     className={styles.top_barbtn}
@@ -186,7 +186,7 @@ const PrimaryHeader = () => {
               </div>
 
               <div
-                className={styles.cursor_pointer}
+                className={`${styles.cursor_pointer} ${styles.login_div}`}
                 onClick={() => router.push('/register')}
               >
                 {screenSize > 991 && (
