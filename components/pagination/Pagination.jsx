@@ -33,36 +33,36 @@ const Pagination = ({
     }
   }
 
-  console.log('page number', page)
-
   return (
     <>
-      <div className={Styles.pagination_container}>
-        <div className={Styles.pagination_content}>
-          <MdArrowBackIos cursor="pointer" />
-          <button
-            onClick={() => handlePageChange('prev')}
-            disabled={page == 1 || loading}
-          >
-            Previous
-          </button>
-
-          {arr.map((item, i) => (
+      {arr.length > 10 ? (
+        <div className={Styles.pagination_container}>
+          <div className={Styles.pagination_content}>
+            <MdArrowBackIos cursor="pointer" />
             <button
-              onClick={() => setCurrentPage(i + 1)}
-              disabled={loading}
-              className={page === i + 1 ? Styles.current_page : ''}
-              key={i}
+              onClick={() => handlePageChange('prev')}
+              disabled={page == 1 || loading}
             >
-              {item}
+              Previous
             </button>
-          ))}
-          <span onClick={() => handlePageChange('next')} disabled={loading}>
-            Next
-          </span>
-          <IoChevronForwardSharp cursor="pointer" />
+
+            {arr.map((item, i) => (
+              <button
+                onClick={() => setCurrentPage(i + 1)}
+                disabled={loading}
+                className={page === i + 1 ? Styles.current_page : ''}
+                key={i}
+              >
+                {item}
+              </button>
+            ))}
+            <span onClick={() => handlePageChange('next')} disabled={loading}>
+              Next
+            </span>
+            <IoChevronForwardSharp cursor="pointer" />
+          </div>
         </div>
-      </div>
+      ) : null}
     </>
   )
 }

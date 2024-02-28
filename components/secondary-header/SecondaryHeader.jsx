@@ -12,7 +12,7 @@ import Humburg from '../../assets/headerPics/menu-bar.png'
 import { RxCross2 } from 'react-icons/rx'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './secondaryHeader.module.css'
 import {
   DropdownMenu,
@@ -24,6 +24,8 @@ import {
 import { useRouter } from 'next/router'
 import { Input } from '@/components/ui/input'
 import useFetch from '@lib/useFetch'
+import { selectCountry } from 'redux-setup/countrySlice'
+import { debounce, optimizedFn } from '@lib/utils'
 const countries = [
   {
     id: 1,
@@ -39,25 +41,20 @@ const countries = [
 const SecondaryHeader = () => {
   const [showResults, setShowResults] = useState(false)
   const [searchProduct, setSearchProduct] = useState('')
-  const [inputValue, setInputValue] = useState(searchProduct)
   const [data, setData] = useState([])
   const [showSearchInput, setShowSearchInput] = useState(false)
   const [openLinks, setOpenLinks] = useState(false)
-  const router = useRouter()
   const [inputbtn, setInputBtn] = useState(false)
   const [country, setCountry] = useState('usa')
   const [screenSize, setScreenSize] = useState(992)
   const popupRef = useRef(null)
-  useEffect(() => {
-    if (inputbtn) {
-      document.documentElement.classList.add('inputAdded')
-    } else {
-      document.documentElement.classList.remove('inputAdded')
-    }
-    return () => {
-      document.documentElement.classList.remove('inputAdded')
-    }
-  }, [inputbtn])
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const cartItems = useSelector((state) => state.cart.cartItems.length)
+
+  const filteredProducts = data?.filter((product) =>
+    product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
+  )
 
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products?q=${searchProduct}`,
@@ -75,18 +72,6 @@ const SecondaryHeader = () => {
     setInputBtn(boolean)
   }
 
-  const debounce = (func) => {
-    let timer
-    return function (...args) {
-      const context = this
-      if (timer) clearTimeout(timer)
-      timer = setTimeout(() => {
-        timer = null
-        func.apply(context, args)
-      }, 500)
-    }
-  }
-
   const handleChange = (value) => {
     // loadQuery()
     fetch(`https://test.cybersify.tech/Eswag/public/api/products?q=${value}`)
@@ -97,20 +82,6 @@ const SecondaryHeader = () => {
 
   const optimizedFn = useCallback(debounce(handleChange), [])
 
-  // const handleChange = () => {
-  //   if (searchProduct !== '') {
-  //     setShowResults(true)
-  //     loadQuery()
-  //     setData(response?.data)
-  //   } else {
-  //     setShowResults(false)
-  //   }
-  // }
-
-  const filteredProducts = data?.filter((product) =>
-    product.title.toLowerCase().includes(searchProduct.toLowerCase())
-  )
-
   useEffect(() => {
     window.addEventListener('resize', handleResize)
     return () => {
@@ -118,7 +89,21 @@ const SecondaryHeader = () => {
     }
   }, [])
 
-  const cartItems = useSelector((state) => state.cart.cartItems.length)
+  useEffect(() => {
+    dispatch(selectCountry(country))
+  }, [country])
+
+  useEffect(() => {
+    if (inputbtn) {
+      document.documentElement.classList.add('inputAdded')
+    } else {
+      document.documentElement.classList.remove('inputAdded')
+    }
+    return () => {
+      document.documentElement.classList.remove('inputAdded')
+    }
+  }, [inputbtn])
+
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
