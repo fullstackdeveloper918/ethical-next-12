@@ -30,6 +30,8 @@ const EstimateCard = () => {
     }
     setTotalCartPrice(totalPrice)
   }
+
+  const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
   return (
     <>
       <div className={Styles.estimate_wrapper}>
@@ -100,26 +102,28 @@ const EstimateCard = () => {
               ))
             ) : (
               <>
-              <div className={Styles.nothing_show}>
-                <div>Nothing in Cart!</div>
-                <div>Start adding your favs to cart</div>
+                <div className={Styles.nothing_show}>
+                  <div>Nothing in Cart!</div>
+                  <div>Start adding your favs to cart</div>
                 </div>
               </>
             )}
           </div>
-          <div className={Styles.estimate_container_bottom}>
-            <div className={Styles.estimate_horizontal_line}></div>
-            <div className={Styles.total_amount_container}>
-              <span className={Styles.text}>Total Estimate</span>
-              <span className={Styles.price}>${totalCartPrice}</span>
+          {cartItemsLength > 0 && (
+            <div className={Styles.estimate_container_bottom}>
+              <div className={Styles.estimate_horizontal_line}></div>
+              <div className={Styles.total_amount_container}>
+                <span className={Styles.text}>Total Estimate</span>
+                <span className={Styles.price}>${totalCartPrice}</span>
+              </div>
+              <button className={Styles.estimate_bottom_btn}>
+                Submit Estimate Request
+              </button>
+              <div className={Styles.estimate_clear_content}>
+                <p className={Styles.estimate_clear_btn}>Clear Orders</p>
+              </div>
             </div>
-            <button className={Styles.estimate_bottom_btn}>
-              Submit Estimate Request
-            </button>
-            <div className={Styles.estimate_clear_content}>
-              <p className={Styles.estimate_clear_btn}>Clear Orders</p>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </>
