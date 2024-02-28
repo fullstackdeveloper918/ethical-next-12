@@ -16,24 +16,27 @@ const Product = () => {
   const [totalData, setTotalData] = useState([])
   const [totalPages, setTotalPages] = useState('')
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
-    `/products?page=${1}&pageSize=${12}`,
+    `/products?page=${currentPage ? currentPage : 1}&pageSize=${10}`,
     {
       method: 'get',
     }
   )
   useEffect(() => {
     loadQuery()
-  }, [])
+    window.scrollTo({
+      top: '0',
+      left: '0',
+      behavior: 'smooth',
+    })
+  }, [currentPage])
 
   useEffect(() => {
-    if (response) {
+    if (response?.data) {
       setCurrentPage(response?.data?.current_page)
       setTotalData(response?.data?.total)
       setTotalPages(response?.data?.last_page)
     }
   }, [response])
-
-  console.log(response?.data?.last_page, 'response') //last_page
 
   return (
     <>
@@ -56,7 +59,13 @@ const Product = () => {
             />
             <Products response={response} loading={loading} error={error} />
             {/* <Pagination /> */}
-            <Pagination page={currentPage} />
+            <Pagination
+              page={currentPage}
+              totalData={totalData}
+              totalPages={totalPages}
+              setCurrentPage={setCurrentPage}
+              loading={loading}
+            />
           </section>
         </>
       )}
