@@ -28,7 +28,7 @@ const Certified = () => {
   const router = useRouter()
 
   useEffect(() => {
-    fetch('https://test.cybersify.tech/Eswag/public/api/testproducts')
+    fetch('https://test.cybersify.tech/Eswag/public/api/starproducts')
       .then((res) => res.json())
 
       .then((r) => setData(r?.data?.data))
@@ -65,7 +65,9 @@ const Certified = () => {
             >
               {data?.length &&
                 data?.map((product) => (
-                  <SingleProduct product={product} key={product.id} />
+                  <>
+                    <SingleProduct product={product} key={product.id} />
+                  </>
                 ))}
             </Carousel>
           </div>

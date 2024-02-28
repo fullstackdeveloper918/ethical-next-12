@@ -16,7 +16,7 @@
   margin-bottom: 1rem;
   border-top: 1px solid rgba(217, 217, 217, 0.5);
 }
-.detail_page_container::-webkit-scrollbar{
+.detail_page_container::-webkit-scrollbar {
   display: none;
 }
 
@@ -701,7 +701,7 @@
 
 .colorLight {
   color: #949090;
-  margin: 0 2px ;
+  margin: 0 2px;
 }
 
 .common_header {
@@ -777,6 +777,10 @@ p.fw400 {
 
 .custom_checkbox input[type='checkbox']:checked + label:after {
   visibility: visible;
+}
+.product_Images {
+  width: 80px;
+  height: 80px;
 }
 
 @media screen and (max-width: 1160px) {

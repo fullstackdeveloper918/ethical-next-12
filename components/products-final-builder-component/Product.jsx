@@ -31,6 +31,7 @@ const Product = () => {
   }, [country])
 
   const getProducts = async (value = '') => {
+    console.log('iiiiiii')
     try {
       if (countryTosend) {
         setIsloading(true)
@@ -71,41 +72,42 @@ const Product = () => {
 
   return (
     <>
-      {Isloading ? (
-        <div>
-          {' '}
-          <Loaders />
-        </div>
-      ) : (
-        <>
-          <section
-            className={`${global.container} ${
-              activeFilter ? Styles.category_section : ''
-            }`}
-            style={{ overflow: 'hidden' }}
-          >
-            <Filter
-              activeFilter={activeFilter}
-              setActiveFilter={setActiveFilter}
-              setSearchState={setSearchState}
-              searchState={searchState}
-              optimizedFn={optimizedFn}
-              setSelectedOptionValue={setSelectedOptionValue}
-              selectedOptionValue={selectedOptionValue}
-            />
-            <Products response={productsData} loading={Isloading} />
-            <div className={Styles.pagination_section}>
-              <Pagination
-                page={currentPage}
-                totalData={totalData}
-                totalPages={totalPages}
-                setCurrentPage={setCurrentPage}
-                loading={Isloading}
-              />
+      <>
+        <section
+          className={`${global.container} ${
+            activeFilter ? Styles.category_section : ''
+          }`}
+          style={{ overflow: 'hidden' }}
+        >
+          <Filter
+            activeFilter={activeFilter}
+            setActiveFilter={setActiveFilter}
+            setSearchState={setSearchState}
+            searchState={searchState}
+            optimizedFn={optimizedFn}
+            setSelectedOptionValue={setSelectedOptionValue}
+            selectedOptionValue={selectedOptionValue}
+          />
+          {Isloading ? (
+            <div>
+              {' '}
+              <Loaders />
             </div>
-          </section>
-        </>
-      )}
+          ) : (
+            <Products response={productsData} loading={Isloading} />
+          )}
+
+          <div className={Styles.pagination_section}>
+            <Pagination
+              page={currentPage}
+              totalData={totalData}
+              totalPages={totalPages}
+              setCurrentPage={setCurrentPage}
+              loading={Isloading}
+            />
+          </div>
+        </section>
+      </>
     </>
   )
 }

@@ -230,7 +230,7 @@ const Product = ({ product, loading, error }) => {
                   <div className={Styles.images_container}>
                     {productImages.map((image, index) => (
                       <>
-                        <div>
+                        <div className={Styles.product_Images}>
                           <Image
                             src={image?.url}
                             width={100}
@@ -293,29 +293,33 @@ const Product = ({ product, loading, error }) => {
                     <label for="sample">Is this a sample? </label>
                   </div>
                 </div>
-                <div className={Styles.select_color_section}>
-                  <div className={Styles.common_header}>
-                    <p>Select Color</p>
-                    <Image
-                      src={images.Info_Icon}
-                      width={18}
-                      height={18}
-                      alt="info_icon"
-                    />
+                {product?.colours ? (
+                  <div className={Styles.select_color_section}>
+                    <div className={Styles.common_header}>
+                      <p>Select Color</p>
+                      <Image
+                        src={images.Info_Icon}
+                        width={18}
+                        height={18}
+                        alt="info_icon"
+                      />
+                    </div>
+                    <div className={Styles.colors_container}>
+                      {product?.colours &&
+                        Object.entries(product?.colours).map(
+                          ([color, imageUrl]) => {
+                            return (
+                              <>
+                                <Dot color={imageUrl} />
+                              </>
+                            )
+                          }
+                        )}
+                    </div>
                   </div>
-                  <div className={Styles.colors_container}>
-                    {product?.colours &&
-                      Object.entries(product?.colours).map(
-                        ([color, imageUrl]) => {
-                          return (
-                            <>
-                              <Dot color={imageUrl} />
-                            </>
-                          )
-                        }
-                      )}
-                  </div>
-                </div>
+                ) : (
+                  ''
+                )}
                 <div className={Styles.cart_left_swift}>
                   <div className={Styles.common_header}>
                     <h6>Swift swag</h6>

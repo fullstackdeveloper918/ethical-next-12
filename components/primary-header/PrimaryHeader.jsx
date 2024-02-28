@@ -93,9 +93,9 @@ const PrimaryHeader = () => {
                 <DropdownMenuRadioItem
                   value="bottom"
                   className={styles.shop_submenu}
-                  onClick={() => router.push('/bags')}
+                  onClick={() => router.push('/services')}
                 >
-                  Bags
+                  Services
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem
                   value="right"
@@ -108,16 +108,16 @@ const PrimaryHeader = () => {
                   value="right"
                   className={styles.shop_submenu}
                   s
-                  onClick={() => router.push('/wellness')}
+                  onClick={() => router.push('/what-to-expect')}
                 >
-                  Wellness
+                  What to expect
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem
                   value="right"
                   className={styles.shop_submenu}
-                  onClick={() => router.push('/plants-seeds')}
+                  onClick={() => router.push('/blog')}
                 >
-                  Plants & Seeds
+                  Blog
                 </DropdownMenuRadioItem>
               </DropdownMenuContent>
             </DropdownMenu>

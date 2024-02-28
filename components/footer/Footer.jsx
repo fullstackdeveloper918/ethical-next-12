@@ -99,49 +99,49 @@ const Footer = () => {
             <div className="">
               <span
                 style={{ cursor: 'pointer' }}
-                onClick={() => router.push('/plants-seeds')}
+                onClick={() => router.push('/about-us')}
               >
-                Plants & Seeds
+                About
               </span>
             </div>
             <div className="">
               <span
                 style={{ cursor: 'pointer' }}
-                onClick={() => router.push('/apparel')}
+                onClick={() => router.push('/blog')}
               >
-                Apparel
+                Blogs
               </span>
             </div>
             <div className="">
               <span
                 style={{ cursor: 'pointer' }}
-                onClick={() => router.push('/')}
+                onClick={() => router.push('/services')}
               >
-                At Home
+                Services
               </span>
             </div>
             <div className="">
               <span
                 style={{ cursor: 'pointer' }}
-                onClick={() => router.push('/apparel')}
+                onClick={() => router.push('/what-to-expect')}
               >
-                Office
+                What to Expect
               </span>
             </div>
             <div className="">
               <span
                 style={{ cursor: 'pointer' }}
-                onClick={() => router.push('/apparel')}
+                onClick={() => router.push('/contact')}
               >
-                Others
+                Contact
               </span>
             </div>
             <div className="">
               <span
                 style={{ cursor: 'pointer' }}
-                onClick={() => router.push('/products')}
+                onClick={() => router.push('/privacy-policy')}
               >
-                Shop by
+                Privacy Policy
               </span>
             </div>
           </div>

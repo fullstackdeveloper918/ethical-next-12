@@ -3,7 +3,9 @@ import styles from './singleProduct.module.css'
 import shirtImg from '../../assets/shirt.svg'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import Dot from '@components/custom-colored-dot/Dot'
 const SingleProduct = ({ product }) => {
+  console.log(product?.colours[0]?.black)
   const router = useRouter()
   return (
     <div
@@ -21,8 +23,15 @@ const SingleProduct = ({ product }) => {
       <div className={styles.product_name}>
         {product?.product_title || 'fghjk'}
       </div>
-      <div className={styles.textCenter}>
-        as low as $<span className="">{product?.unit_price || 678}</span>
+      <div className={styles.colors_container}>
+        {product?.colours &&
+          Object.entries(product?.colours).map(([color, imageUrl]) => {
+            return (
+              <div>
+                <Dot color={imageUrl} />
+              </div>
+            )
+          })}
       </div>
     </div>
   )
