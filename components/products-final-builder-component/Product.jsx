@@ -6,9 +6,7 @@ import Filter from '../Filter/Filter'
 import Products from '../Products/Products'
 import global from '../../styles/global.module.css'
 import Styles from '../Filter/Filter.module.css'
-import { MdArrowBackIos } from 'react-icons/md'
 import Pagination from '../pagination/Pagination'
-import { IoChevronForwardSharp } from 'react-icons/io5'
 import { useSelector } from 'react-redux'
 
 const Product = () => {
@@ -17,6 +15,7 @@ const Product = () => {
   const [totalData, setTotalData] = useState([])
   const [totalPages, setTotalPages] = useState('')
   const [countryTosend, setCountryToSend] = useState(null)
+  const [searchState, setSearchState] = useState(null)
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products?page=${
       currentPage ? currentPage : 1

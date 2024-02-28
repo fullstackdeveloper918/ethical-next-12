@@ -25,6 +25,7 @@ import { useRouter } from 'next/router'
 import { Input } from '@/components/ui/input'
 import useFetch from '@lib/useFetch'
 import { selectCountry } from 'redux-setup/countrySlice'
+import { debounce, optimizedFn } from '@lib/utils'
 const countries = [
   {
     id: 1,
@@ -52,7 +53,7 @@ const SecondaryHeader = () => {
   const cartItems = useSelector((state) => state.cart.cartItems.length)
 
   const filteredProducts = data?.filter((product) =>
-    product.title.toLowerCase().includes(searchProduct.toLowerCase())
+    product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
   )
 
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
@@ -69,18 +70,6 @@ const SecondaryHeader = () => {
   const handleInput = (boolean) => {
     setShowSearchInput(boolean)
     setInputBtn(boolean)
-  }
-
-  const debounce = (func) => {
-    let timer
-    return function (...args) {
-      const context = this
-      if (timer) clearTimeout(timer)
-      timer = setTimeout(() => {
-        timer = null
-        func.apply(context, args)
-      }, 500)
-    }
   }
 
   const handleChange = (value) => {
