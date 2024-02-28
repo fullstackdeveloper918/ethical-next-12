@@ -4,7 +4,7 @@ import images from '../../constants/images'
 import Image from 'next/image'
 import useFetch from '../../lib/useFetch'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteCartItem } from '../../redux-setup/cartSlice'
+import { deleteCartItem, deleteAllCartItems } from '../../redux-setup/cartSlice'
 import { useRouter } from 'next/router'
 
 const EstimateCard = () => {
@@ -120,7 +120,12 @@ const EstimateCard = () => {
                 Submit Estimate Request
               </button>
               <div className={Styles.estimate_clear_content}>
-                <p className={Styles.estimate_clear_btn}>Clear Orders</p>
+                <button
+                  className={Styles.estimate_clear_btn}
+                  onClick={() => dispatch(deleteAllCartItems())}
+                >
+                  Clear Orders
+                </button>
               </div>
             </div>
           )}
