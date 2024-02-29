@@ -19,17 +19,17 @@ const Product = () => {
   const [countryTosend, setCountryToSend] = useState(null)
   const [productsData, setProductsData] = useState(null)
   const [Isloading, setIsloading] = useState(false)
+
   const country = useSelector((state) => state.country.country)
-  useEffect(() => {
-    if (country) {
-      setCountryToSend(
-        country === 'usa' ? 'available_in_usa' : 'available_in_canada'
-      )
-    }
-  }, [country])
+  const selectedOptionValue = useSelector(
+    (state) => state.cart.selectedOptionValue
+  )
+
+  const optimizedFn = useCallback(debounce(getProducts), [])
+
+  const searchState = useSelector((state) => state.cart.searchState)
 
   const getProducts = async (value = '') => {
-    console.log('getProducts func hit')
     try {
       if (countryTosend) {
         setIsloading(true)
@@ -53,10 +53,16 @@ const Product = () => {
   }
 
   useEffect(() => {
+    if (country) {
+      setCountryToSend(
+        country === 'usa' ? 'available_in_usa' : 'available_in_canada'
+      )
+    }
+  }, [country])
+
+  useEffect(() => {
     getProducts()
   }, [currentPage, countryTosend, selectedOptionValue])
-
-  const optimizedFn = useCallback(debounce(getProducts), [])
 
   useEffect(() => {
     if (productsData) {
@@ -65,11 +71,6 @@ const Product = () => {
       setTotalPages(productsData?.data?.last_page)
     }
   }, [productsData])
-
-  const searchState = useSelector((state) => state.cart.searchState)
-  const selectedOptionValue = useSelector(
-    (state) => state.cart.selectedOptionValue
-  )
 
   return (
     <>
