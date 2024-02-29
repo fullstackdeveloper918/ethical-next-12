@@ -7,6 +7,7 @@ import useFetch from '../lib/useFetch'
 import { useDispatch, useSelector } from 'react-redux'
 import { setRole } from '../redux-setup/authSlice'
 import { toast } from 'react-toastify'
+import EthicalLogo from '../components/EthicalLogo/EthicalLogo'
 import { initialValuesLogin, validationSchema } from '../lib/validationSchemas'
 import Styles from '../styles/Login.module.css'
 
@@ -73,7 +74,7 @@ const login = () => {
         <div className={Styles.login_container}>
           <div className={Styles.login_content}>
             <div className={Styles.login_img_content}>
-              <Image src={images.ethical_swag} />
+              <EthicalLogo />
             </div>
             <Formik
               initialValues={initialValuesLogin}
