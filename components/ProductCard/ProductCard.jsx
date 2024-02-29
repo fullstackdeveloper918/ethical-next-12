@@ -8,7 +8,7 @@ import { CiSearch } from 'react-icons/ci'
 import { CiShare2 } from 'react-icons/ci'
 import images from 'constants/images'
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({ item, fromSingleProduct }) => {
   return (
     <>
       <div className={Styles.collection_items}>
@@ -63,7 +63,9 @@ const ProductCard = ({ item }) => {
               <CiShare2 fontSize={25} color="#d3d3d3" className={Styles.icon} />
             </span>
           </div>
-          <Link href={`products/${item?.id}`}>
+          <Link
+            href={fromSingleProduct ? `${item?.id}` : `products/${item?.id}`}
+          >
             <button className={Styles.viewProduct_btn}>View Product</button>
           </Link>
         </div>

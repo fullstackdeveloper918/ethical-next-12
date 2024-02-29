@@ -50,7 +50,9 @@ const productID = () => {
       <section className={Styles.product_section}>
         <div className={Styles.heading_content}>
           <h3>Newly Added Swag</h3>
-          <button>View All</button>
+          <button type="button" onClick={() => router.push('/products')}>
+            View All
+          </button>
         </div>
 
         <div className={Styles.product_card_container}>
@@ -58,7 +60,7 @@ const productID = () => {
             data?.slice(0, 5).map((item) => (
               <>
                 <div className={Styles.product_content}>
-                  <ProductCard item={item} key={item.id} />
+                  <ProductCard item={item} key={item.id} fromSingleProduct />
                 </div>
               </>
             ))}
