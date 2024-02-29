@@ -2,7 +2,7 @@ import React from 'react'
 import Styles from './Button.module.css'
 import { useRouter } from 'next/router'
 
-const Button = ({ onClick, disabled }) => {
+const Button = ({ onClick, disabled, hideContinue }) => {
   const router = useRouter()
 
   return (
@@ -15,15 +15,17 @@ const Button = ({ onClick, disabled }) => {
         >
           Back
         </button>
-        <button
-          type="submit"
-          disabled={disabled ? disabled : false}
-          className={Styles.button}
-          style={{ opacity: disabled ? '0.7' : '1' }}
-          onClick={onClick}
-        >
-          Continue
-        </button>
+        {!hideContinue && (
+          <button
+            type="submit"
+            disabled={disabled ? disabled : false}
+            className={Styles.button}
+            style={{ opacity: disabled ? '0.7' : '1' }}
+            onClick={onClick}
+          >
+            Continue
+          </button>
+        )}
       </div>
     </>
   )

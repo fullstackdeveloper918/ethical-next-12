@@ -65,7 +65,7 @@ const BillingAddress = () => {
                   </p>
                 </div>
               </div>
-              <Button />
+              <Button hideContinue />
             </div>
             <EstimateCard />
           </>
