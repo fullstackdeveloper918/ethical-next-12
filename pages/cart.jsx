@@ -38,7 +38,7 @@ const cart = () => {
       <PrimaryHeader />
       <SecondaryHeader />
       <section className={Styles.cart_section}>
-        {!cartItemsLength > 0 ? (
+        {cartItemsLength > 0 ? (
           <>
             <div>
               <QuotationSubmissionHeader />

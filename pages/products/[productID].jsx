@@ -30,9 +30,9 @@ const productID = () => {
     }
   }, [productID])
 
-  useEffect(() => {
-    router.push('/products')
-  }, [country])
+  // useEffect(() => {
+  //   router.push('/products')
+  // }, [country])
 
   useEffect(() => {
     fetch(
