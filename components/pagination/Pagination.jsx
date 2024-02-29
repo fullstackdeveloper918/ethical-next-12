@@ -11,6 +11,15 @@ const Pagination = ({
   loading,
 }) => {
   const [arr, setArr] = useState([])
+
+  const handlePageChange = (val) => {
+    if (val === 'prev') {
+      page != 1 && setCurrentPage((prev) => prev - 1)
+    } else if (val === 'next') {
+      page != totalPages && setCurrentPage((prev) => prev + 1)
+    }
+  }
+
   const noOfPages = () => {
     let a = []
     for (let i = 1; i <= totalPages; i++) {
@@ -24,16 +33,6 @@ const Pagination = ({
       noOfPages()
     }
   }, [totalPages])
-
-  const handlePageChange = (val) => {
-    if (val === 'prev') {
-      page != 1 && setCurrentPage((prev) => prev - 1)
-    } else if (val === 'next') {
-      page != totalPages && setCurrentPage((prev) => prev + 1)
-    }
-  }
-
-  console.log(totalData, 'all of meee')
 
   return (
     <>

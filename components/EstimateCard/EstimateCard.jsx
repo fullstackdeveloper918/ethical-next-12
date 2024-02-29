@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { GrEdit } from 'react-icons/gr'
 import Styles from './EstimateCard.module.css'
 import images from '../../constants/images'
-import Image from 'next/image'
-import useFetch from '../../lib/useFetch'
-import { useDispatch, useSelector } from 'react-redux'
 import { deleteCartItem, deleteAllCartItems } from '../../redux-setup/cartSlice'
-import { useRouter } from 'next/router'
-import { GrEdit } from 'react-icons/gr'
 
 const EstimateCard = () => {
   const dispatch = useDispatch()
@@ -31,9 +30,7 @@ const EstimateCard = () => {
     }
     setTotalCartPrice(totalPrice)
   }
-
-  const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
-
+  console.log(cartItems, 'cartItemscartItems')
   return (
     <>
       <div className={Styles.estimate_wrapper}>

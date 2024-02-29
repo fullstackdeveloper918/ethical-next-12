@@ -1,6 +1,5 @@
 'use client'
 import React, { useState, useEffect, useCallback } from 'react'
-import useFetch from '../../lib/useFetch'
 import Loaders from '../loaders/Loaders'
 import Filter from '../Filter/Filter'
 import Products from '../Products/Products'
@@ -21,11 +20,10 @@ const Product = () => {
   const [Isloading, setIsloading] = useState(false)
 
   const country = useSelector((state) => state.country.country)
+
   const selectedOptionValue = useSelector(
     (state) => state.cart.selectedOptionValue
   )
-
-  const searchState = useSelector((state) => state.cart.searchState)
 
   const getProducts = async (value = '') => {
     try {
@@ -70,9 +68,6 @@ const Product = () => {
       setTotalPages(productsData?.data?.last_page)
     }
   }, [productsData])
-
-  console.log(productsData, 'productsDataproductsData')
-  console.log({ totalPages, totalData, currentPage })
 
   return (
     <>

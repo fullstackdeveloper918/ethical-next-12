@@ -8,17 +8,9 @@ import ProductCard from '../ProductCard/ProductCard'
 import { useSelector } from 'react-redux'
 
 const Products = ({ response, loading }) => {
-  const inputPrice = useSelector((state) => state.filter?.Price)
-
-  const filterProducts = response?.data?.data?.filter(
-    (p) => p?.unit_price > inputPrice
-  )
-
   const promotionalProduct = useSelector(
     (state) => state.random.singleProductPromotion
   )
-
-  console.log(promotionalProduct, 'promotionalProduct from')
 
   return (
     <>
