@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   cartItems: [],
+  searchState: '',
+  selectedOptionValue: '',
 }
 const cartSlice = createSlice({
   name: 'cart',
@@ -27,9 +29,20 @@ const cartSlice = createSlice({
     deleteAllCartItems: (state, action) => {
       state.cartItems = []
     },
+    setSearchState: (state, action) => {
+      state.searchState = action.payload
+    },
+    setSelectedOptionValue: (state, action) => {
+      state.selectedOptionValue = action.payload
+    },
   },
 })
 
-export const { setCartItems, deleteCartItem, deleteAllCartItems } =
-  cartSlice.actions
+export const {
+  setCartItems,
+  deleteCartItem,
+  deleteAllCartItems,
+  setSearchState,
+  setSelectedOptionValue,
+} = cartSlice.actions
 export default cartSlice.reducer

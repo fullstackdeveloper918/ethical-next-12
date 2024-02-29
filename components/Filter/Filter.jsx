@@ -4,16 +4,16 @@ import Styles from './Filter.module.css'
 import Image from 'next/image'
 import FilterPanel from '../FilterPanel/FilterPanel'
 import images from '../../constants/images'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSearchState, setSelectedOptionValue } from 'redux-setup/cartSlice'
 
-const Filter = ({
-  activeFilter,
-  setActiveFilter,
-  setSearchState,
-  optimizedFn,
-  setSelectedOptionValue,
-  selectedOptionValue,
-}) => {
+const Filter = ({ activeFilter, setActiveFilter, optimizedFn }) => {
   const [scrolled, setScrolled] = useState(false)
+  const dispatch = useDispatch()
+  const searchState = useSelector((state) => state.cart.searchState)
+  const selectedOptionValue = useSelector(
+    (state) => state.cart.selectedOptionValue
+  )
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +31,7 @@ const Filter = ({
 
   const handleSelectChange = (event) => {
     const value = event.target.value
-    setSelectedOptionValue(value)
+    dispatch(setSelectedOptionValue(value))
   }
 
   return (
@@ -55,10 +55,11 @@ const Filter = ({
         <div className={Styles.filter_input}>
           <input
             type="text"
+            value={searchState}
             onChange={(e) => {
               e.preventDefault()
-              setSearchState(e.target.value)
-              optimizedFn(e.target.value)
+              dispatch(setSearchState(e.target.value))
+              optimizedFn(searchState)
             }}
           />
         </div>

@@ -17,10 +17,8 @@ const Product = () => {
   const [totalData, setTotalData] = useState([])
   const [totalPages, setTotalPages] = useState('')
   const [countryTosend, setCountryToSend] = useState(null)
-  const [searchState, setSearchState] = useState('')
   const [productsData, setProductsData] = useState(null)
   const [Isloading, setIsloading] = useState(false)
-  const [selectedOptionValue, setSelectedOptionValue] = useState('')
   const country = useSelector((state) => state.country.country)
   useEffect(() => {
     if (country) {
@@ -31,7 +29,7 @@ const Product = () => {
   }, [country])
 
   const getProducts = async (value = '') => {
-    console.log('iiiiiii')
+    console.log('getProducts func hit')
     try {
       if (countryTosend) {
         setIsloading(true)
@@ -68,7 +66,10 @@ const Product = () => {
     }
   }, [productsData])
 
-  console.log(selectedOptionValue, 'selectedOptionValueselectedOptionValue')
+  const searchState = useSelector((state) => state.cart.searchState)
+  const selectedOptionValue = useSelector(
+    (state) => state.cart.selectedOptionValue
+  )
 
   return (
     <>
@@ -82,11 +83,7 @@ const Product = () => {
           <Filter
             activeFilter={activeFilter}
             setActiveFilter={setActiveFilter}
-            setSearchState={setSearchState}
-            searchState={searchState}
             optimizedFn={optimizedFn}
-            setSelectedOptionValue={setSelectedOptionValue}
-            selectedOptionValue={selectedOptionValue}
           />
           {Isloading ? (
             <div>
