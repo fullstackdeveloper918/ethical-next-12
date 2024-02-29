@@ -10,7 +10,7 @@ const QuotationSubmissionHeader = () => {
         <div className={Styles.horizontal_line}>
           <div className={Styles.stepCount}>
             <span className={Styles.active}>1</span>
-            <span className={Styles.active}>2</span>
+            <span>2</span>
             <span>3</span>
           </div>
         </div>
