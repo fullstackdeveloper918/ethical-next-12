@@ -9,8 +9,6 @@ import { CiShare2 } from 'react-icons/ci'
 import images from 'constants/images'
 
 const ProductCard = ({ item }) => {
-  console.log(item?.image, 'leading slash')
-
   return (
     <>
       <Link href={`products/${item?.id}`}>

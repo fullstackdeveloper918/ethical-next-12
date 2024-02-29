@@ -1,8 +1,11 @@
 import React from 'react'
 import images from '../../constants/images'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 const EthicalLogo = () => {
+  const router = useRouter()
+
   return (
     <>
       <Image
