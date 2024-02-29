@@ -39,7 +39,8 @@ const productID = () => {
       `https://test.cybersify.tech/Eswag/public/api/product/recent?pageSize=${10}&country=available_in_${country}`
     )
       .then((res) => res.json())
-      .then((r) => setData(r?.data?.data))
+      .then((data) => setData(data?.data))
+    // .then((data) => console.log(data?.data))
   }, [])
 
   return (
