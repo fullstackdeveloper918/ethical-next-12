@@ -38,7 +38,7 @@ const Product = () => {
         const response = await axios.get(
           `https://test.cybersify.tech/Eswag/public/api/products?page=${
             currentPage ? currentPage : 1
-          }&pageSize=${10}&${countryTosend}=1&search_title=${value}&${selectedOptionValue}`
+          }&pageSize=${10}&${countryTosend}=1&search_title=${value}&${selectedOptionValue}=desc`
         )
         setProductsData(response.data)
         window.scrollTo({

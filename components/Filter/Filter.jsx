@@ -76,13 +76,14 @@ const Filter = ({
               </option>
               {/* <option value="sort">Sort</option>
               <option value="featured">Featured</option>
-              <option value="best_selling">Best Selling</option> */}
-              <option value="asc">Alphabetically, A-Z</option>
-              <option value="des">Alphabetically, Z-A</option>
-              <option value="priceAsc">Price, low to high</option>
-              <option value="priceDes">Price, high to low </option>
-              <option value="dateAsc">Date, old to new </option>
-              <option value="dateDes">Date, new to old </option>
+              // <option value="best_selling">Best Selling</option> */}
+              {/* <option value="remove_all">Remove All</option> */}
+              <option value="product_title_asc">Alphabetically, A-Z</option>
+              <option value="product_title_desc">Alphabetically, Z-A</option>
+              {/* <option value="priceAsc">Price, low to high</option>
+              <option value="priceDes">Price, high to low </option> */}
+              <option value="created_at_asc">Date, old to new </option>
+              <option value="created_at_desc">Date, new to old </option>
             </select>
           </div>
         </div>
