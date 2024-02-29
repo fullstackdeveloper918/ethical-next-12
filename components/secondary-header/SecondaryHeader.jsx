@@ -56,6 +56,8 @@ const SecondaryHeader = () => {
     product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
   )
 
+  console.log(filteredProducts, 'filteredProducts')
+
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products?q=${searchProduct}`,
     {
@@ -76,7 +78,7 @@ const SecondaryHeader = () => {
     // loadQuery()
     fetch(`https://test.cybersify.tech/Eswag/public/api/products?q=${value}`)
       .then((res) => res.json())
-      .then((data) => setData(data?.data?.data))
+      .then((data) => console.log(data?.data))
     // .then((json) => setSuggestions(json.data.items))
   }
 
