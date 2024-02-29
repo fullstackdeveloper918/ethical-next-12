@@ -22,8 +22,6 @@ const Cart = ({
   showEstimateCart,
   showLoginComponent,
 }) => {
-  //  const [tokenLocally,setTokenLocally] = useState('')
-
   const dispatch = useDispatch()
   const [showLogin, setShowLogin] = useState(true)
   const [values, setValues] = useState({
@@ -64,8 +62,6 @@ const Cart = ({
     'formdata'
   )
 
-  const user_Id = 915
-
   useEffect(() => {
     if (response) {
       localStorage.setItem('token_swag', response?.data?.accessToken)
@@ -97,17 +93,8 @@ const Cart = ({
     const movies = await response.json()
   }
 
-  const c = async () => {
-    console.log('c func')
-    const response = await fetch(
-      'https://test.cybersify.tech/Eswag/public/api/cart/918'
-    )
-    const movies = await response.json()
-    console.log(movies, 'plz final s')
-  }
   useEffect(() => {
     b()
-    // postData()
   }, [])
 
   const onSubmit = async (values) => {

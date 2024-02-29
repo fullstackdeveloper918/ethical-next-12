@@ -6,6 +6,7 @@ import useFetch from '../../lib/useFetch'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteCartItem, deleteAllCartItems } from '../../redux-setup/cartSlice'
 import { useRouter } from 'next/router'
+import { GrEdit } from 'react-icons/gr'
 
 const EstimateCard = () => {
   const dispatch = useDispatch()
@@ -45,7 +46,6 @@ const EstimateCard = () => {
                   <div className={Styles.estimate_content} key={item.id}>
                     <div
                       className={Styles.estimate_content_imgContent}
-                      onClick={() => router.push(`/products/${item.id}`)}
                       style={{ cursor: 'pointer' }}
                     >
                       <Image
@@ -58,7 +58,6 @@ const EstimateCard = () => {
                     <div className={Styles.estimate_content_textContent}>
                       <h4
                         className={Styles.title}
-                        onClick={() => router.push(`/products/${item.id}`)}
                         style={{ cursor: 'pointer' }}
                       >
                         {item.heading.slice(0, 70) + '...'}
@@ -68,20 +67,27 @@ const EstimateCard = () => {
                       </span>
                       <div className={Styles.amountwrapper}>
                         <div className={Styles.amountContainer}>
-                          <div className={Styles.amount_number}>
-                            {item.quantity}
-                          </div>
+                          <div>{item.quantity}</div>
                         </div>
-                        <div
-                          style={{ cursor: 'pointer' }}
-                          onClick={() => handleDelete(item.id)}
-                        >
-                          <Image
-                            src={images.delete_icon}
-                            width={14}
-                            height={16}
-                            alt="delete_icon"
-                          />
+                        <div className="">
+                          <button
+                            style={{ cursor: 'pointer', marginLeft: '5px' }}
+                            onClick={() => handleDelete(item.id)}
+                          >
+                            <Image
+                              src={images.delete_icon}
+                              width={14}
+                              height={16}
+                              alt="delete_icon"
+                            />
+                          </button>
+                          <button
+                            style={{ marginLeft: '15px', color: '#A2D061' }}
+                            onClick={() => router.push(`/products/${item.id}`)}
+                            type="button"
+                          >
+                            <GrEdit />
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -90,7 +96,9 @@ const EstimateCard = () => {
                     <div className={Styles.estimate_horizontal_line}></div>
                     <div className={Styles.total_amount_container}>
                       <span className={Styles.text}>Total Estimate</span>
-                      <span className={Styles.price}>${totalCartPrice}</span>
+                      <span className={Styles.price}>
+                        ${totalCartPrice.toFixed(2)}
+                      </span>
                     </div>
                     <button className={Styles.estimate_bottom_btn}>
                       Submit Estimate Request

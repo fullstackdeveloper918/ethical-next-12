@@ -8,6 +8,7 @@ import QuotationSubmissionHeader from '../components/QuotationSubmissionHeader/Q
 import ClientTypeSelector from '../components/ClientTypeSelector/ClientTypeSelector'
 import Styles from '../components/cart/Cart.module.css'
 import Button from '../components/Button/Button'
+import { useSelector } from 'react-redux'
 
 const cart = () => {
   const token = localStorage.getItem('token_swag')
@@ -27,28 +28,32 @@ const cart = () => {
     }
   }, [showEstimateCart])
 
+  const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
+
   return (
     <>
       <PrimaryHeader />
       <SecondaryHeader />
       <section className={Styles.cart_section}>
-        <div>
-          <QuotationSubmissionHeader />
-          {showLoginComponent && (
-            <ClientTypeSelector
+        {cartItemsLength > 0 && (
+          <div>
+            <QuotationSubmissionHeader />
+            {showLoginComponent && (
+              <ClientTypeSelector
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+                handleOptionChange={handleOptionChange}
+              />
+            )}
+            <Cart
+              token={token}
               selectedOption={selectedOption}
-              setSelectedOption={setSelectedOption}
-              handleOptionChange={handleOptionChange}
+              setShowEstimateCart={setShowEstimateCart}
+              showLoginComponent={showLoginComponent}
             />
-          )}
-          <Cart
-            token={token}
-            selectedOption={selectedOption}
-            setShowEstimateCart={setShowEstimateCart}
-            showLoginComponent={showLoginComponent}
-          />
-          <Button />
-        </div>
+            <Button />
+          </div>
+        )}
         <EstimateCard />
       </section>
       <Footer />

@@ -91,6 +91,7 @@
 .estimate_content_textContent > .amountwrapper {
   display: flex;
   justify-content: space-between;
+  /* gap: '15px'; */
   align-items: center;
 }
 
@@ -100,6 +101,7 @@
   align-items: center;
   /* grid-template-columns: 1fr 3fr 1fr; */
   min-width: max-content;
+  max-width: max-content;
   border-radius: 4.301px;
   border: 0.717px solid rgba(162, 208, 97, 0.5);
   text-align: center;
