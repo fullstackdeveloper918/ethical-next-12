@@ -14,6 +14,12 @@ const Products = ({ response, loading }) => {
     (p) => p?.unit_price > inputPrice
   )
 
+  const promotionalProduct = useSelector(
+    (state) => state.random.singleProductPromotion
+  )
+
+  console.log(promotionalProduct, 'promotionalProduct from')
+
   return (
     <>
       {loading ? (
@@ -29,7 +35,7 @@ const Products = ({ response, loading }) => {
             <div className={Styles.collection_Single}>
               <div className={Styles.imgContent}>
                 <Image
-                  src={Featured_product}
+                  src={promotionalProduct.image}
                   width={221}
                   height={345}
                   alt="cup"
@@ -39,9 +45,9 @@ const Products = ({ response, loading }) => {
               </div>
               <div className={Styles.textContent}>
                 <h4 className={Styles.textContent_title}>
-                  Zama Flannel Plaid Button Down Shirt - Unisex
+                  {promotionalProduct.product_title}
                 </h4>
-                <p>as low as $60.00</p>
+                <p>as low as ${promotionalProduct.unit_price || 60}</p>
                 <Image
                   src={PromotionImg}
                   width={132}

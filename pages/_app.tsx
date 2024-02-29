@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import countrySlice from '../redux-setup/countrySlice'
 import authSlice from '../redux-setup/authSlice'
 import cartSlice from '../redux-setup/cartSlice'
+import randomSlice from '../redux-setup/randomSlice'
 import filterSlice from '../redux-setup/FiltersSlice'
 import tokenReducer from '../redux-setup/tokenSlice'
 import { ToastContainer } from 'react-toastify'
@@ -33,6 +34,7 @@ const combinedReducer = combineReducers({
   filter: filterSlice,
   token: tokenReducer,
   cart: cartSlice,
+  random: randomSlice,
 })
 
 const persistConfig = { key: 'root', storage, version: 1 }
