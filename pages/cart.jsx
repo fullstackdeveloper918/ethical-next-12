@@ -38,33 +38,34 @@ const cart = () => {
       <PrimaryHeader />
       <SecondaryHeader />
       <section className={Styles.cart_section}>
-        {/* {cartItemsLength > 0 && ( */}
-        <div>
-          <QuotationSubmissionHeader />
-          {showLoginComponent && (
-            <ClientTypeSelector
-              selectedOption={selectedOption}
-              setSelectedOption={setSelectedOption}
-              handleOptionChange={handleOptionChange}
-            />
-          )}
-          <Cart
-            token={token}
-            selectedOption={selectedOption}
-            setShowEstimateCart={setShowEstimateCart}
-            showLoginComponent={showLoginComponent}
-          />
-        </div>
-        {/* )} */}
-        <div
-          className=""
-          style={{
-            display: cartItemsLength == 0 ? 'flex' : 'block',
-            justifyContent: 'center',
-          }}
-        >
-          <EstimateCard />
-        </div>
+        {cartItemsLength > 0 ? (
+          <>
+            <div>
+              <QuotationSubmissionHeader />
+              {showLoginComponent && (
+                <ClientTypeSelector
+                  selectedOption={selectedOption}
+                  setSelectedOption={setSelectedOption}
+                  handleOptionChange={handleOptionChange}
+                />
+              )}
+              <Cart
+                token={token}
+                selectedOption={selectedOption}
+                setShowEstimateCart={setShowEstimateCart}
+                showLoginComponent={showLoginComponent}
+              />
+              <Button />
+            </div>
+            <EstimateCard />
+          </>
+        ) : (
+          <>
+            <div className={Styles.empty_card_container}>
+              <EmptyContainer />
+            </div>
+          </>
+        )}
       </section>
       <Footer />
     </>
