@@ -33,7 +33,7 @@ const BillingAddress = () => {
               <ReviewEstimate />
               <div className={Styles.cart_left_FAQ}>
                 <h3>Other Info</h3>
-                <SwagOrderForm />
+                <SwagOrderForm isBilling />
               </div>
 
               {/* Shipping address  css writen in cart module*/}

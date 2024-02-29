@@ -11,12 +11,10 @@ import Button from '../Button/Button'
 import { useRouter } from 'next/router'
 import { setStep1State, setreached2ndStep } from '../../redux-setup/cartSlice'
 
-const SwagOrderForm = () => {
+const SwagOrderForm = ({ isBilling }) => {
   const router = useRouter()
 
   const dispatch = useDispatch()
-  const [errorLength, setErrorLength] = useState(false)
-  const isBilling = true
   const onSubmit = async (values) => {
     if (values.selectedDate) {
       dispatch(setreached2ndStep(true))
