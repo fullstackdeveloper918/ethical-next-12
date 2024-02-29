@@ -20,7 +20,7 @@ const Button = ({ onClick, disabled }) => {
           disabled={disabled ? disabled : false}
           className={Styles.button}
           style={{ opacity: disabled ? '0.7' : '1' }}
-          onClick={onClick} //  router.back();
+          onClick={onClick}
         >
           Continue
         </button>

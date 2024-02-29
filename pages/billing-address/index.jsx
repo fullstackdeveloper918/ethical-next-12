@@ -1,14 +1,13 @@
 import React from 'react'
+import { GrEdit } from 'react-icons/gr'
 import PrimaryHeader from '../../components/primary-header/PrimaryHeader'
 import SecondaryHeader from '../../components/secondary-header/SecondaryHeader'
-import QuotationSubmissionHeader from '../../components/QuotationSubmissionHeader/QuotationSubmissionHeader'
 import Button from '../../components/Button/Button'
 import EstimateCard from '../../components/EstimateCard/EstimateCard'
 import Footer from '../../components/footer/Footer'
 import ReviewEstimate from '../../components/ReviewEstimate/ReviewEstimate'
 import Styles from '../../components/cart/Cart.module.css'
-import { GrEdit } from 'react-icons/gr'
-
+import QuotationSubmissionHeader from '../../components/QuotationSubmissionHeader/QuotationSubmissionHeader'
 const BillingAddress = () => {
   return (
     <>
@@ -124,7 +123,7 @@ const BillingAddress = () => {
           </div>
           <Button />
         </div>
-        <EstimateCard />
+        {/* <EstimateCard /> */}
       </section>
       <Footer />
     </>
