@@ -20,6 +20,7 @@ const SwagOrderForm = () => {
     selectedCheckboxes: [],
   })
   const dispatch = useDispatch()
+  const [errorLength, setErrorLength] = useState(false)
 
   const onSubmit = async (values) => {
     console.log(values, 'from onsubmit i hit me')
@@ -47,9 +48,10 @@ const SwagOrderForm = () => {
           // validationSchema={validationSchemaSwagOrderForm1stStep}
           onSubmit={onSubmit}
         >
-          {({ values }) => (
+          {({ values, errors }) => (
             <>
               {/* {console.log(values, 'all of my form values')} */}
+              {setErrorLength(Object.keys(errors).length)}
               <Form>
                 <div className={Styles.SwagOrder_faqInput}>
                   <p>When do you need this order? *</p>
@@ -132,7 +134,7 @@ const SwagOrderForm = () => {
                   </div>
                 </div>
 
-                <Button onClick={onSubmit} />
+                <Button onClick={onSubmit} disabled={errorLength !== 0} />
               </Form>
             </>
           )}

@@ -6,12 +6,22 @@ import {
   validationSchemaShipping,
 } from '../../lib/validationSchemas'
 import Button from '../Button/Button'
+import { setreached3rdStep } from '../../redux-setup/cartSlice'
+import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 
 const Shipping = () => {
-  const onSubmit = (values) => {}
-  const [errorLength, setErrorLength] = useState(false)
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const onSubmit = (values) => {
+    if (errorLength == 0) {
+      console.log(values, 'values from 2ndform')
 
-  console.log(validationSchemaShipping, 'initialValuesShipping')
+      dispatch(setreached3rdStep(true))
+      router.push('/billing-address')
+    }
+  }
+  const [errorLength, setErrorLength] = useState(false)
 
   return (
     <>
@@ -23,7 +33,7 @@ const Shipping = () => {
           validationSchema={validationSchemaShipping}
           onSubmit={onSubmit}
         >
-          {({ errors }) => (
+          {({ errors, values }) => (
             <>
               {setErrorLength(Object.keys(errors).length)}
               <Form className={Styles.form}>
@@ -219,11 +229,12 @@ const Shipping = () => {
                   </div>
                   {/* Shipping Form */}
                 </div>
+
+                <Button disabled={errorLength !== 0} onClick={onSubmit} />
               </Form>
             </>
           )}
         </Formik>
-        <Button disabled={errorLength !== 0} />
       </div>
     </>
   )
