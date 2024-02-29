@@ -20,6 +20,7 @@ import downIcon from '../../assets/headerPics/down-black.svg'
 import useFetch from '../../lib/useFetch'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentPage } from 'redux-setup/authSlice'
+import { toast } from 'react-toastify'
 
 const PrimaryHeader = () => {
   const router = useRouter()
@@ -54,7 +55,9 @@ const PrimaryHeader = () => {
     if (error) {
     }
     localStorage.clear()
-    router.push('/login')
+    toast.success('Logged out sucessFully')
+
+    // router.push('/login')
   }
 
   return (
@@ -169,7 +172,10 @@ const PrimaryHeader = () => {
             </div>
           ) : (
             <>
-              <div className={styles.login_div} onClick={() => router.push('/login')}>
+              <div
+                className={styles.login_div}
+                onClick={() => router.push('/login')}
+              >
                 {screenSize > 767 && (
                   <button
                     className={styles.top_barbtn}

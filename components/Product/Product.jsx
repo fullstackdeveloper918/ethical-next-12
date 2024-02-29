@@ -7,6 +7,7 @@ import Loaders from '../../components/loaders/Loaders'
 import Dot from '../custom-colored-dot/Dot'
 import { RxCross2 } from 'react-icons/rx'
 import { setCartItems } from '../../redux-setup/cartSlice'
+import { toast } from 'react-toastify'
 
 const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
@@ -172,6 +173,7 @@ const Product = ({ product, loading, error }) => {
       price: price,
       id: product.id,
     })
+    toast.success('Added to cart sucessFully')
   }
 
   useEffect(() => {
