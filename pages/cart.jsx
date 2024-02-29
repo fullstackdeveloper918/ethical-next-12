@@ -9,8 +9,11 @@ import ClientTypeSelector from '../components/ClientTypeSelector/ClientTypeSelec
 import Styles from '../components/cart/Cart.module.css'
 import Button from '../components/Button/Button'
 import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import EmptyContainer from '../components/EmptyContainer/EmptyContainer'
 
 const cart = () => {
+  const router = useRouter()
   const token = localStorage.getItem('token_swag')
   const [selectedOption, setSelectedOption] = useState('Existing_client')
   const [showEstimateCart, setShowEstimateCart] = useState(false)
@@ -35,34 +38,34 @@ const cart = () => {
       <PrimaryHeader />
       <SecondaryHeader />
       <section className={Styles.cart_section}>
-        {cartItemsLength > 0 && (
-          <div>
-            <QuotationSubmissionHeader />
-            {showLoginComponent && (
-              <ClientTypeSelector
+        {cartItemsLength > 0 ? (
+          <>
+            <div>
+              <QuotationSubmissionHeader />
+              {showLoginComponent && (
+                <ClientTypeSelector
+                  selectedOption={selectedOption}
+                  setSelectedOption={setSelectedOption}
+                  handleOptionChange={handleOptionChange}
+                />
+              )}
+              <Cart
+                token={token}
                 selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
-                handleOptionChange={handleOptionChange}
+                setShowEstimateCart={setShowEstimateCart}
+                showLoginComponent={showLoginComponent}
               />
-            )}
-            <Cart
-              token={token}
-              selectedOption={selectedOption}
-              setShowEstimateCart={setShowEstimateCart}
-              showLoginComponent={showLoginComponent}
-            />
-            <Button />
-          </div>
+              <Button />
+            </div>
+            <EstimateCard />
+          </>
+        ) : (
+          <>
+            <div className={Styles.empty_card_container}>
+              <EmptyContainer />
+            </div>
+          </>
         )}
-        <div
-          className=""
-          style={{
-            display: cartItemsLength == 0 ? 'flex' : 'block',
-            justifyContent: 'center',
-          }}
-        >
-          <EstimateCard />
-        </div>
       </section>
       <Footer />
     </>

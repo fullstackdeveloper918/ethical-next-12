@@ -3,8 +3,6 @@
   min-height: 100vh;
   margin: 40px auto 130px auto;
   display: flex;
-  /* grid-template-columns: 2.5fr 1fr; */
-  /* padding: 1rem; */
   gap: 5.3rem;
   justify-content: space-between;
 }
@@ -385,4 +383,10 @@
 .bottom_content p {
   margin-top: 1rem;
   color: #949090;
+}
+
+/* Empty Card Container */
+.empty_card_container {
+  width: 100%;
+  margin-top: 2rem;
 }

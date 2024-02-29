@@ -1,0 +1,22 @@
+.emptyContent {
+  width: 100%;
+  text-align: center;
+  height: 50%;
+  background-color: #fafafa;
+  border: 2px dashed #a2d061;
+  padding-top: 5rem;
+}
+
+.emptyContent h2 {
+  font-size: 3rem;
+  font-family: 'DM Sans' !important;
+}
+
+.emptyContent button {
+  width: 40%;
+  background-color: #a2d061;
+  margin-top: 2rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: #fff;
+}
