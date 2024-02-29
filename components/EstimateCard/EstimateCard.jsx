@@ -30,7 +30,6 @@ const EstimateCard = () => {
     }
     setTotalCartPrice(totalPrice)
   }
-  console.log(cartItems, 'cartItemscartItems')
   return (
     <>
       <div className={Styles.estimate_wrapper}>

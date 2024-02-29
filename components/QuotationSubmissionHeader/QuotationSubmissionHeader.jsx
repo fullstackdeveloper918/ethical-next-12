@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 const QuotationSubmissionHeader = () => {
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
-  console.log(reached2ndStep, 'reached2ndStep')
   return (
     <>
       <div className={Styles.QuotationSubmissionHeader}>
