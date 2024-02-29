@@ -16,18 +16,19 @@ const productID = () => {
   const [data, setData] = useState([])
 
   const country = useSelector((state) => state.country.country)
-  console.log(country, 'abhsihelk country')
-
+  console.log(country, 'countryggg')
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
-    `/products/${productID}`,
+    `/products/${productID}?country=${country === 'canada' ? 'canada' : 'us'}`,
     {
       method: 'get',
     }
   )
 
   useEffect(() => {
-    loadQuery()
-  }, [productID])
+    if (country) {
+      loadQuery()
+    }
+  }, [productID, country])
 
   useEffect(() => {
     fetch(
