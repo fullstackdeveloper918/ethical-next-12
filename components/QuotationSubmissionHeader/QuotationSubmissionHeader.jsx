@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import Styles from './QuotationSubmissionHeader.module.css'
+import { useSelector } from 'react-redux'
 
 const QuotationSubmissionHeader = () => {
-  const [isSecondStep, setIsSecondStep] = useState(false)
+  const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
+  const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
+  console.log(reached2ndStep, 'reached2ndStep')
   return (
     <>
       <div className={Styles.QuotationSubmissionHeader}>
@@ -10,8 +13,8 @@ const QuotationSubmissionHeader = () => {
         <div className={Styles.horizontal_line}>
           <div className={Styles.stepCount}>
             <span className={Styles.active}>1</span>
-            <span>2</span>
-            <span>3</span>
+            <span className={reached2ndStep ? Styles.active : null}>2</span>
+            <span className={reached3rdStep ? Styles.active : null}>3</span>
           </div>
         </div>
       </div>

@@ -35,25 +35,24 @@ const cart = () => {
       <PrimaryHeader />
       <SecondaryHeader />
       <section className={Styles.cart_section}>
-        {cartItemsLength > 0 && (
-          <div>
-            <QuotationSubmissionHeader />
-            {showLoginComponent && (
-              <ClientTypeSelector
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
-                handleOptionChange={handleOptionChange}
-              />
-            )}
-            <Cart
-              token={token}
+        {/* {cartItemsLength > 0 && ( */}
+        <div>
+          <QuotationSubmissionHeader />
+          {showLoginComponent && (
+            <ClientTypeSelector
               selectedOption={selectedOption}
-              setShowEstimateCart={setShowEstimateCart}
-              showLoginComponent={showLoginComponent}
+              setSelectedOption={setSelectedOption}
+              handleOptionChange={handleOptionChange}
             />
-            <Button />
-          </div>
-        )}
+          )}
+          <Cart
+            token={token}
+            selectedOption={selectedOption}
+            setShowEstimateCart={setShowEstimateCart}
+            showLoginComponent={showLoginComponent}
+          />
+        </div>
+        {/* )} */}
         <div
           className=""
           style={{
