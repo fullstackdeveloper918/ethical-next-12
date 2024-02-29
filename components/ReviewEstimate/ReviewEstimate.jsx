@@ -4,8 +4,13 @@ import Image from 'next/image'
 import images from '../../constants/images'
 import { GrEdit } from 'react-icons/gr'
 import { RxCross2 } from 'react-icons/rx'
+import { useSelector } from 'react-redux'
 
 const ReviewEstimate = () => {
+  const cartItems = useSelector((state) => state.cart.cartItems)
+
+  console.log(cartItems, 'cartItemscartItems')
+
   return (
     <>
       <div className={Styles.reviewEstimate_container}>
@@ -17,36 +22,43 @@ const ReviewEstimate = () => {
           <p>Expand All</p>
         </div>
         <div className={Styles.container}>
-          <div className={Styles.content}>
-            <div className={Styles.left_content}>
-              <div className={Styles.imgContent}>
-                <Image
-                  src={images.shirt_small}
-                  width={54}
-                  height={72}
-                  alt="image"
-                />
-              </div>
-              <div className={Styles.textContent}>
-                <div>
-                  <h4 className={Styles.title}>
-                    Tentree® Men’s Kangaroo Organic Cotton Hoodie
-                  </h4>
-                  <p className={Styles.color}>Black</p>
-                  <p className={Styles.quantity}>Quantity - 2 Cotton Hoodie</p>
+          {cartItems?.length > 0 &&
+            cartItems.map((item, i) => (
+              <div className={Styles.content} key={i}>
+                <div className={Styles.left_content}>
+                  <div className={Styles.imgContent}>
+                    <Image
+                      src={item.image}
+                      width={54}
+                      height={72}
+                      alt="image"
+                    />
+                  </div>
+                  <div className={Styles.textContent}>
+                    <div>
+                      <h4 className={Styles.title}>
+                        {item.heading.slice(0, 100)}
+                      </h4>
+                      <p className={Styles.color}>Black</p>
+                      <p className={Styles.quantity}>
+                        Quantity - {item.quantity}
+                      </p>
+                    </div>
+                    <div>
+                      <p className={Styles.price}>
+                        ${item.price * item.quantity}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <p className={Styles.price}>$80</p>
+                <div className={Styles.right_content}>
+                  <div className={Styles.review_content}>
+                    <span></span>
+                    <span>527 reviews</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={Styles.right_content}>
-              <div className={Styles.review_content}>
-                <span></span>
-                <span>527 reviews</span>
-              </div>
-            </div>
-          </div>
+            ))}
           <div className={Styles.content}>
             <div className={Styles.left_content}>
               <div className={Styles.imgContent}>
