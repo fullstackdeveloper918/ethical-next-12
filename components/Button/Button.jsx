@@ -1,7 +1,7 @@
 import React from 'react'
 import Styles from './Button.module.css'
 
-const Button = ({ onClick }) => {
+const Button = ({ onClick, disabled }) => {
   return (
     <>
       <div className={Styles.cart_left_butttons}>
@@ -10,8 +10,9 @@ const Button = ({ onClick }) => {
         </button>
         <button
           type="submit"
+          disabled={disabled ? disabled : false}
           className={Styles.button}
-          // style={{ opacity: disabled ? '0.7' : '1' }}
+          style={{ opacity: disabled ? '0.7' : '1' }}
           onClick={onClick}
         >
           Continue
