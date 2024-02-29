@@ -16,8 +16,7 @@ const productID = () => {
   const [data, setData] = useState([])
 
   const country = useSelector((state) => state.country.country)
-  console.log(country, 'countryggg')
-  const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
+  const [loadQuery, { response, loading, error }] = useFetch(
     `/products/${productID}?country=${country === 'canada' ? 'canada' : 'us'}`,
     {
       method: 'get',

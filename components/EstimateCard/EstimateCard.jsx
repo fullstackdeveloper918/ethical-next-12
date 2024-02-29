@@ -39,8 +39,8 @@ const EstimateCard = () => {
         <div className={Styles.estimate_container}>
           <div className={Styles.estimate_container_top}>
             {cartItems.length > 0 ? (
-              cartItems.map((item, index) => (
-                <>
+              <>
+                {cartItems.map((item, index) => (
                   <div className={Styles.estimate_content} key={item.id}>
                     <div
                       className={Styles.estimate_content_imgContent}
@@ -90,28 +90,28 @@ const EstimateCard = () => {
                       </div>
                     </div>
                   </div>
-                  <div className={Styles.estimate_container_bottom}>
-                    <div className={Styles.estimate_horizontal_line}></div>
-                    <div className={Styles.total_amount_container}>
-                      <span className={Styles.text}>Total Estimate</span>
-                      <span className={Styles.price}>
-                        ${totalCartPrice.toFixed(2)}
-                      </span>
-                    </div>
-                    <button className={Styles.estimate_bottom_btn}>
-                      Submit Estimate Request
-                    </button>
-                    <div className={Styles.estimate_clear_content}>
-                      <button
-                        className={Styles.estimate_clear_btn}
-                        onClick={() => dispatch(deleteAllCartItems())}
-                      >
-                        Clear Orders
-                      </button>
-                    </div>
+                ))}
+                <div className={Styles.estimate_container_bottom}>
+                  <div className={Styles.estimate_horizontal_line}></div>
+                  <div className={Styles.total_amount_container}>
+                    <span className={Styles.text}>Total Estimate</span>
+                    <span className={Styles.price}>
+                      ${totalCartPrice.toFixed(2)}
+                    </span>
                   </div>
-                </>
-              ))
+                  <button className={Styles.estimate_bottom_btn}>
+                    Submit Estimate Request
+                  </button>
+                  <div className={Styles.estimate_clear_content}>
+                    <button
+                      className={Styles.estimate_clear_btn}
+                      onClick={() => dispatch(deleteAllCartItems())}
+                    >
+                      Clear Orders
+                    </button>
+                  </div>
+                </div>
+              </>
             ) : (
               <>
                 <div className={Styles.nothing_show}>
