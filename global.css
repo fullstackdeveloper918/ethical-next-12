@@ -88,7 +88,7 @@ body {
   margin: 0px !important;
   padding: 0px !important;
   box-sizing: border-box;
-  font-family: 'Poppins', 'DM Sans', 'sans-serif' !important;
+  /* font-family: 'Poppins', 'DM Sans', 'sans-serif' !important; */
 }
 
 /* @layer base {

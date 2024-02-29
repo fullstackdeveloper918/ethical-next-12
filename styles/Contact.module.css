@@ -76,7 +76,7 @@
 .left_Section_Content .numbers span:not(:nth-child(3)) {
   font-size: 28px;
   font-weight: 500;
-  font-family: Poppins;
+  font-family: 'Poppins' !important;
   letter-spacing: -2px;
 }
 

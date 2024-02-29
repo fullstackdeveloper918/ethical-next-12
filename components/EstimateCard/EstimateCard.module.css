@@ -10,7 +10,7 @@
 
 .estimate_wrapper > h3 {
   color: #111;
-  font-family: Poppins;
+  font-family: 'Poppins !important';
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -73,12 +73,12 @@
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  font-family: Poppins;
+  font-family: 'Poppins' !important;
 }
 
 .estimate_content_textContent > .price {
   color: #8f8f8f;
-  font-family: 'DM Sans';
+  font-family: 'DM Sans' !important;
   font-size: 12px;
   font-style: normal;
   display: inline-block;
@@ -155,7 +155,7 @@
 
 .total_amount_container > .price {
   color: #111;
-  font-family: Poppins;
+  font-family: 'Poppins' !important;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -168,7 +168,7 @@
   border: 1px solid rgba(162, 208, 97, 0.1);
   background: rgba(162, 208, 97);
   color: #fff;
-  font-family: Poppins;
+  font-family: 'Poppins' !important;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;

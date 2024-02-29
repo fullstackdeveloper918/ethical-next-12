@@ -39,7 +39,7 @@
 
 .heading_footer_2 {
   color: #fff;
-  font-family: poppins;
+  font-family: 'Poppins' !important;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;

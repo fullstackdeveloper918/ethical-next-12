@@ -1,7 +1,7 @@
 .QuotationSubmissionHeader .heading {
   width: 100%;
   color: #000;
-  font-family: Poppins;
+  font-family: 'Poppins' !important;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
