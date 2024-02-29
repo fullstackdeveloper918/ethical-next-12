@@ -38,7 +38,7 @@ const cart = () => {
       <PrimaryHeader />
       <SecondaryHeader />
       <section className={Styles.cart_section}>
-        {cartItemsLength > 0 ? (
+        {!cartItemsLength > 0 ? (
           <>
             <div>
               <QuotationSubmissionHeader />
@@ -55,7 +55,6 @@ const cart = () => {
                 setShowEstimateCart={setShowEstimateCart}
                 showLoginComponent={showLoginComponent}
               />
-              <Button />
             </div>
             <EstimateCard />
           </>

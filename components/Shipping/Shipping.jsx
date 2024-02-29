@@ -6,7 +6,7 @@ import {
   validationSchemaShipping,
 } from '../../lib/validationSchemas'
 import Button from '../Button/Button'
-import { setreached3rdStep } from '../../redux-setup/cartSlice'
+import { setStep2State, setreached3rdStep } from '../../redux-setup/cartSlice'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 
@@ -18,6 +18,7 @@ const Shipping = () => {
       console.log(values, 'values from 2ndform')
 
       dispatch(setreached3rdStep(true))
+      dispatch(setStep2State(values))
       router.push('/billing-address')
     }
   }

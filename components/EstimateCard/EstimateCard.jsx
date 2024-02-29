@@ -33,6 +33,7 @@ const EstimateCard = () => {
   }
 
   const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
+
   return (
     <>
       <div className={Styles.estimate_wrapper}>

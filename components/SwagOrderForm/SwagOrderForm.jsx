@@ -9,16 +9,11 @@ import {
 } from '../../lib/validationSchemas'
 import Button from '../Button/Button'
 import { useRouter } from 'next/router'
-import { setreached2ndStep } from '../../redux-setup/cartSlice'
+import { setStep1State, setreached2ndStep } from '../../redux-setup/cartSlice'
 
 const SwagOrderForm = () => {
   const router = useRouter()
 
-  const [formData, setFormData] = useState({
-    selectedDate: '',
-    textareaText: '',
-    selectedCheckboxes: [],
-  })
   const dispatch = useDispatch()
   const [errorLength, setErrorLength] = useState(false)
 
@@ -26,6 +21,7 @@ const SwagOrderForm = () => {
     console.log(values, 'from onsubmit i hit me')
     if (values.selectedDate && values.textarea) {
       dispatch(setreached2ndStep(true))
+      dispatch(setStep1State(values))
       router.push('shipping')
     }
     // try {

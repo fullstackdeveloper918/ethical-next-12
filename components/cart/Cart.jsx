@@ -28,16 +28,6 @@ const Cart = ({
     email: '',
     password: '',
   })
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setValues((prev) => ({
-      ...prev,
-      [name]:
-        name === 'selectselectedDate'
-          ? new Date(value).toISOString().split('T')[0]
-          : value,
-    }))
-  }
 
   const [loadQuery, { response, loading, error }] = useFetch(
     `/auth/login`,
