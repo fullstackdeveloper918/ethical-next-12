@@ -123,7 +123,7 @@
 
 .text_review .text_review_content {
   color: #000;
-  font-family: Poppins;
+  font-family: 'Poppins';
   font-size: 14px;
   font-style: normal;
   font-weight: 300;
@@ -179,7 +179,7 @@
 .text_review span {
   display: inline-block;
   color: #000;
-  font-family: Poppins;
+  font-family: 'Poppins';
   font-size: 14px;
   font-style: normal;
   font-weight: 300;
@@ -237,7 +237,7 @@
 
 .para_text p {
   color: #111;
-  font-family: Poppins;
+  font-family: 'Poppins';
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -324,7 +324,7 @@
 
 .number_of_units p {
   color: #111;
-  font-family: Poppins;
+  font-family: 'Poppins';
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -391,7 +391,7 @@
 
 .select_size_quantity p {
   color: #111;
-  font-family: Poppins;
+  font-family: 'Poppins';
   font-size: 16px;
   font-style: normal;
   font-weight: 600;

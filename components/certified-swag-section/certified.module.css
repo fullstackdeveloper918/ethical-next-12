@@ -7,7 +7,7 @@
 
 .heading{
     color: #111;
-    font-family: Poppins;
+    font-family: 'Poppins';
     font-size: 46px;
     font-style: normal;
     font-weight: 300;
@@ -19,7 +19,7 @@
 
 .heading_colored{
     color: #A2D061;
-    font-family: Poppins;
+    font-family: 'Poppins';
     font-size: 46px;
     font-style: normal;
     font-weight: 700;
@@ -31,7 +31,7 @@
 .btn{
     color: #FFF;
 text-align: center;
-font-family: Poppins;
+font-family: 'Poppins';
 font-size: 18px;
 font-style: normal;
 font-weight: 400;

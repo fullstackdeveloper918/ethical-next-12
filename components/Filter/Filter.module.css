@@ -254,7 +254,7 @@
   left: 6px;
   transform: rotate(-30deg);
   top: 6px;
-  font-family: Poppins;
+  font-family: 'Poppins';
   width: unset !important;
 }
 .panel_wrap::-webkit-scrollbar {
@@ -676,7 +676,7 @@
   flex-shrink: 0;
   color: #111;
   text-align: center;
-  font-family: Poppins;
+  font-family: 'Poppins';
   font-size: 17.811px;
   font-style: normal;
   font-weight: 400;
@@ -773,7 +773,7 @@
 .hidden_icons > .viewProduct_btn {
   color: #fff;
   text-align: center;
-  font-family: Poppins;
+  font-family: 'Poppins';
   font-size: 17.55px;
   font-style: normal;
   font-weight: 400;

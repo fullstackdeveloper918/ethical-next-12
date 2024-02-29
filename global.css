@@ -88,6 +88,7 @@ body {
   margin: 0px !important;
   padding: 0px !important;
   box-sizing: border-box;
+  font-family: 'Poppins', 'DM Sans', 'sans-serif' !important;
 }
 
 /* @layer base {
@@ -104,11 +105,11 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'poppins';
+  font-family: 'Poppins' !important;
 }
 p,
 span {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'sans-serif' !important;
 }
 
 .dropemnu_design {
