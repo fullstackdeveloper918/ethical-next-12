@@ -35,7 +35,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 0;
 
     --radius: 0.5rem;
   }
@@ -67,7 +67,7 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --ring: 0;
   }
 }
 
@@ -496,8 +496,8 @@ input[type='radio'] {
 }
 
 /* responsive start */
-@media (min-width:768px){
-  .filterPanel_top svg{
+@media (min-width: 768px) {
+  .filterPanel_top svg {
     display: none !important;
   }
 }
@@ -509,5 +509,11 @@ input[type='radio'] {
     min-width: 290px !important;
     margin-top: -30px;
   }
-  
+}
+
+button:focus-visible,
+button:focus,
+button:active {
+  outline: 0 !important;
+  box-shadow: 0 !important;
 }

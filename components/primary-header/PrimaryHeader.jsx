@@ -55,7 +55,7 @@ const PrimaryHeader = () => {
     if (error) {
     }
     localStorage.clear()
-    toast.success('Logged out sucessFully')
+    toast.success('Logged out successully')
 
     // router.push('/login')
   }

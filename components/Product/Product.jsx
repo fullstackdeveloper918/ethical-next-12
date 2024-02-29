@@ -11,6 +11,7 @@ import { toast } from 'react-toastify'
 
 const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
+  const [color, setColor] = useState('')
   const [ReadMore, setIsReadMore] = useState(false)
   const [orderQuantity, setOrderQuantity] = useState(
     +product?.column_1_qty || 200
@@ -152,7 +153,6 @@ const Product = ({ product, loading, error }) => {
     if (jsonData) {
       try {
         const data = JSON.parse(jsonData)
-        console.log('now the data of image', data)
         setProductImages(data)
       } catch (error) {
         console.error('Error parsing JSON data:', error)
@@ -173,7 +173,7 @@ const Product = ({ product, loading, error }) => {
       price: price,
       id: product.id,
     })
-    toast.success('Added to cart sucessFully')
+    toast.success('Added to cart successfully')
   }
 
   useEffect(() => {
@@ -183,7 +183,6 @@ const Product = ({ product, loading, error }) => {
   }, [cartState])
 
   const cartItems = useSelector((state) => state.cart.cartItems)
-  console.log(cartItems, 'cartItems')
 
   const checkFromCart = () => {
     const idToFind = product.id
@@ -194,8 +193,6 @@ const Product = ({ product, loading, error }) => {
       setPrice(existingItemIndex.price)
     }
   }
-
-  console.log(singleImage, 'singleImage')
 
   useEffect(() => {
     if (product?.id) {
@@ -236,7 +233,6 @@ const Product = ({ product, loading, error }) => {
                   >
                     {productImages.map((image, index) => (
                       <>
-                        {console.log(image?.url, 'image bro')}
                         <div className={Styles.product_Images}>
                           <Image
                             src={image?.url}
@@ -316,13 +312,12 @@ const Product = ({ product, loading, error }) => {
                     <div className={Styles.colors_container}>
                       {product?.colours &&
                         Object.entries(product?.colours).map(
-                          ([color, imageUrl]) => {
-                            return (
-                              <>
-                                <Dot color={imageUrl} />
-                              </>
-                            )
-                          }
+                          ([color, imageUrl]) => (
+                            <>
+                              {console.log(color, 'colorcode')}
+                              <Dot color={color} imageUrl={imageUrl} />
+                            </>
+                          )
                         )}
                     </div>
                   </div>
