@@ -173,7 +173,7 @@ const Product = ({ product, loading, error }) => {
       price: price,
       id: product.id,
     })
-    toast.success('Added to cart sucessFully')
+    toast.success('Added to cart successfully')
   }
 
   useEffect(() => {
