@@ -253,8 +253,8 @@ const SecondaryHeader = () => {
                   <span className="flag-img">
                     <Image
                       src={country === 'canada' ? Canada : Usa}
-                      width={30}
-                      height={22}
+                      width={28}
+                      height={20}
                       alt="like"
                     />
                   </span>

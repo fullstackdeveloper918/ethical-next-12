@@ -11,6 +11,9 @@
     position: sticky;
     top: 0;
     z-index: 1;
+    height: 50px;
+    display: flex;
+    align-items: center;
   }
   .primary_header_container {
     display: flex;
@@ -77,6 +80,10 @@
     align-items: center;
     gap: 8px;
   }
+  .arrowDown{
+    height:14px;
+    margin-top: 1px !important;
+  }
   
   .container_right {
     display: flex;
@@ -118,7 +125,12 @@
 
   .login_div{
     border-left: 1px solid #ECF6DF;
-    padding-left: 15px;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+  .login_div:last-child{
+   padding-right: 0;
   }
   @media (max-width:767px){
     .container_right .search_container, .container_left .tap_annument {
