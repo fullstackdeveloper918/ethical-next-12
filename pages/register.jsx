@@ -10,6 +10,7 @@ import {
   initialValuesRegister,
   validationSchemaRegister,
 } from '../lib/validationSchemas'
+import EthicalLogo from '../components/EthicalLogo/EthicalLogo'
 
 const register = () => {
   const router = useRouter()
@@ -68,7 +69,7 @@ const register = () => {
         <div className={Styles.login_container}>
           <div className={Styles.login_content}>
             <div className={Styles.login_img_content}>
-              <Image src={images.ethical_swag} />
+              <EthicalLogo />
             </div>
             <Formik
               initialValues={initialValuesRegister}
