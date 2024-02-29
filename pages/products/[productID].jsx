@@ -10,8 +10,8 @@ import { useSelector } from 'react-redux'
 import Styles from '../../styles/common.module.css'
 
 const productID = () => {
-  const params = useRouter()
-  const { query } = params ?? {}
+  const router = useRouter()
+  const { query } = router ?? {}
   const { productID } = query ?? {}
   const [data, setData] = useState([])
 
@@ -28,7 +28,11 @@ const productID = () => {
     if (country) {
       loadQuery()
     }
-  }, [productID, country])
+  }, [productID])
+
+  useEffect(() => {
+    router.push('/products')
+  }, [country])
 
   useEffect(() => {
     fetch(
