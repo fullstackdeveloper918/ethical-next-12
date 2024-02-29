@@ -48,7 +48,10 @@ const SwagOrderForm = () => {
     <>
       <div className={Styles.SwagOrder_FAQ}>
         {!isBilling && <h3>1. Tell us about your Swag Project</h3>}
-        <Formik initialValues={step1State} onSubmit={onSubmit}>
+        <Formik
+          initialValues={step1State || initialValuesSwagOrderForm1stStep}
+          onSubmit={onSubmit}
+        >
           {({ values, errors }) => (
             <>
               <Form>

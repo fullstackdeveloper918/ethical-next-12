@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { GrEdit } from 'react-icons/gr'
+import { useRouter } from 'next/router'
+
 import PrimaryHeader from '../../components/primary-header/PrimaryHeader'
 import SecondaryHeader from '../../components/secondary-header/SecondaryHeader'
 import Button from '../../components/Button/Button'
@@ -12,6 +14,11 @@ import EmptyContainer from '../../components/EmptyContainer/EmptyContainer'
 import { useSelector } from 'react-redux'
 import SwagOrderForm from '../../components/SwagOrderForm/SwagOrderForm'
 const BillingAddress = () => {
+  const router = useRouter()
+  const step2State = useSelector((state) => state.cart.step2State)
+
+  console.log(step2State, 'step2Statestep2State')
+
   const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
 
   return (
@@ -34,14 +41,18 @@ const BillingAddress = () => {
                 <p>Shipping Address</p>
                 <div className={Styles.content}>
                   <div>
-                    <p>Address Book</p>
+                    <p>{step2State.apartment}</p>
                     <p>
-                      94 Stanley Drive, Mount Marlow, Queensland (07) 4963 4369,
-                      Zip:4800, Australia
+                      {step2State.address} {step2State.city} ,
+                      {step2State.number} Zip: {step2State.pin} ,
+                      {step2State.country}
                     </p>
                   </div>
                   <div className={Styles.buttonContent}>
-                    <button>
+                    <button
+                      type="button"
+                      onClick={() => router.push('/shipping')}
+                    >
                       <GrEdit />
                       Edit
                     </button>

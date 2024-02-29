@@ -35,7 +35,7 @@ const Shipping = () => {
         <h2 className={Styles.title}>2. Shipping Address</h2>
 
         <Formik
-          initialValues={step2State}
+          initialValues={step2State || initialValuesShipping}
           validationSchema={validationSchemaShipping}
           onSubmit={onSubmit}
         >
