@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Styles from './ReviewEstimate.module.css'
 import Image from 'next/image'
 import images from '../../constants/images'
@@ -8,9 +8,16 @@ import { useSelector } from 'react-redux'
 
 const ReviewEstimate = () => {
   const cartItems = useSelector((state) => state.cart.cartItems)
-
-  console.log(cartItems, 'cartItemscartItems')
-
+  const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
+  const [isExpand, setIsExpand] = useState(false)
+  const [cartItemss, setCartItemss] = useState(cartItems)
+  useEffect(() => {
+    if (isExpand) {
+      setCartItemss(cartItems)
+    } else if (!isExpand) {
+      setCartItemss(cartItems.slice(0, 2))
+    }
+  }, [isExpand])
   return (
     <>
       <div className={Styles.reviewEstimate_container}>
@@ -18,12 +25,16 @@ const ReviewEstimate = () => {
         <div className={Styles.project_details_text}>
           <p>Your Swag Project Details</p>
         </div>
-        <div className={Styles.expand_all_content}>
-          <p>Expand All</p>
-        </div>
+        {cartItemsLength > 2 && (
+          <div className={Styles.expand_all_content}>
+            <button type="button" onClick={() => setIsExpand(!isExpand)}>
+              {isExpand ? 'Hide' : 'Expand All'}
+            </button>
+          </div>
+        )}
         <div className={Styles.container}>
-          {cartItems?.length > 0 &&
-            cartItems.map((item, i) => (
+          {cartItemss?.length > 0 &&
+            cartItemss.map((item, i) => (
               <div className={Styles.content} key={i}>
                 <div className={Styles.left_content}>
                   <div className={Styles.imgContent}>
