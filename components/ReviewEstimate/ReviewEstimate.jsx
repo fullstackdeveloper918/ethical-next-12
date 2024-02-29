@@ -59,7 +59,7 @@ const ReviewEstimate = () => {
                 </div>
               </div>
             ))}
-          <div className={Styles.content}>
+          {/* <div className={Styles.content}>
             <div className={Styles.left_content}>
               <div className={Styles.imgContent}>
                 <RxCross2 className={Styles.cross_icon} />
@@ -85,7 +85,7 @@ const ReviewEstimate = () => {
               </button>
               <button>See More</button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
