@@ -16,7 +16,7 @@ const SwagOrderForm = () => {
 
   const dispatch = useDispatch()
   const [errorLength, setErrorLength] = useState(false)
-
+  const isBilling = true
   const onSubmit = async (values) => {
     if (values.selectedDate) {
       dispatch(setreached2ndStep(true))
@@ -47,7 +47,7 @@ const SwagOrderForm = () => {
   return (
     <>
       <div className={Styles.SwagOrder_FAQ}>
-        <h3>1. Tell us about your Swag Project</h3>
+        {!isBilling && <h3>1. Tell us about your Swag Project</h3>}
         <Formik initialValues={step1State} onSubmit={onSubmit}>
           {({ values, errors }) => (
             <>
@@ -67,6 +67,28 @@ const SwagOrderForm = () => {
                     className={Styles.error}
                   />
                 </div>
+
+                {isBilling && (
+                  <div className={Styles.cart_left_faqInput}>
+                    <p>Swift swag?</p>
+                    <div className={Styles.cart_left_swift_content}>
+                      <div className={Styles.custom_checkbox}>
+                        <input
+                          type="checkbox"
+                          name="services"
+                          id="swift_swag"
+                        />
+                        <label for="swift_swag">
+                          {' '}
+                          Checking this box will override the date selected
+                          above to within 10 business days if you have gone
+                          through the Swift Swag process. Please note additional
+                          charges will apply.
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 <div className={Styles.SwagOrder_need}>
                   <p>Notes about your order:</p>
@@ -135,11 +157,12 @@ const SwagOrderForm = () => {
                     </div>
                   </div>
                 </div>
-
-                <Button
-                  onClick={onSubmit}
-                  disabled={values.selectedDate == ''}
-                />
+                {!isBilling && (
+                  <Button
+                    onClick={onSubmit}
+                    disabled={values.selectedDate == ''}
+                  />
+                )}
               </Form>
             </>
           )}
