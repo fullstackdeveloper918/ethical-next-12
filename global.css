@@ -115,14 +115,21 @@ span {
 .dropemnu_design {
   border-radius: 11px;
   padding: 10px 23px;
-  box-shadow: 0 0 13px rgb(207 207 207 / 80%);
+  /* box-shadow: 0 0 13px rgb(207 207 207 / 80%); */
   background: #ffff;
   max-height: 180px;
   overflow-y: clip;
   overflow: hidden;
   overflow-y: auto;
-  -ms-overflow-style: none; /* IE 11 */
+  -ms-overflow-style: none;
   scrollbar-width: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  max-width: 100vw;
+  width: 100vw;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, .25));
+  z-index: 9;
 }
 .primary_header_container .countries_dropdown_container .dropemnu_design {
   width: 80px !important;
@@ -135,6 +142,10 @@ span {
 
 .dropemnu_design::-webkit-scrollbar {
   display: none !important;
+}
+.dropemnu_design div:first-child{
+  display: flex !important;
+  gap: 20px;
 }
 
 .displayProperty {
