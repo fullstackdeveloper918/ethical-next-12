@@ -227,7 +227,7 @@ const Product = ({ product, loading, error }) => {
                       />
                     )}
                   </div>
-                  <div className={Styles.images_container}>
+                  <div className={`${Styles.images_container} ${Styles.scroll_hide}`}>
                     {productImages.map((image, index) => (
                       <>
                         <div className={Styles.product_Images}>
