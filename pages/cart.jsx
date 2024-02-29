@@ -54,7 +54,15 @@ const cart = () => {
             <Button />
           </div>
         )}
-        <EstimateCard />
+        <div
+          className=""
+          style={{
+            display: cartItemsLength == 0 ? 'flex' : 'block',
+            justifyContent: 'center',
+          }}
+        >
+          <EstimateCard />
+        </div>
       </section>
       <Footer />
     </>
