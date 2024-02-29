@@ -34,8 +34,7 @@ const productID = () => {
       `https://test.cybersify.tech/Eswag/public/api/product/recent?pageSize=${10}&country=available_in_${country}`
     )
       .then((res) => res.json())
-      .then((data) => console.log(data?.data[0].image, 'abhisk'))
-    // .then((r) => setData(r?.data?.data))
+      .then((r) => setData(r?.data?.data))
   }, [])
 
   return (

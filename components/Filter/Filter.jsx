@@ -34,6 +34,10 @@ const Filter = ({ activeFilter, setActiveFilter, optimizedFn }) => {
     dispatch(setSelectedOptionValue(value))
   }
 
+  useEffect(() => {
+    dispatch(setSearchState(''))
+  }, [])
+
   return (
     <>
       {/* Filter Section */}

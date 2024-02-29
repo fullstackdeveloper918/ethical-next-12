@@ -28,7 +28,7 @@
   max-width: 1368px;
   padding: 0 15px;
   margin: 0 auto;
-  font-family: DM Sans;
+  font-family: 'DM Sans' !important;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -44,7 +44,7 @@
   gap: 20px;
   align-items: center;
   color: #000;
-  font-family: 'DM Sans';
+  font-family: 'DM Sans' !important;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -80,7 +80,7 @@
   background: transparent;
   display: flex;
   gap: 10px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', sans-serif !important;
   border: 0px;
 }
 .header .shop_menu:focus-visible {
@@ -374,7 +374,7 @@
   background: transparent;
   display: flex;
   gap: 10px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', sans-serif !important;
   border: 0px;
 }
 /* animation end */
@@ -421,7 +421,7 @@
     max-width: 1368px;
     padding: 0 15px;
     margin: 0 auto;
-    font-family: DM Sans;
+    font-family: 'DM Sans' !important;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -436,7 +436,7 @@
     gap: 20px;
     align-items: center;
     color: #000;
-    font-family: 'DM Sans';
+    font-family: 'DM Sans' !important;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

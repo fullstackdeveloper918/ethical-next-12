@@ -21,7 +21,7 @@
     max-width: 1368px;
     padding: 0 15px;
     margin: 0 auto;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans', sans-serif !important;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -95,7 +95,7 @@
   }
   .container_right input {
     color: #fff;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans', sans-serif !important;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;

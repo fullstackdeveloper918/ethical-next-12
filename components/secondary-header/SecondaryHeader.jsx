@@ -56,8 +56,6 @@ const SecondaryHeader = () => {
     product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
   )
 
-  console.log(filteredProducts, 'filteredProducts')
-
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products?q=${searchProduct}`,
     {
