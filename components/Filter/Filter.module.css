@@ -45,10 +45,11 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  outline: 0 !important;
 }
 
 .Select_inputs:focus-visible- {
-  outline: none;
+  outline: 0 !important;
 }
 
 .Select_inputs option {
@@ -790,10 +791,11 @@
   opacity: 0;
   transition: all 0.3s ease;
 }
-.hidden_icons > .viewProduct_btn:hover {
+/* .hidden_icons > .viewProduct_btn:hover {
   color: #fff;
   background: black;
-}
+  border: 1px solid #000;
+} */
 .border_svg {
   border: 0.36px solid #ddd;
   border-radius: 50%;
