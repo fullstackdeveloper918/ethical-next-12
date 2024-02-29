@@ -71,6 +71,9 @@ const Product = () => {
     }
   }, [productsData])
 
+  console.log(productsData, 'productsDataproductsData')
+  console.log({ totalPages, totalData, currentPage })
+
   return (
     <>
       <>

@@ -38,7 +38,7 @@ const login = () => {
     if (response) {
       localStorage.setItem('token_swag', response?.data?.accessToken)
       dispatch(setRole(response?.data?.role))
-      toast.success('Logged in sucessfully')
+      toast.success('Logged in successfully')
 
       if (page) {
         router.push(`/${page}`)

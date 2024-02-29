@@ -67,7 +67,7 @@ const Cart = ({
       localStorage.setItem('token_swag', response?.data?.accessToken)
       dispatch(setRole(response?.data?.role))
       setShowLogin(false)
-      toast.success('Logged in sucessfully')
+      toast.success('Logged in successfully')
     }
     if (error) {
       console.log(error, 'errorMessage')
