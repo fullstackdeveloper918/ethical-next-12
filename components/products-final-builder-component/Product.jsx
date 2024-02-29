@@ -25,8 +25,6 @@ const Product = () => {
     (state) => state.cart.selectedOptionValue
   )
 
-  const optimizedFn = useCallback(debounce(getProducts), [])
-
   const searchState = useSelector((state) => state.cart.searchState)
 
   const getProducts = async (value = '') => {
@@ -51,6 +49,7 @@ const Product = () => {
       setIsloading(false)
     }
   }
+  const optimizedFn = useCallback(debounce(getProducts), [])
 
   useEffect(() => {
     if (country) {
