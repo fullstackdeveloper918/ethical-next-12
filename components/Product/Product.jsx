@@ -193,6 +193,8 @@ const Product = ({ product, loading, error }) => {
     }
   }
 
+  console.log(singleImage, 'singleImage')
+
   useEffect(() => {
     if (product?.id) {
       checkFromCart()
@@ -227,9 +229,12 @@ const Product = ({ product, loading, error }) => {
                       />
                     )}
                   </div>
-                  <div className={`${Styles.images_container} ${Styles.scroll_hide}`}>
+                  <div
+                    className={`${Styles.images_container} ${Styles.scroll_hide}`}
+                  >
                     {productImages.map((image, index) => (
                       <>
+                        {console.log(image?.url, 'image bro')}
                         <div className={Styles.product_Images}>
                           <Image
                             src={image?.url}
@@ -290,7 +295,9 @@ const Product = ({ product, loading, error }) => {
                 <div className={Styles.input_checkbox}>
                   <div className={Styles.custom_checkbox}>
                     <input type="checkbox" name="services" id="sample" />
-                    <label for="sample" className={Styles.marinSpace}>Is this a sample? </label>
+                    <label for="sample" className={Styles.marinSpace}>
+                      Is this a sample?{' '}
+                    </label>
                   </div>
                 </div>
                 {product?.colours ? (

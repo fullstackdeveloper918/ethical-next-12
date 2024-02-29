@@ -21,7 +21,7 @@
 }
 
 .detail_page_left_top {
-  width: 50%
+  width: 50%;
 }
 
 .detail_page_image_content {
@@ -35,15 +35,17 @@
 }
 
 .detail_page_left_top .images_container {
-  width: 99%;
+  max-width: 60%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: unset;
   align-items: center;
   gap: 10px;
   margin-top: 10px;
   margin-left: 10px;
   overflow: hidden;
   overflow-x: scroll;
+  margin: 25px auto;
+  text-align: center;
 }
 .detail_page_left_top .images_container div span {
   border: 1px solid rgb(224 224 224 / 73%) !important;
@@ -59,7 +61,7 @@
   justify-content: center;
   align-items: center;
 }
-.scroll_hide::-webkit-scrollbar{
+.scroll_hide::-webkit-scrollbar {
   display: none !important;
 }
 .slider_container {

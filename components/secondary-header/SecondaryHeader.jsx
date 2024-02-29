@@ -4,7 +4,7 @@ import cartImg from '../../assets/headerPics/cart.svg'
 import searchImg from '../../assets/headerPics/Search-black.svg'
 import heartImg from '../../assets/headerPics/Heart.svg'
 import downIcon from '../../assets/headerPics/down-black.svg'
-import logo from '../../assets/headerPics/logo.svg'
+import EthicalLogo from '../../components/EthicalLogo/EthicalLogo'
 import Usa from '../../assets/headerPics/use_flag.svg'
 import Canada from '../../assets/headerPics/canada-flag.svg'
 import CrossIcon from '../../assets/headerPics/corss.svg'
@@ -120,14 +120,8 @@ const SecondaryHeader = () => {
         </span>
         <div className={styles.container_1}>
           <div className={styles.header_logo}>
-            <Image
-              src={logo}
-              width={220}
-              height={50}
-              alt="search"
-              onClick={() => router.push('/')}
-              style={{ cursor: 'pointer' }}
-            />
+            {/* logo icon */}
+            <EthicalLogo />
           </div>
         </div>
         <>
