@@ -1,7 +1,7 @@
 .cart_section {
-  max-width: 1480px;
+  max-width: 1368px;
   /* min-height: 100vh; */
-  margin: 40px auto 130px auto;
+  margin: 40px auto 80px auto;
   display: flex;
   gap: 5.3rem;
   justify-content: space-between;
@@ -323,7 +323,7 @@
   }
   .cart_section {
     max-width: 95%;
-    margin: auto;
+    margin: 0px auto 70px;
   }
   .cart_section > div {
     max-width: 100%;
