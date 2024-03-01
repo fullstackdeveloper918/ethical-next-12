@@ -26,7 +26,7 @@ const Shipping = () => {
   }
 
   const handleCheckboxChange = (event) => {
-    setTerms((current) => !current)
+    setTerms(!terms)
   }
 
   return (
@@ -42,6 +42,7 @@ const Shipping = () => {
           {({ errors, values }) => (
             <>
               {setErrorLength(Object.keys(errors).length)}
+              {console.log(errors, 'errrrrr')}
               <Form className={Styles.form}>
                 <h3 className={Styles.form_title}>Ship order to *</h3>
                 <div className={Styles.form_inputs}>
@@ -245,9 +246,7 @@ const Shipping = () => {
                 </div>
 
                 <Button
-                  disabled={
-                    errorLength !== 0 || !terms || !values.singleAddress
-                  }
+                  disabled={errors || !terms || !values.singleAddress}
                   onClick={onSubmit}
                 />
               </Form>

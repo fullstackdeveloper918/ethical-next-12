@@ -16,6 +16,8 @@ const EstimateCard = () => {
   const step2State = useSelector((state) => state.cart.step2State)
   const cartItems = useSelector((state) => state.cart.cartItems)
   const [totalCartPrice, setTotalCartPrice] = useState(0)
+  const userId = useSelector((state) => state.auth.userId)
+
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))
   }
@@ -23,18 +25,19 @@ const EstimateCard = () => {
   useEffect(() => {
     totalPriceOfCart()
   }, [cartItems])
-
+  let data = [step1State, step2State]
+  console.log(data, 'data')
   const [loadQuery, { response, loading, error }] = useFetch(
-    `/bulkestimate/{user_id}`,
+    `/bulkestimate/${userId}`,
     {
       method: 'post',
     },
-    'formdata'
+    data
   )
-  const userId = useSelector((state) => state.auth.userId)
   const handleSubmit = () => {
-    if (userId) {
-      dispatch(deleteAllCartItems())
+    if (userId && step1State && step2State) {
+      loadQuery()
+      // dispatch(deleteAllCartItems())
       toast.success('Your request has been submmitted successfully')
     } else {
       alert('Please Login To submit Estimate')
@@ -50,6 +53,12 @@ const EstimateCard = () => {
     }
     setTotalCartPrice(totalPrice)
   }
+
+  useEffect(() => {
+    if (response) {
+      console.log(response, 'responseresponse')
+    }
+  }, [response])
   return (
     <>
       <div className={Styles.estimate_wrapper}>
