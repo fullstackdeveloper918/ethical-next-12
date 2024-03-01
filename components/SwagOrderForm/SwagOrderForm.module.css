@@ -2,9 +2,9 @@
   width: 100%;
   margin-top: 3rem;
   margin-bottom: 3rem;
-  border-top: 1px solid #d9d9d9;
-  padding-bottom: 40px;
-  padding-top: 40px;
+  border: 1px solid #f1f8e7;
+  border-radius: 10px;
+  padding: 2rem;
 }
 
 .SwagOrder_FAQ > h3 {
@@ -95,9 +95,11 @@
 
 .SwagOrder_interested_section_fields {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   margin-top: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .SwagOrder_interested_section_fields .inputs {

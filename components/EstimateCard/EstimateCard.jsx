@@ -22,6 +22,8 @@ const EstimateCard = () => {
   const [totalCartPrice, setTotalCartPrice] = useState(0)
   const userId = useSelector((state) => state.auth.userId)
 
+  console.log(userId, 'auth from estimate')
+
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))
   }

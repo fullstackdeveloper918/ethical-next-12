@@ -11,7 +11,7 @@ export const AuthSlice = createSlice({
   initialState,
   reducers: {
     setRole: (state, action) => {
-      state.role = action.payload
+      state.role.push(action.payload)
     },
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload

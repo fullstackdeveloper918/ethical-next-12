@@ -23,7 +23,7 @@
 .reviewEstimate_container .reviewContainer {
   border: 1px solid #f1f8e7;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 .reviewEstimate_container .reviewContainer .reviewContent {
@@ -98,4 +98,18 @@
   gap: 0.4rem;
   padding-inline: 1.5rem;
   align-items: center;
+}
+.right_content span {
+  white-space: pre;
+}
+@media (max-width: 767px) {
+  .reviewEstimate_container .left_content {
+    flex-wrap: wrap;
+  }
+  .reviewEstimate_container .left_content .textContent {
+    flex: 100%;
+  }
+  .right_content span {
+    font-size: 14px;
+  }
 }

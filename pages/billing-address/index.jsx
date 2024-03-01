@@ -20,11 +20,11 @@ const BillingAddress = () => {
   const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
 
-  useEffect(() => {
-    if (!reached3rdStep) {
-      router.push('/products')
-    }
-  }, [reached3rdStep])
+  // useEffect(() => {
+  //   if (!reached3rdStep) {
+  //     router.push('/products')
+  //   }
+  // }, [reached3rdStep])
 
   return (
     <>
@@ -39,6 +39,15 @@ const BillingAddress = () => {
               <div className={Styles.cart_left_FAQ}>
                 <h3>Other Info</h3>
                 <SwagOrderForm isBilling />
+
+                <button
+                  type="button"
+                  onClick={() => router.push('/cart')}
+                  className="edit_button"
+                >
+                  <GrEdit />
+                  Edit
+                </button>
               </div>
 
               {/* Shipping address  css writen in cart module*/}
@@ -46,11 +55,11 @@ const BillingAddress = () => {
                 <p>Shipping Address</p>
                 <div className={Styles.content}>
                   <div>
-                    <p>{step2State.apartment}</p>
+                    <p>{step2State?.apartment}</p>
                     <p>
-                      {step2State.address} {step2State.city} ,
-                      {step2State.number} Zip: {step2State.pin} ,
-                      {step2State.country}
+                      {step2State?.address} {step2State?.city} ,
+                      {step2State?.number} Zip: {step2State?.pin} ,
+                      {step2State?.country}
                     </p>
                   </div>
                   <div className={Styles.buttonContent}>
