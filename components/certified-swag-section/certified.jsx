@@ -44,8 +44,6 @@ const Certified = () => {
     (state) => state.random.singleProductPromotion
   )
 
-  console.log(promotionalProduct, 'promotionalProductpromotionalProduct')
-
   return (
     <>
       <div className={styles.heading}>

@@ -6,8 +6,6 @@ import { useRouter } from 'next/router'
 import Dot from '@components/custom-colored-dot/Dot'
 import images from 'constants/images'
 const SingleProduct = ({ product }) => {
-  console.log(product?.image, 'abhsieh')
-
   const router = useRouter()
   return (
     <></>
