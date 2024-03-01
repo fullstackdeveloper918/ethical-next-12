@@ -69,6 +69,8 @@ const Product = () => {
     }
   }, [productsData])
 
+  console.log({ productsData })
+
   return (
     <>
       <>
@@ -91,16 +93,17 @@ const Product = () => {
           ) : (
             <Products response={productsData} loading={Isloading} />
           )}
-
-          <div className={Styles.pagination_section}>
-            <Pagination
-              page={currentPage}
-              totalData={totalData}
-              totalPages={totalPages}
-              setCurrentPage={setCurrentPage}
-              loading={Isloading}
-            />
-          </div>
+          {productsData && totalData > 10 && (
+            <div className={Styles.pagination_section}>
+              <Pagination
+                page={currentPage}
+                totalData={totalData}
+                totalPages={totalPages}
+                setCurrentPage={setCurrentPage}
+                loading={Isloading}
+              />
+            </div>
+          )}
         </section>
       </>
     </>

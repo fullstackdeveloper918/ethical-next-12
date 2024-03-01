@@ -34,15 +34,29 @@ const Pagination = ({
     }
   }, [totalPages])
 
+  console.log({ page, totalPages })
+
   return (
     <>
-      {/* {totalData && totalData.length > 10 ? ( */}
       <div className={Styles.pagination_container}>
         <div className={Styles.pagination_content}>
-          <MdArrowBackIos cursor="pointer" />
           <button
             onClick={() => handlePageChange('prev')}
             disabled={page == 1 || loading}
+            style={{
+              opacity: page == 1 || loading ? '0.7' : '1',
+              cursor: 'pointer',
+            }}
+          >
+            <MdArrowBackIos cursor="pointer" />
+          </button>
+          <button
+            onClick={() => handlePageChange('prev')}
+            disabled={page == 1 || loading}
+            style={{
+              opacity: page == 1 || loading ? '0.7' : '1',
+              cursor: 'pointer',
+            }}
           >
             Previous
           </button>
@@ -57,13 +71,27 @@ const Pagination = ({
               {item}
             </button>
           ))}
-          <span onClick={() => handlePageChange('next')} disabled={loading}>
+          <button
+            onClick={() => handlePageChange('next')}
+            disabled={loading}
+            style={{
+              opacity: page == totalPages || loading ? '0.7' : '1',
+              cursor: 'pointer',
+            }}
+          >
             Next
-          </span>
-          <IoChevronForwardSharp cursor="pointer" />
+          </button>
+          <button
+            className=""
+            style={{
+              opacity: page == totalPages || loading ? '0.7' : '1',
+              cursor: 'pointer',
+            }}
+          >
+            <IoChevronForwardSharp cursor="pointer" />
+          </button>
         </div>
       </div>
-      {/* ) : null} */}
     </>
   )
 }
