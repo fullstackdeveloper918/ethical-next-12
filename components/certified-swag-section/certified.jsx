@@ -4,6 +4,8 @@ import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import styles from './certified.module.css'
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSingleProductPromotion } from 'redux-setup/randomSlice'
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
@@ -26,13 +28,19 @@ const responsive = {
 const Certified = () => {
   const [data, setData] = useState(null)
   const router = useRouter()
-
+  const dispatch = useDispatch()
   useEffect(() => {
     fetch('https://test.cybersify.tech/Eswag/public/api/starproducts')
       .then((res) => res.json())
-
+      .then((r) => dispatch(setSingleProductPromotion(r?.data?.data[0])))
       .then((r) => setData(r?.data?.data))
   }, [])
+
+  const promotionalProduct = useSelector(
+    (state) => state.random.singleProductPromotion
+  )
+
+  console.log(promotionalProduct, 'promotionalProductpromotionalProduct')
 
   return (
     <>

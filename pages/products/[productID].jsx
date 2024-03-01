@@ -10,14 +10,13 @@ import { useSelector } from 'react-redux'
 import Styles from '../../styles/common.module.css'
 
 const productID = () => {
-  const params = useRouter()
-  const { query } = params ?? {}
+  const router = useRouter()
+  const { query } = router ?? {}
   const { productID } = query ?? {}
   const [data, setData] = useState([])
 
   const country = useSelector((state) => state.country.country)
-  console.log(country, 'countryggg')
-  const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
+  const [loadQuery, { response, loading, error }] = useFetch(
     `/products/${productID}?country=${country === 'canada' ? 'canada' : 'us'}`,
     {
       method: 'get',
@@ -28,14 +27,19 @@ const productID = () => {
     if (country) {
       loadQuery()
     }
-  }, [productID, country])
+  }, [productID])
+
+  // useEffect(() => {
+  //   router.push('/products')
+  // }, [country])
 
   useEffect(() => {
     fetch(
       `https://test.cybersify.tech/Eswag/public/api/product/recent?pageSize=${10}&country=available_in_${country}`
     )
       .then((res) => res.json())
-      .then((r) => setData(r?.data?.data))
+      .then((data) => setData(data?.data))
+    // .then((data) => console.log(data?.data))
   }, [])
 
   return (
@@ -46,7 +50,9 @@ const productID = () => {
       <section className={Styles.product_section}>
         <div className={Styles.heading_content}>
           <h3>Newly Added Swag</h3>
-          <button>View All</button>
+          <button type="button" onClick={() => router.push('/products')}>
+            View All
+          </button>
         </div>
 
         <div className={Styles.product_card_container}>
@@ -54,7 +60,7 @@ const productID = () => {
             data?.slice(0, 5).map((item) => (
               <>
                 <div className={Styles.product_content}>
-                  <ProductCard item={item} key={item.id} />
+                  <ProductCard item={item} key={item.id} fromSingleProduct />
                 </div>
               </>
             ))}

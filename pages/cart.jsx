@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
 import PrimaryHeader from '../components/primary-header/PrimaryHeader'
 import SecondaryHeader from '../components/secondary-header/SecondaryHeader'
 import Footer from '../components/footer/Footer'
 import Cart from '../components/cart/Cart'
 import EstimateCard from '../components/EstimateCard/EstimateCard'
+import EmptyContainer from '../components/EmptyContainer/EmptyContainer'
 import QuotationSubmissionHeader from '../components/QuotationSubmissionHeader/QuotationSubmissionHeader'
 import ClientTypeSelector from '../components/ClientTypeSelector/ClientTypeSelector'
 import Styles from '../components/cart/Cart.module.css'
-import Button from '../components/Button/Button'
-import { useSelector } from 'react-redux'
-import { useRouter } from 'next/router'
-import EmptyContainer from '../components/EmptyContainer/EmptyContainer'
 
 const cart = () => {
   const router = useRouter()
   const token = localStorage.getItem('token_swag')
+  const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
+
   const [selectedOption, setSelectedOption] = useState('Existing_client')
+  const [showLoginComponent, setShowLoginComponent] = useState(true)
+
   const [showEstimateCart, setShowEstimateCart] = useState(false)
+
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)
   }
-  const [showLoginComponent, setShowLoginComponent] = useState(true)
   useEffect(() => {
     setShowEstimateCart(false)
   }, [])
@@ -30,8 +33,6 @@ const cart = () => {
       setShowLoginComponent(false)
     }
   }, [showEstimateCart])
-
-  const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
 
   return (
     <>
@@ -55,7 +56,6 @@ const cart = () => {
                 setShowEstimateCart={setShowEstimateCart}
                 showLoginComponent={showLoginComponent}
               />
-              <Button />
             </div>
             <EstimateCard />
           </>

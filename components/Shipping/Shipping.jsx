@@ -1,27 +1,33 @@
 import React, { useState } from 'react'
-import Styles from './Shipping.module.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import {
   initialValuesShipping,
   validationSchemaShipping,
 } from '../../lib/validationSchemas'
 import Button from '../Button/Button'
-import { setreached3rdStep } from '../../redux-setup/cartSlice'
-import { useDispatch } from 'react-redux'
-import { useRouter } from 'next/router'
+import { setStep2State, setreached3rdStep } from '../../redux-setup/cartSlice'
+import Styles from './Shipping.module.css'
 
 const Shipping = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+  const [terms, setTerms] = useState(false)
+  const [errorLength, setErrorLength] = useState(false)
+  const step2State = useSelector((state) => state.cart.step2State)
+
   const onSubmit = (values) => {
     if (errorLength == 0) {
-      console.log(values, 'values from 2ndform')
-
       dispatch(setreached3rdStep(true))
+      dispatch(setStep2State(values))
       router.push('/billing-address')
     }
   }
-  const [errorLength, setErrorLength] = useState(false)
+
+  const handleCheckboxChange = (event) => {
+    setTerms((current) => !current)
+  }
 
   return (
     <>
@@ -29,7 +35,7 @@ const Shipping = () => {
         <h2 className={Styles.title}>2. Shipping Address</h2>
 
         <Formik
-          initialValues={initialValuesShipping}
+          initialValues={step2State || initialValuesShipping}
           validationSchema={validationSchemaShipping}
           onSubmit={onSubmit}
         >
@@ -214,7 +220,13 @@ const Shipping = () => {
                   <div
                     className={` ${Styles.flexInputs}  ${Styles.agreecheck}`}
                   >
-                    <Field type="radio" name="radio" id="radio" value={false} />
+                    <input
+                      type="checkbox"
+                      name="terms"
+                      value={terms}
+                      id="terms"
+                      onChange={handleCheckboxChange}
+                    />
                     <p>
                       I agree to the{' '}
                       <span className={Styles.textUnderline}>
@@ -230,7 +242,12 @@ const Shipping = () => {
                   {/* Shipping Form */}
                 </div>
 
-                <Button disabled={errorLength !== 0} onClick={onSubmit} />
+                <Button
+                  disabled={
+                    errorLength !== 0 || !terms || !values.singleAddress
+                  }
+                  onClick={onSubmit}
+                />
               </Form>
             </>
           )}

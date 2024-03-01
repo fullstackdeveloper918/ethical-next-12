@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Styles from './SwagOrderForm.module.css'
 import { swagFormData } from '../../redux-setup/formSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,24 +9,17 @@ import {
 } from '../../lib/validationSchemas'
 import Button from '../Button/Button'
 import { useRouter } from 'next/router'
-import { setreached2ndStep } from '../../redux-setup/cartSlice'
+import { setStep1State, setreached2ndStep } from '../../redux-setup/cartSlice'
 
-const SwagOrderForm = () => {
+const SwagOrderForm = ({ isBilling }) => {
   const router = useRouter()
 
-  const [formData, setFormData] = useState({
-    selectedDate: '',
-    textareaText: '',
-    selectedCheckboxes: [],
-  })
   const dispatch = useDispatch()
-  const [errorLength, setErrorLength] = useState(false)
-
   const onSubmit = async (values) => {
-    console.log(values, 'from onsubmit i hit me')
-    if (values.selectedDate && values.textarea) {
+    if (values.selectedDate) {
       dispatch(setreached2ndStep(true))
-      router.push('shipping')
+      dispatch(setStep1State(values))
+      router.push('/shipping')
     }
     // try {
     //   let formData = new FormData()
@@ -38,20 +31,27 @@ const SwagOrderForm = () => {
     //   console.log(error, 'from login api')
     // }
   }
+  const getTodayDate = () => {
+    const today = new Date()
+    const year = today.getFullYear().toString()
+    const month = (today.getMonth() + 1).toString().padStart(2, '0')
+
+    const day = today.getDate().toString().padStart(2, '0')
+    return `${year + '-' + month + '-' + day}`
+  }
+
+  const step1State = useSelector((state) => state.cart.step1State)
 
   return (
     <>
       <div className={Styles.SwagOrder_FAQ}>
-        <h3>1. Tell us about your Swag Project</h3>
+        {!isBilling && <h3>1. Tell us about your Swag Project</h3>}
         <Formik
-          initialValues={initialValuesSwagOrderForm1stStep}
-          // validationSchema={validationSchemaSwagOrderForm1stStep}
+          initialValues={step1State || initialValuesSwagOrderForm1stStep}
           onSubmit={onSubmit}
         >
           {({ values, errors }) => (
             <>
-              {/* {console.log(values, 'all of my form values')} */}
-              {setErrorLength(Object.keys(errors).length)}
               <Form>
                 <div className={Styles.SwagOrder_faqInput}>
                   <p>When do you need this order? *</p>
@@ -60,6 +60,7 @@ const SwagOrderForm = () => {
                     id="selectedDate"
                     name="selectedDate"
                     autocomplete="off"
+                    min={getTodayDate()}
                   />
                   <ErrorMessage
                     name="selectedDate"
@@ -68,10 +69,34 @@ const SwagOrderForm = () => {
                   />
                 </div>
 
+                {isBilling && (
+                  <div className={Styles.cart_left_faqInput}>
+                    <p>Swift swag?</p>
+                    <div className={Styles.cart_left_swift_content}>
+                      <div className={Styles.custom_checkbox}>
+                        <input
+                          type="checkbox"
+                          name="services"
+                          id="swift_swag"
+                        />
+                        <label for="swift_swag">
+                          {' '}
+                          Checking this box will override the date selected
+                          above to within 10 business days if you have gone
+                          through the Swift Swag process. Please note additional
+                          charges will apply.
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 <div className={Styles.SwagOrder_need}>
                   <p>Notes about your order:</p>
 
                   <Field
+                    as="textarea"
+                    rows="4"
                     type="text"
                     id="textarea"
                     name="textarea"
@@ -133,8 +158,12 @@ const SwagOrderForm = () => {
                     </div>
                   </div>
                 </div>
-
-                <Button onClick={onSubmit} disabled={errorLength !== 0} />
+                {!isBilling && (
+                  <Button
+                    onClick={onSubmit}
+                    disabled={values.selectedDate == ''}
+                  />
+                )}
               </Form>
             </>
           )}

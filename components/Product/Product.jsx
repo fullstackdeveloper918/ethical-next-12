@@ -309,7 +309,7 @@ const Product = ({ product, loading, error }) => {
                         alt="info_icon"
                       />
                     </div>
-                    <div className={Styles.colors_container}>
+                    {/* <div className={Styles.colors_container}>
                       {product?.colours &&
                         Object.entries(product?.colours).map(
                           ([color, imageUrl]) => (
@@ -319,7 +319,7 @@ const Product = ({ product, loading, error }) => {
                             </>
                           )
                         )}
-                    </div>
+                    </div> */}
                   </div>
                 ) : (
                   ''

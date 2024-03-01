@@ -1,21 +1,19 @@
 import Styles from './Dot.module.css'
 import Image from 'next/image'
-const Dot = ({ color, activeColor, setActiveColor }) => {
-  const btnClicked = () => {
-    setActiveColor(color)
-  }
+const Dot = ({ color, imageUrl }) => {
+  // const btnClicked = () => {
+  //   setActiveColor(color)
+  // }
 
   return (
     <>
       {color && (
         <div
-          className={`${Styles.colored_dot} ${
-            color === activeColor ? Styles.active : ''
-          }`}
+          className={`${Styles.colored_dot}`}
           style={{ background: color }}
-          onClick={btnClicked}
+          // onClick={btnClicked}
         >
-          {color && <Image src={color} layout="fill" />}
+          {/* {color && <Image src={imageUrl} layout="fill" />} */}
         </div>
       )}
     </>

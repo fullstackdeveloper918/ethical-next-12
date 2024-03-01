@@ -6,6 +6,9 @@ const initialState = {
   selectedOptionValue: '',
   reached2ndStep: false,
   reached3rdStep: false,
+  step1State: null,
+  step2State: null,
+  step3State: null,
 }
 const cartSlice = createSlice({
   name: 'cart',
@@ -43,6 +46,15 @@ const cartSlice = createSlice({
     setreached3rdStep: (state, action) => {
       state.reached3rdStep = action.payload
     },
+    setStep1State: (state, action) => {
+      state.step1State = action.payload
+    },
+    setStep2State: (state, action) => {
+      state.step2State = action.payload
+    },
+    setStep3State: (state, action) => {
+      state.step3State = action.payload
+    },
   },
 })
 
@@ -54,5 +66,8 @@ export const {
   setSelectedOptionValue,
   setreached2ndStep,
   setreached3rdStep,
+  setStep2State,
+  setStep3State,
+  setStep1State,
 } = cartSlice.actions
 export default cartSlice.reducer

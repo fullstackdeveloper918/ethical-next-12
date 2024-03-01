@@ -16,3 +16,4 @@ export const FiltersSlice = createSlice({
 
 export const { filterPrice } = FiltersSlice.actions
 export default FiltersSlice.reducer
+
