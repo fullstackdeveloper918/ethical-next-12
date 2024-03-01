@@ -350,6 +350,9 @@
   .cart_section {
     max-width: 94%;
   }
+  .error {
+font-size: 14px;
+  }
 }
 
 /* CSS OF SHIPPING ADDRESS WHICH IS present on Billing address page at the bottom */

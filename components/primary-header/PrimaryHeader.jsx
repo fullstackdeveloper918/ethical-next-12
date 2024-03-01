@@ -86,13 +86,13 @@ const PrimaryHeader = () => {
                     <Image
                       src={downArrowImg}
                       alt="down arrow"
-                      width={9}
-                      height={9}
+                      width={12}
+                      height={12}
                     />
                   </span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className={styles.annument_dropdown}>
+              {/* <DropdownMenuContent className={styles.annument_dropdown}>
                 <DropdownMenuRadioItem
                   value="bottom"
                   className={styles.shop_submenu}
@@ -122,7 +122,7 @@ const PrimaryHeader = () => {
                 >
                   Blog
                 </DropdownMenuRadioItem>
-              </DropdownMenuContent>
+              </DropdownMenuContent> */}
             </DropdownMenu>
           </div>
         </div>
