@@ -29,10 +29,6 @@ const productID = () => {
     }
   }, [productID])
 
-  // useEffect(() => {
-  //   router.push('/products')
-  // }, [country])
-
   useEffect(() => {
     fetch(
       `https://test.cybersify.tech/Eswag/public/api/product/recent?pageSize=${10}&country=available_in_${country}`

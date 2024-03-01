@@ -24,34 +24,36 @@ const Products = ({ response, loading }) => {
           style={{ marginBottom: '30px' }}
         >
           <div className={Styles.collection_container}>
-            <div className={Styles.collection_Single}>
-              <div className={Styles.imgContent}>
-                <Image
-                  src={promotionalProduct.image}
-                  width={221}
-                  height={345}
-                  alt="cup"
-                  className={Styles.img}
-                />
-                <span className={Styles.badget}>Sale 30%</span>
-              </div>
-              <div className={Styles.textContent}>
-                <h4 className={Styles.textContent_title}>
-                  {promotionalProduct.product_title}
-                </h4>
-                <p>as low as ${promotionalProduct.unit_price || 60}</p>
-                <Image
-                  src={PromotionImg}
-                  width={132}
-                  height={21}
-                  alt="cup"
-                  className={Styles.img}
-                />
-                <div className={Styles.checkbtn}>
-                  <button>Check it out</button>
+            {promotionalProduct && (
+              <div className={Styles.collection_Single}>
+                <div className={Styles.imgContent}>
+                  <Image
+                    src={promotionalProduct.image}
+                    width={221}
+                    height={345}
+                    alt="cup"
+                    className={Styles.img}
+                  />
+                  <span className={Styles.badget}>Sale 30%</span>
+                </div>
+                <div className={Styles.textContent}>
+                  <h4 className={Styles.textContent_title}>
+                    {promotionalProduct.product_title}
+                  </h4>
+                  <p>as low as ${promotionalProduct.unit_price || 60}</p>
+                  <Image
+                    src={PromotionImg}
+                    width={132}
+                    height={21}
+                    alt="cup"
+                    className={Styles.img}
+                  />
+                  <div className={Styles.checkbtn}>
+                    <button>Check it out</button>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {response?.data?.data?.map((item) => (
               <ProductCard item={item} key={item.id} />

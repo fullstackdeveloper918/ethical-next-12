@@ -7,8 +7,19 @@ import Shipping from '../components/Shipping/Shipping'
 import QuotationSubmissionHeader from '../components/QuotationSubmissionHeader/QuotationSubmissionHeader'
 import { useSelector } from 'react-redux'
 import EmptyContainer from '../components/EmptyContainer/EmptyContainer'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+
 const shipping = () => {
+  const router = useRouter()
+
   const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
+  const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
+  useEffect(() => {
+    if (!reached2ndStep) {
+      router.push('/products')
+    }
+  }, [reached2ndStep])
 
   return (
     <>

@@ -1,10 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Styles from './QuotationSubmissionHeader.module.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  setreached2ndStep,
+  setreached3rdStep,
+} from '../../redux-setup/cartSlice'
 
 const QuotationSubmissionHeader = () => {
+  const dispatch = useDispatch()
+
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
+  const step1State = useSelector((state) => state.cart.step1State)
+  const step2State = useSelector((state) => state.cart.step2State)
+
+  useEffect(() => {
+    if (step1State?.selectedDate) {
+      dispatch(setreached2ndStep(true))
+    } else if (!step1State?.selectedDate) {
+      dispatch(setreached2ndStep(false))
+    }
+  }, [step1State])
+
+  useEffect(() => {
+    if (step2State?.country) {
+      dispatch(setreached3rdStep(true))
+    } else if (!step2State?.country) {
+      dispatch(setreached3rdStep(false))
+    }
+  }, [step2State])
   return (
     <>
       <div className={Styles.QuotationSubmissionHeader}>
