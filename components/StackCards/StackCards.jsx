@@ -89,7 +89,7 @@ const Dummy = () => {
   return (
     <div>
       <div className={styles.text}>
-        {first ? (
+        {/* {first ? (
           <div className={styles.text_animation}>
             <Image
               src={first[0].img}
@@ -99,9 +99,9 @@ const Dummy = () => {
               className={styles.text_animation_img}
             />
           </div>
-        ) : null}
+        ) : null} */}
 
-        <ul>
+        {/* <ul>
           {list.length
             ? list.map((item, ind) => {
                 return (
@@ -118,6 +118,68 @@ const Dummy = () => {
                 )
               })
             : null}
+        </ul> */}
+
+        <ul className={styles.explor_imgSec}>
+        
+          <li>
+            <div className={styles.list_explore}>
+            <Image src={CardOne}
+            alt=""
+            height={600}
+            width={600}
+            className={styles.cardImage}
+            onClick={() => router.push('/products')}
+            
+             />
+             </div>
+          </li>
+          <li>
+            <div className={styles.list_explore}>
+            <Image src={CardTwo}
+            alt=""
+            height={600}
+            width={600}
+            className={styles.cardImage}
+            onClick={() => router.push('/products')}
+             />
+             </div>
+          </li>
+          <li>
+            <div className={styles.list_explore}>
+            <Image src={CardThree}
+            alt=""
+            height={600}
+            width={600}
+            className={styles.cardImage}
+            onClick={() => router.push('/products')}
+             />
+             </div>
+          </li>
+          <li>
+            <div className={styles.list_explore}>
+            <Image src={CardFour}
+            alt=""
+            height={600}
+            width={600}
+            className={styles.cardImage}
+            onClick={() => router.push('/products')}
+             />
+             </div>
+          </li>
+
+          <li>
+            <div className={styles.list_explore}>
+            <Image src={CardFive}
+            alt=""
+            height={600}
+            width={600}
+            className={styles.cardImage}
+            onClick={() => router.push('/products')}
+             />
+             </div>
+          </li>
+        
         </ul>
       </div>
     </div>

@@ -7,6 +7,7 @@ import downIcon from '../../assets/headerPics/down-black.svg'
 import EthicalLogo from '../../components/EthicalLogo/EthicalLogo'
 import Usa from '../../assets/headerPics/use_flag.svg'
 import Canada from '../../assets/headerPics/canada-flag.svg'
+import { FaChevronDown } from "react-icons/fa";
 import CrossIcon from '../../assets/headerPics/corss.svg'
 import Humburg from '../../assets/headerPics/menu-bar.png'
 import dropDownIcon from '../../assets/headerPics/drop-down.svg'
@@ -146,12 +147,7 @@ const SecondaryHeader = () => {
                       >
                         Shop
                         <span>
-                          <Image
-                            src={downIcon}
-                            width={10}
-                            height={10}
-                            alt="search"
-                          />
+                          <FaChevronDown fontSize={15} />
                         </span>
                       </Button>
                     </DropdownMenuTrigger>
