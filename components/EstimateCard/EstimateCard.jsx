@@ -6,7 +6,11 @@ import { GrEdit } from 'react-icons/gr'
 import Styles from './EstimateCard.module.css'
 import { toast } from 'react-toastify'
 import images from '../../constants/images'
-import { deleteCartItem, deleteAllCartItems } from '../../redux-setup/cartSlice'
+import {
+  deleteCartItem,
+  deleteAllCartItems,
+  setStep2State,
+} from '../../redux-setup/cartSlice'
 import useFetch from '../../lib/useFetch'
 
 const EstimateCard = () => {
@@ -21,12 +25,10 @@ const EstimateCard = () => {
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))
   }
-  console.log({ step1State, step2State })
   useEffect(() => {
     totalPriceOfCart()
   }, [cartItems])
   let data = [step1State, step2State]
-  console.log(data, 'data')
   const [loadQuery, { response, loading, error }] = useFetch(
     `/bulkestimate/${userId}`,
     {
@@ -35,12 +37,13 @@ const EstimateCard = () => {
     data
   )
   const handleSubmit = () => {
-    if (userId && step1State && step2State) {
-      loadQuery()
-      // dispatch(deleteAllCartItems())
-      toast.success('Your request has been submmitted successfully')
-    } else {
+    console.log('handleSubmit have been hit')
+    if (!userId) {
       alert('Please Login To submit Estimate')
+    } else if (!step1State || !setStep2State) {
+      alert('Please Complete All Steps to submit.')
+    } else {
+      loadQuery()
     }
   }
 
@@ -57,6 +60,8 @@ const EstimateCard = () => {
   useEffect(() => {
     if (response) {
       console.log(response, 'responseresponse')
+      toast.success('Your request has been submmitted successfully')
+      // dispatch(deleteAllCartItems())
     }
   }, [response])
   return (

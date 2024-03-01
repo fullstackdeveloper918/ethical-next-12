@@ -41,6 +41,7 @@ const Shipping = () => {
         >
           {({ errors, values }) => (
             <>
+              {console.log(errors, 'eeeee')}
               {setErrorLength(Object.keys(errors).length)}
               {console.log(errors, 'errrrrr')}
               <Form className={Styles.form}>
