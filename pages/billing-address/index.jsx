@@ -20,6 +20,13 @@ const BillingAddress = () => {
   console.log(step2State, 'step2Statestep2State')
 
   const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
+  const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
+
+  useEffect(() => {
+    if (!reached3rdStep) {
+      router.push('/products')
+    }
+  }, [reached3rdStep])
 
   return (
     <>
