@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   role: [],
   currentPage: null,
+  userId: null,
 }
 
 export const AuthSlice = createSlice({
@@ -15,9 +16,12 @@ export const AuthSlice = createSlice({
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload
     },
+    setuserId: (state, action) => {
+      state.userId = action.payload
+    },
   },
 })
 
-export const { setRole, setCurrentPage } = AuthSlice.actions
+export const { setRole, setCurrentPage, setuserId } = AuthSlice.actions
 
 export default AuthSlice.reducer

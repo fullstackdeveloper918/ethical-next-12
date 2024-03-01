@@ -7,24 +7,38 @@ import Styles from './EstimateCard.module.css'
 import { toast } from 'react-toastify'
 import images from '../../constants/images'
 import { deleteCartItem, deleteAllCartItems } from '../../redux-setup/cartSlice'
+import useFetch from '../../lib/useFetch'
 
 const EstimateCard = () => {
   const dispatch = useDispatch()
   const router = useRouter()
-
+  const step1State = useSelector((state) => state.cart.step1State)
+  const step2State = useSelector((state) => state.cart.step2State)
   const cartItems = useSelector((state) => state.cart.cartItems)
   const [totalCartPrice, setTotalCartPrice] = useState(0)
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))
   }
-
+  console.log({ step1State, step2State })
   useEffect(() => {
     totalPriceOfCart()
   }, [cartItems])
 
+  const [loadQuery, { response, loading, error }] = useFetch(
+    `/bulkestimate/{user_id}`,
+    {
+      method: 'post',
+    },
+    'formdata'
+  )
+  const userId = useSelector((state) => state.auth.userId)
   const handleSubmit = () => {
-    dispatch(deleteAllCartItems())
-    toast.success('Your request has been submmitted successfully')
+    if (userId) {
+      dispatch(deleteAllCartItems())
+      toast.success('Your request has been submmitted successfully')
+    } else {
+      alert('Please Login To submit Estimate')
+    }
   }
 
   const totalPriceOfCart = () => {

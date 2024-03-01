@@ -11,6 +11,7 @@ import {
   validationSchemaRegister,
 } from '../lib/validationSchemas'
 import EthicalLogo from '../components/EthicalLogo/EthicalLogo'
+import { setuserId } from '../redux-setup/authSlice'
 
 const register = () => {
   const router = useRouter()
@@ -34,6 +35,8 @@ const register = () => {
   useEffect(() => {
     if (response) {
       localStorage.setItem('token_swag', response?.data?.accessToken)
+      dispatch(setuserId(response?.data?.id))
+
       //   dispatch(setRole(response?.data?.role))
       toast.success(response?.message)
 

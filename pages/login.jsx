@@ -38,6 +38,7 @@ const login = () => {
     if (response) {
       localStorage.setItem('token_swag', response?.data?.accessToken)
       dispatch(setRole(response?.data?.role))
+      dispatch(setuserId(response?.data?.id))
       toast.success('Logged in successfully')
 
       if (page) {

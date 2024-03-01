@@ -11,7 +11,7 @@ import {
 import useFetch from '../../lib/useFetch'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { setRole } from '../../redux-setup/authSlice'
+import { setRole, setuserId } from '../../redux-setup/authSlice'
 import axios from 'axios'
 import SwagOrderForm from '../SwagOrderForm/SwagOrderForm'
 
@@ -56,6 +56,7 @@ const Cart = ({
     if (response) {
       localStorage.setItem('token_swag', response?.data?.accessToken)
       dispatch(setRole(response?.data?.role))
+      dispatch(setuserId(response?.data?.id))
       setShowLogin(false)
       toast.success('Logged in successfully')
     }
