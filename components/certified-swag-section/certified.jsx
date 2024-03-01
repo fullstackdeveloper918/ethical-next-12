@@ -32,15 +32,17 @@ const Certified = () => {
   useEffect(() => {
     fetch('https://test.cybersify.tech/Eswag/public/api/starproducts')
       .then((res) => res.json())
-      .then((r) => dispatch(setSingleProductPromotion(r?.data?.data[0])))
-      .then((r) => setData(r?.data?.data))
+      .then((r) => {
+        dispatch(setSingleProductPromotion(r?.data?.data[0]))
+        setData(r?.data?.data)
+      })
+    // // .then((r) => setData(r?.data?.data))
+    // .then((data) => console.log(data, 'allll'))
   }, [])
 
   const promotionalProduct = useSelector(
     (state) => state.random.singleProductPromotion
   )
-
-  console.log(promotionalProduct, 'promotionalProductpromotionalProduct')
 
   return (
     <>
