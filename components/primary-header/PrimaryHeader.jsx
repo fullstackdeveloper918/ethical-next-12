@@ -19,7 +19,7 @@ import { Button } from '@/components/ui/button'
 import downIcon from '../../assets/headerPics/down-black.svg'
 import useFetch from '../../lib/useFetch'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCurrentPage } from 'redux-setup/authSlice'
+import { setCurrentPage, setuserId } from 'redux-setup/authSlice'
 import { toast } from 'react-toastify'
 
 const PrimaryHeader = () => {
@@ -55,6 +55,8 @@ const PrimaryHeader = () => {
     if (error) {
     }
     localStorage.clear()
+
+    dispatch(setuserId(null))
     toast.success('Logged out successully')
 
     // router.push('/login')
@@ -67,7 +69,13 @@ const PrimaryHeader = () => {
         <div className={styles.container_left}>
           <div className={styles.offer_container}>
             <div className="">
-              <Image src={phoneImg} alt="down arrow" width={16} height={15} className={styles.arrowDown}/>
+              <Image
+                src={phoneImg}
+                alt="down arrow"
+                width={16}
+                height={15}
+                className={styles.arrowDown}
+              />
             </div>
             <div className="" style={{ cursor: 'pointer' }}>
               1-877-256-6998

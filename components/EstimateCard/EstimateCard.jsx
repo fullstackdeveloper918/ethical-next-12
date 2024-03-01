@@ -6,7 +6,11 @@ import { GrEdit } from 'react-icons/gr'
 import Styles from './EstimateCard.module.css'
 import { toast } from 'react-toastify'
 import images from '../../constants/images'
-import { deleteCartItem, deleteAllCartItems } from '../../redux-setup/cartSlice'
+import {
+  deleteCartItem,
+  deleteAllCartItems,
+  setStep2State,
+} from '../../redux-setup/cartSlice'
 import useFetch from '../../lib/useFetch'
 
 const EstimateCard = () => {
@@ -16,28 +20,39 @@ const EstimateCard = () => {
   const step2State = useSelector((state) => state.cart.step2State)
   const cartItems = useSelector((state) => state.cart.cartItems)
   const [totalCartPrice, setTotalCartPrice] = useState(0)
+  const userId = useSelector((state) => state.auth.userId)
+
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))
   }
-  console.log({ step1State, step2State })
   useEffect(() => {
     totalPriceOfCart()
   }, [cartItems])
-
+  let data = [step1State, step2State]
+  console.log(data, 'data')
   const [loadQuery, { response, loading, error }] = useFetch(
-    `/bulkestimate/{user_id}`,
+    `/bulkestimate/${userId}`,
     {
       method: 'post',
-    },
-    'formdata'
+    }
   )
-  const userId = useSelector((state) => state.auth.userId)
   const handleSubmit = () => {
-    if (userId) {
-      dispatch(deleteAllCartItems())
-      toast.success('Your request has been submmitted successfully')
-    } else {
+    console.log('handleSubmit have been hit')
+    if (!userId) {
       alert('Please Login To submit Estimate')
+    } else if (!step1State || !setStep2State) {
+      alert('Please Complete All Steps to submit.')
+    } else {
+      loadQuery(data)
+
+      // fetch('https://test.cybersify.tech/Eswag/public/api/bulkestimate/926', {
+      //   headers: {
+      //     Accept: 'application/json',
+      //     'Content-Type': 'application/json',
+      //   },
+      //   method: 'POST',
+      //   body: data,
+      // })
     }
   }
 
@@ -50,6 +65,14 @@ const EstimateCard = () => {
     }
     setTotalCartPrice(totalPrice)
   }
+
+  useEffect(() => {
+    if (response) {
+      console.log(response, 'responseresponse')
+      toast.success('Your request has been submmitted successfully')
+      // dispatch(deleteAllCartItems())
+    }
+  }, [response])
   return (
     <>
       <div className={Styles.estimate_wrapper}>
