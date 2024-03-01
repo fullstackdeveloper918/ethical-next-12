@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { GrEdit } from 'react-icons/gr'
 import Styles from './EstimateCard.module.css'
+import { toast } from 'react-toastify'
 import images from '../../constants/images'
 import { deleteCartItem, deleteAllCartItems } from '../../redux-setup/cartSlice'
 
@@ -20,6 +21,11 @@ const EstimateCard = () => {
   useEffect(() => {
     totalPriceOfCart()
   }, [cartItems])
+
+  const handleSubmit = () => {
+    dispatch(deleteAllCartItems())
+    toast.success('Your request has been submmitted successfully')
+  }
 
   const totalPriceOfCart = () => {
     let totalPrice = 0
@@ -98,7 +104,10 @@ const EstimateCard = () => {
                       ${totalCartPrice.toFixed(2)}
                     </span>
                   </div>
-                  <button className={Styles.estimate_bottom_btn}>
+                  <button
+                    className={Styles.estimate_bottom_btn}
+                    onClick={handleSubmit}
+                  >
                     Submit Estimate Request
                   </button>
                   <div className={Styles.estimate_clear_content}>

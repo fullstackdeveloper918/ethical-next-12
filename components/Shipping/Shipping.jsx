@@ -220,19 +220,21 @@ const Shipping = () => {
                   <div
                     className={` ${Styles.flexInputs}  ${Styles.agreecheck}`}
                   >
-                    <input
-                      type="checkbox"
-                      name="terms"
-                      value={terms}
-                      id="terms"
-                      onChange={handleCheckboxChange}
-                    />
-                    <p>
-                      I agree to the{' '}
-                      <span className={Styles.textUnderline}>
-                        terms & conditions | privacy policy
-                      </span>
-                    </p>
+                    <div className={Styles.custom_checkbox}>
+                      <input
+                        type="checkbox"
+                        name="terms"
+                        value={terms}
+                        id="terms"
+                        onChange={handleCheckboxChange}
+                      />
+                      <label htmlFor="terms">
+                        I agree to the{' '}
+                        <span className={Styles.textUnderline}>
+                          terms & conditions | privacy policy
+                        </span>
+                      </label>
+                    </div>
                     <ErrorMessage
                       name="radio"
                       component="div"
