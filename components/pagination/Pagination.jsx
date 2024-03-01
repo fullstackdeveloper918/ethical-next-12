@@ -34,8 +34,6 @@ const Pagination = ({
     }
   }, [totalPages])
 
-  console.log({ page, totalPages })
-
   return (
     <>
       <div className={Styles.pagination_container}>
