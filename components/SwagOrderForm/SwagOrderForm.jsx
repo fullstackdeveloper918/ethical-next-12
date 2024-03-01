@@ -61,6 +61,7 @@ const SwagOrderForm = ({ isBilling }) => {
                     name="selectedDate"
                     autocomplete="off"
                     min={getTodayDate()}
+                    disabled={isBilling}
                   />
                   <ErrorMessage
                     name="selectedDate"
@@ -103,6 +104,7 @@ const SwagOrderForm = ({ isBilling }) => {
                     placeholder="notes about your order"
                     autocomplete="off"
                     className={Styles.SwagOrder_need_textarea}
+                    disabled={isBilling}
                   />
                   <ErrorMessage
                     name="textarea"
@@ -116,7 +118,12 @@ const SwagOrderForm = ({ isBilling }) => {
                   <div className={Styles.SwagOrder_interested_section_fields}>
                     <div className={Styles.inputs}>
                       <div className={Styles.custom_checkbox}>
-                        <Field type="checkbox" name="swagPack" id="swagPack" />
+                        <Field
+                          type="checkbox"
+                          name="swagPack"
+                          id="swagPack"
+                          disabled={isBilling}
+                        />
                         <label for="swagPack">Swag Pack Kitting</label>
                       </div>
                     </div>
@@ -126,6 +133,7 @@ const SwagOrderForm = ({ isBilling }) => {
                           type="checkbox"
                           name="Warehousing"
                           id="Warehousing"
+                          disabled={isBilling}
                         />
                         <label for="Warehousing">Warehousing</label>
                       </div>
@@ -136,6 +144,7 @@ const SwagOrderForm = ({ isBilling }) => {
                           type="checkbox"
                           name="graphicDesign"
                           id="graphicDesign"
+                          disabled={isBilling}
                         />
                         <label for="graphicDesign">Graphic Design</label>
                       </div>
@@ -146,13 +155,19 @@ const SwagOrderForm = ({ isBilling }) => {
                           type="checkbox"
                           name="pickAndPack"
                           id="pickAndPack"
+                          disabled={isBilling}
                         />
                         <label for="pickAndPack">Pick and Pack</label>
                       </div>
                     </div>
                     <div className={Styles.inputs}>
                       <div className={Styles.custom_checkbox}>
-                        <Field type="checkbox" name="notSure" id="notSure" />
+                        <Field
+                          type="checkbox"
+                          name="notSure"
+                          id="notSure"
+                          disabled={isBilling}
+                        />
                         <label for="notSure">Not Sure</label>
                       </div>
                     </div>
