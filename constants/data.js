@@ -100,8 +100,6 @@ export const LIST = [
   },
 ]
 
-
-
 export const Sidebar_Data = [
   { id: 1, text: 'Dashboard', icon: images.Livello_1 },
   { id: 2, text: 'Orders', icon: images.Livello_1 },
@@ -665,4 +663,37 @@ export const Store_Detail_Data = [
   { id: 4, text: 'Print-on-demand products' },
   { id: 5, text: "I 'll decide later" },
   { id: 6, text: "I 'll decide later" },
+]
+
+export const Accordion_Data = [
+  {
+    id: 1,
+    text: 'Will all items fit in the box I choose?',
+    content:
+      'We will ensure that all of the items you order will all fit into one gift box or mailer.',
+  },
+  {
+    id: 2,
+    text: 'How many products can I add in a Swag Pack?',
+    content:
+      'You can add as many products as you like to a Swag Pack. Note that the heavier the pack, the shipping expenses will be higher and you might require to upgrade to a bigger box! ',
+  },
+  {
+    id: 3,
+    text: 'Do Swag Packs come preassembled?',
+    content:
+      'We can ship the packs assembled, directly to your clients and staff’s addresses or in bulk (boxes, disassembled) if you prefer to assemble it yourself. Please notify us how you would like it shipped while placing your order.',
+  },
+  {
+    id: 4,
+    text: 'Are all products in the Swag Pack customizable?',
+    content:
+      'Most products are able to be customized with your logo or message. Edible products, such as coffee bags, candy, honey, etc cannot be customized.',
+  },
+  {
+    id: 5,
+    text: 'How can I process a return?',
+    content:
+      'Please contact us directly if you have any questions or a problem with your order!',
+  },
 ]
