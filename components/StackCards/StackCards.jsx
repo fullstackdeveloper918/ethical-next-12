@@ -58,33 +58,33 @@ const Dummy = () => {
 
   const [first, setFirst] = useState()
 
-  useEffect(() => {
-    clearInterval(tt)
+  // useEffect(() => {
+  //   clearInterval(tt)
 
-    let currentIndex = 0
-    tt = setInterval(() => {
-      let moveFirstIndexToLastArr = arraySplitFromIndexAndJoinToLast(
-        imagesList,
-        currentIndex
-      )
-      let [first, last] = splitArrayByIndex(moveFirstIndexToLastArr, 1)
-      setList(last)
-      setFirst(false)
-      setTimeout(() => {
-        setFirst(first)
-      }, 1)
+  //   let currentIndex = 0
+  //   tt = setInterval(() => {
+  //     let moveFirstIndexToLastArr = arraySplitFromIndexAndJoinToLast(
+  //       imagesList,
+  //       currentIndex
+  //     )
+  //     let [first, last] = splitArrayByIndex(moveFirstIndexToLastArr, 1)
+  //     setList(last)
+  //     setFirst(false)
+  //     setTimeout(() => {
+  //       setFirst(first)
+  //     }, 1)
 
-      // setTimeout(() => { // for stack animation
-      //   setList([...last,...first]);
-      // }, animiationTiming-1000);
+  //     setTimeout(() => { // for stack animation
+  //       setList([...last,...first]);
+  //     }, animiationTiming-1000);
 
-      if (imagesList.length - 1 === currentIndex) {
-        currentIndex = 0
-      } else {
-        currentIndex++
-      }
-    }, animiationTiming)
-  }, [])
+  //     if (imagesList.length - 1 === currentIndex) {
+  //       currentIndex = 0
+  //     } else {
+  //       currentIndex++
+  //     }
+  //   }, animiationTiming)
+  // }, [])
 
   return (
     <div>

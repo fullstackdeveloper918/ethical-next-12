@@ -159,54 +159,71 @@ const SecondaryHeader = () => {
                         <DropdownMenuRadioItem
                           value="top"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
                         >
                           Apparel
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="bottom"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
+
                         >
                           Bags
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
+
                         >
                           All Swag
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
+
                         >
                           Wellness
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
+
                         >
                           Plants & Seeds
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
+
                         >
                           Tech
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
+
                         >
                           Office & School
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
+
                         >
                           At Home
                         </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="right"
                           className={styles.shop_submenu}
+                          onClick={() => router.push('/products')}
+
                         >
                           Drinkware
                         </DropdownMenuRadioItem>
