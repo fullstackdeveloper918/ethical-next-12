@@ -67,7 +67,7 @@ const PrimaryHeader = () => {
         <div className={styles.container_left}>
           <div className={styles.offer_container}>
             <div className="">
-              <Image src={phoneImg} alt="down arrow" width={16} height={15} />
+              <Image src={phoneImg} alt="down arrow" width={16} height={15} className={styles.arrowDown}/>
             </div>
             <div className="" style={{ cursor: 'pointer' }}>
               1-877-256-6998
