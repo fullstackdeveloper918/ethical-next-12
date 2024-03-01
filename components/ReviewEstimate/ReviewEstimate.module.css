@@ -20,13 +20,13 @@
   font-size: 0.75rem;
 }
 
-.reviewEstimate_container .container {
+.reviewEstimate_container .reviewContainer {
   border: 1px solid #f1f8e7;
   border-radius: 10px;
   padding: 1rem;
 }
 
-.reviewEstimate_container .container .content {
+.reviewEstimate_container .reviewContainer .reviewContent {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
@@ -35,11 +35,14 @@
 .reviewEstimate_container .left_content {
   display: flex;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 1rem;
+  max-width: 590px;
 }
 
 .reviewEstimate_container .left_content .imgContent {
-  width: 92px;
+  width: 100%;
+  max-width: 92px;
+  flex: 1;
   height: 105px;
   display: flex;
   border-radius: 18px;
@@ -55,6 +58,15 @@
   right: 10px;
   cursor: pointer;
 }
+
+.reviewEstimate_container .left_content .textContent {
+  flex: 4;
+}
+
+.reviewEstimate_container .left_content .right_content {
+  flex: 1;
+}
+
 .reviewEstimate_container .left_content .textContent .title {
   font-size: 0.81rem;
   margin-bottom: 0.3rem;
@@ -69,8 +81,8 @@
 
 .buttons {
   display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
+  justify-content: flex-end;
+  gap: 1rem;
   align-items: flex-end;
 }
 .buttons button {
