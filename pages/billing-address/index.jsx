@@ -17,8 +17,6 @@ const BillingAddress = () => {
   const router = useRouter()
   const step2State = useSelector((state) => state.cart.step2State)
 
-  console.log(step2State, 'step2Statestep2State')
-
   const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
 

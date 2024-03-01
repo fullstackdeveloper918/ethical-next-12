@@ -29,12 +29,12 @@ const EstimateCard = () => {
     totalPriceOfCart()
   }, [cartItems])
   let data = [step1State, step2State]
+  console.log(data, 'data')
   const [loadQuery, { response, loading, error }] = useFetch(
     `/bulkestimate/${userId}`,
     {
       method: 'post',
-    },
-    data
+    }
   )
   const handleSubmit = () => {
     console.log('handleSubmit have been hit')
@@ -43,7 +43,16 @@ const EstimateCard = () => {
     } else if (!step1State || !setStep2State) {
       alert('Please Complete All Steps to submit.')
     } else {
-      loadQuery()
+      loadQuery(data)
+
+      // fetch('https://test.cybersify.tech/Eswag/public/api/bulkestimate/926', {
+      //   headers: {
+      //     Accept: 'application/json',
+      //     'Content-Type': 'application/json',
+      //   },
+      //   method: 'POST',
+      //   body: data,
+      // })
     }
   }
 
