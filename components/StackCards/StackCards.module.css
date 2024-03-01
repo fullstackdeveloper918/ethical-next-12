@@ -51,8 +51,8 @@
 }
 
 .text_animation {
-  animation: rightAnimate 5s linear;
-  animation-fill-mode: forwards;
+  /* animation: rightAnimate 5s linear; */
+  /* animation-fill-mode: forwards; */
   position: absolute;
   width: 500px;
   height: 600px;
