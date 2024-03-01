@@ -32,71 +32,53 @@ const ReviewEstimate = () => {
             </button>
           </div>
         )}
-        <div className={Styles.container}>
+        <div className={Styles.reviewContainer}>
           {cartItemss?.length > 0 &&
             cartItemss.map((item, i) => (
-              <div className={Styles.content} key={i}>
-                <div className={Styles.left_content}>
-                  <div className={Styles.imgContent}>
-                    <Image
-                      src={item.image}
-                      width={54}
-                      height={72}
-                      alt="image"
-                    />
-                  </div>
-                  <div className={Styles.textContent}>
-                    <div>
-                      <h4 className={Styles.title}>
-                        {item.heading.slice(0, 100)}
-                      </h4>
-                      <p className={Styles.color}>Black</p>
-                      <p className={Styles.quantity}>
-                        Quantity - {item.quantity}
-                      </p>
+              <>
+                <div className={Styles.reviewContent} key={i}>
+                  <div className={Styles.left_content}>
+                    <div className={Styles.imgContent}>
+                      <Image
+                        src={item.image}
+                        width={54}
+                        height={72}
+                        alt="image"
+                      />
                     </div>
-                    <div>
-                      <p className={Styles.price}>
-                        ${item.price * item.quantity}
-                      </p>
+                    <div className={Styles.textContent}>
+                      <div>
+                        <h4 className={Styles.title}>
+                          {item.heading.slice(0, 100)}
+                        </h4>
+                        <p className={Styles.color}>Black</p>
+                        <p className={Styles.quantity}>
+                          Quantity - {item.quantity}
+                        </p>
+                      </div>
+                      <div>
+                        <p className={Styles.price}>
+                          ${item.price * item.quantity}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={Styles.right_content}>
+                    <div className={Styles.review_content}>
+                      <span></span>
+                      <span>527 reviews</span>
                     </div>
                   </div>
                 </div>
-                <div className={Styles.right_content}>
-                  <div className={Styles.review_content}>
-                    <span></span>
-                    <span>527 reviews</span>
-                  </div>
-                </div>
-              </div>
+              </>
             ))}
-          {/* <div className={Styles.content}>
-            <div className={Styles.left_content}>
-              <div className={Styles.imgContent}>
-                <RxCross2 className={Styles.cross_icon} />
-                <Image
-                  src={images.Ethical_swag_small_logo}
-                  width={54}
-                  height={72}
-                  alt="image"
-                />
-              </div>
-              <div className={Styles.textContent}>
-                <div>
-                  <h4 className={Styles.title}>Front logo</h4>
-                  <p className={Styles.color}>lorem isupm</p>
-                  <p className={Styles.quantity}>lorem isupm lorem isupm</p>
-                </div>
-              </div>
-            </div>
-            <div className={Styles.buttons}>
-              <button>
-                <GrEdit />
-                Edit
-              </button>
-              <button>See More</button>
-            </div>
-          </div> */}
+          <div className={Styles.buttons}>
+            <button>
+              <GrEdit />
+              Edit
+            </button>
+            <button>See More</button>
+          </div>
         </div>
       </div>
     </>

@@ -5,6 +5,7 @@
   display: flex;
   gap: 5.3rem;
   justify-content: space-between;
+  padding: 0px 15px;
 }
 .widthFull {
   width: 65%;
@@ -267,7 +268,7 @@
   visibility: visible;
 }
 .cart_section div {
-  width: 100% !important;
+  /* width: 100% !important; */
   /* height: 50vh;
   display: flex;
   align-items: center;
