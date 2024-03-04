@@ -19,11 +19,14 @@
 .reviewEstimate_container .expand_all_content p {
   font-size: 0.75rem;
 }
-
+.form_labelwrap{
+  font-size: 18px;
+}
 .reviewEstimate_container .reviewContainer {
   border: 1px solid #f1f8e7;
   border-radius: 10px;
   padding: 2rem;
+  margin-top: 1rem;
 }
 
 .reviewEstimate_container .reviewContainer .reviewContent {

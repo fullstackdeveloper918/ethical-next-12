@@ -147,7 +147,7 @@ const SecondaryHeader = () => {
                       >
                         Shop
                         <span>
-                          <FaChevronDown fontSize={15} />
+                          <FaChevronDown fontSize={15 } />
                         </span>
                       </Button>
                     </DropdownMenuTrigger>

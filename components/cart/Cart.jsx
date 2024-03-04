@@ -120,7 +120,7 @@ const Cart = ({
 
   return (
     <>
-      <section className={Styles.cart_section}>
+      <section>
         {/* Left Section  */}
         <div className={Styles.cart_left}>
           {/* <QuotationSubmissionHeader /> */}

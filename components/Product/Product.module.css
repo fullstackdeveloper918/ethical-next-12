@@ -53,6 +53,15 @@
   padding: 0 5px !important;
   box-shadow: 0 0 10px rgb(189 189 189 / 30%);
 }
+.uploaded_content{
+  text-align: center;
+}
+.uploaded_content>p:first-child{
+  font-size: 17px;
+}
+.uploaded_content p.fw400{
+font-size: 14px !important;
+}
 .images_container .img {
   width: 124px;
   height: 112px;

@@ -42,6 +42,7 @@ const cartSlice = createSlice({
     },
     setreached2ndStep: (state, action) => {
       state.reached2ndStep = action.payload
+      
     },
     setreached3rdStep: (state, action) => {
       state.reached3rdStep = action.payload

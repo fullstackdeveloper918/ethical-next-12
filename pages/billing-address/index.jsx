@@ -37,7 +37,7 @@ const BillingAddress = () => {
               <QuotationSubmissionHeader />
               <ReviewEstimate />
               <div className={Styles.cart_left_FAQ}>
-                <h3>Other Info</h3>
+                <p className={Styles.form_labelwrap}>Other Info</p>
                 <SwagOrderForm isBilling />
 
                 <button

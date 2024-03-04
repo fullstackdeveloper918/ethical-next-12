@@ -45,3 +45,8 @@
   background-color: #A2D061;
   color: #fff;
 }
+@media (max-width:767px){
+  .QuotationSubmissionHeader .heading {
+    margin-top: 0px;
+  }
+}

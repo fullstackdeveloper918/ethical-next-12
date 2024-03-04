@@ -3,11 +3,14 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 3.8rem;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .cart_left_butttons .button {
-  width: 111px;
-  height: 57px;
+  min-width: 111px;
+  padding: 10px;
+  min-height: 57px;
   border-radius: 130px;
   border: 1px solid var(--green, #a2d061);
   background: rgba(162, 208, 97, 0.2);
@@ -19,17 +22,38 @@
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.5px;
+  transition: .5s all ease-in-out;
 }
-
+.cart_left_butttons .button:hover{
+  color: #fff;
+  background-color: #a2d061;
+}
+.cart_left_butttons button:hover:nth-child(2)
+{
+  color: #a2d061;
+  background-color: transparent;
+}
 .cart_left_butttons button:nth-child(2) {
   background: var(--green, #a2d061);
-  width: 161px;
+  border: 1px solid var(--green, #a2d061);
+  min-width: 161px;
   color: #fff;
+  transition: .5s all ease-in-out;
 }
 
 
 @media screen and (max-width:991px) {
   .cart_left_butttons {
-    margin:40px 0;
+    margin:20px 0 0px;
   }
+
+}
+@media (max-width:767px){
+  .cart_left_butttons .button {
+    min-height: 47px;
+  }
+  .cart_left_butttons button:nth-child(2) {
+    min-width: 120px;
+ }
+  
 }

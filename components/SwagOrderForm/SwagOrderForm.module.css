@@ -1,7 +1,7 @@
 .SwagOrder_FAQ {
   width: 100%;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-top: 2rem;
+  /* margin-bottom: 3rem; */
   border: 1px solid #f1f8e7;
   border-radius: 10px;
   padding: 2rem;
@@ -12,7 +12,7 @@
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 34px;
   letter-spacing: 0.28px;
   margin-bottom: 2.3rem;
   font-family: 'Poppins' !important;
@@ -149,7 +149,7 @@
 .custom_checkbox label:before {
   content: '';
   position: absolute;
-  left: 0;
+  left: -1px;
   top: 0;
   width: 20px;
   height: 20px;
@@ -205,4 +205,19 @@
   margin-right: 10px;
   display: flex;
   align-content: center;
+}
+@media (max-width:991px){
+  .SwagOrder_FAQ button{
+    margin: 20px 0px 0px !important;
+  }
+}
+@media (max-width:767px){
+  .SwagOrder_FAQ > h3 {
+    color: #111;
+    font-size: 24px;
+    line-height: 36px;
+  }
+  .SwagOrder_FAQ {
+    padding: 2rem 1rem;
+  }
 }
