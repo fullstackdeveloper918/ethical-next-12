@@ -7,7 +7,7 @@ import downIcon from '../../assets/headerPics/down-black.svg'
 import EthicalLogo from '../../components/EthicalLogo/EthicalLogo'
 import Usa from '../../assets/headerPics/use_flag.svg'
 import Canada from '../../assets/headerPics/canada-flag.svg'
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown } from 'react-icons/fa'
 import CrossIcon from '../../assets/headerPics/corss.svg'
 import Humburg from '../../assets/headerPics/menu-bar.png'
 import dropDownIcon from '../../assets/headerPics/drop-down.svg'
@@ -53,7 +53,8 @@ const SecondaryHeader = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const cartItems = useSelector((state) => state.cart.cartItems.length)
-
+  const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
+  const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
   const filteredProducts = data?.filter((product) =>
     product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
   )
@@ -106,6 +107,16 @@ const SecondaryHeader = () => {
     }
   }, [inputbtn])
 
+  const handleCart = () => {
+    if (reached3rdStep) {
+      router.push('/billing-address')
+    } else if (reached2ndStep) {
+      router.push('/shipping')
+    } else {
+      router.push('/cart')
+    }
+  }
+
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
@@ -138,47 +149,44 @@ const SecondaryHeader = () => {
               </span>
               <div className={styles.text_with_down_icon}>
                 <>
-                      <div
-                        variant="ghost"
-                        className={styles.shop_menu}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        Shop
-                        <span>
-                          <FaChevronDown fontSize={12 } />
-                        </span>
-                      </div>
-                    <div className={styles.header_menu}>
-                        <div className={styles.mega_menu}>
-                          <span >Apparel</span>
-                         <ul>
-                          <li><a href=''>Accessories</a></li>
-                          <li>Accessories</li>
-                          <li>Accessories</li>
-                          <li>Accessories</li>
-                          <li>Accessories</li>
-                          <li>Accessories</li>
-                          <li>Accessories</li>
-                          <li>Accessories</li>
-                          </ul>
-                         </div>
-                       </div>
+                  <div
+                    variant="ghost"
+                    className={styles.shop_menu}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    Shop
+                    <span>
+                      <FaChevronDown fontSize={12} />
+                    </span>
+                  </div>
+                  <div className={styles.header_menu}>
+                    <div className={styles.mega_menu}>
+                      <span>Apparel</span>
+                      <ul>
+                        <li>
+                          <a href="">Accessories</a>
+                        </li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                      </ul>
+                    </div>
+                  </div>
                 </>
               </div>
               <div className="text_with_down_icon">
-                
-                 
-                    <div
-                      variant="ghost"
-                      className={styles.shop_menu}
-                      style={{ cursor: 'pointer' }}
-                      onClick={() => router.push('/about-us')}
-                    >
-                      About
-                      
-                    </div>
-                  
-                
+                <div
+                  variant="ghost"
+                  className={styles.shop_menu}
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => router.push('/about-us')}
+                >
+                  About
+                </div>
               </div>
               <div
                 variant="ghost"
@@ -333,7 +341,7 @@ const SecondaryHeader = () => {
 
           <div
             className=""
-            onClick={() => router.push('/cart')}
+            onClick={handleCart}
             style={{ cursor: 'pointer', position: 'relative' }}
           >
             <Image

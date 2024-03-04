@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import images from '../constants/images'
+import axios from 'axios'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import useFetch from '../lib/useFetch'
 import { useDispatch, useSelector } from 'react-redux'
@@ -36,23 +37,25 @@ const login = () => {
   const page = useSelector((state) => state.auth.currentPage)
   useEffect(() => {
     if (response) {
-      localStorage.setItem('token_swag', response?.data?.accessToken)
-      localStorage.setItem('userId', response?.data?.id)
-      console.log('setrole', response?.data?.id)
-      dispatch(setRole(response?.data?.role))
-      dispatch(setuserId(response?.data?.id))
-      toast.success('Logged in successfully')
-
-      if (page) {
-        router.push(`/${page}`)
-      } else {
-        router.push(`/`)
-      }
+      // localStorage.setItem('token_swag', response?.data?.accessToken)
+      // localStorage.setItem('userId', response?.data?.id)
+      // dispatch(setRole(response?.data?.role))
+      // dispatch(setuserId(response?.data?.id))
+      toast.success('Please verify your email', {
+        position: 'top-center',
+      })
+      router.push('/EmailVerify')
     }
-    if (error) {
-      console.log(error, 'errorMessage')
-      toast.error(error.message)
-    }
+    //   if (page) {
+    //     router.push(`/${page}`)
+    //   } else {
+    //     router.push(`/`)
+    //   }
+    // }
+    // if (error) {
+    //   console.log(error, 'errorMessage')
+    //   toast.error(error.message)
+    // }
   }, [response, error])
 
   const onSubmit = async (values) => {

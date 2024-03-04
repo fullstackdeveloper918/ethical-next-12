@@ -40,6 +40,8 @@ import blog_icon from '../assets/blog_icon.svg'
 import customer_icon from '../assets/customer_icon.svg'
 
 const images = {
+  bag_image,
+  pages,
   ethical_swag,
   history_icon,
   invoices_icon,

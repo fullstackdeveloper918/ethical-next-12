@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Styles from './Product.module.css'
 import Loaders from '../../components/loaders/Loaders'
 import Dot from '../custom-colored-dot/Dot'
+// import { FaChevronLeft } from 'react-icons/fa'
 import { RxCross2 } from 'react-icons/rx'
 import { setCartItems } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
@@ -233,9 +234,8 @@ const Product = ({ product, loading, error }) => {
                       />
                     )}
                   </div>
-                  <div
-                    className={`${Styles.images_container} ${Styles.scroll_hide}`}
-                  >
+                  <div className={Styles.images_container}>
+                    {/* <FaChevronLeft  /> */}
                     {productImages.map((image, index) => (
                       <>
                         <div className={Styles.product_Images}>
@@ -375,7 +375,7 @@ const Product = ({ product, loading, error }) => {
                     ))}
                   </div>
                 </div>
-                <div className={Styles.para_text}>
+                {/* <div className={Styles.para_text}>
                   <div className={Styles.common_header}>
                     <p>
                       How many areas of the product would you like to add a logo
@@ -394,8 +394,8 @@ const Product = ({ product, loading, error }) => {
                     className={Styles.input}
                     placeholder="3"
                   />
-                </div>
-                <div className={Styles.para_text}>
+                </div> */}
+                {/* <div className={Styles.para_text}>
                   <div className={Styles.common_header}>
                     <p>Select location from the dropdown below</p>
                     <Image
@@ -438,8 +438,8 @@ const Product = ({ product, loading, error }) => {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className={Styles.para_text}>
+                </div> */}
+                {/* <div className={Styles.para_text}>
                   <div className={Styles.common_header}>
                     <p>
                       Upload Logo/ Artwork{' '}
@@ -553,7 +553,7 @@ const Product = ({ product, loading, error }) => {
                       )}
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className={Styles.number_of_units}>
                   <div className={Styles.common_header}>
                     <p>Enter the number of units you need?</p>

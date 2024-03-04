@@ -5,8 +5,11 @@ import images from '../../constants/images'
 import { GrEdit } from 'react-icons/gr'
 import { RxCross2 } from 'react-icons/rx'
 import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
 
 const ReviewEstimate = () => {
+  const router = useRouter()
+
   const cartItems = useSelector((state) => state.cart.cartItems)
   const cartItemsLength = useSelector((state) => state.cart.cartItems.length)
   const [isExpand, setIsExpand] = useState(false)
@@ -71,7 +74,10 @@ const ReviewEstimate = () => {
                   </div>
                 </div>
                 <div className={Styles.buttons}>
-                  <button>
+                  <button
+                    onClick={() => router.push(`/products/${item.id}`)}
+                    type="button"
+                  >
                     <GrEdit />
                     Edit
                   </button>
