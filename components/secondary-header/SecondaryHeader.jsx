@@ -171,6 +171,9 @@ const SecondaryHeader = () => {
                         >
                           Apparel
                         </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem value="top">
+                          Top
+                        </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem
                           value="bottom"
                           className={styles.shop_submenu}

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Styles from './Product.module.css'
 import Loaders from '../../components/loaders/Loaders'
 import Dot from '../custom-colored-dot/Dot'
+// import { FaChevronLeft } from 'react-icons/fa'
 import { RxCross2 } from 'react-icons/rx'
 import { setCartItems } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
@@ -233,9 +234,8 @@ const Product = ({ product, loading, error }) => {
                       />
                     )}
                   </div>
-                  <div
-                    className={`${Styles.images_container} ${Styles.scroll_hide}`}
-                  >
+                  <div className={Styles.images_container}>
+                    {/* <FaChevronLeft  /> */}
                     {productImages.map((image, index) => (
                       <>
                         <div className={Styles.product_Images}>
