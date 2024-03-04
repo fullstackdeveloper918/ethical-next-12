@@ -185,14 +185,18 @@ const contact = () => {
                         className={Styles.error}
                       />
                     </div>
-                    <div className={Styles.input_radio}>
+                    <div
+                      className={`${Styles.input_radio} ${Styles.custom_checkbox}`}
+                    >
                       <Field
-                        type="radio"
-                        id="radio"
+                        type="checkbox"
+                        id="checkbox"
                         name="radio"
                         onChnage={handleChange}
                       />
-                      <p>I agree to the terms & conditions | privacy policy</p>
+                      <label htmlFor="checkbox">
+                        I agree to the terms & conditions | privacy policy
+                      </label>
                     </div>
                     <div className={Styles.inputs}>
                       <button onClick={submitClicked}>Submit</button>

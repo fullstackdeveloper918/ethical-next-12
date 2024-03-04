@@ -1,9 +1,7 @@
 import Styles from './Dot.module.css'
 import Image from 'next/image'
 const Dot = ({ color, imageUrl }) => {
-  // const btnClicked = () => {
-  //   setActiveColor(color)
-  // }
+  console.log(color, imageUrl, 'dot')
 
   return (
     <>
@@ -11,10 +9,8 @@ const Dot = ({ color, imageUrl }) => {
         <div
           className={`${Styles.colored_dot}`}
           style={{ background: color }}
-          // onClick={btnClicked}
-        >
-          {/* {color && <Image src={imageUrl} layout="fill" />} */}
-        </div>
+          onClick={() => alert('clicked on color image')}
+        ></div>
       )}
     </>
   )

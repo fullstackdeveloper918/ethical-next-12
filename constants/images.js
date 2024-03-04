@@ -32,9 +32,13 @@ import Browse_file from '../assets/Browse File.png'
 import Wire_transfer_icon from '../assets/Wire_transfer_icon.svg'
 import No_product from '../assets/No_Product.svg'
 import Info_svg from '../assets/infosvg.svg'
+import bag_image from '../assets/bag_image.png'
+import email from '../assets/email.svg'
 
 const images = {
+  bag_image,
   ethical_swag,
+  email,
   Livello_1,
   Rectangle,
   shirt,

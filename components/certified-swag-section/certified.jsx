@@ -28,16 +28,19 @@ const responsive = {
 const Certified = () => {
   const [data, setData] = useState(null)
   const router = useRouter()
+  const country = useSelector((state) => state.country.country)
   const dispatch = useDispatch()
+
+  console.log(country, 'country by abhi')
   useEffect(() => {
-    fetch('https://test.cybersify.tech/Eswag/public/api/starproducts')
+    fetch(
+      `https://test.cybersify.tech/Eswag/public/api/starproducts?country=available_in_${country}`
+    )
       .then((res) => res.json())
       .then((r) => {
         dispatch(setSingleProductPromotion(r?.data?.data[0]))
         setData(r?.data?.data)
       })
-    // // .then((r) => setData(r?.data?.data))
-    // .then((data) => console.log(data, 'allll'))
   }, [])
 
   const promotionalProduct = useSelector(
