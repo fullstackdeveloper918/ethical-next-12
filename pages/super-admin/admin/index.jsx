@@ -26,6 +26,8 @@ const SuperAdmin = () => {
             </div>
             <div className={Styles.superAdmin_right_content}>
               <Navbar data="Dashboard" thumbnail={images.User_icon} />
+              <div className={Styles.dashboad_wrapper}>
+
               <div className={Styles.cards_container}>
                 {SuperAdmin_Cards.map((card) => (
                   <>
@@ -147,6 +149,7 @@ const SuperAdmin = () => {
                     </div>
                   </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>

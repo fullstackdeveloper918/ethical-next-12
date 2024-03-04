@@ -138,147 +138,56 @@ const SecondaryHeader = () => {
               </span>
               <div className={styles.text_with_down_icon}>
                 <>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
+                      <div
                         variant="ghost"
                         className={styles.shop_menu}
                         style={{ cursor: 'pointer' }}
                       >
                         Shop
                         <span>
-                          <FaChevronDown fontSize={15 } />
+                          <FaChevronDown fontSize={12 } />
                         </span>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className={styles.header_menu}>
-                      <DropdownMenuRadioGroup>
-                        <DropdownMenuRadioItem
-                          value="top"
-                          className={styles.shop_submenu}
-                          onClick={() => router.push('/products')}
-                        >
-                          Apparel
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem
-                          value="bottom"
-                          className={styles.shop_submenu}
-                          onClick={() => router.push('/products')}
-
-                        >
-                          Bags
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem
-                          value="right"
-                          className={styles.shop_submenu}
-                          onClick={() => router.push('/products')}
-
-                        >
-                          All Swag
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem
-                          value="right"
-                          className={styles.shop_submenu}
-                          onClick={() => router.push('/products')}
-
-                        >
-                          Wellness
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem
-                          value="right"
-                          className={styles.shop_submenu}
-                          onClick={() => router.push('/products')}
-
-                        >
-                          Plants & Seeds
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem
-                          value="right"
-                          className={styles.shop_submenu}
-                          onClick={() => router.push('/products')}
-
-                        >
-                          Tech
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem
-                          value="right"
-                          className={styles.shop_submenu}
-                          onClick={() => router.push('/products')}
-
-                        >
-                          Office & School
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem
-                          value="right"
-                          className={styles.shop_submenu}
-                          onClick={() => router.push('/products')}
-
-                        >
-                          At Home
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem
-                          value="right"
-                          className={styles.shop_submenu}
-                          onClick={() => router.push('/products')}
-
-                        >
-                          Drinkware
-                        </DropdownMenuRadioItem>
-                      </DropdownMenuRadioGroup>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                      </div>
+                    <div className={styles.header_menu}>
+                        <div className={styles.mega_menu}>
+                          <span >Apparel</span>
+                         <ul>
+                          <li><a href=''>Accessories</a></li>
+                          <li>Accessories</li>
+                          <li>Accessories</li>
+                          <li>Accessories</li>
+                          <li>Accessories</li>
+                          <li>Accessories</li>
+                          <li>Accessories</li>
+                          <li>Accessories</li>
+                          </ul>
+                         </div>
+                       </div>
                 </>
               </div>
               <div className="text_with_down_icon">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
+                
+                 
+                    <div
                       variant="ghost"
                       className={styles.shop_menu}
                       style={{ cursor: 'pointer' }}
                       onClick={() => router.push('/about-us')}
                     >
                       About
-                      {/* <span>
-                        <Image
-                          src={downIcon}
-                          width={8}
-                          height={8}
-                          alt="search"
-                        />
-                      </span> */}
-                    </Button>
-                  </DropdownMenuTrigger>
-                  {/* <DropdownMenuContent className={styles.header_menu}>
-                    <DropdownMenuRadioItem
-                      value="top"
-                      className={styles.shop_submenu}
-                    >
-                      Top
-                    </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem
-                      value="bottom"
-                      className={styles.shop_submenu}
-                    >
-                      Bottom
-                    </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem
-                      value="right"
-                      className={styles.shop_submenu}
-                    >
-                      Right
-                    </DropdownMenuRadioItem>
-                  </DropdownMenuContent> */}
-                </DropdownMenu>
+                      
+                    </div>
+                  
+                
               </div>
-              <Button
+              <div
                 variant="ghost"
                 className={styles.shop_menu}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/contact')}
               >
                 Contact
-              </Button>
+              </div>
             </div>
           </div>
         </>

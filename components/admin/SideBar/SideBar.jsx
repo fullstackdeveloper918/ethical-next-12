@@ -10,6 +10,7 @@ const SideBar = ({ data, imageData }) => {
   const router = useRouter()
 
   const sidebarContentMap = {
+    '/super-admin/admin': [0, 1, 2, 3, 4, 5, 6],
     '/super-admin/dashboard': [0, 1, 2, 3, 4, 5, 6],
     '/super-admin/customer': [0, 1, 2, 3, 4, 5, 6],
     '/super-admin/invoice': [0, 1, 2, 3, 4, 5, 6],
