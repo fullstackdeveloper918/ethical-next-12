@@ -280,7 +280,7 @@
 
 .custom_checkbox label {
   position: relative;
-  padding-left: 30px;
+  padding-left: 25px;
   cursor: pointer;
   color: #545454;
   font-size: 15px;
@@ -292,10 +292,10 @@
 .custom_checkbox label:before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 20px;
-  height: 20px;
+  left: -1px;
+  top: 2px;
+  width: 16px;
+  height: 16px;
   border: 1px solid #545454;
   border-radius: 50%;
   background-color: #f9f9f9;
@@ -312,10 +312,10 @@
   color: #fff;
   position: absolute;
   line-height: 18px;
-  left: 6px;
-  top: 4px;
-  width: 6px;
-  height: 10px;
+  left: 5px;
+  top: 5px;
+  width: 4px;
+  height: 8px;
   border: solid white;
   border-top-width: medium;
   border-right-width: medium;
@@ -850,6 +850,9 @@
 .accordion {
   width: 100%;
 }
+.accordion>div.custom_checkbox:last-child{
+  padding-bottom: 20px;
+}
 
 .items {
   display: flex;
@@ -859,7 +862,11 @@
   max-width: -webkit-fill-available;
   cursor: pointer;
 }
-
+.items>div{
+  font-size: 15px;
+  font-weight: 500;
+  color: #545454;
+}
 .filter_panel_price_input_section {
   width: 100%;
   margin: 0 auto;

@@ -2,6 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 20px;
+  padding: 10px 15px;
+  background: #ffffff;
+  border-radius: 10px;
 }
 
 .navbar_container h2 {

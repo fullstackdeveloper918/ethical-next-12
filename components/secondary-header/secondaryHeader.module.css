@@ -111,7 +111,7 @@ transition: all .3s ease-in;
   transition: 0.2s all ease-in-out;
   font-family: 'DM Sans', sans-serif;
 }
-.shop_submenu:hover {
+.shop_submenu span:hover, .shop_submenu span ul li:hover {
   background-color: transparent;
   color: #a2d061;
 }
@@ -412,7 +412,7 @@ height: 2px;
   }
   .header .shop_menu {
     color: #000;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -420,8 +420,9 @@ height: 2px;
     background: transparent;
     display: flex;
     gap: 10px;
-    font-family: 'DM Sans', sans-serif;
     border: 0px;
+    align-items: center;
+    padding: 7px 10px;
   }
   .text_with_down_icon img {
     width: 15px !important;
@@ -454,7 +455,7 @@ height: 2px;
 
   .menu_center {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     align-items: center;
     color: #000;
     font-family: 'DM Sans' !important;
@@ -463,7 +464,7 @@ height: 2px;
     font-weight: 400;
     line-height: normal;
     letter-spacing: 0.14px;
-    position: relative;
+    /* position: relative; */
   }
 
   .text_with_down_icon {
@@ -478,41 +479,53 @@ height: 2px;
     align-items: center;
   }
   .header_menu {
-    min-width: 100vw;
-    background-color: #fff;
-    border-radius: 1rem;
-    padding: 0.5rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    border-radius: 0px 0px 10px 10px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 8%);
     text-align: center;
     display: flex;
     justify-content: center;
-    max-width: 100vw;
-    width: 100vw;
-    position: relative;
     z-index: 9999999;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    top: 80px;
+    background-color: #fff;
+    gap: 30px;
   }
-  .header_menu div:first-child{
+  .header_menu .mega_menu{
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .header_menu ul{
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .header_menu ul li{
+    font-size: 14px;
+  }
+  .header_menu ul li a:hover{
+    opacity: .8;
+  }
+  /* .header_menu div:first-child{
     display: flex !important;
     gap: 20px;
     justify-content: center;
-  }
+  } */
 
   .header .shop_menu:focus-visible {
     --tw-ring-shadow: none;
   }
   .shop_submenu {
     cursor: pointer;
-    /* border-radius: 10px; */
-    /* background-color: #fff; */
-    padding: 10px;
+    padding: 0px 10px 10px;
     transition: 0.2s all ease-in-out;
   }
-  /* .shop_submenu:hover {
-   transform: scale(1.1);
-  } */
-  /* header-search */
   .header_searchicon img {
     cursor: pointer;
     width: 28px !important ;

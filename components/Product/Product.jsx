@@ -470,7 +470,7 @@ const Product = ({ product, loading, error }) => {
                         </>
                       ) : (
                         <>
-                          <label htmlFor="file1">
+                          <label htmlFor="file1" className={Styles.uploaded_content}>
                             <p>
                               <span className={Styles.colorLight}>
                                 {' '}

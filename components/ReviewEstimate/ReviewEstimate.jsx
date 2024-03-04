@@ -26,7 +26,7 @@ const ReviewEstimate = () => {
       <div className={Styles.reviewEstimate_container}>
         <p>3.Review Your Estimate</p>
         <div className={Styles.project_details_text}>
-          <p>Your Swag Project Details</p>
+          <p className={Styles.form_labelwrap}>Your Swag Project Details</p>
         </div>
         {cartItemsLength > 2 && (
           <div className={Styles.expand_all_content}>
