@@ -153,16 +153,18 @@ const SecondaryHeader = () => {
                     variant="ghost"
                     className={styles.shop_menu}
                     style={{ cursor: 'pointer' }}
+                    onClick={() => setOpenLinks(!openLinks)}
                   >
                     Shop
                     <span>
                       <FaChevronDown fontSize={12} />
                     </span>
                   </div>
-                  <div className={styles.header_menu}>
-                    <div className={styles.mega_menu}>
-                      <span>Apparel</span>
-                      <ul>
+                  {openLinks && (
+                    <div className={styles.header_menu}>
+                      <div className={styles.mega_menu}>
+                        <span>Apparel</span>
+                        {/* <ul>
                         <li>
                           <a href="">Accessories</a>
                         </li>
@@ -173,9 +175,100 @@ const SecondaryHeader = () => {
                         <li>Accessories</li>
                         <li>Accessories</li>
                         <li>Accessories</li>
-                      </ul>
+                      </ul> */}
+                      </div>
+                      <div className={styles.mega_menu}>
+                        <span>At Home</span>
+                        {/* <ul>
+                        <li>
+                          <a href="">Accessories</a>
+                        </li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                      </ul> */}
+                      </div>
+                      <div className={styles.mega_menu}>
+                        <span>Bags</span>
+                        {/* <ul>
+                        <li>
+                          <a href="">Accessories</a>
+                        </li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                      </ul> */}
+                      </div>
+                      <div className={styles.mega_menu}>
+                        <span>Drinkware</span>
+                        {/* <ul>
+                        <li>
+                          <a href="">Accessories</a>
+                        </li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                      </ul> */}
+                      </div>
+                      <div className={styles.mega_menu}>
+                        <span>Office & School</span>
+                        {/* <ul>
+                        <li>
+                          <a href="">Accessories</a>
+                        </li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                      </ul> */}
+                      </div>
+                      <div className={styles.mega_menu}>
+                        <span>Other</span>
+                        {/* <ul>
+                        <li>
+                          <a href="">Accessories</a>
+                        </li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                      </ul> */}
+                      </div>
+                      <div className={styles.mega_menu}>
+                        <span>Plants & Seeds</span>
+                        {/* <ul>
+                        <li>
+                          <a href="">Accessories</a>
+                        </li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                        <li>Accessories</li>
+                      </ul> */}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </>
               </div>
               <div className="text_with_down_icon">
