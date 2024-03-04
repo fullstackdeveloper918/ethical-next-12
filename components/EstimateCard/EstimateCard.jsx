@@ -23,13 +23,11 @@ const EstimateCard = () => {
   const cartItems = useSelector((state) => state.cart.cartItems)
   const userId = useSelector((state) => state.auth.userId)
 
-  console.log(userId, 'auth from estimate')
-
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))
   }
 
-  let data = [step1State, step2State]
+  let data = [step1State, step2State, cartItems]
   const [loadQuery, { response, loading, error }] = useFetch(
     `/bulkestimate/${userId}`,
     {
@@ -37,13 +35,14 @@ const EstimateCard = () => {
     }
   )
 
-  console.log({ userId })
   const handleSubmit = () => {
     console.log('handleSubmit have been hit')
     if (!userId) {
       alert('Please Login To submit Estimate')
     } else if (!step1State || !setStep2State) {
       alert('Please Complete All Steps to submit.')
+    } else if (cartItems.length === 0) {
+      alert('Please Add something in tour cart to place order')
     } else {
       loadQuery(data)
     }
@@ -63,7 +62,7 @@ const EstimateCard = () => {
     if (response) {
       console.log(response, 'responseresponse')
       toast.success('Your request has been submmitted successfully')
-      // dispatch(deleteAllCartItems())
+      dispatch(deleteAllCartItems())
     }
   }, [response])
 

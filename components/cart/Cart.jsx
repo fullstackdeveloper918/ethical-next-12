@@ -78,17 +78,6 @@ const Cart = ({
     }
   }, [registerError, registerResponse])
 
-  const b = async () => {
-    const response = await fetch(
-      'https://test.cybersify.tech/Eswag/public/api/sadm/product/count'
-    )
-    const movies = await response.json()
-  }
-
-  useEffect(() => {
-    b()
-  }, [])
-
   const onSubmit = async (values) => {
     try {
       let formData = new FormData()
