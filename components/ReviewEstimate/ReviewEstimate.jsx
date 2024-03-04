@@ -70,15 +70,15 @@ const ReviewEstimate = () => {
                     </div>
                   </div>
                 </div>
+                <div className={Styles.buttons}>
+                  <button>
+                    <GrEdit />
+                    Edit
+                  </button>
+                  <button>See More</button>
+                </div>
               </>
             ))}
-          <div className={Styles.buttons}>
-            <button>
-              <GrEdit />
-              Edit
-            </button>
-            <button>See More</button>
-          </div>
         </div>
       </div>
     </>

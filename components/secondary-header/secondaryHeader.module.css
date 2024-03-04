@@ -412,7 +412,7 @@ height: 2px;
   }
   .header .shop_menu {
     color: #000;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -515,6 +515,8 @@ height: 2px;
   /* header-search */
   .header_searchicon img {
     cursor: pointer;
+    width: 28px !important ;
+    height: 28px  !important ;
   }
   .header_search div span img {
     position: absolute;
@@ -570,6 +572,7 @@ height: 2px;
     background: transparent;
     cursor: pointer;
     align-items: center;
+    margin-right: 7px;
   }
   .language_dropdown:hover {
     background: transparent;
@@ -631,7 +634,12 @@ height: 2px;
   }
 }
 /* responsive */
-
+@media (max-width:991px){
+  .header_logo{
+    width: 100%;
+    max-width: 180px;
+  }
+}
 @media (min-width: 768px) {
   .mobile_menu,
   .menu_cross {
@@ -642,10 +650,12 @@ height: 2px;
   }
 
 }
+
 @media (max-width: 767px) {
   .humburg_menu {
     width: 20px;
   }
+
   .container_2 {
     position: fixed;
     left: 0;
@@ -772,8 +782,8 @@ display: none;
   padding-bottom: 5px !important;
 }
 
-@media (max-width: 991px) and (min-width: 768px) {
+/* @media (max-width: 991px) and (min-width: 768px) {
   .primary_header_container {
     padding-top: 20px !important;
   }
-}
+} */
