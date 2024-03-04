@@ -38,6 +38,8 @@ import invoices_icon from '../assets/invoices_icon.svg'
 import pages_icon from '../assets/pages_icon.svg'
 import blog_icon from '../assets/blog_icon.svg'
 import customer_icon from '../assets/customer_icon.svg'
+import bag_image from '../assets/bag_image.png'
+import pages from '../assets/pages.svg'
 
 const images = {
   bag_image,
