@@ -89,97 +89,69 @@ const Dummy = () => {
   return (
     <div>
       <div className={styles.text}>
-        {/* {first ? (
-          <div className={styles.text_animation}>
-            <Image
-              src={first[0].img}
-              alt=""
-              height={600}
-              width={600}
-              className={styles.text_animation_img}
-            />
-          </div>
-        ) : null} */}
-
-        {/* <ul>
-          {list.length
-            ? list.map((item, ind) => {
-                return (
-                  <li key={ind} className={`card${item.id} ${item.className}`}>
-                    <Image
-                      src={item.img}
-                      alt=""
-                      height={600}
-                      width={600}
-                      className={styles.cardImage}
-                      onClick={() => router.push('/products')}
-                    />
-                  </li>
-                )
-              })
-            : null}
-        </ul> */}
-
         <ul className={styles.explor_imgSec}>
-        
           <li>
             <div className={styles.list_explore}>
-            <Image src={CardOne}
-            alt=""
-            height={600}
-            width={600}
-            className={styles.cardImage}
-            onClick={() => router.push('/products')}
-            
-             />
-             </div>
+              <Image
+                src={CardOne}
+                alt=""
+                height={600}
+                width={600}
+                className={styles.cardImage}
+                onClick={() => router.push('/products')}
+              />
+            </div>
           </li>
           <li>
             <div className={styles.list_explore}>
-            <Image src={CardTwo}
-            alt=""
-            height={600}
-            width={600}
-            className={styles.cardImage}
-            onClick={() => router.push('/products')}
-             />
-             </div>
+              <Image
+                src={CardTwo}
+                alt=""
+                height={600}
+                width={600}
+                onMouseLeave={() => alert('hello second card')}
+                className={styles.cardImage}
+                onClick={() => router.push('/products')}
+              />
+            </div>
           </li>
           <li>
             <div className={styles.list_explore}>
-            <Image src={CardThree}
-            alt=""
-            height={600}
-            width={600}
-            className={styles.cardImage}
-            onClick={() => router.push('/products')}
-             />
-             </div>
+              <Image
+                src={CardThree}
+                alt=""
+                height={600}
+                width={600}
+                className={styles.cardImage}
+                onClick={() => router.push('/products')}
+              />
+            </div>
           </li>
           <li>
             <div className={styles.list_explore}>
-            <Image src={CardFour}
-            alt=""
-            height={600}
-            width={600}
-            className={styles.cardImage}
-            onClick={() => router.push('/products')}
-             />
-             </div>
+              <Image
+                src={CardFour}
+                alt=""
+                height={600}
+                width={600}
+                className={styles.cardImage}
+                onClick={() => router.push('/products')}
+              />
+            </div>
           </li>
 
           <li>
             <div className={styles.list_explore}>
-            <Image src={CardFive}
-            alt=""
-            height={600}
-            width={600}
-            className={styles.cardImage}
-            onClick={() => router.push('/products')}
-             />
-             </div>
+              <Image
+                src={CardFive}
+                alt=""
+                height={600}
+                width={600}
+                className={styles.cardImage}
+                onClick={() => router.push('/products')}
+              />
+            </div>
           </li>
-        
         </ul>
       </div>
     </div>

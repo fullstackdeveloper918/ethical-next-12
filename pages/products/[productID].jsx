@@ -10,6 +10,8 @@ import { useSelector } from 'react-redux'
 import Styles from '../../styles/common.module.css'
 import { LuPlusCircle } from 'react-icons/lu'
 import { Accordion_Data } from '../../constants/data'
+import Image from 'next/image'
+import images from '../../constants/images'
 
 const productID = () => {
   const router = useRouter()
@@ -76,23 +78,62 @@ const productID = () => {
             <div className={Styles.accordion_container}>
               {Accordion_Data.map((data, index) => (
                 <>
-                  <div className={Styles.accordion_content}>
-                    <h3>{data.text}</h3>
-                    <button>
-                      <LuPlusCircle
-                        fontSize={30}
-                        onClick={() => handleClick(index)}
-                      />
-                    </button>
-                  </div>
-                  <div className={Styles.accordion_detail}>
-                    {openIndex === index && <p>{data.content}</p>}
+                  <div className={Styles.accordion_details}>
+                    <div className={Styles.accordion_content}>
+                      <h3>{data.text}</h3>
+                      <button>
+                        <LuPlusCircle
+                          fontSize={30}
+                          onClick={() => handleClick(index)}
+                        />
+                      </button>
+                    </div>
+                    <div className={Styles.accordion_detail}>
+                      {openIndex === index && <p>{data.content}</p>}
+                    </div>
                   </div>
                 </>
               ))}
             </div>
           </div>
-          <div className={Styles.accordion_right_container}></div>
+          <div className={Styles.accordion_right_container}>
+            <div className={Styles.container}>
+              <div className={Styles.content}>
+                <div className={Styles.textContent}>
+                  <h2 className={Styles.title}>We’re here for you.</h2>
+                  <p className={Styles.desc}>
+                    More than a supplement subscription, we’re committed to
+                    supporting you as you grow.
+                  </p>
+                  <button>More About Our Services</button>
+                </div>
+                <div className={Styles.imgContent}>
+                  <Image
+                    src={images.bag_image}
+                    width={200}
+                    height={400}
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div className={Styles.container}>
+              <div className={Styles.content}>
+                <div className={Styles.textContent}>
+                  <h2 className={Styles.title}>We’re here for you.</h2>
+                  <p className={Styles.desc}>
+                    You can also text or call us at:
+                  </p>
+                  <p>(877) 256-6998 | (902) 500-1086</p>
+                  <p>Or reach us via email at:</p>
+                  <p>info@ethicalswag.com</p>
+                </div>
+                <div className={Styles.imgContent}>
+                  <Image src={images.email} width={200} height={400} alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <Footer />

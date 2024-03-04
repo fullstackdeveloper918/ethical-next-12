@@ -16,27 +16,33 @@ const ClientTypeSelector = ({ selectedOption, handleOptionChange }) => {
       {/* <p className={Styles.cart_left_desc}>Are you a...</p> */}
 
       <div className={Styles.cart_left_radio_buttons}>
-        <div className={Styles.cart_left_btn}>
+        <div className={`${Styles.cart_left_btn} ${Styles.custom_checkbox}`}>
           <input
-            type="radio"
+            type="checkbox"
             className={Styles.cart_left_radio_btn}
             name="Existing_client"
+            id="Existing_client"
             value="Existing_client"
             checked={selectedOption === 'Existing_client'}
             onChange={handleOptionChange}
           />
-          <span className={Styles.cart_left_text}>Existing Client</span>
+          <label htmlFor="Existing_client" className={Styles.cart_left_text}>
+            Existing Client
+          </label>
         </div>
-        <div className={Styles.cart_left_btn}>
+        <div className={`${Styles.cart_left_btn} ${Styles.custom_checkbox}`}>
           <input
-            type="radio"
+            type="checkbox"
             className={Styles.cart_left_radio_btn}
             name="New_client"
+            id="New_client"
             value="New_client"
             checked={selectedOption === 'New_client'}
             onChange={handleOptionChange}
           />
-          <span className={Styles.cart_left_text}>New Client</span>
+          <label htmlFor="New_client" className={Styles.cart_left_text}>
+            New Client
+          </label>
         </div>
       </div>
     </>
