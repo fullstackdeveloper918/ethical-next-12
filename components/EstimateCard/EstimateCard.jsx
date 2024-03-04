@@ -16,26 +16,26 @@ import useFetch from '../../lib/useFetch'
 const EstimateCard = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+  const [totalCartPrice, setTotalCartPrice] = useState(0)
+
   const step1State = useSelector((state) => state.cart.step1State)
   const step2State = useSelector((state) => state.cart.step2State)
   const cartItems = useSelector((state) => state.cart.cartItems)
-  const [totalCartPrice, setTotalCartPrice] = useState(0)
   const userId = useSelector((state) => state.auth.userId)
 
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))
   }
-  useEffect(() => {
-    totalPriceOfCart()
-  }, [cartItems])
+
   let data = [step1State, step2State]
-  console.log(data, 'data')
   const [loadQuery, { response, loading, error }] = useFetch(
     `/bulkestimate/${userId}`,
     {
       method: 'post',
     }
   )
+
+  console.log({ userId })
   const handleSubmit = () => {
     console.log('handleSubmit have been hit')
     if (!userId) {
@@ -44,15 +44,6 @@ const EstimateCard = () => {
       alert('Please Complete All Steps to submit.')
     } else {
       loadQuery(data)
-
-      // fetch('https://test.cybersify.tech/Eswag/public/api/bulkestimate/926', {
-      //   headers: {
-      //     Accept: 'application/json',
-      //     'Content-Type': 'application/json',
-      //   },
-      //   method: 'POST',
-      //   body: data,
-      // })
     }
   }
 
@@ -73,6 +64,10 @@ const EstimateCard = () => {
       // dispatch(deleteAllCartItems())
     }
   }, [response])
+
+  useEffect(() => {
+    totalPriceOfCart()
+  }, [cartItems])
   return (
     <>
       <div className={Styles.estimate_wrapper}>

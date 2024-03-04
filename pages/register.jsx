@@ -35,6 +35,8 @@ const register = () => {
   useEffect(() => {
     if (response) {
       localStorage.setItem('token_swag', response?.data?.accessToken)
+      localStorage.setItem('userId', response?.data?.id)
+
       dispatch(setuserId(response?.data?.id))
 
       //   dispatch(setRole(response?.data?.role))
