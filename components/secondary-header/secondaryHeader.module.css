@@ -495,6 +495,7 @@ height: 2px;
     top: 80px;
     background-color: #fff;
     gap: 30px;
+    border-top: 1px solid #a2d0613b;
   }
   .header_menu .mega_menu{
     font-size: 16px;

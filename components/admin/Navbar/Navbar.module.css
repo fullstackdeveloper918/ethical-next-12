@@ -7,6 +7,7 @@
   padding: 10px 15px;
   background: #ffffff;
   border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 3%) 0px 10px 36px 0px, rgb(0 0 0 / 4%) 0px 0px 0px 1px;
 }
 
 .navbar_container h2 {

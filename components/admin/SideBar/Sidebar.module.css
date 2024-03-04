@@ -36,8 +36,14 @@
   gap: 1rem;
   align-items: center;
   margin-bottom: 0.5rem;
+  min-height: 60px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: .5s all ease-in-out;
+  padding: 10px;
+  
 }
+
 .top_container {
   width: 100%;
 }
@@ -51,7 +57,20 @@
 .sidebar_data_content.active {
   background-color: #f8f8f8;
 }
+.sidebar_data_content .sidebar_img{
+  background: transparent;
+  padding: 8px !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 10px;
+  transition: .5s all ease-in-out;
 
+}
+.sidebar_data_content.active .sidebar_img{
+  box-shadow: 2px 5px 12px 0px #A2D061;
+  background: #A2D061;
+
+}
 .logo {
   object-fit: contain;
 }
