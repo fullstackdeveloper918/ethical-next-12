@@ -697,3 +697,26 @@ export const Accordion_Data = [
       'Please contact us directly if you have any questions or a problem with your order!',
   },
 ]
+
+export const Product_Review = [
+  {
+    id: 1,
+    text: 'Amazing!',
+    content:
+      'Lorem Ipsum is simply dummy text of the printing and type setting industry.  Lorem Ipsum  setting industry.',
+  },
+  {
+    id: 2,
+    text: 'Such a pretty and good stuff.',
+    content:
+      'Lorem Ipsum is simply dummy text of the printing and type setting industry.  Lorem Ipsum  setting industry.',
+  },
+]
+
+export const Review_Progress = [
+  { id: 1, number: 5, percentage: '98' },
+  { id: 2, number: 4, percentage: '47' },
+  { id: 3, number: 3, percentage: '1' },
+  { id: 4, number: 2, percentage: '0' },
+  { id: 5, number: 1, percentage: '0' },
+]

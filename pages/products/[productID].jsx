@@ -4,12 +4,17 @@ import SecondaryHeader from '../../components/secondary-header/SecondaryHeader'
 import Footer from '../../components/footer/Footer'
 import useFetch from '../../lib/useFetch'
 import Product from '../../components/Product/Product'
+import { FaStar } from 'react-icons/fa6'
 import ProductCard from '../../components/ProductCard/ProductCard'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import Styles from '../../styles/common.module.css'
-import { LuPlusCircle } from 'react-icons/lu'
-import { Accordion_Data } from '../../constants/data'
+import { LuMinusCircle, LuPlusCircle } from 'react-icons/lu'
+import {
+  Accordion_Data,
+  Product_Review,
+  Review_Progress,
+} from '../../constants/data'
 import Image from 'next/image'
 import images from '../../constants/images'
 
@@ -81,11 +86,14 @@ const productID = () => {
                   <div className={Styles.accordion_details}>
                     <div className={Styles.accordion_content}>
                       <h3>{data.text}</h3>
-                      <button>
-                        <LuPlusCircle
-                          fontSize={30}
-                          onClick={() => handleClick(index)}
-                        />
+                      <button onClick={() => handleClick(index)}>
+                        {openIndex === index ? (
+                          <>
+                            <LuMinusCircle fontSize={30} />
+                          </>
+                        ) : (
+                          <LuPlusCircle fontSize={30} />
+                        )}
                       </button>
                     </div>
                     <div className={Styles.accordion_detail}>
@@ -133,6 +141,81 @@ const productID = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        {/* Product Review Section */}
+        <div className={Styles.product_review_section}>
+          <div className={Styles.top_content}>
+            <h2>Product Review</h2>
+            <button>write a review</button>
+          </div>
+          <div className={Styles.bottomContent}>
+            <div className={Styles.leftContent}>
+              {Product_Review.map((review) => (
+                <>
+                  <div className={Styles.container}>
+                    <div className={Styles.startRating}>
+                      <FaStar color="#a2d061" fontSize={20} />
+                      <FaStar color="#a2d061" fontSize={20} />
+                      <FaStar color="#a2d061" fontSize={20} />
+                      <FaStar color="#a2d061" fontSize={20} />
+                      <FaStar color="#a2d061" fontSize={20} />
+                    </div>
+                    <h3 className={Styles.title}>{review.text}</h3>
+                    <p className={Styles.desc}>{review.content}</p>
+                  </div>
+                </>
+              ))}
+            </div>
+            <div className={Styles.rightContent}>
+              <div className={Styles.righttopContent}>
+                <p>4/5 Stars</p>
+                <FaStar color="#a2d061" fontSize={20} />
+                <FaStar color="#a2d061" fontSize={20} />
+                <FaStar color="#a2d061" fontSize={20} />
+                <FaStar color="#a2d061" fontSize={20} />
+                <FaStar color="#a2d061" fontSize={20} />
+                <span></span>
+                <span>527 Reviews</span>
+              </div>
+              <div className={Styles.rightBottomContent}>
+                {Review_Progress.map((data) => (
+                  <>
+                    <div className={Styles.bottom_content}>
+                      <h3>{data.number}</h3>
+                      <progress
+                        max="100"
+                        value={data.percentage}
+                        style={{ color: '#a2d061' }}
+                      />
+                      <p>{data.percentage}%</p>
+                    </div>
+                  </>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Resources Section */}
+        <div className={Styles.resources_section}>
+          <div className={Styles.left_content}>
+            <div className={Styles.textContent}>
+              <h4>Resources</h4>
+              <h2>How can you find the best product for your company?</h2>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry.
+              </p>
+              <div>
+                <button>View Pdf</button>
+                <button>Download Pdf</button>
+              </div>
+            </div>
+          </div>
+          <div className={Styles.right_content}>
+            <Image src={images.pages} width={500} height={500} alt="" />
           </div>
         </div>
       </section>

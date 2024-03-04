@@ -34,9 +34,11 @@ import No_product from '../assets/No_Product.svg'
 import Info_svg from '../assets/infosvg.svg'
 import bag_image from '../assets/bag_image.png'
 import email from '../assets/email.svg'
+import pages from '../assets/pages.svg'
 
 const images = {
   bag_image,
+  pages,
   ethical_swag,
   email,
   Livello_1,
