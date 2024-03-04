@@ -11,6 +11,7 @@ import authSlice from '../redux-setup/authSlice'
 import cartSlice from '../redux-setup/cartSlice'
 import randomSlice from '../redux-setup/randomSlice'
 import filterSlice from '../redux-setup/FiltersSlice'
+import adminSlice from '../redux-setup/adminSlice'
 import tokenReducer from '../redux-setup/tokenSlice'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -35,6 +36,7 @@ const combinedReducer = combineReducers({
   token: tokenReducer,
   cart: cartSlice,
   random: randomSlice,
+  admin: adminSlice,
 })
 
 const persistConfig = { key: 'root', storage, version: 1 }
