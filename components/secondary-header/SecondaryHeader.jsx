@@ -7,7 +7,7 @@ import downIcon from '../../assets/headerPics/down-black.svg'
 import EthicalLogo from '../../components/EthicalLogo/EthicalLogo'
 import Usa from '../../assets/headerPics/use_flag.svg'
 import Canada from '../../assets/headerPics/canada-flag.svg'
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown } from 'react-icons/fa'
 import CrossIcon from '../../assets/headerPics/corss.svg'
 import Humburg from '../../assets/headerPics/menu-bar.png'
 import dropDownIcon from '../../assets/headerPics/drop-down.svg'
@@ -53,7 +53,8 @@ const SecondaryHeader = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const cartItems = useSelector((state) => state.cart.cartItems.length)
-
+  const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
+  const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
   const filteredProducts = data?.filter((product) =>
     product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
   )
@@ -105,6 +106,16 @@ const SecondaryHeader = () => {
       document.documentElement.classList.remove('inputAdded')
     }
   }, [inputbtn])
+
+  const handleCart = () => {
+    if (reached3rdStep) {
+      router.push('/billing-address')
+    } else if (reached2ndStep) {
+      router.push('/shipping')
+    } else {
+      router.push('/cart')
+    }
+  }
 
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
@@ -164,7 +175,6 @@ const SecondaryHeader = () => {
                           value="bottom"
                           className={styles.shop_submenu}
                           onClick={() => router.push('/products')}
-
                         >
                           Bags
                         </DropdownMenuRadioItem>
@@ -172,7 +182,6 @@ const SecondaryHeader = () => {
                           value="right"
                           className={styles.shop_submenu}
                           onClick={() => router.push('/products')}
-
                         >
                           All Swag
                         </DropdownMenuRadioItem>
@@ -180,7 +189,6 @@ const SecondaryHeader = () => {
                           value="right"
                           className={styles.shop_submenu}
                           onClick={() => router.push('/products')}
-
                         >
                           Wellness
                         </DropdownMenuRadioItem>
@@ -188,7 +196,6 @@ const SecondaryHeader = () => {
                           value="right"
                           className={styles.shop_submenu}
                           onClick={() => router.push('/products')}
-
                         >
                           Plants & Seeds
                         </DropdownMenuRadioItem>
@@ -196,7 +203,6 @@ const SecondaryHeader = () => {
                           value="right"
                           className={styles.shop_submenu}
                           onClick={() => router.push('/products')}
-
                         >
                           Tech
                         </DropdownMenuRadioItem>
@@ -204,7 +210,6 @@ const SecondaryHeader = () => {
                           value="right"
                           className={styles.shop_submenu}
                           onClick={() => router.push('/products')}
-
                         >
                           Office & School
                         </DropdownMenuRadioItem>
@@ -212,7 +217,6 @@ const SecondaryHeader = () => {
                           value="right"
                           className={styles.shop_submenu}
                           onClick={() => router.push('/products')}
-
                         >
                           At Home
                         </DropdownMenuRadioItem>
@@ -220,7 +224,6 @@ const SecondaryHeader = () => {
                           value="right"
                           className={styles.shop_submenu}
                           onClick={() => router.push('/products')}
-
                         >
                           Drinkware
                         </DropdownMenuRadioItem>
@@ -424,7 +427,7 @@ const SecondaryHeader = () => {
 
           <div
             className=""
-            onClick={() => router.push('/cart')}
+            onClick={handleCart}
             style={{ cursor: 'pointer', position: 'relative' }}
           >
             <Image
