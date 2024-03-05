@@ -31,16 +31,16 @@ const Certified = () => {
   const country = useSelector((state) => state.country.country)
   const dispatch = useDispatch()
 
-  console.log(country, 'country by abhi')
   useEffect(() => {
     fetch(
       `https://test.cybersify.tech/Eswag/public/api/starproducts?country=available_in_${country}`
     )
       .then((res) => res.json())
-      .then((r) => {
-        dispatch(setSingleProductPromotion(r?.data?.data[0]))
-        setData(r?.data?.data)
-      })
+      .then((data) => setData(data?.data?.data))
+    // .then((r) => {
+    //   dispatch(setSingleProductPromotion(r?.data?.data[0]))
+    //   setData(r?.data?.data)
+    // })
   }, [])
 
   const promotionalProduct = useSelector(

@@ -15,13 +15,16 @@
 }
 .loader::before,
 .loader::after {
-  content: "";
+  content: '';
   box-sizing: border-box;
   position: absolute;
   inset: 0px;
   border-radius: 50%;
   border: 5px solid #fff;
   animation: prixClipFix 2s linear infinite;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .loader::after {
   border-color: #a2d061;

@@ -4,11 +4,12 @@ import { LIST } from '../../constants/data'
 import { useDispatch } from 'react-redux'
 import { filterPrice } from '../../redux-setup/FiltersSlice'
 import { RxCross2 } from 'react-icons/rx'
+import { useSelector } from 'react-redux'
 
 const FilterPanel = ({ setActiveFilter }) => {
   const dispatch = useDispatch()
   const [inputSlider, setInputSlider] = useState(0)
-
+  const subCategoryData = useSelector((state) => state.category.categories)
   const [addList, setAddList] = useState([])
   const [openIndex, setOpenIndex] = useState(null)
   const [isActive, setIsActive] = useState(true)
@@ -22,6 +23,8 @@ const FilterPanel = ({ setActiveFilter }) => {
     toteBags: false,
     waterBottles: false,
   })
+
+  console.log(subCategoryData, 'subCategoryData')
 
   useEffect(() => {
     dispatch(filterPrice(inputSlider))
