@@ -200,6 +200,8 @@ const Product = ({ product, loading, error }) => {
     }
   }
 
+ 
+
   useEffect(() => {
     if (product?.id) {
       checkFromCart()
@@ -235,7 +237,6 @@ const Product = ({ product, loading, error }) => {
                     )}
                   </div>
                   <div className={Styles.images_container}>
-                    {/* <FaChevronLeft  /> */}
                     {productImages.map((image, index) => (
                       <>
                         <div className={Styles.product_Images}>

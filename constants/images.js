@@ -40,11 +40,13 @@ import blog_icon from '../assets/blog_icon.svg'
 import customer_icon from '../assets/customer_icon.svg'
 import bag_image from '../assets/bag_image.png'
 import pages from '../assets/pages.svg'
+import email from '../assets/email.svg'
 
 const images = {
   bag_image,
   pages,
   ethical_swag,
+  email,
   history_icon,
   invoices_icon,
   pages_icon,
