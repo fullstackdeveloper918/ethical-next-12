@@ -12,7 +12,9 @@ import {
   setStep2State,
 } from '../../redux-setup/cartSlice'
 import useFetch from '../../lib/useFetch'
-import InvoiceGenerator from '../InvoiceGenerator'
+import Invoice from '../Invoice'
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf'
 const EstimateCard = () => {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -72,6 +74,13 @@ const EstimateCard = () => {
 
   const downLoadPdf = () => {
     console.log('yyyyyyyyyyyyy')
+    const input = document.getElementById('invoice-container')
+
+    html2canvas(input).then((canvas) => {
+      const pdf = new jsPDF('p', 'mm', 'a4')
+      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 210, 297)
+      pdf.save('invoice.pdf')
+    })
   }
   return (
     <>
@@ -161,6 +170,11 @@ const EstimateCard = () => {
                     >
                       Clear Orders
                     </button>
+                  </div>
+                  <div style={{ height: '0px', overflow: 'hidden' }}>
+                    <div id="invoice-container">
+                      <Invoice />
+                    </div>
                   </div>
                 </div>
               </>

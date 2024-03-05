@@ -4,8 +4,16 @@ const Invoice = ({ data }) => {
   return (
     <div>
       <h1>Abhishek</h1>
-      <h2>hellllllllllllllllllllll</h2>
-      <p>Invoice details go here...</p>
+      <h1>Abhishek</h1>
+      <h1>Abhishek</h1>
+      <h1>Abhishek</h1>
+      <h1>Abhishek</h1>
+      <h1>final with care</h1>
+      <h1>final with care</h1>
+      <h1>final with care</h1>
+      <h1>final with care</h1>
+      <h1>final with care</h1>
+      <h1>final with care</h1>
     </div>
   )
 }
