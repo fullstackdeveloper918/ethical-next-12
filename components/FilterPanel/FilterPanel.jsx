@@ -11,7 +11,7 @@ const FilterPanel = ({ setActiveFilter }) => {
 
   const [addList, setAddList] = useState([])
   const [openIndex, setOpenIndex] = useState(null)
-  const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(true)
   const [price, setPrice] = useState(50)
   const [isChecked, setIsChecked] = useState({
     backPacks: false,

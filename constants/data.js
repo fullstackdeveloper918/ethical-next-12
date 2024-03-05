@@ -101,18 +101,78 @@ export const LIST = [
 ]
 
 export const Sidebar_Data = [
-  { id: 1, text: 'Dashboard', icon: images.Livello_1 },
-  { id: 2, text: 'Orders', icon: images.Livello_1 },
-  { id: 3, text: 'History', icon: images.Livello_1 },
-  { id: 4, text: 'Customers', icon: images.Livello_1 },
-  { id: 5, text: 'Pages', icon: images.Livello_1 },
-  { id: 6, text: 'Blogs', icon: images.Livello_1 },
-  { id: 7, text: 'Invoices', icon: images.Livello_1 },
-  { id: 8, text: 'Message', icon: images.Livello_1 },
-  { id: 9, text: 'Category', icon: images.Livello_1 },
-  { id: 10, text: 'Administrator', icon: images.Livello_1 },
-  { id: 11, text: 'All Notification', icon: images.Livello_1 },
-  { id: 12, text: 'Store', icon: images.Livello_1 },
+  {
+    id: 1,
+    text: 'Dashboard',
+    pageRoute: '/super-admin/dashboard',
+    icon: images.Livello_1,
+  },
+  {
+    id: 2,
+    text: 'Orders',
+    pageRoute: '/super-admin/orders',
+    icon: images.Livello_1,
+  },
+  {
+    id: 3,
+    text: 'History',
+    pageRoute: '/super-admin/history',
+    icon: images.Livello_1,
+  },
+  {
+    id: 4,
+    text: 'Customers',
+    pageRoute: '/super-admin/customer',
+    icon: images.Livello_1,
+  },
+  {
+    id: 5,
+    text: 'Pages',
+    pageRoute: '/super-admin/pages',
+    icon: images.Livello_1,
+  },
+  {
+    id: 6,
+    text: 'Blogs',
+    pageRoute: '/super-admin/blog',
+    icon: images.Livello_1,
+  },
+  {
+    id: 7,
+    text: 'Invoices',
+    pageRoute: '/super-admin/invoice',
+    icon: images.Livello_1,
+  },
+  {
+    id: 8,
+    text: 'Messages',
+    pageRoute: '/super-admin/dashboard',
+    icon: images.Livello_1,
+  },
+  {
+    id: 9,
+    text: 'Category',
+    pageRoute: '/super-admin/categories',
+    icon: images.Livello_1,
+  },
+  {
+    id: 10,
+    text: 'Administrator',
+    pageRoute: '/super-admin/administrator',
+    icon: images.Livello_1,
+  },
+  {
+    id: 11,
+    text: 'All Notification',
+    pageRoute: '/super-admin/all-notification',
+    icon: images.Livello_1,
+  },
+  {
+    id: 12,
+    text: 'Store',
+    pageRoute: '/super-admin/store',
+    icon: images.Livello_1,
+  },
 ]
 
 export const Dashboard_table = [
