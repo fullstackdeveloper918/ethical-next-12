@@ -3,14 +3,19 @@ import Styles from '../../admin/Navbar/Navbar.module.css'
 import images from '../../../constants/images'
 import Image from 'next/image'
 import { BsFiletypeCsv } from 'react-icons/bs'
+import { useRouter } from 'next/router'
 
 const Navbar = ({ data, thumbnail }) => {
+  const router = useRouter()
+
+  const heading = router.asPath.replace('/super-admin/', '')
+
   return (
     <>
       <div className={Styles.navbar_container}>
-        <h2>{data}</h2>
+        <h2>{heading.charAt(0).toUpperCase() + heading.slice(1)}</h2>
         <div className={Styles.icons}>
-          {data === 'Customers' && (
+          {router.asPath === '/super-admin/customer' && (
             <>
               <button className={Styles.button}>
                 Add New by CSV <BsFiletypeCsv />
@@ -18,34 +23,34 @@ const Navbar = ({ data, thumbnail }) => {
               <button className={Styles.button}>Add New</button>
             </>
           )}
-          {data === 'Invoice' && (
+          {router.asPath === '/super-admin/invoice' && (
             <>
               <button className={Styles.button}>Add Invoice</button>
             </>
           )}
-          {data === 'BlogPost' && (
+          {router.asPath === '/super-admin/blog' && (
             <>
               <button className={Styles.button}>Add Post</button>
             </>
           )}
-          {data === 'Orders' && (
+          {router.asPath === '/super-admin/orders' && (
             <>
               <button className={Styles.button}>Add New</button>
             </>
           )}
-          {data === 'Pages' && (
+          {router.asPath === '/super-admin/pages' && (
             <>
               <button className={Styles.button}>Add Page</button>
             </>
           )}
-          {data === 'Categories' && (
+          {router.asPath === '/super-admin/categories' && (
             <>
               <button className={Styles.button}>Add New</button>
             </>
           )}
-          {(data === 'Users' ||
-            data === 'Add New Users' ||
-            data === 'Add roles') && (
+          {(router.asPath === '/super-admin/users' ||
+            router.asPath === '/super-admin/add-users' ||
+            router.asPath === '/super-admin/add-roles') && (
             <>
               <button className={Styles.button}>Upload CSV</button>
               <button className={Styles.button}>Add New Print</button>
