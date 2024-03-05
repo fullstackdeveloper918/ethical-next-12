@@ -180,7 +180,6 @@ const EstimateCard = () => {
           </div>
         </div>
       </div>
-      <InvoiceGenerator />
     </>
   )
 }
