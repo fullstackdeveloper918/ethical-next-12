@@ -178,13 +178,14 @@ const productID = () => {
             <div className={Styles.rightContent}>
               <div className={Styles.righttopContent}>
                 <p>4/5 Stars</p>
+                <div className={Styles.stars_content}>
                 <FaStar color="#a2d061" fontSize={20} />
                 <FaStar color="#a2d061" fontSize={20} />
                 <FaStar color="#a2d061" fontSize={20} />
                 <FaStar color="#a2d061" fontSize={20} />
                 <FaStar color="#a2d061" fontSize={20} />
-                <span></span>
-                <span>527 Reviews</span>
+                </div>
+               <span>527 Reviews</span>
               </div>
               <div className={Styles.rightBottomContent}>
                 {Review_Progress.map((data) => (
@@ -195,6 +196,7 @@ const productID = () => {
                         max="100"
                         value={data.percentage}
                         style={{ color: '#a2d061' }}
+                        className={Styles.progress_bar}
                       />
                       <p>{data.percentage}%</p>
                     </div>
@@ -207,16 +209,17 @@ const productID = () => {
 
         {/* Resources Section */}
         <div className={Styles.resources_section}>
+          <div className={Styles.ressource_container}>
           <div className={Styles.left_content}>
             <div className={Styles.textContent}>
-              <h4>Resources</h4>
+              <p className={Styles.ressousce_subheading}>Resources</p>
               <h2>How can you find the best product for your company?</h2>
               <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum is simply dummy text of the printing and
                 typesetting industry.
               </p>
-              <div>
+              <div className={Styles.resources_btns}>
                 <button>View Pdf</button>
                 <button>Download Pdf</button>
               </div>
@@ -224,6 +227,7 @@ const productID = () => {
           </div>
           <div className={Styles.right_content}>
             <Image src={images.pages} width={500} height={500} alt="" />
+          </div>
           </div>
         </div>
       </section>
