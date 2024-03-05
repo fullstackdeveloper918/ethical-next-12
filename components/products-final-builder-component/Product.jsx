@@ -11,7 +11,7 @@ import { debounce } from '@lib/utils'
 import axios from 'axios'
 
 const Product = () => {
-  const [activeFilter, setActiveFilter] = useState(false)
+  const [activeFilter, setActiveFilter] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
   const [totalData, setTotalData] = useState([])
   const [totalPages, setTotalPages] = useState('')

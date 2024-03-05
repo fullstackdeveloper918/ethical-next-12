@@ -137,6 +137,9 @@ const EstimateCard = () => {
                       ${totalCartPrice.toFixed(2)}
                     </span>
                   </div>
+                  <button className={Styles.estimate_bottom_btn}>
+                    SAVE A .PDF COPY FOR LATER
+                  </button>
                   <button
                     className={Styles.estimate_bottom_btn}
                     onClick={handleSubmit}
