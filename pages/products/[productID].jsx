@@ -79,13 +79,13 @@ const productID = () => {
         <div className={Styles.accordion_section}>
           <div className={Styles.accordion_left_container}>
             <h2>We’re serious about facts. Ask away.</h2>
-            <button onClick={() => router.push('/faq')}>See All FAQs</button>
+            <button onClick={() => router.push('/faq')} className={Styles.product_bottombtn}>See All FAQs</button>
             <div className={Styles.accordion_container}>
               {Accordion_Data.map((data, index) => (
                 <>
                   <div className={Styles.accordion_details}>
                     <div className={Styles.accordion_content}>
-                      <h3>{data.text}</h3>
+                      <p>{data.text}</p>
                       <button onClick={() => handleClick(index)}>
                         {openIndex === index ? (
                           <>
@@ -97,7 +97,7 @@ const productID = () => {
                       </button>
                     </div>
                     <div className={Styles.accordion_detail}>
-                      {openIndex === index && <p>{data.content}</p>}
+                      {openIndex === index && <p className={Styles.open_accrodion}>{data.content}</p>}
                     </div>
                   </div>
                 </>
@@ -108,18 +108,19 @@ const productID = () => {
             <div className={Styles.container}>
               <div className={Styles.content}>
                 <div className={Styles.textContent}>
+                  <div>
                   <h2 className={Styles.title}>We’re here for you.</h2>
                   <p className={Styles.desc}>
                     More than a supplement subscription, we’re committed to
                     supporting you as you grow.
                   </p>
-                  <button>More About Our Services</button>
+                  </div>
+                  <button className={Styles.product_bottombtn}>More About Our Services</button>
                 </div>
                 <div className={Styles.imgContent}>
                   <Image
                     src={images.bag_image}
-                    width={200}
-                    height={400}
+                    layout='fill'
                     alt=""
                   />
                 </div>
@@ -128,16 +129,23 @@ const productID = () => {
             <div className={Styles.container}>
               <div className={Styles.content}>
                 <div className={Styles.textContent}>
+                  <div>
                   <h2 className={Styles.title}>We’re here for you.</h2>
                   <p className={Styles.desc}>
                     You can also text or call us at:
                   </p>
-                  <p>(877) 256-6998 | (902) 500-1086</p>
-                  <p>Or reach us via email at:</p>
-                  <p>info@ethicalswag.com</p>
+                  <div>(877) 256-6998 | (902) 500-1086</div>
+                  </div>
+
+                  <div>
+                  <p className={Styles.desc}>Or reach us via email at:</p>
+                  <div>info@ethicalswag.com</div>
+                  </div>
                 </div>
-                <div className={Styles.imgContent}>
-                  <Image src={images.email} width={200} height={400} alt="" />
+                <div className={Styles.imgContentwrap}>
+                  <Image src={images.email} 
+                  layout='fill' 
+                  alt="" />
                 </div>
               </div>
             </div>

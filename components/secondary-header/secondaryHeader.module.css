@@ -399,6 +399,7 @@ height: 2px;
   gap: 10px;
   font-family: 'DM Sans', sans-serif !important;
   border: 0px;
+  align-items: center;
 }
 /* animation end */
 
@@ -495,6 +496,7 @@ height: 2px;
     top: 80px;
     background-color: #fff;
     gap: 30px;
+    border-top: 1px solid #a2d0613b;
   }
   .header_menu .mega_menu{
     font-size: 16px;

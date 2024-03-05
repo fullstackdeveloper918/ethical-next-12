@@ -849,6 +849,20 @@
 
 .accordion {
   width: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.accordion>div:first-child {
+  flex: 1 0 100%;
+}
+.accordion .custom_checkbox{
+  position: relative;
+  margin-right: 10px;
+  margin-left: 12px;
+  flex: 1 0 44%;
+  display: flex;
 }
 .accordion>div.custom_checkbox:last-child{
   padding-bottom: 20px;

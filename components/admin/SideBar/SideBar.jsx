@@ -69,6 +69,7 @@ const SideBar = ({ data, imageData }) => {
             <div className={Styles.Sidebar_data}>
               {sidebarIndices.map((item, index) => (
                 <>
+                {console.log(item, 'hello item')}
                   <div
                     className={`${Styles.sidebar_data_content} ${
                       isActive === index ? Styles.active : ''
@@ -76,13 +77,14 @@ const SideBar = ({ data, imageData }) => {
                     key={index}
                     onClick={() => setIsActive(index)}
                   >
-                    <Image
+                    <span className={Styles.sidebar_img}><Image
                       className={Styles.sidebar_icon}
                       src={images.Livello_1}
                       alt="icons"
                       width={40}
                       height={40}
-                    />
+                    /></span>
+                    
 
                     <span
                       className={Styles.Sidebar_links}

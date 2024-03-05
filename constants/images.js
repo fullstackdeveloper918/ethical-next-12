@@ -32,15 +32,27 @@ import Browse_file from '../assets/Browse File.png'
 import Wire_transfer_icon from '../assets/Wire_transfer_icon.svg'
 import No_product from '../assets/No_Product.svg'
 import Info_svg from '../assets/infosvg.svg'
+import order_icon from '../assets/order_icon.svg'
+import history_icon from '../assets/histroy_icon.svg'
+import invoices_icon from '../assets/invoices_icon.svg'
+import pages_icon from '../assets/pages_icon.svg'
+import blog_icon from '../assets/blog_icon.svg'
+import customer_icon from '../assets/customer_icon.svg'
 import bag_image from '../assets/bag_image.png'
-import email from '../assets/email.svg'
 import pages from '../assets/pages.svg'
+import email from '../assets/email.svg'
 
 const images = {
   bag_image,
   pages,
   ethical_swag,
   email,
+  history_icon,
+  invoices_icon,
+  pages_icon,
+  customer_icon,
+  blog_icon,
+  order_icon,
   Livello_1,
   Rectangle,
   shirt,

@@ -337,13 +337,14 @@ font-size: 14px !important;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  line-height: 16px; /* 100% */
+  line-height: 26px; /* 100% */
 }
 
 .certBy {
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .number_of_units button {
@@ -640,8 +641,9 @@ font-size: 14px !important;
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
+.bottom_icons .container .content img
 
 .bottom_icons .container .content span:nth-child(2) {
   color: #242424;
@@ -821,6 +823,10 @@ p.fw400 {
     align-items: center;
     justify-content: center;
   }
+  .detail_page_wrapper {
+    height: 100%;
+    overflow-y: unset;
+  }
   .detail_page_left_top .images_container {
     justify-content: center !important;
     text-align: center !important;
@@ -848,6 +854,16 @@ p.fw400 {
     width: 100%;
     justify-content: flex-start;
   }
+  .bottom_icons .container .content img{
+    width: 22px !important;
+    height: 22px !important;
+  }
+  .bottom_icons .container {
+    justify-content: center;
+  }
+  .bottom_icons {
+    width: 100%;
+  }
   .para_text p {
     line-height: 24px; /* 100% */
   }
@@ -864,11 +880,11 @@ p.fw400 {
     gap: 10px;
   }
   .common_header {
-    flex-wrap: wrap;
     gap: 10px;
   }
   .standard_business_section {
     margin-top: 2rem;
+    flex-wrap: wrap;
   }
   .add_to_bulk_container button {
     padding: 18px;
