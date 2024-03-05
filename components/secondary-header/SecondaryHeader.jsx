@@ -87,6 +87,10 @@ const SecondaryHeader = () => {
 
   const optimizedFn = useCallback(debounce(handleChange), [])
 
+  const handleCategory = (e) => {
+    console.log(e.target.value)
+  }
+
   useEffect(() => {
     window.addEventListener('resize', handleResize)
     return () => {
@@ -161,12 +165,12 @@ const SecondaryHeader = () => {
                     variant="ghost"
                     className={styles.shop_menu}
                     style={{ cursor: 'pointer' }}
-                    onClick={() => setOpenLinks(!openLinks)}
+                    onMouseEnter={handleCategory}
                   >
                     Shop
-                    <span>
+                    {/* <span>
                       <FaChevronDown fontSize={12} />
-                    </span>
+                    </span> */}
                   </div>
 
                   {openLinks && (
@@ -174,8 +178,8 @@ const SecondaryHeader = () => {
                       {Object.keys(category).map((item) => (
                         <>
                           <div className={styles.mega_menu}>
-                            <span>{item}</span>
-                            <ul>
+                            <span className={`${styles.shop_menu} ${styles.shop_menuWrap}`}>{item}</span>
+                            {/* <ul>
                               {Object.entries(category[item].matchingValues)
                                 .slice(0, 5)
                                 .map(([subCategoryId, subCategory]) => (
@@ -185,7 +189,7 @@ const SecondaryHeader = () => {
                                     </li>
                                   </>
                                 ))}
-                            </ul>
+                            </ul> */}
                           </div>
                         </>
                       ))}
