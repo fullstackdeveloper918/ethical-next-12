@@ -12,7 +12,7 @@ import {
   setStep2State,
 } from '../../redux-setup/cartSlice'
 import useFetch from '../../lib/useFetch'
-
+import InvoiceGenerator from '../InvoiceGenerator'
 const EstimateCard = () => {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -69,6 +69,10 @@ const EstimateCard = () => {
   useEffect(() => {
     totalPriceOfCart()
   }, [cartItems])
+
+  const downLoadPdf = () => {
+    console.log('yyyyyyyyyyyyy')
+  }
   return (
     <>
       <div className={Styles.estimate_wrapper}>
@@ -137,8 +141,12 @@ const EstimateCard = () => {
                       ${totalCartPrice.toFixed(2)}
                     </span>
                   </div>
-                  <button className={Styles.estimate_bottom_btn}>
-                    SAVE A .PDF COPY FOR LATER
+                  <button
+                    className={Styles.estimate_bottom_btn}
+                    type="button"
+                    onClick={downLoadPdf}
+                  >
+                    Save a .pdf for later
                   </button>
                   <button
                     className={Styles.estimate_bottom_btn}
@@ -172,6 +180,7 @@ const EstimateCard = () => {
           </div>
         </div>
       </div>
+      <InvoiceGenerator />
     </>
   )
 }
