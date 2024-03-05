@@ -9,6 +9,7 @@ import { CiShare2 } from 'react-icons/ci'
 import images from 'constants/images'
 
 const ProductCard = ({ item, fromSingleProduct }) => {
+  console.log(item, 'hash')
   return (
     <>
       <div className={Styles.collection_items}>
