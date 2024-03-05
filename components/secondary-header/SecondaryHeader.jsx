@@ -10,6 +10,7 @@ import Canada from '../../assets/headerPics/canada-flag.svg'
 import { FaChevronDown } from 'react-icons/fa'
 import CrossIcon from '../../assets/headerPics/corss.svg'
 import Humburg from '../../assets/headerPics/menu-bar.png'
+import axios from 'axios'
 import dropDownIcon from '../../assets/headerPics/drop-down.svg'
 import { RxCross2 } from 'react-icons/rx'
 import Image from 'next/image'
@@ -44,6 +45,7 @@ const SecondaryHeader = () => {
   const [showResults, setShowResults] = useState(false)
   const [searchProduct, setSearchProduct] = useState('')
   const [data, setData] = useState([])
+  const [category, setCategory] = useState([])
   const [showSearchInput, setShowSearchInput] = useState(false)
   const [openLinks, setOpenLinks] = useState(false)
   const [inputbtn, setInputBtn] = useState(false)
@@ -95,6 +97,12 @@ const SecondaryHeader = () => {
   useEffect(() => {
     dispatch(selectCountry(country))
   }, [country])
+
+  useEffect(() => {
+    axios
+      .get('https://test.cybersify.tech/Eswag/public/api/category')
+      .then((data) => setCategory(data?.data?.data))
+  }, [])
 
   useEffect(() => {
     if (inputbtn) {
@@ -160,113 +168,27 @@ const SecondaryHeader = () => {
                       <FaChevronDown fontSize={12} />
                     </span>
                   </div>
+
                   {openLinks && (
                     <div className={styles.header_menu}>
-                      <div className={styles.mega_menu}>
-                        <span>Apparel</span>
-                        {/* <ul>
-                        <li>
-                          <a href="">Accessories</a>
-                        </li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                      </ul> */}
-                      </div>
-                      <div className={styles.mega_menu}>
-                        <span>At Home</span>
-                        {/* <ul>
-                        <li>
-                          <a href="">Accessories</a>
-                        </li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                      </ul> */}
-                      </div>
-                      <div className={styles.mega_menu}>
-                        <span>Bags</span>
-                        {/* <ul>
-                        <li>
-                          <a href="">Accessories</a>
-                        </li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                      </ul> */}
-                      </div>
-                      <div className={styles.mega_menu}>
-                        <span>Drinkware</span>
-                        {/* <ul>
-                        <li>
-                          <a href="">Accessories</a>
-                        </li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                      </ul> */}
-                      </div>
-                      <div className={styles.mega_menu}>
-                        <span>Office & School</span>
-                        {/* <ul>
-                        <li>
-                          <a href="">Accessories</a>
-                        </li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                      </ul> */}
-                      </div>
-                      <div className={styles.mega_menu}>
-                        <span>Other</span>
-                        {/* <ul>
-                        <li>
-                          <a href="">Accessories</a>
-                        </li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                      </ul> */}
-                      </div>
-                      <div className={styles.mega_menu}>
-                        <span>Plants & Seeds</span>
-                        {/* <ul>
-                        <li>
-                          <a href="">Accessories</a>
-                        </li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                        <li>Accessories</li>
-                      </ul> */}
-                      </div>
+                      {Object.keys(category).map((item) => (
+                        <>
+                          <div className={styles.mega_menu}>
+                            <span>{item}</span>
+                            <ul>
+                              {Object.entries(category[item].matchingValues)
+                                .slice(0, 5)
+                                .map(([subCategoryId, subCategory]) => (
+                                  <>
+                                    <li key={subCategoryId}>
+                                      {JSON.parse(subCategory)}
+                                    </li>
+                                  </>
+                                ))}
+                            </ul>
+                          </div>
+                        </>
+                      ))}
                     </div>
                   )}
                 </>
