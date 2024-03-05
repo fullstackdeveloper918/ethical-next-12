@@ -83,7 +83,13 @@ const SideBar = ({ data, imageData }) => {
                       width={40}
                       height={40}
                     />
-                    <span className={Styles.Sidebar_links}>
+
+                    <span
+                      className={Styles.Sidebar_links}
+                      onClick={() =>
+                        router.push(`/super-admin/${Sidebar_Data[item].text}`)
+                      }
+                    >
                       {Sidebar_Data[item].text}
                     </span>
                   </div>
