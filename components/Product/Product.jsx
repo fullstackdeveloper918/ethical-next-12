@@ -150,7 +150,7 @@ const Product = ({ product, loading, error }) => {
       : 0
 
   useEffect(() => {
-    const jsonData = product?.images_us
+    const jsonData = country === 'us' ? product?.images_us : product?.images_ca
     if (jsonData) {
       try {
         const data = JSON.parse(jsonData)
@@ -199,8 +199,6 @@ const Product = ({ product, loading, error }) => {
       setPrice(existingItemIndex.price)
     }
   }
-
- 
 
   useEffect(() => {
     if (product?.id) {
@@ -315,7 +313,7 @@ const Product = ({ product, loading, error }) => {
                         alt="info_icon"
                       />
                     </div>
-                    {/* <div className={Styles.colors_container}>
+                    <div className={Styles.colors_container}>
                       {product?.colours &&
                         Object.entries(product?.colours).map(
                           ([color, imageUrl]) => (
@@ -325,7 +323,7 @@ const Product = ({ product, loading, error }) => {
                             </>
                           )
                         )}
-                    </div> */}
+                    </div>
                   </div>
                 ) : (
                   ''
@@ -440,7 +438,7 @@ const Product = ({ product, loading, error }) => {
                     </div>
                   </div>
                 </div> */}
-                {/* <div className={Styles.para_text}>
+                <div className={Styles.para_text}>
                   <div className={Styles.common_header}>
                     <p>
                       Upload Logo/ Artwork{' '}
@@ -471,13 +469,15 @@ const Product = ({ product, loading, error }) => {
                         </>
                       ) : (
                         <>
-                          <label htmlFor="file1" className={Styles.uploaded_content}>
+                          <label
+                            htmlFor="file1"
+                            className={Styles.uploaded_content}
+                          >
                             <p>
                               <span className={Styles.colorLight}>
-                                {' '}
                                 Drop your
-                              </span>{' '}
-                              front{' '}
+                              </span>
+                              front
                               <span className={Styles.colorLight}>design</span>
                             </p>
                             <p className={Styles.fw400}>
@@ -503,58 +503,8 @@ const Product = ({ product, loading, error }) => {
                         </>
                       )}
                     </div>
-
-                    <div>
-                      {uploadSecondLogo ? (
-                        <>
-                          <Image
-                            src={URL.createObjectURL(uploadSecondLogo)}
-                            width={150}
-                            height={150}
-                          />
-                          <RxCross2
-                            className=""
-                            onClick={() => removeLogo(setUploadSecondLogo)}
-                          />
-                        </>
-                      ) : (
-                        <>
-                          <label htmlFor="file2">
-                            <p>
-                              <span className={Styles.colorLight}>
-                                {' '}
-                                Drop your
-                              </span>{' '}
-                              back{' '}
-                              <span className={Styles.colorLight}>design</span>
-                            </p>
-                            <p className={Styles.fw400}>
-                              <span
-                                className={`${Styles.colorLight} ${Styles.fw400}`}
-                              >
-                                {' '}
-                                or{' '}
-                              </span>{' '}
-                              browse{' '}
-                              <span
-                                className={`${Styles.colorLight} ${Styles.fw400}`}
-                              >
-                                your files{' '}
-                              </span>
-                            </p>
-
-                            <input
-                              type="file"
-                              name=""
-                              id="file2"
-                              onChange={uploadSecondFile}
-                            />
-                          </label>
-                        </>
-                      )}
-                    </div>
                   </div>
-                </div> */}
+                </div>
                 <div className={Styles.number_of_units}>
                   <div className={Styles.common_header}>
                     <p>Enter the number of units you need?</p>

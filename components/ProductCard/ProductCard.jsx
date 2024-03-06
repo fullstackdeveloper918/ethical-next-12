@@ -7,13 +7,43 @@ import { MdOutlineFavoriteBorder } from 'react-icons/md'
 import { CiSearch } from 'react-icons/ci'
 import { CiShare2 } from 'react-icons/ci'
 import { useDispatch } from 'react-redux'
-import { addItemToWishlist } from '../../redux-setup/wishlistSlice'
+import {
+  EmailIcon,
+  FacebookIcon,
+  FacebookMessengerIcon,
+  GabIcon,
+  HatenaIcon,
+  InstapaperIcon,
+  LineIcon,
+  LinkedinIcon,
+  LivejournalIcon,
+  MailruIcon,
+  OKIcon,
+  PinterestIcon,
+  PocketIcon,
+  RedditIcon,
+  TelegramIcon,
+  TumblrIcon,
+  TwitterIcon,
+  ViberIcon,
+  VKIcon,
+  WeiboIcon,
+  WhatsappIcon,
+  WorkplaceIcon,
+  XIcon,
+} from 'react-share'
+import {
+  addItemToWishlist,
+  removeItemFromWishlist,
+} from '../../redux-setup/wishlistSlice'
 import images from 'constants/images'
 import Loaders from '@components/loaders/Loaders'
 import { toast } from 'react-toastify'
+import { RxCross1 } from 'react-icons/rx'
 
 const ProductCard = ({ item, fromSingleProduct }) => {
   const [singleImage, setSingleImage] = useState('')
+  const [shareIcons, setShareIcons] = useState(false)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -21,7 +51,10 @@ const ProductCard = ({ item, fromSingleProduct }) => {
   }, [])
 
   const addToWishlist = (item) => {
+    console.log(item, 'abhishek')
     dispatch(addItemToWishlist(item))
+    dispatch(removeItemFromWishlist(item?.id))
+
     toast.success('Item added to wishlist', {
       position: 'top-center',
     })
@@ -91,9 +124,24 @@ const ProductCard = ({ item, fromSingleProduct }) => {
                   fontSize={25}
                   color="#d3d3d3"
                   className={Styles.icon}
+                  onClick={() => setShareIcons(!shareIcons)}
                 />
               </span>
             </div>
+            {shareIcons && (
+              <>
+                <div className={Styles.shareContainer}>
+                  <h4>Share With Others</h4>
+                  <div className={Styles.shareContent}>
+                    <RxCross1 />
+                    <FacebookIcon />
+                    <TwitterIcon />
+                    <EmailIcon />
+                    <WhatsappIcon />
+                  </div>
+                </div>
+              </>
+            )}
             <Link
               href={fromSingleProduct ? `${item?.id}` : `products/${item?.id}`}
             >

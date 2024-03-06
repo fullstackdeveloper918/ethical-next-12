@@ -58,6 +58,7 @@ const SecondaryHeader = () => {
   const [openLinks, setOpenLinks] = useState(false)
   const [inputbtn, setInputBtn] = useState(false)
   const [country, setCountry] = useState('usa')
+  const wishlistItems = useSelector((state) => state.wishlist.items)
   const [screenSize, setScreenSize] = useState(992)
   const [showOnMobile, setShowOnMobile] = useState(false)
 
@@ -156,6 +157,7 @@ const SecondaryHeader = () => {
 
   const handleSetSubCategory = (item) => {
     dispatch(setSubCategories(allCategories[item]?.matchingValues))
+    router.push('/products')
   }
 
   return (
@@ -418,7 +420,7 @@ const SecondaryHeader = () => {
             <div
               className=""
               onClick={() => router.push('/wishlist')}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: 'pointer', position: 'relative' }}
             >
               <Image
                 src={heartImg}
@@ -427,6 +429,24 @@ const SecondaryHeader = () => {
                 alt="like"
                 className={styles.cursor_pointer}
               />
+              <span
+                style={{
+                  color: '#fff',
+                  position: 'absolute',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '20px',
+                  height: '20px',
+                  top: '-3px',
+                  right: '-8px',
+                  borderRadius: '50%',
+                  background: '#a2d061',
+                  padding: '5px',
+                }}
+              >
+                {wishlistItems.length}
+              </span>
             </div>
           )}
 
