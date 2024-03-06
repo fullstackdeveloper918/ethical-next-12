@@ -12,7 +12,9 @@ import {
   setStep2State,
 } from '../../redux-setup/cartSlice'
 import useFetch from '../../lib/useFetch'
-
+import Invoice from '../Invoice'
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf'
 const EstimateCard = () => {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -69,6 +71,17 @@ const EstimateCard = () => {
   useEffect(() => {
     totalPriceOfCart()
   }, [cartItems])
+
+  const downLoadPdf = () => {
+    console.log('yyyyyyyyyyyyy')
+    const input = document.getElementById('invoice-container')
+
+    html2canvas(input).then((canvas) => {
+      const pdf = new jsPDF('p', 'mm', 'a4')
+      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 210, 297)
+      pdf.save('invoice.pdf')
+    })
+  }
   return (
     <>
       <div className={Styles.estimate_wrapper}>
@@ -137,8 +150,12 @@ const EstimateCard = () => {
                       ${totalCartPrice.toFixed(2)}
                     </span>
                   </div>
-                  <button className={Styles.estimate_bottom_btn}>
-                    SAVE A .PDF COPY FOR LATER
+                  <button
+                    className={Styles.estimate_bottom_btn}
+                    type="button"
+                    onClick={downLoadPdf}
+                  >
+                    Save a .pdf for later
                   </button>
                   <button
                     className={Styles.estimate_bottom_btn}
@@ -153,6 +170,11 @@ const EstimateCard = () => {
                     >
                       Clear Orders
                     </button>
+                  </div>
+                  <div style={{ height: '0px', overflow: 'hidden' }}>
+                    <div id="invoice-container">
+                      <Invoice />
+                    </div>
                   </div>
                 </div>
               </>

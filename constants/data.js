@@ -19,7 +19,7 @@ import { IoKeyOutline } from 'react-icons/io5'
 export const LIST = [
   {
     id: 1,
-    label: 'Product Type',
+    label: 'Categories',
     children: [
       { id: 1, label: 'backPacks', name: 'Back Packs' },
       { id: 2, label: 'Coolers', name: 'Coolers' },

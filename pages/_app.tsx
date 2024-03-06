@@ -26,6 +26,7 @@ import {
   REGISTER,
 } from 'redux-persist'
 import '../global.css'
+import categorySlice from 'redux-setup/categorySlice'
 
 builder.init(builderConfig.apiKey)
 
@@ -37,6 +38,7 @@ const combinedReducer = combineReducers({
   cart: cartSlice,
   random: randomSlice,
   admin: adminSlice,
+  category: categorySlice,
 })
 
 const persistConfig = { key: 'root', storage, version: 1 }

@@ -29,6 +29,7 @@ import { Input } from '@/components/ui/input'
 import useFetch from '@lib/useFetch'
 import { selectCountry } from 'redux-setup/countrySlice'
 import { debounce } from '@lib/utils'
+import { addCategory } from 'redux-setup/categorySlice'
 const countries = [
   {
     id: 1,
@@ -88,7 +89,17 @@ const SecondaryHeader = () => {
   const optimizedFn = useCallback(debounce(handleChange), [])
 
   const handleCategory = (e) => {
-    console.log(e.target.value)
+    if (e.target.id === 'shop') {
+      setOpenLinks(true)
+    } else {
+      setOpenLinks(false)
+    }
+  }
+
+  const handleClick = (item) => {
+    console.log(item, 'item')
+    dispatch(addCategory(item))
+    router.push('/products')
   }
 
   useEffect(() => {
@@ -162,7 +173,7 @@ const SecondaryHeader = () => {
               <div className={styles.text_with_down_icon}>
                 <>
                   <div
-                    variant="ghost"
+                    id="shop"
                     className={styles.shop_menu}
                     style={{ cursor: 'pointer' }}
                     onMouseEnter={handleCategory}
@@ -178,7 +189,14 @@ const SecondaryHeader = () => {
                       {Object.keys(category).map((item) => (
                         <>
                           <div className={styles.mega_menu}>
-                            <span className={`${styles.shop_menu} ${styles.shop_menuWrap}`}>{item}</span>
+                            <span
+                              className={`${styles.shop_menu} ${styles.shop_menuWrap}`}
+                              onClick={() =>
+                                handleClick(category[item].matchingValues)
+                              }
+                            >
+                              {item}
+                            </span>
                             {/* <ul>
                               {Object.entries(category[item].matchingValues)
                                 .slice(0, 5)
