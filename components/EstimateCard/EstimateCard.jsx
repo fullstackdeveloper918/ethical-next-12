@@ -13,7 +13,7 @@ import {
 } from '../../redux-setup/cartSlice'
 import useFetch from '../../lib/useFetch'
 // import Invoice from '../Invoice'
-import Invoice from "../Invoice"
+import Invoice from '../Invoice'
 import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
 const EstimateCard = () => {
@@ -83,6 +83,8 @@ const EstimateCard = () => {
       pdf.save('invoice.pdf')
     })
   }
+
+  console.log(cartItems, 'cartItemscartItems')
   return (
     <>
       <div className={Styles.estimate_wrapper}>

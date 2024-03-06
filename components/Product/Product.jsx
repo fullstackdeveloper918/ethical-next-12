@@ -19,10 +19,7 @@ const Product = ({ product, loading, error }) => {
     +product?.column_1_qty || 200
   )
   const [price, setPrice] = useState(0)
-  const [singleImage, setSingleImage] = useState('')
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
-  const [productImages, setProductImages] = useState([])
-  const [uploadSecondLogo, setUploadSecondLogo] = useState('')
   const [activeBtn, setActiveBtn] = useState(0)
   const [custumize, setCustomize] = useState('No Decoration')
   const [sizeQuantity, setSizeQuantity] = useState({
@@ -145,27 +142,14 @@ const Product = ({ product, loading, error }) => {
       : custumize === 'Full Color Decoration'
       ? 4
       : 0
-  useEffect(() => {
-    const jsonData = country === 'usa' ? product?.images_us : product?.images_ca
-    if (jsonData) {
-      try {
-        const data = JSON.parse(jsonData)
-        setProductImages(data)
-      } catch (error) {
-        console.error('Error parsing JSON data:', error)
-      }
-    } else {
-      console.log('No image data available')
-    }
 
-    setSingleImage(product?.image)
-  }, [product?.id])
+  console.log(product, 'product from cart')
 
   const handleAddToCart = (e) => {
     e.preventDefault()
     setCartState({
       quantity: orderQuantity,
-      image: product?.image,
+      image: reqImageArray[0],
       heading: product?.product_description,
       price: price,
       id: product.id,
@@ -209,8 +193,6 @@ const Product = ({ product, loading, error }) => {
 
   const reqImageArray =
     country === 'usa' ? product?.images_us : product?.images_us
-
-  console.log(reqImageArray, 'reqImageArrayreqImageArray')
 
   return (
     <>
