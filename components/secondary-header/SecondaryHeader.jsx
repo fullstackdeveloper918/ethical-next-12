@@ -59,6 +59,7 @@ const SecondaryHeader = () => {
   const [inputbtn, setInputBtn] = useState(false)
   const [country, setCountry] = useState('usa')
   const [screenSize, setScreenSize] = useState(992)
+  const [showOnMobile, setShowOnMobile] = useState(false)
 
   const cartItems = useSelector((state) => state.cart.cartItems.length)
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
@@ -251,6 +252,44 @@ const SecondaryHeader = () => {
             </div>
           </div>
         </>
+
+        <div className={`${styles.mobile_menu} ${openLinks ? styles.open_Sidebar: ''}`}>
+            <div className={styles.mobile_menuwrap}>
+              <ul>
+              <span className={styles.menu_cross}>
+                <Image
+                  src={CrossIcon}
+                  width={20}
+                  height={20}
+                  alt="Cross_Icon"
+                  onClick={() => setOpenLinks(false)}
+                />
+              </span>
+                <li onClick={() => setShowOnMobile(!showOnMobile)} >shop <span>
+                      <FaChevronDown fontSize={12} />
+                    </span>
+                  <div className={styles.mobi_submenu}>
+                 {showOnMobile &&  <ul>
+                      <li>Apparel</li>
+                      <li>Office & School</li>
+                      <li>Plants & Seeds</li>
+                      <li>Drinkware</li>
+                      <li>All Swag</li>
+                      <li>At Home</li>
+                      <li>Tech</li>
+                      <li>Other</li>
+                      <li>Wellness</li>
+                      <li>Bags</li>
+                    </ul>}
+                  </div>
+                </li>
+                <li>About</li>
+                <li>Contact</li>
+              </ul>
+            </div>
+          </div>
+
+
         <div className={styles.container_3}>
           <div className="">
             <DropdownMenu>
