@@ -13,7 +13,7 @@ const FilterPanel = ({ setActiveFilter }) => {
   const subCategoryData = useSelector((state) => state.category.categories)
   const activeFilters = useSelector((state) => state.category.activeFilters)
   const [addList, setAddList] = useState([])
-  const [openIndex, setOpenIndex] = useState(null)
+  const [openIndex, setOpenIndex] = useState(0)
   const [isActive, setIsActive] = useState(true)
   const [price, setPrice] = useState(50)
   const [isChecked, setIsChecked] = useState({
