@@ -49,7 +49,8 @@ const countries = [
 const SecondaryHeader = () => {
   const popupRef = useRef(null)
   const dispatch = useDispatch()
-  const router = useRouter()
+  const router = useRouter() ///products/[productID]
+  console.log(router, 'routerrouter')
   const [showResults, setShowResults] = useState(false)
   const [searchProduct, setSearchProduct] = useState('')
   const [data, setData] = useState([])
@@ -206,16 +207,25 @@ const SecondaryHeader = () => {
                       <FaChevronDown fontSize={12} />
                     </span> */}
                     {allCategories && (
-                      <div className={styles.header_menu}>
-                        {Object.keys(allCategories).map((item, i) => (
-                          <div className={styles.mega_menu} key={i}>
-                            <span
-                              className={`${styles.shop_menu} ${styles.shop_menuWrap}`}
-                              onClick={() => handleSetSubCategory(item)}
-                            >
-                              {item}
-                            </span>
-                            {/* <ul>
+                      <div
+                        className={styles.header_menu_wrapper}
+                        style={{
+                          top:
+                            router.pathname === 'products/[productID]'
+                              ? '121px'
+                              : '71px',
+                        }}
+                      >
+                        <div className={styles.header_menu}>
+                          {Object.keys(allCategories).map((item, i) => (
+                            <div className={styles.mega_menu} key={i}>
+                              <span
+                                className={`${styles.shop_menu} ${styles.shop_menuWrap}`}
+                                onClick={() => handleSetSubCategory(item)}
+                              >
+                                {item}
+                              </span>
+                              {/* <ul>
                               {Object.entries(category[item].matchingValues)
                                 .slice(0, 5)
                                 .map(([subCategoryId, subCategory]) => (
@@ -226,8 +236,9 @@ const SecondaryHeader = () => {
                                   </>
                                   ))}
                                 </ul> */}
-                          </div>
-                        ))}
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -255,9 +266,13 @@ const SecondaryHeader = () => {
           </div>
         </>
 
-        <div className={`${styles.mobile_menu} ${openLinks ? styles.open_Sidebar: ''}`}>
-            <div className={styles.mobile_menuwrap}>
-              <ul>
+        <div
+          className={`${styles.mobile_menu} ${
+            openLinks ? styles.open_Sidebar : ''
+          }`}
+        >
+          <div className={styles.mobile_menuwrap}>
+            <ul>
               <span className={styles.menu_cross}>
                 <Image
                   src={CrossIcon}
@@ -267,11 +282,14 @@ const SecondaryHeader = () => {
                   onClick={() => setOpenLinks(false)}
                 />
               </span>
-                <li onClick={() => setShowOnMobile(!showOnMobile)} >shop <span>
-                      <FaChevronDown fontSize={12} />
-                    </span>
-                  <div className={styles.mobi_submenu}>
-                 {showOnMobile &&  <ul>
+              <li onClick={() => setShowOnMobile(!showOnMobile)}>
+                shop{' '}
+                <span>
+                  <FaChevronDown fontSize={12} />
+                </span>
+                <div className={styles.mobi_submenu}>
+                  {showOnMobile && (
+                    <ul>
                       <li>Apparel</li>
                       <li>Office & School</li>
                       <li>Plants & Seeds</li>
@@ -282,15 +300,15 @@ const SecondaryHeader = () => {
                       <li>Other</li>
                       <li>Wellness</li>
                       <li>Bags</li>
-                    </ul>}
-                  </div>
-                </li>
-                <li>About</li>
-                <li>Contact</li>
-              </ul>
-            </div>
+                    </ul>
+                  )}
+                </div>
+              </li>
+              <li>About</li>
+              <li>Contact</li>
+            </ul>
           </div>
-
+        </div>
 
         <div className={styles.container_3}>
           <div className="">

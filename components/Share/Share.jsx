@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Styles from './Share.module.css'
 
-function Share({ description }) {
+function Share({ description, link }) {
+  const [copied, setCopied] = useState(false)
   const url = window.location.href
 
   function ShareWebAPI() {
@@ -15,8 +16,26 @@ function Share({ description }) {
     }
   }
 
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(link)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000) // Reset copied state after 2 seconds
+    } catch (error) {
+      console.error('Failed to copy:', error)
+    }
+  }
+
   return (
     <>
+      <div>
+        <button onClick={copyToClipboard}>
+          {copied ? 'Copied!' : 'Copy Link'}
+        </button>
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          Copy Link
+        </a>
+      </div>
       Share on:
       <div className={Styles.share_icon_collections}>
         {/* Facebook */}

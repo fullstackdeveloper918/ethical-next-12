@@ -186,13 +186,17 @@ const Product = ({ product, loading, error }) => {
     }
   }, [product?.id])
 
+  useEffect(() => {
+    document.body.classList.add('single_product_page')
+  }, [])
+
   const updateImage = (index) => {
     // const selectedImage = productImages[index].url
     // setSingleImage(selectedImage)
   }
 
   const reqImageArray =
-    country === 'usa' ? product?.images_us : product?.images_us
+    country === 'usa' ? product?.images_us : product?.images_ca
 
   return (
     <>

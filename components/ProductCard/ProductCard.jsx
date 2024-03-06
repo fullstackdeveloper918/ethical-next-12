@@ -118,20 +118,20 @@ const ProductCard = ({ item, fromSingleProduct }) => {
                   className={Styles.icon}
                 />
               </span> */}
-              <span className={Styles.border_svg}>
+              {/* <span className={Styles.border_svg}>
                 <CiShare2
                   fontSize={25}
                   color="#d3d3d3"
                   className={Styles.icon}
-                  onMouseEnter={() => setShareIcons(!shareIcons)}
+                  onClick={() => setShareIcons(!shareIcons)}
                 />
-              </span>
+              </span> */}
             </div>
-            {shareIcons && (
+            {/* {shareIcons && (
               <>
                 <Share />
               </>
-            )}
+            )} */}
             <Link
               href={fromSingleProduct ? `${item?.id}` : `products/${item?.id}`}
             >
