@@ -5,6 +5,7 @@ const initialState = {
   categories: [],
   allCategories: {},
   subCategories: {},
+  activeFilters: [],
 }
 
 const categorySlice = createSlice({
@@ -24,6 +25,9 @@ const categorySlice = createSlice({
     setSubCategories: (state, action) => {
       state.subCategories = action.payload
     },
+    setActiveFilters: (state, action) => {
+      state.activeFilters = action.payload
+    },
   },
 })
 
@@ -32,6 +36,7 @@ export const {
   removeCategory,
   getAllCategories,
   setSubCategories,
+  setActiveFilters,
 } = categorySlice.actions
 
 export default categorySlice.reducer

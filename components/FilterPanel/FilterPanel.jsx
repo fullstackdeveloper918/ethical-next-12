@@ -5,11 +5,13 @@ import { useDispatch } from 'react-redux'
 import { filterPrice } from '../../redux-setup/FiltersSlice'
 import { RxCross2 } from 'react-icons/rx'
 import { useSelector } from 'react-redux'
+import { setActiveFilters } from 'redux-setup/categorySlice'
 
 const FilterPanel = ({ setActiveFilter }) => {
   const dispatch = useDispatch()
   const [inputSlider, setInputSlider] = useState(0)
   const subCategoryData = useSelector((state) => state.category.categories)
+  const activeFilters = useSelector((state) => state.category.activeFilters)
   const [addList, setAddList] = useState([])
   const [openIndex, setOpenIndex] = useState(null)
   const [isActive, setIsActive] = useState(true)
@@ -23,6 +25,7 @@ const FilterPanel = ({ setActiveFilter }) => {
     toteBags: false,
     waterBottles: false,
   })
+  const [filtersState, setFiltersState] = useState([])
 
   useEffect(() => {
     dispatch(filterPrice(inputSlider))
@@ -42,10 +45,17 @@ const FilterPanel = ({ setActiveFilter }) => {
     setIsActive(!isActive)
   }
 
+  useEffect(() => {
+    dispatch(setActiveFilters(filtersState))
+  }, [filtersState])
+
   const handleAddLists = (text) => {
-    setAddList((prev) => ({
-      ...prev,
-    }))
+    if (filtersState.includes(text?.apikey)) {
+      let f = filtersState.filter((item) => item !== text?.apikey)
+      setFiltersState(f)
+    } else {
+      setFiltersState((prevC) => [...prevC, text?.apikey])
+    }
   }
 
   const subCategories = useSelector((state) => state.category.subCategories)
@@ -129,7 +139,7 @@ const FilterPanel = ({ setActiveFilter }) => {
                               />
                               <label
                                 htmlFor={`checkbox_id_${index}`}
-                                onClick={() => handleAddLists(child.label)}
+                                onClick={() => handleAddLists(child)}
                               >
                                 {child.label}
                               </label>
