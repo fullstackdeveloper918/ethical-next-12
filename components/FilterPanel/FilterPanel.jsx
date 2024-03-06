@@ -24,8 +24,6 @@ const FilterPanel = ({ setActiveFilter }) => {
     waterBottles: false,
   })
 
-  console.log(subCategoryData, 'subCategoryData')
-
   useEffect(() => {
     dispatch(filterPrice(inputSlider))
   }, [inputSlider])
@@ -50,6 +48,7 @@ const FilterPanel = ({ setActiveFilter }) => {
     }))
   }
 
+  const subCategories = useSelector((state) => state.category.subCategories)
   return (
     <>
       <div className={Styles.filterPanel}>
@@ -59,7 +58,7 @@ const FilterPanel = ({ setActiveFilter }) => {
         </div>
         {/* <div className={Styles.filterPanel_Product_Section}></div> */}
         <div className={Styles.filterPanel_ProductCollection_list}>
-          {LIST.map((item, index) => (
+          {LIST(subCategories).map((item, index) => (
             <>
               <div className={Styles.accordion}>
                 <div className={Styles.accordion_item}>

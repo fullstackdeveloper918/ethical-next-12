@@ -14,92 +14,101 @@ import { HiSquare3Stack3D } from 'react-icons/hi2'
 import { BsFillBoxFill } from 'react-icons/bs'
 import { CiUser } from 'react-icons/ci'
 import { IoKeyOutline } from 'react-icons/io5'
+import { useEffect } from 'react'
 // list
 
-export const LIST = [
-  {
-    id: 1,
-    label: 'Categories',
-    children: [
-      { id: 1, label: 'backPacks', name: 'Back Packs' },
-      { id: 2, label: 'Coolers', name: 'Coolers' },
-      { id: 3, label: 'fannyPacks', name: 'Fanny Packs' },
-      { id: 4, label: 'laundryBags', name: 'Laundry Bags' },
-      { id: 5, label: 'Pouches', name: 'Pouches' },
-      { id: 6, label: 'toteBags', name: 'Tote Bags' },
-      { id: 7, label: 'waterBottles', name: 'Water Bottles' },
-    ],
-  },
-  {
-    id: 2,
-    label: 'Price',
-    children: [{ id: 1, minPrice: 0, maxPrice: 200 }],
-  },
-  {
-    id: 3,
-    label: 'Customization',
-    children: [
-      { id: 1, label: '1-Color Decoration' },
-      { id: 1, label: '2-Color Decoration' },
-      { id: 1, label: '3-Color Decoration' },
-      { id: 1, label: 'Embroidery' },
-      { id: 1, label: 'Laser Engraving' },
-    ],
-  },
-  {
-    id: 4,
-    label: 'Color',
-    children: [
-      { id: 1, label: '1-Color Decoration' },
-      { id: 1, label: '2-Color Decoration' },
-      { id: 1, label: '3-Color Decoration' },
-      { id: 1, label: 'Embroidery' },
-      { id: 1, label: 'Laser Engraving' },
-    ],
-  },
-  {
-    id: 5,
-    label: 'Sustainability',
-    children: [
-      { id: 1, label: 'Good' },
-      { id: 1, label: 'Better' },
-      { id: 1, label: 'Best' },
-      { id: 1, label: 'Recycled' },
-    ],
-  },
-  {
-    id: 6,
-    label: 'Mission Driven',
-    children: [{ id: 1, label: 'Environmental Causes' }],
-  },
-  {
-    id: 7,
-    label: 'Cotton Fabric Weight',
-    children: [
-      { id: 1, label: 'Medium - Weight' },
-      { id: 1, label: 'Heavy - Weight' },
-    ],
-  },
-  {
-    id: 8,
-    label: 'Drinkware Capacity',
-    children: [{ id: 1, label: '15 Oz to 19 Oz' }],
-  },
-  {
-    id: 9,
-    label: 'Made Of',
-    children: [
-      { id: 1, label: 'Bamboo' },
-      { id: 1, label: 'Cork' },
-      { id: 1, label: 'Cotton' },
-      { id: 1, label: 'Jute' },
-      { id: 1, label: 'Polyester' },
-      { id: 1, label: 'Recycled Cotton' },
-      { id: 1, label: 'Recycled Polyester' },
-    ],
-  },
-]
+export const LIST = (subCategories) => {
+  let check = Object.entries(subCategories)
+  let worthy = []
 
+  for (let i = 0; i < check.length; i++) {
+    let element = check[i]
+    worthy.push({
+      id: i,
+      label: element[1],
+      name: element[1],
+      apikey: element[0],
+    })
+  }
+
+  let categoryList = [
+    {
+      id: 1,
+      label: 'Categories',
+      children: worthy,
+    },
+    {
+      id: 2,
+      label: 'Price',
+      children: [{ id: 1, minPrice: 0, maxPrice: 200 }],
+    },
+    {
+      id: 3,
+      label: 'Customization',
+      children: [
+        { id: 1, label: '1-Color Decoration' },
+        { id: 1, label: '2-Color Decoration' },
+        { id: 1, label: '3-Color Decoration' },
+        { id: 1, label: 'Embroidery' },
+        { id: 1, label: 'Laser Engraving' },
+      ],
+    },
+    {
+      id: 4,
+      label: 'Color',
+      children: [
+        { id: 1, label: '1-Color Decoration' },
+        { id: 1, label: '2-Color Decoration' },
+        { id: 1, label: '3-Color Decoration' },
+        { id: 1, label: 'Embroidery' },
+        { id: 1, label: 'Laser Engraving' },
+      ],
+    },
+    {
+      id: 5,
+      label: 'Sustainability',
+      children: [
+        { id: 1, label: 'Good' },
+        { id: 1, label: 'Better' },
+        { id: 1, label: 'Best' },
+        { id: 1, label: 'Recycled' },
+      ],
+    },
+    {
+      id: 6,
+      label: 'Mission Driven',
+      children: [{ id: 1, label: 'Environmental Causes' }],
+    },
+    {
+      id: 7,
+      label: 'Cotton Fabric Weight',
+      children: [
+        { id: 1, label: 'Medium - Weight' },
+        { id: 1, label: 'Heavy - Weight' },
+      ],
+    },
+    {
+      id: 8,
+      label: 'Drinkware Capacity',
+      children: [{ id: 1, label: '15 Oz to 19 Oz' }],
+    },
+    {
+      id: 9,
+      label: 'Made Of',
+      children: [
+        { id: 1, label: 'Bamboo' },
+        { id: 1, label: 'Cork' },
+        { id: 1, label: 'Cotton' },
+        { id: 1, label: 'Jute' },
+        { id: 1, label: 'Polyester' },
+        { id: 1, label: 'Recycled Cotton' },
+        { id: 1, label: 'Recycled Polyester' },
+      ],
+    },
+  ]
+
+  return categoryList
+}
 export const Sidebar_Data = [
   {
     id: 1,
