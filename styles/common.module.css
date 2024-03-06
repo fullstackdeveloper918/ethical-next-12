@@ -388,6 +388,7 @@ progress.progress_bar::-webkit-progress-bar {
   flex-wrap: wrap;
   gap: 15px;
 }
+
 @media (min-width: 1440px) {
   .product_bottombtn {
     font-size: 14px;

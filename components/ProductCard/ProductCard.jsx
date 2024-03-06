@@ -6,32 +6,8 @@ import Image from 'next/image'
 import { MdOutlineFavoriteBorder } from 'react-icons/md'
 import { CiSearch } from 'react-icons/ci'
 import { CiShare2 } from 'react-icons/ci'
-import { useDispatch } from 'react-redux'
-import {
-  EmailIcon,
-  FacebookIcon,
-  FacebookMessengerIcon,
-  GabIcon,
-  HatenaIcon,
-  InstapaperIcon,
-  LineIcon,
-  LinkedinIcon,
-  LivejournalIcon,
-  MailruIcon,
-  OKIcon,
-  PinterestIcon,
-  PocketIcon,
-  RedditIcon,
-  TelegramIcon,
-  TumblrIcon,
-  TwitterIcon,
-  ViberIcon,
-  VKIcon,
-  WeiboIcon,
-  WhatsappIcon,
-  WorkplaceIcon,
-  XIcon,
-} from 'react-share'
+import Share from '../../components/Share/Share'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   addItemToWishlist,
   removeItemFromWishlist,
@@ -44,20 +20,39 @@ import { RxCross1 } from 'react-icons/rx'
 const ProductCard = ({ item, fromSingleProduct }) => {
   const [singleImage, setSingleImage] = useState('')
   const [shareIcons, setShareIcons] = useState(false)
+  const [favoriteIconColor, setFavoriteIconColor] = useState(false)
+
   const dispatch = useDispatch()
+  const wishListItems = useSelector((state) => state.wishlist.items)
+
+  console.log(wishListItems, 'wishListItems')
 
   useEffect(() => {
     setSingleImage(item?.image)
   }, [])
 
   const addToWishlist = (item) => {
-    console.log(item, 'abhishek')
-    dispatch(addItemToWishlist(item))
-    dispatch(removeItemFromWishlist(item?.id))
+    const isInWishlist = wishListItems.some(
+      (wishlistItem) => wishlistItem.id === item.id
+    )
 
-    toast.success('Item added to wishlist', {
-      position: 'top-center',
-    })
+    if (isInWishlist) {
+      // If the item is already in the wishlist, remove it
+      setFavoriteIconColor(false)
+      dispatch(removeItemFromWishlist(item.id))
+      toast.success('Item removed from wishlist', {
+        position: 'top-center',
+        autoClose: 1500,
+      })
+    } else {
+      // Otherwise, add the item to the wishlist
+      dispatch(addItemToWishlist(item))
+      setFavoriteIconColor(true)
+      toast.success('Item added to wishlist', {
+        position: 'top-center',
+        autoClose: 1500,
+      })
+    }
   }
 
   return (
@@ -104,7 +99,11 @@ const ProductCard = ({ item, fromSingleProduct }) => {
 
           <div className={Styles.hidden_icons}>
             <div className={Styles.icons}>
-              <span className={Styles.border_svg}>
+              <span
+                className={`${Styles.border_svg} ${
+                  favoriteIconColor ? 'favactive' : ''
+                }`}
+              >
                 <MdOutlineFavoriteBorder
                   fontSize={25}
                   color="#d3d3d3"
@@ -112,34 +111,25 @@ const ProductCard = ({ item, fromSingleProduct }) => {
                   onClick={() => addToWishlist(item)}
                 />
               </span>
-              <span className={Styles.border_svg}>
+              {/* <span className={Styles.border_svg}>
                 <CiSearch
                   fontSize={25}
                   color="#d3d3d3"
                   className={Styles.icon}
                 />
-              </span>
+              </span> */}
               <span className={Styles.border_svg}>
                 <CiShare2
                   fontSize={25}
                   color="#d3d3d3"
                   className={Styles.icon}
-                  onClick={() => setShareIcons(!shareIcons)}
+                  onMouseEnter={() => setShareIcons(!shareIcons)}
                 />
               </span>
             </div>
             {shareIcons && (
               <>
-                <div className={Styles.shareContainer}>
-                  <h4>Share With Others</h4>
-                  <div className={Styles.shareContent}>
-                    <RxCross1 />
-                    <FacebookIcon />
-                    <TwitterIcon />
-                    <EmailIcon />
-                    <WhatsappIcon />
-                  </div>
-                </div>
+                <Share />
               </>
             )}
             <Link
