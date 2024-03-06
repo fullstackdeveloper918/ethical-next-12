@@ -84,7 +84,6 @@ const EstimateCard = () => {
     })
   }
 
-  console.log(cartItems, 'cartItemscartItems')
   return (
     <>
       <div className={Styles.estimate_wrapper}>
