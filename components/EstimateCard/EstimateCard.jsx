@@ -93,57 +93,61 @@ const EstimateCard = () => {
           <div className={Styles.estimate_container_top}>
             {cartItems.length > 0 ? (
               <>
-                {cartItems.map((item, index) => (
-                  <div className={Styles.estimate_content} key={item.id}>
-                    <div
-                      className={Styles.estimate_content_imgContent}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <Image
-                        src={item.image ? item.image : images.cart_image}
-                        width={49}
-                        height={66}
-                        alt="product_image"
-                      />
-                    </div>
-                    <div className={Styles.estimate_content_textContent}>
-                      <h4
-                        className={Styles.title}
+                <div className="">
+                  {cartItems.map((item, index) => (
+                    <div className={Styles.estimate_content} key={item.id}>
+                      <div
+                        className={Styles.estimate_content_imgContent}
                         style={{ cursor: 'pointer' }}
                       >
-                        {item.heading.slice(0, 70) + '...'}
-                      </h4>
-                      <span className={Styles.price}>
-                        Price : Starting at ${item.price}
-                      </span>
-                      <div className={Styles.amountwrapper}>
-                        <div className={Styles.amountContainer}>
-                          <div>{item.quantity}</div>
-                        </div>
-                        <div className="">
-                          <button
-                            style={{ cursor: 'pointer', marginLeft: '5px' }}
-                            onClick={() => handleDelete(item.id)}
-                          >
-                            <Image
-                              src={images.delete_icon}
-                              width={14}
-                              height={16}
-                              alt="delete_icon"
-                            />
-                          </button>
-                          <button
-                            style={{ marginLeft: '15px', color: '#A2D061' }}
-                            onClick={() => router.push(`/products/${item.id}`)}
-                            type="button"
-                          >
-                            <GrEdit />
-                          </button>
+                        <Image
+                          src={item.image ? item.image : images.cart_image}
+                          width={49}
+                          height={66}
+                          alt="product_image"
+                        />
+                      </div>
+                      <div className={Styles.estimate_content_textContent}>
+                        <h4
+                          className={Styles.title}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          {item.heading.slice(0, 70) + '...'}
+                        </h4>
+                        <span className={Styles.price}>
+                          Price : Starting at ${item.price}
+                        </span>
+                        <div className={Styles.amountwrapper}>
+                          <div className={Styles.amountContainer}>
+                            <div>{item.quantity}</div>
+                          </div>
+                          <div className="">
+                            <button
+                              style={{ cursor: 'pointer', marginLeft: '5px' }}
+                              onClick={() => handleDelete(item.id)}
+                            >
+                              <Image
+                                src={images.delete_icon}
+                                width={14}
+                                height={16}
+                                alt="delete_icon"
+                              />
+                            </button>
+                            <button
+                              style={{ marginLeft: '15px', color: '#A2D061' }}
+                              onClick={() =>
+                                router.push(`/products/${item.id}`)
+                              }
+                              type="button"
+                            >
+                              <GrEdit />
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
                 <div className={Styles.estimate_container_bottom}>
                   <div className={Styles.estimate_horizontal_line}></div>
                   <div className={Styles.total_amount_container}>

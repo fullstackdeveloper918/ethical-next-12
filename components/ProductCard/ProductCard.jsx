@@ -25,8 +25,6 @@ const ProductCard = ({ item, fromSingleProduct }) => {
   const dispatch = useDispatch()
   const wishListItems = useSelector((state) => state.wishlist.items)
 
-  console.log(wishListItems, 'wishListItems')
-
   useEffect(() => {
     setSingleImage(item?.image)
   }, [])

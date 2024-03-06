@@ -7,6 +7,7 @@ import PromotionImg from '../../assets/products_promotion.svg'
 import ProductCard from '../ProductCard/ProductCard'
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
+import Loaders from '@components/loaders/Loaders'
 
 const Products = ({ response, loading }) => {
   const router = useRouter()

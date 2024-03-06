@@ -39,49 +39,51 @@ const ReviewEstimate = () => {
           {cartItemss?.length > 0 &&
             cartItemss.map((item, i) => (
               <>
-                <div className={Styles.reviewContent} key={i}>
-                  <div className={Styles.left_content}>
-                    <div className={Styles.imgContent}>
-                      <Image
-                        src={item.image}
-                        width={54}
-                        height={72}
-                        alt="image"
-                      />
-                    </div>
-                    <div className={Styles.textContent}>
-                      <div>
-                        <h4 className={Styles.title}>
-                          {item.heading.slice(0, 100)}
-                        </h4>
-                        <p className={Styles.color}>Black</p>
-                        <p className={Styles.quantity}>
-                          Quantity - {item.quantity}
-                        </p>
+                <div className={Styles.step_from}>
+                  <div className={Styles.reviewContent} key={i}>
+                    <div className={Styles.left_content}>
+                      <div className={Styles.imgContent}>
+                        <Image
+                          src={item.image}
+                          width={54}
+                          height={72}
+                          alt="image"
+                        />
                       </div>
-                      <div>
-                        <p className={Styles.price}>
-                          ${item.price * item.quantity}
-                        </p>
+                      <div className={Styles.textContent}>
+                        <div>
+                          <h4 className={Styles.title}>
+                            {item.heading.slice(0, 100)}
+                          </h4>
+                          <p className={Styles.color}>Black</p>
+                          <p className={Styles.quantity}>
+                            Quantity - {item.quantity}
+                          </p>
+                        </div>
+                        <div>
+                          <p className={Styles.price}>
+                            ${item.price * item.quantity}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={Styles.right_content}>
+                      <div className={Styles.review_content}>
+                        <span></span>
+                        <span>527 reviews</span>
                       </div>
                     </div>
                   </div>
-                  <div className={Styles.right_content}>
-                    <div className={Styles.review_content}>
-                      <span></span>
-                      <span>527 reviews</span>
-                    </div>
+                  <div className={Styles.buttons}>
+                    <button
+                      onClick={() => router.push(`/products/${item.id}`)}
+                      type="button"
+                    >
+                      <GrEdit />
+                      Edit
+                    </button>
+                    {/* <button>See More</button> */}
                   </div>
-                </div>
-                <div className={Styles.buttons}>
-                  <button
-                    onClick={() => router.push(`/products/${item.id}`)}
-                    type="button"
-                  >
-                    <GrEdit />
-                    Edit
-                  </button>
-                  <button>See More</button>
                 </div>
               </>
             ))}
