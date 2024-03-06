@@ -34,7 +34,7 @@ const Product = () => {
           `https://test.cybersify.tech/Eswag/public/api/products?page=${
             currentPage ? currentPage : 1
           }&pageSize=${10}&${countryTosend}=1&search_title=${value}&${selectedOptionValue}=desc&collection_ids=${
-            activeFilters[0]
+            activeFilters[0] ? activeFilters[0] : ''
           }`
         )
         setProductsData(response.data)
