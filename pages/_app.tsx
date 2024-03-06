@@ -10,6 +10,7 @@ import countrySlice from '../redux-setup/countrySlice'
 import authSlice from '../redux-setup/authSlice'
 import cartSlice from '../redux-setup/cartSlice'
 import randomSlice from '../redux-setup/randomSlice'
+import wishlistSlice from '../redux-setup/wishlistSlice'
 import filterSlice from '../redux-setup/FiltersSlice'
 import adminSlice from '../redux-setup/adminSlice'
 import tokenReducer from '../redux-setup/tokenSlice'
@@ -27,7 +28,6 @@ import {
 } from 'redux-persist'
 import '../global.css'
 import categorySlice from 'redux-setup/categorySlice'
-import wishlistSlice from 'redux-setup/wishlistSlice'
 
 builder.init(builderConfig.apiKey)
 

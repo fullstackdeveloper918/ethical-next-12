@@ -44,15 +44,16 @@ color: #fff;
 }
 .product_card_container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1.5rem;
   /* align-items: center; */
   margin: 15px 0;
+  flex-wrap: wrap;
 }
 
-.product_card_container .product_content {
+/* .product_card_container .product_content {
   flex: 1;
-}
+} */
 
 .wishlistContainer {
   margin-block: 3rem;
@@ -176,7 +177,7 @@ color: #fff;
 
 .product_review_section {
   background-color: #f7f7f7;
-  padding: 50px 40px;
+  padding: 50px 40px 20px;
   border-radius: 30px;
   margin-bottom: 3rem;
 }
@@ -186,6 +187,8 @@ color: #fff;
   justify-content: space-between;
   margin-bottom: 2rem;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .product_review_section .top_content h2 {
@@ -241,17 +244,40 @@ color: #fff;
   font-size: 16px;
   line-height: 28px;
   padding-top: 10px;
+  color: #3F3F3F;
+}
+progress.progress_bar::-moz-progress-bar {
+  background: #A2D061;
+  border-radius: 30px;
 }
 
+progress.progress_bar::-webkit-progress-value {
+  background: #A2D061;
+  border-radius: 30px;
+  min-height:10px !important;
+}
+
+progress.progress_bar::-webkit-progress-bar {
+  background: #D9D9D9;
+  border-radius: 30px;
+}
 
 .rightContent .righttopContent {
   display: flex;
   justify-content: flex-start;
   gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
 }
-
+.stars_content{
+  display: flex;
+  gap: .2rem;
+}
 .rightContent p {
-  font-size: 1.2rem;
+  font-size: 20px;
+}
+.rightContent span{
+  font-size: 14px;
 }
 
 .rightBottomContent {
@@ -264,11 +290,13 @@ color: #fff;
   width: 100%;
   gap: 0.7rem;
   margin-bottom: 1rem;
+  align-items: center;
 }
 
-.bottom_content h2,
-.bottom_content p {
-  flex: 1;
+.bottom_content h3, .bottom_content p {
+  font-size: 26px;
+  font-family: 'Poppins' !important;
+  font-weight: 500;
 }
 
 .bottom_content progress {
@@ -280,13 +308,26 @@ color: #fff;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 2rem;
   padding: 2rem;
   border-radius: 30px;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
+  margin-top: 7rem;
+}
+.ressource_container{
+  width: 100%;
+  max-width: 1368px;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.ressource_container div{
+  flex: 1;
+}
+.ressource_container .right_content{
+  margin-top: -100px;
 }
 
 .resources_section .textContent {
@@ -298,12 +339,16 @@ color: #fff;
 }
 
 .resources_section h2 {
-  font-size: 1.8rem;
-  max-width: 400px;
+  font-size: 32px;
+  max-width: 450px;
   font-weight: 600;
   margin-bottom: 1rem;
 }
-
+.ressousce_subheading{
+  font-size: 22px;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
 .resources_section p {
   max-width: 500px;
 }
@@ -316,14 +361,31 @@ color: #fff;
   padding-block: 0.5rem;
   max-width: 150px;
   width: 100%;
-  margin-right: 1rem;
-  border-radius: 20px;
+  border-radius: 30px;
   border: 1px solid #fff;
+  transition: .5s all ease-in-out;
+  font-weight: 500;
+}
+
+.resources_section div button:hover{
+  background:#a2d061;
+  color: #fff;
+  border: 1px solid #a2d061;
 }
 
 .resources_section div button:last-child {
   background-color: #fff;
-  color: #8d4399;
+  color: #f65275;
+}
+.resources_section div button:hover:last-child{
+  background:transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.resources_btns{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 @media (min-width:1440px){
   .product_bottombtn {
@@ -350,6 +412,9 @@ color: #fff;
     margin-bottom: -120px;
     max-width: 200px;
   }
+  .product_card_container {
+    gap: 15px;
+  }
   .imgContentwrap {
     min-height: 150px;
     max-width: 150px;
@@ -368,8 +433,58 @@ color: #fff;
   .accordion_section {
     flex-direction: column;
   }
+  .resources_section {
+    margin-top: 3rem;
+  }
+  .resources_section h2 {
+    font-size: 28px;
+    max-width: 100%;
+    text-align: center;
+  }
+  .resources_section p {
+    max-width: 100%;
+    text-align: center;
+  }
+  .resources_section .textContent div{
+    justify-content: center;
+  }
+  .ressource_container .right_content{
+    margin-top: 0px;
+  }
+  
+  .ressource_container{
+    flex-direction: column;
+    gap: 40px;
+  }
+  .ressousce_subheading{
+    font-size: 18px;
+  }
+  .product_card_container {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .product_card_container .product_content {
+    flex: 30%;
+    max-width: 33%;
+}
   .accordion_section .accordion_left_container, .container .content{
     padding: 40px 20px;
+  }
+  .product_review_section .bottomContent {
+    gap: 0rem;
+    flex-direction: column-reverse;
+  }
+  .bottom_content h3, .bottom_content p {
+    font-size: 20px;
+  }
+  .product_review_section .top_content {
+    margin-bottom: 1.2rem;
+  }
+  .rightContent p {
+    font-size: 18px;
+  }
+  .startRating {
+    margin-bottom: 10px;
   }
 }
 @media (max-width: 767px) {
@@ -380,6 +495,10 @@ color: #fff;
     max-width: 100%;
     padding: 50px 15px 0px;
   }
+  .resources_section h2 {
+    font-size: 24px;
+  }
+
 }
 @media (max-width:576px){
   .imgContentwrap {
@@ -387,6 +506,45 @@ color: #fff;
     max-width: 150px;
     width: 100%;
     margin: 0 auto;
+}
+.rightContent p {
+  font-size: 14px;
+  
+}
+.righttopContent p {
+  flex: 50%;
+}
+.product_card_container .product_content {
+  flex: 47%;
+  max-width: 50%;
+}
+.leftContent p{
+  font-size: 14px;
+  line-height: 26px;
+}
+.leftContent h3 {
+  font-size: 18px;
+}
+.bottom_content h3, .bottom_content p {
+  font-size: 16px;
+}
+.accordion_content svg {
+  width: 20px;
+  height: 20px;
+}
+.product_review_section .top_content button {
+  padding: 7px 1rem;
+  font-size: 14px;
+}
+.open_accrodion{
+  font-size: 14px;
+  line-height: 26px;
+}
+.accordion_content p{
+  font-size: 16px;
+}
+.product_review_section .top_content h2, .container .content .textContent h2, .accordion_left_container h2 {
+  font-size: 20px;
 }
 .accordion_section .accordion_left_container, .container .content{
   flex-direction: column;
@@ -401,4 +559,10 @@ color: #fff;
 .container .content .textContent {
   gap: 30px;
 }
+}
+@media (max-width:479px){
+  .product_card_container .product_content {
+    flex: 100%;
+    max-width: 100%;
+  }
 }
