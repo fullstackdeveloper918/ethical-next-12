@@ -6,6 +6,7 @@ import styles from './certified.module.css'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSingleProductPromotion } from 'redux-setup/randomSlice'
+import useFetch from '@lib/useFetch'
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
@@ -31,17 +32,23 @@ const Certified = () => {
   const country = useSelector((state) => state.country.country)
   const dispatch = useDispatch()
 
+  const [loadQuery, { response, loading, error }] = useFetch(
+    `/starproducts?country=available_in_${country}`,
+    {
+      method: 'get',
+    }
+  )
+
   useEffect(() => {
-    fetch(
-      `https://test.cybersify.tech/Eswag/public/api/starproducts?country=available_in_${country}`
-    )
-      .then((res) => res.json())
-      .then((data) => setData(data?.data?.data))
-    // .then((r) => {
-    //   dispatch(setSingleProductPromotion(r?.data?.data[0]))
-    //   setData(r?.data?.data)
-    // })
+    loadQuery()
   }, [])
+
+  useEffect(() => {
+    if (response) {
+      setData(response?.data?.data)
+      dispatch(setSingleProductPromotion(response?.data?.data[0]))
+    }
+  }, [response])
 
   const promotionalProduct = useSelector(
     (state) => state.random.singleProductPromotion

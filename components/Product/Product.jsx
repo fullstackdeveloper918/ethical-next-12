@@ -11,6 +11,7 @@ import { setCartItems } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
 
 const Product = ({ product, loading, error }) => {
+  console.log(product, 'productproduct single')
   const dispatch = useDispatch()
   const [color, setColor] = useState('')
   const [ReadMore, setIsReadMore] = useState(false)
@@ -18,10 +19,7 @@ const Product = ({ product, loading, error }) => {
     +product?.column_1_qty || 200
   )
   const [price, setPrice] = useState(0)
-  const [singleImage, setSingleImage] = useState('')
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
-  const [productImages, setProductImages] = useState([])
-  const [uploadSecondLogo, setUploadSecondLogo] = useState('')
   const [activeBtn, setActiveBtn] = useState(0)
   const [custumize, setCustomize] = useState('No Decoration')
   const [sizeQuantity, setSizeQuantity] = useState({
@@ -38,6 +36,7 @@ const Product = ({ product, loading, error }) => {
     id: null,
   })
   const [isItemInCart, setIsItemInCart] = useState(false)
+  const country = useSelector((state) => state.country.country)
 
   useEffect(() => {
     let total =
@@ -74,11 +73,10 @@ const Product = ({ product, loading, error }) => {
     setOrderQuantity(e.target.value)
   }
 
-  const country = useSelector((state) => state.country.country)
-
   useEffect(() => {
     fetchPrice()
   }, [orderQuantity, product, country])
+
   const fetchPrice = () => {
     if (orderQuantity <= product?.column_1_qty) {
       setPrice(
@@ -117,10 +115,6 @@ const Product = ({ product, loading, error }) => {
     setUploadFirstLogo(e.target.files[0])
   }
 
-  const uploadSecondFile = (e) => {
-    setUploadSecondLogo(e.target.files[0])
-  }
-
   const removeLogo = (state) => {
     state('')
   }
@@ -149,27 +143,13 @@ const Product = ({ product, loading, error }) => {
       ? 4
       : 0
 
-  useEffect(() => {
-    const jsonData = country === 'us' ? product?.images_us : product?.images_ca
-    if (jsonData) {
-      try {
-        const data = JSON.parse(jsonData)
-        setProductImages(data)
-      } catch (error) {
-        console.error('Error parsing JSON data:', error)
-      }
-    } else {
-      console.log('No image data available')
-    }
-
-    setSingleImage(product?.image)
-  }, [product?.id])
+  console.log(product, 'product from cart')
 
   const handleAddToCart = (e) => {
     e.preventDefault()
     setCartState({
       quantity: orderQuantity,
-      image: product?.image,
+      image: reqImageArray[0],
       heading: product?.product_description,
       price: price,
       id: product.id,
@@ -207,9 +187,12 @@ const Product = ({ product, loading, error }) => {
   }, [product?.id])
 
   const updateImage = (index) => {
-    const selectedImage = productImages[index].url
-    setSingleImage(selectedImage)
+    // const selectedImage = productImages[index].url
+    // setSingleImage(selectedImage)
   }
+
+  const reqImageArray =
+    country === 'usa' ? product?.images_us : product?.images_us
 
   return (
     <>
@@ -224,9 +207,9 @@ const Product = ({ product, loading, error }) => {
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
                   <div className={Styles.detail_page_image_content}>
-                    {singleImage && (
+                    {reqImageArray && reqImageArray.length > 0 && (
                       <Image
-                        src={singleImage}
+                        src={reqImageArray[0]}
                         width={400}
                         height={560}
                         alt="Single_Product_Image"
@@ -235,11 +218,11 @@ const Product = ({ product, loading, error }) => {
                     )}
                   </div>
                   <div className={Styles.images_container}>
-                    {productImages.map((image, index) => (
+                    {reqImageArray?.map((image, index) => (
                       <>
                         <div className={Styles.product_Images}>
                           <Image
-                            src={image?.url}
+                            src={image}
                             width={100}
                             height={100}
                             alt="product_image"
