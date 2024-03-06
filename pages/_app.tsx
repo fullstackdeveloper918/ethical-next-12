@@ -27,6 +27,7 @@ import {
 } from 'redux-persist'
 import '../global.css'
 import categorySlice from 'redux-setup/categorySlice'
+import wishlistSlice from 'redux-setup/wishlistSlice'
 
 builder.init(builderConfig.apiKey)
 
@@ -39,6 +40,7 @@ const combinedReducer = combineReducers({
   random: randomSlice,
   admin: adminSlice,
   category: categorySlice,
+  wishlist: wishlistSlice,
 })
 
 const persistConfig = { key: 'root', storage, version: 1 }

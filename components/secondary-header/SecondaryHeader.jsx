@@ -88,12 +88,8 @@ const SecondaryHeader = () => {
 
   const optimizedFn = useCallback(debounce(handleChange), [])
 
-  const handleCategory = (e) => {
-    if (e.target.id === 'shop') {
-      setOpenLinks(true)
-    } else {
-      setOpenLinks(false)
-    }
+  const handleCategory = (value) => {
+    setOpenLinks(value)
   }
 
   const handleClick = (item) => {
@@ -174,17 +170,17 @@ const SecondaryHeader = () => {
                 <>
                   <div
                     id="shop"
-                    className={styles.shop_menu}
+                    className={`${openLinks ? styles.mega_menu_open : ''} ${
+                      styles.shop_menu
+                    }`}
                     style={{ cursor: 'pointer' }}
-                    onMouseEnter={handleCategory}
+                    onMouseEnter={() => setOpenLinks(true)}
+                    onMouseLeave={() => setOpenLinks(false)}
                   >
                     Shop
                     {/* <span>
                       <FaChevronDown fontSize={12} />
                     </span> */}
-                  </div>
-
-                  {openLinks && (
                     <div className={styles.header_menu}>
                       {Object.keys(category).map((item) => (
                         <>
@@ -202,17 +198,17 @@ const SecondaryHeader = () => {
                                 .slice(0, 5)
                                 .map(([subCategoryId, subCategory]) => (
                                   <>
-                                    <li key={subCategoryId}>
-                                      {JSON.parse(subCategory)}
-                                    </li>
+                                  <li key={subCategoryId}>
+                                  {JSON.parse(subCategory)}
+                                  </li>
                                   </>
-                                ))}
-                            </ul> */}
+                                  ))}
+                                </ul> */}
                           </div>
                         </>
                       ))}
                     </div>
-                  )}
+                  </div>
                 </>
               </div>
               <div className="text_with_down_icon">

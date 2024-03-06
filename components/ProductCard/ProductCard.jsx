@@ -6,15 +6,26 @@ import Image from 'next/image'
 import { MdOutlineFavoriteBorder } from 'react-icons/md'
 import { CiSearch } from 'react-icons/ci'
 import { CiShare2 } from 'react-icons/ci'
+import { useDispatch } from 'react-redux'
+import { addItemToWishlist } from '../../redux-setup/wishlistSlice'
 import images from 'constants/images'
 import Loaders from '@components/loaders/Loaders'
+import { toast } from 'react-toastify'
 
 const ProductCard = ({ item, fromSingleProduct }) => {
   const [singleImage, setSingleImage] = useState('')
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setSingleImage(item?.image)
   }, [])
+
+  const addToWishlist = (item) => {
+    dispatch(addItemToWishlist(item))
+    toast.success('Item added to wishlist', {
+      position: 'top-center',
+    })
+  }
 
   return (
     <>
@@ -65,6 +76,7 @@ const ProductCard = ({ item, fromSingleProduct }) => {
                   fontSize={25}
                   color="#d3d3d3"
                   className={Styles.icon}
+                  onClick={() => addToWishlist(item)}
                 />
               </span>
               <span className={Styles.border_svg}>
