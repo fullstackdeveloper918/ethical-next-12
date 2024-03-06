@@ -10,6 +10,7 @@ import {
 import Button from '../Button/Button'
 import { useRouter } from 'next/router'
 import { setStep1State, setreached2ndStep } from '../../redux-setup/cartSlice'
+import { GrEdit } from 'react-icons/gr'
 
 const SwagOrderForm = ({ isBilling }) => {
   const router = useRouter()
@@ -183,6 +184,16 @@ const SwagOrderForm = ({ isBilling }) => {
             </>
           )}
         </Formik>
+        {isBilling && (
+          <button
+            type="button"
+            onClick={() => router.push('/cart')}
+            className="edit_button"
+          >
+            <GrEdit />
+            Edit
+          </button>
+        )}
       </div>
     </>
   )

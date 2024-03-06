@@ -40,14 +40,7 @@ const BillingAddress = () => {
                 <p className={Styles.form_labelwrap}>Other Info</p>
                 <SwagOrderForm isBilling />
 
-                <button
-                  type="button"
-                  onClick={() => router.push('/cart')}
-                  className="edit_button"
-                >
-                  <GrEdit />
-                  Edit
-                </button>
+               
               </div>
 
               {/* Shipping address  css writen in cart module*/}
