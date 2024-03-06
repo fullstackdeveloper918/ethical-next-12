@@ -71,6 +71,7 @@ const Product = () => {
       setTotalPages(productsData?.data?.last_page)
     }
   }, [productsData])
+  let length = productsData?.data?.data?.length
 
   return (
     <>
@@ -91,8 +92,15 @@ const Product = () => {
               {' '}
               <Loaders />
             </div>
-          ) : (
+          ) : length ? (
             <Products response={productsData} loading={Isloading} />
+          ) : (
+            <div
+              className={Styles.collection_wrapper}
+              style={{ marginBottom: '30px' }}
+            >
+              no Products found
+            </div>
           )}
           {productsData && totalData > 10 && (
             <div className={Styles.pagination_section}>
