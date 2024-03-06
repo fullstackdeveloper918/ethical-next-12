@@ -11,12 +11,19 @@ const wishlistSlice = createSlice({
   initialState,
   reducers: {
     addItemToWishlist(state, action) {
-      console.log(action.payload, 'add to wishlist')
-      state.items.push(action.payload)
+      const newItem = action.payload
+      console.log(newItem.id, 'redux wishlist added')
+      const isItemInWishlist = state.items.find(
+        (item) => item.id === newItem.id
+      )
+      if (isItemInWishlist) {
+        return state
+      }
+      state.items.push(newItem)
     },
+
     removeItemFromWishlist(state, action) {
       const itemIdToRemove = action.payload
-      state.items = state.items.filter((item) => item.id !== itemIdToRemove)
     },
     clearWishlist(state) {
       state.items = []

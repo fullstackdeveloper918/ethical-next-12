@@ -39,10 +39,10 @@ const productID = () => {
   )
 
   useEffect(() => {
-    if (country) {
+    if (country && productID) {
       loadQuery()
     }
-  }, [productID])
+  }, [productID, country])
 
   useEffect(() => {
     fetch(
@@ -79,7 +79,12 @@ const productID = () => {
         <div className={Styles.accordion_section}>
           <div className={Styles.accordion_left_container}>
             <h2>We’re serious about facts. Ask away.</h2>
-            <button onClick={() => router.push('/faq')} className={Styles.product_bottombtn}>See All FAQs</button>
+            <button
+              onClick={() => router.push('/faq')}
+              className={Styles.product_bottombtn}
+            >
+              See All FAQs
+            </button>
             <div className={Styles.accordion_container}>
               {Accordion_Data.map((data, index) => (
                 <>
@@ -97,7 +102,9 @@ const productID = () => {
                       </button>
                     </div>
                     <div className={Styles.accordion_detail}>
-                      {openIndex === index && <p className={Styles.open_accrodion}>{data.content}</p>}
+                      {openIndex === index && (
+                        <p className={Styles.open_accrodion}>{data.content}</p>
+                      )}
                     </div>
                   </div>
                 </>
@@ -109,20 +116,18 @@ const productID = () => {
               <div className={Styles.content}>
                 <div className={Styles.textContent}>
                   <div>
-                  <h2 className={Styles.title}>We’re here for you.</h2>
-                  <p className={Styles.desc}>
-                    More than a supplement subscription, we’re committed to
-                    supporting you as you grow.
-                  </p>
+                    <h2 className={Styles.title}>We’re here for you.</h2>
+                    <p className={Styles.desc}>
+                      More than a supplement subscription, we’re committed to
+                      supporting you as you grow.
+                    </p>
                   </div>
-                  <button className={Styles.product_bottombtn}>More About Our Services</button>
+                  <button className={Styles.product_bottombtn}>
+                    More About Our Services
+                  </button>
                 </div>
                 <div className={Styles.imgContent}>
-                  <Image
-                    src={images.bag_image}
-                    layout='fill'
-                    alt=""
-                  />
+                  <Image src={images.bag_image} layout="fill" alt="" />
                 </div>
               </div>
             </div>
@@ -130,22 +135,20 @@ const productID = () => {
               <div className={Styles.content}>
                 <div className={Styles.textContent}>
                   <div>
-                  <h2 className={Styles.title}>We’re here for you.</h2>
-                  <p className={Styles.desc}>
-                    You can also text or call us at:
-                  </p>
-                  <div>(877) 256-6998 | (902) 500-1086</div>
+                    <h2 className={Styles.title}>We’re here for you.</h2>
+                    <p className={Styles.desc}>
+                      You can also text or call us at:
+                    </p>
+                    <div>(877) 256-6998 | (902) 500-1086</div>
                   </div>
 
                   <div>
-                  <p className={Styles.desc}>Or reach us via email at:</p>
-                  <div>info@ethicalswag.com</div>
+                    <p className={Styles.desc}>Or reach us via email at:</p>
+                    <div>info@ethicalswag.com</div>
                   </div>
                 </div>
                 <div className={Styles.imgContentwrap}>
-                  <Image src={images.email} 
-                  layout='fill' 
-                  alt="" />
+                  <Image src={images.email} layout="fill" alt="" />
                 </div>
               </div>
             </div>
@@ -179,13 +182,13 @@ const productID = () => {
               <div className={Styles.righttopContent}>
                 <p>4/5 Stars</p>
                 <div className={Styles.stars_content}>
-                <FaStar color="#a2d061" fontSize={20} />
-                <FaStar color="#a2d061" fontSize={20} />
-                <FaStar color="#a2d061" fontSize={20} />
-                <FaStar color="#a2d061" fontSize={20} />
-                <FaStar color="#a2d061" fontSize={20} />
+                  <FaStar color="#a2d061" fontSize={20} />
+                  <FaStar color="#a2d061" fontSize={20} />
+                  <FaStar color="#a2d061" fontSize={20} />
+                  <FaStar color="#a2d061" fontSize={20} />
+                  <FaStar color="#a2d061" fontSize={20} />
                 </div>
-               <span>527 Reviews</span>
+                <span>527 Reviews</span>
               </div>
               <div className={Styles.rightBottomContent}>
                 {Review_Progress.map((data) => (
@@ -210,24 +213,24 @@ const productID = () => {
         {/* Resources Section */}
         <div className={Styles.resources_section}>
           <div className={Styles.ressource_container}>
-          <div className={Styles.left_content}>
-            <div className={Styles.textContent}>
-              <p className={Styles.ressousce_subheading}>Resources</p>
-              <h2>How can you find the best product for your company?</h2>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum is simply dummy text of the printing and
-                typesetting industry.
-              </p>
-              <div className={Styles.resources_btns}>
-                <button>View Pdf</button>
-                <button>Download Pdf</button>
+            <div className={Styles.left_content}>
+              <div className={Styles.textContent}>
+                <p className={Styles.ressousce_subheading}>Resources</p>
+                <h2>How can you find the best product for your company?</h2>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum is simply dummy text of the
+                  printing and typesetting industry.
+                </p>
+                <div className={Styles.resources_btns}>
+                  <button>View Pdf</button>
+                  <button>Download Pdf</button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className={Styles.right_content}>
-            <Image src={images.pages} width={500} height={500} alt="" />
-          </div>
+            <div className={Styles.right_content}>
+              <Image src={images.pages} width={500} height={500} alt="" />
+            </div>
           </div>
         </div>
       </section>

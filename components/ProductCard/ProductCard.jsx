@@ -7,7 +7,10 @@ import { MdOutlineFavoriteBorder } from 'react-icons/md'
 import { CiSearch } from 'react-icons/ci'
 import { CiShare2 } from 'react-icons/ci'
 import { useDispatch } from 'react-redux'
-import { addItemToWishlist } from '../../redux-setup/wishlistSlice'
+import {
+  addItemToWishlist,
+  removeItemFromWishlist,
+} from '../../redux-setup/wishlistSlice'
 import images from 'constants/images'
 import Loaders from '@components/loaders/Loaders'
 import { toast } from 'react-toastify'
@@ -21,7 +24,10 @@ const ProductCard = ({ item, fromSingleProduct }) => {
   }, [])
 
   const addToWishlist = (item) => {
+    console.log(item, 'abhishek')
     dispatch(addItemToWishlist(item))
+    dispatch(removeItemFromWishlist(item?.id))
+
     toast.success('Item added to wishlist', {
       position: 'top-center',
     })
