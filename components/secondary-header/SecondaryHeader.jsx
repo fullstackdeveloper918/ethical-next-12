@@ -29,7 +29,11 @@ import { Input } from '@/components/ui/input'
 import useFetch from '@lib/useFetch'
 import { selectCountry } from 'redux-setup/countrySlice'
 import { debounce } from '@lib/utils'
-import { addCategory } from 'redux-setup/categorySlice'
+import {
+  addCategory,
+  getAllCategories,
+  setSubCategories,
+} from 'redux-setup/categorySlice'
 const countries = [
   {
     id: 1,
@@ -43,6 +47,9 @@ const countries = [
   },
 ]
 const SecondaryHeader = () => {
+  const popupRef = useRef(null)
+  const dispatch = useDispatch()
+  const router = useRouter()
   const [showResults, setShowResults] = useState(false)
   const [searchProduct, setSearchProduct] = useState('')
   const [data, setData] = useState([])
@@ -53,15 +60,16 @@ const SecondaryHeader = () => {
   const [country, setCountry] = useState('usa')
   const wishlistItems = useSelector((state) => state.wishlist.items)
   const [screenSize, setScreenSize] = useState(992)
-  const popupRef = useRef(null)
-  const dispatch = useDispatch()
-  const router = useRouter()
+
   const cartItems = useSelector((state) => state.cart.cartItems.length)
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
+  const allCategories = useSelector((state) => state.category.allCategories)
+  const subCategories = useSelector((state) => state.category.subCategories)
   const filteredProducts = data?.filter((product) =>
     product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
   )
+  const optimizedFn = useCallback(debounce(handleChange), [])
 
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products?q=${searchProduct}`,
@@ -69,6 +77,27 @@ const SecondaryHeader = () => {
       method: 'get',
     }
   )
+
+  const [
+    getCategories,
+    {
+      response: categoriesRes,
+      loading: categoriesLoading,
+      error: categoriesError,
+    },
+  ] = useFetch(`category`, {
+    method: 'get',
+  })
+
+  useEffect(() => {
+    getCategories()
+  }, [])
+
+  useEffect(() => {
+    if (categoriesRes?.data) {
+      dispatch(getAllCategories(categoriesRes?.data))
+    }
+  }, [categoriesRes])
 
   const handleResize = () => {
     setScreenSize(window.innerWidth)
@@ -87,16 +116,20 @@ const SecondaryHeader = () => {
     // .then((json) => setSuggestions(json.data.items))
   }
 
-  const optimizedFn = useCallback(debounce(handleChange), [])
-
-  const handleCategory = (value) => {
-    setOpenLinks(value)
-  }
-
   const handleClick = (item) => {
     console.log(item, 'item')
     dispatch(addCategory(item))
     router.push('/products')
+  }
+
+  const handleCart = () => {
+    if (reached3rdStep) {
+      router.push('/billing-address')
+    } else if (reached2ndStep) {
+      router.push('/shipping')
+    } else {
+      router.push('/cart')
+    }
   }
 
   useEffect(() => {
@@ -111,12 +144,6 @@ const SecondaryHeader = () => {
   }, [country])
 
   useEffect(() => {
-    axios
-      .get('https://test.cybersify.tech/Eswag/public/api/category')
-      .then((data) => setCategory(data?.data?.data))
-  }, [])
-
-  useEffect(() => {
     if (inputbtn) {
       document.documentElement.classList.add('inputAdded')
     } else {
@@ -127,14 +154,8 @@ const SecondaryHeader = () => {
     }
   }, [inputbtn])
 
-  const handleCart = () => {
-    if (reached3rdStep) {
-      router.push('/billing-address')
-    } else if (reached2ndStep) {
-      router.push('/shipping')
-    } else {
-      router.push('/cart')
-    }
+  const handleSetSubCategory = (item) => {
+    dispatch(setSubCategories(allCategories[item]?.matchingValues))
   }
 
   return (
@@ -182,15 +203,13 @@ const SecondaryHeader = () => {
                     {/* <span>
                       <FaChevronDown fontSize={12} />
                     </span> */}
-                    <div className={styles.header_menu}>
-                      {Object.keys(category).map((item) => (
-                        <>
-                          <div className={styles.mega_menu}>
+                    {allCategories && (
+                      <div className={styles.header_menu}>
+                        {Object.keys(allCategories).map((item, i) => (
+                          <div className={styles.mega_menu} key={i}>
                             <span
                               className={`${styles.shop_menu} ${styles.shop_menuWrap}`}
-                              onClick={() =>
-                                handleClick(category[item].matchingValues)
-                              }
+                              onClick={() => handleSetSubCategory(item)}
                             >
                               {item}
                             </span>
@@ -206,9 +225,9 @@ const SecondaryHeader = () => {
                                   ))}
                                 </ul> */}
                           </div>
-                        </>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </>
               </div>

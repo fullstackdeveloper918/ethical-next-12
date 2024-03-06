@@ -5,13 +5,15 @@ import { useDispatch } from 'react-redux'
 import { filterPrice } from '../../redux-setup/FiltersSlice'
 import { RxCross2 } from 'react-icons/rx'
 import { useSelector } from 'react-redux'
+import { setActiveFilters } from 'redux-setup/categorySlice'
 
 const FilterPanel = ({ setActiveFilter }) => {
   const dispatch = useDispatch()
   const [inputSlider, setInputSlider] = useState(0)
   const subCategoryData = useSelector((state) => state.category.categories)
+  const activeFilters = useSelector((state) => state.category.activeFilters)
   const [addList, setAddList] = useState([])
-  const [openIndex, setOpenIndex] = useState(null)
+  const [openIndex, setOpenIndex] = useState(0)
   const [isActive, setIsActive] = useState(true)
   const [price, setPrice] = useState(50)
   const [isChecked, setIsChecked] = useState({
@@ -23,8 +25,7 @@ const FilterPanel = ({ setActiveFilter }) => {
     toteBags: false,
     waterBottles: false,
   })
-
-  console.log(subCategoryData, 'subCategoryData')
+  const [filtersState, setFiltersState] = useState([])
 
   useEffect(() => {
     dispatch(filterPrice(inputSlider))
@@ -44,12 +45,20 @@ const FilterPanel = ({ setActiveFilter }) => {
     setIsActive(!isActive)
   }
 
+  useEffect(() => {
+    dispatch(setActiveFilters(filtersState))
+  }, [filtersState])
+
   const handleAddLists = (text) => {
-    setAddList((prev) => ({
-      ...prev,
-    }))
+    if (filtersState.includes(text?.apikey)) {
+      let f = filtersState.filter((item) => item !== text?.apikey)
+      setFiltersState(f)
+    } else {
+      setFiltersState((prevC) => [...prevC, text?.apikey])
+    }
   }
 
+  const subCategories = useSelector((state) => state.category.subCategories)
   return (
     <>
       <div className={Styles.filterPanel}>
@@ -59,7 +68,7 @@ const FilterPanel = ({ setActiveFilter }) => {
         </div>
         {/* <div className={Styles.filterPanel_Product_Section}></div> */}
         <div className={Styles.filterPanel_ProductCollection_list}>
-          {LIST.map((item, index) => (
+          {LIST(subCategories).map((item, index) => (
             <>
               <div className={Styles.accordion}>
                 <div className={Styles.accordion_item}>
@@ -130,7 +139,7 @@ const FilterPanel = ({ setActiveFilter }) => {
                               />
                               <label
                                 htmlFor={`checkbox_id_${index}`}
-                                onClick={() => handleAddLists(child.label)}
+                                onClick={() => handleAddLists(child)}
                               >
                                 {child.label}
                               </label>

@@ -1,8 +1,6 @@
 import Styles from './Dot.module.css'
 import Image from 'next/image'
 const Dot = ({ color, imageUrl }) => {
-  console.log(color, imageUrl, 'dot')
-
   return (
     <>
       {color && (

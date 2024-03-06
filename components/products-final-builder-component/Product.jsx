@@ -20,6 +20,7 @@ const Product = () => {
   const [Isloading, setIsloading] = useState(false)
 
   const country = useSelector((state) => state.country.country)
+  const activeFilters = useSelector((state) => state.category.activeFilters)
 
   const selectedOptionValue = useSelector(
     (state) => state.cart.selectedOptionValue
@@ -32,7 +33,9 @@ const Product = () => {
         const response = await axios.get(
           `https://test.cybersify.tech/Eswag/public/api/products?page=${
             currentPage ? currentPage : 1
-          }&pageSize=${10}&${countryTosend}=1&search_title=${value}&${selectedOptionValue}=desc`
+          }&pageSize=${10}&${countryTosend}=1&search_title=${value}&${selectedOptionValue}=desc&collection_ids=${
+            activeFilters[0] ? activeFilters[0] : ''
+          }`
         )
         setProductsData(response.data)
         window.scrollTo({
@@ -59,7 +62,7 @@ const Product = () => {
 
   useEffect(() => {
     getProducts()
-  }, [currentPage, countryTosend, selectedOptionValue])
+  }, [currentPage, countryTosend, selectedOptionValue, activeFilters])
 
   useEffect(() => {
     if (productsData) {
@@ -68,6 +71,7 @@ const Product = () => {
       setTotalPages(productsData?.data?.last_page)
     }
   }, [productsData])
+  let length = productsData?.data?.data?.length
 
   return (
     <>
@@ -88,8 +92,15 @@ const Product = () => {
               {' '}
               <Loaders />
             </div>
-          ) : (
+          ) : length ? (
             <Products response={productsData} loading={Isloading} />
+          ) : (
+            <div
+              className={Styles.collection_wrapper}
+              style={{ marginBottom: '30px' }}
+            >
+              no Products found
+            </div>
           )}
           {productsData && totalData > 10 && (
             <div className={Styles.pagination_section}>
