@@ -97,9 +97,16 @@ const Product = () => {
           ) : (
             <div
               className={Styles.collection_wrapper}
-              style={{ marginBottom: '30px' }}
+              style={{
+                marginBottom: '30px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontSize: '3rem',
+                color: '#a2d061',
+              }}
             >
-              no Products found
+              No Products Found
             </div>
           )}
           {productsData && totalData > 10 && (

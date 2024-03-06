@@ -156,6 +156,7 @@ const SecondaryHeader = () => {
 
   const handleSetSubCategory = (item) => {
     dispatch(setSubCategories(allCategories[item]?.matchingValues))
+    router.push('/products')
   }
 
   return (
