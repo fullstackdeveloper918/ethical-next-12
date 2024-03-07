@@ -23,6 +23,15 @@
   justify-content: center;
   padding: 12px;
 }
+.open_accordionWrap{
+  max-height: 250px;
+  min-height: 50px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.accordion>div.open_accordionWrap:last-child {
+  margin-bottom: 20px;
+}
 
 .filter_btn > span:nth-child(2) {
   margin-left: 0.5rem;
@@ -211,7 +220,33 @@
   align-items: flex-start;
   justify-content: end;
   margin-left: 32%;
-  min-height: 550px;
+  min-height: 540px;
+}
+/* scroll_bar */
+.open_accordionWrap::-webkit-scrollbar,
+.filterPanel::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+}
+
+/* Track */
+.open_accordionWrap::-webkit-scrollbar-track,
+.filterPanel::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  margin:20px 0px;
+  height:20px;
+}
+ 
+/* Handle */
+.open_accordionWrap::-webkit-scrollbar-thumb,
+.filterPanel::-webkit-scrollbar-thumb {
+  background: #b4b4b4; 
+}
+
+/* Handle on hover */
+.open_accordionWrap::-webkit-scrollbar-thumb:hover,
+.filterPanel::-webkit-scrollbar-thumb:hover {
+  background: #979797; 
 }
 
 .category_section .filter_panel_wrap {
@@ -839,6 +874,9 @@
   margin-top: 2.5rem;
   border: 1px solid #d8d8d8;
   border-radius: 30px;
+  min-height: 540px;
+  max-height: 550px;
+  overflow-y: auto;
 }
 
 .filterPanel_title {
