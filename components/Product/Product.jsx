@@ -11,7 +11,6 @@ import { setCartItems } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
 
 const Product = ({ product, loading, error }) => {
-  console.log(product, 'productproduct single')
   const dispatch = useDispatch()
   const [color, setColor] = useState('')
   const [ReadMore, setIsReadMore] = useState(false)
@@ -142,8 +141,6 @@ const Product = ({ product, loading, error }) => {
       : custumize === 'Full Color Decoration'
       ? 4
       : 0
-
-  console.log(product, 'product from cart')
 
   const handleAddToCart = (e) => {
     e.preventDefault()
@@ -305,7 +302,6 @@ const Product = ({ product, loading, error }) => {
                         Object.entries(product?.colours).map(
                           ([color, imageUrl]) => (
                             <>
-                              {console.log(color, 'colorcode')}
                               <Dot color={color} imageUrl={imageUrl} />
                             </>
                           )

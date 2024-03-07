@@ -20,6 +20,7 @@ import images from '../../constants/images'
 
 const productID = () => {
   const router = useRouter()
+  
   const [openIndex, setOpenIndex] = useState(null)
   const { query } = router ?? {}
   const { productID } = query ?? {}

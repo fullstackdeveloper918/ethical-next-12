@@ -48,7 +48,7 @@ const SecondaryHeader = () => {
   const popupRef = useRef(null)
   const dispatch = useDispatch()
   const router = useRouter() ///products/[productID]
-  console.log(router, 'routerrouter')
+
   const [showResults, setShowResults] = useState(false)
   const [searchProduct, setSearchProduct] = useState('')
   const [data, setData] = useState([])
@@ -70,7 +70,7 @@ const SecondaryHeader = () => {
     product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
   )
   const optimizedFn = useCallback(debounce(handleChange), [])
-
+  const getSingleProductPageRoute = router.asPath.includes('/products/')
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products?q=${searchProduct}`,
     {
@@ -208,10 +208,7 @@ const SecondaryHeader = () => {
                       <div
                         className={styles.header_menu_wrapper}
                         style={{
-                          top:
-                            router.pathname === 'products/[productID]'
-                              ? '121px'
-                              : '71px',
+                          top: getSingleProductPageRoute ? '121px' : '71px',
                         }}
                       >
                         <div className={styles.header_menu}>
