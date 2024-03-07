@@ -17,7 +17,6 @@ import Loaders from '@components/loaders/Loaders'
 import { toast } from 'react-toastify'
 import { RxCross1 } from 'react-icons/rx'
 import { useRouter } from 'next/router'
-
 const ProductCard = ({ item, fromSingleProduct }) => {
   const [singleImage, setSingleImage] = useState('')
   const [shareIcons, setShareIcons] = useState(false)
@@ -25,16 +24,13 @@ const ProductCard = ({ item, fromSingleProduct }) => {
   const router = useRouter()
   const dispatch = useDispatch()
   const wishListItems = useSelector((state) => state.wishlist.items)
-
   useEffect(() => {
     setSingleImage(item?.image)
   }, [])
-
   const addToWishlist = (item) => {
     const isInWishlist = wishListItems.some(
       (wishlistItem) => wishlistItem.id === item.id
     )
-
     if (isInWishlist) {
       // If the item is already in the wishlist, remove it
       setFavoriteIconColor(false)
@@ -53,7 +49,6 @@ const ProductCard = ({ item, fromSingleProduct }) => {
       })
     }
   }
-
   return (
     <>
       {!item ? (
@@ -76,7 +71,6 @@ const ProductCard = ({ item, fromSingleProduct }) => {
               alt="products_images"
             />
           )}
-
           <div className={Styles.product_card_content}>
             <h4 className={Styles.title}>{item?.product_title}</h4>
             {item?.unit_price ? (
@@ -98,16 +92,15 @@ const ProductCard = ({ item, fromSingleProduct }) => {
                 })}
             </div>
           </div>
-
           <div className={Styles.hidden_icons}>
             <div className={Styles.icons}>
               <span
                 className={Styles.border_svg}
-                style={{ backgroundColor: favoriteIconColor ? '#a2d061' : '' }}
+                style={{ backgroundColor: favoriteIconColor ? '#A2D061' : '' }}
               >
                 <MdOutlineFavoriteBorder
                   fontSize={25}
-                  // color="#d3d3d3"
+                  // color="#D3D3D3"
                   className={`${Styles.icon} ${
                     favoriteIconColor ? Styles.favActive : ''
                   }`}
@@ -116,25 +109,25 @@ const ProductCard = ({ item, fromSingleProduct }) => {
               </span>
               {/* <span className={Styles.border_svg}>
                 <CiSearch
-                  fontSize={25} 
-                  color="#d3d3d3"
+                  fontSize={25}
+                  color="#D3D3D3"
                   className={Styles.icon}
                 />
               </span> */}
-              {/* <span className={Styles.border_svg}>
+              <span className={Styles.border_svg}>
                 <CiShare2
                   fontSize={25}
-                  color="#d3d3d3"
+                  color="#D3D3D3"
                   className={Styles.icon}
-                  onClick={() => setShareIcons(!shareIcons)}
+                  onClick={() => setShareIcons(true)}
                 />
-              </span> */}
+              </span>
             </div>
-            {/* {shareIcons && (
+            {shareIcons && (
               <>
-                <Share />
+                <Share setShareIcons={setShareIcons}/>
               </>
-            )} */}
+            )}
             <Link
               href={fromSingleProduct ? `${item?.id}` : `products/${item?.id}`}
             >
@@ -146,5 +139,4 @@ const ProductCard = ({ item, fromSingleProduct }) => {
     </>
   )
 }
-
 export default ProductCard
