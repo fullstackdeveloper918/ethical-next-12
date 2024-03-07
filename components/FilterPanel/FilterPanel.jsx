@@ -128,7 +128,7 @@ const FilterPanel = ({ setActiveFilter }) => {
                                 htmlFor={`checkbox_id_${index}`}
                                 onClick={() => handleAddLists(child)}
                               >
-                                {JSON.parse(child.label)}
+                                {child.label}
                               </label>
                             </li>
                           </div>
