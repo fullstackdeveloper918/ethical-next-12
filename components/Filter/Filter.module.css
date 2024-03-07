@@ -872,9 +872,9 @@
 .accordion {
   width: 100%;
   width: 100%;
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-between; */
 }
 .accordion > div:first-child {
   flex: 1 0 100%;
