@@ -813,12 +813,17 @@
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   border-color: #a2d061;
 }
-.border_svg.favactive .icon:first-child {
+
+/* .favActive {
+  background-color: #a2d061;
+} */
+
+.border_svg.favactive .icon {
   background-color: #a2d061 !important;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1) !important;
   border-color: #a2d061 !important;
 }
-.favactive .icon:first-child {
+.icon.favActive {
   filter: brightness(100) !important;
   fill: #fff !important;
 }
