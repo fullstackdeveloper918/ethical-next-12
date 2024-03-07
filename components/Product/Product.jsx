@@ -135,6 +135,11 @@ const Product = ({ product, loading, error }) => {
     setActiveBtn(index)
   }
 
+
+  useEffect(() => {
+   console.log('very poor')
+  },[])
+
   const customisazionPrice =
     custumize === 'Embroidery'
       ? 2
@@ -243,7 +248,7 @@ const Product = ({ product, loading, error }) => {
                     JSON.parse(product?.certBy).map((data) => (
                       <>
                         <div className={Styles.tag}>
-                          <p>{data}</p>
+                          <p>{data.product?.certBy}</p>
                         </div>
                       </>
                     ))}
