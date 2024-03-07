@@ -83,7 +83,7 @@ const FilterPanel = ({ setActiveFilter }) => {
                     </div>
                   </div>
                 </div>
-                {isActive &&
+                {/* {isActive &&
                   openIndex === index &&
                   item.children.map((child, index) => (
                     <>
@@ -135,7 +135,7 @@ const FilterPanel = ({ setActiveFilter }) => {
                         </>
                       )}
                     </>
-                  ))}
+                  ))} */}
                 {isActive && openIndex === index && <div className={Styles.open_accordionWrap}>
                   {console.log(index === openIndex, 'mani')}
                 
