@@ -14,9 +14,7 @@ const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
   const [color, setColor] = useState('')
   const [ReadMore, setIsReadMore] = useState(false)
-  const [orderQuantity, setOrderQuantity] = useState(
-    +product?.column_1_qty || 200
-  )
+  const [orderQuantity, setOrderQuantity] = useState(+actualMinQty || 100)
   const [price, setPrice] = useState(0)
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
   const [activeBtn, setActiveBtn] = useState(0)
@@ -34,13 +32,89 @@ const Product = ({ product, loading, error }) => {
     price: null,
     id: null,
   })
+  const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
+    useState(0)
+  const [actualMinQty, setActualMinQty] = useState(0)
   const [isItemInCart, setIsItemInCart] = useState(false)
   const country = useSelector((state) => state.country.country)
+
+  let isProductIncludesltm_final = product?.ltm_final.includes('Y')
+  let ltm_price = country === 'usa' ? product?.ltm_usd : product?.ltm_cad
+  let col1Price =
+    country === 'usa'
+      ? product?.column_1_retail_price_usd
+      : product?.column_1_retail_price_cad
+  let col2Price =
+    country === 'usa'
+      ? product?.column_2_retail_price_usd
+      : product?.column_2_retail_price_cad
+  let col3Price =
+    country === 'usa'
+      ? product?.column_3_retail_price_usd
+      : product?.column_3_retail_price_cad
+  let col4Price =
+    country === 'usa'
+      ? product?.column_4_retail_price_usd
+      : product?.column_4_retail_price_cad
+  let col5Price =
+    country === 'usa'
+      ? product?.column_5_retail_price_usd
+      : product?.column_5_retail_price_cad
+  let col1Qty = product?.column_1_qty
+  let col2Qty = product?.column_2_qty
+  let col3Qty = product?.column_3_qty
+  let col4Qty = product?.column_4_qty
+  let col5Qty = product?.column_5_qty
+
+  let supplier_fee =
+    country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
+  const getPrice = () => {
+    if (isProductIncludesltm_final) {
+      if (+orderQuantity < +product?.column_1_qty) {
+        setPriceWithoutCustomizations(+col1Price + ltm_price / +orderQuantity)
+      } else if (+orderQuantity > +product?.column_1_qty) {
+        setPriceWithoutCustomizations(+col1Price + ltm_price / +orderQuantity)
+        if (+orderQuantity < +col2Qty) {
+          setPriceWithoutCustomizations(+col1Price)
+        } else if (+orderQuantity < +col3Qty) {
+          setPriceWithoutCustomizations(+col2Price)
+        } else if (+orderQuantity < +col4Qty) {
+          setPriceWithoutCustomizations(+col3Price)
+        } else if (+orderQuantity < +col5Qty) {
+          setPriceWithoutCustomizations(+col4Price)
+        } else {
+          setPriceWithoutCustomizations(+col5Price)
+        }
+      }
+    } else {
+      if (+orderQuantity < +col2Qty) {
+        setPriceWithoutCustomizations(+col1Price)
+      } else if (+orderQuantity < +col3Qty) {
+        setPriceWithoutCustomizations(+col2Price)
+      } else if (+orderQuantity < +col4Qty) {
+        setPriceWithoutCustomizations(+col3Price)
+      } else if (+orderQuantity < +col5Qty) {
+        setPriceWithoutCustomizations(+col4Price)
+      } else {
+        setPriceWithoutCustomizations(+col5Price)
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (product) {
+      let minQtyy = isProductIncludesltm_final
+        ? +product?.column_1_qty / 2
+        : +product?.column_1_qty
+      setActualMinQty(Math.round(minQtyy))
+    }
+  }, [product])
 
   useEffect(() => {
     let total =
       +sizeQuantity.S + +sizeQuantity.M + +sizeQuantity.L + +sizeQuantity.XL
-    setOrderQuantity(total)
+    setOrderQuantity(total > actualMinQty ? total : actualMinQty)
+    getPrice()
   }, [sizeQuantity])
 
   let handleQuantitySize = (e) => {
@@ -194,6 +268,26 @@ const Product = ({ product, loading, error }) => {
 
   const reqImageArray =
     country === 'usa' ? product?.images_us : product?.images_ca
+  //  supplier_fees rc_mcq_source ltm_final
+
+  // column_1_qty column_2_qty column_3_qty column_4_qty column_5_qty
+  useEffect(() => {
+    getPrice()
+  }, [orderQuantity])
+
+  console.log(priceWithoutCustomizations, 'priceWithoutCustomizations')
+
+  console.log({
+    isProductIncludesltm_final,
+    ltm_price,
+    col1Price,
+    col2Price,
+    col3Price,
+    col4Price,
+    col5Price,
+  })
+
+  console.log(product, 'productproduct')
 
   return (
     <>
@@ -254,9 +348,9 @@ const Product = ({ product, loading, error }) => {
                 </div>
                 <div className={Styles.reviews}>
                   <div className={Styles.star_review}>
-                    <span className={Styles.star_review_images}>
+                    {/* <span className={Styles.star_review_images}>
                       {product?.emoji_ratings}
-                    </span>
+                    </span> */}
                   </div>
                   <div className={Styles.text_review}>
                     <span className={Styles.text_review_content}>
@@ -509,9 +603,9 @@ const Product = ({ product, loading, error }) => {
                     value={orderQuantity}
                     onChange={setQuantity}
                     disabled
-                    min={product?.column_1_qty}
+                    min={actualMinQty}
                   />
-                  <span>(minimum {+product?.column_1_qty} units required)</span>
+                  <span>(minimum {+actualMinQty} units required)</span>
                 </div>
                 <div className={Styles.select_size_quantity}>
                   <div className={Styles.common_header}>
@@ -574,7 +668,7 @@ const Product = ({ product, loading, error }) => {
                 </div>
                 <div className={Styles.standard_down_line}></div>
                 <div className={Styles.price_section}>
-                  <p>{`Price ${+price + +customisazionPrice}/unit`}</p>
+                  <p>{`Price ${+priceWithoutCustomizations}/unit`}</p>
                   <p>
                     $
                     {(orderQuantity * (+price + +customisazionPrice)).toFixed(
