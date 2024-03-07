@@ -39,7 +39,6 @@ const Product = ({ product, loading, error }) => {
   const country = useSelector((state) => state.country.country)
 
   let isProductIncludesltm_final = product?.ltm_final.includes('Y')
-  let ltm_price = country === 'usa' ? product?.ltm_usd : product?.ltm_cad
   let col1Price =
     country === 'usa'
       ? product?.column_1_retail_price_usd
