@@ -9,6 +9,8 @@ const SingleProduct = ({ product }) => {
   const [starProductsImage, setStarProductImage] = useState(product?.image)
   const router = useRouter()
 
+  console.log(product, 'unit price')
+
   const handleImageOnError = () => {
     setStarProductImage(images.No_product)
   }
@@ -29,6 +31,9 @@ const SingleProduct = ({ product }) => {
       </div>
       <div className={styles.product_name}>
         {product?.product_title || 'fghjk'}
+      </div>
+      <div className={styles.product_price}>
+        <p>{product.unit_price}</p>
       </div>
       <div className={styles.colors_container}>
         {product?.colours &&

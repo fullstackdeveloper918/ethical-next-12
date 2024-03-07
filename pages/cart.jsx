@@ -62,7 +62,7 @@ const cart = () => {
         ) : (
           <>
             <div className={Styles.empty_card_container}>
-              <EmptyContainer />
+              <EmptyContainer data="Cart" />
             </div>
           </>
         )}

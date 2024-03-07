@@ -21,7 +21,7 @@ const wishlist = () => {
       <SecondaryHeader />
       <div className={filterStyles.wish_container}>
         <div className={filterStyles.collection_container}>
-          {wishlistItems &&
+          {wishlistItems.length > 0 ? (
             wishlistItems.map((item) => (
               <>
                 <ProductCard item={item} key={item.id} />
@@ -40,7 +40,12 @@ const wishlist = () => {
                 </div>
               </div> */}
               </>
-            ))}
+            ))
+          ) : (
+            <>
+              <EmptyContainer data="Wishlist" />
+            </>
+          )}
         </div>
       </div>
       <Footer />
