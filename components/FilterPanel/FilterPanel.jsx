@@ -83,117 +83,72 @@ const FilterPanel = ({ setActiveFilter }) => {
                     </div>
                   </div>
                 </div>
-                {/* {isActive &&
-                  openIndex === index &&
-                  item.children.map((child, index) => (
-                    <>
-                      {item.label === 'Price' ? (
+
+                {isActive && openIndex === index && (
+                  <div className={Styles.open_accordionWrap}>
+                    {console.log(index === openIndex, 'mani')}
+
+                    {isActive &&
+                      openIndex === index &&
+                      item.children.map((child, index) => (
                         <>
-                          <div
-                            className={Styles.filter_panel_price_input_section}
-                          >
-                            <input
-                              type="range"
-                              className={Styles.filter_panel_price_input}
-                              min={child.minPrice}
-                              max={child.maxPrice}
-                              value={inputSlider}
-                              onChange={(e) => setInputSlider(e.target.value)}
-                            />
-                            <div className={Styles.filter_panel_textInput}>
-                              <input
-                                type="text"
-                                value={inputSlider}
-                                onChange={(e) => setInputSlider(e.target.value)}
-                              />
-                              <p>${child.maxPrice}</p>
-                            </div>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          <div className={Styles.custom_checkbox}>
-                            <li
-                              key={item.id}
-                              className={Styles.filterPanel_list_item}
-                            >
-                              <input
-                                type="checkbox"
-                                id={`checkbox_id_${index}`}
-                                name={child.label}
-                                checked={isChecked[item.label]}
-                                onChange={handleCheckboxChange}
-                              />
-                              <label
-                                htmlFor={`checkbox_id_${index}`}
-                                onClick={() => handleAddLists(child)}
+                          {item.label === 'Price' ? (
+                            <>
+                              <div
+                                className={
+                                  Styles.filter_panel_price_input_section
+                                }
                               >
-                                {child.label}
-                              </label>
-                            </li>
-                          </div>
+                                <input
+                                  type="range"
+                                  className={Styles.filter_panel_price_input}
+                                  min={child.minPrice}
+                                  max={child.maxPrice}
+                                  value={inputSlider}
+                                  onChange={(e) =>
+                                    setInputSlider(e.target.value)
+                                  }
+                                />
+                                <div className={Styles.filter_panel_textInput}>
+                                  <input
+                                    type="text"
+                                    value={inputSlider}
+                                    onChange={(e) =>
+                                      setInputSlider(e.target.value)
+                                    }
+                                  />
+                                  <p>${child.maxPrice}</p>
+                                </div>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className={Styles.custom_checkbox}>
+                                <li
+                                  key={item.id}
+                                  className={Styles.filterPanel_list_item}
+                                >
+                                  <input
+                                    type="checkbox"
+                                    id={`checkbox_id_${index}`}
+                                    name={child.label}
+                                    checked={isChecked[item.label]}
+                                    onChange={handleCheckboxChange}
+                                  />
+                                  <label
+                                    htmlFor={`checkbox_id_${index}`}
+                                    onClick={() => handleAddLists(child)}
+                                  >
+                                    {child.label}
+                                  </label>
+                                </li>
+                              </div>
+                            </>
+                          )}
                         </>
-                      )}
-                    </>
-                  ))} */}
-                {isActive && openIndex === index && <div className={Styles.open_accordionWrap}>
-                  {console.log(index === openIndex, 'mani')}
-                
-                {isActive &&
-                  openIndex === index &&
-                  item.children.map((child, index) => (
-                    <>
-                      {item.label === 'Price' ? (
-                        <>
-                          <div
-                            className={Styles.filter_panel_price_input_section}
-                          >
-                            <input
-                              type="range"
-                              className={Styles.filter_panel_price_input}
-                              min={child.minPrice}
-                              max={child.maxPrice}
-                              value={inputSlider}
-                              onChange={(e) => setInputSlider(e.target.value)}
-                            />
-                            <div className={Styles.filter_panel_textInput}>
-                              <input
-                                type="text"
-                                value={inputSlider}
-                                onChange={(e) => setInputSlider(e.target.value)}
-                              />
-                              <p>${child.maxPrice}</p>
-                            </div>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                        
-                          <div className={Styles.custom_checkbox}>
-                            <li
-                              key={item.id}
-                              className={Styles.filterPanel_list_item}
-                            >
-                              <input
-                                type="checkbox"
-                                id={`checkbox_id_${index}`}
-                                name={child.label}
-                                checked={isChecked[item.label]}
-                                onChange={handleCheckboxChange}
-                              />
-                              <label
-                                htmlFor={`checkbox_id_${index}`}
-                                onClick={() => handleAddLists(child)}
-                              >
-                                {child.label}
-                              </label>
-                            </li>
-                          </div>
-                        </>
-                      )}
-                    </>
-                  ))}
-                  </div>}
+                      ))}
+                  </div>
+                )}
               </div>
             </>
           ))}
