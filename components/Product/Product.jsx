@@ -13,11 +13,8 @@ import { toast } from 'react-toastify'
 const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
   const [color, setColor] = useState('')
-  const [singleImage, setSingleImage] = useState('')
   const [ReadMore, setIsReadMore] = useState(false)
-  const [orderQuantity, setOrderQuantity] = useState(
-    +product?.column_1_qty || 200
-  )
+  const [orderQuantity, setOrderQuantity] = useState(+actualMinQty || 100)
   const [price, setPrice] = useState(0)
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
   const [activeBtn, setActiveBtn] = useState(0)
@@ -35,13 +32,88 @@ const Product = ({ product, loading, error }) => {
     price: null,
     id: null,
   })
+  const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
+    useState(0)
+  const [actualMinQty, setActualMinQty] = useState(0)
   const [isItemInCart, setIsItemInCart] = useState(false)
   const country = useSelector((state) => state.country.country)
+
+  let isProductIncludesltm_final = product?.ltm_final.includes('Y')
+  let col1Price =
+    country === 'usa'
+      ? product?.column_1_retail_price_usd
+      : product?.column_1_retail_price_cad
+  let col2Price =
+    country === 'usa'
+      ? product?.column_2_retail_price_usd
+      : product?.column_2_retail_price_cad
+  let col3Price =
+    country === 'usa'
+      ? product?.column_3_retail_price_usd
+      : product?.column_3_retail_price_cad
+  let col4Price =
+    country === 'usa'
+      ? product?.column_4_retail_price_usd
+      : product?.column_4_retail_price_cad
+  let col5Price =
+    country === 'usa'
+      ? product?.column_5_retail_price_usd
+      : product?.column_5_retail_price_cad
+  let col1Qty = product?.column_1_qty
+  let col2Qty = product?.column_2_qty
+  let col3Qty = product?.column_3_qty
+  let col4Qty = product?.column_4_qty
+  let col5Qty = product?.column_5_qty
+
+  let supplier_fee =
+    country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
+  const getPrice = () => {
+    if (isProductIncludesltm_final) {
+      if (+orderQuantity < +product?.column_1_qty) {
+        setPriceWithoutCustomizations(+col1Price + ltm_price / +orderQuantity)
+      } else if (+orderQuantity > +product?.column_1_qty) {
+        setPriceWithoutCustomizations(+col1Price + ltm_price / +orderQuantity)
+        if (+orderQuantity < +col2Qty) {
+          setPriceWithoutCustomizations(+col1Price)
+        } else if (+orderQuantity < +col3Qty) {
+          setPriceWithoutCustomizations(+col2Price)
+        } else if (+orderQuantity < +col4Qty) {
+          setPriceWithoutCustomizations(+col3Price)
+        } else if (+orderQuantity < +col5Qty) {
+          setPriceWithoutCustomizations(+col4Price)
+        } else {
+          setPriceWithoutCustomizations(+col5Price)
+        }
+      }
+    } else {
+      if (+orderQuantity < +col2Qty) {
+        setPriceWithoutCustomizations(+col1Price)
+      } else if (+orderQuantity < +col3Qty) {
+        setPriceWithoutCustomizations(+col2Price)
+      } else if (+orderQuantity < +col4Qty) {
+        setPriceWithoutCustomizations(+col3Price)
+      } else if (+orderQuantity < +col5Qty) {
+        setPriceWithoutCustomizations(+col4Price)
+      } else {
+        setPriceWithoutCustomizations(+col5Price)
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (product) {
+      let minQtyy = isProductIncludesltm_final
+        ? +product?.column_1_qty / 2
+        : +product?.column_1_qty
+      setActualMinQty(Math.round(minQtyy))
+    }
+  }, [product])
 
   useEffect(() => {
     let total =
       +sizeQuantity.S + +sizeQuantity.M + +sizeQuantity.L + +sizeQuantity.XL
-    setOrderQuantity(total)
+    setOrderQuantity(total > actualMinQty ? total : actualMinQty)
+    getPrice()
   }, [sizeQuantity])
 
   let handleQuantitySize = (e) => {
@@ -136,6 +208,10 @@ const Product = ({ product, loading, error }) => {
     setActiveBtn(index)
   }
 
+  useEffect(() => {
+    console.log('very poor')
+  }, [])
+
   const customisazionPrice =
     custumize === 'Embroidery'
       ? 2
@@ -184,6 +260,10 @@ const Product = ({ product, loading, error }) => {
     }
   }, [product?.id])
 
+  useEffect(() => {
+    document.body.classList.add('single_product_page')
+  }, [])
+
   const updateImage = (index) => {
     // const selectedImage = productImages[index].url
     // setSingleImage(selectedImage)
@@ -191,14 +271,26 @@ const Product = ({ product, loading, error }) => {
 
   const reqImageArray =
     country === 'usa' ? product?.images_us : product?.images_ca
+  //  supplier_fees rc_mcq_source ltm_final
 
+  // column_1_qty column_2_qty column_3_qty column_4_qty column_5_qty
   useEffect(() => {
-    if (reqImageArray) {
-      setSingleImage(reqImageArray[0])
-    }
-  }, [])
+    getPrice()
+  }, [orderQuantity])
 
-  console.log(singleImage, 'singleImage jsbdcjdsbvjdfb')
+  console.log(priceWithoutCustomizations, 'priceWithoutCustomizations')
+
+  console.log({
+    isProductIncludesltm_final,
+    ltm_price,
+    col1Price,
+    col2Price,
+    col3Price,
+    col4Price,
+    col5Price,
+  })
+
+  console.log(product, 'productproduct')
 
   return (
     <>
@@ -213,9 +305,9 @@ const Product = ({ product, loading, error }) => {
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
                   <div className={Styles.detail_page_image_content}>
-                    {singleImage && (
+                    {reqImageArray && reqImageArray.length > 0 && (
                       <Image
-                        src={singleImage}
+                        src={reqImageArray[0]}
                         width={400}
                         height={560}
                         alt="Single_Product_Image"
@@ -248,7 +340,7 @@ const Product = ({ product, loading, error }) => {
                     JSON.parse(product?.certBy).map((data) => (
                       <>
                         <div className={Styles.tag}>
-                          <p>{data}</p>
+                          <p>{data.product?.certBy}</p>
                         </div>
                       </>
                     ))}
@@ -258,11 +350,11 @@ const Product = ({ product, loading, error }) => {
                   <h4>{product?.product_title}</h4>
                 </div>
                 <div className={Styles.reviews}>
-                  {/* <div className={Styles.star_review}>
-                    <span className={Styles.star_review_images}>
+                  <div className={Styles.star_review}>
+                    {/* <span className={Styles.star_review_images}>
                       {product?.emoji_ratings}
-                    </span>
-                  </div> */}
+                    </span> */}
+                  </div>
                   <div className={Styles.text_review}>
                     <span className={Styles.text_review_content}>
                       527 Reviews
@@ -291,7 +383,7 @@ const Product = ({ product, loading, error }) => {
                     </label>
                   </div>
                 </div>
-                {product?.colours ? (
+                {product?.colours.length > 0 ? (
                   <div className={Styles.select_color_section}>
                     <div className={Styles.common_header}>
                       <p>Select Color</p>
@@ -307,7 +399,6 @@ const Product = ({ product, loading, error }) => {
                         Object.entries(product?.colours).map(
                           ([color, imageUrl]) => (
                             <>
-                              {console.log(color, 'colr name')}
                               <Dot color={color} imageUrl={imageUrl} />
                             </>
                           )
@@ -515,9 +606,9 @@ const Product = ({ product, loading, error }) => {
                     value={orderQuantity}
                     onChange={setQuantity}
                     disabled
-                    min={product?.column_1_qty}
+                    min={actualMinQty}
                   />
-                  <span>(minimum {+product?.column_1_qty} units required)</span>
+                  <span>(minimum {+actualMinQty} units required)</span>
                 </div>
                 <div className={Styles.select_size_quantity}>
                   <div className={Styles.common_header}>
@@ -580,7 +671,7 @@ const Product = ({ product, loading, error }) => {
                 </div>
                 <div className={Styles.standard_down_line}></div>
                 <div className={Styles.price_section}>
-                  <p>{`Price ${+price + +customisazionPrice}/unit`}</p>
+                  <p>{`Price ${+priceWithoutCustomizations}/unit`}</p>
                   <p>
                     $
                     {(orderQuantity * (+price + +customisazionPrice)).toFixed(

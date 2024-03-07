@@ -74,12 +74,23 @@ const EstimateCard = () => {
   }, [cartItems])
 
   const downLoadPdf = () => {
-    console.log('yyyyyyyyyyyyy')
     const input = document.getElementById('invoice-container')
 
     html2canvas(input).then((canvas) => {
       const pdf = new jsPDF('p', 'mm', 'a4')
-      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 210, 297)
+      const imgWidth = 210
+      const imgHeight = (canvas.height * imgWidth) / canvas.width
+      let remainingHeight = imgHeight
+      let position = 0
+      pdf.addImage(
+        canvas.toDataURL('image/png'),
+        'PNG',
+        0,
+        0,
+        imgWidth,
+        imgHeight
+      )
+
       pdf.save('invoice.pdf')
     })
   }
