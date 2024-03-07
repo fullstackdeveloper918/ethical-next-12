@@ -64,9 +64,9 @@ const Product = ({ product, loading, error }) => {
   let col3Qty = product?.column_3_qty
   let col4Qty = product?.column_4_qty
   let col5Qty = product?.column_5_qty
-
   let supplier_fee =
     country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
+  let ltm_price = country === 'usa' ? product?.ltm_usd : product?.ltm_usd
   const getPrice = () => {
     if (isProductIncludesltm_final) {
       if (+orderQuantity < +product?.column_1_qty) {
@@ -208,10 +208,9 @@ const Product = ({ product, loading, error }) => {
     setActiveBtn(index)
   }
 
-
   useEffect(() => {
-   console.log('very poor')
-  },[])
+    console.log('very poor')
+  }, [])
 
   const customisazionPrice =
     custumize === 'Embroidery'
