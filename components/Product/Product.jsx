@@ -278,20 +278,6 @@ const Product = ({ product, loading, error }) => {
     getPrice()
   }, [orderQuantity])
 
-  console.log(priceWithoutCustomizations, 'priceWithoutCustomizations')
-
-  console.log({
-    isProductIncludesltm_final,
-    ltm_price,
-    col1Price,
-    col2Price,
-    col3Price,
-    col4Price,
-    col5Price,
-  })
-
-  console.log(product, 'productproduct')
-
   return (
     <>
       {loading ? (
