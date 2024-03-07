@@ -16,12 +16,13 @@ import images from 'constants/images'
 import Loaders from '@components/loaders/Loaders'
 import { toast } from 'react-toastify'
 import { RxCross1 } from 'react-icons/rx'
+import { useRouter } from 'next/router'
 
 const ProductCard = ({ item, fromSingleProduct }) => {
   const [singleImage, setSingleImage] = useState('')
   const [shareIcons, setShareIcons] = useState(false)
   const [favoriteIconColor, setFavoriteIconColor] = useState(false)
-
+  const router = useRouter()
   const dispatch = useDispatch()
   const wishListItems = useSelector((state) => state.wishlist.items)
 
@@ -87,12 +88,15 @@ const ProductCard = ({ item, fromSingleProduct }) => {
             ) : (
               ''
             )}
-            {/* <div className={Styles.colors}>
+            <div
+              className={Styles.colors}
+              onClick={() => router.push(`products/${item?.id}`)}
+            >
               {item?.colours &&
                 Object.entries(item?.colours).map(([color, imageUrl], i) => {
                   return <Dot color={color} imageUrl={imageUrl} key={i} />
                 })}
-            </div> */}
+            </div>
           </div>
 
           <div className={Styles.hidden_icons}>
