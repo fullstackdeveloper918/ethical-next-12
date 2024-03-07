@@ -19,10 +19,20 @@ export const AdminSlice = createSlice({
     getRecentCustomers: (state, action) => {
       state.recentCustomers = action.payload
     },
+    deleteCustomer: (state, action) => {
+      const customerId = action.payload
+      state.recentCustomers = state.recentCustomers.filter(
+        (customer) => customer.id !== customerId
+      )
+    },
   },
 })
 
-export const { getTotalCount, getRecentProducts, getRecentCustomers } =
-  AdminSlice.actions
+export const {
+  getTotalCount,
+  getRecentProducts,
+  getRecentCustomers,
+  deleteCustomer,
+} = AdminSlice.actions
 
 export default AdminSlice.reducer

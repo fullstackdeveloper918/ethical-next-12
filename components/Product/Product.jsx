@@ -286,7 +286,7 @@ const Product = ({ product, loading, error }) => {
                     </label>
                   </div>
                 </div>
-                {product?.colours ? (
+                {product?.colours.length > 0 ? (
                   <div className={Styles.select_color_section}>
                     <div className={Styles.common_header}>
                       <p>Select Color</p>
