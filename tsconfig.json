@@ -32,6 +32,6 @@
     "redux-setup/FiltersSlice.jsx",
     "redux-setup/countrySlice.jsx",
     "redux-setup/authSlice.jsx"
-  ],
+, "components/Invoice/index.jsx"  ],
   "exclude": ["node_modules"]
 }
