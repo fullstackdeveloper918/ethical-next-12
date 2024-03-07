@@ -13,6 +13,7 @@ import { toast } from 'react-toastify'
 const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
   const [color, setColor] = useState('')
+  const [singleImage, setSingleImage] = useState('')
   const [ReadMore, setIsReadMore] = useState(false)
   const [orderQuantity, setOrderQuantity] = useState(
     +product?.column_1_qty || 200
@@ -183,10 +184,6 @@ const Product = ({ product, loading, error }) => {
     }
   }, [product?.id])
 
-  useEffect(() => {
-    document.body.classList.add('single_product_page')
-  }, [])
-
   const updateImage = (index) => {
     // const selectedImage = productImages[index].url
     // setSingleImage(selectedImage)
@@ -194,6 +191,14 @@ const Product = ({ product, loading, error }) => {
 
   const reqImageArray =
     country === 'usa' ? product?.images_us : product?.images_ca
+
+  useEffect(() => {
+    if (reqImageArray) {
+      setSingleImage(reqImageArray[0])
+    }
+  }, [])
+
+  console.log(singleImage, 'singleImage jsbdcjdsbvjdfb')
 
   return (
     <>
@@ -208,9 +213,9 @@ const Product = ({ product, loading, error }) => {
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
                   <div className={Styles.detail_page_image_content}>
-                    {reqImageArray && reqImageArray.length > 0 && (
+                    {singleImage && (
                       <Image
-                        src={reqImageArray[0]}
+                        src={singleImage}
                         width={400}
                         height={560}
                         alt="Single_Product_Image"
@@ -253,11 +258,11 @@ const Product = ({ product, loading, error }) => {
                   <h4>{product?.product_title}</h4>
                 </div>
                 <div className={Styles.reviews}>
-                  <div className={Styles.star_review}>
+                  {/* <div className={Styles.star_review}>
                     <span className={Styles.star_review_images}>
                       {product?.emoji_ratings}
                     </span>
-                  </div>
+                  </div> */}
                   <div className={Styles.text_review}>
                     <span className={Styles.text_review_content}>
                       527 Reviews
@@ -286,7 +291,7 @@ const Product = ({ product, loading, error }) => {
                     </label>
                   </div>
                 </div>
-                {product?.colours.length > 0 ? (
+                {product?.colours ? (
                   <div className={Styles.select_color_section}>
                     <div className={Styles.common_header}>
                       <p>Select Color</p>
@@ -302,6 +307,7 @@ const Product = ({ product, loading, error }) => {
                         Object.entries(product?.colours).map(
                           ([color, imageUrl]) => (
                             <>
+                              {console.log(color, 'colr name')}
                               <Dot color={color} imageUrl={imageUrl} />
                             </>
                           )

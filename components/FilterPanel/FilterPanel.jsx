@@ -63,7 +63,13 @@ const FilterPanel = ({ setActiveFilter }) => {
     <>
       <div className={Styles.filterPanel}>
         <div className={Styles.filterPanel_top}>
-          <h4 className={Styles.filterPanel_title}>Clear All</h4>
+          <h4
+            className={Styles.filterPanel_title}
+            onClick={() => alert('hello')}
+            style={{}}
+          >
+            Clear All
+          </h4>
           <RxCross2 fontSize={25} onClick={() => setActiveFilter(false)} />
         </div>
         {/* <div className={Styles.filterPanel_Product_Section}></div> */}

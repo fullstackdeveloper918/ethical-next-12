@@ -39,6 +39,10 @@ const SideBar = ({ data, imageData }) => {
 
   const currentPage = router?.pathname
 
+  const handleClick = (item) => {
+    console.log(item, 'address')
+  }
+
   const sidebarIndices = sidebarContentMap[currentPage] || []
 
   return (
@@ -69,7 +73,7 @@ const SideBar = ({ data, imageData }) => {
             <div className={Styles.Sidebar_data}>
               {sidebarIndices.map((item, index) => (
                 <>
-                {console.log(item, 'hello item')}
+                  {console.log(item, 'hello item')}
                   <div
                     className={`${Styles.sidebar_data_content} ${
                       isActive === index ? Styles.active : ''
@@ -77,18 +81,19 @@ const SideBar = ({ data, imageData }) => {
                     key={index}
                     onClick={() => setIsActive(index)}
                   >
-                    <span className={Styles.sidebar_img}><Image
-                      className={Styles.sidebar_icon}
-                      src={images.Livello_1}
-                      alt="icons"
-                      width={40}
-                      height={40}
-                    /></span>
-                    
+                    <span className={Styles.sidebar_img}>
+                      <Image
+                        className={Styles.sidebar_icon}
+                        src={images.Livello_1}
+                        alt="icons"
+                        width={40}
+                        height={40}
+                      />
+                    </span>
 
                     <span
                       className={Styles.Sidebar_links}
-                      onClick={() => router.push(Sidebar_Data[item].pageRoute)}
+                      onClick={() => handleClick(item)}
                     >
                       {Sidebar_Data[item].text}
                     </span>
