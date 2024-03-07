@@ -30,7 +30,7 @@
   overflow-y: auto;
 }
 .accordion>div.open_accordionWrap:last-child {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .filter_btn > span:nth-child(2) {
