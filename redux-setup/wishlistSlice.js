@@ -12,7 +12,6 @@ const wishlistSlice = createSlice({
   reducers: {
     addItemToWishlist(state, action) {
       const newItem = action.payload
-      console.log(newItem.id, 'redux wishlist added')
       const isItemInWishlist = state.items.find(
         (item) => item.id === newItem.id
       )

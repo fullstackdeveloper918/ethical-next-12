@@ -40,7 +40,7 @@ const ProductCard = ({ item, fromSingleProduct }) => {
       dispatch(removeItemFromWishlist(item.id))
       toast.success('Item removed from wishlist', {
         position: 'top-center',
-        autoClose: 1500,
+        autoClose: 5000,
       })
     } else {
       // Otherwise, add the item to the wishlist
@@ -48,7 +48,7 @@ const ProductCard = ({ item, fromSingleProduct }) => {
       setFavoriteIconColor(true)
       toast.success('Item added to wishlist', {
         position: 'top-center',
-        autoClose: 1500,
+        autoClose: 5500,
       })
     }
   }
@@ -98,20 +98,21 @@ const ProductCard = ({ item, fromSingleProduct }) => {
           <div className={Styles.hidden_icons}>
             <div className={Styles.icons}>
               <span
-                className={`${Styles.border_svg} ${
-                  favoriteIconColor ? 'favactive' : ''
-                }`}
+                className={Styles.border_svg}
+                style={{ backgroundColor: favoriteIconColor ? '#a2d061' : '' }}
               >
                 <MdOutlineFavoriteBorder
                   fontSize={25}
-                  color="#d3d3d3"
-                  className={Styles.icon}
+                  // color="#d3d3d3"
+                  className={`${Styles.icon} ${
+                    favoriteIconColor ? Styles.favActive : ''
+                  }`}
                   onClick={() => addToWishlist(item)}
                 />
               </span>
               {/* <span className={Styles.border_svg}>
                 <CiSearch
-                  fontSize={25}
+                  fontSize={25} 
                   color="#d3d3d3"
                   className={Styles.icon}
                 />
