@@ -92,8 +92,6 @@ const FilterPanel = ({ setActiveFilter }) => {
 
                 {isActive && openIndex === index && (
                   <div className={Styles.open_accordionWrap}>
-                    {console.log(index === openIndex, 'mani')}
-
                     {isActive &&
                       openIndex === index &&
                       item.children.map((child, index) => (

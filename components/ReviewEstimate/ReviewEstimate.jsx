@@ -43,17 +43,19 @@ const ReviewEstimate = () => {
                   <div className={Styles.reviewContent} key={i}>
                     <div className={Styles.left_content}>
                       <div className={Styles.imgContent}>
-                        <Image
-                          src={item.image}
-                          width={54}
-                          height={72}
-                          alt="image"
-                        />
+                        {item?.image && (
+                          <Image
+                            src={item?.image}
+                            width={54}
+                            height={72}
+                            alt="image"
+                          />
+                        )}
                       </div>
                       <div className={Styles.textContent}>
                         <div>
                           <h4 className={Styles.title}>
-                            {item.heading.slice(0, 100)}
+                            {item?.heading?.slice(0, 100)}
                           </h4>
                           <p className={Styles.color}>Black</p>
                           <p className={Styles.quantity}>

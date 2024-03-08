@@ -70,7 +70,13 @@ const SecondaryHeader = () => {
   )
   const optimizedFn = useCallback(debounce(handleChange), [])
   const getSingleProductPageRoute =
-    router.asPath.includes('/products/') || router.asPath.includes('/contact')
+    router.asPath.includes('/products/') ||
+    router.asPath.includes('/contact') ||
+    router.asPath.includes('/wishlist') ||
+    router.asPath.includes('/cart') ||
+    router.asPath.includes('/shipping') ||
+    router.asPath.includes('/billing-address')
+
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products?q=${searchProduct}`,
     {

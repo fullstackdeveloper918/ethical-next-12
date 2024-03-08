@@ -36,6 +36,8 @@ const Product = ({ product, loading, error }) => {
     useState(0)
   const [actualMinQty, setActualMinQty] = useState(0)
   const [isItemInCart, setIsItemInCart] = useState(false)
+  const [imagesArray, setImagesArray] = useState([])
+  const [singleImage, setSingleImage] = useState(imagesArray[0])
   const country = useSelector((state) => state.country.country)
 
   let isProductIncludesltm_final = product?.ltm_final.includes('Y')
@@ -208,10 +210,6 @@ const Product = ({ product, loading, error }) => {
     setActiveBtn(index)
   }
 
-  useEffect(() => {
-    console.log('very poor')
-  }, [])
-
   const customisazionPrice =
     custumize === 'Embroidery'
       ? 2
@@ -223,7 +221,7 @@ const Product = ({ product, loading, error }) => {
     e.preventDefault()
     setCartState({
       quantity: orderQuantity,
-      image: reqImageArray[0],
+      image: setImagesArray[0],
       heading: product?.product_description,
       price: price,
       id: product.id,
@@ -265,15 +263,24 @@ const Product = ({ product, loading, error }) => {
   }, [])
 
   const updateImage = (index) => {
-    // const selectedImage = productImages[index].url
-    // setSingleImage(selectedImage)
+    setSingleImage(imagesArray[index])
   }
 
-  const reqImageArray =
-    country === 'usa' ? product?.images_us : product?.images_ca
   //  supplier_fees rc_mcq_source ltm_final
 
+  useEffect(() => {
+    if (product) {
+      setImagesArray(
+        country === 'usa' ? product?.images_us : product?.images_ca
+      )
+      setSingleImage(
+        country === 'usa' ? product?.images_us[0] : product?.images_ca[0]
+      )
+    }
+  }, [product])
+  console.log()
   // column_1_qty column_2_qty column_3_qty column_4_qty column_5_qty
+
   useEffect(() => {
     getPrice()
   }, [orderQuantity])
@@ -291,9 +298,9 @@ const Product = ({ product, loading, error }) => {
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
                   <div className={Styles.detail_page_image_content}>
-                    {reqImageArray && reqImageArray.length > 0 && (
+                    {singleImage && (
                       <Image
-                        src={reqImageArray[0]}
+                        src={singleImage}
                         width={400}
                         height={560}
                         alt="Single_Product_Image"
@@ -302,20 +309,27 @@ const Product = ({ product, loading, error }) => {
                     )}
                   </div>
                   <div className={Styles.images_container}>
-                    {reqImageArray?.map((image, index) => (
-                      <>
-                        <div className={Styles.product_Images}>
-                          <Image
-                            src={image}
-                            width={100}
-                            height={100}
-                            alt="product_image"
-                            style={{ cursor: 'pointer' }}
-                            onClick={() => updateImage(index)}
-                          />
-                        </div>
-                      </>
-                    ))}
+                    {imagesArray &&
+                      imagesArray?.map((image, index) => (
+                        <>
+                          <div
+                            className={Styles.product_Images}
+                            style={{
+                              border:
+                                singleImage === image ? '1px solid black' : '',
+                            }}
+                          >
+                            <Image
+                              src={image}
+                              width={100}
+                              height={100}
+                              alt="product_image"
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => updateImage(index)}
+                            />
+                          </div>
+                        </>
+                      ))}
                   </div>
                 </div>
               </div>
@@ -326,7 +340,7 @@ const Product = ({ product, loading, error }) => {
                     JSON.parse(product?.certBy).map((data) => (
                       <>
                         <div className={Styles.tag}>
-                          <p>{data.product?.certBy}</p>
+                          <p>{data}</p>
                         </div>
                       </>
                     ))}
@@ -337,15 +351,23 @@ const Product = ({ product, loading, error }) => {
                 </div>
                 <div className={Styles.reviews}>
                   <div className={Styles.star_review}>
-                    {/* <span className={Styles.star_review_images}>
-                      {product?.emoji_ratings}
-                    </span> */}
+                    <span className={Styles.star_review_images}>
+                      {console.log(product?.emoji_ratings, 'bro happen')}
+                      {product?.emoji_ratings &&
+                        Object.entries(product?.emoji_ratings).map(
+                          ([key, value]) => (
+                            <>
+                              <p>{value}</p>
+                            </>
+                          )
+                        )}
+                    </span>
                   </div>
-                  <div className={Styles.text_review}>
+                  {/* <div className={Styles.text_review}>
                     <span className={Styles.text_review_content}>
                       527 Reviews
                     </span>
-                  </div>
+                  </div> */}
                 </div>
                 <div className={Styles.text_content}>
                   <p>
@@ -369,7 +391,7 @@ const Product = ({ product, loading, error }) => {
                     </label>
                   </div>
                 </div>
-                {product?.colours.length > 0 ? (
+                {product?.colours ? (
                   <div className={Styles.select_color_section}>
                     <div className={Styles.common_header}>
                       <p>Select Color</p>
@@ -385,6 +407,7 @@ const Product = ({ product, loading, error }) => {
                         Object.entries(product?.colours).map(
                           ([color, imageUrl]) => (
                             <>
+                              {console.log(color, imageUrl, 'bro colors')}
                               <Dot color={color} imageUrl={imageUrl} />
                             </>
                           )
@@ -657,7 +680,8 @@ const Product = ({ product, loading, error }) => {
                 </div>
                 <div className={Styles.standard_down_line}></div>
                 <div className={Styles.price_section}>
-                  <p>{`Price ${+priceWithoutCustomizations}/unit`}</p>
+                  <p>{`Price ${priceWithoutCustomizations}/unit`}</p>
+
                   <p>
                     $
                     {(orderQuantity * (+price + +customisazionPrice)).toFixed(

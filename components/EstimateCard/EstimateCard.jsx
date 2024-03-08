@@ -123,7 +123,7 @@ const EstimateCard = () => {
                           className={Styles.title}
                           style={{ cursor: 'pointer' }}
                         >
-                          {item.heading.slice(0, 70) + '...'}
+                          {item?.heading?.slice(0, 70)}
                         </h4>
                         <span className={Styles.price}>
                           Price : Starting at ${item.price}
