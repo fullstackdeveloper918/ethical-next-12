@@ -20,7 +20,7 @@ import images from '../../constants/images'
 
 const productID = () => {
   const router = useRouter()
-  
+
   const [openIndex, setOpenIndex] = useState(null)
   const { query } = router ?? {}
   const { productID } = query ?? {}
@@ -126,7 +126,10 @@ const productID = () => {
                       supporting you as you grow.
                     </p>
                   </div>
-                  <button className={Styles.product_bottombtn}>
+                  <button
+                    className={Styles.product_bottombtn}
+                    onClick={() => router.push('/services')}
+                  >
                     More About Our Services
                   </button>
                 </div>

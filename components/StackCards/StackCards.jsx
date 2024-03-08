@@ -12,22 +12,28 @@ let imagesList = [
   {
     id: 1,
     img: CardOne,
+    className: '',
+    textContent: '',
   },
   {
     id: 2,
     img: CardTwo,
+    className: '',
   },
   {
     id: 3,
     img: CardThree,
+    className: '',
   },
   {
     id: 4,
     img: CardFour,
+    className: '',
   },
   {
     id: 5,
     img: CardFive,
+    className: '',
   },
 ]
 
@@ -81,115 +87,74 @@ const Dummy = () => {
   // }, [])
 
   return (
-    // <div>
-    //   <div className={styles.text}>
-    //     <ul className={styles.explor_imgSec}>
-    //       {imagesList &&
-    //         imagesList.map((card) => (
-    //           <>
-    //             <li>
-    //               <div className={styles.list_explore}>
-    //                 <Image
-    //                   src={card.img}
-    //                   alt=""
-    //                   height={600}
-    //                   width={600}
-    //                   className={styles.cardImage}
-    //                   onClick={() => router.push('/products')}
-    //                 />
-    //               </div>
-    //             </li>
-    //           </>
-    //         ))}
-    //       <li>
-    //         <div className={styles.list_explore}>
-    //           <Image
-    //             src={CardOne}
-    //             alt=""
-    //             height={600}
-    //             width={600}
-    //             className={styles.cardImage}
-    //             onClick={() => router.push('/products')}
-    //           />
-    //         </div>
-    //       </li>
-    //       <li>
-    //         <div className={styles.list_explore}>
-    //           <Image
-    //             src={CardTwo}
-    //             alt=""
-    //             height={600}
-    //             width={600}
-    //             onMouseLeave={() => alert('hello second card')}
-    //             className={styles.cardImage}
-    //             onClick={() => router.push('/products')}
-    //           />
-    //         </div>
-    //       </li>
-    //       <li>
-    //         <div className={styles.list_explore}>
-    //           <Image
-    //             src={CardThree}
-    //             alt=""
-    //             height={600}
-    //             width={600}
-    //             className={styles.cardImage}
-    //             onClick={() => router.push('/products')}
-    //           />
-    //         </div>
-    //       </li>
-    //       <li>
-    //         <div className={styles.list_explore}>
-    //           <Image
-    //             src={CardFour}
-    //             alt=""
-    //             height={600}
-    //             width={600}
-    //             className={styles.cardImage}
-    //             onClick={() => router.push('/products')}
-    //           />
-    //         </div>
-    //       </li>
-
-    //       <li>
-    //         <div className={styles.list_explore}>
-    //           <Image
-    //             src={CardFive}
-    //             alt=""
-    //             height={600}
-    //             width={600}
-    //             className={styles.cardImage}
-    //             onClick={() => router.push('/products')}
-    //           />
-    //         </div>
-    //       </li>
-    //     </ul>
-    //   </div>
-    // </div>
-    <>
+    <div>
       <div className={styles.text}>
         <ul className={styles.explor_imgSec}>
-          {imagesList &&
-            imagesList.map((card, index) => (
-              <li key={index}>
-                <div
-                  className={styles.list_explore}
-                  onMouseEnter={() => alert(index)}
-                >
-                  <Image
-                    src={card.img}
-                    alt=""
-                    height={600}
-                    width={600}
-                    className={styles.cardImage}
-                    // onClick={() => router.push('/products')}
-                  />
-                </div>
-              </li>
-            ))}
+          <li>
+            <div className={styles.list_explore}>
+              <Image
+                src={CardOne}
+                alt=""
+                height={600}
+                width={600}
+                className={styles.cardImage}
+                onClick={() => router.push('/products')}
+              />
+            </div>
+          </li>
+          <li>
+            <div className={styles.list_explore}>
+              <Image
+                src={CardTwo}
+                alt=""
+                height={600}
+                width={600}
+                onMouseLeave={() => alert('hello second card')}
+                className={styles.cardImage}
+                onClick={() => router.push('/products')}
+              />
+            </div>
+          </li>
+          <li>
+            <div className={styles.list_explore}>
+              <Image
+                src={CardThree}
+                alt=""
+                height={600}
+                width={600}
+                className={styles.cardImage}
+                onClick={() => router.push('/products')}
+              />
+            </div>
+          </li>
+          <li>
+            <div className={styles.list_explore}>
+              <Image
+                src={CardFour}
+                alt=""
+                height={600}
+                width={600}
+                className={styles.cardImage}
+                onClick={() => router.push('/products')}
+              />
+            </div>
+          </li>
+
+          <li>
+            <div className={styles.list_explore}>
+              <Image
+                src={CardFive}
+                alt=""
+                height={600}
+                width={600}
+                className={styles.cardImage}
+                onClick={() => router.push('/products')}
+              />
+            </div>
+          </li>
         </ul>
       </div>
-    </>
+    </div>
   )
 }
 

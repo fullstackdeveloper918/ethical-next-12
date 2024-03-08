@@ -469,7 +469,8 @@ const Product = ({ product, loading, error }) => {
                         {button}
                       </button>
                     ))} */}
-                    {Object.keys(finalDecorationKeyVal).length > 0 &&
+                    {finalDecorationKeyVal &&
+                      Object.keys(finalDecorationKeyVal).length > 0 &&
                       Object.entries(finalDecorationKeyVal).map(
                         ([key, val], index) => (
                           <p
