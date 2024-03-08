@@ -36,12 +36,14 @@ const Product = ({ product, loading, error }) => {
   })
   const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
     useState(0)
+  const [customizationPrice, setCustomizationPrice] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
   const [actualMinQty, setActualMinQty] = useState(0)
   const [isItemInCart, setIsItemInCart] = useState(false)
   const [imagesArray, setImagesArray] = useState([])
   const [singleImage, setSingleImage] = useState(imagesArray[0])
   const [nameOfDecorations, setNameOfDecorations] = useState([])
-  const [customizationPrice, setCustomizationPrice] = useState(0)
+
   const country = useSelector((state) => state.country.country)
   const cartItems = useSelector((state) => state.cart.cartItems)
 
@@ -157,6 +159,8 @@ const Product = ({ product, loading, error }) => {
     let price3 = country === 'usa' ? val.rc_usa_3 : val.rc_cad_3
     let price4 = country === 'usa' ? val.rc_usa_4 : val.rc_cad_4
     let price5 = country === 'usa' ? val.rc_usa_5 : val.rc_cad_5
+    let retailSetup =
+      country === 'usa' ? val.retail_setup_usd : val.retail_setup_cad
 
     console.log(val, 'itemmm from click')
 
@@ -164,26 +168,23 @@ const Product = ({ product, loading, error }) => {
 
     let IsRcSourceIncluded = product.rc_mcq_source == 'Supplier Fees'
     let price = 0
-    console.log(orderQuantity, 'orderQuantity.orderQuantity')
     if (IsRcSourceIncluded) {
-      console.log('i am included')
       if (orderQuantity < +val.qty_rc_2) {
         price = +price1
-        console.log(price, 'pppp1')
       } else if (orderQuantity < +val.qty_rc_3) {
-        let price = +price2
-        console.log(price, 'pppp2')
+        price = +price2
       } else if (orderQuantity < +val.qty_rc_4) {
-        let price = +price3
-        console.log(price, 'pppp3')
+        price = +price3
       } else if (orderQuantity < +val.qty_rc_5) {
-        let price = +price4
-        console.log(price, 'pppp4')
+        price = +price4
       } else {
-        let price = +val.price5
+        price = +price5
       }
-      let d = val.retail_setup_cad / orderQuantity + price
-      console.log(d, 'ddddddddddddddd')
+
+      let finalCustomPrice = retailSetup / orderQuantity + price
+      setCustomizationPrice(finalCustomPrice)
+      let TotalPrice = finalCustomPrice + priceWithoutCustomizations
+      setTotalPrice(TotalPrice)
     } else {
       if (orderQuantity < col2Qty) {
         price = +price1
@@ -196,11 +197,11 @@ const Product = ({ product, loading, error }) => {
       } else {
         price = +price5
       }
+      setCustomizationPrice(price)
+      let TotalPrice = price + priceWithoutCustomizations
+      setTotalPrice(TotalPrice)
     }
-    console.log(price, 'price which to be used')
   }
-  // console.log(customizationPrice, 'customizationPrice')
-  console.log(product, 'producttt')
   const handleAddToCart = (e) => {
     e.preventDefault()
     setCartState({
@@ -265,17 +266,20 @@ const Product = ({ product, loading, error }) => {
   }, [orderQuantity, product])
 
   useEffect(() => {
-    if (supplierFees) {
-      let empt = []
-      dispatch(setDecorationItemObjSingleProductPage(supplierFees))
+    let empt = []
+    dispatch(setDecorationItemObjSingleProductPage(supplierFees))
+
+    supplierFees &&
       Object.entries(supplierFees).map(([key, value]) => empt.push(value))
-      let ab = empt.flat(50)
-      let nameOfDecorations = []
-      for (let i = 0; i < ab.length; i++) {
-        const element = ab[i]
-        nameOfDecorations.push(element?.decoration_type)
-      }
-      setNameOfDecorations(nameOfDecorations)
+    let ab = empt.flat(50)
+    let nameOfDecorations = []
+    for (let i = 0; i < ab.length; i++) {
+      const element = ab[i]
+      nameOfDecorations.push(element?.decoration_type)
+    }
+    setNameOfDecorations(nameOfDecorations)
+    {
+      !supplierFees && setNameOfDecorations()
     }
   }, [product])
 
@@ -697,11 +701,9 @@ const Product = ({ product, loading, error }) => {
                 </div>
                 <div className={Styles.standard_down_line}></div>
                 <div className={Styles.price_section}>
-                  <p>{`Price ${priceWithoutCustomizations}/unit`}</p>
+                  <p>{`Price ${totalPrice}/unit`}</p>
 
-                  <p>
-                    ${(orderQuantity * +priceWithoutCustomizations).toFixed(2)}
-                  </p>
+                  <p>${(orderQuantity * +totalPrice).toFixed(2)}</p>
                 </div>
                 <div className={Styles.add_to_bulk_container}>
                   <button onClick={handleAddToCart}>
