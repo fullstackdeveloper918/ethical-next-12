@@ -15,7 +15,7 @@ const Product = ({ product, loading, error }) => {
   const [orderQuantity, setOrderQuantity] = useState(+actualMinQty || 100)
   const [price, setPrice] = useState(0)
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
-  const [activeBtn, setActiveBtn] = useState(0)
+  const [activeBtn, setActiveBtn] = useState(2)
   const [custumize, setCustomize] = useState('No Decoration')
   const [sizeQuantity, setSizeQuantity] = useState({
     S: 25,
@@ -36,6 +36,7 @@ const Product = ({ product, loading, error }) => {
   const [isItemInCart, setIsItemInCart] = useState(false)
   const [imagesArray, setImagesArray] = useState([])
   const [singleImage, setSingleImage] = useState(imagesArray[0])
+  const [nameOfDecorations, setNameOfDecorations] = useState([])
   const country = useSelector((state) => state.country.country)
   console.log(priceWithoutCustomizations, 'priceWithoutCustomizations')
   let isProductIncludesltm_final = product?.ltm_final.includes('Y')
@@ -67,6 +68,8 @@ const Product = ({ product, loading, error }) => {
   let supplier_fee =
     country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
   let ltm_price = country === 'usa' ? product?.ltm_usd : product?.ltm_usd
+  let supplierFees =
+    country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
   const getPrice = () => {
     if (isProductIncludesltm_final) {
       if (+orderQuantity < +product?.column_1_qty) {
@@ -160,14 +163,15 @@ const Product = ({ product, loading, error }) => {
     'No Decoration',
   ]
 
-  const btnClicked = (index, val) => {
-    if (val === 'Embroidery') {
-      setCustomize('Embroidery')
-    } else if (val === 'Full Color Decoration') {
-      setCustomize('Full Color Decoration')
-    } else if (val === 'No Decoration') {
-      setCustomize('No Decoration')
-    }
+  const btnClicked = (index, item) => {
+    console.log(item, 'itemmm')
+    // if (val === 'Embroidery') {
+    //   setCustomize('Embroidery')
+    // } else if (val === 'Full Color Decoration') {
+    //   setCustomize('Full Color Decoration')
+    // } else if (val === 'No Decoration') {
+    //   setCustomize('No Decoration')
+    // }
     setActiveBtn(index)
   }
 
@@ -225,7 +229,9 @@ const Product = ({ product, loading, error }) => {
         country === 'usa' ? product?.images_us : product?.images_ca
       )
       setSingleImage(
-        country === 'usa' ? product?.images_us[0] : product?.images_ca[0]
+        country === 'usa'
+          ? product?.images_us && product?.images_us[0]
+          : product?.images_ca[0]
       )
     }
   }, [product])
@@ -236,6 +242,21 @@ const Product = ({ product, loading, error }) => {
     }
   }, [orderQuantity, product])
 
+  console.log(product, 'ppppppppppppppp')
+
+  useEffect(() => {
+    let empt = []
+    supplierFees &&
+      Object.entries(supplierFees).map(([key, value]) => empt.push(value))
+    let ab = empt.flat(50)
+    let nameOfDecorations = []
+    for (let i = 0; i < ab.length; i++) {
+      const element = ab[i]
+      nameOfDecorations.push(element?.decoration_type)
+    }
+    setNameOfDecorations(nameOfDecorations)
+  }, [product])
+  console.log(nameOfDecorations, 'nameOfDecorationsnameOfDecorations')
   return (
     <>
       {loading ? (
@@ -398,7 +419,7 @@ const Product = ({ product, loading, error }) => {
                   </div>
 
                   <div className={Styles.buttons}>
-                    {customizations.map((button, index) => (
+                    {/* {nameOfDecorations.map((button, index) => (
                       <button
                         className={`${Styles.btn} ${
                           activeBtn === index ? Styles.active : ''
@@ -407,7 +428,18 @@ const Product = ({ product, loading, error }) => {
                       >
                         {button}
                       </button>
-                    ))}
+                    ))} */}
+                    {nameOfDecorations.length > 0 &&
+                      nameOfDecorations?.map((item, index) => (
+                        <p
+                          className={`${Styles.btn} ${
+                            activeBtn === index ? Styles.active : ''
+                          }`}
+                          onClick={() => btnClicked(index, item)}
+                        >
+                          {item}
+                        </p>
+                      ))}
                   </div>
                 </div>
                 {/* <div className={Styles.para_text}>
