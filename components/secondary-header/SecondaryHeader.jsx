@@ -23,7 +23,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useRouter } from 'next/router'
-import { Input } from '@/components/ui/input'
 import useFetch from '@lib/useFetch'
 import { selectCountry } from 'redux-setup/countrySlice'
 import { debounce } from '@lib/utils'
@@ -47,7 +46,7 @@ const countries = [
 const SecondaryHeader = () => {
   const popupRef = useRef(null)
   const dispatch = useDispatch()
-  const router = useRouter() ///products/[productID]
+  const router = useRouter()
   const [showResults, setShowResults] = useState(false)
   const [searchProduct, setSearchProduct] = useState('')
   const [data, setData] = useState([])
@@ -59,7 +58,7 @@ const SecondaryHeader = () => {
   const wishlistItems = useSelector((state) => state.wishlist.items)
   const [screenSize, setScreenSize] = useState(992)
   const [showOnMobile, setShowOnMobile] = useState(false)
-
+  const [suggestions, setSuggestions] = useState([])
   const cartItems = useSelector((state) => state.cart.cartItems.length)
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
@@ -115,11 +114,9 @@ const SecondaryHeader = () => {
   }
 
   const handleChange = (value) => {
-    // loadQuery()
     fetch(`https://test.cybersify.tech/Eswag/public/api/products?q=${value}`)
       .then((res) => res.json())
-      .then((data) => console.log(data?.data))
-    // .then((json) => setSuggestions(json.data.items))
+      .then((json) => setSuggestions(json.data.data))
   }
 
   const handleClick = (item) => {
@@ -379,11 +376,7 @@ const SecondaryHeader = () => {
                     type="search"
                     placeholder="Search"
                     // value={searchProduct}
-                    onChange={(e) => {
-                      e.preventDefault()
-                      setSearchProduct(e.target.value)
-                      optimizedFn(e.target.value)
-                    }}
+                    onChange={(e) => optimizedFn(e.target.value)}
                   />
 
                   <span>

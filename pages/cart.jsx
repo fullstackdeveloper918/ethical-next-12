@@ -9,7 +9,7 @@ import EmptyContainer from '../components/EmptyContainer/EmptyContainer'
 import QuotationSubmissionHeader from '../components/QuotationSubmissionHeader/QuotationSubmissionHeader'
 import ClientTypeSelector from '../components/ClientTypeSelector/ClientTypeSelector'
 import Styles from '../components/cart/Cart.module.css'
-import Cart from '../components/Cart/Cart'
+import Cart from '../components/cart/Cart'
 
 const cart = () => {
   const router = useRouter()
