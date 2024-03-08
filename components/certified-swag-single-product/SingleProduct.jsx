@@ -1,52 +1,53 @@
 import React, { useEffect, useState } from 'react'
 import styles from './singleProduct.module.css'
-import shirtImg from '../../assets/shirt.svg'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Dot from '@components/custom-colored-dot/Dot'
 import images from 'constants/images'
 import { useSelector } from 'react-redux'
+
 const SingleProduct = ({ product }) => {
-  const [starProductsImage, setStarProductImage] = useState(product?.image)
   const router = useRouter()
+  const [starProductsImage, setStarProductImage] = useState(product?.image)
+  const [actualMinQty, setActualMinQty] = useState(0)
+  const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
+    useState(0)
   const country = useSelector((state) => state.country.country)
 
-  // console.log(product, 'unit price') //ltm_final column_1_retail_price_usd column_1_retail_price_cad
-  // console.log(product?.column_1_retail_price_usd, 'column_1_retail_price_usd')
-  // console.log(product?.column_1_retail_price_cad, ' column_1_retail_price_cad')
-  // console.log(product?.ltm_final, 'unit ltm_final')
-  //ltm_final column_1_retail_price_usd column_1_retail_price_cad
-
-  const handleImageOnError = () => {
-    setStarProductImage(images.No_product)
-  }
-
   let isProductIncludesltm_final = product?.ltm_final.includes('Y')
-  let ltmPrice = country === 'usa' ? product?.ltm_usd : product?.ltm_cad
+  let ltm_price = country === 'usa' ? product?.ltm_usd : product?.ltm_usd
 
   let col1Price =
     country === 'usa'
       ? product?.column_1_retail_price_usd
       : product?.column_1_retail_price_cad
 
-  // console.log(isProductIncludesltm_final, 'isProductIncludesltm_final')
+  const handleImageOnError = () => {
+    setStarProductImage(images.No_product)
+  }
+
+  useEffect(() => {
+    if (product) {
+      let minQtyy = isProductIncludesltm_final
+        ? +product?.column_1_qty / 2
+        : +product?.column_1_qty
+      setActualMinQty(Math.round(minQtyy))
+    }
+  }, [product])
 
   const getPrice = () => {
-    let PriceMin
     if (isProductIncludesltm_final) {
-      let PriceMin = +col1Price + +ltmPrice / 2
-    console.log(PriceMin, 'PriceMin')
-
-    } else if (!isProductIncludesltm_final) {
-      let PriceMin = +col1Price
-    console.log(PriceMin, 'from else')
-
+      setPriceWithoutCustomizations(+col1Price + ltm_price / +actualMinQty)
+    } else {
+      setPriceWithoutCustomizations(+col1Price)
     }
   }
 
   useEffect(() => {
-    getPrice()
-  }, [])
+    if (actualMinQty) {
+      getPrice()
+    }
+  }, [actualMinQty])
 
   return (
     <div
@@ -66,7 +67,12 @@ const SingleProduct = ({ product }) => {
         {product?.product_title || 'No title received'}
       </div>
       <div className={styles.product_price}>
-        <p>{product.unit_price}</p>
+        <p>
+          $
+          {priceWithoutCustomizations
+            ? priceWithoutCustomizations.toFixed(2)
+            : 60}
+        </p>
       </div>
       <div className={styles.colors_container}>
         {product?.colours &&
