@@ -5,14 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import Styles from './Product.module.css'
 import Loaders from '../../components/loaders/Loaders'
 import Dot from '../custom-colored-dot/Dot'
-// import { FaChevronLeft } from 'react-icons/fa'
 import { RxCross2 } from 'react-icons/rx'
 import { setCartItems } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
 
 const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
-  const [color, setColor] = useState('')
   const [ReadMore, setIsReadMore] = useState(false)
   const [orderQuantity, setOrderQuantity] = useState(+actualMinQty || 100)
   const [price, setPrice] = useState(0)
@@ -39,7 +37,7 @@ const Product = ({ product, loading, error }) => {
   const [imagesArray, setImagesArray] = useState([])
   const [singleImage, setSingleImage] = useState(imagesArray[0])
   const country = useSelector((state) => state.country.country)
-
+  console.log(priceWithoutCustomizations, 'priceWithoutCustomizations')
   let isProductIncludesltm_final = product?.ltm_final.includes('Y')
   let col1Price =
     country === 'usa'
@@ -73,19 +71,16 @@ const Product = ({ product, loading, error }) => {
     if (isProductIncludesltm_final) {
       if (+orderQuantity < +product?.column_1_qty) {
         setPriceWithoutCustomizations(+col1Price + ltm_price / +orderQuantity)
-      } else if (+orderQuantity > +product?.column_1_qty) {
-        setPriceWithoutCustomizations(+col1Price + ltm_price / +orderQuantity)
-        if (+orderQuantity < +col2Qty) {
-          setPriceWithoutCustomizations(+col1Price)
-        } else if (+orderQuantity < +col3Qty) {
-          setPriceWithoutCustomizations(+col2Price)
-        } else if (+orderQuantity < +col4Qty) {
-          setPriceWithoutCustomizations(+col3Price)
-        } else if (+orderQuantity < +col5Qty) {
-          setPriceWithoutCustomizations(+col4Price)
-        } else {
-          setPriceWithoutCustomizations(+col5Price)
-        }
+      } else if (+orderQuantity < +col2Qty) {
+        setPriceWithoutCustomizations(+col1Price)
+      } else if (+orderQuantity < +col3Qty) {
+        setPriceWithoutCustomizations(+col2Price)
+      } else if (+orderQuantity < +col4Qty) {
+        setPriceWithoutCustomizations(+col3Price)
+      } else if (+orderQuantity < +col5Qty) {
+        setPriceWithoutCustomizations(+col4Price)
+      } else {
+        setPriceWithoutCustomizations(+col5Price)
       }
     } else {
       if (+orderQuantity < +col2Qty) {
@@ -102,6 +97,8 @@ const Product = ({ product, loading, error }) => {
     }
   }
 
+  console.log({ col1Price, col2Price, col3Price, col4Price, col5Price })
+
   useEffect(() => {
     if (product) {
       let minQtyy = isProductIncludesltm_final
@@ -112,11 +109,13 @@ const Product = ({ product, loading, error }) => {
   }, [product])
 
   useEffect(() => {
-    let total =
-      +sizeQuantity.S + +sizeQuantity.M + +sizeQuantity.L + +sizeQuantity.XL
-    setOrderQuantity(total > actualMinQty ? total : actualMinQty)
-    getPrice()
-  }, [sizeQuantity])
+    if (product) {
+      let total =
+        +sizeQuantity.S + +sizeQuantity.M + +sizeQuantity.L + +sizeQuantity.XL
+      setOrderQuantity(total > actualMinQty ? total : actualMinQty)
+      getPrice()
+    }
+  }, [sizeQuantity, product])
 
   let handleQuantitySize = (e) => {
     if (e.target.value < 0) {
@@ -147,44 +146,6 @@ const Product = ({ product, loading, error }) => {
     setOrderQuantity(e.target.value)
   }
 
-  useEffect(() => {
-    fetchPrice()
-  }, [orderQuantity, product, country])
-
-  const fetchPrice = () => {
-    if (orderQuantity <= product?.column_1_qty) {
-      setPrice(
-        country === 'usa'
-          ? product?.column_1_retail_price_usd?.replace(/[^0-9.]/g, '')
-          : product?.column_1_retail_price_cad?.replace(/[^0-9.]/g, '')
-      )
-    } else if (orderQuantity <= product?.column_2_qty) {
-      setPrice(
-        country === 'usa'
-          ? product?.column_2_retail_price_usd?.replace(/[^0-9.]/g, '')
-          : product?.column_2_retail_price_cad?.replace(/[^0-9.]/g, '')
-      )
-    } else if (orderQuantity <= product?.column_3_qty) {
-      setPrice(
-        country === 'usa'
-          ? product?.column_3_retail_price_usd?.replace(/[^0-9.]/g, '')
-          : product?.column_3_retail_price_cad?.replace(/[^0-9.]/g, '')
-      )
-    } else if (orderQuantity <= product?.column_4_qty) {
-      setPrice(
-        country === 'usa'
-          ? product?.column_4_retail_price_usd?.replace(/[^0-9.]/g, '')
-          : product?.column_4_retail_price_cad?.replace(/[^0-9.]/g, '')
-      )
-    } else if (orderQuantity > product?.column_4_q) {
-      setPrice(
-        country === 'usa'
-          ? product?.column_5_retail_price_usd?.replace(/[^0-9.]/g, '')
-          : product?.column_5_retail_price_cad?.replace(/[^0-9.]/g, '')
-      )
-    }
-  }
-
   const uploadFirstFile = (e) => {
     setUploadFirstLogo(e.target.files[0])
   }
@@ -209,13 +170,6 @@ const Product = ({ product, loading, error }) => {
     }
     setActiveBtn(index)
   }
-
-  const customisazionPrice =
-    custumize === 'Embroidery'
-      ? 2
-      : custumize === 'Full Color Decoration'
-      ? 4
-      : 0
 
   const handleAddToCart = (e) => {
     e.preventDefault()
@@ -251,7 +205,6 @@ const Product = ({ product, loading, error }) => {
       setPrice(existingItemIndex.price)
     }
   }
-
   useEffect(() => {
     if (product?.id) {
       checkFromCart()
@@ -266,8 +219,6 @@ const Product = ({ product, loading, error }) => {
     setSingleImage(imagesArray[index])
   }
 
-  //  supplier_fees rc_mcq_source ltm_final
-
   useEffect(() => {
     if (product) {
       setImagesArray(
@@ -278,12 +229,12 @@ const Product = ({ product, loading, error }) => {
       )
     }
   }, [product])
-  console.log()
-  // column_1_qty column_2_qty column_3_qty column_4_qty column_5_qty
 
   useEffect(() => {
-    getPrice()
-  }, [orderQuantity])
+    if (orderQuantity && product) {
+      getPrice()
+    }
+  }, [orderQuantity, product])
 
   return (
     <>
@@ -405,10 +356,7 @@ const Product = ({ product, loading, error }) => {
                       {product?.colours &&
                         Object.entries(product?.colours).map(
                           ([color, imageUrl]) => (
-                            <>
-                              {console.log(color, imageUrl, 'bro colors')}
-                              <Dot color={color} imageUrl={imageUrl} />
-                            </>
+                            <Dot color={color} imageUrl={imageUrl} />
                           )
                         )}
                     </div>
@@ -682,10 +630,7 @@ const Product = ({ product, loading, error }) => {
                   <p>{`Price ${priceWithoutCustomizations}/unit`}</p>
 
                   <p>
-                    $
-                    {(orderQuantity * (+price + +customisazionPrice)).toFixed(
-                      2
-                    )}
+                    ${(orderQuantity * +priceWithoutCustomizations).toFixed(2)}
                   </p>
                 </div>
                 <div className={Styles.add_to_bulk_container}>
