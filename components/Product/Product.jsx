@@ -8,6 +8,10 @@ import Dot from '../custom-colored-dot/Dot'
 import { RxCross2 } from 'react-icons/rx'
 import { setCartItems } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
+import {
+  setDecorationItemObjSingleProductPage,
+  setFinalDecorationKeyVal,
+} from 'redux-setup/randomSlice'
 
 const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
@@ -32,13 +36,25 @@ const Product = ({ product, loading, error }) => {
   })
   const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
     useState(0)
+  const [customizationPrice, setCustomizationPrice] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
   const [actualMinQty, setActualMinQty] = useState(0)
   const [isItemInCart, setIsItemInCart] = useState(false)
   const [imagesArray, setImagesArray] = useState([])
   const [singleImage, setSingleImage] = useState(imagesArray[0])
   const [nameOfDecorations, setNameOfDecorations] = useState([])
+
   const country = useSelector((state) => state.country.country)
-  console.log(priceWithoutCustomizations, 'priceWithoutCustomizations')
+  const cartItems = useSelector((state) => state.cart.cartItems)
+
+  const decorations = useSelector(
+    (state) => state.random.decorationItemObjSingleProductPage
+  )
+
+  const finalDecorationKeyVal = useSelector(
+    (state) => state.random.finalDecorationKeyVal
+  )
+
   let isProductIncludesltm_final = product?.ltm_final.includes('Y')
   let col1Price =
     country === 'usa'
@@ -65,8 +81,7 @@ const Product = ({ product, loading, error }) => {
   let col3Qty = product?.column_3_qty
   let col4Qty = product?.column_4_qty
   let col5Qty = product?.column_5_qty
-  let supplier_fee =
-    country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
+
   let ltm_price = country === 'usa' ? product?.ltm_usd : product?.ltm_usd
   let supplierFees =
     country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
@@ -100,8 +115,6 @@ const Product = ({ product, loading, error }) => {
     }
   }
 
-  console.log({ col1Price, col2Price, col3Price, col4Price, col5Price })
-
   useEffect(() => {
     if (product) {
       let minQtyy = isProductIncludesltm_final
@@ -134,47 +147,61 @@ const Product = ({ product, loading, error }) => {
     }
   }
 
-  useEffect(() => {
-    const getData = setTimeout(() => {
-      if (orderQuantity < product?.column_1_qty) {
-        setOrderQuantity(+product?.column_1_qty)
-      }
-    }, 2000)
-
-    return () => clearTimeout(getData)
-  }, [orderQuantity])
-
-  const setQuantity = (e) => {
-    e.preventDefault()
-    setOrderQuantity(e.target.value)
-  }
-
   const uploadFirstFile = (e) => {
     setUploadFirstLogo(e.target.files[0])
   }
 
-  const removeLogo = (state) => {
-    state('')
-  }
+  const removeLogo = (state) => {}
 
-  const customizations = [
-    'Embroidery',
-    'Full Color Decoration',
-    'No Decoration',
-  ]
+  const btnClicked = (index, key, val) => {
+    let price1 = country === 'usa' ? val.rc_usa_1 : val.rc_cad_1
+    let price2 = country === 'usa' ? val.rc_usa_2 : val.rc_cad_2
+    let price3 = country === 'usa' ? val.rc_usa_3 : val.rc_cad_3
+    let price4 = country === 'usa' ? val.rc_usa_4 : val.rc_cad_4
+    let price5 = country === 'usa' ? val.rc_usa_5 : val.rc_cad_5
+    let retailSetup =
+      country === 'usa' ? val.retail_setup_usd : val.retail_setup_cad
 
-  const btnClicked = (index, item) => {
-    console.log(item, 'itemmm')
-    // if (val === 'Embroidery') {
-    //   setCustomize('Embroidery')
-    // } else if (val === 'Full Color Decoration') {
-    //   setCustomize('Full Color Decoration')
-    // } else if (val === 'No Decoration') {
-    //   setCustomize('No Decoration')
-    // }
+    console.log(val, 'itemmm from click')
+
     setActiveBtn(index)
-  }
 
+    let IsRcSourceIncluded = product.rc_mcq_source == 'Supplier Fees'
+    let price = 0
+    if (IsRcSourceIncluded) {
+      if (orderQuantity < +val.qty_rc_2) {
+        price = +price1
+      } else if (orderQuantity < +val.qty_rc_3) {
+        price = +price2
+      } else if (orderQuantity < +val.qty_rc_4) {
+        price = +price3
+      } else if (orderQuantity < +val.qty_rc_5) {
+        price = +price4
+      } else {
+        price = +price5
+      }
+
+      let finalCustomPrice = retailSetup / orderQuantity + price
+      setCustomizationPrice(finalCustomPrice)
+      let TotalPrice = finalCustomPrice + priceWithoutCustomizations
+      setTotalPrice(TotalPrice)
+    } else {
+      if (orderQuantity < col2Qty) {
+        price = +price1
+      } else if (orderQuantity < col3Qty) {
+        price = +price2
+      } else if (orderQuantity < col4Qty) {
+        price = +price3
+      } else if (orderQuantity < col5Qty) {
+        price = +price4
+      } else {
+        price = +price5
+      }
+      setCustomizationPrice(price)
+      let TotalPrice = price + priceWithoutCustomizations
+      setTotalPrice(TotalPrice)
+    }
+  }
   const handleAddToCart = (e) => {
     e.preventDefault()
     setCartState({
@@ -191,14 +218,11 @@ const Product = ({ product, loading, error }) => {
       behavior: 'smooth',
     })
   }
-
   useEffect(() => {
     if (cartState.quantity) {
       dispatch(setCartItems(cartState))
     }
   }, [cartState])
-
-  const cartItems = useSelector((state) => state.cart.cartItems)
 
   const checkFromCart = () => {
     const idToFind = product.id
@@ -206,7 +230,6 @@ const Product = ({ product, loading, error }) => {
     if (existingItemIndex) {
       setIsItemInCart(existingItemIndex)
       setOrderQuantity(existingItemIndex.quantity)
-      setPrice(existingItemIndex.price)
     }
   }
   useEffect(() => {
@@ -242,10 +265,10 @@ const Product = ({ product, loading, error }) => {
     }
   }, [orderQuantity, product])
 
-  console.log(product, 'ppppppppppppppp')
-
   useEffect(() => {
     let empt = []
+    dispatch(setDecorationItemObjSingleProductPage(supplierFees))
+
     supplierFees &&
       Object.entries(supplierFees).map(([key, value]) => empt.push(value))
     let ab = empt.flat(50)
@@ -255,8 +278,25 @@ const Product = ({ product, loading, error }) => {
       nameOfDecorations.push(element?.decoration_type)
     }
     setNameOfDecorations(nameOfDecorations)
+    {
+      !supplierFees && setNameOfDecorations()
+    }
   }, [product])
-  console.log(nameOfDecorations, 'nameOfDecorationsnameOfDecorations')
+
+  let checkeeeee = () => {
+    if (decorations) {
+      let objj = {}
+      Object.entries(decorations).map(([key, value]) => {
+        objj[key] = value[0]
+      })
+      dispatch(setFinalDecorationKeyVal(objj))
+    }
+  }
+  useEffect(() => {
+    if (product) {
+      checkeeeee()
+    }
+  }, [product])
   return (
     <>
       {loading ? (
@@ -429,17 +469,19 @@ const Product = ({ product, loading, error }) => {
                         {button}
                       </button>
                     ))} */}
-                    {nameOfDecorations.length > 0 &&
-                      nameOfDecorations?.map((item, index) => (
-                        <p
-                          className={`${Styles.btn} ${
-                            activeBtn === index ? Styles.active : ''
-                          }`}
-                          onClick={() => btnClicked(index, item)}
-                        >
-                          {item}
-                        </p>
-                      ))}
+                    {Object.keys(finalDecorationKeyVal).length > 0 &&
+                      Object.entries(finalDecorationKeyVal).map(
+                        ([key, val], index) => (
+                          <p
+                            className={`${Styles.btn} ${
+                              activeBtn === index ? Styles.active : ''
+                            }`}
+                            onClick={() => btnClicked(index, key, val)}
+                          >
+                            {val?.decoration_type}
+                          </p>
+                        )
+                      )}
                   </div>
                 </div>
                 {/* <div className={Styles.para_text}>
@@ -592,7 +634,7 @@ const Product = ({ product, loading, error }) => {
                     placeholder={product?.column_1_qty}
                     name="orderQuantity"
                     value={orderQuantity}
-                    onChange={setQuantity}
+                    // onChange={setQuantity}
                     disabled
                     min={actualMinQty}
                   />
@@ -659,11 +701,9 @@ const Product = ({ product, loading, error }) => {
                 </div>
                 <div className={Styles.standard_down_line}></div>
                 <div className={Styles.price_section}>
-                  <p>{`Price ${priceWithoutCustomizations}/unit`}</p>
+                  <p>{`Price ${totalPrice}/unit`}</p>
 
-                  <p>
-                    ${(orderQuantity * +priceWithoutCustomizations).toFixed(2)}
-                  </p>
+                  <p>${(orderQuantity * +totalPrice).toFixed(2)}</p>
                 </div>
                 <div className={Styles.add_to_bulk_container}>
                   <button onClick={handleAddToCart}>
