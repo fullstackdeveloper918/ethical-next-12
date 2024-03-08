@@ -125,7 +125,7 @@ const ProductCard = ({ item, fromSingleProduct }) => {
             </div>
             {shareIcons && (
               <>
-                <Share setShareIcons={setShareIcons}/>
+                <Share setShareIcons={setShareIcons} item={item} />
               </>
             )}
             <Link

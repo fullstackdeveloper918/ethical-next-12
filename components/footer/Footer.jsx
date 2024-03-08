@@ -2,26 +2,47 @@ import React, { useState } from 'react'
 import certifiedLogo from '../../assets/footerPics/certified.svg'
 import facebook from '../../assets/footerPics/facebook.svg'
 import instagram from '../../assets/footerPics/instagram.svg'
+import axios from 'axios'
 import linkdin from '../../assets/footerPics/linkdin.svg'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import youtube from '../../assets/footerPics/youtube.svg'
 import banks from '../../assets/footerPics/banks.svg'
+import {
+  initialValuesNewLetter,
+  validationNewsLetter,
+} from '../../lib/validationSchemas'
 import Image from 'next/image'
 import styles from './footer.module.css'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 const Footer = () => {
   const router = useRouter()
 
-  const [email, setEmail] = useState('')
-  const [disabled, setDisabled] = useState(true)
-
-  const onSubmitEmail = () => {
-    if (email.length < 1) {
-      setDisabled(true)
-    } else {
-      setDisabled(false)
+  const onSubmit = async (values) => {
+    try {
+      let formData = new FormData()
+      const data = {
+        email: values.email,
+      }
+      formData.append('email', values.email)
+      const response = await axios.post(
+        'https://test.cybersify.tech/Eswag/public/api/newsletter',
+        data,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        }
+      )
+      console.log(response?.data?.message, 'res')
+      if (response.statusText) {
+        toast.success(response?.data?.message)
+      }
+    } catch (error) {
+      console.log(error, 'from login api')
     }
-    setEmail('')
   }
 
   return (
@@ -41,15 +62,35 @@ const Footer = () => {
               We are formally committed to donate more than 20% of profits to
               charity each year.
             </div>
-            <div className={styles.inputContainer}>
-              <input
-                type="text"
-                placeholder="Join Our Newsletter"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <button onClick={onSubmitEmail}>Send</button>
-            </div>
+            <Formik
+              initialValues={initialValuesNewLetter}
+              validationSchema={validationNewsLetter}
+              onSubmit={onSubmit}
+            >
+              {({ values, error, resetForm }) => (
+                <>
+                  <Form>
+                    <div className={styles.inputContainer}>
+                      <Field
+                        type="text"
+                        id="email"
+                        name="email"
+                        placeholder="Join Our Newsletter"
+                        autocomplete="off"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className={styles.error}
+                      />
+                    </div>
+                    <button type="submit" disabled={error}>
+                      Send
+                    </button>
+                  </Form>
+                </>
+              )}
+            </Formik>
 
             <div className={styles.social_links}>
               <div className="">

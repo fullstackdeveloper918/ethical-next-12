@@ -1,18 +1,18 @@
 import Styles from '../Filter/Filter.module.css'
 import React, { useEffect, useState } from 'react'
 import { LIST } from '../../constants/data'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { filterPrice } from '../../redux-setup/FiltersSlice'
 import { RxCross2 } from 'react-icons/rx'
-import { useSelector } from 'react-redux'
+import { RxCross1 } from 'react-icons/rx'
 import { setActiveFilters } from 'redux-setup/categorySlice'
+import { clearSubCategories } from '../../redux-setup/categorySlice'
 
 const FilterPanel = ({ setActiveFilter }) => {
   const dispatch = useDispatch()
   const [inputSlider, setInputSlider] = useState(0)
   const subCategoryData = useSelector((state) => state.category.categories)
   const activeFilters = useSelector((state) => state.category.activeFilters)
-  const [addList, setAddList] = useState([])
   const [openIndex, setOpenIndex] = useState(0)
   const [isActive, setIsActive] = useState(true)
   const [price, setPrice] = useState(50)
@@ -50,6 +50,7 @@ const FilterPanel = ({ setActiveFilter }) => {
   }, [filtersState])
 
   const handleAddLists = (text) => {
+    console.log(text, 'textalldnbdfhj')
     if (filtersState.includes(text?.apikey)) {
       let f = filtersState.filter((item) => item !== text?.apikey)
       setFiltersState(f)
@@ -65,12 +66,13 @@ const FilterPanel = ({ setActiveFilter }) => {
         <div className={Styles.filterPanel_top}>
           <h4
             className={Styles.filterPanel_title}
-            onClick={() => alert('hello')}
-            style={{}}
+            onClick={() => dispatch(clearSubCategories())}
+            style={{ cursor: 'pointer' }}
           >
             Clear All
           </h4>
-          <RxCross2 fontSize={25} onClick={() => setActiveFilter(false)} />
+
+          {/* <RxCross2 fontSize={25} onClick={() => setActiveFilter(false)} /> */}
         </div>
         {/* <div className={Styles.filterPanel_Product_Section}></div> */}
         <div className={Styles.filterPanel_ProductCollection_list}>
@@ -143,7 +145,7 @@ const FilterPanel = ({ setActiveFilter }) => {
                                     htmlFor={`checkbox_id_${index}`}
                                     onClick={() => handleAddLists(child)}
                                   >
-                                    {child.label}
+                                    {JSON.parse(child.label)}
                                   </label>
                                 </li>
                               </div>

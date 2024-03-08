@@ -232,21 +232,21 @@
 /* Track */
 .open_accordionWrap::-webkit-scrollbar-track,
 .filterPanel::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-  margin:20px 0px;
-  height:20px;
+  background: #f1f1f1;
+  margin: 20px 0px;
+  height: 20px;
 }
- 
+
 /* Handle */
 .open_accordionWrap::-webkit-scrollbar-thumb,
 .filterPanel::-webkit-scrollbar-thumb {
-  background: #b4b4b4; 
+  background: #b4b4b4;
 }
 
 /* Handle on hover */
 .open_accordionWrap::-webkit-scrollbar-thumb:hover,
 .filterPanel::-webkit-scrollbar-thumb:hover {
-  background: #979797; 
+  background: #979797;
 }
 
 .category_section .filter_panel_wrap {
@@ -836,6 +836,23 @@
   background: black;
   border: 1px solid #000;
 } */
+
+.subCategoryListContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  background-color: #415463;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  transition: 0.4s all ease-in-out;
+}
+
+.subCategoryListContainer p {
+  color: #fff;
+}
+
 .border_svg {
   border: 0.36px solid #ddd;
   border-radius: 50%;

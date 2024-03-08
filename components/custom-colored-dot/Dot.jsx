@@ -7,8 +7,6 @@ import { setCartItems } from '../../redux-setup/cartSlice'
 const Dot = ({ color, imageUrl }) => {
   const [selectColor, setSelectColor] = useState('')
   const dispatch = useDispatch()
-  const cartItemsHegi = useSelector((state) => state.cart.cartItems)
-  console.log(cartItemsHegi, 'cartItemsHegi')
   return (
     <>
       {color && (
