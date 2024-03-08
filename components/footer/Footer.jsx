@@ -6,6 +6,7 @@ import axios from 'axios'
 import linkdin from '../../assets/footerPics/linkdin.svg'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import youtube from '../../assets/footerPics/youtube.svg'
+import Link from 'next/link'
 import banks from '../../assets/footerPics/banks.svg'
 import {
   initialValuesNewLetter,
@@ -36,9 +37,13 @@ const Footer = () => {
           },
         }
       )
+      values.email = ''
+
       console.log(response?.data?.message, 'res')
       if (response.statusText) {
-        toast.success(response?.data?.message)
+        toast.success(response?.data?.message, {
+          position: 'top-center',
+        })
       }
     } catch (error) {
       console.log(error, 'from login api')
@@ -71,60 +76,79 @@ const Footer = () => {
                 <>
                   <Form>
                     <div className={styles.inputContainer}>
-                      <Field
-                        type="text"
-                        id="email"
-                        name="email"
-                        placeholder="Join Our Newsletter"
-                        autocomplete="off"
-                      />
-                      <ErrorMessage
-                        name="email"
-                        component="div"
-                        className={styles.error}
-                      />
+                      <div>
+                        <Field
+                          type="text"
+                          id="email"
+                          name="email"
+                          placeholder="Join Our Newsletter"
+                          autocomplete="off"
+                        />
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className={styles.error}
+                        />
+                      </div>
+
+                      <button type="submit" disabled={error}>
+                        Send
+                      </button>
                     </div>
-                    <button type="submit" disabled={error}>
-                      Send
-                    </button>
                   </Form>
                 </>
               )}
             </Formik>
 
             <div className={styles.social_links}>
-              <div className="">
-                <Image
-                  src={facebook}
-                  height={20}
-                  width={20}
-                  alt="certified corporation logo"
-                />
-              </div>
-              <div className="">
-                <Image
-                  src={linkdin}
-                  height={20}
-                  width={20}
-                  alt="certified corporation logo"
-                />
-              </div>
-              <div className="">
-                <Image
-                  src={instagram}
-                  height={20}
-                  width={20}
-                  alt="certified corporation logo"
-                />
-              </div>
-              <div className="">
-                <Image
-                  src={youtube}
-                  height={20}
-                  width={20}
-                  alt="certified corporation logo"
-                />
-              </div>
+              <a href="https://www.facebook.com/ethicalswag" target="_blank">
+                <div className="">
+                  <Image
+                    src={facebook}
+                    height={20}
+                    width={20}
+                    alt="certified corporation logo"
+                  />
+                </div>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/ethical-swag/"
+                target="_blank"
+              >
+                <div className="">
+                  <Image
+                    src={linkdin}
+                    height={20}
+                    width={20}
+                    alt="certified corporation logo"
+                  />
+                </div>
+              </a>
+              <a href="https://www.instagram.com/ethicalswag/" target="_blank">
+                <div className="">
+                  <Image
+                    src={instagram}
+                    height={20}
+                    width={20}
+                    alt="certified corporation logo"
+                  />
+                </div>
+              </a>
+              <a href="https://www.youtube.com/channel/UCLQe2_4Tf2k8BOsgM8bWOjA">
+                <div className="">
+                  <Image
+                    src={youtube}
+                    height={20}
+                    width={20}
+                    alt="certified corporation logo"
+                    onClick={() =>
+                      router.push(
+                        'https://www.youtube.com/channel/UCLQe2_4Tf2k8BOsgM8bWOjA'
+                      )
+                    }
+                  />
+                </div>
+              </a>
             </div>
           </div>
           <div className={styles.container_column_2}>
@@ -197,7 +221,7 @@ const Footer = () => {
                   Frequently Asked Questions
                 </span>
               </div>
-              <div className="">
+              <div>
                 <span
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/terms-of-service')}
@@ -205,7 +229,7 @@ const Footer = () => {
                   Terms of Service
                 </span>
               </div>
-              <div className="">
+              <div>
                 <span
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/privacy-policy')}
@@ -216,15 +240,21 @@ const Footer = () => {
             </div>
             <div className={styles.column_2}>
               <div className={styles.heading_footer_2}>Reach Out</div>
-              <div className="">info@ethicalswag.com</div>
-              <div className="">1-877-206-6998</div>
-              <div className="">1-902-500-1086</div>
+              <Link
+                href={`info@ethicalswag.com`}
+                target="_blank"
+                style={{ textTransform: 'lowercase' }}
+              >
+                info@ethicalswag.com
+              </Link>
+              <div>1-877-206-6998</div>
+              <div>1-902-500-1086</div>
             </div>
           </div>
           <div className={styles.container_column_4}>
             <div className={styles.column_4_1st_part}>
               <div className={styles.heading_footer_2}>Sustainability</div>
-              <div className="">
+              <div>
                 <span
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/faq')}
@@ -232,7 +262,7 @@ const Footer = () => {
                   Frequently Asked Questions
                 </span>
               </div>
-              <div className="">
+              <div>
                 <span
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/terms-of-service')}

@@ -16,15 +16,6 @@ const FilterPanel = ({ setActiveFilter }) => {
   const [openIndex, setOpenIndex] = useState(0)
   const [isActive, setIsActive] = useState(true)
   const [price, setPrice] = useState(50)
-  const [isChecked, setIsChecked] = useState({
-    backPacks: false,
-    Coolers: false,
-    fannyPacks: false,
-    laundryBags: false,
-    Pouches: false,
-    toteBags: false,
-    waterBottles: false,
-  })
   const [filtersState, setFiltersState] = useState([])
 
   useEffect(() => {
@@ -36,8 +27,12 @@ const FilterPanel = ({ setActiveFilter }) => {
 
     setIsChecked((prev) => ({
       ...prev,
-      [checkboxName]: checked,
+      [name]: checked,
     }))
+  }
+
+  const handleClear = () => {
+    console.log(isChecked)
   }
 
   const toggleAccordion = (index) => {
@@ -50,7 +45,6 @@ const FilterPanel = ({ setActiveFilter }) => {
   }, [filtersState])
 
   const handleAddLists = (text) => {
-    console.log(text, 'textalldnbdfhj')
     if (filtersState.includes(text?.apikey)) {
       let f = filtersState.filter((item) => item !== text?.apikey)
       setFiltersState(f)
@@ -66,15 +60,12 @@ const FilterPanel = ({ setActiveFilter }) => {
         <div className={Styles.filterPanel_top}>
           <h4
             className={Styles.filterPanel_title}
-            onClick={() => dispatch(clearSubCategories())}
+            onClick={() => handleClear()}
             style={{ cursor: 'pointer' }}
           >
             Clear All
           </h4>
-
-          {/* <RxCross2 fontSize={25} onClick={() => setActiveFilter(false)} /> */}
         </div>
-        {/* <div className={Styles.filterPanel_Product_Section}></div> */}
         <div className={Styles.filterPanel_ProductCollection_list}>
           {LIST(subCategories).map((item, index) => (
             <>
@@ -138,7 +129,7 @@ const FilterPanel = ({ setActiveFilter }) => {
                                     type="checkbox"
                                     id={`checkbox_id_${index}`}
                                     name={child.label}
-                                    checked={isChecked[item.label]}
+                                    // checked={isChecked[item.label]}
                                     onChange={handleCheckboxChange}
                                   />
                                   <label

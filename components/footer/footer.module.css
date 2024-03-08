@@ -21,8 +21,11 @@
   gap: 30px;
 }
 
-.error {
+.inputContainer .error {
   color: red;
+  line-height: 16px;
+  margin-top: 16px;
+  position: absolute;
 }
 
 .container_column_1 {
@@ -71,6 +74,7 @@
   gap: 1rem;
   justify-content: flex-start;
   padding-top: 15px;
+  position: relative;
 }
 
 .inputContainer input {
