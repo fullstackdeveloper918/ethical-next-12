@@ -352,7 +352,6 @@ const Product = ({ product, loading, error }) => {
                 <div className={Styles.reviews}>
                   <div className={Styles.star_review}>
                     <span className={Styles.star_review_images}>
-                      {console.log(product?.emoji_ratings, 'bro happen')}
                       {product?.emoji_ratings &&
                         Object.entries(product?.emoji_ratings).map(
                           ([key, value]) => (

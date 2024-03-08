@@ -65,6 +65,12 @@ const SingleProduct = ({ product }) => {
       </div>
       <div className={styles.product_name}>
         {product?.product_title || 'No title received'}
+        {/* {product?.emoji_ratings &&
+          Object.entries(product?.emoji_ratings).map(([key, value]) => (
+            <>
+              <p>{value}</p>
+            </>
+          ))} */}
       </div>
       <div className={styles.product_price}>
         <p>
