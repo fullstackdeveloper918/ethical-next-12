@@ -16,6 +16,10 @@ import useFetch from '../../lib/useFetch'
 import Invoice from '../Invoice'
 import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
+import { PDFViewer, pdf } from '@react-pdf/renderer'
+import Card from '@components/dummy/Card'
+import { saveAs } from 'file-saver'
+
 const EstimateCard = () => {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -73,26 +77,10 @@ const EstimateCard = () => {
     totalPriceOfCart()
   }, [cartItems])
 
-  const downLoadPdf = () => {
-    const input = document.getElementById('invoice-container')
-
-    html2canvas(input).then((canvas) => {
-      const pdf = new jsPDF('p', 'mm', 'a4')
-      const imgWidth = 210
-      const imgHeight = (canvas.height * imgWidth) / canvas.width
-      let remainingHeight = imgHeight
-      let position = 0
-      pdf.addImage(
-        canvas.toDataURL('image/png'),
-        'PNG',
-        0,
-        0,
-        imgWidth,
-        imgHeight
-      )
-
-      pdf.save('invoice.pdf')
-    })
+  const downLoadPdf = async () => {
+    console.log('i am called')
+    const blob = await pdf(<Card />).toBlob()
+    saveAs(blob, 'untitled.pdf')
   }
 
   return (
@@ -190,7 +178,9 @@ const EstimateCard = () => {
                   </div>
                   <div style={{ height: '0px', overflow: 'hidden' }}>
                     <div id="invoice-container">
-                      <Invoice />
+                      <PDFViewer height={1000} width={2000}>
+                        <Card />
+                      </PDFViewer>
                     </div>
                   </div>
                 </div>
