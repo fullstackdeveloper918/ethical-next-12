@@ -351,7 +351,6 @@ const Product = ({ product, loading, error }) => {
                   {product?.certBy &&
                     JSON.parse(product?.certBy).map((data) => (
                       <>
-                        {console.log(data, 'certBy')}
                         <div className={Styles.tag}>
                           <p>{data}</p>
                         </div>
@@ -360,7 +359,8 @@ const Product = ({ product, loading, error }) => {
                 </div>
 
                 <div className={Styles.title}>
-                  <h4>{product?.product_title}</h4>
+                  {/* {console.log(product.product_title, 'itle')} */}
+                  <h4>{product?.product_title_country}</h4>
                   <div className={Styles.reviews}>
                     <div className={Styles.star_review}>
                       <span className={Styles.star_review_images}>
