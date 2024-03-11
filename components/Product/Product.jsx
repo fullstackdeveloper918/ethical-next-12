@@ -351,6 +351,7 @@ const Product = ({ product, loading, error }) => {
                   {product?.certBy &&
                     JSON.parse(product?.certBy).map((data) => (
                       <>
+                        {console.log(data, 'certBy')}
                         <div className={Styles.tag}>
                           <p>{data}</p>
                         </div>
@@ -360,25 +361,25 @@ const Product = ({ product, loading, error }) => {
 
                 <div className={Styles.title}>
                   <h4>{product?.product_title}</h4>
-                </div>
-                <div className={Styles.reviews}>
-                  <div className={Styles.star_review}>
-                    <span className={Styles.star_review_images}>
-                      {product?.emoji_ratings &&
-                        Object.entries(product?.emoji_ratings).map(
-                          ([key, value]) => (
-                            <>
-                              <p>{value}</p>
-                            </>
-                          )
-                        )}
-                    </span>
-                  </div>
-                  {/* <div className={Styles.text_review}>
+                  <div className={Styles.reviews}>
+                    <div className={Styles.star_review}>
+                      <span className={Styles.star_review_images}>
+                        {product?.emoji_ratings &&
+                          Object.entries(product?.emoji_ratings).map(
+                            ([key, value]) => (
+                              <>
+                                <p>{value}</p>
+                              </>
+                            )
+                          )}
+                      </span>
+                    </div>
+                    {/* <div className={Styles.text_review}>
                     <span className={Styles.text_review_content}>
-                      527 Reviews
+                    527 Reviews
                     </span>
                   </div> */}
+                  </div>
                 </div>
                 <div className={Styles.text_content}>
                   <p>
