@@ -1,188 +1,44 @@
-.text ul {
-  position: relative;
+.text {
+  overflow: hidden;
   width: 100%;
-  height: 100%;
-  min-height: 670px;
-  min-width: 700px;
-  margin-right: 0;
-  max-width: 700px;
-  display: flex;
-  gap: 70px;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-  cursor: pointer;
 }
-.text ul li .list_explore {
-  list-style: none;
+.text ul {
+  position:relative;
+  width: 680px;
+  height: 500px;
+}
+.text ul li:nth-child(1) {
+  width: 100%;
+  max-width: 500px;
   position: absolute;
-  width: 600px;
-  height: 700px;
-  transition: transform 5s, z-index 1s;
-  display: inline-block;
-  cursor: pointer;
-  z-index: 0;
-  transform: translateX(0);
+  right: 0;
+  z-index: 5;
 }
-
-.text ul li:hover .list_explore{
-  z-index: 1 !important;
-  transform: scale(1) translateX(0px);
-  cursor: pointer;
-  /* animation: rightAnimate 5s linear;
-  animation-fill-mode: forwards; */
-}
-.text ul li:nth-child(2) .list_explore {
-  z-index: -1;
-  transform: scale(0.95);
-  cursor: pointer;
-}
-.text ul li:nth-child(3) .list_explore {
-  z-index: -2;
-  transform: scale(0.9);
-  cursor: pointer;
-}
-.text ul li:nth-child(4) .list_explore{
-  z-index: -3;
-  transform: scale(0.85);
-  cursor: pointer;
-}
-.text ul li:nth-child(5) .list_explore{
-  z-index: -4;
-  transform: scale(0.8);
-  cursor: pointer;
-}
-
-.text ul li p {
+.text ul li:nth-child(2) {
+  width: 100%;
+  max-width: 450px;
   position: absolute;
+  left: 132px;
+  z-index: 4;
 }
-
-.cardImage {
-    width: 100% !important;
-    min-width: 400px !important;
-    max-width: 400px !important;
-    object-fit: contain;
-}
-
-.text_animation {
-  animation: rightAnimate 5s linear;
-  animation-fill-mode: forwards;
+.text ul li:nth-child(3) {
+  width: 100%;
+  max-width: 400px;
   position: absolute;
-  width: 600px;
-  height: 700px;
+  left: 84px;
+  z-index: 3;
 }
-.text_animation_img {
-  width: 600px;
-  height: 700px;
-  object-fit: contain;
+.text ul li:nth-child(4) {
+  width: 100%;
+  max-width: 350px;
+  position: absolute;
+  left: 40px;
+  z-index: 2;
 }
-@keyframes rightAnimate {
-  0% {
-    z-index: 100;
-    transform: translateX(0);
-    cursor: pointer;
-  }
-  25% {
-    z-index: -4;
-    transform: translateX(50px) scale(1.05);
-    cursor: pointer;
-  }
-  50% {
-    z-index: -4;
-    transform: translateX(-75px) scale(0.9);
-    cursor: pointer;
-  }
-  75% {
-    z-index: -4;
-    transform: translateX(-100px) scale(0.85);
-    cursor: pointer;
-  }
-  100% {
-    transform: scale(0.8) translateX(-140px);
-    z-index: -4;
-    cursor: pointer;
-  }
-}
-@media (max-width:1440px){
-  .text ul {
-    min-height: 520px;
-    min-width: 700px;
-  }
-  .text ul li .list_explore {
-    width: 450px;
-    height: 470px;
-  }
-}
-@media (max-width: 767px) {
-  .text ul {
-    width: 400px;
-    height: 330px;
-  }
-
-  .text ul li {
-    width: 300px;
-    height: 400px;
-  }
-  .text_animation_img {
-    width: 300px;
-    height: 400px;
-  }
-  .text_animation {
-    width: 300px;
-    height: 400px;
-  }
-  .cardImage {
-    width: 400px;
-    height: 400px;
-    object-fit: contain;
-  }
-}
-
-@media (max-width: 576px) {
-  .text ul {
-    width: 270px;
-    height: 270px;
-  }
-
-  .text ul li {
-    width: 270px;
-    height: 370px;
-  }
-  .text_animation_img {
-    width: 270px;
-    height: 370px;
-  }
-  .text_animation {
-    width: 270px;
-    height: 370px;
-  }
-  .cardImage {
-    width: 270px;
-    height: 270px;
-    object-fit: contain;
-  }
-}
-
-@media (max-width: 497px) {
-  .text ul {
-    width: 220px;
-    height: 220px;
-  }
-
-  .text ul li {
-    width: 220px;
-    height: 320px;
-  }
-  .text_animation_img {
-    width: 220px;
-    height: 320px;
-  }
-  .text_animation {
-    width: 220px;
-    height: 320px;
-  }
-  .cardImage {
-    width: 220px;
-    height: 220px;
-    object-fit: contain;
-  }
+.text ul li:nth-child(5) {
+  width: 100%;
+  max-width: 300px;
+  position: absolute;
+  left: 0px;
+  z-index: 1;
 }

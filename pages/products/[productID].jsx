@@ -20,6 +20,7 @@ import images from '../../constants/images'
 
 const productID = () => {
   const router = useRouter()
+
   const [openIndex, setOpenIndex] = useState(null)
   const { query } = router ?? {}
   const { productID } = query ?? {}
@@ -45,13 +46,16 @@ const productID = () => {
   }, [productID, country])
 
   useEffect(() => {
-    fetch(
-      `https://test.cybersify.tech/Eswag/public/api/product/recent?pageSize=${10}&country=available_in_${country}`
-    )
-      .then((res) => res.json())
-      .then((data) => setData(data?.data))
-    // .then((data) => console.log(data?.data))
-  }, [])
+    if (country) {
+      fetch(
+        `https://test.cybersify.tech/Eswag/public/api/products?created_at_desc=1&${
+          country === 'usa' ? `available_in_usa=1` : `available_in_canada=1`
+        }`
+      )
+        .then((res) => res.json())
+        .then((data) => setData(data?.data?.data))
+    }
+  }, [country])
 
   return (
     <>
@@ -68,7 +72,7 @@ const productID = () => {
 
         <div className={Styles.product_card_container}>
           {data?.length > 0 &&
-            data?.slice(0, 5).map((item) => (
+            data?.slice(0, 4).map((item) => (
               <>
                 <div className={Styles.product_content}>
                   <ProductCard item={item} key={item.id} fromSingleProduct />
@@ -122,7 +126,10 @@ const productID = () => {
                       supporting you as you grow.
                     </p>
                   </div>
-                  <button className={Styles.product_bottombtn}>
+                  <button
+                    className={Styles.product_bottombtn}
+                    onClick={() => router.push('/services')}
+                  >
                     More About Our Services
                   </button>
                 </div>

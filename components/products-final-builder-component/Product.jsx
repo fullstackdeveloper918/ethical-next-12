@@ -87,12 +87,7 @@ const Product = () => {
             setActiveFilter={setActiveFilter}
             optimizedFn={optimizedFn}
           />
-          {Isloading ? (
-            <div>
-              {' '}
-              <Loaders />
-            </div>
-          ) : length ? (
+          {length ? (
             <Products response={productsData} loading={Isloading} />
           ) : (
             <div

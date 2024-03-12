@@ -2,26 +2,52 @@ import React, { useState } from 'react'
 import certifiedLogo from '../../assets/footerPics/certified.svg'
 import facebook from '../../assets/footerPics/facebook.svg'
 import instagram from '../../assets/footerPics/instagram.svg'
+import axios from 'axios'
 import linkdin from '../../assets/footerPics/linkdin.svg'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import youtube from '../../assets/footerPics/youtube.svg'
+import Link from 'next/link'
 import banks from '../../assets/footerPics/banks.svg'
+import {
+  initialValuesNewLetter,
+  validationNewsLetter,
+} from '../../lib/validationSchemas'
 import Image from 'next/image'
 import styles from './footer.module.css'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 const Footer = () => {
   const router = useRouter()
 
-  const [email, setEmail] = useState('')
-  const [disabled, setDisabled] = useState(true)
+  const onSubmit = async (values) => {
+    try {
+      let formData = new FormData()
+      const data = {
+        email: values.email,
+      }
+      formData.append('email', values.email)
+      const response = await axios.post(
+        'https://test.cybersify.tech/Eswag/public/api/newsletter',
+        data,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        }
+      )
+      values.email = ''
 
-  const onSubmitEmail = () => {
-    if (email.length < 1) {
-      setDisabled(true)
-    } else {
-      setDisabled(false)
+      console.log(response?.data?.message, 'res')
+      if (response.statusText) {
+        toast.success(response?.data?.message, {
+          position: 'top-center',
+        })
+      }
+    } catch (error) {
+      console.log(error, 'from login api')
     }
-    setEmail('')
   }
 
   return (
@@ -41,49 +67,88 @@ const Footer = () => {
               We are formally committed to donate more than 20% of profits to
               charity each year.
             </div>
-            <div className={styles.inputContainer}>
-              <input
-                type="text"
-                placeholder="Join Our Newsletter"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <button onClick={onSubmitEmail}>Send</button>
-            </div>
+            <Formik
+              initialValues={initialValuesNewLetter}
+              validationSchema={validationNewsLetter}
+              onSubmit={onSubmit}
+            >
+              {({ values, error, resetForm }) => (
+                <>
+                  <Form>
+                    <div className={styles.inputContainer}>
+                      <div>
+                        <Field
+                          type="text"
+                          id="email"
+                          name="email"
+                          placeholder="Join Our Newsletter"
+                          autocomplete="off"
+                        />
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className={styles.error}
+                        />
+                      </div>
+
+                      <button type="submit" disabled={error}>
+                        Send
+                      </button>
+                    </div>
+                  </Form>
+                </>
+              )}
+            </Formik>
 
             <div className={styles.social_links}>
-              <div className="">
-                <Image
-                  src={facebook}
-                  height={20}
-                  width={20}
-                  alt="certified corporation logo"
-                />
-              </div>
-              <div className="">
-                <Image
-                  src={linkdin}
-                  height={20}
-                  width={20}
-                  alt="certified corporation logo"
-                />
-              </div>
-              <div className="">
-                <Image
-                  src={instagram}
-                  height={20}
-                  width={20}
-                  alt="certified corporation logo"
-                />
-              </div>
-              <div className="">
-                <Image
-                  src={youtube}
-                  height={20}
-                  width={20}
-                  alt="certified corporation logo"
-                />
-              </div>
+              <a href="https://www.facebook.com/ethicalswag" target="_blank">
+                <div className="">
+                  <Image
+                    src={facebook}
+                    height={20}
+                    width={20}
+                    alt="certified corporation logo"
+                  />
+                </div>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/ethical-swag/"
+                target="_blank"
+              >
+                <div className="">
+                  <Image
+                    src={linkdin}
+                    height={20}
+                    width={20}
+                    alt="certified corporation logo"
+                  />
+                </div>
+              </a>
+              <a href="https://www.instagram.com/ethicalswag/" target="_blank">
+                <div className="">
+                  <Image
+                    src={instagram}
+                    height={20}
+                    width={20}
+                    alt="certified corporation logo"
+                  />
+                </div>
+              </a>
+              <a href="https://www.youtube.com/channel/UCLQe2_4Tf2k8BOsgM8bWOjA">
+                <div className="">
+                  <Image
+                    src={youtube}
+                    height={20}
+                    width={20}
+                    alt="certified corporation logo"
+                    onClick={() =>
+                      router.push(
+                        'https://www.youtube.com/channel/UCLQe2_4Tf2k8BOsgM8bWOjA'
+                      )
+                    }
+                  />
+                </div>
+              </a>
             </div>
           </div>
           <div className={styles.container_column_2}>
@@ -156,7 +221,7 @@ const Footer = () => {
                   Frequently Asked Questions
                 </span>
               </div>
-              <div className="">
+              <div>
                 <span
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/terms-of-service')}
@@ -164,7 +229,7 @@ const Footer = () => {
                   Terms of Service
                 </span>
               </div>
-              <div className="">
+              <div>
                 <span
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/privacy-policy')}
@@ -175,15 +240,21 @@ const Footer = () => {
             </div>
             <div className={styles.column_2}>
               <div className={styles.heading_footer_2}>Reach Out</div>
-              <div className="">info@ethicalswag.com</div>
-              <div className="">1-877-206-6998</div>
-              <div className="">1-902-500-1086</div>
+              <Link
+                href={`info@ethicalswag.com`}
+                target="_blank"
+                style={{ textTransform: 'lowercase' }}
+              >
+                info@ethicalswag.com
+              </Link>
+              <div>1-877-206-6998</div>
+              <div>1-902-500-1086</div>
             </div>
           </div>
           <div className={styles.container_column_4}>
             <div className={styles.column_4_1st_part}>
               <div className={styles.heading_footer_2}>Sustainability</div>
-              <div className="">
+              <div>
                 <span
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/faq')}
@@ -191,7 +262,7 @@ const Footer = () => {
                   Frequently Asked Questions
                 </span>
               </div>
-              <div className="">
+              <div>
                 <span
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/terms-of-service')}

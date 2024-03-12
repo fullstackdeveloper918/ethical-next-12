@@ -88,15 +88,16 @@ const PrimaryHeader = () => {
                   variant="ghost"
                   className={styles.tap_annument}
                   style={{ cursor: 'pointer' }}
+                  onClick={() => router.push('/services')}
                 >
                   What we Offer
                   <span>
-                    <Image
+                    {/* <Image
                       src={downArrowImg}
                       alt="down arrow"
                       width={12}
                       height={12}
-                    />
+                    /> */}
                   </span>
                 </Button>
               </DropdownMenuTrigger>

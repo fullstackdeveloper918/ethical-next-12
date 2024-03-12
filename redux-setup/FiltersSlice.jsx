@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   Price: null,
-}
+  }
 
 export const FiltersSlice = createSlice({
   name: 'filters',

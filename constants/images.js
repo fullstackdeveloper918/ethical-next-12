@@ -11,6 +11,7 @@ import Cup2 from '../assets/cup 2.svg'
 import different_colors from '../assets/different_colors.svg'
 import cart_image from '../assets/cart_product_image.svg'
 import delete_icon from '../assets/delete_icon.svg'
+import EthicalLogo from '../assets/headerPics/ethical_logo.svg'
 import star from '../assets/star.svg'
 import shirt_small from '../assets/shirt_small.png'
 import Stack_Card1 from '../assets/Stack_Card1.png'
@@ -41,11 +42,20 @@ import customer_icon from '../assets/customer_icon.svg'
 import bag_image from '../assets/bag_image.png'
 import pages from '../assets/pages.svg'
 import email from '../assets/email.svg'
+import Product_image from '../assets/product-img.png'
+import Second_proimg from '../assets/second_proimg.png'
+import Cross_icon from '../assets/headerPics/corss.svg'
+import GmailIcon from '../assets/gmail_icon.svg'
 
 const images = {
   bag_image,
+  GmailIcon,
+  Cross_icon,
+  Product_image,
+  Second_proimg,
   pages,
   ethical_swag,
+  EthicalLogo,
   email,
   history_icon,
   invoices_icon,

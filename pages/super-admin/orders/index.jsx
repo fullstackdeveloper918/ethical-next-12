@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdArrowBackIos } from 'react-icons/md'
 import { IoChevronForwardSharp } from 'react-icons/io5'
 import { FaEye, FaRegEdit } from 'react-icons/fa'
@@ -72,13 +72,13 @@ const Orders = () => {
                   <td>
                     <div className={Styles.action_icons}>
                       <span>
-                        <FaEye fontSize={18} />
+                        <FaEye fontSize={18} cursor="pointer" />
                       </span>
                       <span>
-                        <FaRegEdit fontSize={18} />
+                        <FaRegEdit fontSize={18} cursor="pointer" />
                       </span>
                       <span>
-                        <RiDeleteBin6Line fontSize={18} />
+                        <RiDeleteBin6Line cursor="pointer" fontSize={18} />
                       </span>
                     </div>
                   </td>

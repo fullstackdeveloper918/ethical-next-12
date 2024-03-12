@@ -13,11 +13,13 @@ const categorySlice = createSlice({
   initialState,
   reducers: {
     addCategory(state, action) {
-      console.log(action.payload, 'hello redux')
       state.categories.push(action.payload)
     },
     clearCategories(state) {
       state.categories = []
+    },
+    clearSubCategories(state) {
+      state.subCategories = []
     },
     getAllCategories: (state, action) => {
       state.allCategories = action.payload
@@ -37,6 +39,7 @@ export const {
   getAllCategories,
   setSubCategories,
   setActiveFilters,
+  clearSubCategories,
 } = categorySlice.actions
 
 export default categorySlice.reducer

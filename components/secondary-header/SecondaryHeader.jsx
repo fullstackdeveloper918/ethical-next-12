@@ -10,8 +10,6 @@ import Canada from '../../assets/headerPics/canada-flag.svg'
 import { FaChevronDown } from 'react-icons/fa'
 import CrossIcon from '../../assets/headerPics/corss.svg'
 import Humburg from '../../assets/headerPics/menu-bar.png'
-import axios from 'axios'
-import dropDownIcon from '../../assets/headerPics/drop-down.svg'
 import { RxCross2 } from 'react-icons/rx'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
@@ -25,7 +23,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useRouter } from 'next/router'
-import { Input } from '@/components/ui/input'
 import useFetch from '@lib/useFetch'
 import { selectCountry } from 'redux-setup/countrySlice'
 import { debounce } from '@lib/utils'
@@ -61,7 +58,7 @@ const SecondaryHeader = () => {
   const wishlistItems = useSelector((state) => state.wishlist.items)
   const [screenSize, setScreenSize] = useState(992)
   const [showOnMobile, setShowOnMobile] = useState(false)
-
+  const [suggestions, setSuggestions] = useState([])
   const cartItems = useSelector((state) => state.cart.cartItems.length)
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
@@ -71,6 +68,13 @@ const SecondaryHeader = () => {
     product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
   )
   const optimizedFn = useCallback(debounce(handleChange), [])
+  const getSingleProductPageRoute =
+    router.asPath.includes('/products/') ||
+    router.asPath.includes('/contact') ||
+    router.asPath.includes('/wishlist') ||
+    router.asPath.includes('/cart') ||
+    router.asPath.includes('/shipping') ||
+    router.asPath.includes('/billing-address')
 
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products?q=${searchProduct}`,
@@ -110,11 +114,9 @@ const SecondaryHeader = () => {
   }
 
   const handleChange = (value) => {
-    // loadQuery()
     fetch(`https://test.cybersify.tech/Eswag/public/api/products?q=${value}`)
       .then((res) => res.json())
-      .then((data) => console.log(data?.data))
-    // .then((json) => setSuggestions(json.data.items))
+      .then((json) => setSuggestions(json.data.data))
   }
 
   const handleClick = (item) => {
@@ -206,16 +208,22 @@ const SecondaryHeader = () => {
                       <FaChevronDown fontSize={12} />
                     </span> */}
                     {allCategories && (
-                      <div className={styles.header_menu}>
-                        {Object.keys(allCategories).map((item, i) => (
-                          <div className={styles.mega_menu} key={i}>
-                            <span
-                              className={`${styles.shop_menu} ${styles.shop_menuWrap}`}
-                              onClick={() => handleSetSubCategory(item)}
-                            >
-                              {item}
-                            </span>
-                            {/* <ul>
+                      <div
+                        className={styles.header_menu_wrapper}
+                        style={{
+                          top: getSingleProductPageRoute ? '121px' : '71px',
+                        }}
+                      >
+                        <div className={styles.header_menu}>
+                          {Object.keys(allCategories).map((item, i) => (
+                            <div className={styles.mega_menu} key={i}>
+                              <span
+                                className={`${styles.shop_menu} ${styles.shop_menuWrap}`}
+                                onClick={() => handleSetSubCategory(item)}
+                              >
+                                {item}
+                              </span>
+                              {/* <ul>
                               {Object.entries(category[item].matchingValues)
                                 .slice(0, 5)
                                 .map(([subCategoryId, subCategory]) => (
@@ -226,8 +234,9 @@ const SecondaryHeader = () => {
                                   </>
                                   ))}
                                 </ul> */}
-                          </div>
-                        ))}
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -255,9 +264,13 @@ const SecondaryHeader = () => {
           </div>
         </>
 
-        <div className={`${styles.mobile_menu} ${openLinks ? styles.open_Sidebar: ''}`}>
-            <div className={styles.mobile_menuwrap}>
-              <ul>
+        <div
+          className={`${styles.mobile_menu} ${
+            openLinks ? styles.open_Sidebar : ''
+          }`}
+        >
+          <div className={styles.mobile_menuwrap}>
+            <ul>
               <span className={styles.menu_cross}>
                 <Image
                   src={CrossIcon}
@@ -267,11 +280,14 @@ const SecondaryHeader = () => {
                   onClick={() => setOpenLinks(false)}
                 />
               </span>
-                <li onClick={() => setShowOnMobile(!showOnMobile)} >shop <span>
-                      <FaChevronDown fontSize={12} />
-                    </span>
-                  <div className={styles.mobi_submenu}>
-                 {showOnMobile &&  <ul>
+              <li onClick={() => setShowOnMobile(!showOnMobile)}>
+                shop{' '}
+                <span>
+                  <FaChevronDown fontSize={12} />
+                </span>
+                <div className={styles.mobi_submenu}>
+                  {showOnMobile && (
+                    <ul>
                       <li>Apparel</li>
                       <li>Office & School</li>
                       <li>Plants & Seeds</li>
@@ -282,15 +298,15 @@ const SecondaryHeader = () => {
                       <li>Other</li>
                       <li>Wellness</li>
                       <li>Bags</li>
-                    </ul>}
-                  </div>
-                </li>
-                <li>About</li>
-                <li>Contact</li>
-              </ul>
-            </div>
+                    </ul>
+                  )}
+                </div>
+              </li>
+              <li>About</li>
+              <li>Contact</li>
+            </ul>
           </div>
-
+        </div>
 
         <div className={styles.container_3}>
           <div className="">
@@ -360,11 +376,7 @@ const SecondaryHeader = () => {
                     type="search"
                     placeholder="Search"
                     // value={searchProduct}
-                    onChange={(e) => {
-                      e.preventDefault()
-                      setSearchProduct(e.target.value)
-                      optimizedFn(e.target.value)
-                    }}
+                    onChange={(e) => optimizedFn(e.target.value)}
                   />
 
                   <span>

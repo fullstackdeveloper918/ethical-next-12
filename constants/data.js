@@ -15,6 +15,7 @@ import { BsFillBoxFill } from 'react-icons/bs'
 import { CiUser } from 'react-icons/ci'
 import { IoKeyOutline } from 'react-icons/io5'
 import { useEffect } from 'react'
+import { doesNotMatch } from 'assert'
 // list
 
 export const LIST = (subCategories) => {
@@ -42,69 +43,69 @@ export const LIST = (subCategories) => {
       label: 'Price',
       children: [{ id: 1, minPrice: 0, maxPrice: 200 }],
     },
-    {
-      id: 3,
-      label: 'Customization',
-      children: [
-        { id: 1, label: '1-Color Decoration' },
-        { id: 1, label: '2-Color Decoration' },
-        { id: 1, label: '3-Color Decoration' },
-        { id: 1, label: 'Embroidery' },
-        { id: 1, label: 'Laser Engraving' },
-      ],
-    },
-    {
-      id: 4,
-      label: 'Color',
-      children: [
-        { id: 1, label: '1-Color Decoration' },
-        { id: 1, label: '2-Color Decoration' },
-        { id: 1, label: '3-Color Decoration' },
-        { id: 1, label: 'Embroidery' },
-        { id: 1, label: 'Laser Engraving' },
-      ],
-    },
-    {
-      id: 5,
-      label: 'Sustainability',
-      children: [
-        { id: 1, label: 'Good' },
-        { id: 1, label: 'Better' },
-        { id: 1, label: 'Best' },
-        { id: 1, label: 'Recycled' },
-      ],
-    },
-    {
-      id: 6,
-      label: 'Mission Driven',
-      children: [{ id: 1, label: 'Environmental Causes' }],
-    },
-    {
-      id: 7,
-      label: 'Cotton Fabric Weight',
-      children: [
-        { id: 1, label: 'Medium - Weight' },
-        { id: 1, label: 'Heavy - Weight' },
-      ],
-    },
-    {
-      id: 8,
-      label: 'Drinkware Capacity',
-      children: [{ id: 1, label: '15 Oz to 19 Oz' }],
-    },
-    {
-      id: 9,
-      label: 'Made Of',
-      children: [
-        { id: 1, label: 'Bamboo' },
-        { id: 1, label: 'Cork' },
-        { id: 1, label: 'Cotton' },
-        { id: 1, label: 'Jute' },
-        { id: 1, label: 'Polyester' },
-        { id: 1, label: 'Recycled Cotton' },
-        { id: 1, label: 'Recycled Polyester' },
-      ],
-    },
+    // {
+    //   id: 3,
+    //   label: 'Customization',
+    //   children: [
+    //     { id: 1, label: '1-Color Decoration' },
+    //     { id: 1, label: '2-Color Decoration' },
+    //     { id: 1, label: '3-Color Decoration' },
+    //     { id: 1, label: 'Embroidery' },
+    //     { id: 1, label: 'Laser Engraving' },
+    //   ],
+    // },
+    // {
+    //   id: 4,
+    //   label: 'Color',
+    //   children: [
+    //     { id: 1, label: '1-Color Decoration' },
+    //     { id: 1, label: '2-Color Decoration' },
+    //     { id: 1, label: '3-Color Decoration' },
+    //     { id: 1, label: 'Embroidery' },
+    //     { id: 1, label: 'Laser Engraving' },
+    //   ],
+    // },
+    // {
+    //   id: 5,
+    //   label: 'Sustainability',
+    //   children: [
+    //     { id: 1, label: 'Good' },
+    //     { id: 1, label: 'Better' },
+    //     { id: 1, label: 'Best' },
+    //     { id: 1, label: 'Recycled' },
+    //   ],
+    // },
+    // {
+    //   id: 6,
+    //   label: 'Mission Driven',
+    //   children: [{ id: 1, label: 'Environmental Causes' }],
+    // },
+    // {
+    //   id: 7,
+    //   label: 'Cotton Fabric Weight',
+    //   children: [
+    //     { id: 1, label: 'Medium - Weight' },
+    //     { id: 1, label: 'Heavy - Weight' },
+    //   ],
+    // },
+    // {
+    //   id: 8,
+    //   label: 'Drinkware Capacity',
+    //   children: [{ id: 1, label: '15 Oz to 19 Oz' }],
+    // },
+    // {
+    //   id: 9,
+    //   label: 'Made Of',
+    //   children: [
+    //     { id: 1, label: 'Bamboo' },
+    //     { id: 1, label: 'Cork' },
+    //     { id: 1, label: 'Cotton' },
+    //     { id: 1, label: 'Jute' },
+    //     { id: 1, label: 'Polyester' },
+    //     { id: 1, label: 'Recycled Cotton' },
+    //     { id: 1, label: 'Recycled Polyester' },
+    //   ],
+    // },
   ]
 
   return categoryList
@@ -789,3 +790,33 @@ export const Review_Progress = [
   { id: 4, number: 2, percentage: '0' },
   { id: 5, number: 1, percentage: '0' },
 ]
+
+// i want to show fileds like this
+// on Add new button clicked
+// Subject -- Empty text field
+// Owner -- Empty Field
+// Acitivity Type -- Empty Field
+// Status -- Empty Field
+// Priority -- Empty Field
+// Issue Date -- Empty Field
+// Due Date -- Empty Field
+
+// i want to show fileds like this
+// on view button clicked --> Field should not be Editable
+// Subject -- T shirt --> Field should not be Editable
+// Owner -- John Doe --> Field should not be Editable
+// Acitivity Type -- Print --> Field should not be Editable
+// Status -- New --> Field should not be Editable
+// Priority -- Normal --> Field should not be Editable
+// Issue Date -- Feb 12, 2024 --> Field should not be Editable
+// Due Date -- 	April 12, 2024 --> Field should not be Editable
+
+// i want to show fileds like this
+// on edit button clicked
+// Subject -- T shirt --> Field should be Editable
+// Owner -- John Doe --> Field should be Editable
+// Acitivity Type -- Print --> Field should be Editable
+// Status -- New --> Field should be Editable
+// Priority -- Normal --> Field should be Editable
+// Issue Date -- Feb 12, 2024 --> Field should be Editable
+// Due Date -- 	April 12, 2024 --> Field should be Editable

@@ -23,6 +23,15 @@
   justify-content: center;
   padding: 12px;
 }
+/* .open_accordionWrap{
+  max-height: 250px;
+  min-height: 50px;
+  overflow: hidden;
+  overflow-y: auto;
+} */
+/* .accordion>div.open_accordionWrap:last-child {
+  margin-bottom: 10px;
+} */
 
 .filter_btn > span:nth-child(2) {
   margin-left: 0.5rem;
@@ -211,7 +220,33 @@
   align-items: flex-start;
   justify-content: end;
   margin-left: 32%;
-  min-height: 550px;
+  min-height: 540px;
+}
+/* scroll_bar */
+.open_accordionWrap::-webkit-scrollbar,
+.filterPanel::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+}
+
+/* Track */
+.open_accordionWrap::-webkit-scrollbar-track,
+.filterPanel::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  margin: 20px 0px;
+  height: 20px;
+}
+
+/* Handle */
+.open_accordionWrap::-webkit-scrollbar-thumb,
+.filterPanel::-webkit-scrollbar-thumb {
+  background: #b4b4b4;
+}
+
+/* Handle on hover */
+.open_accordionWrap::-webkit-scrollbar-thumb:hover,
+.filterPanel::-webkit-scrollbar-thumb:hover {
+  background: #979797;
 }
 
 .category_section .filter_panel_wrap {
@@ -801,6 +836,23 @@
   background: black;
   border: 1px solid #000;
 } */
+
+.subCategoryListContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  background-color: #415463;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  transition: 0.4s all ease-in-out;
+}
+
+.subCategoryListContainer p {
+  color: #fff;
+}
+
 .border_svg {
   border: 0.36px solid #ddd;
   border-radius: 50%;
@@ -813,15 +865,35 @@
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   border-color: #a2d061;
 }
-.border_svg:hover .icon {
-  filter: brightness(100);
+
+/* .favActive {
+  background-color: #a2d061;
+} */
+
+.border_svg.favactive .icon {
+  background-color: #a2d061 !important;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1) !important;
+  border-color: #a2d061 !important;
 }
+.icon.favActive {
+  filter: brightness(100) !important;
+  fill: #fff !important;
+}
+.border_svg:hover .icon,
+.border_svg:active .icon,
+.hidden_icons .active svg path {
+  filter: brightness(100) !important;
+}
+
 /* Filter Panel Css */
 .filterPanel {
   width: 400px;
   margin-top: 2.5rem;
   border: 1px solid #d8d8d8;
   border-radius: 30px;
+  min-height: 540px;
+  max-height: 550px;
+  overflow-y: auto;
 }
 
 .filterPanel_title {
@@ -855,9 +927,9 @@
 .accordion {
   width: 100%;
   width: 100%;
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-between; */
 }
 .accordion > div:first-child {
   flex: 1 0 100%;
@@ -939,6 +1011,28 @@
   display: flex;
 }
 
+.wish_container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 20px auto 80px;
+}
+
+.shareContainer {
+  width: 100%;
+  background: #ffff;
+  padding: 30px;
+  min-width: 340px;
+  border-radius: 20px;
+  position: relative;
+}
+.shareContent {
+  display: flex;
+  gap: 5px;
+}
+.text_end_style svg {
+  position: absolute;
+  right: 0;
+}
 @media (max-width: 1200px) {
   .collection_items {
     padding: 1rem;
@@ -947,6 +1041,9 @@
     font-size: 14px;
     line-height: 24px;
   }
+  .wish_container {
+    max-width: 80%;
+  }
 }
 @media screen and (max-width: 767px) {
   .filterPanel_list_item {
@@ -954,6 +1051,9 @@
   }
   .collection_items {
     border-radius: 20px;
+  }
+  .wish_container {
+    margin: 50px auto;
   }
 }
 

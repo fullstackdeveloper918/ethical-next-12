@@ -1,13 +1,16 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import Styles from '../Filter/Filter.module.css'
 import Image from 'next/image'
 import Featured_product from '../../assets/headerPics/main-product.png'
 import PromotionImg from '../../assets/products_promotion.svg'
 import ProductCard from '../ProductCard/ProductCard'
 import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import Loaders from '@components/loaders/Loaders'
 
 const Products = ({ response, loading }) => {
+  const router = useRouter()
   const promotionalProduct = useSelector(
     (state) => state.random.singleProductPromotion
   )
@@ -49,7 +52,13 @@ const Products = ({ response, loading }) => {
                     className={Styles.img}
                   />
                   <div className={Styles.checkbtn}>
-                    <button>Check it out</button>
+                    <button
+                      onClick={() =>
+                        router.push(`/products/${promotionalProduct.id}`)
+                      }
+                    >
+                      Check it out
+                    </button>
                   </div>
                 </div>
               </div>

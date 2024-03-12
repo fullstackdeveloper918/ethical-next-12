@@ -6,32 +6,8 @@ import Image from 'next/image'
 import { MdOutlineFavoriteBorder } from 'react-icons/md'
 import { CiSearch } from 'react-icons/ci'
 import { CiShare2 } from 'react-icons/ci'
-import { useDispatch } from 'react-redux'
-import {
-  EmailIcon,
-  FacebookIcon,
-  FacebookMessengerIcon,
-  GabIcon,
-  HatenaIcon,
-  InstapaperIcon,
-  LineIcon,
-  LinkedinIcon,
-  LivejournalIcon,
-  MailruIcon,
-  OKIcon,
-  PinterestIcon,
-  PocketIcon,
-  RedditIcon,
-  TelegramIcon,
-  TumblrIcon,
-  TwitterIcon,
-  ViberIcon,
-  VKIcon,
-  WeiboIcon,
-  WhatsappIcon,
-  WorkplaceIcon,
-  XIcon,
-} from 'react-share'
+import Share from '../../components/Share/Share'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   addItemToWishlist,
   removeItemFromWishlist,
@@ -40,26 +16,39 @@ import images from 'constants/images'
 import Loaders from '@components/loaders/Loaders'
 import { toast } from 'react-toastify'
 import { RxCross1 } from 'react-icons/rx'
-
+import { useRouter } from 'next/router'
 const ProductCard = ({ item, fromSingleProduct }) => {
   const [singleImage, setSingleImage] = useState('')
   const [shareIcons, setShareIcons] = useState(false)
+  const [favoriteIconColor, setFavoriteIconColor] = useState(false)
+  const router = useRouter()
   const dispatch = useDispatch()
-
+  const wishListItems = useSelector((state) => state.wishlist.items)
   useEffect(() => {
     setSingleImage(item?.image)
   }, [])
-
   const addToWishlist = (item) => {
-    console.log(item, 'abhishek')
-    dispatch(addItemToWishlist(item))
-    dispatch(removeItemFromWishlist(item?.id))
-
-    toast.success('Item added to wishlist', {
-      position: 'top-center',
-    })
+    const isInWishlist = wishListItems.some(
+      (wishlistItem) => wishlistItem.id === item.id
+    )
+    if (isInWishlist) {
+      // If the item is already in the wishlist, remove it
+      setFavoriteIconColor(false)
+      dispatch(removeItemFromWishlist(item.id))
+      toast.success('Item removed from wishlist', {
+        position: 'top-center',
+        autoClose: 5000,
+      })
+    } else {
+      // Otherwise, add the item to the wishlist
+      dispatch(addItemToWishlist(item))
+      setFavoriteIconColor(true)
+      toast.success('Item added to wishlist', {
+        position: 'top-center',
+        autoClose: 5500,
+      })
+    }
   }
-
   return (
     <>
       {!item ? (
@@ -82,7 +71,6 @@ const ProductCard = ({ item, fromSingleProduct }) => {
               alt="products_images"
             />
           )}
-
           <div className={Styles.product_card_content}>
             <h4 className={Styles.title}>{item?.product_title}</h4>
             {item?.unit_price ? (
@@ -94,52 +82,50 @@ const ProductCard = ({ item, fromSingleProduct }) => {
             ) : (
               ''
             )}
-            {/* <div className={Styles.colors}>
+            <div
+              className={Styles.colors}
+              onClick={() => router.push(`products/${item?.id}`)}
+            >
               {item?.colours &&
                 Object.entries(item?.colours).map(([color, imageUrl], i) => {
                   return <Dot color={color} imageUrl={imageUrl} key={i} />
                 })}
-            </div> */}
+            </div>
           </div>
-
           <div className={Styles.hidden_icons}>
             <div className={Styles.icons}>
-              <span className={Styles.border_svg}>
+              <span
+                className={Styles.border_svg}
+                style={{ backgroundColor: favoriteIconColor ? '#A2D061' : '' }}
+              >
                 <MdOutlineFavoriteBorder
                   fontSize={25}
-                  color="#d3d3d3"
-                  className={Styles.icon}
+                  // color="#D3D3D3"
+                  className={`${Styles.icon} ${
+                    favoriteIconColor ? Styles.favActive : ''
+                  }`}
                   onClick={() => addToWishlist(item)}
                 />
               </span>
-              <span className={Styles.border_svg}>
+              {/* <span className={Styles.border_svg}>
                 <CiSearch
                   fontSize={25}
-                  color="#d3d3d3"
+                  color="#D3D3D3"
                   className={Styles.icon}
                 />
-              </span>
+              </span> */}
               <span className={Styles.border_svg}>
                 <CiShare2
                   fontSize={25}
-                  color="#d3d3d3"
+                  color="#D3D3D3"
                   className={Styles.icon}
-                  onClick={() => setShareIcons(!shareIcons)}
+                  onClick={() => setShareIcons(true)}
                 />
               </span>
             </div>
             {shareIcons && (
               <>
-                <div className={Styles.shareContainer}>
-                  <h4>Share With Others</h4>
-                  <div className={Styles.shareContent}>
-                    <RxCross1 />
-                    <FacebookIcon />
-                    <TwitterIcon />
-                    <EmailIcon />
-                    <WhatsappIcon />
-                  </div>
-                </div>
+                <Share setShareIcons={setShareIcons} item={item} />
               </>
             )}
             <Link
@@ -153,5 +139,4 @@ const ProductCard = ({ item, fromSingleProduct }) => {
     </>
   )
 }
-
 export default ProductCard

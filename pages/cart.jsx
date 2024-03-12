@@ -4,12 +4,12 @@ import { useRouter } from 'next/router'
 import PrimaryHeader from '../components/primary-header/PrimaryHeader'
 import SecondaryHeader from '../components/secondary-header/SecondaryHeader'
 import Footer from '../components/footer/Footer'
-import Cart from '../components/cart/Cart'
 import EstimateCard from '../components/EstimateCard/EstimateCard'
 import EmptyContainer from '../components/EmptyContainer/EmptyContainer'
 import QuotationSubmissionHeader from '../components/QuotationSubmissionHeader/QuotationSubmissionHeader'
 import ClientTypeSelector from '../components/ClientTypeSelector/ClientTypeSelector'
 import Styles from '../components/cart/Cart.module.css'
+import Cart from '../components/cart/Cart'
 
 const cart = () => {
   const router = useRouter()
@@ -62,7 +62,7 @@ const cart = () => {
         ) : (
           <>
             <div className={Styles.empty_card_container}>
-              <EmptyContainer />
+              <EmptyContainer data="Cart" />
             </div>
           </>
         )}

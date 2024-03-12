@@ -12,10 +12,10 @@ import {
   setStep2State,
 } from '../../redux-setup/cartSlice'
 import useFetch from '../../lib/useFetch'
-import Invoice from '../Invoice'
-// import Invoice from "../Invoice"
-import html2canvas from 'html2canvas'
-import jsPDF from 'jspdf'
+import { PDFViewer, pdf } from '@react-pdf/renderer'
+import Card from '@components/dummy/Card'
+import { saveAs } from 'file-saver'
+
 const EstimateCard = () => {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -73,16 +73,12 @@ const EstimateCard = () => {
     totalPriceOfCart()
   }, [cartItems])
 
-  const downLoadPdf = () => {
-    console.log('yyyyyyyyyyyyy')
-    const input = document.getElementById('invoice-container')
-
-    html2canvas(input).then((canvas) => {
-      const pdf = new jsPDF('p', 'mm', 'a4')
-      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 210, 297)
-      pdf.save('invoice.pdf')
-    })
+  const downLoadPdf = async () => {
+    console.log('i am called')
+    const blob = await pdf(<Card />).toBlob()
+    saveAs(blob, 'untitled.pdf')
   }
+
   return (
     <>
       <div className={Styles.estimate_wrapper}>
@@ -92,57 +88,61 @@ const EstimateCard = () => {
           <div className={Styles.estimate_container_top}>
             {cartItems.length > 0 ? (
               <>
-                {cartItems.map((item, index) => (
-                  <div className={Styles.estimate_content} key={item.id}>
-                    <div
-                      className={Styles.estimate_content_imgContent}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <Image
-                        src={item.image ? item.image : images.cart_image}
-                        width={49}
-                        height={66}
-                        alt="product_image"
-                      />
-                    </div>
-                    <div className={Styles.estimate_content_textContent}>
-                      <h4
-                        className={Styles.title}
+                <div className="">
+                  {cartItems.map((item, index) => (
+                    <div className={Styles.estimate_content} key={item.id}>
+                      <div
+                        className={Styles.estimate_content_imgContent}
                         style={{ cursor: 'pointer' }}
                       >
-                        {item.heading.slice(0, 70) + '...'}
-                      </h4>
-                      <span className={Styles.price}>
-                        Price : Starting at ${item.price}
-                      </span>
-                      <div className={Styles.amountwrapper}>
-                        <div className={Styles.amountContainer}>
-                          <div>{item.quantity}</div>
-                        </div>
-                        <div className="">
-                          <button
-                            style={{ cursor: 'pointer', marginLeft: '5px' }}
-                            onClick={() => handleDelete(item.id)}
-                          >
-                            <Image
-                              src={images.delete_icon}
-                              width={14}
-                              height={16}
-                              alt="delete_icon"
-                            />
-                          </button>
-                          <button
-                            style={{ marginLeft: '15px', color: '#A2D061' }}
-                            onClick={() => router.push(`/products/${item.id}`)}
-                            type="button"
-                          >
-                            <GrEdit />
-                          </button>
+                        <Image
+                          src={item.image ? item.image : images.cart_image}
+                          width={49}
+                          height={66}
+                          alt="product_image"
+                        />
+                      </div>
+                      <div className={Styles.estimate_content_textContent}>
+                        <h4
+                          className={Styles.title}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          {item?.heading?.slice(0, 70)}
+                        </h4>
+                        <span className={Styles.price}>
+                          Price : Starting at ${item.price}
+                        </span>
+                        <div className={Styles.amountwrapper}>
+                          <div className={Styles.amountContainer}>
+                            <div>{item.quantity}</div>
+                          </div>
+                          <div className="">
+                            <button
+                              style={{ cursor: 'pointer', marginLeft: '5px' }}
+                              onClick={() => handleDelete(item.id)}
+                            >
+                              <Image
+                                src={images.delete_icon}
+                                width={14}
+                                height={16}
+                                alt="delete_icon"
+                              />
+                            </button>
+                            <button
+                              style={{ marginLeft: '15px', color: '#A2D061' }}
+                              onClick={() =>
+                                router.push(`/products/${item.id}`)
+                              }
+                              type="button"
+                            >
+                              <GrEdit />
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
                 <div className={Styles.estimate_container_bottom}>
                   <div className={Styles.estimate_horizontal_line}></div>
                   <div className={Styles.total_amount_container}>
@@ -174,7 +174,9 @@ const EstimateCard = () => {
                   </div>
                   <div style={{ height: '0px', overflow: 'hidden' }}>
                     <div id="invoice-container">
-                      <Invoice />
+                      <PDFViewer height={1000} width={2000}>
+                        <Card />
+                      </PDFViewer>
                     </div>
                   </div>
                 </div>

@@ -17,6 +17,9 @@
   margin-bottom: 2.3rem;
   font-family: 'Poppins' !important;
 }
+.SwagOrder_FAQ button{
+  margin-top: 20px;
+}
 
 .SwagOrder_faqInput {
   display: flex;

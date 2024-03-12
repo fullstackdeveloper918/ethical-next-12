@@ -37,25 +37,25 @@ const login = () => {
   const page = useSelector((state) => state.auth.currentPage)
   useEffect(() => {
     if (response) {
-      // localStorage.setItem('token_swag', response?.data?.accessToken)
-      // localStorage.setItem('userId', response?.data?.id)
-      // dispatch(setRole(response?.data?.role))
-      // dispatch(setuserId(response?.data?.id))
-      toast.success('Please verify your email', {
+      localStorage.setItem('token_swag', response?.data?.accessToken)
+      localStorage.setItem('userId', response?.data?.id)
+      dispatch(setRole(response?.data?.role))
+      dispatch(setuserId(response?.data?.id))
+      toast.success('Logged in sucessfully', {
         position: 'top-center',
       })
-      router.push('/EmailVerify')
+      // router.push('/EmailVerify')
     }
-    //   if (page) {
-    //     router.push(`/${page}`)
-    //   } else {
-    //     router.push(`/`)
-    //   }
-    // }
-    // if (error) {
-    //   console.log(error, 'errorMessage')
-    //   toast.error(error.message)
-    // }
+    if (page) {
+      router.push(`/${page}`)
+    } else {
+      router.push(`/`)
+    }
+
+    if (error) {
+      console.log(error, 'errorMessage')
+      toast.error(error.message)
+    }
   }, [response, error])
 
   const onSubmit = async (values) => {

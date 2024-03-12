@@ -32,7 +32,7 @@
 .reviewEstimate_container .reviewContainer .reviewContent {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .reviewEstimate_container .left_content {
@@ -41,7 +41,9 @@
   gap: 1rem;
   max-width: 590px;
 }
-
+/* .step_from{
+  padding: 1rem;
+} */
 .reviewEstimate_container .left_content .imgContent {
   width: 100%;
   max-width: 92px;

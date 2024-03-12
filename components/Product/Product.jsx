@@ -5,24 +5,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import Styles from './Product.module.css'
 import Loaders from '../../components/loaders/Loaders'
 import Dot from '../custom-colored-dot/Dot'
-// import { FaChevronLeft } from 'react-icons/fa'
 import { RxCross2 } from 'react-icons/rx'
 import { setCartItems } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
+import {
+  setDecorationItemObjSingleProductPage,
+  setFinalDecorationKeyVal,
+} from 'redux-setup/randomSlice'
 
 const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
-  const [color, setColor] = useState('')
   const [ReadMore, setIsReadMore] = useState(false)
-  const [orderQuantity, setOrderQuantity] = useState(
-    +product?.column_1_qty || 200
-  )
+  const [orderQuantity, setOrderQuantity] = useState(+actualMinQty || 100)
   const [price, setPrice] = useState(0)
-  const [singleImage, setSingleImage] = useState('')
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
-  const [productImages, setProductImages] = useState([])
-  const [uploadSecondLogo, setUploadSecondLogo] = useState('')
-  const [activeBtn, setActiveBtn] = useState(0)
+  const [activeBtn, setActiveBtn] = useState(2)
   const [custumize, setCustomize] = useState('No Decoration')
   const [sizeQuantity, setSizeQuantity] = useState({
     S: 25,
@@ -37,13 +34,104 @@ const Product = ({ product, loading, error }) => {
     price: null,
     id: null,
   })
+  const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
+    useState(0)
+  const [customizationPrice, setCustomizationPrice] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
+  const [actualMinQty, setActualMinQty] = useState(0)
   const [isItemInCart, setIsItemInCart] = useState(false)
+  const [imagesArray, setImagesArray] = useState([])
+  const [singleImage, setSingleImage] = useState(imagesArray[0])
+  const [nameOfDecorations, setNameOfDecorations] = useState([])
+
+  const country = useSelector((state) => state.country.country)
+  const cartItems = useSelector((state) => state.cart.cartItems)
+
+  const decorations = useSelector(
+    (state) => state.random.decorationItemObjSingleProductPage
+  )
+
+  const finalDecorationKeyVal = useSelector(
+    (state) => state.random.finalDecorationKeyVal
+  )
+
+  let isProductIncludesltm_final = product?.ltm_final.includes('Y')
+  let col1Price =
+    country === 'usa'
+      ? product?.column_1_retail_price_usd
+      : product?.column_1_retail_price_cad
+  let col2Price =
+    country === 'usa'
+      ? product?.column_2_retail_price_usd
+      : product?.column_2_retail_price_cad
+  let col3Price =
+    country === 'usa'
+      ? product?.column_3_retail_price_usd
+      : product?.column_3_retail_price_cad
+  let col4Price =
+    country === 'usa'
+      ? product?.column_4_retail_price_usd
+      : product?.column_4_retail_price_cad
+  let col5Price =
+    country === 'usa'
+      ? product?.column_5_retail_price_usd
+      : product?.column_5_retail_price_cad
+  let col1Qty = product?.column_1_qty
+  let col2Qty = product?.column_2_qty
+  let col3Qty = product?.column_3_qty
+  let col4Qty = product?.column_4_qty
+  let col5Qty = product?.column_5_qty
+
+  let ltm_price = country === 'usa' ? product?.ltm_usd : product?.ltm_usd
+  let supplierFees =
+    country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
+  const getPrice = () => {
+    if (isProductIncludesltm_final) {
+      if (+orderQuantity < +product?.column_1_qty) {
+        setPriceWithoutCustomizations(+col1Price + ltm_price / +orderQuantity)
+      } else if (+orderQuantity < +col2Qty) {
+        setPriceWithoutCustomizations(+col1Price)
+      } else if (+orderQuantity < +col3Qty) {
+        setPriceWithoutCustomizations(+col2Price)
+      } else if (+orderQuantity < +col4Qty) {
+        setPriceWithoutCustomizations(+col3Price)
+      } else if (+orderQuantity < +col5Qty) {
+        setPriceWithoutCustomizations(+col4Price)
+      } else {
+        setPriceWithoutCustomizations(+col5Price)
+      }
+    } else {
+      if (+orderQuantity < +col2Qty) {
+        setPriceWithoutCustomizations(+col1Price)
+      } else if (+orderQuantity < +col3Qty) {
+        setPriceWithoutCustomizations(+col2Price)
+      } else if (+orderQuantity < +col4Qty) {
+        setPriceWithoutCustomizations(+col3Price)
+      } else if (+orderQuantity < +col5Qty) {
+        setPriceWithoutCustomizations(+col4Price)
+      } else {
+        setPriceWithoutCustomizations(+col5Price)
+      }
+    }
+  }
 
   useEffect(() => {
-    let total =
-      +sizeQuantity.S + +sizeQuantity.M + +sizeQuantity.L + +sizeQuantity.XL
-    setOrderQuantity(total)
-  }, [sizeQuantity])
+    if (product) {
+      let minQtyy = isProductIncludesltm_final
+        ? +product?.column_1_qty / 2
+        : +product?.column_1_qty
+      setActualMinQty(Math.round(minQtyy))
+    }
+  }, [product])
+
+  useEffect(() => {
+    if (product) {
+      let total =
+        +sizeQuantity.S + +sizeQuantity.M + +sizeQuantity.L + +sizeQuantity.XL
+      setOrderQuantity(total > actualMinQty ? total : actualMinQty)
+      getPrice()
+    }
+  }, [sizeQuantity, product])
 
   let handleQuantitySize = (e) => {
     if (e.target.value < 0) {
@@ -51,65 +139,13 @@ const Product = ({ product, loading, error }) => {
         ...prev,
         [e.target.name]: 0,
       }))
+      getPrice()
     } else {
       setSizeQuantity((prev) => ({
         ...prev,
         [e.target.name]: e.target.value,
       }))
-    }
-  }
-
-  useEffect(() => {
-    const getData = setTimeout(() => {
-      if (orderQuantity < product?.column_1_qty) {
-        setOrderQuantity(+product?.column_1_qty)
-      }
-    }, 2000)
-
-    return () => clearTimeout(getData)
-  }, [orderQuantity])
-
-  const setQuantity = (e) => {
-    e.preventDefault()
-    setOrderQuantity(e.target.value)
-  }
-
-  const country = useSelector((state) => state.country.country)
-
-  useEffect(() => {
-    fetchPrice()
-  }, [orderQuantity, product, country])
-  const fetchPrice = () => {
-    if (orderQuantity <= product?.column_1_qty) {
-      setPrice(
-        country === 'usa'
-          ? product?.column_1_retail_price_usd?.replace(/[^0-9.]/g, '')
-          : product?.column_1_retail_price_cad?.replace(/[^0-9.]/g, '')
-      )
-    } else if (orderQuantity <= product?.column_2_qty) {
-      setPrice(
-        country === 'usa'
-          ? product?.column_2_retail_price_usd?.replace(/[^0-9.]/g, '')
-          : product?.column_2_retail_price_cad?.replace(/[^0-9.]/g, '')
-      )
-    } else if (orderQuantity <= product?.column_3_qty) {
-      setPrice(
-        country === 'usa'
-          ? product?.column_3_retail_price_usd?.replace(/[^0-9.]/g, '')
-          : product?.column_3_retail_price_cad?.replace(/[^0-9.]/g, '')
-      )
-    } else if (orderQuantity <= product?.column_4_qty) {
-      setPrice(
-        country === 'usa'
-          ? product?.column_4_retail_price_usd?.replace(/[^0-9.]/g, '')
-          : product?.column_4_retail_price_cad?.replace(/[^0-9.]/g, '')
-      )
-    } else if (orderQuantity > product?.column_4_q) {
-      setPrice(
-        country === 'usa'
-          ? product?.column_5_retail_price_usd?.replace(/[^0-9.]/g, '')
-          : product?.column_5_retail_price_cad?.replace(/[^0-9.]/g, '')
-      )
+      getPrice()
     }
   }
 
@@ -117,59 +153,62 @@ const Product = ({ product, loading, error }) => {
     setUploadFirstLogo(e.target.files[0])
   }
 
-  const uploadSecondFile = (e) => {
-    setUploadSecondLogo(e.target.files[0])
-  }
-
   const removeLogo = (state) => {
-    state('')
+    setUploadFirstLogo('')
   }
 
-  const customizations = [
-    'Embroidery',
-    'Full Color Decoration',
-    'No Decoration',
-  ]
+  const btnClicked = (index, key, val) => {
+    let price1 = country === 'usa' ? val.rc_usa_1 : val.rc_cad_1
+    let price2 = country === 'usa' ? val.rc_usa_2 : val.rc_cad_2
+    let price3 = country === 'usa' ? val.rc_usa_3 : val.rc_cad_3
+    let price4 = country === 'usa' ? val.rc_usa_4 : val.rc_cad_4
+    let price5 = country === 'usa' ? val.rc_usa_5 : val.rc_cad_5
+    let retailSetup =
+      country === 'usa' ? val.retail_setup_usd : val.retail_setup_cad
 
-  const btnClicked = (index, val) => {
-    if (val === 'Embroidery') {
-      setCustomize('Embroidery')
-    } else if (val === 'Full Color Decoration') {
-      setCustomize('Full Color Decoration')
-    } else if (val === 'No Decoration') {
-      setCustomize('No Decoration')
-    }
     setActiveBtn(index)
-  }
 
-  const customisazionPrice =
-    custumize === 'Embroidery'
-      ? 2
-      : custumize === 'Full Color Decoration'
-      ? 4
-      : 0
-
-  useEffect(() => {
-    const jsonData = country === 'us' ? product?.images_us : product?.images_ca
-    if (jsonData) {
-      try {
-        const data = JSON.parse(jsonData)
-        setProductImages(data)
-      } catch (error) {
-        console.error('Error parsing JSON data:', error)
+    let IsRcSourceIncluded = product.rc_mcq_source == 'Supplier Fees'
+    let price = 0
+    if (IsRcSourceIncluded) {
+      if (orderQuantity < +val.qty_rc_2) {
+        price = +price1
+      } else if (orderQuantity < +val.qty_rc_3) {
+        price = +price2
+      } else if (orderQuantity < +val.qty_rc_4) {
+        price = +price3
+      } else if (orderQuantity < +val.qty_rc_5) {
+        price = +price4
+      } else {
+        price = +price5
       }
+
+      let finalCustomPrice = retailSetup / orderQuantity + price
+      setCustomizationPrice(finalCustomPrice)
+      let TotalPrice = finalCustomPrice + priceWithoutCustomizations
+      setTotalPrice(TotalPrice)
     } else {
-      console.log('No image data available')
+      if (orderQuantity < col2Qty) {
+        price = +price1
+      } else if (orderQuantity < col3Qty) {
+        price = +price2
+      } else if (orderQuantity < col4Qty) {
+        price = +price3
+      } else if (orderQuantity < col5Qty) {
+        price = +price4
+      } else {
+        price = +price5
+      }
+      setCustomizationPrice(price)
+      let TotalPrice = price + priceWithoutCustomizations
+      setTotalPrice(TotalPrice)
     }
-
-    setSingleImage(product?.image)
-  }, [product?.id])
-
+  }
   const handleAddToCart = (e) => {
     e.preventDefault()
     setCartState({
       quantity: orderQuantity,
-      image: product?.image,
+      image: setImagesArray[0],
       heading: product?.product_description,
       price: price,
       id: product.id,
@@ -181,14 +220,11 @@ const Product = ({ product, loading, error }) => {
       behavior: 'smooth',
     })
   }
-
   useEffect(() => {
     if (cartState.quantity) {
       dispatch(setCartItems(cartState))
     }
   }, [cartState])
-
-  const cartItems = useSelector((state) => state.cart.cartItems)
 
   const checkFromCart = () => {
     const idToFind = product.id
@@ -196,21 +232,75 @@ const Product = ({ product, loading, error }) => {
     if (existingItemIndex) {
       setIsItemInCart(existingItemIndex)
       setOrderQuantity(existingItemIndex.quantity)
-      setPrice(existingItemIndex.price)
     }
   }
-
   useEffect(() => {
     if (product?.id) {
       checkFromCart()
     }
   }, [product?.id])
 
+  useEffect(() => {
+    document.body.classList.add('single_product_page')
+  }, [])
+
   const updateImage = (index) => {
-    const selectedImage = productImages[index].url
-    setSingleImage(selectedImage)
+    setSingleImage(imagesArray[index])
   }
 
+  useEffect(() => {
+    if (product) {
+      setImagesArray(
+        country === 'usa' ? product?.images_us : product?.images_ca
+      )
+      setSingleImage(
+        country === 'usa'
+          ? product?.images_us && product?.images_us[0]
+          : product?.images_ca[0]
+      )
+    }
+  }, [product])
+
+  useEffect(() => {
+    if (orderQuantity && product) {
+      getPrice()
+    }
+  }, [orderQuantity, product])
+
+  useEffect(() => {
+    let empt = []
+    dispatch(setDecorationItemObjSingleProductPage(supplierFees))
+
+    supplierFees &&
+      Object.entries(supplierFees).map(([key, value]) => empt.push(value))
+
+    let ab = empt.flat(50)
+    let nameOfDecorations = []
+    for (let i = 0; i < ab.length; i++) {
+      const element = ab[i]
+      nameOfDecorations.push(element && element?.decoration_type)
+    }
+    setNameOfDecorations(nameOfDecorations)
+    {
+      !supplierFees && setNameOfDecorations()
+    }
+  }, [product])
+
+  let checkeeeee = () => {
+    if (decorations) {
+      let objj = {}
+      Object.entries(decorations).map(([key, value]) => {
+        objj[key] = value[0]
+      })
+      dispatch(setFinalDecorationKeyVal(objj))
+    }
+  }
+  useEffect(() => {
+    if (product) {
+      checkeeeee()
+    }
+  }, [product])
+  console.log(product, 'pppprrrooooddduuucccttt') //swift_tag
   return (
     <>
       {loading ? (
@@ -235,20 +325,27 @@ const Product = ({ product, loading, error }) => {
                     )}
                   </div>
                   <div className={Styles.images_container}>
-                    {productImages.map((image, index) => (
-                      <>
-                        <div className={Styles.product_Images}>
-                          <Image
-                            src={image?.url}
-                            width={100}
-                            height={100}
-                            alt="product_image"
-                            style={{ cursor: 'pointer' }}
-                            onClick={() => updateImage(index)}
-                          />
-                        </div>
-                      </>
-                    ))}
+                    {imagesArray &&
+                      imagesArray?.map((image, index) => (
+                        <>
+                          <div
+                            className={Styles.product_Images}
+                            style={{
+                              border:
+                                singleImage === image ? '1px solid black' : '',
+                            }}
+                          >
+                            <Image
+                              src={image}
+                              width={100}
+                              height={100}
+                              alt="product_image"
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => updateImage(index)}
+                            />
+                          </div>
+                        </>
+                      ))}
                   </div>
                 </div>
               </div>
@@ -267,17 +364,24 @@ const Product = ({ product, loading, error }) => {
 
                 <div className={Styles.title}>
                   <h4>{product?.product_title}</h4>
-                </div>
-                <div className={Styles.reviews}>
-                  <div className={Styles.star_review}>
-                    <span className={Styles.star_review_images}>
-                      {product?.emoji_ratings}
-                    </span>
-                  </div>
-                  <div className={Styles.text_review}>
+                  <div className={Styles.reviews}>
+                    <div className={Styles.star_review}>
+                      <span className={Styles.star_review_images}>
+                        {product?.emoji_ratings &&
+                          Object.entries(product?.emoji_ratings).map(
+                            ([key, value]) => (
+                              <>
+                                <p>{value}</p>
+                              </>
+                            )
+                          )}
+                      </span>
+                    </div>
+                    {/* <div className={Styles.text_review}>
                     <span className={Styles.text_review_content}>
-                      527 Reviews
+                    527 Reviews
                     </span>
+                  </div> */}
                   </div>
                 </div>
                 <div className={Styles.text_content}>
@@ -298,7 +402,7 @@ const Product = ({ product, loading, error }) => {
                   <div className={Styles.custom_checkbox}>
                     <input type="checkbox" name="services" id="sample" />
                     <label for="sample" className={Styles.marinSpace}>
-                      Is this a sample?{' '}
+                      Is this a sample?
                     </label>
                   </div>
                 </div>
@@ -317,10 +421,7 @@ const Product = ({ product, loading, error }) => {
                       {product?.colours &&
                         Object.entries(product?.colours).map(
                           ([color, imageUrl]) => (
-                            <>
-                              {console.log(color, 'colorcode')}
-                              <Dot color={color} imageUrl={imageUrl} />
-                            </>
+                            <Dot color={color} imageUrl={imageUrl} />
                           )
                         )}
                     </div>
@@ -328,28 +429,30 @@ const Product = ({ product, loading, error }) => {
                 ) : (
                   ''
                 )}
-                <div className={Styles.cart_left_swift}>
-                  <div className={Styles.common_header}>
-                    <h6>Swift swag</h6>
-                    <Image
-                      src={images.Info_Icon}
-                      width={18}
-                      height={18}
-                      alt="info_icon"
-                    />
-                  </div>
-                  <div className={Styles.cart_left_swift_content}>
-                    <div className={Styles.custom_checkbox}>
-                      <input type="checkbox" name="" id="swift_swag" />
-                      <label htmlFor="swift_swag">
-                        Checking this box will override the date selected above
-                        to within 10 business days if you have gone through the
-                        Swift Swag process. Please note additional charges will
-                        apply.
-                      </label>
+                {product?.swift_tag == 1 && (
+                  <div className={Styles.cart_left_swift}>
+                    <div className={Styles.common_header}>
+                      <h6>Swift swag</h6>
+                      <Image
+                        src={images.Info_Icon}
+                        width={18}
+                        height={18}
+                        alt="info_icon"
+                      />
+                    </div>
+                    <div className={Styles.cart_left_swift_content}>
+                      <div className={Styles.custom_checkbox}>
+                        <input type="checkbox" name="" id="swift_swag" />
+                        <label htmlFor="swift_swag">
+                          Checking this box will override the date selected
+                          above to within 10 business days if you have gone
+                          through the Swift Swag process. Please note additional
+                          charges will apply.
+                        </label>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
                 <div className={Styles.customization_text}>
                   <div className={Styles.common_header}>
                     <p>Select Customization</p>
@@ -362,7 +465,7 @@ const Product = ({ product, loading, error }) => {
                   </div>
 
                   <div className={Styles.buttons}>
-                    {customizations.map((button, index) => (
+                    {/* {nameOfDecorations.map((button, index) => (
                       <button
                         className={`${Styles.btn} ${
                           activeBtn === index ? Styles.active : ''
@@ -371,7 +474,21 @@ const Product = ({ product, loading, error }) => {
                       >
                         {button}
                       </button>
-                    ))}
+                    ))} */}
+                    {finalDecorationKeyVal &&
+                      Object.keys(finalDecorationKeyVal).length > 0 &&
+                      Object.entries(finalDecorationKeyVal).map(
+                        ([key, val], index) => (
+                          <p
+                            className={`${Styles.btn} ${
+                              activeBtn === index ? Styles.active : ''
+                            }`}
+                            onClick={() => btnClicked(index, key, val)}
+                          >
+                            {val && JSON.parse(val?.decoration_type)}
+                          </p>
+                        )
+                      )}
                   </div>
                 </div>
                 {/* <div className={Styles.para_text}>
@@ -524,11 +641,11 @@ const Product = ({ product, loading, error }) => {
                     placeholder={product?.column_1_qty}
                     name="orderQuantity"
                     value={orderQuantity}
-                    onChange={setQuantity}
+                    // onChange={setQuantity}
                     disabled
-                    min={product?.column_1_qty}
+                    min={actualMinQty}
                   />
-                  <span>(minimum {+product?.column_1_qty} units required)</span>
+                  <span>(minimum {+actualMinQty} units required)</span>
                 </div>
                 <div className={Styles.select_size_quantity}>
                   <div className={Styles.common_header}>
@@ -591,13 +708,11 @@ const Product = ({ product, loading, error }) => {
                 </div>
                 <div className={Styles.standard_down_line}></div>
                 <div className={Styles.price_section}>
-                  <p>{`Price ${+price + +customisazionPrice}/unit`}</p>
-                  <p>
-                    $
-                    {(orderQuantity * (+price + +customisazionPrice)).toFixed(
-                      2
-                    )}
-                  </p>
+                  <p>{`Price ${
+                    totalPrice ? totalPrice.toFixed(2) : 0
+                  }/unit`}</p>
+
+                  <p>${(orderQuantity * +totalPrice).toFixed(2)}</p>
                 </div>
                 <div className={Styles.add_to_bulk_container}>
                   <button onClick={handleAddToCart}>
