@@ -25,10 +25,10 @@ const FilterPanel = ({ setActiveFilter }) => {
   const handleCheckboxChange = (e, checkboxName) => {
     const { name, checked } = e.target
 
-    setIsChecked((prev) => ({
-      ...prev,
-      [name]: checked,
-    }))
+    // setIsChecked((prev) => ({
+    //   ...prev,
+    //   [name]: checked,
+    // }))
   }
 
   const handleClear = () => {
