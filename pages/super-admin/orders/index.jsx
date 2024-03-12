@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdArrowBackIos } from 'react-icons/md'
 import { IoChevronForwardSharp } from 'react-icons/io5'
 import { FaEye, FaRegEdit } from 'react-icons/fa'
@@ -6,8 +6,19 @@ import { RiDeleteBin6Line } from 'react-icons/ri'
 import Styles from './orders.module.css'
 import Layout from '../../../components/super-adminLayout/Layout'
 import Pagination from '../../../components/pagination/Pagination'
+import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
+import {
+  setSelectedEditId,
+  setSelectedViewId,
+} from '../../../redux-setup/ordersSlice'
+import { Orders_Data } from '../../../constants/data'
 
 const Orders = () => {
+  const router = useRouter()
+  const [orders, setOrders] = useState([])
+  const dispatch = useDispatch()
+
   const getStatusColor = (index) => {
     if (index < 6) {
       return '#11CDEF'
@@ -16,6 +27,39 @@ const Orders = () => {
     } else {
       return '#FB6340'
     }
+  }
+
+  useEffect(() => {
+    // Retrieve orders data from local storage on component mount
+    const storedOrders = JSON.parse(localStorage.getItem('orders'))
+    // console.log(storedOrders.length)
+    if (storedOrders && storedOrders.length > 0) {
+      setOrders(storedOrders)
+    } else {
+      // Initialize local storage with the data if it doesn't exist
+      localStorage.setItem('orders', JSON.stringify(Orders_Data))
+      setOrders(Orders_Data)
+    }
+  }, [])
+
+  const handleViewClicked = (id) => {
+    dispatch(setSelectedViewId(id))
+    router.push(`/super-admin/orders/view`)
+  }
+
+  const handleEdit = (id) => {
+    dispatch(setSelectedEditId(id))
+
+    router.push(`/super-admin/orders/edit`)
+  }
+
+  const handleDelete = (id) => {
+    console.log(id)
+    // Remove the order with the given id from local storage
+    const updatedOrders = orders.filter((order) => order.id !== id)
+    console.log(updatedOrders, 'updatedOredrs')
+    localStorage.setItem('orders', JSON.stringify(updatedOrders))
+    setOrders((prevOrders) => prevOrders.filter((order) => order.id !== id))
   }
 
   return (
@@ -34,17 +78,17 @@ const Orders = () => {
               <th>Due Date</th>
               <th>Action</th>
             </tr>
-            {Array.from({ length: 13 }).map((data, index) => (
+            {orders.map((data, index) => (
               <>
                 <tr>
                   <td>
                     <div className={Styles.name_cell}>
                       <input type="checkbox" name="" id="" />
-                      <span>T-Shirt Print</span>
+                      <span>{data.Subject}</span>
                     </div>
                   </td>
-                  <td>John Doe</td>
-                  <td>{index === 1 ? 'Print & Deliver' : 'Print'}</td>
+                  <td>{data.Owner}</td>
+                  <td>{data.Activity}</td>
                   <td>
                     <button
                       style={{
@@ -55,30 +99,35 @@ const Orders = () => {
                         borderRadius: '10px',
                       }}
                     >
-                      {index < 6 ? 'New' : index <= 10 ? 'Close' : 'Open'}
+                      {data.Status}
                     </button>
                   </td>
-                  <td>
-                    {' '}
-                    {index === 2 || index === 4 || index === 6
-                      ? 'Low'
-                      : index >= 9
-                      ? 'High'
-                      : 'Normal'}
-                  </td>
+                  <td>{data.Priority}</td>
                   <td>Feb 12, 2024</td>
                   <td>April 12, 2024</td>
 
                   <td>
                     <div className={Styles.action_icons}>
                       <span>
-                        <FaEye fontSize={18} cursor="pointer" />
+                        <FaEye
+                          fontSize={18}
+                          cursor="pointer"
+                          onClick={() => handleViewClicked(data.id)}
+                        />
                       </span>
                       <span>
-                        <FaRegEdit fontSize={18} cursor="pointer" />
+                        <FaRegEdit
+                          fontSize={18}
+                          cursor="pointer"
+                          onClick={() => handleEdit(data.id)}
+                        />
                       </span>
                       <span>
-                        <RiDeleteBin6Line cursor="pointer" fontSize={18} />
+                        <RiDeleteBin6Line
+                          cursor="pointer"
+                          fontSize={18}
+                          onClick={() => handleDelete(data.id)}
+                        />
                       </span>
                     </div>
                   </td>

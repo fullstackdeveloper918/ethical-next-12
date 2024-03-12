@@ -27,6 +27,7 @@ const Product = ({ product, loading, error }) => {
     L: 25,
     XL: 25,
   })
+
   const [cartState, setCartState] = useState({
     quantity: 0,
     image: null,
@@ -43,10 +44,9 @@ const Product = ({ product, loading, error }) => {
   const [imagesArray, setImagesArray] = useState([])
   const [singleImage, setSingleImage] = useState(imagesArray[0])
   const [nameOfDecorations, setNameOfDecorations] = useState([])
-
+  const [sizeNotSure, setSizeNotSure] = useState(true)
   const country = useSelector((state) => state.country.country)
   const cartItems = useSelector((state) => state.cart.cartItems)
-
   const decorations = useSelector(
     (state) => state.random.decorationItemObjSingleProductPage
   )
@@ -123,6 +123,26 @@ const Product = ({ product, loading, error }) => {
       setActualMinQty(Math.round(minQtyy))
     }
   }, [product])
+
+  useEffect(() => {
+    if (sizeNotSure) {
+      setSizeQuantity((prev) => ({
+        ...prev,
+        S: 0,
+        M: 0,
+        L: 0,
+        XL: 0,
+      }))
+    } else {
+      setSizeQuantity((prev) => ({
+        ...prev,
+        S: 3,
+        M: 3,
+        L: 3,
+        XL: +actualMinQty - 9,
+      }))
+    }
+  }, [sizeNotSure])
 
   useEffect(() => {
     if (product) {
@@ -300,7 +320,6 @@ const Product = ({ product, loading, error }) => {
       checkeeeee()
     }
   }, [product])
-  console.log(product, 'pppprrrooooddduuucccttt') //swift_tag
   return (
     <>
       {loading ? (
@@ -319,6 +338,7 @@ const Product = ({ product, loading, error }) => {
                         src={singleImage}
                         width={400}
                         height={560}
+                        style={{ mixBlendMode: 'color-burn' }}
                         alt="Single_Product_Image"
                         className={Styles.product_image}
                       />
@@ -367,14 +387,12 @@ const Product = ({ product, loading, error }) => {
                   <div className={Styles.reviews}>
                     <div className={Styles.star_review}>
                       <span className={Styles.star_review_images}>
-                        {product?.emoji_ratings &&
-                          Object.entries(product?.emoji_ratings).map(
-                            ([key, value]) => (
-                              <>
-                                <p>{value}</p>
-                              </>
-                            )
-                          )}
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                          {product?.emoji_ratings &&
+                            Object.entries(product?.emoji_ratings).map(
+                              ([key, value]) => <div>{value}</div>
+                            )}
+                        </div>
                       </span>
                     </div>
                     {/* <div className={Styles.text_review}>
@@ -388,7 +406,7 @@ const Product = ({ product, loading, error }) => {
                   <p>
                     {ReadMore
                       ? product?.product_description
-                      : product?.product_description.slice(0, 100)}
+                      : product?.product_description.slice(0, 500)}
                     <span
                       className={Styles.read_more}
                       onClick={() => setIsReadMore(!ReadMore)}
@@ -453,44 +471,36 @@ const Product = ({ product, loading, error }) => {
                     </div>
                   </div>
                 )}
-                <div className={Styles.customization_text}>
-                  <div className={Styles.common_header}>
-                    <p>Select Customization</p>
-                    <Image
-                      src={images.Info_Icon}
-                      width={18}
-                      height={18}
-                      alt="info_icon"
-                    />
-                  </div>
+                {Object.keys(finalDecorationKeyVal).length > 0 && (
+                  <div className={Styles.customization_text}>
+                    <div className={Styles.common_header}>
+                      <p>Select Customization</p>
+                      <Image
+                        src={images.Info_Icon}
+                        width={18}
+                        height={18}
+                        alt="info_icon"
+                      />
+                    </div>
 
-                  <div className={Styles.buttons}>
-                    {/* {nameOfDecorations.map((button, index) => (
-                      <button
-                        className={`${Styles.btn} ${
-                          activeBtn === index ? Styles.active : ''
-                        }`}
-                        onClick={() => btnClicked(index, button)}
-                      >
-                        {button}
-                      </button>
-                    ))} */}
-                    {finalDecorationKeyVal &&
-                      Object.keys(finalDecorationKeyVal).length > 0 &&
-                      Object.entries(finalDecorationKeyVal).map(
-                        ([key, val], index) => (
-                          <p
-                            className={`${Styles.btn} ${
-                              activeBtn === index ? Styles.active : ''
-                            }`}
-                            onClick={() => btnClicked(index, key, val)}
-                          >
-                            {val && JSON.parse(val?.decoration_type)}
-                          </p>
-                        )
-                      )}
+                    <div className={Styles.buttons}>
+                      {finalDecorationKeyVal &&
+                        Object.keys(finalDecorationKeyVal).length > 0 &&
+                        Object.entries(finalDecorationKeyVal).map(
+                          ([key, val], index) => (
+                            <p
+                              className={`${Styles.btn} ${
+                                activeBtn === index ? Styles.active : ''
+                              }`}
+                              onClick={() => btnClicked(index, key, val)}
+                            >
+                              {val && JSON.parse(val?.decoration_type)}
+                            </p>
+                          )
+                        )}
+                    </div>
                   </div>
-                </div>
+                )}
                 {/* <div className={Styles.para_text}>
                   <div className={Styles.common_header}>
                     <p>
@@ -641,8 +651,8 @@ const Product = ({ product, loading, error }) => {
                     placeholder={product?.column_1_qty}
                     name="orderQuantity"
                     value={orderQuantity}
-                    // onChange={setQuantity}
-                    disabled
+                    onChange={(e) => setOrderQuantity(e.target.value)}
+                    disabled={!sizeNotSure}
                     min={actualMinQty}
                   />
                   <span>(minimum {+actualMinQty} units required)</span>
@@ -663,34 +673,49 @@ const Product = ({ product, loading, error }) => {
                       placeholder="S"
                       type="number"
                       name="S"
-                      value={sizeQuantity.S}
+                      value={sizeNotSure ? 0 : sizeQuantity.S}
                       onChange={handleQuantitySize}
                       min="0"
+                      disabled={sizeNotSure}
                     />
                     <input
                       placeholder="M"
                       type="number"
                       name="M"
-                      value={sizeQuantity.M}
+                      value={sizeNotSure ? 0 : sizeQuantity.M}
+                      // value={sizeQuantity.M}
                       onChange={handleQuantitySize}
                       min="0"
+                      disabled={sizeNotSure}
                     />
                     <input
                       placeholder="L"
                       type="number"
                       name="L"
-                      value={sizeQuantity.L}
+                      // value={sizeQuantity.L}
+                      value={sizeNotSure ? 0 : sizeQuantity.L}
                       onChange={handleQuantitySize}
                       min="0"
+                      disabled={sizeNotSure}
                     />
                     <input
                       placeholder="XL"
                       type="number"
                       name="XL"
-                      value={sizeQuantity.XL}
+                      // value={sizeQuantity.XL}
+                      value={sizeNotSure ? 0 : sizeQuantity.XL}
                       onChange={handleQuantitySize}
                       min="0"
+                      disabled={sizeNotSure}
                     />
+                  </div>
+                  <div className="">
+                    <input
+                      type="checkbox"
+                      checked={sizeNotSure} //setSizeNotSure
+                      onChange={() => setSizeNotSure(!sizeNotSure)}
+                    />
+                    <label> Not sure about size yet</label>
                   </div>
                 </div>
                 <div className={Styles.standard_business_section}>

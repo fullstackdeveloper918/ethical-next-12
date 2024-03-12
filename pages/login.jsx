@@ -11,6 +11,7 @@ import { toast } from 'react-toastify'
 import EthicalLogo from '../components/EthicalLogo/EthicalLogo'
 import { initialValuesLogin, validationSchema } from '../lib/validationSchemas'
 import Styles from '../styles/Login.module.css'
+import { data } from 'autoprefixer'
 
 const login = () => {
   const dispatch = useDispatch()
@@ -24,19 +25,23 @@ const login = () => {
     },
     'formdata'
   )
-  useEffect(() => {
-    const token = localStorage.getItem('token_swag')
-    if (token) {
-      if (page) {
-        router.push(`/${page}`)
-      } else {
-        router.push(`/`)
-      }
-    }
-  }, [])
+
+  console.log(response, 'response from login')
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token_swag')
+  //   if (token) {
+  //     if (page) {
+  //       router.push(`/${page}`)
+  //     } else {
+  //       router.push(`/`)
+  //     }
+  //   }
+  // }, [])
   const page = useSelector((state) => state.auth.currentPage)
+  console.log(page, 'page from login')
   useEffect(() => {
     if (response) {
+      console.log(response, 'hash')
       localStorage.setItem('token_swag', response?.data?.accessToken)
       localStorage.setItem('userId', response?.data?.id)
       dispatch(setRole(response?.data?.role))
@@ -44,18 +49,22 @@ const login = () => {
       toast.success('Logged in sucessfully', {
         position: 'top-center',
       })
-      // router.push('/EmailVerify')
     }
-    if (page) {
-      router.push(`/${page}`)
-    } else {
-      router.push(`/`)
+    if (response?.data?.role[0] === 'super admin') {
+      router.push('/super-admin/dashboard')
+    } else if (response?.data?.role[0] === 'company') {
+      router.push('/')
     }
+    // if (page) {
+    //   router.push(`/${page}`)
+    // } else {
+    //   router.push(`/`)
+    // }
 
-    if (error) {
-      console.log(error, 'errorMessage')
-      toast.error(error.message)
-    }
+    // if (error) {
+    //   console.log(error, 'errorMessage')
+    //   toast.error(error.message)
+    // }
   }, [response, error])
 
   const onSubmit = async (values) => {
