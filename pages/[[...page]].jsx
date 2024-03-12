@@ -17,6 +17,7 @@ import {
   useIsPreviewing,
   Builder,
 } from '@builder.io/react'
+import Modal from '@components/modal/Modal'
 builder.init(builderConfig.apiKey)
 
 export async function getStaticProps({ params }) {
@@ -78,6 +79,10 @@ Builder.registerComponent(Input, {
 
 Builder.registerComponent(StackCards, {
   name: 'StackCards',
+})
+
+Builder.registerComponent(Modal, {
+  name: 'Modal',
 })
 export default function Page({ page }) {
   const router = useRouter()

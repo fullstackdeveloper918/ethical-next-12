@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import Styles from '../Filter/Filter.module.css'
 import Image from 'next/image'
 import Featured_product from '../../assets/headerPics/main-product.png'
@@ -8,10 +8,11 @@ import ProductCard from '../ProductCard/ProductCard'
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import Loaders from '@components/loaders/Loaders'
+import Modal from '@components/modal/Modal'
 
 const Products = ({ response, loading }) => {
   const router = useRouter()
-
+  const [showModal, setShowModal] = useState(true)
   const promotionalProduct = useSelector(
     (state) => state.random.singleProductPromotion
   )
@@ -28,7 +29,7 @@ const Products = ({ response, loading }) => {
           style={{ marginBottom: '30px' }}
         >
           <div className={Styles.collection_container}>
-            {promotionalProduct && (
+            {/* {promotionalProduct && (
               <div className={Styles.collection_Single}>
                 <div className={Styles.imgContent}>
                   <Image
@@ -67,7 +68,9 @@ const Products = ({ response, loading }) => {
 
             {response?.data?.data?.map((item) => (
               <ProductCard item={item} key={item.id} />
-            ))}
+            ))} */}
+           
+            {showModal && <Modal setShowModal={setShowModal} />}
           </div>
         </div>
       )}
