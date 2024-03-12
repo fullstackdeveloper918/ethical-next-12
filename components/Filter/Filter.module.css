@@ -294,6 +294,9 @@
   font-family: 'Poppins' !important;
   width: unset !important;
 }
+.collection_Single > .imgContent img{
+  mix-blend-mode: color-burn;
+}
 .panel_wrap::-webkit-scrollbar {
   display: none;
 }
