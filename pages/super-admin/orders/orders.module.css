@@ -87,3 +87,39 @@
   align-items: center;
   gap: 0.5rem;
 }
+
+.form {
+  width: 100%;
+}
+
+.form .input_field {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.input_field input {
+  padding: 18px;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 36px;
+  border: 1px solid #cacaca;
+  background-color: #f7f7f7;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: 'DM Sans', sans-serif;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.input_field button {
+  width: 100%;
+  background-color: #a2d061;
+  padding: 1rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.input_field input:disabled {
+  background-color: rgba(255, 225, 225, 0.5);
+}
