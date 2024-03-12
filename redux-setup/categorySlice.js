@@ -13,7 +13,6 @@ const categorySlice = createSlice({
   initialState,
   reducers: {
     addCategory(state, action) {
-      console.log(action.payload, 'hello redux')
       state.categories.push(action.payload)
     },
     clearCategories(state) {
@@ -29,7 +28,6 @@ const categorySlice = createSlice({
       state.subCategories = action.payload
     },
     setActiveFilters: (state, action) => {
-      console.log(action.payload, 'action bro')
       state.activeFilters = action.payload
     },
   },

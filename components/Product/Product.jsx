@@ -153,7 +153,9 @@ const Product = ({ product, loading, error }) => {
     setUploadFirstLogo(e.target.files[0])
   }
 
-  const removeLogo = (state) => {}
+  const removeLogo = (state) => {
+    setUploadFirstLogo('')
+  }
 
   const btnClicked = (index, key, val) => {
     let price1 = country === 'usa' ? val.rc_usa_1 : val.rc_cad_1
@@ -273,11 +275,13 @@ const Product = ({ product, loading, error }) => {
 
     supplierFees &&
       Object.entries(supplierFees).map(([key, value]) => empt.push(value))
+
     let ab = empt.flat(50)
     let nameOfDecorations = []
     for (let i = 0; i < ab.length; i++) {
       const element = ab[i]
-      nameOfDecorations.push(element?.decoration_type)
+      console.log('element bri', element)
+      nameOfDecorations.push(element && element?.decoration_type)
     }
     setNameOfDecorations(nameOfDecorations)
     {
@@ -361,8 +365,7 @@ const Product = ({ product, loading, error }) => {
                 </div>
 
                 <div className={Styles.title}>
-                  {/* {console.log(product.product_title, 'itle')} */}
-                  <h4>{product?.product_title_country}</h4>
+                  <h4>{product?.product_title}</h4>
                   <div className={Styles.reviews}>
                     <div className={Styles.star_review}>
                       <span className={Styles.star_review_images}>
@@ -401,7 +404,7 @@ const Product = ({ product, loading, error }) => {
                   <div className={Styles.custom_checkbox}>
                     <input type="checkbox" name="services" id="sample" />
                     <label for="sample" className={Styles.marinSpace}>
-                      Is this a sample?{' '}
+                      Is this a sample?
                     </label>
                   </div>
                 </div>
@@ -482,7 +485,7 @@ const Product = ({ product, loading, error }) => {
                             }`}
                             onClick={() => btnClicked(index, key, val)}
                           >
-                            {val?.decoration_type}
+                            {val && JSON.parse(val?.decoration_type)}
                           </p>
                         )
                       )}
