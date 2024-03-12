@@ -133,7 +133,15 @@ const Product = ({ product, loading, error }) => {
         L: 0,
         XL: 0,
       }))
-    } 
+    } else {
+      setSizeQuantity((prev) => ({
+        ...prev,
+        S: 3,
+        M: 3,
+        L: 3,
+        XL: +actualMinQty - 9,
+      }))
+    }
   }, [sizeNotSure])
 
   useEffect(() => {
