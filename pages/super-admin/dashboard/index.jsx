@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import images from '../../../constants/images'
 import { New_Customers, SuperAdmin_data } from '../../../constants/data'
@@ -25,6 +25,7 @@ import { timeAgo } from '@lib/utils'
 
 const Dashboard = () => {
   const dispatch = useDispatch()
+  const [singleImage, setSingleImage] = useState('')
   const totalCount = useSelector((state) => state.admin.totalCount)
   const recentProductsAll = useSelector((state) => state.admin.recentProducts)
   const recentCustomersAll = useSelector((state) => state.admin.recentCustomers)
@@ -42,7 +43,7 @@ const Dashboard = () => {
       loading: productsLoading,
       error: productsError,
     },
-  ] = useFetch(`/sadm/product/recent`, {
+  ] = useFetch(`/sadm/products`, {
     method: 'get',
   })
   //column_1_retail_price_cad product_title image
@@ -52,6 +53,8 @@ const Dashboard = () => {
       method: 'get',
     }
   )
+
+  console.log(productsResponse, 'productsResponse')
 
   useEffect(() => {
     count()
@@ -68,6 +71,8 @@ const Dashboard = () => {
   useEffect(() => {
     if (productsResponse) {
       dispatch(getRecentProducts(productsResponse.data))
+      console.log(productsResponse, 'kjckbcdbs')
+      setSingleImage(productsResponse.images)
     }
   }, [productsResponse])
 
@@ -189,7 +194,7 @@ const Dashboard = () => {
                                 <td>
                                   <span>
                                     <Image
-                                      src={images.shirt_small}
+                                      src={item?.image}
                                       width={25}
                                       height={25}
                                       icon="product"

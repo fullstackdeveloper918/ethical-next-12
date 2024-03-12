@@ -20,6 +20,7 @@ import { doesNotMatch } from 'assert'
 
 export const LIST = (subCategories) => {
   let check = Object.entries(subCategories)
+
   let worthy = []
 
   for (let i = 0; i < check.length; i++) {
@@ -32,10 +33,12 @@ export const LIST = (subCategories) => {
     })
   }
 
+  console.log('uhjh', worthy)
+
   let categoryList = [
     {
       id: 1,
-      label: 'Categories',
+      label: 'Sub Categories',
       children: worthy,
     },
     {
@@ -791,32 +794,135 @@ export const Review_Progress = [
   { id: 5, number: 1, percentage: '0' },
 ]
 
-// i want to show fileds like this
-// on Add new button clicked
-// Subject -- Empty text field
-// Owner -- Empty Field
-// Acitivity Type -- Empty Field
-// Status -- Empty Field
-// Priority -- Empty Field
-// Issue Date -- Empty Field
-// Due Date -- Empty Field
-
-// i want to show fileds like this
-// on view button clicked --> Field should not be Editable
-// Subject -- T shirt --> Field should not be Editable
-// Owner -- John Doe --> Field should not be Editable
-// Acitivity Type -- Print --> Field should not be Editable
-// Status -- New --> Field should not be Editable
-// Priority -- Normal --> Field should not be Editable
-// Issue Date -- Feb 12, 2024 --> Field should not be Editable
-// Due Date -- 	April 12, 2024 --> Field should not be Editable
-
-// i want to show fileds like this
-// on edit button clicked
-// Subject -- T shirt --> Field should be Editable
-// Owner -- John Doe --> Field should be Editable
-// Acitivity Type -- Print --> Field should be Editable
-// Status -- New --> Field should be Editable
-// Priority -- Normal --> Field should be Editable
-// Issue Date -- Feb 12, 2024 --> Field should be Editable
-// Due Date -- 	April 12, 2024 --> Field should be Editable
+export const Orders_Data = [
+  {
+    id: 0,
+    Subject: 'T shirt Print',
+    Activity: 'Print',
+    Owner: 'Jhon Doe',
+    Status: 'New',
+    Priority: 'Normal',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+  {
+    id: 1,
+    Subject: 'T shirt Print',
+    Owner: 'Jhon Doe',
+    Activity: 'Print & Deliver',
+    Status: 'New',
+    Priority: 'Normal',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+  {
+    id: 2,
+    Subject: 'T shirt Print',
+    Owner: 'Jhon Doe',
+    Activity: 'Print',
+    Status: 'New',
+    Priority: '	Low',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+  {
+    id: 3,
+    Subject: 'T shirt Print',
+    Owner: 'Jhon Doe',
+    Activity: 'Print',
+    Status: 'New',
+    Priority: 'Normal',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+  {
+    id: 4,
+    Subject: 'T shirt Print',
+    Owner: 'Jhon Doe',
+    Activity: 'Print',
+    Status: 'New',
+    Priority: 'Low',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+  {
+    id: 5,
+    Subject: 'T shirt Print',
+    Owner: 'Jhon Doe',
+    Activity: 'Print',
+    Status: 'New',
+    Priority: 'Low',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+  {
+    id: 6,
+    Subject: 'T shirt Print',
+    Owner: 'Jhon Doe',
+    Activity: 'Print',
+    Status: 'New',
+    Priority: 'Normal',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+  {
+    id: 7,
+    Subject: 'T shirt Print',
+    Owner: 'Jhon Doe',
+    Activity: 'Print',
+    Status: 'New',
+    Priority: 'Normal',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+  {
+    id: 8,
+    Subject: 'T shirt Print',
+    Owner: 'Jhon Doe',
+    Activity: 'Print',
+    Status: 'New',
+    Priority: 'Normal',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+  {
+    id: 9,
+    Subject: 'T shirt Print',
+    Owner: 'Jhon Doe',
+    Activity: 'Print',
+    Status: 'New',
+    Priority: 'High',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+  {
+    id: 10,
+    Subject: 'T shirt Print',
+    Owner: 'Jhon Doe',
+    Activity: 'Print',
+    Status: 'New',
+    Priority: 'High',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+  {
+    id: 11,
+    Subject: 'T shirt Print',
+    Owner: 'Jhon Doe',
+    Activity: 'Print',
+    Status: 'New',
+    Priority: 'High',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+  {
+    id: 12,
+    Subject: 'T shirt Print',
+    Owner: 'Jhon Doe',
+    Activity: 'Print',
+    Status: 'New',
+    Priority: 'High',
+    Issue_Date: 'Feb 12,2024',
+    Due_date: 'April 12,2024',
+  },
+]

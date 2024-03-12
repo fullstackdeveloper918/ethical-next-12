@@ -321,6 +321,7 @@ const Product = ({ product, loading, error }) => {
                         src={singleImage}
                         width={400}
                         height={560}
+                        style={{ mixBlendMode: 'color-burn' }}
                         alt="Single_Product_Image"
                         className={Styles.product_image}
                       />
