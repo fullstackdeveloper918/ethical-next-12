@@ -15,6 +15,14 @@ const Filter = ({ activeFilter, setActiveFilter, optimizedFn }) => {
     (state) => state.cart.selectedOptionValue
   )
 
+  const subCategoryData = useSelector((state) => state.category.subCategories)
+
+  const dataArray = Object.entries(subCategoryData).map(([key, value]) => ({
+    id: key,
+    category: value.replace(/"/g, ''), // Remove double quotes from the value
+  }))
+  console.log(dataArray, 'dataarray')
+
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 100
@@ -57,7 +65,11 @@ const Filter = ({ activeFilter, setActiveFilter, optimizedFn }) => {
           <span>Filter</span>
         </button>
         <div className={Styles.filter_input}>
-          <input
+          {/* {subCategoryData &&
+            subCategoryData.map((item) => (
+              <>{console.log(item, 'itemhello')}</>
+            ))} */}
+          {/* <input
             type="text"
             value={searchState}
             onChange={(e) => {
@@ -65,7 +77,7 @@ const Filter = ({ activeFilter, setActiveFilter, optimizedFn }) => {
               dispatch(setSearchState(e.target.value))
               optimizedFn(searchState)
             }}
-          />
+          /> */}
         </div>
         <div className={Styles.filter_select}>
           <div>

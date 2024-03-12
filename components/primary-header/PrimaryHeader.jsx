@@ -58,8 +58,7 @@ const PrimaryHeader = () => {
 
     dispatch(setuserId(null))
     toast.success('Logged out successully')
-
-    // router.push('/login')
+    router.push('/login')
   }
 
   return (
