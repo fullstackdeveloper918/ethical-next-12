@@ -14,26 +14,36 @@ let imagesList = [
     img: CardOne,
     className: '',
     textContent: '',
+    category: 'water Bottle',
+    heading: 'lorem ipsum here',
   },
   {
     id: 2,
     img: CardTwo,
     className: '',
+    category: 'water Bottle',
+    heading: 'lorem ipsum here',
   },
   {
     id: 3,
     img: CardThree,
     className: '',
+    category: 'water Bottle',
+    heading: 'lorem ipsum here',
   },
   {
     id: 4,
     img: CardFour,
     className: '',
+    category: 'water Bottle',
+    heading: 'lorem ipsum here',
   },
   {
     id: 5,
     img: CardFive,
     className: '',
+    category: 'water Bottle',
+    heading: 'lorem ipsum here',
   },
 ]
 
@@ -68,6 +78,17 @@ const Dummy = () => {
                     className={styles.cardImage}
                     //  onClick={() => router.push('/products')}
                   />
+                  {/* <div>
+                    <div className={styles.flat_dis}>Flat 20% off</div>
+                    <div className={styles.bottom_content}>
+                      <h2>Cup design</h2>
+                      <p>
+                        lorem isupm lorem isupm lorem isupm lorem isupm lorem
+                        isupm
+                      </p>
+                      <button>View Product</button>
+                    </div>
+                  </div> */}
                 </div>
               </li>
             </>
