@@ -63,6 +63,7 @@ const FilterPanel = ({ setActiveFilter }) => {
   }
 
   const subCategories = useSelector((state) => state.category.subCategories)
+
   return (
     <>
       <div className={Styles.filterPanel}>

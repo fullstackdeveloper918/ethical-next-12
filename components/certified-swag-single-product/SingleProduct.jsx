@@ -72,13 +72,11 @@ const SingleProduct = ({ product }) => {
             </>
           ))} */}
       </div>
-      <div className={styles.product_price}>
-        <p>
-          $
-          {priceWithoutCustomizations
-            ? priceWithoutCustomizations.toFixed(2)
-            : 60}
-        </p>
+      <div className={styles.product_price} style={{ textAlign: 'center' }}>
+        $
+        {priceWithoutCustomizations
+          ? priceWithoutCustomizations.toFixed(2)
+          : 60}
       </div>
       <div className={styles.colors_container}>
         {product?.colours &&
