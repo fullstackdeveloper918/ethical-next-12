@@ -155,6 +155,39 @@ const Dummy = () => {
         </ul>
       </div>
     </div>
+    // <div className={styles.text}>
+    //   <ul className={styles.explor_imgSec}>
+    //     {imagesList &&
+    //       imagesList.map((card, index) => (
+    //         <li key={index}>
+    //           <div
+    //             className={styles.list_explore}
+    //             onMouseEnter={() => handleMouseEnter(index)}
+    //           >
+    //             {/* <div>
+    //               <div className={styles.flat_dis}>Flat 20% off</div>
+    //               <div className={styles.bottom_content}>
+    //                 <h2>Cup design</h2>
+    //                 <p>
+    //                   lorem isupm lorem isupm lorem isupm lorem isupm lorem
+    //                   isupm
+    //                 </p>
+    //                 <button>View Product</button>
+    //               </div>
+    //             </div> */}
+    //             <Image
+    //               src={card.img}
+    //               alt=""
+    //               height={600}
+    //               width={600}
+    //               className={styles.cardImage}
+    //               onClick={() => router.push('/products')}
+    //             />
+    //           </div>
+    //         </li>
+    //       ))}
+    //   </ul>
+    // </div>
   )
 }
 

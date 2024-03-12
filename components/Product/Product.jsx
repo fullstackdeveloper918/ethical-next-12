@@ -361,26 +361,27 @@ const Product = ({ product, loading, error }) => {
                 </div>
 
                 <div className={Styles.title}>
-                  <h4>{product?.product_title}</h4>
-                </div>
-                <div className={Styles.reviews}>
-                  <div className={Styles.star_review}>
-                    <span className={Styles.star_review_images}>
-                      {product?.emoji_ratings &&
-                        Object.entries(product?.emoji_ratings).map(
-                          ([key, value]) => (
-                            <>
-                              <p>{value}</p>
-                            </>
-                          )
-                        )}
-                    </span>
-                  </div>
-                  {/* <div className={Styles.text_review}>
+                  {/* {console.log(product.product_title, 'itle')} */}
+                  <h4>{product?.product_title_country}</h4>
+                  <div className={Styles.reviews}>
+                    <div className={Styles.star_review}>
+                      <span className={Styles.star_review_images}>
+                        {product?.emoji_ratings &&
+                          Object.entries(product?.emoji_ratings).map(
+                            ([key, value]) => (
+                              <>
+                                <p>{value}</p>
+                              </>
+                            )
+                          )}
+                      </span>
+                    </div>
+                    {/* <div className={Styles.text_review}>
                     <span className={Styles.text_review_content}>
-                      527 Reviews
+                    527 Reviews
                     </span>
                   </div> */}
+                  </div>
                 </div>
                 <div className={Styles.text_content}>
                   <p>

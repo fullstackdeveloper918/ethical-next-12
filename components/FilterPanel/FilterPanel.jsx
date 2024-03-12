@@ -16,6 +16,15 @@ const FilterPanel = ({ setActiveFilter }) => {
   const [openIndex, setOpenIndex] = useState(0)
   const [isActive, setIsActive] = useState(true)
   const [price, setPrice] = useState(50)
+  const [isChecked, setIsChecked] = useState({
+    backPacks: false,
+    Coolers: false,
+    fannyPacks: false,
+    laundryBags: false,
+    Pouches: false,
+    toteBags: false,
+    waterBottles: false,
+  })
   const [filtersState, setFiltersState] = useState([])
 
   useEffect(() => {
@@ -25,10 +34,10 @@ const FilterPanel = ({ setActiveFilter }) => {
   const handleCheckboxChange = (e, checkboxName) => {
     const { name, checked } = e.target
 
-    // setIsChecked((prev) => ({
-    //   ...prev,
-    //   [name]: checked,
-    // }))
+    setIsChecked((prev) => ({
+      ...prev,
+      [checkboxName]: checked,
+    }))
   }
 
   const handleClear = () => {
@@ -58,13 +67,13 @@ const FilterPanel = ({ setActiveFilter }) => {
     <>
       <div className={Styles.filterPanel}>
         <div className={Styles.filterPanel_top}>
-          <h4
+          {/* <h4
             className={Styles.filterPanel_title}
             onClick={() => handleClear()}
             style={{ cursor: 'pointer' }}
           >
             Clear All
-          </h4>
+          </h4> */}
         </div>
         <div className={Styles.filterPanel_ProductCollection_list}>
           {LIST(subCategories).map((item, index) => (
@@ -129,7 +138,7 @@ const FilterPanel = ({ setActiveFilter }) => {
                                     type="checkbox"
                                     id={`checkbox_id_${index}`}
                                     name={child.label}
-                                    // checked={isChecked[item.label]}
+                                    checked={isChecked[item.label]}
                                     onChange={handleCheckboxChange}
                                   />
                                   <label
