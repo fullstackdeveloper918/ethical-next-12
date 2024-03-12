@@ -139,11 +139,13 @@ const Product = ({ product, loading, error }) => {
         ...prev,
         [e.target.name]: 0,
       }))
+      getPrice()
     } else {
       setSizeQuantity((prev) => ({
         ...prev,
         [e.target.name]: e.target.value,
       }))
+      getPrice()
     }
   }
 
@@ -706,7 +708,9 @@ const Product = ({ product, loading, error }) => {
                 </div>
                 <div className={Styles.standard_down_line}></div>
                 <div className={Styles.price_section}>
-                  <p>{`Price ${totalPrice}/unit`}</p>
+                  <p>{`Price ${
+                    totalPrice ? totalPrice.toFixed(2) : 0
+                  }/unit`}</p>
 
                   <p>${(orderQuantity * +totalPrice).toFixed(2)}</p>
                 </div>
