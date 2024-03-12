@@ -56,7 +56,9 @@ const SideBar = ({ data, imageData }) => {
                 width={255}
                 height={53}
                 alt="logo"
+                style={{ cursor: 'pointer' }}
                 className={Styles.logo}
+                onClick={() => router.push('/')}
               />
             )}
             {/*  */}
@@ -73,7 +75,6 @@ const SideBar = ({ data, imageData }) => {
             <div className={Styles.Sidebar_data}>
               {sidebarIndices.map((item, index) => (
                 <>
-                  {console.log(item, 'hello item')}
                   <div
                     className={`${Styles.sidebar_data_content} ${
                       isActive === index ? Styles.active : ''
