@@ -3,6 +3,8 @@ import Styles from './EmptyContainer.module.css'
 import { useRouter } from 'next/router'
 
 const EmptyContainer = ({ data }) => {
+  const router = useRouter()
+
   return (
     <>
       <div className={Styles.emptyContent}>

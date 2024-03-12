@@ -15,35 +15,40 @@ let imagesList = [
     className: '',
     textContent: '',
     category: 'Cup design',
-    heading: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    heading:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
   {
     id: 2,
     img: CardTwo,
     className: '',
     category: 'Cup design',
-    heading: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    heading:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
   {
     id: 3,
     img: CardThree,
     className: '',
     category: 'Cup design',
-    heading: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    heading:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
   {
     id: 4,
     img: CardFour,
     className: '',
     category: 'Make T-shirt design',
-    heading: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    heading:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
   {
     id: 5,
     img: CardFive,
     className: '',
     category: 'Bottles package box',
-    heading: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    heading:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
 ]
 
@@ -51,7 +56,6 @@ const Dummy = () => {
   const router = useRouter()
   const [cards, setCards] = useState(imagesList)
   const handleHover = (index) => {
-    console.log(index, 'i am being called')
     const newCards = [...cards]
     const temp = newCards[index]
     newCards[index] = newCards[0]
@@ -78,13 +82,11 @@ const Dummy = () => {
                     className={styles.cardImage}
                     //  onClick={() => router.push('/products')}
                   />
-                   <div>
+                  <div>
                     <div className={styles.flat_dis}>Flat 20% off</div>
                     <div className={styles.bottom_content}>
                       <h2>{card.category}</h2>
-                      <p>
-                       {card.heading}
-                      </p>
+                      <p>{card.heading}</p>
                       <button>View Product</button>
                     </div>
                   </div>
