@@ -166,8 +166,6 @@ const Product = ({ product, loading, error }) => {
     let retailSetup =
       country === 'usa' ? val.retail_setup_usd : val.retail_setup_cad
 
-    console.log(val, 'itemmm from click')
-
     setActiveBtn(index)
 
     let IsRcSourceIncluded = product.rc_mcq_source == 'Supplier Fees'
@@ -280,7 +278,6 @@ const Product = ({ product, loading, error }) => {
     let nameOfDecorations = []
     for (let i = 0; i < ab.length; i++) {
       const element = ab[i]
-      console.log('element bri', element)
       nameOfDecorations.push(element && element?.decoration_type)
     }
     setNameOfDecorations(nameOfDecorations)
@@ -303,6 +300,7 @@ const Product = ({ product, loading, error }) => {
       checkeeeee()
     }
   }, [product])
+  console.log(product, 'pppprrrooooddduuucccttt') //swift_tag
   return (
     <>
       {loading ? (
@@ -431,28 +429,30 @@ const Product = ({ product, loading, error }) => {
                 ) : (
                   ''
                 )}
-                <div className={Styles.cart_left_swift}>
-                  <div className={Styles.common_header}>
-                    <h6>Swift swag</h6>
-                    <Image
-                      src={images.Info_Icon}
-                      width={18}
-                      height={18}
-                      alt="info_icon"
-                    />
-                  </div>
-                  <div className={Styles.cart_left_swift_content}>
-                    <div className={Styles.custom_checkbox}>
-                      <input type="checkbox" name="" id="swift_swag" />
-                      <label htmlFor="swift_swag">
-                        Checking this box will override the date selected above
-                        to within 10 business days if you have gone through the
-                        Swift Swag process. Please note additional charges will
-                        apply.
-                      </label>
+                {product?.swift_tag == 1 && (
+                  <div className={Styles.cart_left_swift}>
+                    <div className={Styles.common_header}>
+                      <h6>Swift swag</h6>
+                      <Image
+                        src={images.Info_Icon}
+                        width={18}
+                        height={18}
+                        alt="info_icon"
+                      />
+                    </div>
+                    <div className={Styles.cart_left_swift_content}>
+                      <div className={Styles.custom_checkbox}>
+                        <input type="checkbox" name="" id="swift_swag" />
+                        <label htmlFor="swift_swag">
+                          Checking this box will override the date selected
+                          above to within 10 business days if you have gone
+                          through the Swift Swag process. Please note additional
+                          charges will apply.
+                        </label>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
                 <div className={Styles.customization_text}>
                   <div className={Styles.common_header}>
                     <p>Select Customization</p>
