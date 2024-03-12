@@ -386,14 +386,12 @@ const Product = ({ product, loading, error }) => {
                   <div className={Styles.reviews}>
                     <div className={Styles.star_review}>
                       <span className={Styles.star_review_images}>
-                        {product?.emoji_ratings &&
-                          Object.entries(product?.emoji_ratings).map(
-                            ([key, value]) => (
-                              <>
-                                <p>{value}</p>
-                              </>
-                            )
-                          )}
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                          {product?.emoji_ratings &&
+                            Object.entries(product?.emoji_ratings).map(
+                              ([key, value]) => <div>{value}</div>
+                            )}
+                        </div>
                       </span>
                     </div>
                     {/* <div className={Styles.text_review}>
@@ -407,7 +405,7 @@ const Product = ({ product, loading, error }) => {
                   <p>
                     {ReadMore
                       ? product?.product_description
-                      : product?.product_description.slice(0, 100)}
+                      : product?.product_description.slice(0, 500)}
                     <span
                       className={Styles.read_more}
                       onClick={() => setIsReadMore(!ReadMore)}
