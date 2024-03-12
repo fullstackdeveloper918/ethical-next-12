@@ -6,7 +6,6 @@ import Styles from '../styles/common.module.css'
 import filterStyles from '../components/Filter/Filter.module.css'
 import Image from 'next/image'
 import { useSelector } from 'react-redux'
-import CartStyles from '../components/Cart/Cart.module.css'
 import EmptyContainer from '../components/EmptyContainer/EmptyContainer'
 import ProductCard from '../components/ProductCard/ProductCard'
 
@@ -28,7 +27,7 @@ const wishlist = () => {
         </div>
 
         {wishlistItems.length === 0 && (
-          <div className={CartStyles.empty_card_container}>
+          <div className={Styles.empty_card_container}>
             <EmptyContainer data="Wishlist" />
           </div>
         )}
