@@ -49,8 +49,7 @@ const productID = () => {
   useEffect(() => {
     if (country) {
       fetch(
-        `https://test.cybersify.tech/Eswag/public/api/products?created_at_desc=1&${
-          country === 'usa' ? `available_in_usa=1` : `available_in_canada=1`
+        `https://test.cybersify.tech/Eswag/public/api/products?created_at_desc=1&${country === 'usa' ? `available_in_usa=1` : `available_in_canada=1`
         }`
       )
         .then((res) => res.json())
@@ -177,19 +176,29 @@ const productID = () => {
             }
           >
             <form>
-              <div className="input_field">
-                <input type="text" placeholder="Enter your name (public)" />
+            <div className={Styles.input_field}>
+                <div className={`${Styles.startRating} ${Styles.text_center} `}>
+                  <FaStar color="#a2d061" fontSize={20} />
+                  <FaStar color="#a2d061" fontSize={20} />
+                  <FaStar color="#a2d061" fontSize={20} />
+                  <FaStar color="#a2d061" fontSize={20} />
+                  <FaStar color="#a2d061" fontSize={20} />
+                </div>
               </div>
-              <div className="input_field">
-                <input type="email" placeholder="Enter your name (private)" />
+              <div className={Styles.row_flex}>
+                <div className={Styles.input_field}>
+                  <label htmlFor="" className={Styles.display_label}>(displayed publicly like) </label>
+                  <input type="text" placeholder="Enter your name (public)" />
+                </div>
+                <div className={Styles.input_field}>
+                  <input type="email" placeholder="Enter your name (private)" />
+                </div>
               </div>
-              <div className="input_field">
-                <p>Reviews</p>
-              </div>
-              <div className="input_field">
+              
+              <div className={Styles.input_field}>
                 <input type="text" placeholder="Give your review a title" />
               </div>
-              <div className="input_field">
+              <div className={`${Styles.input_field} ${Styles.text_left}`}>
                 <textarea
                   name=""
                   id=""
@@ -197,8 +206,8 @@ const productID = () => {
                   rows="10"
                   placeholder="Write your comments here"
                 ></textarea>
-              </div>
-              <div className="input_field">
+
+
                 <p>
                   How we use your data: We’ll only contact you about the review
                   you left, and only if necessary. By submitting your review,
@@ -206,8 +215,8 @@ const productID = () => {
                   policy.
                 </p>
               </div>
-              <div className="input_field">
-                <button>Submit Review</button>
+              <div className={Styles.input_field}>
+                <button className={Styles.submit_review_button}>Submit Review</button>
               </div>
             </form>
           </div>

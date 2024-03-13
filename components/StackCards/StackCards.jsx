@@ -69,7 +69,7 @@ const Dummy = () => {
         <ul className={styles.explor_imgSec}>
           {cards.map((card, index) => (
             <>
-              <li key={index}>
+              <li key={index} className={index ? styles.hello: ''}>
                 <div
                   className={styles.list_explore}
                   onMouseEnter={() => handleHover(index)}
