@@ -501,20 +501,21 @@ const Product = ({ product, loading, error }) => {
                       {finalDecorationKeyVal &&
                         Object.keys(finalDecorationKeyVal).length > 0 &&
                         Object.entries(finalDecorationKeyVal).map(
-                          ([key, val], index) => (
-                            <p
-                              className={`${Styles.btn} ${
-                                selectedCustomization === index
-                                  ? Styles.active
-                                  : ''
-                              }`}
-                              onClick={() =>
-                                selectCustomizations(index, key, val)
-                              }
-                            >
-                              {val && JSON.parse(val?.decoration_type)}
-                            </p>
-                          )
+                          ([key, val], index) =>
+                            val !== undefined && (
+                              <p
+                                className={`${Styles.btn} ${
+                                  selectedCustomization === index
+                                    ? Styles.active
+                                    : ''
+                                }`}
+                                onClick={() =>
+                                  selectCustomizations(index, key, val)
+                                }
+                              >
+                                {val && JSON.parse(val?.decoration_type)}
+                              </p>
+                            )
                         )}
                     </div>
                   </div>
