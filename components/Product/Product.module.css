@@ -300,7 +300,7 @@
   gap: 1.2rem;
 }
 
-.para_text .upload_logo div {
+.para_text .upload_logo > div {
   flex: 1;
   position: relative;
   min-height: 180px;
@@ -814,6 +814,14 @@ p.fw400 {
 
 .cross_logo {
   position: absolute;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.position_relative{
+  position: relative;
 }
 
 @media screen and (max-width: 1160px) {
