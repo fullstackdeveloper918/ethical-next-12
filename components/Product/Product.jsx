@@ -16,11 +16,10 @@ import {
 const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
   const [ReadMore, setIsReadMore] = useState(false)
-  const [orderQuantity, setOrderQuantity] = useState(+actualMinQty || 100)
+  const [orderQuantity, setOrderQuantity] = useState(+actualMinQty || 50)
   const [price, setPrice] = useState(0)
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
-  const [activeBtn, setActiveBtn] = useState(2)
-  const [custumize, setCustomize] = useState('No Decoration')
+  const [selectedCustomization, setSelectedCustomization] = useState()
   const [sizeQuantity, setSizeQuantity] = useState({
     S: 25,
     M: 25,
@@ -117,6 +116,12 @@ const Product = ({ product, loading, error }) => {
 
   useEffect(() => {
     if (product) {
+      getPrice()
+    }
+  }, [orderQuantity, totalPrice, product, customizationPrice])
+
+  useEffect(() => {
+    if (product) {
       let minQtyy = isProductIncludesltm_final
         ? +product?.column_1_qty / 2
         : +product?.column_1_qty
@@ -149,7 +154,6 @@ const Product = ({ product, loading, error }) => {
       let total =
         +sizeQuantity.S + +sizeQuantity.M + +sizeQuantity.L + +sizeQuantity.XL
       setOrderQuantity(total > actualMinQty ? total : actualMinQty)
-      getPrice()
     }
   }, [sizeQuantity, product])
 
@@ -159,13 +163,11 @@ const Product = ({ product, loading, error }) => {
         ...prev,
         [e.target.name]: 0,
       }))
-      getPrice()
     } else {
       setSizeQuantity((prev) => ({
         ...prev,
         [e.target.name]: e.target.value,
       }))
-      getPrice()
     }
   }
 
@@ -177,7 +179,7 @@ const Product = ({ product, loading, error }) => {
     setUploadFirstLogo('')
   }
 
-  const btnClicked = (index, key, val) => {
+  const selectCustomizations = (index, key, val) => {
     let price1 = country === 'usa' ? val.rc_usa_1 : val.rc_cad_1
     let price2 = country === 'usa' ? val.rc_usa_2 : val.rc_cad_2
     let price3 = country === 'usa' ? val.rc_usa_3 : val.rc_cad_3
@@ -186,7 +188,7 @@ const Product = ({ product, loading, error }) => {
     let retailSetup =
       country === 'usa' ? val.retail_setup_usd : val.retail_setup_cad
 
-    setActiveBtn(index)
+    setSelectedCustomization(index)
 
     let IsRcSourceIncluded = product.rc_mcq_source == 'Supplier Fees'
     let price = 0
@@ -282,12 +284,6 @@ const Product = ({ product, loading, error }) => {
   }, [product])
 
   useEffect(() => {
-    if (orderQuantity && product) {
-      getPrice()
-    }
-  }, [orderQuantity, product])
-
-  useEffect(() => {
     let empt = []
     dispatch(setDecorationItemObjSingleProductPage(supplierFees))
 
@@ -306,7 +302,7 @@ const Product = ({ product, loading, error }) => {
     }
   }, [product])
 
-  let checkeeeee = () => {
+  let setDecorations = () => {
     if (decorations) {
       let objj = {}
       Object.entries(decorations).map(([key, value]) => {
@@ -317,7 +313,7 @@ const Product = ({ product, loading, error }) => {
   }
   useEffect(() => {
     if (product) {
-      checkeeeee()
+      setDecorations()
     }
   }, [product])
   return (
@@ -490,9 +486,13 @@ const Product = ({ product, loading, error }) => {
                           ([key, val], index) => (
                             <p
                               className={`${Styles.btn} ${
-                                activeBtn === index ? Styles.active : ''
+                                selectedCustomization === index
+                                  ? Styles.active
+                                  : ''
                               }`}
-                              onClick={() => btnClicked(index, key, val)}
+                              onClick={() =>
+                                selectCustomizations(index, key, val)
+                              }
                             >
                               {val && JSON.parse(val?.decoration_type)}
                             </p>
