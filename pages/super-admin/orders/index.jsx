@@ -7,7 +7,7 @@ import Styles from './orders.module.css'
 import Layout from '../../../components/super-adminLayout/Layout'
 import Pagination from '../../../components/pagination/Pagination'
 import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   setSelectedEditId,
   setSelectedViewId,
@@ -18,21 +18,11 @@ const Orders = () => {
   const router = useRouter()
   const [orders, setOrders] = useState([])
   const dispatch = useDispatch()
-
-  const getStatusColor = (index) => {
-    if (index < 6) {
-      return '#11CDEF'
-    } else if (index < 11) {
-      return '#A2D061'
-    } else {
-      return '#FB6340'
-    }
-  }
+  const orderPlaced = useSelector((state) => state.cart.orderPlaced)
 
   useEffect(() => {
-    // Retrieve orders data from local storage on component mount
     const storedOrders = JSON.parse(localStorage.getItem('orders'))
-    // console.log(storedOrders.length)
+
     if (storedOrders && storedOrders.length > 0) {
       setOrders(storedOrders)
     } else {
@@ -69,43 +59,30 @@ const Orders = () => {
         <div className={Styles.Orders_data_table}>
           <table>
             <tr>
-              <th>Subject</th>
-              <th>Owner</th>
-              <th>Activity Type</th>
-              <th>Status</th>
-              <th>Priority</th>
-              <th>Issue Date</th>
-              <th>Due Date</th>
+              <th>ORDER ID</th>
+              <th>Customer Email</th>
+              <th>Customer Company</th>
+              <th>Customer First Name</th>
+              <th>Customer Last Name</th>
+              <th>Customer Phone</th>
+              <th>Shipping Address</th>
+              <th>Billing Address</th>
+              <th>Order Number</th>
               <th>Action</th>
             </tr>
             {orders.map((data, index) => (
               <>
                 <tr>
-                  <td>
-                    <div className={Styles.name_cell}>
-                      <input type="checkbox" name="" id="" />
-                      <span>{data.Subject}</span>
-                    </div>
-                  </td>
-                  <td>{data.Owner}</td>
-                  <td>{data.Activity}</td>
-                  <td>
-                    <button
-                      style={{
-                        backgroundColor: getStatusColor(index),
-                        color: '#fff',
-                        padding: '5px 15px',
-                        cursor: 'pointer',
-                        borderRadius: '10px',
-                      }}
-                    >
-                      {data.Status}
-                    </button>
-                  </td>
-                  <td>{data.Priority}</td>
-                  <td>Feb 12, 2024</td>
-                  <td>April 12, 2024</td>
+                  <td>{data.ORDER_ID}</td>
+                  <td>{data.Customer_Email}</td>
+                  <td>{data.Customer_Company}</td>
 
+                  <td>{data.Customer_First_Name}</td>
+                  <td>{data.Customer_Last_Name}</td>
+                  <td>{data.Customer_Phone}</td>
+                  <td>{data.Shipping_Address}</td>
+                  <td>{data.Billing_Address}</td>
+                  <td>{data.Order_Number}</td>
                   <td>
                     <div className={Styles.action_icons}>
                       <span>

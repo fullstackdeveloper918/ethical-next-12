@@ -10,6 +10,7 @@ import {
   deleteCartItem,
   deleteAllCartItems,
   setStep2State,
+  setOrderPlaced,
 } from '../../redux-setup/cartSlice'
 import useFetch from '../../lib/useFetch'
 import { PDFViewer, pdf } from '@react-pdf/renderer'
@@ -39,15 +40,16 @@ const EstimateCard = () => {
   )
 
   const handleSubmit = () => {
-    console.log('handleSubmit have been hit')
     if (!userId) {
       alert('Please Login To submit Estimate')
     } else if (!step1State || !setStep2State) {
       alert('Please Complete All Steps to submit.')
     } else if (cartItems.length === 0) {
-      alert('Please Add something in tour cart to place order')
+      alert('Please Add something in your cart to place order')
     } else {
       loadQuery(data)
+      console.log(response, 'response ffrom carrt')
+      // dispatch(setOrderPlaced(response))
     }
   }
 
