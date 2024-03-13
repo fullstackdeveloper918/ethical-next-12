@@ -207,8 +207,6 @@ const Product = ({ product, loading, error }) => {
 
       let finalCustomPrice = retailSetup / orderQuantity + price
       setCustomizationPrice(finalCustomPrice)
-      let TotalPrice = finalCustomPrice + priceWithoutCustomizations
-      setTotalPrice(TotalPrice)
     } else {
       if (orderQuantity < col2Qty) {
         price = +price1
@@ -222,8 +220,6 @@ const Product = ({ product, loading, error }) => {
         price = +price5
       }
       setCustomizationPrice(price)
-      let TotalPrice = price + priceWithoutCustomizations
-      setTotalPrice(TotalPrice)
     }
   }
   const handleAddToCart = (e) => {
@@ -316,6 +312,11 @@ const Product = ({ product, loading, error }) => {
       setDecorations()
     }
   }, [product])
+
+  useEffect(() => {
+    let TotalPrice = customizationPrice + priceWithoutCustomizations
+    setTotalPrice(TotalPrice)
+  }, [customizationPrice, priceWithoutCustomizations])
   return (
     <>
       {loading ? (
