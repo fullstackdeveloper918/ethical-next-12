@@ -289,33 +289,35 @@ const Product = ({ product, loading, error }) => {
       )
     }
   }, [product])
-
   useEffect(() => {
-    let empt = []
-    dispatch(setDecorationItemObjSingleProductPage(supplierFees))
+    if (product) {
+      let empt = []
+      dispatch(setDecorationItemObjSingleProductPage(supplierFees))
 
-    supplierFees &&
-      Object.entries(supplierFees).map(([key, value]) => empt.push(value))
-
-    let ab = empt.flat(50)
-    let nameOfDecorations = []
-    for (let i = 0; i < ab.length; i++) {
-      const element = ab[i]
-      nameOfDecorations.push(element && element?.decoration_type)
-    }
-    setNameOfDecorations(nameOfDecorations)
-    {
-      !supplierFees && setNameOfDecorations()
+      supplierFees &&
+        Object.entries(supplierFees).map(([key, value]) => empt.push(value))
+      let ab = empt.flat(50)
+      let nameOfDecorations = []
+      for (let i = 0; i < ab.length; i++) {
+        const element = ab[i]
+        nameOfDecorations.push(element && element?.decoration_type)
+      }
+      setNameOfDecorations(nameOfDecorations)
+      {
+        !supplierFees && setNameOfDecorations()
+      }
     }
   }, [product])
 
   let setDecorations = () => {
-    if (decorations) {
+    if (decorations && Object.keys(decorations).length > 0) {
       let objj = {}
       Object.entries(decorations).map(([key, value]) => {
         objj[key] = value[0]
       })
       dispatch(setFinalDecorationKeyVal(objj))
+    } else {
+      dispatch(setFinalDecorationKeyVal({}))
     }
   }
   useEffect(() => {
@@ -411,18 +413,22 @@ const Product = ({ product, loading, error }) => {
                   </div>
                 </div>
                 <div className={Styles.text_content}>
-                  <p>
-                    {ReadMore
-                      ? product?.product_description
-                      : product?.product_description.slice(0, 500)}
-                    <span
-                      className={Styles.read_more}
-                      onClick={() => setIsReadMore(!ReadMore)}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      {ReadMore ? 'Read Less' : '...Read More'}
-                    </span>
-                  </p>
+                  {product?.product_description?.length < 450 ? (
+                    <p>{product?.product_description}</p>
+                  ) : (
+                    <p>
+                      {ReadMore
+                        ? product?.product_description
+                        : product?.product_description.slice(0, 450)}
+                      <span
+                        className={Styles.read_more}
+                        onClick={() => setIsReadMore(!ReadMore)}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        {ReadMore ? 'Read Less' : '...Read More'}
+                      </span>
+                    </p>
+                  )}
                 </div>
                 <div className={Styles.input_checkbox}>
                   <div className={Styles.custom_checkbox}>
@@ -479,7 +485,7 @@ const Product = ({ product, loading, error }) => {
                     </div>
                   </div>
                 )}
-                {finalDecorationKeyVal  && (
+                {Object.keys(finalDecorationKeyVal).length > 0 && (
                   <div className={Styles.customization_text}>
                     <div className={Styles.common_header}>
                       <p>Select Customization</p>
