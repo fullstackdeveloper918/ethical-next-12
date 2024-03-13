@@ -16,11 +16,13 @@ import { CiUser } from 'react-icons/ci'
 import { IoKeyOutline } from 'react-icons/io5'
 import { useEffect } from 'react'
 import { doesNotMatch } from 'assert'
+import { setSubCategoryOnTop } from 'redux-setup/categorySlice'
+import { useDispatch } from 'react-redux'
 // list
 
 export const LIST = (subCategories) => {
   let check = Object.entries(subCategories)
-
+  const dispatch = useDispatch()
   let worthy = []
 
   for (let i = 0; i < check.length; i++) {
@@ -33,8 +35,10 @@ export const LIST = (subCategories) => {
     })
   }
 
-  console.log('uhjh', worthy)
-
+  // dispatch(setSubCategoryOnTop(worthy))
+  useEffect(() => {
+    dispatch(setSubCategoryOnTop(worthy))
+  }, [])
   let categoryList = [
     {
       id: 1,
