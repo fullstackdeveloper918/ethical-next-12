@@ -20,19 +20,23 @@ const Product = ({ product, loading, error }) => {
   const [price, setPrice] = useState(0)
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
   const [selectedCustomization, setSelectedCustomization] = useState()
+  const [choosenCustomization, setChoosenCustomization] = useState(null)
+  console.log(choosenCustomization, 'choosenCustomization')
   const [sizeQuantity, setSizeQuantity] = useState({
     S: 25,
     M: 25,
     L: 25,
     XL: 25,
   })
-
   const [cartState, setCartState] = useState({
     quantity: 0,
     image: null,
     heading: null,
     price: null,
     id: null,
+    logoImg: null,
+    colours: null,
+    customization: null,
   })
   const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
     useState(0)
@@ -173,17 +177,6 @@ const Product = ({ product, loading, error }) => {
 
   const uploadFirstFile = (event) => {
     setUploadFirstLogo(event.target.files[0])
-    // const file = event.target.files[0]
-    // const allowedFormats = ['image/svg+xml'] // Only allow SVG format
-
-    // if (file && allowedFormats.includes(file.type)) {
-    //   // Handle uploading logic here
-    //   console.log('Uploaded image:', file)
-
-    //   setUploadFirstLogo(file)
-    // } else {
-    //   alert('Please upload an image in SVG format.')
-    // }
   }
 
   const removeLogo = (state) => {
@@ -191,6 +184,9 @@ const Product = ({ product, loading, error }) => {
   }
 
   const selectCustomizations = (index, key, val) => {
+    const obj = {}
+    obj.key = val
+    setChoosenCustomization(obj)
     let price1 = country === 'usa' ? val.rc_usa_1 : val.rc_cad_1
     let price2 = country === 'usa' ? val.rc_usa_2 : val.rc_cad_2
     let price3 = country === 'usa' ? val.rc_usa_3 : val.rc_cad_3
@@ -241,6 +237,9 @@ const Product = ({ product, loading, error }) => {
       heading: product?.product_description,
       price: price,
       id: product.id,
+      logoImg: uploadFirstLogo,
+      colours: product?.colours,
+      customization: choosenCustomization,
     })
     toast.success('Added to cart successfully')
     window.scrollTo({
