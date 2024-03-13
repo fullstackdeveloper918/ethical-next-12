@@ -81,7 +81,7 @@ const Product = ({ product, loading, error }) => {
   let col4Qty = product?.column_4_qty
   let col5Qty = product?.column_5_qty
 
-  let ltm_price = country === 'usa' ? product?.ltm_usd : product?.ltm_usd
+  let ltm_price = country === 'usa' ? product?.ltm_usd : product?.ltm_cad
   let supplierFees =
     country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
   const getPrice = () => {
