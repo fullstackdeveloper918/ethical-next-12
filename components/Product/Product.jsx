@@ -413,18 +413,22 @@ const Product = ({ product, loading, error }) => {
                   </div>
                 </div>
                 <div className={Styles.text_content}>
-                  <p>
-                    {ReadMore
-                      ? product?.product_description
-                      : product?.product_description.slice(0, 500)}
-                    <span
-                      className={Styles.read_more}
-                      onClick={() => setIsReadMore(!ReadMore)}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      {ReadMore ? 'Read Less' : '...Read More'}
-                    </span>
-                  </p>
+                  {product?.product_description?.length < 450 ? (
+                    <p>{product?.product_description}</p>
+                  ) : (
+                    <p>
+                      {ReadMore
+                        ? product?.product_description
+                        : product?.product_description.slice(0, 450)}
+                      <span
+                        className={Styles.read_more}
+                        onClick={() => setIsReadMore(!ReadMore)}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        {ReadMore ? 'Read Less' : '...Read More'}
+                      </span>
+                    </p>
+                  )}
                 </div>
                 <div className={Styles.input_checkbox}>
                   <div className={Styles.custom_checkbox}>
