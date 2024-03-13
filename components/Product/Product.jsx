@@ -603,6 +603,7 @@ const Product = ({ product, loading, error }) => {
                     <div>
                       {uploadFirstLogo ? (
                         <>
+                        <div className={Styles.position_relative}>
                           <Image
                             src={URL.createObjectURL(uploadFirstLogo)}
                             width={150}
@@ -612,7 +613,9 @@ const Product = ({ product, loading, error }) => {
                             onClick={() => removeLogo(setUploadFirstLogo)}
                             className={Styles.cross_logo}
                           />
+                          </div>
                         </>
+                        
                       ) : (
                         <>
                           <label
