@@ -25,6 +25,7 @@ const Product = () => {
   const selectedOptionValue = useSelector(
     (state) => state.cart.selectedOptionValue
   )
+  let swiftSwag = useSelector((state) => state.random.swiftSwag)
 
   const getProducts = async (value = '') => {
     try {
@@ -35,7 +36,7 @@ const Product = () => {
             currentPage ? currentPage : 1
           }&pageSize=${10}&${countryTosend}=1&search_title=${value}&${selectedOptionValue}=desc&collection_ids=${
             activeFilters[0] ? activeFilters[0] : ''
-          }`
+          }&swift_tag=${swiftSwag === `flexible` ? 0 : 1}`
         )
         setProductsData(response.data)
         window.scrollTo({

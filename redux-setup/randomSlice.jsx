@@ -4,7 +4,7 @@ const initialState = {
   singleProductPromotion: null,
   decorationItemObjSingleProductPage: {},
   finalDecorationKeyVal: {},
-  swiftSwag: 'flexible',
+  swiftSwag: '',
 }
 
 export const RandomSlice = createSlice({
