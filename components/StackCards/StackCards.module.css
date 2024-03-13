@@ -166,7 +166,7 @@
   }
 }
 
-@media screen and (max-width:1024px) {
+/* @media screen and (max-width:1024px) {
   .text ul {
     width: 670px;
     height: 700px;
@@ -191,4 +191,4 @@
     width: 200px !important;
     height: 300px !important;
   }
-}
+} */

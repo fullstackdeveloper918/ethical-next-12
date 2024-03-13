@@ -582,7 +582,6 @@ progress.progress_bar::-webkit-progress-bar {
 
 .write_review_container {
   opacity: 1;
-  max-height: 400px;
   transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
@@ -590,4 +589,95 @@ progress.progress_bar::-webkit-progress-bar {
   opacity: 0;
   max-height: 0;
   transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.write_review_container input,
+.write_review_container textarea {
+  width: 100%;
+  height: 60px;
+  padding: 22px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: #fff;
+  outline: none;
+  box-shadow: none;
+}
+
+.write_review_container textarea {
+  height: 180px;
+}
+.row_flex {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.row_flex .input_field {
+  width: 48.5% !important;
+}
+.write_review_container .input_field {
+  margin-bottom: 16px;
+}
+.row_flex .input_field::placeholder {
+  color: #afafaf;
+}
+/* .write_review_container .input_field .startRating.text_center{
+justify-content: center !important;
+} */
+.write_review_container .input_field.text_left p {
+  text-align: left;
+  
+}
+
+.submit_review_button{
+  padding: 0.7rem 2rem;
+  background: #a2d061;
+  color: #fff;
+  border-radius: 30px;
+  transition: 0.5s all ease-in-out;
+  border: 1px solid #a2d061;
+  font-size: 16px;
+  font-family: 'Poppins';
+}
+.submit_review_button:hover{
+  background: transparent;
+  color: #a2d061;
+}
+
+.display_label{
+text-transform: uppercase;
+font-size: 12px;
+color: #333;
+font-family: 'Poppins';
+margin-bottom: 10px;
+display: block;
+}
+
+@media screen and (max-width:768px) {
+  .write_review_container input,
+.write_review_container textarea {
+  width: 100%;
+  height: 50px;
+}
+
+}
+@media screen and (max-width:575px) {
+  .write_review_container .input_field {
+    margin-bottom: 10px;
+  }
+  .row_flex .input_field {
+    width: 100% !important;
+  }
+  .write_review_container .input_field.text_left p {
+   font-size: 14px;
+  }
+  .submit_review_button{
+    padding: 0.7rem 1.2rem;
+    font-size: 14px;
+  }
+  .write_review_container textarea {
+    max-height: 140px;
+  }
 }
