@@ -141,3 +141,54 @@
   font-weight: 300;
   padding: 7px 0px 20px;
 }
+
+
+@media screen and (max-width:1280px) {
+  .text ul li:nth-child(1) .list_explore,.text ul li:nth-child(1) .list_explore img{
+    width: 450px !important;
+    height: 550px !important;
+  }
+  .text ul li:nth-child(2) .list_explore,.text ul li:nth-child(2) .list_explore img{
+    width: 400px !important;
+    height: 500px !important;
+  }
+  .text ul li:nth-child(3) .list_explore,.text ul li:nth-child(3) .list_explore img{
+    width: 350px !important;
+    height: 450px !important;
+  }
+  .text ul li:nth-child(4) .list_explore,.text ul li:nth-child(4) .list_explore img{
+    width: 300px!important;
+    height: 400px !important;
+  }
+  .text ul li:nth-child(5) .list_explore,.text ul li:nth-child(5) .list_explore img{
+    width: 250px !important;
+    height: 350px !important;
+  }
+}
+
+@media screen and (max-width:1024px) {
+  .text ul {
+    width: 670px;
+    height: 700px;
+  }
+  .text ul li:nth-child(1) .list_explore,.text ul li:nth-child(1) .list_explore img{
+    width: 400px !important;
+    height: 500px !important;
+  }
+  .text ul li:nth-child(2) .list_explore,.text ul li:nth-child(2) .list_explore img{
+    width: 350px !important;
+    height: 450px !important;
+  }
+  .text ul li:nth-child(3) .list_explore,.text ul li:nth-child(3) .list_explore img{
+    width: 300px!important;
+    height: 400px !important;
+  }
+  .text ul li:nth-child(4) .list_explore,.text ul li:nth-child(4) .list_explore img{
+    width: 250px !important;
+    height: 350px !important;
+  }
+  .text ul li:nth-child(5) .list_explore,.text ul li:nth-child(5) .list_explore img{
+    width: 200px !important;
+    height: 300px !important;
+  }
+}
