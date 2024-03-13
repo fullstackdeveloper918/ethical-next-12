@@ -579,3 +579,15 @@ progress.progress_bar::-webkit-progress-bar {
     max-width: 100%;
   }
 }
+
+.write_review_container {
+  opacity: 1;
+  max-height: 400px;
+  transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.hide_review {
+  opacity: 0;
+  max-height: 0;
+  transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}

@@ -806,6 +806,13 @@ p.fw400 {
   min-height: 80px;
   max-height: 80px;
 }
+.size_div input {
+  margin-left: 8px;
+}
+
+.cross_logo {
+  position: absolute;
+}
 
 @media screen and (max-width: 1160px) {
   .detail_page_container {
@@ -875,6 +882,7 @@ p.fw400 {
   .para_text .upload_logo {
     flex-wrap: wrap;
     width: 100%;
+    position: relative;
   }
   .para_text .upload_logo label {
     max-width: 100%;

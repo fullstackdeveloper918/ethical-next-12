@@ -171,8 +171,19 @@ const Product = ({ product, loading, error }) => {
     }
   }
 
-  const uploadFirstFile = (e) => {
-    setUploadFirstLogo(e.target.files[0])
+  const uploadFirstFile = (event) => {
+    setUploadFirstLogo(event.target.files[0])
+    // const file = event.target.files[0]
+    // const allowedFormats = ['image/svg+xml'] // Only allow SVG format
+
+    // if (file && allowedFormats.includes(file.type)) {
+    //   // Handle uploading logic here
+    //   console.log('Uploaded image:', file)
+
+    //   setUploadFirstLogo(file)
+    // } else {
+    //   alert('Please upload an image in SVG format.')
+    // }
   }
 
   const removeLogo = (state) => {
@@ -595,6 +606,7 @@ const Product = ({ product, loading, error }) => {
                           />
                           <RxCross2
                             onClick={() => removeLogo(setUploadFirstLogo)}
+                            className={Styles.cross_logo}
                           />
                         </>
                       ) : (
@@ -627,6 +639,7 @@ const Product = ({ product, loading, error }) => {
                               type="file"
                               name=""
                               id="file1"
+                              accept="image/*"
                               onChange={uploadFirstFile}
                             />
                           </label>
@@ -672,53 +685,34 @@ const Product = ({ product, loading, error }) => {
                   </div>
 
                   <div className={Styles.inputs}>
-                    <input
-                      placeholder="S"
-                      type="number"
-                      name="S"
-                      value={sizeNotSure ? 0 : sizeQuantity.S}
-                      onChange={handleQuantitySize}
-                      min="0"
-                      disabled={sizeNotSure}
-                    />
-                    <input
-                      placeholder="M"
-                      type="number"
-                      name="M"
-                      value={sizeNotSure ? 0 : sizeQuantity.M}
-                      // value={sizeQuantity.M}
-                      onChange={handleQuantitySize}
-                      min="0"
-                      disabled={sizeNotSure}
-                    />
-                    <input
-                      placeholder="L"
-                      type="number"
-                      name="L"
-                      // value={sizeQuantity.L}
-                      value={sizeNotSure ? 0 : sizeQuantity.L}
-                      onChange={handleQuantitySize}
-                      min="0"
-                      disabled={sizeNotSure}
-                    />
-                    <input
-                      placeholder="XL"
-                      type="number"
-                      name="XL"
-                      // value={sizeQuantity.XL}
-                      value={sizeNotSure ? 0 : sizeQuantity.XL}
-                      onChange={handleQuantitySize}
-                      min="0"
-                      disabled={sizeNotSure}
-                    />
+                    {Object.keys(sizeQuantity).map((key) => (
+                      <>
+                        <div className={Styles.size_div}>
+                          <label htmlFor="">{key}</label>
+                          <input
+                            placeholder={key}
+                            type="number"
+                            name={key}
+                            value={sizeNotSure ? 0 : sizeQuantity[key]}
+                            onChange={handleQuantitySize}
+                            min="0"
+                            disabled={sizeNotSure}
+                          />
+                        </div>
+                      </>
+                    ))}
                   </div>
-                  <div className="">
+                  <div className={Styles.custom_checkbox}>
                     <input
                       type="checkbox"
+                      id="sizeCheckbox"
                       checked={sizeNotSure} //setSizeNotSure
                       onChange={() => setSizeNotSure(!sizeNotSure)}
                     />
-                    <label> Not sure about size yet</label>
+                    <label htmlFor="sizeCheckbox">
+                      {' '}
+                      Not sure about size yet
+                    </label>
                   </div>
                 </div>
                 <div className={Styles.standard_business_section}>
