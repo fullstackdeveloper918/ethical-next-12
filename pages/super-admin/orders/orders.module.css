@@ -95,8 +95,15 @@
 .form .input_field {
   width: 100%;
   margin-bottom: 10px;
+  display: flex;
 }
-
+.form .input_field label {
+  width: 280px;
+}
+.form h3 {
+  font-size: 30px;
+  margin: 20px 0;
+}
 .input_field input {
   padding: 18px;
   width: 100%;
@@ -116,6 +123,7 @@
   background-color: #a2d061;
   padding: 1rem;
   border-radius: 30px;
+  margin-right: 15px;
   font-size: 1.1rem;
   color: #fff;
 }
