@@ -467,7 +467,7 @@ const Product = ({ product, loading, error }) => {
                     </div>
                   </div>
                 )}
-                {Object.keys(finalDecorationKeyVal).length > 0 && (
+                {finalDecorationKeyVal  && (
                   <div className={Styles.customization_text}>
                     <div className={Styles.common_header}>
                       <p>Select Customization</p>
