@@ -21,7 +21,6 @@ const Product = ({ product, loading, error }) => {
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
   const [selectedCustomization, setSelectedCustomization] = useState()
   const [choosenCustomization, setChoosenCustomization] = useState(null)
-  console.log(choosenCustomization, 'choosenCustomization')
   const [sizeQuantity, setSizeQuantity] = useState({
     S: 25,
     M: 25,
@@ -48,6 +47,7 @@ const Product = ({ product, loading, error }) => {
   const [singleImage, setSingleImage] = useState(imagesArray[0])
   const [nameOfDecorations, setNameOfDecorations] = useState([])
   const [sizeNotSure, setSizeNotSure] = useState(true)
+  const [swiftSwag, setSwiftSwag] = useState(false)
   const country = useSelector((state) => state.country.country)
   const cartItems = useSelector((state) => state.cart.cartItems)
   const decorations = useSelector(
@@ -329,6 +329,7 @@ const Product = ({ product, loading, error }) => {
     let TotalPrice = customizationPrice + priceWithoutCustomizations
     setTotalPrice(TotalPrice)
   }, [customizationPrice, priceWithoutCustomizations])
+
   return (
     <>
       {loading ? (
@@ -473,7 +474,13 @@ const Product = ({ product, loading, error }) => {
                     </div>
                     <div className={Styles.cart_left_swift_content}>
                       <div className={Styles.custom_checkbox}>
-                        <input type="checkbox" name="" id="swift_swag" />
+                        <input
+                          type="checkbox"
+                          name="swift_swag"
+                          id="swift_swag"
+                          checked={swiftSwag}
+                          onChange={() => setSwiftSwag(!swiftSwag)}
+                        />
                         <label htmlFor="swift_swag">
                           Checking this box will override the date selected
                           above to within 10 business days if you have gone
@@ -735,7 +742,7 @@ const Product = ({ product, loading, error }) => {
                 <div className={Styles.standard_down_line}></div>
                 <div className={Styles.price_section}>
                   <p>{`Price ${
-                    totalPrice ? totalPrice.toFixed(2) : 0
+                    totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
                   }/unit`}</p>
 
                   <p>${(orderQuantity * +totalPrice).toFixed(2)}</p>
