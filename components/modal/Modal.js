@@ -3,7 +3,8 @@ import Style from './Modal.module.css'
 import { setSwiftSwagTime } from 'redux-setup/randomSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
-
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 const Modal = () => {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -12,7 +13,7 @@ const Modal = () => {
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [selectedOption, setSelectedOption] = useState('flexible')
   console.log(selectedOption, 'selectedOption')
-
+  const [value, onChange] = useState(new Date());
   useEffect(() => {
     // Trigger the click event on the date input to open the date picker
     if (dateInputRef.current) {
@@ -64,11 +65,13 @@ const Modal = () => {
               style={{
                 display: 'flex',
                 // alignItems: 'center',
-                justifyContent: 'space-between',
+                // justifyContent: 'space-between',
+                gap:'30px'
               }}
+              className={Style.flex_calender}
             >
-              <div>
-                <input
+              <div className={Style.Calendar_wrapper}>
+                {/* <input
                   ref={dateInputRef}
                   type="date"
                   id="selectedDate"
@@ -80,36 +83,42 @@ const Modal = () => {
                       : getTodayDate()
                   }
                   // disabled={isBilling}
-                />
+                /> */}
+                 <Calendar onChange={onChange} value={value} activeStartDate={ new Date()} />
               </div>
-              <div
+              <div className={Style.Calendar_content_wrapper}
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  alignItems:'baseline',
+                  // justifyContent: 'center',
                 }}
               >
                 <h2>When do you want this order delivered?</h2>
-                <label>
-                  <input
+                <div className={Style.label_field}>
+                <div>
+                <input
                     type="radio"
                     value="within10Days"
                     checked={selectedOption === 'within10Days'}
                     onChange={(event) => setSelectedOption(event.target.value)}
                   />
-                  I want This order to e delivered within 10 days
-                </label>
-                <label>
-                  <input
+                <label>I want This order to e delivered within 10 days   </label>
+                 
+                 </div>
+              <div>
+              <input
                     type="radio"
                     value="flexible"
                     checked={selectedOption === 'flexible'}
                     onChange={(event) => setSelectedOption(event.target.value)}
                   />
-                  I am flexible with order delivery.
+                <label>I am flexible with order delivery.
                 </label>
-                <button type="button" onClick={handleSubmit}>
+                 
+                  </div>
+                </div>
+                <button type="button" onClick={handleSubmit} className={Style.submit_btn}>
                   submit
                 </button>
               </div>

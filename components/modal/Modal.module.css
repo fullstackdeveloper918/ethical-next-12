@@ -1,7 +1,7 @@
 .overlay{
     position: fixed;
   z-index: 1; 
-  padding-top: 100px; 
+  /* padding-top: 100px;  */
   left: 0;
   top: 0;
   width: 100%;
@@ -17,19 +17,16 @@
 }
 
 .modal_content{
-    display: flex;
-    align-items: center;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 60%;
-    justify-content: center;
-    position: relative;
-    height: 500px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 30px;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 100%;
+  max-width: 730px;
+  position: relative;
+  height: auto;
+  border-radius: 20px;
+  padding: 40px;
 }
 .close {
     color: #aaaaaa;
@@ -37,7 +34,97 @@
     font-size: 28px;
     font-weight: bold;
     position: absolute;
-    right: 15px;
-    top: -5px;
+    right: 25px;
+    top: 10px;
     cursor: pointer;
   }
+
+  .Calendar_wrapper{
+    max-width: 40%;
+  }
+
+  .Calendar_content_wrapper{
+    width: 59%;
+  }
+
+  .Calendar_content_wrapper h2{
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 30px;
+  }
+  .label_field{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .label_field label{
+   padding-left: 5px;
+    gap: 10px;
+  }
+
+  .submit_btn {
+    color: #FFF;
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.18px;
+    border-radius: 20px;
+    border: 1px solid #A2D061;
+    background: #A2D061;
+    padding: 12px;
+    padding: 10px 30px;
+    text-transform: capitalize;
+    transition: all .3s ease-in;
+    margin-top: 30px;
+}
+
+.submit_btn:hover{
+  background-color: transparent;
+  color: #A2D061;
+}
+
+.react-calendar {
+  border: 1px solid #d1d1d1 !important;
+  border-radius: 20px !important;
+}
+
+@media screen and (max-width:767px) {
+  .modal_content{
+    max-width: 90%;
+  }
+  .Calendar_content_wrapper h2{
+    font-size: 22px;
+  }
+  .Calendar_wrapper {
+    max-width: 50%;
+}
+}
+@media screen and (max-width:765px) {
+.flex_calender{
+  flex-wrap:wrap;
+  justify-content: center;
+
+}
+.Calendar_wrapper{
+  max-width: 100%;
+}
+
+.Calendar_content_wrapper{
+  max-width: 100%;
+  width: 100%;
+}
+
+}
+@media screen and (max-width:580px) {
+  .modal_content{
+    padding: 25px 20px;
+  }
+.close{
+  top: 0;
+  right: 15px;
+}
+}
