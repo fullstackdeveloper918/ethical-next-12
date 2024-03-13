@@ -5,9 +5,10 @@
 .text ul {
   position: relative;
   width: 680px;
-  height: 700px;
+  height: 540px;
   display: flex;
   align-items: center;
+  margin-bottom: 50px;
 }
 .text ul li:nth-child(1) {
   width: 100%;
@@ -30,7 +31,7 @@
   width: 100%;
   max-width: 450px;
   position: absolute;
-  left: 132px;
+  left: 140px;
   z-index: 4;
 }
 .text ul li:nth-child(2) .list_explore {
@@ -47,7 +48,7 @@
   width: 100%;
   max-width: 400px;
   position: absolute;
-  left: 84px;
+  left: 98px;
   z-index: 3;
 }
 .text ul li:nth-child(3) .list_explore {
@@ -64,7 +65,7 @@
   width: 100%;
   max-width: 350px;
   position: absolute;
-  left: 40px;
+  left: 56px;
   z-index: 2;
 }
 .text ul li:nth-child(4) .list_explore {
@@ -81,7 +82,7 @@
   width: 100%;
   max-width: 300px;
   position: absolute;
-  left: 0px;
+  left: 24px;
   z-index: 1;
 }
 .text ul li:nth-child(5) .list_explore {
@@ -145,12 +146,12 @@
 .text ul li:nth-child(1) .list_explore,
 .text ul li:nth-child(1) .list_explore img {
   width: 350px !important;
-  height: 500px !important;
+  height: 510px !important;
 }
 .text ul li:nth-child(2) .list_explore,
 .text ul li:nth-child(2) .list_explore img {
   width: 320px !important;
-  height: 450px !important;
+  height: 470px !important;
 }
 .text ul li:nth-child(3) .list_explore,
 .text ul li:nth-child(3) .list_explore img {
@@ -178,34 +179,38 @@
   font-size: 16px;
   line-height: 18px;
 }
+
 @media screen and (max-width: 1440px) {
   .text ul li:nth-child(1) .list_explore,
   .text ul li:nth-child(1) .list_explore img {
-    width: 320px !important;
-    height: 450px !important;
+    width: 290px !important;
+    height: 430px !important;
   }
   .text ul li:nth-child(2) .list_explore,
   .text ul li:nth-child(2) .list_explore img {
-    width: 290px !important;
-    height: 420px !important;
-  }
-  .text ul li:nth-child(3) .list_explore,
-  .text ul li:nth-child(3) .list_explore img {
     width: 250px !important;
     height: 390px !important;
   }
-  .text ul li:nth-child(4) .list_explore,
-  .text ul li:nth-child(4) .list_explore img {
+  .text ul li:nth-child(3) .list_explore,
+  .text ul li:nth-child(3) .list_explore img {
     width: 220px !important;
     height: 350px !important;
   }
-  .text ul li:nth-child(5) .list_explore,
-  .text ul li:nth-child(5) .list_explore img {
+  .text ul li:nth-child(4) .list_explore,
+  .text ul li:nth-child(4) .list_explore img {
     width: 200px !important;
     height: 310px !important;
   }
-  .text ul li:nth-child(2) .bottom_content {
-    bottom: 10px;
+  .text ul li:nth-child(5) .list_explore,
+  .text ul li:nth-child(5) .list_explore img {
+    width: 180px !important;
+    height: 280px !important;
+  }
+  .text ul li:nth-child(2) .bottom_content ,
+  .text ul li:nth-child(3) .bottom_content ,
+  .text ul li:nth-child(4) .bottom_content ,
+  .text ul li:nth-child(5) .bottom_content {
+    bottom: 15px;
   }
   .text ul li:nth-child(2) .bottom_content h2,
   .text ul li:nth-child(3) .bottom_content h2,
@@ -237,20 +242,17 @@
     max-width: 214px !important;
     height: 49px !important;
   }
-  .text ul {
-    width: 660px;
-  }
   .text ul li:nth-child(2) {
-    left: 125px;
+    left: 140px;
   }
   .text ul li:nth-child(3) {
-    left: 90px;
+    left: 100px;
   }
   .text ul li:nth-child(4) {
     left: 62px;
   }
   .text ul li:nth-child(5) {
-    left: 40px;
+    left: 33px;
   }
   .bottom_content h2 {
     font-size: 18px;
@@ -261,8 +263,14 @@
   .flat_dis {
     padding: 4px 16px;
   }
+
 }
 
+@media screen and (max-width: 991px) {
+  .text ul {
+    height: 440px;
+  }
+}
 @media screen and (max-width: 676px) {
   .text ul li:nth-child(1) {
     right: -50px;
@@ -370,7 +378,7 @@
 
 @media screen and (max-width:390px) {
   .text ul li:nth-child(1) {
-    right: -120px;
+    right: -85px;
   }
   .text ul li:nth-child(2) {
     left: 235px;
