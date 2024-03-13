@@ -120,6 +120,8 @@
   font-style: normal;
   font-weight: 600;
   line-height: 36px;
+  display: flex;
+  align-items: center;
 }
 
 .detail_page_right_section .reviews {
