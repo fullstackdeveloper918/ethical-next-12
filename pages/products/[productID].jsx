@@ -20,6 +20,7 @@ import images from '../../constants/images'
 
 const productID = () => {
   const router = useRouter()
+  const [writeReview, setWriteReview] = useState(false)
 
   const [openIndex, setOpenIndex] = useState(null)
   const { query } = router ?? {}
@@ -165,7 +166,50 @@ const productID = () => {
         <div className={Styles.product_review_section}>
           <div className={Styles.top_content}>
             <h2>Product Review</h2>
-            <button>write a review</button>
+            <button onClick={() => setWriteReview(!writeReview)}>
+              {writeReview ? 'Cancel' : 'Write a review'}
+            </button>
+          </div>
+          {/* Write a Review Section */}
+          <div
+            className={
+              writeReview ? Styles.write_review_container : Styles.hide_review
+            }
+          >
+            <form>
+              <div className="input_field">
+                <input type="text" placeholder="Enter your name (public)" />
+              </div>
+              <div className="input_field">
+                <input type="email" placeholder="Enter your name (private)" />
+              </div>
+              <div className="input_field">
+                <p>Reviews</p>
+              </div>
+              <div className="input_field">
+                <input type="text" placeholder="Give your review a title" />
+              </div>
+              <div className="input_field">
+                <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                  placeholder="Write your comments here"
+                ></textarea>
+              </div>
+              <div className="input_field">
+                <p>
+                  How we use your data: We’ll only contact you about the review
+                  you left, and only if necessary. By submitting your review,
+                  you agree to Judge.me’s terms and conditions and privacy
+                  policy.
+                </p>
+              </div>
+              <div className="input_field">
+                <button>Submit Review</button>
+              </div>
+            </form>
           </div>
           <div className={Styles.bottomContent}>
             <div className={Styles.leftContent}>
