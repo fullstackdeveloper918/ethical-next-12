@@ -361,7 +361,7 @@ const Product = ({ product, loading, error }) => {
                             className={Styles.product_Images}
                             style={{
                               border:
-                                singleImage === image ? '1px solid black' : '',
+                                singleImage === image ? '1px solid #a2d061' : '',
                             }}
                           >
                             <Image
@@ -386,30 +386,33 @@ const Product = ({ product, loading, error }) => {
                       <>
                         <div className={Styles.tag}>
                           <p>{data}</p>
+                          
                         </div>
                       </>
                     ))}
                 </div>
 
                 <div className={Styles.title}>
-                  <h4>{product?.product_title}</h4>
-                  <div className={Styles.reviews}>
+                  <h4>{product?.product_title}
+                  {product?.emoji_ratings &&
+                            Object.entries(product?.emoji_ratings).map(
+                              ([key,value]) => <span>{value}</span>
+                            )}</h4>
+                 
+                  {/* <div className={Styles.reviews}>
                     <div className={Styles.star_review}>
                       <span className={Styles.star_review_images}>
                         <div style={{ display: 'flex', gap: '8px' }}>
-                          {product?.emoji_ratings &&
-                            Object.entries(product?.emoji_ratings).map(
-                              ([key, value]) => <div>{value}</div>
-                            )}
+                          
                         </div>
                       </span>
-                    </div>
+                    </div> */}
                     {/* <div className={Styles.text_review}>
                     <span className={Styles.text_review_content}>
                     527 Reviews
                     </span>
                   </div> */}
-                  </div>
+                  {/* </div> */}
                 </div>
                 <div className={Styles.text_content}>
                   {product?.product_description?.length < 450 ? (
@@ -433,7 +436,7 @@ const Product = ({ product, loading, error }) => {
                   <div className={Styles.custom_checkbox}>
                     <input type="checkbox" name="services" id="sample" />
                     <label for="sample" className={Styles.marinSpace}>
-                      Is this a sample?
+                    This is a sample checkbox
                     </label>
                   </div>
                 </div>
@@ -484,7 +487,7 @@ const Product = ({ product, loading, error }) => {
                     </div>
                   </div>
                 )}
-                {Object.keys(finalDecorationKeyVal).length > 0 && (
+                { Object.keys(finalDecorationKeyVal).length > 0 && (
                   <div className={Styles.customization_text}>
                     <div className={Styles.common_header}>
                       <p>Select Customization</p>
