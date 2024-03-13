@@ -12,8 +12,6 @@ const Modal = () => {
 
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [selectedOption, setSelectedOption] = useState('flexible')
-  console.log(selectedOption, 'selectedOption')
-  const [value, onChange] = useState(new Date());
   useEffect(() => {
     // Trigger the click event on the date input to open the date picker
     if (dateInputRef.current) {
@@ -27,7 +25,6 @@ const Modal = () => {
     // }
   }
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
-  console.log(swiftSwag, 'swiftSwag from redux')
   useEffect(() => {
     if (swiftSwag === '') {
       setIsOpenModal(true)

@@ -6,22 +6,28 @@ import FilterPanel from '../FilterPanel/FilterPanel'
 import images from '../../constants/images'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchState, setSelectedOptionValue } from 'redux-setup/cartSlice'
+import { setActiveFilters } from 'redux-setup/categorySlice'
 
 const Filter = ({ activeFilter, setActiveFilter, optimizedFn }) => {
   const [scrolled, setScrolled] = useState(false)
   const dispatch = useDispatch()
+  const [filtersState, setFiltersState] = useState([])
+
   const searchState = useSelector((state) => state.cart.searchState)
   const selectedOptionValue = useSelector(
     (state) => state.cart.selectedOptionValue
   )
 
   const subCategoryData = useSelector((state) => state.category.subCategories)
+  const subCategoryOnTop = useSelector(
+    (state) => state.category.subCategoryOnTop
+  )
+  console.log(subCategoryOnTop, 'subCategoryOnTopsubCategoryOnTop')
 
   const dataArray = Object.entries(subCategoryData).map(([key, value]) => ({
     id: key,
     category: value.replace(/"/g, ''), // Remove double quotes from the value
   }))
-  console.log(dataArray, 'dataarray')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,6 +52,19 @@ const Filter = ({ activeFilter, setActiveFilter, optimizedFn }) => {
     dispatch(setSearchState(''))
   }, [])
 
+  const handleAddLists = (text) => {
+    if (filtersState.includes(text?.apikey)) {
+      let f = filtersState.filter((item) => item !== text?.apikey)
+      setFiltersState(f)
+    } else {
+      setFiltersState((prevC) => [...prevC, text?.apikey])
+    }
+  }
+  console.log(filtersState, 'filtersState')
+
+  useEffect(() => {
+    dispatch(setActiveFilters(filtersState))
+  }, [filtersState])
   return (
     <>
       {/* Filter Section */}
@@ -78,8 +97,14 @@ const Filter = ({ activeFilter, setActiveFilter, optimizedFn }) => {
               optimizedFn(searchState)
             }}
           /> */}
+          {subCategoryOnTop?.length > 0 &&
+            subCategoryOnTop.map((item) => (
+              <p onClick={() => handleAddLists(item)}>
+                {JSON.parse(item.label)}
+              </p>
+            ))}
         </div>
-        <div className={Styles.filter_select}>
+        {/* <div className={Styles.filter_select}>
           <div>
             <select
               name=""
@@ -99,7 +124,7 @@ const Filter = ({ activeFilter, setActiveFilter, optimizedFn }) => {
               <option value="created_at_desc">Date, new to old </option>
             </select>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={Styles.filter_panel_wrap}>
         {activeFilter && <FilterPanel setActiveFilter={setActiveFilter} />}
