@@ -58,7 +58,9 @@ const Product = ({ product, loading, error }) => {
     colours: null,
     customization: null,
     isSample: false,
+    swiftSwag: false,
   })
+
   const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
     useState(0)
   const [customizationPrice, setCustomizationPrice] = useState(0)
@@ -82,6 +84,7 @@ const Product = ({ product, loading, error }) => {
   const finalDecorationKeyVal = useSelector(
     (state) => state.random.finalDecorationKeyVal
   )
+  const [cartItemsSwiftSwag, setCartItemsSwiftSwag] = useState()
   let isProductIncludesltm_final = product?.ltm_final.includes('Y')
   let col1Price =
     country === 'usa'
@@ -260,24 +263,32 @@ const Product = ({ product, loading, error }) => {
   }
   const handleAddToCart = (e) => {
     e.preventDefault()
-    setCartState({
-      quantity: orderQuantity,
-      image: setImagesArray[0],
-      heading: product?.product_description,
-      pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
-      id: product.id,
-      logoImg: uploadFirstLogo,
-      colours: selectedColor,
-      customization: choosenCustomization,
-      totalPrice: orderQuantity * +totalPrice,
-      isSample: isSample,
-    })
-    toast.success('Added to cart successfully')
-    window.scrollTo({
-      top: '0',
-      left: '0',
-      behavior: 'smooth',
-    })
+    const isCurrentId = cartItems.some((obj) => obj.id === product.id)
+    if (cartItemsSwiftSwag === null || cartItemsSwiftSwag === swiftSwag) {
+      setCartState({
+        quantity: orderQuantity,
+        image: setImagesArray[0],
+        heading: product?.product_description,
+        pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
+        id: product.id,
+        logoImg: uploadFirstLogo,
+        colours: selectedColor,
+        customization: choosenCustomization,
+        totalPrice: orderQuantity * +totalPrice,
+        isSample: isSample,
+        swiftSwag: swiftSwag,
+      })
+      toast.success('Added to cart successfully')
+      window.scrollTo({
+        top: '0',
+        left: '0',
+        behavior: 'smooth',
+      })
+    } else {
+      toast.error(
+        'You cannot add swift swag products with non swift swag products'
+      )
+    }
   }
   useEffect(() => {
     if (cartState.quantity) {
@@ -392,6 +403,15 @@ const Product = ({ product, loading, error }) => {
       setOrderQuantity(3)
     }
   }, [actualMinQty])
+
+  useEffect(() => {
+    if (cartItems.length == 0) {
+      setCartItemsSwiftSwag(null)
+    } else if (cartItems.length > 0) {
+      setCartItemsSwiftSwag(cartItems[0].swiftSwag)
+    }
+  }, [cartItems])
+
   return (
     <>
       {loading ? (
