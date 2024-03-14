@@ -47,7 +47,7 @@
   gap: 1.5rem;
   /* align-items: center; */
   margin: 15px 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 /* .product_card_container .product_content {
