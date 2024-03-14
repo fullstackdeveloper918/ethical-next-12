@@ -57,6 +57,7 @@ const Product = ({ product, loading, error }) => {
     logoImg: null,
     colours: null,
     customization: null,
+    isSample: false,
   })
   const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
     useState(0)
@@ -68,19 +69,19 @@ const Product = ({ product, loading, error }) => {
   const [singleImage, setSingleImage] = useState(imagesArray[0])
   const [nameOfDecorations, setNameOfDecorations] = useState([])
   const [sizeNotSure, setSizeNotSure] = useState(true)
+  const [isSample, setIsSample] = useState(false)
   const [swiftSwag, setSwiftSwag] = useState(false)
   const [selectedColor, setSelectedColor] = useState(null)
+  const [sizeNotSureQuantity, setSizeNotSureQuantity] = useState(0)
+  const [finalQty, setFinalQty] = useState(0)
   const country = useSelector((state) => state.country.country)
   const cartItems = useSelector((state) => state.cart.cartItems)
-  // const [selectedColor, setSelectedColor]
   const decorations = useSelector(
     (state) => state.random.decorationItemObjSingleProductPage
   )
-  console.log(selectedColor, 'selectedColor')
   const finalDecorationKeyVal = useSelector(
     (state) => state.random.finalDecorationKeyVal
   )
-
   let isProductIncludesltm_final = product?.ltm_final.includes('Y')
   let col1Price =
     country === 'usa'
@@ -182,6 +183,11 @@ const Product = ({ product, loading, error }) => {
         +sizeQuantity.S + +sizeQuantity.M + +sizeQuantity.L + +sizeQuantity.XL
       setOrderQuantity(total > actualMinQty ? total : actualMinQty)
     }
+    if (product && isSample) {
+      let total =
+        +sizeQuantity.S + +sizeQuantity.M + +sizeQuantity.L + +sizeQuantity.XL
+      setOrderQuantity(total > 3 ? 3 : total)
+    }
   }, [sizeQuantity, product])
 
   let handleQuantitySize = (e) => {
@@ -264,6 +270,7 @@ const Product = ({ product, loading, error }) => {
       colours: selectedColor,
       customization: choosenCustomization,
       totalPrice: orderQuantity * +totalPrice,
+      isSample: isSample,
     })
     toast.success('Added to cart successfully')
     window.scrollTo({
@@ -331,7 +338,6 @@ const Product = ({ product, loading, error }) => {
       }
     }
   }, [product])
-  console.log(imagesArray, 'imagesArray')
 
   const dummy = [
     'https://test.cybersify.tech/Eswag/storage/app/public/images/qzvsK4UX3RzNE_WQ9habw_tzWvtre2fStqxH6x8ifA8.png',
@@ -366,6 +372,26 @@ const Product = ({ product, loading, error }) => {
     setTotalPrice(TotalPrice)
   }, [customizationPrice, priceWithoutCustomizations])
 
+  useEffect(() => {
+    let quantity
+    if (sizeNotSure) {
+      quantity = sizeNotSureQuantity
+    } else if (!sizeNotSure) {
+      quantity = orderQuantity
+    }
+    setFinalQty(+quantity)
+  }, [sizeNotSure, orderQuantity, sizeNotSureQuantity])
+
+  useEffect(() => {
+    if (actualMinQty) {
+      setSizeNotSureQuantity(actualMinQty)
+      setOrderQuantity(actualMinQty)
+    }
+    if (actualMinQty && isSample) {
+      setSizeNotSureQuantity(3)
+      setOrderQuantity(3)
+    }
+  }, [actualMinQty])
   return (
     <>
       {loading ? (
@@ -489,8 +515,14 @@ const Product = ({ product, loading, error }) => {
                 </div>
                 <div className={Styles.input_checkbox}>
                   <div className={Styles.custom_checkbox}>
-                    <input type="checkbox" name="services" id="sample" />
-                    <label for="sample" className={Styles.marinSpace}>
+                    <input
+                      type="checkbox"
+                      name="sample"
+                      id="sample"
+                      checked={isSample} //setSizeNotSure
+                      onChange={() => setIsSample(!isSample)}
+                    />
+                    <label htmlFor="sample" className={Styles.marinSpace}>
                       This is a sample checkbox
                     </label>
                   </div>
@@ -553,7 +585,7 @@ const Product = ({ product, loading, error }) => {
                     </div>
                   </div>
                 )}
-                {Object.keys(finalDecorationKeyVal).length > 0 && (
+                {Object.keys(finalDecorationKeyVal).length > 0 && !isSample && (
                   <div className={Styles.customization_text}>
                     <div className={Styles.common_header}>
                       <p>Select Customization</p>
@@ -736,16 +768,37 @@ const Product = ({ product, loading, error }) => {
 
                   <button>Price break</button>
                 </div>
+
                 <div className={Styles.input_data_required}>
-                  <input
-                    type="number"
-                    placeholder={product?.column_1_qty}
-                    name="orderQuantity"
-                    value={orderQuantity}
-                    onChange={(e) => setOrderQuantity(e.target.value)}
-                    disabled={!sizeNotSure}
-                    min={actualMinQty}
-                  />
+                  {sizeNotSure && actualMinQty && (
+                    <input
+                      type="number"
+                      placeholder={product?.column_1_qty}
+                      name="orderQuantity"
+                      value={sizeNotSureQuantity}
+                      onChange={(e) => setSizeNotSureQuantity(e.target.value)}
+                      onBlur={(e) => {
+                        if (sizeNotSureQuantity < actualMinQty) {
+                          setSizeNotSureQuantity(actualMinQty)
+                        }
+                        if (isSample && sizeNotSureQuantity > 3) {
+                          setSizeNotSureQuantity(3)
+                        }
+                      }}
+                    />
+                  )}
+                  {!sizeNotSure && (
+                    <input
+                      type="number"
+                      placeholder={product?.column_1_qty}
+                      name="orderQuantity"
+                      value={orderQuantity}
+                      // onChange={(e) => setOrderQuantity(e.target.value)}
+                      disabled={true}
+                      min={actualMinQty}
+                    />
+                  )}
+
                   <span>(minimum {+actualMinQty} units required)</span>
                 </div>
                 <div className={Styles.select_size_quantity}>
