@@ -29,6 +29,7 @@ import {
 import '../global.css'
 import categorySlice from 'redux-setup/categorySlice'
 import ordersSlice from '../redux-setup/ordersSlice'
+import SubmitEstimateSlice from 'redux-setup/SubmitEstimateSlice'
 
 builder.init(builderConfig.apiKey)
 
@@ -43,6 +44,7 @@ const combinedReducer = combineReducers({
   category: categorySlice,
   wishlist: wishlistSlice,
   orders: ordersSlice,
+  submit: SubmitEstimateSlice,
 })
 
 const persistConfig = { key: 'root', storage, version: 1 }
