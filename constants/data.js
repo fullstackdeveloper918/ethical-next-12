@@ -790,13 +790,18 @@ export const Product_Review = [
   },
 ]
 
-export const Review_Progress = [
-  { id: 1, number: 5, percentage: '98' },
-  { id: 2, number: 4, percentage: '47' },
-  { id: 3, number: 3, percentage: '1' },
-  { id: 4, number: 2, percentage: '0' },
-  { id: 5, number: 1, percentage: '0' },
-]
+export const Review_Progress = (data) => {
+  if (!data) return
+  else {
+    return [
+      { id: 1, number: 5, percentage: data.five.percentage },
+      { id: 2, number: 4, percentage: data.four.percentage },
+      { id: 3, number: 3, percentage: data.three.percentage },
+      { id: 4, number: 2, percentage: data.two.percentage },
+      { id: 5, number: 1, percentage: data.one.percentage },
+    ]
+  }
+}
 
 export const Orders_Data = [
   {

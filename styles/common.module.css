@@ -681,3 +681,9 @@ display: block;
     max-height: 140px;
   }
 }
+
+.error {
+  color: red;
+  margin-top: 5px;
+  padding-left: 10px;
+}

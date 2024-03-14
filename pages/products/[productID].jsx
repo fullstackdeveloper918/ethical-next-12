@@ -10,13 +10,14 @@ import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import Styles from '../../styles/common.module.css'
 import { LuMinusCircle, LuPlusCircle } from 'react-icons/lu'
-import {
-  Accordion_Data,
-  Product_Review,
-  Review_Progress,
-} from '../../constants/data'
+import { Accordion_Data, Review_Progress } from '../../constants/data'
 import Image from 'next/image'
 import images from '../../constants/images'
+import {
+  initialValuesWriteReview,
+  validationSchemaWriteReview,
+} from '../../lib/validationSchemas'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 const productID = () => {
   const router = useRouter()
@@ -26,23 +27,35 @@ const productID = () => {
   const { query } = router ?? {}
   const { productID } = query ?? {}
   const [data, setData] = useState([])
-
+  const [starRatings, setStarRatings] = useState(5)
+  const [reviewData, setReviewData] = useState({
+    userId: '',
+    productId: '',
+    rate: 5,
+    name: '',
+    email: '',
+    review_title: '',
+    review: '',
+  })
   const country = useSelector((state) => state.country.country)
-
   const handleClick = (index) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index))
   }
 
-  const [loadQuery, { response, loading, error }] = useFetch(
-    `/products/${productID}?country=${country === 'canada' ? 'canada' : 'us'}`,
-    {
-      method: 'get',
-    }
-  )
+  const [singleProductApi, { response: singleProduct, loading, error }] =
+    useFetch(
+      `/products/${productID}?country=${
+        country === 'canada' ? 'canada' : 'us'
+      }`,
+      {
+        method: 'get',
+      }
+    )
 
   useEffect(() => {
     if (country && productID) {
-      loadQuery()
+      singleProductApi()
+      reviewsApi()
     }
   }, [productID, country])
 
@@ -58,17 +71,48 @@ const productID = () => {
     }
   }, [country])
 
+  const [
+    reviewsApi,
+    { response: reviews, loading: reviewLoading, error: reviewError },
+  ] = useFetch(`/product/review/${productID}`, {
+    method: 'get',
+  })
+
+  const [
+    reviewsApiPost,
+    {
+      response: reviewsApiPostRes,
+      loading: reviewsApiPostLoading,
+      error: reviewsApiPostError,
+    },
+  ] = useFetch(`/auth/user/review`, {
+    method: 'post',
+  })
+
+  const onSubmit = async (values) => {
+    let data = {
+      name: values.name,
+      email: values.email,
+      rate: starRatings,
+      review_title: values.review_title,
+      review: values.review,
+      userId: '',
+      productId: productID,
+    }
+    reviewsApiPost(data)
+  }
+
   return (
     <>
       <PrimaryHeader />
       <SecondaryHeader />
-      <Product product={response?.data} loading={loading} error={error} />
+      <Product product={singleProduct?.data} loading={loading} error={error} />
       <section className={Styles.product_section}>
         <div className={Styles.heading_content}>
           <h3>You may also like</h3>
-          <button type="button" onClick={() => router.push('/products')}>
+          {/* <button type="button" onClick={() => router.push('/products')}>
             View All
-          </button>
+          </button> */}
         </div>
 
         <div className={Styles.product_card_container}>
@@ -176,101 +220,169 @@ const productID = () => {
               writeReview ? Styles.write_review_container : Styles.hide_review
             }
           >
-            <form>
-              <div className={Styles.input_field}>
-                <div className={`${Styles.startRating} ${Styles.text_center} `}>
-                  <FaStar color="#a2d061" fontSize={20} />
-                  <FaStar color="#a2d061" fontSize={20} />
-                  <FaStar color="#a2d061" fontSize={20} />
-                  <FaStar color="#a2d061" fontSize={20} />
-                  <FaStar color="#a2d061" fontSize={20} />
-                </div>
-              </div>
-              <div className={Styles.row_flex}>
-                <div className={Styles.input_field}>
-                  <label htmlFor="" className={Styles.display_label}>
-                    (displayed publicly like){' '}
-                  </label>
-                  <input type="text" placeholder="Enter your name (public)" />
-                </div>
-                <div className={Styles.input_field}>
-                  <input type="email" placeholder="Enter your name (private)" />
-                </div>
-              </div>
+            <Formik
+              initialValues={initialValuesWriteReview}
+              validationSchema={validationSchemaWriteReview}
+              onSubmit={onSubmit}
+            >
+              {({ values, errors }) => (
+                <>
+                  <Form>
+                    <div className={Styles.input_field}>
+                      <div
+                        className={`${Styles.startRating} ${Styles.text_center} `}
+                      >
+                        {[...Array(5)].map((_, index) => (
+                          <FaStar
+                            key={index}
+                            color={index < starRatings ? '#a2d061' : '#000000'}
+                            fontSize={20}
+                            onClick={() => setStarRatings(index + 1)}
+                            style={{ cursor: 'pointer' }}
+                          />
+                        ))}
+                      </div>
+                    </div>
 
-              <div className={Styles.input_field}>
-                <input type="text" placeholder="Give your review a title" />
-              </div>
-              <div className={`${Styles.input_field} ${Styles.text_left}`}>
-                <textarea
-                  name=""
-                  id=""
-                  cols="30"
-                  rows="10"
-                  placeholder="Write your comments here"
-                ></textarea>
+                    <div className={Styles.row_flex}>
+                      <div className={Styles.input_field}>
+                        <Field
+                          type="text"
+                          id="textarea"
+                          name="name"
+                          placeholder="Enter your name"
+                          autocomplete="off"
+                          // className={Styles.SwagOrder_need_textarea}
+                        />
+                        <ErrorMessage
+                          name="name"
+                          component="div"
+                          className={Styles.error}
+                        />
+                      </div>
+                      <div className={Styles.input_field}>
+                        <Field
+                          type="text"
+                          id="textarea"
+                          name="email"
+                          placeholder="Enter your email"
+                          autocomplete="off"
+                        />
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className={Styles.error}
+                        />
+                      </div>
+                    </div>
 
-                <p>
-                  How we use your data: We’ll only contact you about the review
-                  you left, and only if necessary. By submitting your review,
-                  you agree to Judge.me’s terms and conditions and privacy
-                  policy.
-                </p>
-              </div>
-              <div className={Styles.input_field}>
-                <button className={Styles.submit_review_button}>
-                  Submit Review
-                </button>
-              </div>
-            </form>
+                    <div className={Styles.input_field}>
+                      <Field
+                        type="text"
+                        id="textarea"
+                        name="review_title"
+                        placeholder="Enter your review title"
+                        autocomplete="off"
+                      />
+                      <ErrorMessage
+                        name="review_title"
+                        component="div"
+                        className={Styles.error}
+                      />
+                    </div>
+                    <div
+                      className={`${Styles.input_field} ${Styles.text_left}`}
+                    >
+                      <Field
+                        as="textarea"
+                        rows="4"
+                        type="text"
+                        id="textarea"
+                        name="review"
+                        placeholder="Enter your review "
+                        autocomplete="off"
+                      />
+                      <ErrorMessage
+                        name="review"
+                        component="div"
+                        className={Styles.error}
+                      />
+
+                      <p>
+                        How we use your data: We’ll only contact you about the
+                        review you left, and only if necessary. By submitting
+                        your review, you agree to Judge.me’s terms and
+                        conditions and privacy policy.
+                      </p>
+                    </div>
+
+                    <div className={Styles.input_field}>
+                      <button className={Styles.submit_review_button}>
+                        Submit Review
+                      </button>
+                    </div>
+                  </Form>
+                </>
+              )}
+            </Formik>
           </div>
           <div className={Styles.bottomContent}>
-            <div className={Styles.leftContent}>
-              {Product_Review.map((review) => (
-                <>
-                  <div className={Styles.container}>
-                    <div className={Styles.startRating}>
-                      <FaStar color="#a2d061" fontSize={20} />
-                      <FaStar color="#a2d061" fontSize={20} />
-                      <FaStar color="#a2d061" fontSize={20} />
-                      <FaStar color="#a2d061" fontSize={20} />
-                      <FaStar color="#a2d061" fontSize={20} />
-                    </div>
-                    <h3 className={Styles.title}>{review.text}</h3>
-                    <p className={Styles.desc}>{review.content}</p>
+            {' '}
+            {reviews && (
+              <div className={Styles.leftContent}>
+                {reviews?.data?.productreview &&
+                  reviews?.data?.productreview.length > 0 &&
+                  reviews?.data?.productreview.slice(0, 2).map((review) => (
+                    <>
+                      <div className={Styles.container}>
+                        <div className={Styles.startRating}>
+                          {[...Array(review.rate)].map((_, index) => (
+                            <FaStar key={index} color="#a2d061" fontSize={20} />
+                          ))}
+                        </div>
+
+                        <h3 className={Styles.title}>{review.review_title}</h3>
+                        <p className={Styles.desc}>{review.review}</p>
+                      </div>
+                    </>
+                  ))}
+              </div>
+            )}
+            {reviews?.data?.ratings && (
+              <div className={Styles.rightContent}>
+                <div className={Styles.righttopContent}>
+                  <p>4/5 Stars</p>
+                  <div className={Styles.stars_content}>
+                    <FaStar color="#a2d061" fontSize={20} />
+                    <FaStar color="#a2d061" fontSize={20} />
+                    <FaStar color="#a2d061" fontSize={20} />
+                    <FaStar color="#a2d061" fontSize={20} />
+                    <FaStar color="#a2d061" fontSize={20} />
                   </div>
-                </>
-              ))}
-            </div>
-            <div className={Styles.rightContent}>
-              <div className={Styles.righttopContent}>
-                <p>4/5 Stars</p>
-                <div className={Styles.stars_content}>
-                  <FaStar color="#a2d061" fontSize={20} />
-                  <FaStar color="#a2d061" fontSize={20} />
-                  <FaStar color="#a2d061" fontSize={20} />
-                  <FaStar color="#a2d061" fontSize={20} />
-                  <FaStar color="#a2d061" fontSize={20} />
+                  <span>{reviews?.data?.ratings?.total_reviews} Reviews</span>
                 </div>
-                <span>527 Reviews</span>
+                {reviews?.data?.ratings?.percentage_data && (
+                  <div className={Styles.rightBottomContent}>
+                    {Review_Progress(
+                      reviews?.data?.ratings?.percentage_data
+                    ).map((data) => (
+                      <>
+                        <div className={Styles.bottom_content}>
+                          <h3>{data.number}</h3>
+                          <progress
+                            max="100"
+                            value={+data.percentage}
+                            style={{ color: '#a2d061' }}
+                            className={Styles.progress_bar}
+                          />
+                          <p>{+data.percentage}%</p>
+                        </div>
+                      </>
+                    ))}
+                  </div>
+                )}
               </div>
-              <div className={Styles.rightBottomContent}>
-                {Review_Progress.map((data) => (
-                  <>
-                    <div className={Styles.bottom_content}>
-                      <h3>{data.number}</h3>
-                      <progress
-                        max="100"
-                        value={data.percentage}
-                        style={{ color: '#a2d061' }}
-                        className={Styles.progress_bar}
-                      />
-                      <p>{data.percentage}%</p>
-                    </div>
-                  </>
-                ))}
-              </div>
-            </div>
+            )}
           </div>
         </div>
 
