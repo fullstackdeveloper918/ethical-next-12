@@ -168,7 +168,7 @@ body {
   height: 400px !important;
 }
 .carousel-container {
-  height: 130px !important;
+  height: 150px !important;
 }
 .react-multi-carousel-track {
   height: 110px !important;
@@ -376,6 +376,10 @@ input[type='radio'] {
   display: none !important;
 }
 /* responsive start */
+@media (max-width:1440px) {
+  .react-multiple-carousel__arrow {
+    top: 40px !important;
+}}
 @media (min-width: 768px) {
   .filterPanel_top svg {
     display: none !important;
