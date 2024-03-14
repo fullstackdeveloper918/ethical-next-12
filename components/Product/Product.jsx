@@ -48,12 +48,14 @@ const Product = ({ product, loading, error }) => {
   const [nameOfDecorations, setNameOfDecorations] = useState([])
   const [sizeNotSure, setSizeNotSure] = useState(true)
   const [swiftSwag, setSwiftSwag] = useState(false)
+  const [selectedColor, setSelectedColor] = useState(null)
   const country = useSelector((state) => state.country.country)
   const cartItems = useSelector((state) => state.cart.cartItems)
+  // const [selectedColor, setSelectedColor]
   const decorations = useSelector(
     (state) => state.random.decorationItemObjSingleProductPage
   )
-
+  console.log(selectedColor, 'selectedColor')
   const finalDecorationKeyVal = useSelector(
     (state) => state.random.finalDecorationKeyVal
   )
@@ -238,7 +240,7 @@ const Product = ({ product, loading, error }) => {
       pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
       id: product.id,
       logoImg: uploadFirstLogo,
-      colours: product?.colours,
+      colours: selectedColor,
       customization: choosenCustomization,
       totalPrice: orderQuantity * +totalPrice,
     })
@@ -448,7 +450,7 @@ const Product = ({ product, loading, error }) => {
                 {product?.colours ? (
                   <div className={Styles.select_color_section}>
                     <div className={Styles.common_header}>
-                      <p>Select Color</p>
+                      <p>Select Color {selectedColor && '-' + selectedColor}</p>
                       <Image
                         src={images.Info_Icon}
                         width={18}
@@ -460,7 +462,12 @@ const Product = ({ product, loading, error }) => {
                       {product?.colours &&
                         Object.entries(product?.colours).map(
                           ([color, imageUrl]) => (
-                            <Dot color={color} imageUrl={imageUrl} />
+                            <Dot
+                              color={color}
+                              imageUrl={imageUrl}
+                              setSelectedColor={setSelectedColor}
+                              selectedColor={selectedColor}
+                            />
                           )
                         )}
                     </div>
