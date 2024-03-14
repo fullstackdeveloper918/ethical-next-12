@@ -154,7 +154,7 @@ const Footer = () => {
           <div className={styles.container_column_2}>
             <div className={styles.heading_footer_2}>Quick Links</div>
             <div className="">
-              <span
+              <span className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/products')}
               >
@@ -162,7 +162,7 @@ const Footer = () => {
               </span>
             </div>
             <div className="">
-              <span
+              <span className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/about-us')}
               >
@@ -170,7 +170,7 @@ const Footer = () => {
               </span>
             </div>
             <div className="">
-              <span
+              <span className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/blog')}
               >
@@ -178,7 +178,7 @@ const Footer = () => {
               </span>
             </div>
             <div className="">
-              <span
+              <span className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/services')}
               >
@@ -186,7 +186,7 @@ const Footer = () => {
               </span>
             </div>
             <div className="">
-              <span
+              <span className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/what-to-expect')}
               >
@@ -194,7 +194,7 @@ const Footer = () => {
               </span>
             </div>
             <div className="">
-              <span
+              <span className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/contact')}
               >
@@ -202,7 +202,7 @@ const Footer = () => {
               </span>
             </div>
             <div className="">
-              <span
+              <span className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/privacy-policy')}
               >
@@ -214,7 +214,7 @@ const Footer = () => {
             <div className={styles.column_1}>
               <div className={styles.heading_footer_2}>Customer Support</div>
               <div className="">
-                <span
+                <span className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/faq')}
                 >
@@ -222,7 +222,7 @@ const Footer = () => {
                 </span>
               </div>
               <div>
-                <span
+                <span className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/terms-of-service')}
                 >
@@ -230,7 +230,7 @@ const Footer = () => {
                 </span>
               </div>
               <div>
-                <span
+                <span className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/privacy-policy')}
                 >
@@ -240,22 +240,22 @@ const Footer = () => {
             </div>
             <div className={styles.column_2}>
               <div className={styles.heading_footer_2}>Reach Out</div>
-              <Link
+              <Link className={styles.footer_li}
                 href={`info@ethicalswag.com`}
                 target="_blank"
                 style={{ textTransform: 'lowercase' }}
               >
                 info@ethicalswag.com
               </Link>
-              <div>1-877-206-6998</div>
-              <div>1-902-500-1086</div>
+              <div  className={styles.footer_li}>1-877-206-6998</div>
+              <div  className={styles.footer_li}>1-902-500-1086</div>
             </div>
           </div>
           <div className={styles.container_column_4}>
             <div className={styles.column_4_1st_part}>
               <div className={styles.heading_footer_2}>Sustainability</div>
               <div>
-                <span
+                <span className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/faq')}
                 >
@@ -263,7 +263,7 @@ const Footer = () => {
                 </span>
               </div>
               <div>
-                <span
+                <span className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/terms-of-service')}
                 >
@@ -271,7 +271,7 @@ const Footer = () => {
                 </span>
               </div>
               <div className="">
-                <span
+                <span className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/privacy-policy')}
                 >
@@ -282,7 +282,7 @@ const Footer = () => {
             <div className={styles.column_4_2nd_part}>
               <div className={styles.heading_footer_2}>Resources</div>
               <div className="">
-                <span
+                <span className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/what-to-expect')}
                 >
