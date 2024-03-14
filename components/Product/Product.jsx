@@ -235,11 +235,12 @@ const Product = ({ product, loading, error }) => {
       quantity: orderQuantity,
       image: setImagesArray[0],
       heading: product?.product_description,
-      price: price,
+      pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
       id: product.id,
       logoImg: uploadFirstLogo,
       colours: product?.colours,
       customization: choosenCustomization,
+      totalPrice: orderQuantity * +totalPrice,
     })
     toast.success('Added to cart successfully')
     window.scrollTo({
@@ -362,7 +363,9 @@ const Product = ({ product, loading, error }) => {
                             className={Styles.product_Images}
                             style={{
                               border:
-                                singleImage === image ? '1px solid #a2d061' : '',
+                                singleImage === image
+                                  ? '1px solid #a2d061'
+                                  : '',
                             }}
                           >
                             <Image
@@ -387,19 +390,20 @@ const Product = ({ product, loading, error }) => {
                       <>
                         <div className={Styles.tag}>
                           <p>{data}</p>
-                          
                         </div>
                       </>
                     ))}
                 </div>
 
                 <div className={Styles.title}>
-                  <h4>{product?.product_title}
-                  {product?.emoji_ratings &&
-                            Object.entries(product?.emoji_ratings).map(
-                              ([key,value]) => <span>{value}</span>
-                            )}</h4>
-                 
+                  <h4>
+                    {product?.product_title}
+                    {product?.emoji_ratings &&
+                      Object.entries(product?.emoji_ratings).map(
+                        ([key, value]) => <span>{value}</span>
+                      )}
+                  </h4>
+
                   {/* <div className={Styles.reviews}>
                     <div className={Styles.star_review}>
                       <span className={Styles.star_review_images}>
@@ -408,7 +412,7 @@ const Product = ({ product, loading, error }) => {
                         </div>
                       </span>
                     </div> */}
-                    {/* <div className={Styles.text_review}>
+                  {/* <div className={Styles.text_review}>
                     <span className={Styles.text_review_content}>
                     527 Reviews
                     </span>
@@ -437,7 +441,7 @@ const Product = ({ product, loading, error }) => {
                   <div className={Styles.custom_checkbox}>
                     <input type="checkbox" name="services" id="sample" />
                     <label for="sample" className={Styles.marinSpace}>
-                    This is a sample checkbox
+                      This is a sample checkbox
                     </label>
                   </div>
                 </div>
@@ -494,7 +498,7 @@ const Product = ({ product, loading, error }) => {
                     </div>
                   </div>
                 )}
-                { Object.keys(finalDecorationKeyVal).length > 0 && (
+                {Object.keys(finalDecorationKeyVal).length > 0 && (
                   <div className={Styles.customization_text}>
                     <div className={Styles.common_header}>
                       <p>Select Customization</p>
@@ -613,19 +617,18 @@ const Product = ({ product, loading, error }) => {
                     <div>
                       {uploadFirstLogo ? (
                         <>
-                        <div className={Styles.position_relative}>
-                          <Image
-                            src={URL.createObjectURL(uploadFirstLogo)}
-                            width={150}
-                            height={150}
-                          />
-                          <RxCross2
-                            onClick={() => removeLogo(setUploadFirstLogo)}
-                            className={Styles.cross_logo}
-                          />
+                          <div className={Styles.position_relative}>
+                            <Image
+                              src={URL.createObjectURL(uploadFirstLogo)}
+                              width={150}
+                              height={150}
+                            />
+                            <RxCross2
+                              onClick={() => removeLogo(setUploadFirstLogo)}
+                              className={Styles.cross_logo}
+                            />
                           </div>
                         </>
-                        
                       ) : (
                         <>
                           <label

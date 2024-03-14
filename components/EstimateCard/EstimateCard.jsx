@@ -53,16 +53,6 @@ const EstimateCard = () => {
     }
   }
 
-  const totalPriceOfCart = () => {
-    let totalPrice = 0
-    for (let i = 0; i < cartItems.length; i++) {
-      let tempPrice = cartItems[i]
-      let a = tempPrice.quantity * tempPrice.price
-      totalPrice += a
-    }
-    setTotalCartPrice(totalPrice)
-  }
-
   useEffect(() => {
     if (response) {
       console.log(response, 'responseresponse')
@@ -71,8 +61,19 @@ const EstimateCard = () => {
     }
   }, [response])
 
+  // useEffect(() => {
+  //   let TotalPricee = cartItems.map((item) => ))
+  //   console.log(TotalPricee, 'TotalPriceeTotalPricee')
+  // }, [cartItems])
+
   useEffect(() => {
-    totalPriceOfCart()
+    if (cartItems.length > 0) {
+      const totalPriceSum = cartItems.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue.totalPrice
+      }, 0)
+      console.log(totalPriceSum, 'totalPriceSumtotalPriceSum')
+      setTotalCartPrice(totalPriceSum)
+    }
   }, [cartItems])
 
   const downLoadPdf = async () => {
@@ -112,7 +113,7 @@ const EstimateCard = () => {
                           {item?.heading?.slice(0, 70)}
                         </h4>
                         <span className={Styles.price}>
-                          Price : Starting at ${item.price}
+                          Price : Starting at ${item.pricePerUnit}
                         </span>
                         <div className={Styles.amountwrapper}>
                           <div className={Styles.amountContainer}>

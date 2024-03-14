@@ -21,7 +21,8 @@ const Modal = () => {
   const handleSubmit = () => {
     dispatch(setSwiftSwagTime(selectedOption))
     // if (selectedOption === 'flexible') {
-    router.push('/products')
+    // router.push('/products')
+    setIsOpenModal(false)
     // }
   }
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
