@@ -71,7 +71,6 @@ const EstimateCard = () => {
       const totalPriceSum = cartItems.reduce((accumulator, currentValue) => {
         return accumulator + currentValue.totalPrice
       }, 0)
-      console.log(totalPriceSum, 'totalPriceSumtotalPriceSum')
       setTotalCartPrice(totalPriceSum)
     }
   }, [cartItems])

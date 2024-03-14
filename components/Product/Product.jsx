@@ -12,6 +12,27 @@ import {
   setDecorationItemObjSingleProductPage,
   setFinalDecorationKeyVal,
 } from 'redux-setup/randomSlice'
+import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
+
+const responsive = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 3000 },
+    items: 10,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 7,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 5,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 3,
+  },
+}
 
 const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
@@ -48,12 +69,14 @@ const Product = ({ product, loading, error }) => {
   const [nameOfDecorations, setNameOfDecorations] = useState([])
   const [sizeNotSure, setSizeNotSure] = useState(true)
   const [swiftSwag, setSwiftSwag] = useState(false)
+  const [selectedColor, setSelectedColor] = useState(null)
   const country = useSelector((state) => state.country.country)
   const cartItems = useSelector((state) => state.cart.cartItems)
+  // const [selectedColor, setSelectedColor]
   const decorations = useSelector(
     (state) => state.random.decorationItemObjSingleProductPage
   )
-
+  console.log(selectedColor, 'selectedColor')
   const finalDecorationKeyVal = useSelector(
     (state) => state.random.finalDecorationKeyVal
   )
@@ -238,7 +261,7 @@ const Product = ({ product, loading, error }) => {
       pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
       id: product.id,
       logoImg: uploadFirstLogo,
-      colours: product?.colours,
+      colours: selectedColor,
       customization: choosenCustomization,
       totalPrice: orderQuantity * +totalPrice,
     })
@@ -308,6 +331,18 @@ const Product = ({ product, loading, error }) => {
       }
     }
   }, [product])
+  console.log(imagesArray, 'imagesArray')
+
+  const dummy = [
+    'https://test.cybersify.tech/Eswag/storage/app/public/images/qzvsK4UX3RzNE_WQ9habw_tzWvtre2fStqxH6x8ifA8.png',
+    'https://test.cybersify.tech/Eswag/storage/app/public/images/TwmHEPYSxPMmSL_2O11PjjHJGpWaJaIzpp6HOeDgpjw.png',
+    'https://test.cybersify.tech/Eswag/storage/app/public/images/BFOHaV9unAgpO-kRtN-M-SYdHGZJX-ncP59hjxHiAeg.png',
+    'https://test.cybersify.tech/Eswag/storage/app/public/images/cqlt5qB2VwKEMxIbM0EAuoXLOgu05eBZG63bRidBtnU.png',
+    'https://test.cybersify.tech/Eswag/storage/app/public/images/qzvsK4UX3RzNE_WQ9habw_tzWvtre2fStqxH6x8ifA8.png',
+    'https://test.cybersify.tech/Eswag/storage/app/public/images/TwmHEPYSxPMmSL_2O11PjjHJGpWaJaIzpp6HOeDgpjw.png',
+    'https://test.cybersify.tech/Eswag/storage/app/public/images/BFOHaV9unAgpO-kRtN-M-SYdHGZJX-ncP59hjxHiAeg.png',
+    'https://test.cybersify.tech/Eswag/storage/app/public/images/cqlt5qB2VwKEMxIbM0EAuoXLOgu05eBZG63bRidBtnU.png',
+  ]
 
   let setDecorations = () => {
     if (decorations && Object.keys(decorations).length > 0) {
@@ -355,31 +390,44 @@ const Product = ({ product, loading, error }) => {
                       />
                     )}
                   </div>
-                  <div className={Styles.images_container}>
-                    {imagesArray &&
-                      imagesArray?.map((image, index) => (
-                        <>
-                          <div
-                            className={Styles.product_Images}
-                            style={{
-                              border:
-                                singleImage === image
-                                  ? '1px solid #a2d061'
-                                  : '',
-                            }}
-                          >
+                  {imagesArray.length > 0 && (
+                    <div>
+                      <Carousel
+                        swipeable={false}
+                        draggable={false}
+                        showDots={true}
+                        responsive={responsive}
+                        ssr={false} // means to render carousel on server-side.
+                        infinite={true}
+                        // autoPlay={this.props.deviceType !== 'mobile' ? true : false}
+                        // autoPlay
+                        autoPlaySpeed={1000}
+                        arrows={true}
+                        keyBoardControl={true}
+                        customTransition="all .5s"
+                        transitionDuration={500}
+                        containerClass="carousel-container"
+                        removeArrowOnDeviceType={['tablet', 'mobile']}
+                        // deviceType={this.props.deviceType}
+                        dotListClass="custom-dot-list-style"
+                        itemClass="carousel-item-padding-40-px"
+                        slidesToSlide={2}
+                      >
+                        {dummy?.map((item, index) => (
+                          <>
                             <Image
-                              src={image}
+                              src={item}
                               width={100}
                               height={100}
                               alt="product_image"
                               style={{ cursor: 'pointer' }}
                               onClick={() => updateImage(index)}
                             />
-                          </div>
-                        </>
-                      ))}
-                  </div>
+                          </>
+                        ))}
+                      </Carousel>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -448,7 +496,7 @@ const Product = ({ product, loading, error }) => {
                 {product?.colours ? (
                   <div className={Styles.select_color_section}>
                     <div className={Styles.common_header}>
-                      <p>Select Color</p>
+                      <p>Select Color {selectedColor && '-' + selectedColor}</p>
                       <Image
                         src={images.Info_Icon}
                         width={18}
@@ -460,7 +508,12 @@ const Product = ({ product, loading, error }) => {
                       {product?.colours &&
                         Object.entries(product?.colours).map(
                           ([color, imageUrl]) => (
-                            <Dot color={color} imageUrl={imageUrl} />
+                            <Dot
+                              color={color}
+                              imageUrl={imageUrl}
+                              setSelectedColor={setSelectedColor}
+                              selectedColor={selectedColor}
+                            />
                           )
                         )}
                     </div>
