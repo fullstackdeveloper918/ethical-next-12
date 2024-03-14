@@ -427,7 +427,7 @@
   border: 1px solid var(--green, #a2d061);
   box-shadow: -1px -1px 8px 0px rgba(0, 0, 0, 0.06) inset,
     0px 4px 37px 0px rgba(0, 0, 0, 0.06);
-  color: rgba(17, 17, 17, 0.3);
+  /* color: rgba(17, 17, 17, 0.3); */
   font-family: 'DM Sans' !important;
   font-size: 18px;
   font-style: normal;
@@ -435,6 +435,9 @@
   line-height: 18px; /* 128.571% */
   letter-spacing: 0.14px;
   padding-left: 17px;
+}
+.select_size_quantity .inputs input[type='number']:disabled{
+   color: rgba(17, 17, 17, 0.3);
 }
 
 .select_size_quantity .inputs input[type='number']:focus {
@@ -843,7 +846,6 @@ p.fw400 {
 }
 .detail_page_wrapper li.activeGreen img{
   border:1px solid #a2d061 !important;
-  width: 115px !important;
 }
 @media (min-width:1440px){
   .select_color_section p {
