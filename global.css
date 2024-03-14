@@ -159,10 +159,6 @@ span {
   display: none;
 }
 
-.react-multi-carousel-track {
-  height: 420px !important;
-}
-
 html,
 body {
   width: 100%;
@@ -172,7 +168,10 @@ body {
   height: 400px !important;
 }
 .carousel-container {
-  height: 480px !important;
+  height: 130px !important;
+}
+.react-multi-carousel-track {
+  height: 110px !important;
 }
 /* stack card css */
 
@@ -349,6 +348,32 @@ input[type='radio'] {
 .edit_button:hover {
   background: #a2d061;
   color: #fff;
+}
+
+.react-multi-carousel-dot--active button {
+  background: #a2d061 !important;
+}
+.react-multi-carousel-dot button {
+  border-color: #a2d061 !important;
+}
+.react-multiple-carousel__arrow {
+  background-color: #ffffffc7 !important;
+  border: 2px solid #a2d061 !important;
+}
+.react-multiple-carousel__arrow:hover {
+  background: #a2d061 !important;
+}
+.react-multiple-carousel__arrow::before {
+  color: #000 !important;
+  font-weight: 500 !important;
+  font-size: 17px !important;
+}
+.react-multiple-carousel__arrow:hover::before {
+  color: #fff !important;
+}
+
+.react-multi-carousel-dot-list{
+  display: none !important;
 }
 /* responsive start */
 @media (min-width: 768px) {

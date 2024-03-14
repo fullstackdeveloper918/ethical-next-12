@@ -412,6 +412,7 @@ const Product = ({ product, loading, error }) => {
                         dotListClass="custom-dot-list-style"
                         itemClass="carousel-item-padding-40-px"
                         slidesToSlide={2}
+                        className={Styles.product_slider}
                       >
                         {dummy?.map((item, index) => (
                           <>
@@ -422,6 +423,7 @@ const Product = ({ product, loading, error }) => {
                               alt="product_image"
                               style={{ cursor: 'pointer' }}
                               onClick={() => updateImage(index)}
+                              className={Styles.product_images}
                             />
                           </>
                         ))}
