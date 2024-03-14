@@ -49,7 +49,8 @@ const productID = () => {
   useEffect(() => {
     if (country) {
       fetch(
-        `https://test.cybersify.tech/Eswag/public/api/products?created_at_desc=1&${country === 'usa' ? `available_in_usa=1` : `available_in_canada=1`
+        `https://test.cybersify.tech/Eswag/public/api/products?created_at_desc=1&${
+          country === 'usa' ? `available_in_usa=1` : `available_in_canada=1`
         }`
       )
         .then((res) => res.json())
@@ -64,7 +65,7 @@ const productID = () => {
       <Product product={response?.data} loading={loading} error={error} />
       <section className={Styles.product_section}>
         <div className={Styles.heading_content}>
-          <h3>Newly Added Swag</h3>
+          <h3>You may also like</h3>
           <button type="button" onClick={() => router.push('/products')}>
             View All
           </button>
@@ -72,7 +73,7 @@ const productID = () => {
 
         <div className={Styles.product_card_container}>
           {data?.length > 0 &&
-            data?.slice(0, 4).map((item) => (
+            data?.slice(0, 5).map((item) => (
               <>
                 <div className={Styles.product_content}>
                   <ProductCard item={item} key={item.id} fromSingleProduct />
@@ -176,7 +177,7 @@ const productID = () => {
             }
           >
             <form>
-            <div className={Styles.input_field}>
+              <div className={Styles.input_field}>
                 <div className={`${Styles.startRating} ${Styles.text_center} `}>
                   <FaStar color="#a2d061" fontSize={20} />
                   <FaStar color="#a2d061" fontSize={20} />
@@ -187,14 +188,16 @@ const productID = () => {
               </div>
               <div className={Styles.row_flex}>
                 <div className={Styles.input_field}>
-                  <label htmlFor="" className={Styles.display_label}>(displayed publicly like) </label>
+                  <label htmlFor="" className={Styles.display_label}>
+                    (displayed publicly like){' '}
+                  </label>
                   <input type="text" placeholder="Enter your name (public)" />
                 </div>
                 <div className={Styles.input_field}>
                   <input type="email" placeholder="Enter your name (private)" />
                 </div>
               </div>
-              
+
               <div className={Styles.input_field}>
                 <input type="text" placeholder="Give your review a title" />
               </div>
@@ -207,7 +210,6 @@ const productID = () => {
                   placeholder="Write your comments here"
                 ></textarea>
 
-
                 <p>
                   How we use your data: We’ll only contact you about the review
                   you left, and only if necessary. By submitting your review,
@@ -216,7 +218,9 @@ const productID = () => {
                 </p>
               </div>
               <div className={Styles.input_field}>
-                <button className={Styles.submit_review_button}>Submit Review</button>
+                <button className={Styles.submit_review_button}>
+                  Submit Review
+                </button>
               </div>
             </form>
           </div>

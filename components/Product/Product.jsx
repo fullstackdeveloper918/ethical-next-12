@@ -314,9 +314,14 @@ const Product = ({ product, loading, error }) => {
     document.body.classList.add('single_product_page')
   }, [])
 
-  const updateImage = (index) => {
-    setSingleImage(imagesArray[index])
+  const updateImage = (item) => {
+    setSingleImage(item)
   }
+  useEffect(() => {
+    if (imagesArray.length > 0) {
+      setSingleImage(imagesArray[0])
+    }
+  }, [imagesArray])
 
   useEffect(() => {
     if (product) {
@@ -460,18 +465,24 @@ const Product = ({ product, loading, error }) => {
                         slidesToSlide={2}
                         className={Styles.product_slider}
                       >
-                        {dummy?.map((item, index) => (
-                          <>
+                        {imagesArray?.map((item, index) => (
+                          <div
+                          // style={{
+                          //   background: singleImage === item ? 'green' : '',
+                          // }}
+                          >
                             <Image
                               src={item}
                               width={100}
                               height={100}
                               alt="product_image"
-                              style={{ cursor: 'pointer' }}
-                              onClick={() => updateImage(index)}
+                              style={{
+                                cursor: 'pointer',
+                              }}
+                              onClick={() => updateImage(item)}
                               className={Styles.product_images}
                             />
-                          </>
+                          </div>
                         ))}
                       </Carousel>
                     </div>
@@ -766,7 +777,7 @@ const Product = ({ product, loading, error }) => {
                               type="file"
                               name=""
                               id="file1"
-                              accept="image/*"
+                              accept=".svg,.jpg,.jpeg .eps, .cdr, .ai, .pdf, image/svg+xml, application/postscript, application/pdf,image/jpeg, image/png"
                               onChange={uploadFirstFile}
                             />
                           </label>
