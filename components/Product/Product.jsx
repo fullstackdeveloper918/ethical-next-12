@@ -553,7 +553,7 @@ const Product = ({ product, loading, error }) => {
                 {product?.colours ? (
                   <div className={Styles.select_color_section}>
                     <div className={Styles.common_header}>
-                      <p>Select Color {selectedColor && '-' + selectedColor}</p>
+                      <p>Select Color</p>
                       <Image
                         src={images.Info_Icon}
                         width={18}
