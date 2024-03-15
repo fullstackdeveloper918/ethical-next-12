@@ -34,7 +34,6 @@ const Modal = () => {
       setIsOpenModal(true)
     }
   }, [])
-  console.log(value, 'valuevalue')
   useEffect(() => {
     let minSelectableDate = new Date()
     if (selectedOption === 'within10Days') {

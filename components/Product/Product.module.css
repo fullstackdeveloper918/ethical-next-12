@@ -840,8 +840,8 @@ p.fw400 {
   position: relative;
 }
 
-.detail_page_wrapper li img{
-  border: 1px solid #ececec !important;
+.add_color{
+  border: 1px solid #ececec;
   width: 115px !important;
 }
 .detail_page_wrapper li.activeGreen img{

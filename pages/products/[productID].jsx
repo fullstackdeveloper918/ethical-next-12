@@ -328,60 +328,67 @@ const productID = () => {
           </div>
           <div className={Styles.bottomContent}>
             {' '}
-            {reviews && (
-              <div className={Styles.leftContent}>
-                {reviews?.data?.productreview &&
-                  reviews?.data?.productreview.length > 0 &&
-                  reviews?.data?.productreview.slice(0, 2).map((review) => (
-                    <>
-                      <div className={Styles.container}>
-                        <div className={Styles.startRating}>
-                          {[...Array(review.rate)].map((_, index) => (
-                            <FaStar key={index} color="#a2d061" fontSize={20} />
-                          ))}
-                        </div>
-
-                        <h3 className={Styles.title}>{review.review_title}</h3>
-                        <p className={Styles.desc}>{review.review}</p>
-                      </div>
-                    </>
-                  ))}
-              </div>
-            )}
-            {reviews?.data?.ratings && (
-              <div className={Styles.rightContent}>
-                <div className={Styles.righttopContent}>
-                  <p>4/5 Stars</p>
-                  <div className={Styles.stars_content}>
-                    <FaStar color="#a2d061" fontSize={20} />
-                    <FaStar color="#a2d061" fontSize={20} />
-                    <FaStar color="#a2d061" fontSize={20} />
-                    <FaStar color="#a2d061" fontSize={20} />
-                    <FaStar color="#a2d061" fontSize={20} />
-                  </div>
-                  <span>{reviews?.data?.ratings?.total_reviews} Reviews</span>
-                </div>
-                {reviews?.data?.ratings?.percentage_data && (
-                  <div className={Styles.rightBottomContent}>
-                    {Review_Progress(
-                      reviews?.data?.ratings?.percentage_data
-                    ).map((data) => (
+            {reviews && reviews?.data?.productreview.length > 0 && (
+              <>
+                <div className={Styles.leftContent}>
+                  {reviews?.data?.productreview &&
+                    reviews?.data?.productreview.length > 0 &&
+                    reviews?.data?.productreview.slice(0, 2).map((review) => (
                       <>
-                        <div className={Styles.bottom_content}>
-                          <h3>{data.number}</h3>
-                          <progress
-                            max="100"
-                            value={+data.percentage}
-                            style={{ color: '#a2d061' }}
-                            className={Styles.progress_bar}
-                          />
-                          <p>{+data.percentage}%</p>
+                        <div className={Styles.container}>
+                          <div className={Styles.startRating}>
+                            {[...Array(review.rate)].map((_, index) => (
+                              <FaStar
+                                key={index}
+                                color="#a2d061"
+                                fontSize={20}
+                              />
+                            ))}
+                          </div>
+
+                          <h3 className={Styles.title}>
+                            {review.review_title}
+                          </h3>
+                          <p className={Styles.desc}>{review.review}</p>
                         </div>
                       </>
                     ))}
+                </div>
+
+                <div className={Styles.rightContent}>
+                  <div className={Styles.righttopContent}>
+                    <p>4/5 Stars</p>
+                    <div className={Styles.stars_content}>
+                      <FaStar color="#a2d061" fontSize={20} />
+                      <FaStar color="#a2d061" fontSize={20} />
+                      <FaStar color="#a2d061" fontSize={20} />
+                      <FaStar color="#a2d061" fontSize={20} />
+                      <FaStar color="#a2d061" fontSize={20} />
+                    </div>
+                    <span>{reviews?.data?.ratings?.total_reviews} Reviews</span>
                   </div>
-                )}
-              </div>
+                  {reviews?.data?.ratings?.percentage_data && (
+                    <div className={Styles.rightBottomContent}>
+                      {Review_Progress(
+                        reviews?.data?.ratings?.percentage_data
+                      ).map((data) => (
+                        <>
+                          <div className={Styles.bottom_content}>
+                            <h3>{data.number}</h3>
+                            <progress
+                              max="100"
+                              value={+data.percentage}
+                              style={{ color: '#a2d061' }}
+                              className={Styles.progress_bar}
+                            />
+                            <p>{+data.percentage}%</p>
+                          </div>
+                        </>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </>
             )}
           </div>
         </div>

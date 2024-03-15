@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setSearchState, setSelectedOptionValue } from 'redux-setup/cartSlice'
 import { setActiveFilters } from 'redux-setup/categorySlice'
 
-const Filter = ({ activeFilter, setActiveFilter, optimizedFn }) => {
+const Filter = ({ activeFilter, setActiveFilter }) => {
   const [scrolled, setScrolled] = useState(false)
   const dispatch = useDispatch()
   const [filtersState, setFiltersState] = useState([])
@@ -22,7 +22,6 @@ const Filter = ({ activeFilter, setActiveFilter, optimizedFn }) => {
   const subCategoryOnTop = useSelector(
     (state) => state.category.subCategoryOnTop
   )
-  console.log(subCategoryOnTop, 'subCategoryOnTopsubCategoryOnTop')
 
   const dataArray = Object.entries(subCategoryData).map(([key, value]) => ({
     id: key,
@@ -60,7 +59,6 @@ const Filter = ({ activeFilter, setActiveFilter, optimizedFn }) => {
       setFiltersState((prevC) => [...prevC, text?.apikey])
     }
   }
-  console.log(filtersState, 'filtersState')
 
   useEffect(() => {
     dispatch(setActiveFilters(filtersState))

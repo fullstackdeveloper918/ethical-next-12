@@ -467,9 +467,11 @@ const Product = ({ product, loading, error }) => {
                       >
                         {imagesArray?.map((item, index) => (
                           <div
-                          // style={{
-                          //   background: singleImage === item ? 'green' : '',
-                          // }}
+                            style={{
+                              border:
+                                singleImage === item ? '1px solid #a2d061' : '',
+                            }}
+                            className={Styles.add_color}
                           >
                             <Image
                               src={item}

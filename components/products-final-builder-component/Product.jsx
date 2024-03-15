@@ -6,73 +6,18 @@ import Products from '../Products/Products'
 import global from '../../styles/global.module.css'
 import Styles from '../Filter/Filter.module.css'
 import Pagination from '../pagination/Pagination'
-import { useSelector } from 'react-redux'
-import { debounce } from '@lib/utils'
-import axios from 'axios'
 
-const Product = () => {
+const Product = ({
+  getProductsRes,
+  totalData,
+  totalPages,
+  setCurrentPage,
+  currentPage,
+  loading,
+}) => {
   const [activeFilter, setActiveFilter] = useState(true)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [totalData, setTotalData] = useState([])
-  const [totalPages, setTotalPages] = useState('')
-  const [countryTosend, setCountryToSend] = useState(null)
-  const [productsData, setProductsData] = useState(null)
-  const [Isloading, setIsloading] = useState(false)
 
-  const country = useSelector((state) => state.country.country)
-  const activeFilters = useSelector((state) => state.category.activeFilters)
-
-  const selectedOptionValue = useSelector(
-    (state) => state.cart.selectedOptionValue
-  )
-  let swiftSwag = useSelector((state) => state.random.swiftSwag)
-
-  const getProducts = async (value = '') => {
-    try {
-      if (countryTosend) {
-        setIsloading(true)
-        const response = await axios.get(
-          `https://test.cybersify.tech/Eswag/public/api/products?page=${
-            currentPage ? currentPage : 1
-          }&pageSize=${10}&${countryTosend}=1&search_title=${value}&${selectedOptionValue}=desc&collection_ids=${
-            activeFilters[0] ? activeFilters[0] : ''
-          }&swift_tag=${swiftSwag === `flexible` ? 0 : 1}`
-        )
-        setProductsData(response.data)
-        window.scrollTo({
-          top: '0',
-          left: '0',
-          behavior: 'smooth',
-        })
-      }
-    } catch (error) {
-      console.log(error, 'from get all products')
-    } finally {
-      setIsloading(false)
-    }
-  }
-  const optimizedFn = useCallback(debounce(getProducts), [])
-
-  useEffect(() => {
-    if (country) {
-      setCountryToSend(
-        country === 'usa' ? 'available_in_usa' : 'available_in_canada'
-      )
-    }
-  }, [country])
-
-  useEffect(() => {
-    getProducts()
-  }, [currentPage, countryTosend, selectedOptionValue, activeFilters])
-
-  useEffect(() => {
-    if (productsData) {
-      setCurrentPage(productsData?.data?.current_page)
-      setTotalData(productsData?.data?.total)
-      setTotalPages(productsData?.data?.last_page)
-    }
-  }, [productsData])
-  let length = productsData?.data?.data?.length
+  let length = getProductsRes?.data?.data?.length
 
   return (
     <>
@@ -86,10 +31,9 @@ const Product = () => {
           <Filter
             activeFilter={activeFilter}
             setActiveFilter={setActiveFilter}
-            optimizedFn={optimizedFn}
           />
           {length ? (
-            <Products response={productsData} loading={Isloading} />
+            <Products response={getProductsRes} loading={loading} />
           ) : (
             <div
               className={Styles.collection_wrapper}
@@ -105,14 +49,14 @@ const Product = () => {
               No Products Found
             </div>
           )}
-          {productsData && totalData > 10 && (
+          {getProductsRes && totalData > 10 && (
             <div className={Styles.pagination_section}>
               <Pagination
                 page={currentPage}
                 totalData={totalData}
                 totalPages={totalPages}
                 setCurrentPage={setCurrentPage}
-                loading={Isloading}
+                loading={loading}
               />
             </div>
           )}

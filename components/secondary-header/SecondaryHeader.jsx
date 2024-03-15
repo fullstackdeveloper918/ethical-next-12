@@ -74,7 +74,8 @@ const SecondaryHeader = () => {
     router.asPath.includes('/wishlist') ||
     router.asPath.includes('/cart') ||
     router.asPath.includes('/shipping') ||
-    router.asPath.includes('/billing-address')
+    router.asPath.includes('/billing-address') ||
+    router.asPath.includes('/products')
 
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products?q=${searchProduct}`,
