@@ -8,6 +8,7 @@ module.exports = bundleAnalyzer({
       'cdn.builder.io',
       'test.cybersify.tech',
       'v5.airtableusercontent.com',
+      'raw.githubusercontent.com',
     ],
   },
 

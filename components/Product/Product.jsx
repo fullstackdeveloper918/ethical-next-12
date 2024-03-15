@@ -42,7 +42,6 @@ const Product = ({ product, loading, error }) => {
   const [selectedCustomization, setSelectedCustomization] = useState()
   const [choosenCustomization, setChoosenCustomization] = useState(null)
   const [actualMinQty, setActualMinQty] = useState(0)
-  const [isItemInCart, setIsItemInCart] = useState(false)
   const [imagesArray, setImagesArray] = useState([])
   const [singleImage, setSingleImage] = useState('')
   const [nameOfDecorations, setNameOfDecorations] = useState([])
@@ -264,7 +263,7 @@ const Product = ({ product, loading, error }) => {
     e.preventDefault()
     if (cartItemsSwiftSwag === null || cartItemsSwiftSwag === swiftSwag) {
       setCartState({
-        quantity: orderQuantity,
+        quantity: finalQty,
         image: setImagesArray[0],
         heading: product?.product_description,
         pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
@@ -276,6 +275,21 @@ const Product = ({ product, loading, error }) => {
         isSample: isSample,
         swiftSwag: swiftSwag,
       })
+      dispatch(
+        setCartItems({
+          quantity: finalQty,
+          image: setImagesArray[0],
+          heading: product?.product_description,
+          pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
+          id: product.id,
+          logoImg: uploadFirstLogo,
+          colours: selectedColor,
+          customization: choosenCustomization,
+          totalPrice: orderQuantity * +totalPrice,
+          isSample: isSample,
+          swiftSwag: swiftSwag,
+        })
+      )
       toast.success('Added to cart successfully')
       window.scrollTo({
         top: '0',
@@ -288,25 +302,14 @@ const Product = ({ product, loading, error }) => {
       )
     }
   }
-  useEffect(() => {
-    if (cartState.quantity) {
-      dispatch(setCartItems(cartState))
-    }
-  }, [cartState])
+  // useEffect(() => {
+  //   if (cartState) {
+  //     dispatch(setCartItems(cartState))
+  //   }
+  // }, [cartState])
 
-  const checkFromCart = () => {
-    const idToFind = product.id
-    const existingItemIndex = cartItems.find((item) => item.id === idToFind)
-    if (existingItemIndex) {
-      setIsItemInCart(existingItemIndex)
-      setOrderQuantity(existingItemIndex.quantity)
-    }
-  }
-  useEffect(() => {
-    if (product?.id) {
-      checkFromCart()
-    }
-  }, [product?.id])
+  console.log(cartItems, 'cartItemscartItems')
+  // console.log(product.images_us[0], 'product coll')
 
   useEffect(() => {
     document.body.classList.add('single_product_page')
