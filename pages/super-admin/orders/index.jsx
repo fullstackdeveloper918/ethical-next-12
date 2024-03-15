@@ -18,7 +18,8 @@ const Orders = () => {
   const router = useRouter()
   const [orders, setOrders] = useState([])
   const dispatch = useDispatch()
-  const orderPlaced = useSelector((state) => state.cart.orderPlaced)
+  const inventory = useSelector((state) => state.submit.inventory)
+  console.log(inventory[0], 'inventory bro')
 
   useEffect(() => {
     const storedOrders = JSON.parse(localStorage.getItem('orders'))
@@ -59,58 +60,60 @@ const Orders = () => {
         <div className={Styles.Orders_data_table}>
           <table>
             <tr>
-              <th>ORDER ID</th>
-              <th>Customer Email</th>
-              <th>Customer Company</th>
-              <th>Customer First Name</th>
-              <th>Customer Last Name</th>
-              <th>Customer Phone</th>
+              <th>Issue Date</th>
+              <th>Swag Pack</th>
+              <th>Quantity</th>
               <th>Shipping Address</th>
+              <th>First Name</th>
+              <th>Email</th>
+              <th>Company Name</th>
               <th>Billing Address</th>
-              <th>Order Number</th>
+              <th>Title</th>
               <th>Action</th>
             </tr>
-            {orders.map((data, index) => (
-              <>
-                <tr>
-                  <td>{data.ORDER_ID}</td>
-                  <td>{data.Customer_Email}</td>
-                  <td>{data.Customer_Company}</td>
+            {inventory &&
+              inventory.map((data, index) => (
+                <>
+                  {console.log(data[1], 'data from id')}
+                  <tr>
+                    <td>{data[0].selectedDate}</td>
+                    <td>{data[0].swagPack.toString()}</td>
+                    <td>{data[2].quantity}</td>
 
-                  <td>{data.Customer_First_Name}</td>
-                  <td>{data.Customer_Last_Name}</td>
-                  <td>{data.Customer_Phone}</td>
-                  <td>{data.Shipping_Address}</td>
-                  <td>{data.Billing_Address}</td>
-                  <td>{data.Order_Number}</td>
-                  <td>
-                    <div className={Styles.action_icons}>
-                      <span>
-                        <FaEye
-                          fontSize={18}
-                          cursor="pointer"
-                          onClick={() => handleViewClicked(data.id)}
-                        />
-                      </span>
-                      <span>
-                        <FaRegEdit
-                          fontSize={18}
-                          cursor="pointer"
-                          onClick={() => handleEdit(data.id)}
-                        />
-                      </span>
-                      <span>
-                        <RiDeleteBin6Line
-                          cursor="pointer"
-                          fontSize={18}
-                          onClick={() => handleDelete(data.id)}
-                        />
-                      </span>
-                    </div>
-                  </td>
-                </tr>
-              </>
-            ))}
+                    <td>{data.Customer_First_Name}</td>
+                    <td>{data.Customer_Last_Name}</td>
+                    <td>{data.Customer_Phone}</td>
+                    <td>{data.Shipping_Address}</td>
+                    <td>{data.Billing_Address}</td>
+                    <td>{data.Order_Number}</td>
+                    <td>
+                      <div className={Styles.action_icons}>
+                        <span>
+                          <FaEye
+                            fontSize={18}
+                            cursor="pointer"
+                            onClick={() => handleViewClicked(data.id)}
+                          />
+                        </span>
+                        <span>
+                          <FaRegEdit
+                            fontSize={18}
+                            cursor="pointer"
+                            onClick={() => handleEdit(data.id)}
+                          />
+                        </span>
+                        <span>
+                          <RiDeleteBin6Line
+                            cursor="pointer"
+                            fontSize={18}
+                            onClick={() => handleDelete(data.id)}
+                          />
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                </>
+              ))}
           </table>
           {/* Pagination section */}
           <div className={Styles.pagination_container}>

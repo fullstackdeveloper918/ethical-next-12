@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   items: [],
+  favoriteIcon: false,
 }
 
 const wishlistSlice = createSlice({
@@ -19,7 +20,9 @@ const wishlistSlice = createSlice({
         state.items.push({ ...newItem, itemAdded: true }) // Set itemAdded to true for the new item
       }
     },
-
+    setFavroiteIcon(state, action) {
+      state.favoriteIcon = action.payload
+    },
     removeItemFromWishlist(state, action) {
       const itemIdToRemove = action.payload
       state.items = state.items.filter((item) => {
@@ -36,7 +39,11 @@ const wishlistSlice = createSlice({
   },
 })
 
-export const { addItemToWishlist, removeItemFromWishlist, clearWishlist } =
-  wishlistSlice.actions
+export const {
+  addItemToWishlist,
+  removeItemFromWishlist,
+  setFavroiteIcon,
+  clearWishlist,
+} = wishlistSlice.actions
 
 export default wishlistSlice.reducer

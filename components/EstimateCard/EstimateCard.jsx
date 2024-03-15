@@ -31,7 +31,7 @@ const EstimateCard = () => {
     dispatch(deleteCartItem(val))
   }
 
-  let data = [step1State, step2State, cartItems]
+  let data = [step1State, step2State, cartItems].flat()
   const [loadQuery, { response, loading, error }] = useFetch(
     `/bulkestimate/${userId}`,
     {
@@ -42,29 +42,23 @@ const EstimateCard = () => {
   const handleSubmit = () => {
     if (!userId) {
       alert('Please Login To submit Estimate')
-    } else if (!step1State || !setStep2State) {
+    } else if (!step1State && !setStep2State) {
       alert('Please Complete All Steps to submit.')
     } else if (cartItems.length === 0) {
       alert('Please Add something in your cart to place order')
     } else {
       loadQuery(data)
-      console.log(response, 'response ffrom carrt')
-      // dispatch(setOrderPlaced(response))
     }
   }
 
   useEffect(() => {
     if (response) {
-      console.log(response, 'responseresponse')
+      console.log(response, 'response')
       toast.success('Your request has been submmitted successfully')
       dispatch(deleteAllCartItems())
+      router.push('/thank-you')
     }
   }, [response])
-
-  // useEffect(() => {
-  //   let TotalPricee = cartItems.map((item) => ))
-  //   console.log(TotalPricee, 'TotalPriceeTotalPricee')
-  // }, [cartItems])
 
   useEffect(() => {
     if (cartItems.length > 0) {
