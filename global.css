@@ -164,13 +164,13 @@ body {
   width: 100%;
   overflow-x: hidden;
 }
-.react-multi-carousel-track {
-  height: 400px !important;
+.slider_space .react-multi-carousel-track {
+  height: 450px !important;
 }
-.carousel-container {
+.detail_page_left_top .carousel-container {
   height: 150px !important;
 }
-.react-multi-carousel-track {
+.detail_page_left_top .react-multi-carousel-track {
   height: 110px !important;
 }
 /* stack card css */
@@ -372,14 +372,15 @@ input[type='radio'] {
   color: #fff !important;
 }
 
-.react-multi-carousel-dot-list{
+.react-multi-carousel-dot-list {
   display: none !important;
 }
 /* responsive start */
-@media (max-width:1440px) {
+@media (max-width: 1440px) {
   .react-multiple-carousel__arrow {
     top: 40px !important;
-}}
+  }
+}
 @media (min-width: 768px) {
   .filterPanel_top svg {
     display: none !important;

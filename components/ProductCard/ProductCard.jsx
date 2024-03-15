@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   addItemToWishlist,
   removeItemFromWishlist,
+  setFavroiteIcon,
 } from '../../redux-setup/wishlistSlice'
 import images from 'constants/images'
 import Loaders from '@components/loaders/Loaders'
@@ -20,10 +21,12 @@ import { useRouter } from 'next/router'
 const ProductCard = ({ item, fromSingleProduct }) => {
   const [singleImage, setSingleImage] = useState('')
   const [shareIcons, setShareIcons] = useState(false)
-  const [favoriteIconColor, setFavoriteIconColor] = useState(false)
   const router = useRouter()
   const dispatch = useDispatch()
   const wishListItems = useSelector((state) => state.wishlist.items)
+  const favoriteIconColor = useSelector((state) => state.wishlist.favoriteIcon)
+
+  console.log(favoriteIconColor, 'faviconcolor')
   useEffect(() => {
     setSingleImage(item?.image)
   }, [])
@@ -33,7 +36,7 @@ const ProductCard = ({ item, fromSingleProduct }) => {
     )
     if (isInWishlist) {
       // If the item is already in the wishlist, remove it
-      setFavoriteIconColor(false)
+      dispatch(setFavroiteIcon(false))
       dispatch(removeItemFromWishlist(item.id))
       toast.success('Item removed from wishlist', {
         position: 'top-center',
@@ -42,7 +45,7 @@ const ProductCard = ({ item, fromSingleProduct }) => {
     } else {
       // Otherwise, add the item to the wishlist
       dispatch(addItemToWishlist(item))
-      setFavoriteIconColor(true)
+      dispatch(setFavroiteIcon(true))
       toast.success('Item added to wishlist', {
         position: 'top-center',
         autoClose: 5500,
