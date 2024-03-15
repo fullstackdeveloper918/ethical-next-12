@@ -24,16 +24,13 @@ const index = () => {
   //             activeFilters[0] ? activeFilters[0] : ''
   //           }&swift_tag=${swiftSwag === `flexible` ? 0 : 1}`
 
-  const [
-    getProducts,
-    {
-      response: getProductsRes,
-      loading: getProductsLoading,
-      error: getProductsError,
-    },
-  ] = useFetch(url, {
-    method: 'get',
-  })
+  useEffect(() => {
+    if (country) {
+      setCountryToSend(
+        country === 'usa' ? 'available_in_usa' : 'available_in_canada'
+      )
+    }
+  }, [country])
 
   useEffect(() => {
     if (countryTosend) {
@@ -47,18 +44,20 @@ const index = () => {
   }, [countryTosend, swiftSwag, currentPage])
 
   useEffect(() => {
-    if (country) {
-      setCountryToSend(
-        country === 'usa' ? 'available_in_usa' : 'available_in_canada'
-      )
-    }
-  }, [country])
-
-  useEffect(() => {
     if (url) {
       getProducts()
     }
   }, [url])
+  const [
+    getProducts,
+    {
+      response: getProductsRes,
+      loading: getProductsLoading,
+      error: getProductsError,
+    },
+  ] = useFetch(url, {
+    method: 'get',
+  })
 
   useEffect(() => {
     if (getProductsRes) {
