@@ -47,7 +47,7 @@
   gap: 1.5rem;
   /* align-items: center; */
   margin: 15px 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 /* .product_card_container .product_content {
@@ -680,4 +680,10 @@ display: block;
   .write_review_container textarea {
     max-height: 140px;
   }
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+  padding-left: 10px;
 }
