@@ -39,11 +39,24 @@ const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
   const [ReadMore, setIsReadMore] = useState(false)
   const [orderQuantity, setOrderQuantity] = useState(+actualMinQty || 50)
-  const [price, setPrice] = useState(0)
-  const [openEmoji, setOpenEmoji] = useState(false)
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
   const [selectedCustomization, setSelectedCustomization] = useState()
   const [choosenCustomization, setChoosenCustomization] = useState(null)
+  const [actualMinQty, setActualMinQty] = useState(0)
+  const [imagesArray, setImagesArray] = useState([])
+  const [singleImage, setSingleImage] = useState('')
+  const [nameOfDecorations, setNameOfDecorations] = useState([])
+  const [sizeNotSure, setSizeNotSure] = useState(true)
+  const [isSample, setIsSample] = useState(false)
+  const [swiftSwag, setSwiftSwag] = useState(false)
+  const [selectedColor, setSelectedColor] = useState(null)
+  const [sizeNotSureQuantity, setSizeNotSureQuantity] = useState(0)
+  const [cartItemsSwiftSwag, setCartItemsSwiftSwag] = useState()
+  const [finalQty, setFinalQty] = useState(0)
+  const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
+    useState(0)
+  const [customizationPrice, setCustomizationPrice] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
   const [sizeQuantity, setSizeQuantity] = useState({
     S: 25,
     M: 25,
@@ -63,21 +76,6 @@ const Product = ({ product, loading, error }) => {
     swiftSwag: false,
   })
 
-  const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
-    useState(0)
-  const [customizationPrice, setCustomizationPrice] = useState(0)
-  const [totalPrice, setTotalPrice] = useState(0)
-  const [actualMinQty, setActualMinQty] = useState(0)
-  const [isItemInCart, setIsItemInCart] = useState(false)
-  const [imagesArray, setImagesArray] = useState([])
-  const [singleImage, setSingleImage] = useState(imagesArray[0])
-  const [nameOfDecorations, setNameOfDecorations] = useState([])
-  const [sizeNotSure, setSizeNotSure] = useState(true)
-  const [isSample, setIsSample] = useState(false)
-  const [swiftSwag, setSwiftSwag] = useState(false)
-  const [selectedColor, setSelectedColor] = useState(null)
-  const [sizeNotSureQuantity, setSizeNotSureQuantity] = useState(0)
-  const [finalQty, setFinalQty] = useState(0)
   const country = useSelector((state) => state.country.country)
   const cartItems = useSelector((state) => state.cart.cartItems)
   const decorations = useSelector(
@@ -86,7 +84,6 @@ const Product = ({ product, loading, error }) => {
   const finalDecorationKeyVal = useSelector(
     (state) => state.random.finalDecorationKeyVal
   )
-  const [cartItemsSwiftSwag, setCartItemsSwiftSwag] = useState()
   let isProductIncludesltm_final = product?.ltm_final.includes('Y')
   let col1Price =
     country === 'usa'
@@ -267,10 +264,9 @@ const Product = ({ product, loading, error }) => {
   }
   const handleAddToCart = (e) => {
     e.preventDefault()
-    const isCurrentId = cartItems.some((obj) => obj.id === product.id)
     if (cartItemsSwiftSwag === null || cartItemsSwiftSwag === swiftSwag) {
       setCartState({
-        quantity: orderQuantity,
+        quantity: finalQty,
         image: setImagesArray[0],
         heading: product?.product_description,
         pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
@@ -282,6 +278,21 @@ const Product = ({ product, loading, error }) => {
         isSample: isSample,
         swiftSwag: swiftSwag,
       })
+      dispatch(
+        setCartItems({
+          quantity: finalQty,
+          image: setImagesArray[0],
+          heading: product?.product_description,
+          pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
+          id: product.id,
+          logoImg: uploadFirstLogo,
+          colours: selectedColor,
+          customization: choosenCustomization,
+          totalPrice: orderQuantity * +totalPrice,
+          isSample: isSample,
+          swiftSwag: swiftSwag,
+        })
+      )
       toast.success('Added to cart successfully')
       window.scrollTo({
         top: '0',
@@ -294,25 +305,14 @@ const Product = ({ product, loading, error }) => {
       )
     }
   }
-  useEffect(() => {
-    if (cartState.quantity) {
-      dispatch(setCartItems(cartState))
-    }
-  }, [cartState])
+  // useEffect(() => {
+  //   if (cartState) {
+  //     dispatch(setCartItems(cartState))
+  //   }
+  // }, [cartState])
 
-  const checkFromCart = () => {
-    const idToFind = product.id
-    const existingItemIndex = cartItems.find((item) => item.id === idToFind)
-    if (existingItemIndex) {
-      setIsItemInCart(existingItemIndex)
-      setOrderQuantity(existingItemIndex.quantity)
-    }
-  }
-  useEffect(() => {
-    if (product?.id) {
-      checkFromCart()
-    }
-  }, [product?.id])
+  console.log(cartItems, 'cartItemscartItems')
+  // console.log(product.images_us[0], 'product coll')
 
   useEffect(() => {
     document.body.classList.add('single_product_page')
@@ -322,7 +322,7 @@ const Product = ({ product, loading, error }) => {
     setSingleImage(item)
   }
   useEffect(() => {
-    if (imagesArray.length > 0) {
+    if (imagesArray && imagesArray.length > 0) {
       setSingleImage(imagesArray[0])
     }
   }, [imagesArray])
@@ -358,17 +358,6 @@ const Product = ({ product, loading, error }) => {
       }
     }
   }, [product])
-
-  const dummy = [
-    'https://test.cybersify.tech/Eswag/storage/app/public/images/qzvsK4UX3RzNE_WQ9habw_tzWvtre2fStqxH6x8ifA8.png',
-    'https://test.cybersify.tech/Eswag/storage/app/public/images/TwmHEPYSxPMmSL_2O11PjjHJGpWaJaIzpp6HOeDgpjw.png',
-    'https://test.cybersify.tech/Eswag/storage/app/public/images/BFOHaV9unAgpO-kRtN-M-SYdHGZJX-ncP59hjxHiAeg.png',
-    'https://test.cybersify.tech/Eswag/storage/app/public/images/cqlt5qB2VwKEMxIbM0EAuoXLOgu05eBZG63bRidBtnU.png',
-    'https://test.cybersify.tech/Eswag/storage/app/public/images/qzvsK4UX3RzNE_WQ9habw_tzWvtre2fStqxH6x8ifA8.png',
-    'https://test.cybersify.tech/Eswag/storage/app/public/images/TwmHEPYSxPMmSL_2O11PjjHJGpWaJaIzpp6HOeDgpjw.png',
-    'https://test.cybersify.tech/Eswag/storage/app/public/images/BFOHaV9unAgpO-kRtN-M-SYdHGZJX-ncP59hjxHiAeg.png',
-    'https://test.cybersify.tech/Eswag/storage/app/public/images/cqlt5qB2VwKEMxIbM0EAuoXLOgu05eBZG63bRidBtnU.png',
-  ]
 
   let setDecorations = () => {
     if (decorations && Object.keys(decorations).length > 0) {
@@ -445,7 +434,7 @@ const Product = ({ product, loading, error }) => {
                       />
                     )} */}
                   </div>
-                  {/* {imagesArray.length > 0 && (
+                  {imagesArray && imagesArray.length > 0 && (
                     <div>
                       <Carousel
                         swipeable={false}
@@ -906,7 +895,7 @@ const Product = ({ product, loading, error }) => {
                     totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
                   }/unit`}</p>
 
-                  <p>${(orderQuantity * +totalPrice).toFixed(2)}</p>
+                  <p>${(finalQty * +totalPrice).toFixed(2)}</p>
                 </div>
                 <div className={Styles.add_to_bulk_container}>
                   <button onClick={handleAddToCart}>

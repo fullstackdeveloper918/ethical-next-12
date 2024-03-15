@@ -26,7 +26,6 @@ const ProductCard = ({ item, fromSingleProduct }) => {
   const wishListItems = useSelector((state) => state.wishlist.items)
   const favoriteIconColor = useSelector((state) => state.wishlist.favoriteIcon)
 
-  console.log(favoriteIconColor, 'faviconcolor')
   useEffect(() => {
     setSingleImage(item?.image)
   }, [])
@@ -89,10 +88,12 @@ const ProductCard = ({ item, fromSingleProduct }) => {
               className={Styles.colors}
               onClick={() => router.push(`products/${item?.id}`)}
             >
-              {item?.colours &&
-                Object.entries(item?.colours).map(([color, imageUrl], i) => {
-                  return <Dot color={color} imageUrl={imageUrl} key={i} />
-                })}
+              {Object.keys(item?.colours).length > 0 &&
+                Object.entries(item?.colours)
+                  .slice(0, 8)
+                  .map(([color, imageUrl], i) => {
+                    return <Dot color={color} imageUrl={imageUrl} key={i} />
+                  })}
             </div>
           </div>
           <div className={Styles.hidden_icons}>

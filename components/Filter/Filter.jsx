@@ -6,7 +6,7 @@ import FilterPanel from '../FilterPanel/FilterPanel'
 import images from '../../constants/images'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchState, setSelectedOptionValue } from 'redux-setup/cartSlice'
-import { setActiveFilters } from 'redux-setup/categorySlice'
+import { setActiveFilters, setCollectionId } from 'redux-setup/categorySlice'
 
 const Filter = ({ activeFilter, setActiveFilter }) => {
   const [scrolled, setScrolled] = useState(false)
@@ -51,13 +51,14 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
     dispatch(setSearchState(''))
   }, [])
 
-  const handleAddLists = (text) => {
-    if (filtersState.includes(text?.apikey)) {
-      let f = filtersState.filter((item) => item !== text?.apikey)
-      setFiltersState(f)
-    } else {
-      setFiltersState((prevC) => [...prevC, text?.apikey])
-    }
+  const handleAddLists = (key) => {
+    dispatch(setCollectionId(key))
+    // if (filtersState.includes(text?.apikey)) {
+    //   let f = filtersState.filter((item) => item !== text?.apikey)
+    //   setFiltersState(f)
+    // } else {
+    //   setFiltersState((prevC) => [...prevC, text?.apikey])
+    // }
   }
 
   useEffect(() => {
@@ -82,25 +83,12 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
           <span>Filter</span>
         </button>
         <div className={Styles.filter_input}>
-          {/* {subCategoryData &&
-            subCategoryData.map((item) => (
-              <>{console.log(item, 'itemhello')}</>
-            ))} */}
-          {/* <input
-            type="text"
-            value={searchState}
-            onChange={(e) => {
-              e.preventDefault()
-              dispatch(setSearchState(e.target.value))
-              optimizedFn(searchState)
-            }}
-          /> */}
-          {subCategoryOnTop?.length > 0 &&
-            subCategoryOnTop.map((item) => (
-              <p onClick={() => handleAddLists(item)}>
-                {JSON.parse(item.label)}
-              </p>
-            ))}
+          {Object.keys(subCategoryOnTop).length > 0 &&
+            Object.entries(subCategoryOnTop)
+              .slice(0, 7)
+              .map(([key, value]) => (
+                <p onClick={() => handleAddLists(key)}>{JSON.parse(value)}</p>
+              ))}
         </div>
         {/* <div className={Styles.filter_select}>
           <div>
@@ -109,7 +97,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
               id=""
               className={Styles.Select_inputs}
               value={selectedOptionValue}
-              onChange={handleSelectChange}
+              // onChange={handleSelectChange}
             >
               <option defaultValue value="">
                 Select an Option

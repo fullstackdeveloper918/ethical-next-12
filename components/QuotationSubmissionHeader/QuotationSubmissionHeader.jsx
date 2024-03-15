@@ -8,9 +8,7 @@ import {
 import { useRouter } from 'next/router'
 
 const QuotationSubmissionHeader = () => {
-  const dispatch = useDispatch();
-
-
+  const dispatch = useDispatch()
 
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
@@ -22,7 +20,7 @@ const QuotationSubmissionHeader = () => {
       dispatch(setreached2ndStep(true))
     } else if (!step1State?.selectedDate) {
       dispatch(setreached2ndStep(false))
-    } 
+    }
   }, [step1State])
 
   useEffect(() => {
@@ -32,8 +30,6 @@ const QuotationSubmissionHeader = () => {
       dispatch(setreached3rdStep(false))
     }
   }, [step2State])
-
-  console.log(reached2ndStep, 'reached2ndStep')
 
   return (
     <>

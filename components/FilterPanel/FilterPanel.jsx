@@ -77,7 +77,7 @@ const FilterPanel = ({ setActiveFilter }) => {
           </h4> */}
         </div>
         <div className={Styles.filterPanel_ProductCollection_list}>
-          {LIST(subCategories).map((item, index) => (
+          {LIST().map((item, index) => (
             <>
               <div className={Styles.accordion}>
                 <div className={Styles.accordion_item}>
@@ -140,13 +140,13 @@ const FilterPanel = ({ setActiveFilter }) => {
                                     id={`checkbox_id_${index}`}
                                     name={child.label}
                                     checked={isChecked[item.label]}
-                                    onChange={handleCheckboxChange}
+                                    // onChange={handleCheckboxChange}
                                   />
                                   <label
                                     htmlFor={`checkbox_id_${index}`}
-                                    onClick={() => handleAddLists(child)}
+                                    // onClick={() => handleAddLists(child)}
                                   >
-                                    {JSON.parse(child.label)}
+                                    {child.label}
                                   </label>
                                 </li>
                               </div>

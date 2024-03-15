@@ -8,6 +8,7 @@ const initialState = {
   activeFilters: [],
   subCategoryOnTop: [],
   productCategoryId: '',
+  collectionId: null,
 }
 
 const categorySlice = createSlice({
@@ -38,6 +39,9 @@ const categorySlice = createSlice({
     setProductCategoryId: (state, action) => {
       state.productCategoryId = action.payload
     },
+    setCollectionId: (state, action) => {
+      state.collectionId = action.payload
+    },
   },
 })
 
@@ -50,6 +54,7 @@ export const {
   clearSubCategories,
   setSubCategoryOnTop,
   setProductCategoryId,
+  setCollectionId,
 } = categorySlice.actions
 
 export default categorySlice.reducer
