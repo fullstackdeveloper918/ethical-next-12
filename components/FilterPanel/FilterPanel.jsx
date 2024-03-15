@@ -81,7 +81,7 @@ const FilterPanel = ({ setActiveFilter }) => {
             <>
               <div className={Styles.accordion}>
                 <div className={Styles.accordion_item}>
-                  <div className={Styles.horizontal}></div>
+                  {/* <div className={Styles.horizontal}></div> */}
                   <div
                     className={Styles.items}
                     onClick={() => toggleAccordion(index)}
