@@ -29,20 +29,11 @@ import { debounce } from '@lib/utils'
 import {
   addCategory,
   getAllCategories,
+  setProductCategoryId,
   setSubCategories,
 } from 'redux-setup/categorySlice'
-const countries = [
-  {
-    id: 1,
-    country: 'usa',
-    imageSrc: Usa,
-  },
-  {
-    id: 2,
-    country: 'canada',
-    imageSrc: Canada,
-  },
-]
+import { countries } from 'constants/data'
+
 const SecondaryHeader = () => {
   const popupRef = useRef(null)
   const dispatch = useDispatch()
@@ -64,6 +55,11 @@ const SecondaryHeader = () => {
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
   const allCategories = useSelector((state) => state.category.allCategories)
   const subCategories = useSelector((state) => state.category.subCategories)
+  const productCategory = useSelector((state) => state.category.productCategory)
+  const productCategoryId = useSelector(
+    (state) => state.category.productCategoryId
+  )
+
   const filteredProducts = data?.filter((product) =>
     product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
   )
@@ -121,7 +117,6 @@ const SecondaryHeader = () => {
   }
 
   const handleClick = (item) => {
-    console.log(item, 'item')
     dispatch(addCategory(item))
     router.push('/products')
   }
@@ -160,9 +155,14 @@ const SecondaryHeader = () => {
 
   const handleSetSubCategory = (item) => {
     dispatch(setSubCategories(allCategories[item]?.matchingValues))
-    router.push('/products')
+    dispatch(setProductCategoryId(allCategories[item].airtabelId))
+    router.pathname !== '/products' && router.push('/products')
   }
-
+  useEffect(() => {
+    if (!productCategoryId) {
+      dispatch(setProductCategoryId(allCategories.Bags.airtabelId))
+    }
+  }, [])
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>

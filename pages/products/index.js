@@ -17,6 +17,9 @@ const index = () => {
   const [url, setUrl] = useState('')
   const country = useSelector((state) => state.country.country)
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
+  const productCategoryId = useSelector(
+    (state) => state.category.productCategoryId
+  )
   //   //   console.log(router.asPath.includes('232'), 'pllll')
   //   `https://test.cybersify.tech/Eswag/public/api/products?page=${
   //             currentPage ? currentPage : 1
@@ -33,15 +36,15 @@ const index = () => {
   }, [country])
 
   useEffect(() => {
-    if (countryTosend) {
-      const route = `/products?page=${
+    if (countryTosend && productCategoryId) {
+      const route = `/products?product_catogries=${productCategoryId}&page=${
         currentPage ? currentPage : 1
       }&pageSize=${10}&${countryTosend}=1&swift_tag=${
         swiftSwag !== `flexible` ? 1 : 0
       }`
       setUrl(route)
     }
-  }, [countryTosend, swiftSwag, currentPage])
+  }, [countryTosend, swiftSwag, currentPage, productCategoryId])
 
   useEffect(() => {
     if (url) {

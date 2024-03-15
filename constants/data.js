@@ -15,9 +15,10 @@ import { BsFillBoxFill } from 'react-icons/bs'
 import { CiUser } from 'react-icons/ci'
 import { IoKeyOutline } from 'react-icons/io5'
 import { useEffect } from 'react'
-import { doesNotMatch } from 'assert'
 import { setSubCategoryOnTop } from 'redux-setup/categorySlice'
 import { useDispatch } from 'react-redux'
+import Usa from '../assets/headerPics/use_flag.svg'
+import Canada from '../assets/headerPics/canada-flag.svg'
 // list
 
 export const LIST = (subCategories) => {
@@ -117,6 +118,18 @@ export const LIST = (subCategories) => {
 
   return categoryList
 }
+export const countries = [
+  {
+    id: 1,
+    country: 'usa',
+    imageSrc: Usa,
+  },
+  {
+    id: 2,
+    country: 'canada',
+    imageSrc: Canada,
+  },
+]
 export const Sidebar_Data = [
   {
     id: 1,
