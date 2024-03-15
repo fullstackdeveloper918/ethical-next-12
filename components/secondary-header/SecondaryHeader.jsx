@@ -29,6 +29,7 @@ import { debounce } from '@lib/utils'
 import {
   addCategory,
   getAllCategories,
+  setCollectionId,
   setProductCategoryId,
   setSubCategories,
   setSubCategoryOnTop,
@@ -158,6 +159,7 @@ const SecondaryHeader = () => {
     dispatch(setSubCategoryOnTop(allCategories[item]?.matchingValues))
     dispatch(setSubCategories(allCategories[item]?.matchingValues))
     dispatch(setProductCategoryId(allCategories[item].airtabelId))
+    dispatch(setCollectionId(null))
     router.pathname !== '/products' && router.push('/products')
   }
   useEffect(() => {
