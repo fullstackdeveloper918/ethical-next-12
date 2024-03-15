@@ -37,6 +37,7 @@ const responsive = {
 
 const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
+  const [openEmoji, setOpenEmoji] = useState(false)
   const [ReadMore, setIsReadMore] = useState(false)
   const [orderQuantity, setOrderQuantity] = useState(+actualMinQty || 50)
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
@@ -143,8 +144,6 @@ const Product = ({ product, loading, error }) => {
       }
     }
   }
-
-  
 
   useEffect(() => {
     if (product) {
@@ -423,7 +422,7 @@ const Product = ({ product, loading, error }) => {
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
                   <div className={Styles.detail_page_image_content}>
-                    {/* {singleImage && (
+                    {singleImage && (
                       <Image
                         src={singleImage}
                         width={400}
@@ -432,7 +431,7 @@ const Product = ({ product, loading, error }) => {
                         alt="Single_Product_Image"
                         className={Styles.product_image}
                       />
-                    )} */}
+                    )}
                   </div>
                   {imagesArray && imagesArray.length > 0 && (
                     <div>
@@ -481,7 +480,7 @@ const Product = ({ product, loading, error }) => {
                         ))}
                       </Carousel>
                     </div>
-                  )} */}
+                  )}
                 </div>
               </div>
 
@@ -506,7 +505,6 @@ const Product = ({ product, loading, error }) => {
                       )}
                   </h4>
 
-
                   {/* <div className={Styles.reviews}>
                     <div className={Styles.star_review}>
                       <span className={Styles.star_review_images}>
@@ -523,8 +521,16 @@ const Product = ({ product, loading, error }) => {
                   {/* </div> */}
                 </div>
                 <div className={Styles.reviews}>
-                  <h4>527 Reviews <Image src={images.Info_svg} width={20} height={20} alt='info icon' onClick={() => setOpenEmoji(true)}/></h4>
-                  
+                  <h4>
+                    527 Reviews{' '}
+                    <Image
+                      src={images.Info_svg}
+                      width={20}
+                      height={20}
+                      alt="info icon"
+                      onClick={() => setOpenEmoji(true)}
+                    />
+                  </h4>
                 </div>
                 <div className={Styles.text_content}>
                   {product?.product_description?.length < 450 ? (
@@ -887,52 +893,52 @@ const Product = ({ product, loading, error }) => {
 
                   <p>Standard - 15 Business days</p>
                 </div>
-               
-                <div className={Styles.position_sticky}>
-                <div className={Styles.standard_down_line}></div>
-                <div className={Styles.price_section}>
-                  <p>{`Price ${
-                    totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
-                  }/unit`}</p>
 
-                  <p>${(finalQty * +totalPrice).toFixed(2)}</p>
-                </div>
-                <div className={Styles.add_to_bulk_container}>
-                  <button onClick={handleAddToCart}>
-                    Add to bulk estimate
-                  </button>
-                </div>
-                <div className={Styles.total_estimate_container}>
-                  <p className={Styles.total_estimate_container_text}>
-                    Total estimate doesn't include taxes and shipping fees.
-                    Payment is made after mockups are approved.
-                  </p>
-                </div>
-                <div className={Styles.bottom_icons}>
-                  <div className={Styles.container}>
-                    <div className={Styles.content}>
-                      <span>
-                        <Image
-                          src={images.Fast_Delivery_Icon}
-                          width={30}
-                          height={30}
-                          alt="Fast_Delivery_Icon"
-                        />
-                      </span>
-                      <span>Fast Delivery</span>
-                    </div>
-                    <div className={Styles.content}>
-                      <span>
-                        <Image
-                          src={images.Replacement_Icon}
-                          width={30}
-                          height={30}
-                          alt="Replacement_Icon"
-                        />
-                      </span>
-                      <span>30 Days Replacement</span>
-                    </div>
+                <div className={Styles.position_sticky}>
+                  <div className={Styles.standard_down_line}></div>
+                  <div className={Styles.price_section}>
+                    <p>{`Price ${
+                      totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
+                    }/unit`}</p>
+
+                    <p>${(finalQty * +totalPrice).toFixed(2)}</p>
                   </div>
+                  <div className={Styles.add_to_bulk_container}>
+                    <button onClick={handleAddToCart}>
+                      Add to bulk estimate
+                    </button>
+                  </div>
+                  <div className={Styles.total_estimate_container}>
+                    <p className={Styles.total_estimate_container_text}>
+                      Total estimate doesn't include taxes and shipping fees.
+                      Payment is made after mockups are approved.
+                    </p>
+                  </div>
+                  <div className={Styles.bottom_icons}>
+                    <div className={Styles.container}>
+                      <div className={Styles.content}>
+                        <span>
+                          <Image
+                            src={images.Fast_Delivery_Icon}
+                            width={30}
+                            height={30}
+                            alt="Fast_Delivery_Icon"
+                          />
+                        </span>
+                        <span>Fast Delivery</span>
+                      </div>
+                      <div className={Styles.content}>
+                        <span>
+                          <Image
+                            src={images.Replacement_Icon}
+                            width={30}
+                            height={30}
+                            alt="Replacement_Icon"
+                          />
+                        </span>
+                        <span>30 Days Replacement</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -940,11 +946,10 @@ const Product = ({ product, loading, error }) => {
           </div>
         )
       )}
-      {
-                    openEmoji && <EmojiModal EmojiModal={EmojiModal} setOpenEmoji={setOpenEmoji}/>
-                  }
+      {openEmoji && (
+        <EmojiModal EmojiModal={EmojiModal} setOpenEmoji={setOpenEmoji} />
+      )}
     </>
-
   )
 }
 
