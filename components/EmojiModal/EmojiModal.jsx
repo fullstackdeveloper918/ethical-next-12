@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { RxCross1 } from 'react-icons/rx'
 import Styles from './EmojiModal.module.css'
 
-const EmojiModal = () => {
+const EmojiModal = ({EmojiModal, setOpenEmoji}) => {
+
+
+
   return (
     <>
-      <div className={Styles.container}>
+      <div className={Styles.container_overlay}>
+        <div className={Styles.popup}>
         <div className={Styles.headingContainer}>
           <h2>Understanding Emoji Rating</h2>
-          <RxCross1 cursor="pointer" />
+          <RxCross1 cursor="pointer" onClick={() => setOpenEmoji(false)}/>
         </div>
         <div className={Styles.info}>
           <p>
@@ -55,6 +59,7 @@ const EmojiModal = () => {
             product's environmental stewardship, social compliance, or quality
             certifications.
           </p>
+        </div>
         </div>
       </div>
     </>

@@ -14,6 +14,7 @@ import {
 } from 'redux-setup/randomSlice'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
+import EmojiModal from '../EmojiModal/EmojiModal'
 
 const responsive = {
   superLargeDesktop: {
@@ -142,6 +143,8 @@ const Product = ({ product, loading, error }) => {
       }
     }
   }
+
+  
 
   useEffect(() => {
     if (product) {
@@ -420,7 +423,7 @@ const Product = ({ product, loading, error }) => {
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
                   <div className={Styles.detail_page_image_content}>
-                    {singleImage && (
+                    {/* {singleImage && (
                       <Image
                         src={singleImage}
                         width={400}
@@ -429,7 +432,7 @@ const Product = ({ product, loading, error }) => {
                         alt="Single_Product_Image"
                         className={Styles.product_image}
                       />
-                    )}
+                    )} */}
                   </div>
                   {imagesArray && imagesArray.length > 0 && (
                     <div>
@@ -478,7 +481,7 @@ const Product = ({ product, loading, error }) => {
                         ))}
                       </Carousel>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
 
@@ -503,6 +506,7 @@ const Product = ({ product, loading, error }) => {
                       )}
                   </h4>
 
+
                   {/* <div className={Styles.reviews}>
                     <div className={Styles.star_review}>
                       <span className={Styles.star_review_images}>
@@ -517,6 +521,10 @@ const Product = ({ product, loading, error }) => {
                     </span>
                   </div> */}
                   {/* </div> */}
+                </div>
+                <div className={Styles.reviews}>
+                  <h4>527 Reviews <Image src={images.Info_svg} width={20} height={20} alt='info icon' onClick={() => setOpenEmoji(true)}/></h4>
+                  
                 </div>
                 <div className={Styles.text_content}>
                   {product?.product_description?.length < 450 ? (
@@ -608,7 +616,7 @@ const Product = ({ product, loading, error }) => {
                     </div>
                   </div>
                 )}
-                {Object.keys(finalDecorationKeyVal).length > 0 && !isSample && (
+                {finalDecorationKeyVal && !isSample && (
                   <div className={Styles.customization_text}>
                     <div className={Styles.common_header}>
                       <p>Select Customization</p>
@@ -879,6 +887,8 @@ const Product = ({ product, loading, error }) => {
 
                   <p>Standard - 15 Business days</p>
                 </div>
+               
+                <div className={Styles.position_sticky}>
                 <div className={Styles.standard_down_line}></div>
                 <div className={Styles.price_section}>
                   <p>{`Price ${
@@ -923,13 +933,18 @@ const Product = ({ product, loading, error }) => {
                       <span>30 Days Replacement</span>
                     </div>
                   </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         )
       )}
+      {
+                    openEmoji && <EmojiModal EmojiModal={EmojiModal} setOpenEmoji={setOpenEmoji}/>
+                  }
     </>
+
   )
 }
 

@@ -7,6 +7,8 @@ import linkdin from '../../assets/footerPics/linkdin.svg'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import youtube from '../../assets/footerPics/youtube.svg'
 import Link from 'next/link'
+import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa6";
 import banks from '../../assets/footerPics/banks.svg'
 import {
   initialValuesNewLetter,
@@ -102,52 +104,31 @@ const Footer = () => {
 
             <div className={styles.social_links}>
               <a href="https://www.facebook.com/ethicalswag" target="_blank">
-                <div className="">
-                  <Image
-                    src={facebook}
-                    height={20}
-                    width={20}
-                    alt="certified corporation logo"
-                  />
-                </div>
+               
+                  <FaFacebookF />
+                
+                
               </a>
               <a
                 href="https://www.linkedin.com/company/ethical-swag/"
                 target="_blank"
               >
-                <div className="">
-                  <Image
-                    src={linkdin}
-                    height={20}
-                    width={20}
-                    alt="certified corporation logo"
-                  />
-                </div>
+             
+                
+                  <FaLinkedinIn />
+           
               </a>
               <a href="https://www.instagram.com/ethicalswag/" target="_blank">
-                <div className="">
-                  <Image
-                    src={instagram}
-                    height={20}
-                    width={20}
-                    alt="certified corporation logo"
-                  />
-                </div>
+                
+                 
+                  <FaInstagram />
+               
               </a>
               <a href="https://www.youtube.com/channel/UCLQe2_4Tf2k8BOsgM8bWOjA">
-                <div className="">
-                  <Image
-                    src={youtube}
-                    height={20}
-                    width={20}
-                    alt="certified corporation logo"
-                    onClick={() =>
-                      router.push(
-                        'https://www.youtube.com/channel/UCLQe2_4Tf2k8BOsgM8bWOjA'
-                      )
-                    }
-                  />
-                </div>
+               
+                
+                  <FaYoutube />
+                
               </a>
             </div>
           </div>
@@ -240,13 +221,15 @@ const Footer = () => {
             </div>
             <div className={styles.column_2}>
               <div className={styles.heading_footer_2}>Reach Out</div>
-              <Link className={styles.footer_li}
-                href={`info@ethicalswag.com`}
+              <div  className={styles.footer_li}>
+              <Link
+               href='mailto:info+swagpackca@ethicalswag.com'
                 target="_blank"
                 style={{ textTransform: 'lowercase' }}
               >
                 info@ethicalswag.com
               </Link>
+              </div>
               <div  className={styles.footer_li}>1-877-206-6998</div>
               <div  className={styles.footer_li}>1-902-500-1086</div>
             </div>
