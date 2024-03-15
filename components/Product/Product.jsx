@@ -68,7 +68,7 @@ const Product = ({ product, loading, error }) => {
   const [actualMinQty, setActualMinQty] = useState(0)
   const [isItemInCart, setIsItemInCart] = useState(false)
   const [imagesArray, setImagesArray] = useState([])
-  const [singleImage, setSingleImage] = useState(imagesArray[0])
+  const [singleImage, setSingleImage] = useState('')
   const [nameOfDecorations, setNameOfDecorations] = useState([])
   const [sizeNotSure, setSizeNotSure] = useState(true)
   const [isSample, setIsSample] = useState(false)
@@ -318,7 +318,7 @@ const Product = ({ product, loading, error }) => {
     setSingleImage(item)
   }
   useEffect(() => {
-    if (imagesArray.length > 0) {
+    if (imagesArray && imagesArray.length > 0) {
       setSingleImage(imagesArray[0])
     }
   }, [imagesArray])
@@ -441,7 +441,7 @@ const Product = ({ product, loading, error }) => {
                       />
                     )}
                   </div>
-                  {imagesArray.length > 0 && (
+                  {imagesArray && imagesArray.length > 0 && (
                     <div>
                       <Carousel
                         swipeable={false}

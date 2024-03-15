@@ -49,8 +49,6 @@ const index = () => {
     }
   }, [countryTosend, swiftSwag, currentPage, productCategoryId, collectionId])
 
-  console.log(collectionId, 'collectionIdcollectionId')
-
   useEffect(() => {
     if (url) {
       getProducts()
