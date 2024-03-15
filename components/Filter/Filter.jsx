@@ -6,7 +6,7 @@ import FilterPanel from '../FilterPanel/FilterPanel'
 import images from '../../constants/images'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchState, setSelectedOptionValue } from 'redux-setup/cartSlice'
-import { setActiveFilters } from 'redux-setup/categorySlice'
+import { setActiveFilters, setCollectionId } from 'redux-setup/categorySlice'
 
 const Filter = ({ activeFilter, setActiveFilter }) => {
   const [scrolled, setScrolled] = useState(false)
@@ -51,13 +51,14 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
     dispatch(setSearchState(''))
   }, [])
 
-  const handleAddLists = (text) => {
-    if (filtersState.includes(text?.apikey)) {
-      let f = filtersState.filter((item) => item !== text?.apikey)
-      setFiltersState(f)
-    } else {
-      setFiltersState((prevC) => [...prevC, text?.apikey])
-    }
+  const handleAddLists = (key) => {
+    dispatch(setCollectionId(key))
+    // if (filtersState.includes(text?.apikey)) {
+    //   let f = filtersState.filter((item) => item !== text?.apikey)
+    //   setFiltersState(f)
+    // } else {
+    //   setFiltersState((prevC) => [...prevC, text?.apikey])
+    // }
   }
 
   useEffect(() => {
@@ -95,21 +96,22 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
               optimizedFn(searchState)
             }}
           /> */}
-          {subCategoryOnTop?.length > 0 &&
-            subCategoryOnTop.map((item) => (
-              <p onClick={() => handleAddLists(item)}>
-                {JSON.parse(item.label)}
-              </p>
-            ))}
+
+          {Object.keys(subCategoryOnTop).length > 0 &&
+            Object.entries(subCategoryOnTop)
+              .slice(0, 7)
+              .map(([key, value]) => (
+                <p onClick={() => handleAddLists(key)}>{JSON.parse(value)}</p>
+              ))}
         </div>
-        {/* <div className={Styles.filter_select}>
+        <div className={Styles.filter_select}>
           <div>
             <select
               name=""
               id=""
               className={Styles.Select_inputs}
               value={selectedOptionValue}
-              onChange={handleSelectChange}
+              // onChange={handleSelectChange}
             >
               <option defaultValue value="">
                 Select an Option
@@ -122,7 +124,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
               <option value="created_at_desc">Date, new to old </option>
             </select>
           </div>
-        </div> */}
+        </div>
       </div>
       <div className={Styles.filter_panel_wrap}>
         {activeFilter && <FilterPanel setActiveFilter={setActiveFilter} />}

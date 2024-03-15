@@ -15,7 +15,6 @@ import { BsFillBoxFill } from 'react-icons/bs'
 import { CiUser } from 'react-icons/ci'
 import { IoKeyOutline } from 'react-icons/io5'
 import { useEffect } from 'react'
-import { setSubCategoryOnTop } from 'redux-setup/categorySlice'
 import { useDispatch } from 'react-redux'
 import Usa from '../assets/headerPics/use_flag.svg'
 import Canada from '../assets/headerPics/canada-flag.svg'
@@ -37,9 +36,7 @@ export const LIST = (subCategories) => {
   }
 
   // dispatch(setSubCategoryOnTop(worthy))
-  useEffect(() => {
-    dispatch(setSubCategoryOnTop(worthy))
-  }, [])
+
   let categoryList = [
     {
       id: 1,

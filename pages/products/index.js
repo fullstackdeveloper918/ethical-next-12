@@ -20,6 +20,7 @@ const index = () => {
   const productCategoryId = useSelector(
     (state) => state.category.productCategoryId
   )
+  const collectionId = useSelector((state) => state.category.collectionId)
   //   //   console.log(router.asPath.includes('232'), 'pllll')
   //   `https://test.cybersify.tech/Eswag/public/api/products?page=${
   //             currentPage ? currentPage : 1
@@ -37,14 +38,18 @@ const index = () => {
 
   useEffect(() => {
     if (countryTosend && productCategoryId) {
-      const route = `/products?product_catogries=${productCategoryId}&page=${
+      const route = `/products?product_catogries=${productCategoryId}${
+        collectionId ? `&collection_ids=${collectionId}` : ''
+      }&page=${
         currentPage ? currentPage : 1
       }&pageSize=${10}&${countryTosend}=1&swift_tag=${
         swiftSwag !== `flexible` ? 1 : 0
       }`
       setUrl(route)
     }
-  }, [countryTosend, swiftSwag, currentPage, productCategoryId])
+  }, [countryTosend, swiftSwag, currentPage, productCategoryId, collectionId])
+
+  console.log(collectionId, 'collectionIdcollectionId')
 
   useEffect(() => {
     if (url) {

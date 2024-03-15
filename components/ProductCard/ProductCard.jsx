@@ -26,7 +26,6 @@ const ProductCard = ({ item, fromSingleProduct }) => {
   const wishListItems = useSelector((state) => state.wishlist.items)
   const favoriteIconColor = useSelector((state) => state.wishlist.favoriteIcon)
 
-  console.log(favoriteIconColor, 'faviconcolor')
   useEffect(() => {
     setSingleImage(item?.image)
   }, [])

@@ -31,6 +31,7 @@ import {
   getAllCategories,
   setProductCategoryId,
   setSubCategories,
+  setSubCategoryOnTop,
 } from 'redux-setup/categorySlice'
 import { countries } from 'constants/data'
 
@@ -154,17 +155,21 @@ const SecondaryHeader = () => {
   }, [inputbtn])
 
   const handleSetSubCategory = (item) => {
+    dispatch(setSubCategoryOnTop(allCategories[item]?.matchingValues))
     dispatch(setSubCategories(allCategories[item]?.matchingValues))
     dispatch(setProductCategoryId(allCategories[item].airtabelId))
     router.pathname !== '/products' && router.push('/products')
   }
   useEffect(() => {
-    if (allCategories) {
+    if (Object.keys(allCategories).length > 0) {
       if (!productCategoryId) {
         dispatch(setProductCategoryId(allCategories.Bags.airtabelId))
       }
     }
   }, [allCategories])
+
+  console.log(allCategories, 'allCategoriesallCategories')
+
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
