@@ -159,10 +159,12 @@ const SecondaryHeader = () => {
     router.pathname !== '/products' && router.push('/products')
   }
   useEffect(() => {
-    if (!productCategoryId) {
-      dispatch(setProductCategoryId(allCategories.Bags.airtabelId))
+    if (allCategories) {
+      if (!productCategoryId) {
+        dispatch(setProductCategoryId(allCategories.Bags.airtabelId))
+      }
     }
-  }, [])
+  }, [allCategories])
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
