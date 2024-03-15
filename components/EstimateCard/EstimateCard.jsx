@@ -12,7 +12,6 @@ import {
   setStep2State,
   setOrderPlaced,
 } from '../../redux-setup/cartSlice'
-import { setEstimate } from '../../redux-setup/submitEstimateSlice'
 import useFetch from '../../lib/useFetch'
 import { PDFViewer, pdf } from '@react-pdf/renderer'
 import Card from '@components/dummy/Card'
@@ -33,7 +32,6 @@ const EstimateCard = () => {
   }
 
   let data = [step1State, step2State, cartItems].flat()
-  console.log(data, 'hello paaji')
   const [loadQuery, { response, loading, error }] = useFetch(
     `/bulkestimate/${userId}`,
     {
@@ -58,7 +56,6 @@ const EstimateCard = () => {
       console.log(response, 'response')
       toast.success('Your request has been submmitted successfully')
       dispatch(deleteAllCartItems())
-      dispatch(setEstimate(response?.data))
       router.push('/thank-you')
     }
   }, [response])
