@@ -11,6 +11,7 @@ import { setActiveFilters, setCollectionId } from 'redux-setup/categorySlice'
 const Filter = ({ activeFilter, setActiveFilter }) => {
   const [scrolled, setScrolled] = useState(false)
   const dispatch = useDispatch()
+  const [active, setActive] = useState('')
   const [filtersState, setFiltersState] = useState([])
 
   const searchState = useSelector((state) => state.cart.searchState)
@@ -51,7 +52,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
     dispatch(setSearchState(''))
   }, [])
 
-  const handleAddLists = (key) => {
+  const handleAddLists = (key, value) => {
     dispatch(setCollectionId(key))
     // if (filtersState.includes(text?.apikey)) {
     //   let f = filtersState.filter((item) => item !== text?.apikey)
@@ -59,6 +60,8 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
     // } else {
     //   setFiltersState((prevC) => [...prevC, text?.apikey])
     // }
+
+    setActive(value)
   }
 
   useEffect(() => {
@@ -87,7 +90,14 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
             Object.entries(subCategoryOnTop)
               .slice(0, 7)
               .map(([key, value]) => (
-                <p onClick={() => handleAddLists(key)}>{JSON.parse(value)}</p>
+                <p
+                  style={{
+                    borderBottom: value === active ? '2px solid #a2d061' : '',
+                  }}
+                  onClick={() => handleAddLists(key, value)}
+                >
+                  {JSON.parse(value)}
+                </p>
               ))}
         </div>
         {/* <div className={Styles.filter_select}>
