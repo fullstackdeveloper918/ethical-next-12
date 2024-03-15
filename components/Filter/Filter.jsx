@@ -83,20 +83,6 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
           <span>Filter</span>
         </button>
         <div className={Styles.filter_input}>
-          {/* {subCategoryData &&
-            subCategoryData.map((item) => (
-              <>{console.log(item, 'itemhello')}</>
-            ))} */}
-          {/* <input
-            type="text"
-            value={searchState}
-            onChange={(e) => {
-              e.preventDefault()
-              dispatch(setSearchState(e.target.value))
-              optimizedFn(searchState)
-            }}
-          /> */}
-
           {Object.keys(subCategoryOnTop).length > 0 &&
             Object.entries(subCategoryOnTop)
               .slice(0, 7)
@@ -104,7 +90,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
                 <p onClick={() => handleAddLists(key)}>{JSON.parse(value)}</p>
               ))}
         </div>
-        <div className={Styles.filter_select}>
+        {/* <div className={Styles.filter_select}>
           <div>
             <select
               name=""
@@ -124,7 +110,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
               <option value="created_at_desc">Date, new to old </option>
             </select>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={Styles.filter_panel_wrap}>
         {activeFilter && <FilterPanel setActiveFilter={setActiveFilter} />}

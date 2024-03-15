@@ -170,8 +170,6 @@ const SecondaryHeader = () => {
     }
   }, [allCategories])
 
-  console.log(allCategories, 'allCategoriesallCategories')
-
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
