@@ -66,6 +66,11 @@ const FilterPanel = ({ setActiveFilter }) => {
 
   return (
     <>
+     <div className={Styles.filter_topwrapper}>
+              <h3>You’re viewing Swift Swag only products.</h3>
+              <button>view all product intstead?</button>
+             </div>
+             
       <div className={Styles.filterPanel}>
         <div className={Styles.filterPanel_top}>
           {/* <h4
@@ -76,7 +81,10 @@ const FilterPanel = ({ setActiveFilter }) => {
             Clear All
           </h4> */}
         </div>
+       
         <div className={Styles.filterPanel_ProductCollection_list}>
+             
+
           {LIST().map((item, index) => (
             <>
               <div className={Styles.accordion}>

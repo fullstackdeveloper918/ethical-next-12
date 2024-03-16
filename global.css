@@ -413,3 +413,48 @@ button:active {
   outline: 0 !important;
   box-shadow: 0 !important;
 }
+
+
+/* celender */
+.react-calendar {
+  width: 100% !important;
+  max-width: 543px !important;
+  margin: 0 auto !important;
+  border-radius: 30px !important;
+  padding: 20px !important;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif !important;
+}
+.react-calendar__navigation {
+  gap: 7px;
+  font-weight: 600;
+  font-size: 20px !important;
+  color: #828282 !important;
+}
+.react-calendar__month-view__weekdays {
+  border-top: 1px solid #BDBDBD;
+  padding-top: 20px;
+}
+.react-calendar__month-view__days button {
+  background: transparent !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  font-family: 'Poppins' !important;
+  padding: 20px 10px !important;
+  border: 1px solid transparent !important;
+  transition: .2s all;
+}
+.react-calendar__viewContainer button:hover {
+  border-radius: 30px !important;
+  border: 1px solid #A2D061 !important;
+}
+.react-calendar__viewContainer .react-calendar__tile:disabled:hover{
+  border: 1px solid transparent !important;
+}
+
+@media (max-width:767px){
+  .react-calendar__month-view__days button {
+    font-size: 15px !important;
+    padding: 20px 3px !important;
+    transition: .2s all;
+}
+}

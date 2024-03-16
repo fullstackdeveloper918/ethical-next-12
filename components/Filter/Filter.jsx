@@ -92,15 +92,15 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
               .map(([key, value]) => (
                 <p
                   style={{
-                    borderBottom: value === active ? '2px solid #a2d061' : '',
+                    borderBottom: value.label === active ? '2px solid #A2D061' : '',
                   }}
-                  onClick={() => handleAddLists(key, value)}
+                  onClick={() => handleAddLists(key, value.label)}
                 >
-                  {JSON.parse(value)}
+                  {value ? JSON.parse(value.label) : ' '}
                 </p>
               ))}
         </div>
-        {/* <div className={Styles.filter_select}>
+        <div className={Styles.filter_select}>
           <div>
             <select
               name=""
@@ -120,7 +120,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
               <option value="created_at_desc">Date, new to old </option>
             </select>
           </div>
-        </div> */}
+        </div>
       </div>
       <div className={Styles.filter_panel_wrap}>
         {activeFilter && <FilterPanel setActiveFilter={setActiveFilter} />}

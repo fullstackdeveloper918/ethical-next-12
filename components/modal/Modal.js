@@ -53,18 +53,36 @@ const Modal = () => {
             </span>
             <div
               style={{
-                display: 'flex',
-                gap: '30px',
+                // display: 'flex',
+                // gap: '30px',
               }}
               className={Style.flex_calender}
             >
+              
               {isOpenCalender && (
                 <div className={Style.Calendar_wrapper}>
+                  <h3>Please select your requested delivery date</h3>
                   <Calendar
                     onChange={onChange}
                     value={value}
                     minDate={minDate}
                   />
+                  <p>*Swift Swag we can produce and deliver your order in 10 business days!</p>
+                  <div className={Style.label_field}>
+                    <button
+                      type="button"
+                    
+                      className={Style.Popup_btncalender}
+                    >
+                    Cancel
+                    </button>
+                    <button
+                      type="button"
+                    
+                      className={Style.Popup_btncalenderTwo}
+                    >
+                     Continue
+                    </button></div>
                 </div>
               )}
               <div
@@ -77,21 +95,30 @@ const Modal = () => {
               >
                 {!isOpenCalender && (
                   <>
-                    <h2>When do you want this order delivered?</h2>
+                    <h2>Do you have a strict deadline for delivery?</h2>
+                    <p>Swift Swag is our new service designed to serve your Swag needs with quick delivery! The production time for a Bulk Order is on average 20 business days, but with Swift Swag we can produce and deliver your order in 10 business days!</p>
                     <div className={Style.label_field}>
                       <div>
-                        <input
+                        {/* <input
                           type="radio"
                           value="within10Days"
                           checked={selectedOption === 'within10Days'}
                           onChange={(event) =>
                             setSelectedOption(event.target.value)
                           }
-                        />
-                        <label>I need my order in a hurry (10-20 days)</label>
+                        /> */}
+                        
+                        <button
+                      type="button"
+                    
+                      className={Style.Popup_btnone}
+                    >
+                     No, I have flexible with timeline
+                    </button>
+                        {/* <label>I need my order in a hurry (10-20 days)</label> */}
                       </div>
                       <div>
-                        <input
+                        {/* <input
                           type="radio"
                           value="flexible"
                           checked={selectedOption === 'flexible'}
@@ -99,16 +126,25 @@ const Modal = () => {
                             setSelectedOption(event.target.value)
                           }
                         />
-                        <label>I'm flexible with my order delivery date.</label>
+                        <label>I'm flexible with my order delivery date.</label> */}
+                      
+                        <button
+                      type="button"
+                      className={Style.Popup_btntwo}
+                      
+                    >
+                     Yes I have tight timeline
+                    </button>
+
                       </div>
                     </div>
-                    <button
+                    {/* <button
                       type="button"
                       onClick={handleSubmit}
                       className={Style.submit_btn}
                     >
                       submit
-                    </button>
+                    </button> */}
                   </>
                 )}
               </div>
