@@ -53,22 +53,21 @@ const SecondaryHeader = () => {
   const [openLinks, setOpenLinks] = useState(false)
   const [inputbtn, setInputBtn] = useState(false)
   const [country, setCountry] = useState('usa')
+  const [screenSize, setScreenSize] = useState(992)
+  const [showOnMobile, setShowOnMobile] = useState(false)
+  const [suggestions, setSuggestions] = useState([])
+
   const [countryTosend, setCountryToSend] = useState('usa')
   const [currentPage, setCurrentPage] = useState(1)
   const [url, setUrl] = useState('')
   const [urlAbove, setUrlAbove] = useState()
-  const wishlistItems = useSelector((state) => state.wishlist.items)
-  const [screenSize, setScreenSize] = useState(992)
-  const [showOnMobile, setShowOnMobile] = useState(false)
-  const [suggestions, setSuggestions] = useState([])
-  const countryFromRedux = useSelector((state) => state.country.country)
 
+  const wishlistItems = useSelector((state) => state.wishlist.items)
+  const countryFromRedux = useSelector((state) => state.country.country)
   const cartItems = useSelector((state) => state.cart.cartItems.length)
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
   const allCategories = useSelector((state) => state.category.allCategories)
-  const subCategories = useSelector((state) => state.category.subCategories)
-  const productCategory = useSelector((state) => state.category.productCategory)
   const productCategoryId = useSelector(
     (state) => state.category.productCategoryId
   )
@@ -79,7 +78,6 @@ const SecondaryHeader = () => {
     (state) => state.category.subCollectionForUrl
   )
   const collectionId = useSelector((state) => state.category.collectionId)
-
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
 
   useEffect(() => {
@@ -111,7 +109,7 @@ const SecondaryHeader = () => {
       : ''
 
     setUrlAbove(urls)
-  }, [url])
+  }, [collectionForUrl, subCollectionForUrl])
 
   useEffect(() => {
     if (url) {
@@ -143,7 +141,8 @@ const SecondaryHeader = () => {
     router.asPath.includes('/cart') ||
     router.asPath.includes('/shipping') ||
     router.asPath.includes('/billing-address') ||
-    router.asPath.includes('/products')
+    router.asPath.includes('/products') ||
+    router.asPath.includes('/category')
 
   const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
     `/products?q=${searchProduct}`,
@@ -232,7 +231,7 @@ const SecondaryHeader = () => {
     dispatch(setCollectionId(null))
     dispatch(setCollectionForUrl(item))
     dispatch(setSubCollectionForUrl(null))
-    router.pathname !== '/products' && router.push('/products')
+    router.push(`/category/${item}`)
   }
   useEffect(() => {
     if (Object.keys(allCategories).length > 0) {
@@ -241,10 +240,6 @@ const SecondaryHeader = () => {
       }
     }
   }, [allCategories])
-
-  useEffect(() => {
-    router.push('/category/ytn')
-  }, [])
 
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
