@@ -15,10 +15,14 @@ const index = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [countryTosend, setCountryToSend] = useState('usa')
   const [url, setUrl] = useState('')
+  const [urlAbove, setUrlAbove] = useState()
   const country = useSelector((state) => state.country.country)
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
   const productCategoryId = useSelector(
     (state) => state.category.productCategoryId
+  )
+  const collectionForUrl = useSelector(
+    (state) => state.category.collectionForUrl
   )
   const collectionId = useSelector((state) => state.category.collectionId)
   //   //   console.log(router.asPath.includes('232'), 'pllll')
@@ -48,6 +52,12 @@ const index = () => {
       setUrl(route)
     }
   }, [countryTosend, swiftSwag, currentPage, productCategoryId, collectionId])
+
+  useEffect(() => {
+    const urls = collectionForUrl ? `/collections/${collectionForUrl}` : ''
+    setUrlAbove(urls)
+  }, [url])
+  console.log(urlAbove, 'uuuuuuuu')
 
   useEffect(() => {
     if (url) {

@@ -9,6 +9,8 @@ const initialState = {
   subCategoryOnTop: [],
   productCategoryId: '',
   collectionId: null,
+  collectionForUrl: '',
+  subCollectionForUrl: '',
 }
 
 const categorySlice = createSlice({
@@ -42,6 +44,12 @@ const categorySlice = createSlice({
     setCollectionId: (state, action) => {
       state.collectionId = action.payload
     },
+    setCollectionForUrl: (state, action) => {
+      state.collectionForUrl = action.payload
+    },
+    setSubCollectionForUrl: (state, action) => {
+      state.subCollectionForUrl = action.payload
+    },
   },
 })
 
@@ -55,6 +63,8 @@ export const {
   setSubCategoryOnTop,
   setProductCategoryId,
   setCollectionId,
+  setCollectionForUrl,
+  setSubCollectionForUrl,
 } = categorySlice.actions
 
 export default categorySlice.reducer

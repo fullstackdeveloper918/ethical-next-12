@@ -23,7 +23,6 @@ const Modal = () => {
   }
 
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
-  console.log(swiftSwag, 'swiftSwagswiftSwag')
   useEffect(() => {
     if (swiftSwag === '') {
       setIsOpenModal(true)
@@ -82,8 +81,8 @@ const Modal = () => {
                           type="button"
                           className={Style.Popup_btntwo}
                           onClick={() => {
-                            setSelectedOption('within10Days');
-                            setIsOpenCalender(true);
+                            setSelectedOption('within10Days')
+                            setIsOpenCalender(true)
                           }}
                         >
                           Yes I have tight timeline

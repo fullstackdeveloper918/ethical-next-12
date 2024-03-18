@@ -33,6 +33,8 @@ import {
   setProductCategoryId,
   setSubCategories,
   setSubCategoryOnTop,
+  setCollectionForUrl,
+  setSubCollectionForUrl,
 } from 'redux-setup/categorySlice'
 import { countries } from 'constants/data'
 
@@ -160,6 +162,8 @@ const SecondaryHeader = () => {
     dispatch(setSubCategories(allCategories[item]?.matchingValues))
     dispatch(setProductCategoryId(allCategories[item].airtabelId))
     dispatch(setCollectionId(null))
+    dispatch(setCollectionForUrl(item))
+    // dispatch(setSubCollectionForUrl(null))
     router.pathname !== '/products' && router.push('/products')
   }
   useEffect(() => {
