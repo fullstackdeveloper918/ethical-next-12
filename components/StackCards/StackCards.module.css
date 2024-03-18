@@ -273,7 +273,7 @@
 }
 @media screen and (max-width: 676px) {
   .text ul li:nth-child(1) {
-    right: -30px;
+    right: 80px;
   }
   .text ul li:nth-child(2) {
     left: 175px;
@@ -329,21 +329,21 @@
   }
 } */
 
- @media screen and (max-width: 490px) {
+ /* @media screen and (max-width: 490px) {
    .text ul li:nth-child(1) {
     right: -70px;
   }
  .text ul li:nth-child(2) {
-    left: 85px;
+    left: 77px;
   }
   .text ul li:nth-child(3) {
-    left: 58px;
+    left: 51px;
   }
   .text ul li:nth-child(4) {
-   left: 38px;
+   left: 23px;
   }
   .text ul li:nth-child(5) {
-    left: 18px;
+    left: -2px;
   }
   .text ul li:nth-child(1) .list_explore,
   .text ul li:nth-child(1) .list_explore img {
@@ -352,13 +352,13 @@
   }
   .text ul li:nth-child(2) .list_explore,
   .text ul li:nth-child(2) .list_explore img {
-    width: 130px !important;
-    height: 280px !important;
+    width: 180px !important;
+    height: 330px !important;
   }
   .text ul li:nth-child(3) .list_explore,
   .text ul li:nth-child(3) .list_explore img {
-    width: 200px !important;
-    height: 230px !important;
+    width: 230px !important;
+    height: 310px !important;
   }
   .text ul li:nth-child(4) .list_explore,
   .text ul li:nth-child(4) .list_explore img {
@@ -367,12 +367,12 @@
   }
   .text ul li:nth-child(5) .list_explore,
   .text ul li:nth-child(5) .list_explore img {
-    width: 150px !important;
-    height: 140px !important;
+    width: 240px !important;
+    height: 290px !important;
   }
   .text ul {
-    height: 360px;
-    width: 540px;
+    height: 370px;
+    width: 520px;
   }
   .text ul li:nth-child(2) .bottom_content h2,
   .text ul li:nth-child(3) .bottom_content h2,
@@ -388,7 +388,7 @@
   .text ul {
     margin-bottom:0px;
   }
-}
+} */
 
 @media (min-width:1400px){
   .text ul {
@@ -437,4 +437,133 @@
   left: 46px;
   z-index: 1;
 }
+}
+
+@media (max-width:576px){
+  .text ul {
+    width: 530px;
+    height: 490px;
+  }
+  .text ul li:nth-child(1) {
+    right: -60px;
+  }
+  .text ul li:nth-child(4) {
+    left: 25px;
+  }
+  .text ul li:nth-child(5) {
+    left: 0;
+  }
+  .text ul li:nth-child(4) .list_explore, .text ul li:nth-child(4) .list_explore img {
+    width: 200px !important;
+    height: 410px !important;
+  }
+  .text ul li:nth-child(5) .list_explore, .text ul li:nth-child(5) .list_explore img {
+    width: 180px !important;
+    height: 350px !important;
+  }
+  .text ul li:nth-child(3) .list_explore, .text ul li:nth-child(3) .list_explore img {
+    width: 250px !important;
+    height: 430px !important;
+  }
+  .text ul li:nth-child(2) .list_explore, .text ul li:nth-child(2) .list_explore img {
+    width: 260px !important;
+    height: 450px !important;
+  }
+  .text ul li:nth-child(2) {
+    left: 85px;
+  }
+  .text ul li:nth-child(1) {
+    right: 35px;
+  }
+  .text ul li:nth-child(3) {
+    left: 51px;
+  }
+  .text ul li:nth-child(1) .list_explore, .text ul li:nth-child(1) .list_explore img {
+    width: 300px !important;
+    height: 470px !important;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  .text ul {
+    margin: 0;
+    height: 380px; 
+   }
+}
+@media screen and (max-width: 430px) {
+  .text ul li:nth-child(1) .list_explore, .text ul li:nth-child(1) .list_explore img {
+    width: 250px !important;
+    height: 390px !important;
+  }
+  .text ul li:nth-child(2) .list_explore, .text ul li:nth-child(2) .list_explore img {
+    width: 190px !important;
+    height: 360px !important;
+  }
+  .text ul li:nth-child(3) .list_explore, .text ul li:nth-child(3) .list_explore img {
+    width: 230px !important;
+    height: 330px !important;
+  }
+  .text ul li:nth-child(4) .list_explore, .text ul li:nth-child(4) .list_explore img {
+       width: 200px !important;
+       height: 290px !important;
+  }
+  .text ul li:nth-child(5) .list_explore, .text ul li:nth-child(5) .list_explore img {
+    width: 180px !important;
+    height: 240px !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .text ul li:nth-child(1) .list_explore, .text ul li:nth-child(1) .list_explore img {
+    width: 250px !important;
+    height: 350px !important;
+  }
+ 
+  .text ul li:nth-child(2) .list_explore, .text ul li:nth-child(2) .list_explore img {
+    height: 320px !important;
+  }
+  .text ul li:nth-child(3) .list_explore, .text ul li:nth-child(3) .list_explore img {
+    height: 270px !important;
+  }
+  .text ul li:nth-child(4) .list_explore, .text ul li:nth-child(4) .list_explore img {
+    height: 220px !important;
+  }
+  .text ul li:nth-child(5) .list_explore, .text ul li:nth-child(5) .list_explore img {
+    height: 160px !important;
+  }
+  .text ul li:nth-child(1) {
+    right: 70px;
+  }
+  .text ul li:nth-child(2) {
+    left: 60px
+  }
+  .text ul li:nth-child(3) {
+    left: 38px
+  }
+  .text ul li:nth-child(4) {
+    left: 18px
+  }
+}
+@media screen and (max-width: 340px) {
+  .text ul li:nth-child(1) .list_explore, .text ul li:nth-child(1) .list_explore img {
+    width: 215px !important;
+    height: 310px !important;
+  }
+  .text ul li:nth-child(2) .list_explore, .text ul li:nth-child(2) .list_explore img {
+    height: 280px !important;
+  }
+  .text ul li:nth-child(3) .list_explore, .text ul li:nth-child(3) .list_explore img {
+    height: 235px !important;
+  }
+  .text ul li:nth-child(4) .list_explore, .text ul li:nth-child(4) .list_explore img {
+    height: 195px !important;
+  }
+  .text ul li:nth-child(5) .list_explore, .text ul li:nth-child(5) .list_explore img {
+    height: 150px !important;
+  }
+  .text ul {
+    height: 300px; 
+   }
+
 }
