@@ -11,6 +11,7 @@ import { setActiveFilters, setCollectionId } from 'redux-setup/categorySlice'
 const Filter = ({ activeFilter, setActiveFilter }) => {
   const [scrolled, setScrolled] = useState(false)
   const dispatch = useDispatch()
+  const [active, setActive] = useState('')
   const [filtersState, setFiltersState] = useState([])
 
   const searchState = useSelector((state) => state.cart.searchState)
@@ -51,7 +52,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
     dispatch(setSearchState(''))
   }, [])
 
-  const handleAddLists = (key) => {
+  const handleAddLists = (key, value) => {
     dispatch(setCollectionId(key))
     // if (filtersState.includes(text?.apikey)) {
     //   let f = filtersState.filter((item) => item !== text?.apikey)
@@ -59,6 +60,8 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
     // } else {
     //   setFiltersState((prevC) => [...prevC, text?.apikey])
     // }
+
+    setActive(value)
   }
 
   useEffect(() => {
@@ -87,10 +90,17 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
             Object.entries(subCategoryOnTop)
               .slice(0, 7)
               .map(([key, value]) => (
-                <p onClick={() => handleAddLists(key)}>{JSON.parse(value)}</p>
+                <p
+                  style={{
+                    borderBottom: value.label === active ? '2px solid #A2D061' : '',
+                  }}
+                  onClick={() => handleAddLists(key, value.label)}
+                >
+                  {value ? JSON.parse(value.label) : ' '}
+                </p>
               ))}
         </div>
-        {/* <div className={Styles.filter_select}>
+        <div className={Styles.filter_select}>
           <div>
             <select
               name=""
@@ -110,7 +120,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
               <option value="created_at_desc">Date, new to old </option>
             </select>
           </div>
-        </div> */}
+        </div>
       </div>
       <div className={Styles.filter_panel_wrap}>
         {activeFilter && <FilterPanel setActiveFilter={setActiveFilter} />}
