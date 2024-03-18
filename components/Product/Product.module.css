@@ -589,7 +589,7 @@
   margin-bottom: 30px;
   display: flex;
   gap:50px;
-  align-content: center;
+  align-items: center;
 }
 
 
@@ -601,7 +601,7 @@
   font-style: normal;
   font-weight: 600;
   line-height: 16px; /* 100% */
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .customization_text p {
@@ -871,7 +871,6 @@ p.fw400 {
   .select_color_section p {
     font-size: 18px;
     line-height: 18px;
-    margin-bottom: 20px;
   }
   .custom_checkbox label:before {
     left: 0;
