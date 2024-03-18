@@ -90,16 +90,16 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
             Object.entries(subCategoryOnTop)
               .slice(0, 7)
               .map(([key, value]) => (
-                <p
-                  style={{
-                    borderBottom:
-                      value.label === active ? '2px solid #A2D061' : '',
-                  }}
-                  onClick={() => handleAddLists(key, value.label)}
-                >
-                  {value.label ? JSON.parse(value.label) : ' '}
-                </p>
-              ))}
+                                  <p
+                    style={{
+                      borderBottom:
+                        value.label === active ? '2px solid #A2D061' : '',
+                    }}
+                    onClick={() => handleAddLists(key, value)}
+                  >
+                    {value ? JSON.parse(value) : ' '}
+                  </p>
+                              ))}
         </div>
         <div className={Styles.filter_select}>
           <div>
