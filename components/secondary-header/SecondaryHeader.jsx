@@ -163,7 +163,7 @@ const SecondaryHeader = () => {
     dispatch(setProductCategoryId(allCategories[item].airtabelId))
     dispatch(setCollectionId(null))
     dispatch(setCollectionForUrl(item))
-    // dispatch(setSubCollectionForUrl(null))
+    dispatch(setSubCollectionForUrl(null))
     router.pathname !== '/products' && router.push('/products')
   }
   useEffect(() => {

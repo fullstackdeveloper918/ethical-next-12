@@ -34,15 +34,15 @@ const register = () => {
 
   useEffect(() => {
     if (response) {
-      localStorage.setItem('token_swag', response?.data?.accessToken)
-      localStorage.setItem('userId', response?.data?.id)
+      // localStorage.setItem('token_swag', response?.data?.accessToken)
+      // localStorage.setItem('userId', response?.data?.id)
 
-      dispatch(setuserId(response?.data?.id))
+      // dispatch(setuserId(response?.data?.id))
 
       //   dispatch(setRole(response?.data?.role))
       toast.success(response?.message)
 
-      router.push('/')
+      router.push('/login')
     }
     if (error) {
       toast.error(error?.error?.email[0])
@@ -50,7 +50,6 @@ const register = () => {
   }, [response, error])
 
   const onSubmit = async (values) => {
-    console.log(values, 'helo values')
     try {
       let formData = new FormData()
       formData.append('name', values.name)

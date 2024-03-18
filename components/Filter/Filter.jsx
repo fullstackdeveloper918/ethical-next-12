@@ -6,7 +6,11 @@ import FilterPanel from '../FilterPanel/FilterPanel'
 import images from '../../constants/images'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchState, setSelectedOptionValue } from 'redux-setup/cartSlice'
-import { setActiveFilters, setCollectionId } from 'redux-setup/categorySlice'
+import {
+  setActiveFilters,
+  setCollectionId,
+  setSubCollectionForUrl,
+} from 'redux-setup/categorySlice'
 
 const Filter = ({ activeFilter, setActiveFilter }) => {
   const [scrolled, setScrolled] = useState(false)
@@ -54,6 +58,8 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
 
   const handleAddLists = (key, value) => {
     dispatch(setCollectionId(key))
+    dispatch(setSubCollectionForUrl(JSON.parse(value)))
+
     // if (filtersState.includes(text?.apikey)) {
     //   let f = filtersState.filter((item) => item !== text?.apikey)
     //   setFiltersState(f)
@@ -90,16 +96,16 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
             Object.entries(subCategoryOnTop)
               .slice(0, 7)
               .map(([key, value]) => (
-                                  <p
-                    style={{
-                      borderBottom:
-                        value.label === active ? '2px solid #A2D061' : '',
-                    }}
-                    onClick={() => handleAddLists(key, value)}
-                  >
-                    {value ? JSON.parse(value) : ' '}
-                  </p>
-                              ))}
+                <p
+                  style={{
+                    borderBottom:
+                      value.label === active ? '2px solid #A2D061' : '',
+                  }}
+                  onClick={() => handleAddLists(key, value)}
+                >
+                  {value ? JSON.parse(value) : ' '}
+                </p>
+              ))}
         </div>
         <div className={Styles.filter_select}>
           <div>

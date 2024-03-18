@@ -24,6 +24,9 @@ const index = () => {
   const collectionForUrl = useSelector(
     (state) => state.category.collectionForUrl
   )
+  const subCollectionForUrl = useSelector(
+    (state) => state.category.subCollectionForUrl
+  )
   const collectionId = useSelector((state) => state.category.collectionId)
   //   //   console.log(router.asPath.includes('232'), 'pllll')
   //   `https://test.cybersify.tech/Eswag/public/api/products?page=${
@@ -54,7 +57,12 @@ const index = () => {
   }, [countryTosend, swiftSwag, currentPage, productCategoryId, collectionId])
 
   useEffect(() => {
-    const urls = collectionForUrl ? `/collections/${collectionForUrl}` : ''
+    const urls = collectionForUrl
+      ? subCollectionForUrl
+        ? `/category/${collectionForUrl}/collection/${subCollectionForUrl}`
+        : `/category/${collectionForUrl}`
+      : ''
+    // https://ethicalswag.ca/category/collection/product-type/product-name
     setUrlAbove(urls)
   }, [url])
   console.log(urlAbove, 'uuuuuuuu')
