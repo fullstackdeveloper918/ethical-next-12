@@ -51,7 +51,7 @@ const Product = ({ product, loading, error }) => {
   const [isSample, setIsSample] = useState(false)
   const [swiftSwag, setSwiftSwag] = useState(false)
   const [selectedColor, setSelectedColor] = useState(null)
-  const [sizeNotSureQuantity, setSizeNotSureQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(1)
   const [cartItemsSwiftSwag, setCartItemsSwiftSwag] = useState()
   const [finalQty, setFinalQty] = useState(0)
   const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
@@ -59,10 +59,10 @@ const Product = ({ product, loading, error }) => {
   const [customizationPrice, setCustomizationPrice] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
   const [sizeQuantity, setSizeQuantity] = useState({
-    S: 25,
-    M: 25,
-    L: 25,
-    XL: 25,
+    S: 0,
+    M: 0,
+    L: 0,
+    XL: 0,
   })
   const [cartState, setCartState] = useState({
     quantity: 0,
@@ -75,6 +75,10 @@ const Product = ({ product, loading, error }) => {
     customization: null,
     isSample: false,
     swiftSwag: false,
+    SizeQuantityS: 0,
+    SizeQuantityM: 0,
+    SizeQuantityL: 0,
+    SizeQuantityXL: 0,
   })
 
   const country = useSelector((state) => state.country.country)
@@ -117,27 +121,27 @@ const Product = ({ product, loading, error }) => {
     country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
   const getPrice = () => {
     if (isProductIncludesltm_final) {
-      if (+orderQuantity < +product?.column_1_qty) {
-        setPriceWithoutCustomizations(+col1Price + ltm_price / +orderQuantity)
-      } else if (+orderQuantity < +col2Qty) {
+      if (+quantity < +product?.column_1_qty) {
+        setPriceWithoutCustomizations(+col1Price + ltm_price / +quantity)
+      } else if (+quantity < +col2Qty) {
         setPriceWithoutCustomizations(+col1Price)
-      } else if (+orderQuantity < +col3Qty) {
+      } else if (+quantity < +col3Qty) {
         setPriceWithoutCustomizations(+col2Price)
-      } else if (+orderQuantity < +col4Qty) {
+      } else if (+quantity < +col4Qty) {
         setPriceWithoutCustomizations(+col3Price)
-      } else if (+orderQuantity < +col5Qty) {
+      } else if (+quantity < +col5Qty) {
         setPriceWithoutCustomizations(+col4Price)
       } else {
         setPriceWithoutCustomizations(+col5Price)
       }
     } else {
-      if (+orderQuantity < +col2Qty) {
+      if (+quantity < +col2Qty) {
         setPriceWithoutCustomizations(+col1Price)
-      } else if (+orderQuantity < +col3Qty) {
+      } else if (+quantity < +col3Qty) {
         setPriceWithoutCustomizations(+col2Price)
-      } else if (+orderQuantity < +col4Qty) {
+      } else if (+quantity < +col4Qty) {
         setPriceWithoutCustomizations(+col3Price)
-      } else if (+orderQuantity < +col5Qty) {
+      } else if (+quantity < +col5Qty) {
         setPriceWithoutCustomizations(+col4Price)
       } else {
         setPriceWithoutCustomizations(+col5Price)
@@ -149,7 +153,7 @@ const Product = ({ product, loading, error }) => {
     if (product) {
       getPrice()
     }
-  }, [orderQuantity, totalPrice, product, customizationPrice])
+  }, [quantity, totalPrice, product, customizationPrice])
 
   useEffect(() => {
     if (product) {
@@ -159,39 +163,6 @@ const Product = ({ product, loading, error }) => {
       setActualMinQty(Math.round(minQtyy))
     }
   }, [product])
-
-  useEffect(() => {
-    if (sizeNotSure) {
-      setSizeQuantity((prev) => ({
-        ...prev,
-        S: 0,
-        M: 0,
-        L: 0,
-        XL: 0,
-      }))
-    } else {
-      setSizeQuantity((prev) => ({
-        ...prev,
-        S: 3,
-        M: 3,
-        L: 3,
-        XL: +actualMinQty - 9,
-      }))
-    }
-  }, [sizeNotSure])
-
-  useEffect(() => {
-    if (product) {
-      let total =
-        +sizeQuantity.S + +sizeQuantity.M + +sizeQuantity.L + +sizeQuantity.XL
-      setOrderQuantity(total > actualMinQty ? total : actualMinQty)
-    }
-    if (product && isSample) {
-      let total =
-        +sizeQuantity.S + +sizeQuantity.M + +sizeQuantity.L + +sizeQuantity.XL
-      setOrderQuantity(total > 3 ? 3 : total)
-    }
-  }, [sizeQuantity, product])
 
   let handleQuantitySize = (e) => {
     if (e.target.value < 0) {
@@ -232,28 +203,28 @@ const Product = ({ product, loading, error }) => {
     let IsRcSourceIncluded = product.rc_mcq_source == 'Supplier Fees'
     let price = 0
     if (IsRcSourceIncluded) {
-      if (orderQuantity < +val.qty_rc_2) {
+      if (quantity < +val.qty_rc_2) {
         price = +price1
-      } else if (orderQuantity < +val.qty_rc_3) {
+      } else if (quantity < +val.qty_rc_3) {
         price = +price2
-      } else if (orderQuantity < +val.qty_rc_4) {
+      } else if (quantity < +val.qty_rc_4) {
         price = +price3
-      } else if (orderQuantity < +val.qty_rc_5) {
+      } else if (quantity < +val.qty_rc_5) {
         price = +price4
       } else {
         price = +price5
       }
 
-      let finalCustomPrice = retailSetup / orderQuantity + price
+      let finalCustomPrice = retailSetup / quantity + price
       setCustomizationPrice(finalCustomPrice)
     } else {
-      if (orderQuantity < col2Qty) {
+      if (quantity < col2Qty) {
         price = +price1
-      } else if (orderQuantity < col3Qty) {
+      } else if (quantity < col3Qty) {
         price = +price2
-      } else if (orderQuantity < col4Qty) {
+      } else if (quantity < col4Qty) {
         price = +price3
-      } else if (orderQuantity < col5Qty) {
+      } else if (quantity < col5Qty) {
         price = +price4
       } else {
         price = +price5
@@ -273,7 +244,7 @@ const Product = ({ product, loading, error }) => {
         logoImg: uploadFirstLogo,
         colours: selectedColor,
         customization: choosenCustomization,
-        totalPrice: orderQuantity * +totalPrice,
+        totalPrice: quantity * +totalPrice,
         isSample: isSample,
         swiftSwag: swiftSwag,
       })
@@ -287,7 +258,7 @@ const Product = ({ product, loading, error }) => {
           logoImg: uploadFirstLogo,
           colours: selectedColor,
           customization: choosenCustomization,
-          totalPrice: orderQuantity * +totalPrice,
+          totalPrice: quantity * +totalPrice,
           isSample: isSample,
           swiftSwag: swiftSwag,
         })
@@ -304,14 +275,6 @@ const Product = ({ product, loading, error }) => {
       )
     }
   }
-  // useEffect(() => {
-  //   if (cartState) {
-  //     dispatch(setCartItems(cartState))
-  //   }
-  // }, [cartState])
-
-  console.log(cartItems, 'cartItemscartItems')
-  // console.log(product.images_us[0], 'product coll')
 
   useEffect(() => {
     document.body.classList.add('single_product_page')
@@ -381,34 +344,12 @@ const Product = ({ product, loading, error }) => {
   }, [customizationPrice, priceWithoutCustomizations])
 
   useEffect(() => {
-    let quantity
-    if (sizeNotSure) {
-      quantity = sizeNotSureQuantity
-    } else if (!sizeNotSure) {
-      quantity = orderQuantity
-    }
-    setFinalQty(+quantity)
-  }, [sizeNotSure, orderQuantity, sizeNotSureQuantity])
-
-  useEffect(() => {
-    if (actualMinQty) {
-      setSizeNotSureQuantity(actualMinQty)
-      setOrderQuantity(actualMinQty)
-    }
-    if (actualMinQty && isSample) {
-      setSizeNotSureQuantity(3)
-      setOrderQuantity(3)
-    }
-  }, [actualMinQty])
-
-  useEffect(() => {
     if (cartItems.length == 0) {
       setCartItemsSwiftSwag(null)
     } else if (cartItems.length > 0) {
       setCartItemsSwiftSwag(cartItems[0].swiftSwag)
     }
   }, [cartItems])
-
   return (
     <>
       {loading ? (
@@ -622,7 +563,7 @@ const Product = ({ product, loading, error }) => {
                     </div>
                   </div>
                 )}
-                {finalDecorationKeyVal && !isSample && (
+                {Object.keys(finalDecorationKeyVal).length > 0 && !isSample && (
                   <div className={Styles.customization_text}>
                     <div className={Styles.common_header}>
                       <p>Select Customization</p>
@@ -807,34 +748,21 @@ const Product = ({ product, loading, error }) => {
                 </div>
 
                 <div className={Styles.input_data_required}>
-                  {sizeNotSure && actualMinQty && (
-                    <input
-                      type="number"
-                      placeholder={product?.column_1_qty}
-                      name="orderQuantity"
-                      value={sizeNotSureQuantity}
-                      onChange={(e) => setSizeNotSureQuantity(e.target.value)}
-                      onBlur={(e) => {
-                        if (sizeNotSureQuantity < actualMinQty) {
-                          setSizeNotSureQuantity(actualMinQty)
-                        }
-                        if (isSample && sizeNotSureQuantity > 3) {
-                          setSizeNotSureQuantity(3)
-                        }
-                      }}
-                    />
-                  )}
-                  {!sizeNotSure && (
-                    <input
-                      type="number"
-                      placeholder={product?.column_1_qty}
-                      name="orderQuantity"
-                      value={orderQuantity}
-                      // onChange={(e) => setOrderQuantity(e.target.value)}
-                      disabled={true}
-                      min={actualMinQty}
-                    />
-                  )}
+                  <input
+                    type="number"
+                    placeholder={product?.column_1_qty}
+                    name="orderQuantity"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                    onBlur={(e) => {
+                      if (quantity < actualMinQty) {
+                        setQuantity(actualMinQty)
+                      }
+                      // if (isSample > 3) {
+                      //   setSizeNotSureQuantity(3)
+                      // }
+                    }}
+                  />
 
                   <span>(minimum {+actualMinQty} units required)</span>
                 </div>
@@ -858,10 +786,9 @@ const Product = ({ product, loading, error }) => {
                             placeholder={key}
                             type="number"
                             name={key}
-                            value={sizeNotSure ? 0 : sizeQuantity[key]}
+                            value={sizeQuantity[key]}
                             onChange={handleQuantitySize}
                             min="0"
-                            disabled={sizeNotSure}
                           />
                         </div>
                       </>
@@ -901,7 +828,7 @@ const Product = ({ product, loading, error }) => {
                       totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
                     }/unit`}</p>
 
-                    <p>${(finalQty * +totalPrice).toFixed(2)}</p>
+                    <p>${quantity ? (quantity * +totalPrice).toFixed(2) : 0}</p>
                   </div>
                   <div className={Styles.add_to_bulk_container}>
                     <button onClick={handleAddToCart}>

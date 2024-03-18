@@ -92,11 +92,12 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
               .map(([key, value]) => (
                 <p
                   style={{
-                    borderBottom: value.label === active ? '2px solid #A2D061' : '',
+                    borderBottom:
+                      value.label === active ? '2px solid #A2D061' : '',
                   }}
                   onClick={() => handleAddLists(key, value.label)}
                 >
-                  {value ? JSON.parse(value.label) : ' '}
+                  {value.label ? JSON.parse(value.label) : ' '}
                 </p>
               ))}
         </div>
