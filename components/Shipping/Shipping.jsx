@@ -9,12 +9,14 @@ import {
 import Button from '../Button/Button'
 import { setStep2State, setreached3rdStep } from '../../redux-setup/cartSlice'
 import Styles from './Shipping.module.css'
-
+import SaveChangesModal from '../modal/saveChangesModal'
 const Shipping = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [terms, setTerms] = useState(false)
   const [errorLength, setErrorLength] = useState(false)
+ 
+
   const step2State = useSelector((state) => state.cart.step2State)
 
   const onSubmit = (values) => {

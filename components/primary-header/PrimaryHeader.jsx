@@ -21,6 +21,7 @@ import useFetch from '../../lib/useFetch'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentPage, setuserId } from 'redux-setup/authSlice'
 import { toast } from 'react-toastify'
+import SaveChangesModal from '@components/modal/saveChangesModal'
 
 const PrimaryHeader = () => {
   const router = useRouter()
@@ -29,6 +30,7 @@ const PrimaryHeader = () => {
   const handleResize = () => {
     setScreenSize(window.innerWidth)
   }
+  const [isSaveChangesModalOpen, setIsSaveChangesModalOpen] = useState(false)
   useEffect(() => {
     window.addEventListener('resize', handleResize)
 
@@ -61,174 +63,148 @@ const PrimaryHeader = () => {
     router.push('/login')
   }
 
-  return (
-    <div className={`${styles.top_bar} ${styles.container}`}>
-      {' '}
-      <div className={styles.primary_header_container}>
-        <div className={styles.container_left}>
-          <div className={styles.offer_container}>
-            <div className="">
-              <Image
-                src={phoneImg}
-                alt="down arrow"
-                width={16}
-                height={15}
-                className={styles.arrowDown}
-              />
-            </div>
-            <div className="" style={{ cursor: 'pointer' }}>
-              1-877-256-6998
-            </div>
-          </div>
-          <div className={styles.offer_container}>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className={styles.tap_annument}
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => router.push('/services')}
-                >
-                  What we Offer
-                  <span>
-                    {/* <Image
-                      src={downArrowImg}
-                      alt="down arrow"
-                      width={12}
-                      height={12}
-                    /> */}
-                  </span>
-                </Button>
-              </DropdownMenuTrigger>
-              {/* <DropdownMenuContent className={styles.annument_dropdown}>
-                <DropdownMenuRadioItem
-                  value="bottom"
-                  className={styles.shop_submenu}
-                  onClick={() => router.push('/services')}
-                >
-                  Services
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem
-                  value="right"
-                  className={styles.shop_submenu}
-                  onClick={() => router.push('/products')}
-                >
-                  All Swags
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem
-                  value="right"
-                  className={styles.shop_submenu}
-                  s
-                  onClick={() => router.push('/what-to-expect')}
-                >
-                  What to expect
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem
-                  value="right"
-                  className={styles.shop_submenu}
-                  onClick={() => router.push('/blog')}
-                >
-                  Blog
-                </DropdownMenuRadioItem>
-              </DropdownMenuContent> */}
-            </DropdownMenu>
-          </div>
-        </div>
-        <div className={styles.container_right}>
-          {/* <div className={styles.search_container}>
-            <Image src={searchImg} alt="down arrow" width={16} height={16} />
+  const handleLogin = () => {
+    if (router.route === '/shipping' || router.route === '/cart') {
+      setIsSaveChangesModalOpen(true)
+    } else {
+      router.push('/login')
+    }
+  }
 
-            <input
-              type="text"
-              placeholder="Search for product..."
-              className={styles.cursor_pointer}
-            />
-          </div> */}
-          {isLoggedIn ? (
-            <div>
+  return (
+    <>
+      <div className={`${styles.top_bar} ${styles.container}`}>
+        {' '}
+        <div className={styles.primary_header_container}>
+          <div className={styles.container_left}>
+            <div className={styles.offer_container}>
+              <div className="">
+                <Image
+                  src={phoneImg}
+                  alt="down arrow"
+                  width={16}
+                  height={15}
+                  className={styles.arrowDown}
+                />
+              </div>
+              <div className="" style={{ cursor: 'pointer' }}>
+                1-877-256-6998
+              </div>
+            </div>
+            <div className={styles.offer_container}>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
-                    className={styles.shop_menu}
+                    className={styles.tap_annument}
                     style={{ cursor: 'pointer' }}
+                    onClick={() => router.push('/services')}
                   >
-                    Shop
-                    {/* <span>
-                      <Image src={downIcon} width={8} height={8} alt="search" />
-                    </span> */}
+                    What we Offer
+                    <span></span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className={styles.header_menu}>
-                  <DropdownMenuRadioItem
-                    value="top"
-                    className={styles.shop_submenu}
-                  >
-                    DashBoard
-                  </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem
-                    value="bottom"
-                    className={styles.shop_submenu}
-                  >
-                    Settings
-                  </DropdownMenuRadioItem>
-                </DropdownMenuContent>
               </DropdownMenu>
-              <button onClick={logout} style={{ cursor: 'pointer' }}>
-                logout
-              </button>
             </div>
-          ) : (
-            <>
-              <div
-                className={styles.login_div}
-                onClick={() => router.push('/login')}
-              >
-                {screenSize > 767 && (
-                  <button
-                    className={styles.top_barbtn}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    Login
-                  </button>
-                )}
-                {screenSize <= 767 && (
-                  <span className={styles.cursor_pointer}>
-                    <Image src={loginIcon} alt="login" width={13} height={13} />
-                  </span>
-                )}
+          </div>
+          <div className={styles.container_right}>
+            {isLoggedIn ? (
+              <div>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className={styles.shop_menu}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      Shop
+                      {/* <span>
+                      <Image src={downIcon} width={8} height={8} alt="search" />
+                    </span> */}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className={styles.header_menu}>
+                    <DropdownMenuRadioItem
+                      value="top"
+                      className={styles.shop_submenu}
+                    >
+                      DashBoard
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem
+                      value="bottom"
+                      className={styles.shop_submenu}
+                    >
+                      Settings
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <button onClick={logout} style={{ cursor: 'pointer' }}>
+                  logout
+                </button>
               </div>
-
-              <div
-                className={`${styles.cursor_pointer} ${styles.login_div}`}
-                onClick={() => router.push('/register')}
-              >
-                {screenSize > 991 && (
-                  <button
-                    className={styles.top_barbtn}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    SignUp
-                  </button>
-                )}
-                {screenSize <= 991 && (
-                  <span>
-                    <button style={{ cursor: 'pointer' }}>
-                      <Image
-                        src={signIcon}
-                        alt="Register"
-                        width={18}
-                        height={18}
-                      />
+            ) : (
+              <>
+                <div className={styles.login_div} onClick={handleLogin}>
+                  {screenSize > 767 && (
+                    <button
+                      className={styles.top_barbtn}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      Login
                     </button>
-                  </span>
-                )}
-              </div>
-            </>
-          )}
+                  )}
+                  {screenSize <= 767 && (
+                    <span className={styles.cursor_pointer}>
+                      <Image
+                        src={loginIcon}
+                        alt="login"
+                        width={13}
+                        height={13}
+                      />
+                    </span>
+                  )}
+                </div>
+
+                <div
+                  className={`${styles.cursor_pointer} ${styles.login_div}`}
+                  onClick={() => router.push('/register')}
+                >
+                  {screenSize > 991 && (
+                    <button
+                      className={styles.top_barbtn}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      SignUp
+                    </button>
+                  )}
+                  {screenSize <= 991 && (
+                    <span>
+                      <button style={{ cursor: 'pointer' }}>
+                        <Image
+                          src={signIcon}
+                          alt="Register"
+                          width={18}
+                          height={18}
+                        />
+                      </button>
+                    </span>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+      {isSaveChangesModalOpen && (
+        <div>
+          <SaveChangesModal
+            setIsSaveChangesModalOpen={setIsSaveChangesModalOpen}
+            isSaveChangesModalOpen={isSaveChangesModalOpen}
+            pageRoute={'/login'}
+          />
+        </div>
+      )}
+    </>
   )
 }
 

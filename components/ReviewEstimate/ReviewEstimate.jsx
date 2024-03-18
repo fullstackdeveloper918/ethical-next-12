@@ -63,9 +63,7 @@ const ReviewEstimate = () => {
                           </p>
                         </div>
                         <div>
-                          <p className={Styles.price}>
-                            ${item.price * item.quantity}
-                          </p>
+                          <p className={Styles.price}>${item.totalPrice}</p>
                         </div>
                       </div>
                     </div>
