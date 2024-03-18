@@ -501,7 +501,8 @@ const Product = ({ product, loading, error }) => {
                   )}
                 </div>
                 <div className={Styles.input_checkbox}>
-                  <div className={Styles.custom_checkbox}>
+
+                  {/* <div className={Styles.custom_checkbox}>
                     <input
                       type="checkbox"
                       name="sample"
@@ -512,12 +513,20 @@ const Product = ({ product, loading, error }) => {
                     <label htmlFor="sample" className={Styles.marinSpace}>
                       This is a sample checkbox
                     </label>
+                  </div> */}
+
+                  <div className={Styles.centering}>
+
+                    <label className={Styles.switch}>
+                      <input type="checkbox" />
+                      <span className={Styles.slider}></span> </label>
                   </div>
+                  <p> This is a sample checkbox</p>
                 </div>
                 {product?.colours ? (
                   <div className={Styles.select_color_section}>
                     <div className={Styles.common_header}>
-                      <p>Select Color</p>
+                      <h6>Select Color</h6>
                       <Image
                         src={images.Info_Icon}
                         width={18}
@@ -591,11 +600,10 @@ const Product = ({ product, loading, error }) => {
                           ([key, val], index) =>
                             val !== undefined && (
                               <p
-                                className={`${Styles.btn} ${
-                                  selectedCustomization === index
-                                    ? Styles.active
-                                    : ''
-                                }`}
+                                className={`${Styles.btn} ${selectedCustomization === index
+                                  ? Styles.active
+                                  : ''
+                                  }`}
                                 onClick={() =>
                                   selectCustomizations(index, key, val)
                                 }
@@ -742,6 +750,7 @@ const Product = ({ product, loading, error }) => {
                     </div>
                   </div>
                 </div>
+                <div className={Styles.border_top}>
                 <div className={Styles.number_of_units}>
                   <div className={Styles.common_header}>
                     <p>Enter the number of units you need?</p>
@@ -775,6 +784,7 @@ const Product = ({ product, loading, error }) => {
 
                   <span>(minimum {+actualMinQty} units required)</span>
                 </div>
+</div>
                 <div className={Styles.select_size_quantity}>
                   <div className={Styles.common_header}>
                     <p>Select sizes quantity</p>
@@ -803,8 +813,8 @@ const Product = ({ product, loading, error }) => {
                       </>
                     ))}
                   </div>
-                  <div className={Styles.custom_checkbox}>
-                    <input
+                  {/* <div className={Styles.custom_checkbox}> */}
+                  {/* <input
                       type="checkbox"
                       id="sizeCheckbox"
                       checked={sizeNotSure} //setSizeNotSure
@@ -813,29 +823,41 @@ const Product = ({ product, loading, error }) => {
                     <label htmlFor="sizeCheckbox">
                       {' '}
                       Not sure about size yet
-                    </label>
-                  </div>
-                </div>
-                <div className={Styles.standard_business_section}>
-                  <div className={Styles.common_header}>
-                    <p>Production time</p>
-                    <Image
-                      src={images.Info_Icon}
-                      width={18}
-                      height={18}
-                      alt="info_icon"
-                    />
+                    </label> */}
+                  <div className={Styles.flex_row}>
+                    <div className={Styles.centering}>
+                      <label htmlFor="sizeCheckbox" className={Styles.switch}>
+                        {' '}
+                        <input type="checkbox" />
+                        <span className={Styles.slider}></span> </label>
+                    </div>
+                    <p> I don’t have sizes yet</p>
                   </div>
 
-                  <p>Standard - 15 Business days</p>
                 </div>
-
+                {/* </div> */}
                 <div className={Styles.position_sticky}>
-                  <div className={Styles.standard_down_line}></div>
+                {/* <div className={Styles.standard_down_line}></div> */}
+                  <div className={Styles.sticky_bottom}>
+                  <div className={Styles.standard_business_section}>
+                    <div className={Styles.common_header}>
+                      <p>Production time</p>
+                      <Image
+                        src={images.Info_Icon}
+                        width={18}
+                        height={18}
+                        alt="info_icon"
+                      />
+                    </div>
+
+                    <p><strong>Standard</strong> - 15 <strong>Business days</strong></p>
+                  </div>
+
+
+                
                   <div className={Styles.price_section}>
-                    <p>{`Price ${
-                      totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
-                    }/unit`}</p>
+                    <p>{`Price ${totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
+                      }/unit`}</p>
 
                     <p>${quantity ? (quantity * +totalPrice).toFixed(2) : 0}</p>
                   </div>
@@ -843,6 +865,7 @@ const Product = ({ product, loading, error }) => {
                     <button onClick={handleAddToCart}>
                       Add to bulk estimate
                     </button>
+                  </div>
                   </div>
                   <div className={Styles.total_estimate_container}>
                     <p className={Styles.total_estimate_container_text}>
