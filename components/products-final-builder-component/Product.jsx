@@ -32,23 +32,8 @@ const Product = ({
             activeFilter={activeFilter}
             setActiveFilter={setActiveFilter}
           />
-          {length ? (
-            <Products response={getProductsRes} loading={loading} />
-          ) : (
-            <div
-              className={Styles.collection_wrapper}
-              style={{
-                marginBottom: '30px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: '3rem',
-                color: '#a2d061',
-              }}
-            >
-              No Products Found
-            </div>
-          )}
+          <Products response={getProductsRes} loading={loading} />
+
           {getProductsRes && totalData > 10 && (
             <div className={Styles.pagination_section}>
               <Pagination

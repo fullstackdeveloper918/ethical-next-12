@@ -94,16 +94,15 @@ const index = () => {
       <PrimaryHeader />
       <SecondaryHeader />
       <Modal />
-      {!getProductsLoading && !getProductsError && (
-        <Product
-          getProductsRes={getProductsRes}
-          totalData={totalData}
-          totalPages={totalPages}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-          loading={getProductsLoading}
-        />
-      )}
+
+      <Product
+        getProductsRes={getProductsRes}
+        totalData={totalData}
+        totalPages={totalPages}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+        loading={getProductsLoading}
+      />
       <Footer />
     </div>
   )
