@@ -39,38 +39,13 @@ const Modal = () => {
   }, [selectedOption])
   return (
     <>
-      {isOpenModal && (
+      {isOpenModal && !isOpenCalender && (
         <div className={Style.overlay}>
           <div className={Style.modal_content}>
             <span className={Style.close} onClick={() => setIsOpenModal(false)}>
               &times;
             </span>
             <div className={Style.flex_calender}>
-              {isOpenCalender && (
-                <div className={Style.Calendar_wrapper}>
-                  <h3>Please select your requested delivery date</h3>
-                  <Calendar
-                    onChange={onChange}
-                    value={value}
-                    minDate={minDate}
-                  />
-                  <p>
-                    *Swift Swag we can produce and deliver your order in 10
-                    business days!
-                  </p>
-                  <div className={Style.label_field}>
-                    <button type="button" className={Style.Popup_btncalender}>
-                      Cancel
-                    </button>
-                    <button
-                      type="button"
-                      className={Style.Popup_btncalenderTwo}
-                    >
-                      Continue
-                    </button>
-                  </div>
-                </div>
-              )}
               <div
                 className={Style.Calendar_content_wrapper}
                 style={{
@@ -107,7 +82,8 @@ const Modal = () => {
                           type="button"
                           className={Style.Popup_btntwo}
                           onClick={() => {
-                            setSelectedOption('within10Days')
+                            setSelectedOption('within10Days');
+                            setIsOpenCalender(true);
                           }}
                         >
                           Yes I have tight timeline
@@ -117,6 +93,42 @@ const Modal = () => {
                   </>
                 )}
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isOpenModal && isOpenCalender && (
+        <div className={Style.overlay}>
+          <div className={Style.modal_content}>
+            <span className={Style.close} onClick={() => setIsOpenModal(false)}>
+              &times;
+            </span>
+            <div className={Style.flex_calender}>
+              {isOpenCalender && (
+                <div className={Style.Calendar_wrapper}>
+                  <h3>Please select your requested delivery date</h3>
+                  <Calendar
+                    onChange={onChange}
+                    value={value}
+                    minDate={minDate}
+                  />
+                  <p>
+                    *Swift Swag we can produce and deliver your order in 10
+                    business days!
+                  </p>
+                  <div className={Style.label_field}>
+                    <button type="button" className={Style.Popup_btncalender}>
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      className={Style.Popup_btncalenderTwo}
+                    >
+                      Continue
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
