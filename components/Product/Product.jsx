@@ -39,7 +39,7 @@ const Product = ({ product, loading, error }) => {
   const dispatch = useDispatch()
   const [openEmoji, setOpenEmoji] = useState(false)
   const [ReadMore, setIsReadMore] = useState(false)
-  const [orderQuantity, setOrderQuantity] = useState(+actualMinQty || 50)
+
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
   const [selectedCustomization, setSelectedCustomization] = useState()
   const [choosenCustomization, setChoosenCustomization] = useState(null)
@@ -53,7 +53,6 @@ const Product = ({ product, loading, error }) => {
   const [selectedColor, setSelectedColor] = useState(null)
   const [quantity, setQuantity] = useState(1)
   const [cartItemsSwiftSwag, setCartItemsSwiftSwag] = useState()
-  const [finalQty, setFinalQty] = useState(0)
   const [priceWithoutCustomizations, setPriceWithoutCustomizations] =
     useState(0)
   const [customizationPrice, setCustomizationPrice] = useState(0)
@@ -116,7 +115,14 @@ const Product = ({ product, loading, error }) => {
   let col4Qty = product?.column_4_qty
   let col5Qty = product?.column_5_qty
 
-  let ltm_price = country === 'usa' ? product?.ltm_usd : product?.ltm_cad
+  let ltm_price =
+    country === 'usa'
+      ? product?.ltm_usd
+        ? product?.ltm_usd.replace(/[^\d]/g, '')
+        : 0
+      : product?.ltm_cad
+      ? product?.ltm_cad.replace(/[^\d]/g, '')
+      : 0
   let supplierFees =
     country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
   const getPrice = () => {
@@ -148,7 +154,11 @@ const Product = ({ product, loading, error }) => {
       }
     }
   }
-
+  useEffect(() => {
+    if (product && actualMinQty) {
+      setQuantity(actualMinQty)
+    }
+  }, [product, actualMinQty])
   useEffect(() => {
     if (product) {
       getPrice()
@@ -236,7 +246,7 @@ const Product = ({ product, loading, error }) => {
     e.preventDefault()
     if (cartItemsSwiftSwag === null || cartItemsSwiftSwag === swiftSwag) {
       setCartState({
-        quantity: finalQty,
+        quantity: quantity,
         image: setImagesArray[0],
         heading: product?.product_description,
         pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
@@ -250,7 +260,7 @@ const Product = ({ product, loading, error }) => {
       })
       dispatch(
         setCartItems({
-          quantity: finalQty,
+          quantity: quantity,
           image: setImagesArray[0],
           heading: product?.product_description,
           pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
@@ -342,7 +352,6 @@ const Product = ({ product, loading, error }) => {
     let TotalPrice = customizationPrice + priceWithoutCustomizations
     setTotalPrice(TotalPrice)
   }, [customizationPrice, priceWithoutCustomizations])
-
   useEffect(() => {
     if (cartItems.length == 0) {
       setCartItemsSwiftSwag(null)

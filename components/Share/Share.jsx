@@ -27,7 +27,7 @@ function Share({ link, description, setShareIcons, item }) {
       //   `https://ethical-next-12.vercel.app/products/${item.id}`
       // )
       await navigator.clipboard.writeText(
-        `http://localhost:3000//products/${item.id}`
+        `http://localhost:3000//product/${item.id}`
       )
       setCopied(true)
       setTimeout(() => setCopied(false), 2000) // Reset copied state after 2 seconds
@@ -56,7 +56,7 @@ function Share({ link, description, setShareIcons, item }) {
               {copied && (
                 <p>
                   Product Link:
-                  {`http://localhost:3000//products/${item.id}`}
+                  {`http://localhost:3000//product/${item.id}`}
                 </p>
               )}
               <button onClick={copyToClipboard}>

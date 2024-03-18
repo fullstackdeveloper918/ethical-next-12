@@ -86,7 +86,7 @@ const ProductCard = ({ item, fromSingleProduct }) => {
             )}
             <div
               className={Styles.colors}
-              onClick={() => router.push(`products/${item?.id}`)}
+              onClick={() => router.push(`product/${item?.id}`)}
             >
               {Object.keys(item?.colours).length > 0 &&
                 Object.entries(item?.colours)
@@ -133,7 +133,7 @@ const ProductCard = ({ item, fromSingleProduct }) => {
               </>
             )}
             <Link
-              href={fromSingleProduct ? `${item?.id}` : `products/${item?.id}`}
+              href={fromSingleProduct ? `${item?.id}` : `product/${item?.id}`}
             >
               <button className={Styles.viewProduct_btn}>View Product</button>
             </Link>

@@ -78,7 +78,7 @@ const ReviewEstimate = () => {
                   </div>
                   <div className={Styles.buttons}>
                     <button
-                      onClick={() => router.push(`/products/${item.id}`)}
+                      onClick={() => router.push(`/product/${item.id}`)}
                       type="button"
                     >
                       <GrEdit />
