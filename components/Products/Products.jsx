@@ -54,7 +54,7 @@ const Products = ({ response, loading }) => {
                   <div className={Styles.checkbtn}>
                     <button
                       onClick={() =>
-                        router.push(`/products/${promotionalProduct.id}`)
+                        router.push(`/product/${promotionalProduct.id}`)
                       }
                     >
                       Check it out

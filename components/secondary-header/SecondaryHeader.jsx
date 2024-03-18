@@ -405,7 +405,7 @@ const SecondaryHeader = () => {
                               <li
                                 className={styles.search_productlist}
                                 onClick={() =>
-                                  router.push(`/products/${item?.id}`)
+                                  router.push(`/product/${item?.id}`)
                                 }
                               >
                                 <Image

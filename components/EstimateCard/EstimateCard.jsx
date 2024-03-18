@@ -126,9 +126,7 @@ const EstimateCard = () => {
                             </button>
                             <button
                               style={{ marginLeft: '15px', color: '#A2D061' }}
-                              onClick={() =>
-                                router.push(`/products/${item.id}`)
-                              }
+                              onClick={() => router.push(`/product/${item.id}`)}
                               type="button"
                             >
                               <GrEdit />

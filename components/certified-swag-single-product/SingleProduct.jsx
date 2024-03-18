@@ -52,7 +52,7 @@ const SingleProduct = ({ product }) => {
   return (
     <div
       className={styles.container}
-      onClick={() => router.push(`products/${product?.id}`)}
+      onClick={() => router.push(`product/${product?.id}`)}
     >
       <div className={styles.image_container}>
         <Image
