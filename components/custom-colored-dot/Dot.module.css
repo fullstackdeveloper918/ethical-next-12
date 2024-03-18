@@ -1,6 +1,6 @@
 .colored_dot {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
   border-radius: 50%;
   cursor: pointer;
@@ -20,4 +20,13 @@
   position: absolute;
   border-radius: 10px;
   border: 1px solid #0003 !important;
+}
+
+
+@media screen and (max-width:1500px) {
+  .colored_dot {
+    width: 20px;
+    height: 20px;
+  }
+  
 }

@@ -63,7 +63,7 @@ const ProductCard = ({ item, fromSingleProduct }) => {
               width={278}
               height={311}
               alt="products_images"
-              onError={() => setSingleImage(images.No_product)}
+              // onError={() => setSingleImage(images.No_product)}
             />
           ) : (
             <Image
