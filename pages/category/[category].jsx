@@ -4,13 +4,20 @@ import PrimaryHeader from '@components/primary-header/PrimaryHeader'
 import Product from '@components/products-final-builder-component/Product'
 import SecondaryHeader from '@components/secondary-header/SecondaryHeader'
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 const index = () => {
   const [totalData, setTotalData] = useState([])
   const [totalPages, setTotalPages] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  let getProductsRes = {}
-  let getProductsLoading = false
+  const getProductsRes = useSelector((state) => state.category.getProductsRes)
+
+  const getProductsLoading = useSelector(
+    (state) => state.category.getProductsLoading
+  )
+  const getProductsError = useSelector(
+    (state) => state.category.getProductsError
+  )
   useEffect(() => {
     if (getProductsRes) {
       setCurrentPage(getProductsRes?.data?.current_page)

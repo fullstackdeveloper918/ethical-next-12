@@ -35,6 +35,9 @@ import {
   setSubCategoryOnTop,
   setCollectionForUrl,
   setSubCollectionForUrl,
+  setProductsRes,
+  setProductsLoading,
+  setProductsError,
 } from 'redux-setup/categorySlice'
 import { countries } from 'constants/data'
 
@@ -50,10 +53,16 @@ const SecondaryHeader = () => {
   const [openLinks, setOpenLinks] = useState(false)
   const [inputbtn, setInputBtn] = useState(false)
   const [country, setCountry] = useState('usa')
+  const [countryTosend, setCountryToSend] = useState('usa')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [url, setUrl] = useState('')
+  const [urlAbove, setUrlAbove] = useState()
   const wishlistItems = useSelector((state) => state.wishlist.items)
   const [screenSize, setScreenSize] = useState(992)
   const [showOnMobile, setShowOnMobile] = useState(false)
   const [suggestions, setSuggestions] = useState([])
+  const countryFromRedux = useSelector((state) => state.country.country)
+
   const cartItems = useSelector((state) => state.cart.cartItems.length)
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
@@ -63,6 +72,65 @@ const SecondaryHeader = () => {
   const productCategoryId = useSelector(
     (state) => state.category.productCategoryId
   )
+  const collectionForUrl = useSelector(
+    (state) => state.category.collectionForUrl
+  )
+  const subCollectionForUrl = useSelector(
+    (state) => state.category.subCollectionForUrl
+  )
+  const collectionId = useSelector((state) => state.category.collectionId)
+
+  let swiftSwag = useSelector((state) => state.random.swiftSwag)
+
+  useEffect(() => {
+    if (countryFromRedux) {
+      setCountryToSend(
+        countryFromRedux === 'usa' ? 'available_in_usa' : 'available_in_canada'
+      )
+    }
+  }, [countryFromRedux])
+
+  useEffect(() => {
+    if (countryTosend && productCategoryId) {
+      const route = `/products?product_catogries=${productCategoryId}${
+        collectionId ? `&collection_ids=${collectionId}` : ''
+      }&page=${
+        currentPage ? currentPage : 1
+      }&pageSize=${10}&${countryTosend}=1&swift_tag=${
+        swiftSwag !== `flexible` ? 1 : 0
+      }`
+      setUrl(route)
+    }
+  }, [countryTosend, swiftSwag, currentPage, productCategoryId, collectionId])
+
+  useEffect(() => {
+    const urls = collectionForUrl
+      ? subCollectionForUrl
+        ? `/category/${collectionForUrl}/collection/${subCollectionForUrl}`
+        : `/category/${collectionForUrl}`
+      : ''
+
+    setUrlAbove(urls)
+  }, [url])
+
+  useEffect(() => {
+    if (url) {
+      getProducts()
+    }
+  }, [url])
+
+  const [
+    getProducts,
+    { response: productsRes, loading: productsLoading, error: productsError },
+  ] = useFetch(url, {
+    method: 'get',
+  })
+
+  useEffect(() => {
+    dispatch(setProductsRes(productsRes))
+    dispatch(setProductsLoading(productsLoading))
+    dispatch(setProductsError(productsError))
+  }, [productsRes, productsLoading, productsError])
 
   const filteredProducts = data?.filter((product) =>
     product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
@@ -173,6 +241,10 @@ const SecondaryHeader = () => {
       }
     }
   }, [allCategories])
+
+  useEffect(() => {
+    router.push('/category/ytn')
+  }, [])
 
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>

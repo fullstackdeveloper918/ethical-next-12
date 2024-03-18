@@ -2,6 +2,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
+  getProductsRes: null,
+  getProductsLoading: null,
+  getProductsError: null,
   categories: [],
   allCategories: {},
   subCategories: {},
@@ -50,6 +53,15 @@ const categorySlice = createSlice({
     setSubCollectionForUrl: (state, action) => {
       state.subCollectionForUrl = action.payload
     },
+    setProductsRes: (state, action) => {
+      state.getProductsRes = action.payload
+    },
+    setProductsLoading: (state, action) => {
+      state.getProductsLoading = action.payload
+    },
+    setProductsError: (state, action) => {
+      state.getProductsError = action.payload
+    },
   },
 })
 
@@ -65,6 +77,9 @@ export const {
   setCollectionId,
   setCollectionForUrl,
   setSubCollectionForUrl,
+  setProductsRes,
+  setProductsLoading,
+  setProductsError,
 } = categorySlice.actions
 
 export default categorySlice.reducer
