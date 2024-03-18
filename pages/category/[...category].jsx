@@ -3,10 +3,12 @@ import Modal from '@components/modal/Modal'
 import PrimaryHeader from '@components/primary-header/PrimaryHeader'
 import Product from '@components/products-final-builder-component/Product'
 import SecondaryHeader from '@components/secondary-header/SecondaryHeader'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 const index = () => {
+  const router = useRouter()
   const [totalData, setTotalData] = useState([])
   const [totalPages, setTotalPages] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
@@ -25,7 +27,6 @@ const index = () => {
       setTotalPages(getProductsRes?.data?.last_page)
     }
   }, [getProductsRes])
-
   return (
     <div>
       <PrimaryHeader />

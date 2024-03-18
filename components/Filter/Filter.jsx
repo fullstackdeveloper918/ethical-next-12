@@ -11,10 +11,13 @@ import {
   setCollectionId,
   setSubCollectionForUrl,
 } from 'redux-setup/categorySlice'
+import { useRouter } from 'next/router'
 
 const Filter = ({ activeFilter, setActiveFilter }) => {
   const [scrolled, setScrolled] = useState(false)
   const dispatch = useDispatch()
+  const router = useRouter()
+
   const [active, setActive] = useState('')
   const [filtersState, setFiltersState] = useState([])
 
@@ -26,6 +29,12 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
   const subCategoryData = useSelector((state) => state.category.subCategories)
   const subCategoryOnTop = useSelector(
     (state) => state.category.subCategoryOnTop
+  )
+  const collectionForUrl = useSelector(
+    (state) => state.category.collectionForUrl
+  )
+  const subCollectionForUrl = useSelector(
+    (state) => state.category.subCollectionForUrl
   )
 
   const dataArray = Object.entries(subCategoryData).map(([key, value]) => ({
@@ -59,7 +68,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
   const handleAddLists = (key, value) => {
     dispatch(setCollectionId(key))
     dispatch(setSubCollectionForUrl(JSON.parse(value)))
-
+    router.push(`/category/${collectionForUrl}/collection/${JSON.parse(value)}`)
     // if (filtersState.includes(text?.apikey)) {
     //   let f = filtersState.filter((item) => item !== text?.apikey)
     //   setFiltersState(f)

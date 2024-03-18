@@ -89,8 +89,9 @@ const SecondaryHeader = () => {
   }, [countryFromRedux])
 
   useEffect(() => {
-    if (countryTosend && productCategoryId) {
-      const route = `/products?product_catogries=${productCategoryId}${
+    if (countryTosend) {
+      let collectionId = allCategories[router.query.category[0]].airtabelId
+      const route = `/products?product_catogries=${collectionId}${
         collectionId ? `&collection_ids=${collectionId}` : ''
       }&page=${
         currentPage ? currentPage : 1
@@ -99,17 +100,18 @@ const SecondaryHeader = () => {
       }`
       setUrl(route)
     }
-  }, [countryTosend, swiftSwag, currentPage, productCategoryId, collectionId])
-
-  useEffect(() => {
-    const urls = collectionForUrl
-      ? subCollectionForUrl
-        ? `/category/${collectionForUrl}/collection/${subCollectionForUrl}`
-        : `/category/${collectionForUrl}`
-      : ''
-
-    setUrlAbove(urls)
-  }, [collectionForUrl, subCollectionForUrl])
+  }, [countryTosend, swiftSwag, currentPage, router.query, collectionId])
+  console.log(router.query.category[0], 'rrrrr')
+  const handleSetSubCategory = (item) => {
+    console.log(allCategories[item], 'all of me')
+    dispatch(setSubCategoryOnTop(allCategories[item]?.matchingValues))
+    dispatch(setSubCategories(allCategories[item]?.matchingValues))
+    dispatch(setProductCategoryId(allCategories[item].airtabelId))
+    dispatch(setCollectionId(null))
+    dispatch(setCollectionForUrl(item))
+    dispatch(setSubCollectionForUrl(null))
+    router.push(`/category/${item}`)
+  }
 
   useEffect(() => {
     if (url) {
@@ -224,15 +226,6 @@ const SecondaryHeader = () => {
     }
   }, [inputbtn])
 
-  const handleSetSubCategory = (item) => {
-    dispatch(setSubCategoryOnTop(allCategories[item]?.matchingValues))
-    dispatch(setSubCategories(allCategories[item]?.matchingValues))
-    dispatch(setProductCategoryId(allCategories[item].airtabelId))
-    dispatch(setCollectionId(null))
-    dispatch(setCollectionForUrl(item))
-    dispatch(setSubCollectionForUrl(null))
-    router.push(`/category/${item}`)
-  }
   useEffect(() => {
     if (Object.keys(allCategories).length > 0) {
       if (!productCategoryId) {
