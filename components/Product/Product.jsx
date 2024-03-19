@@ -483,13 +483,13 @@ const Product = ({ product, loading, error }) => {
                   </h4>
                 </div>
                 <div className={Styles.text_content}>
-                  {product?.product_description?.length < 450 ? (
+                  {product?.product_description?.length < 200 ? (
                     <p>{product?.product_description}</p>
                   ) : (
                     <p>
                       {ReadMore
                         ? product?.product_description
-                        : product?.product_description.slice(0, 450)}
+                        : product?.product_description.slice(0, 200)}
                       <span
                         className={Styles.read_more}
                         onClick={() => setIsReadMore(!ReadMore)}
@@ -501,25 +501,17 @@ const Product = ({ product, loading, error }) => {
                   )}
                 </div>
                 <div className={Styles.input_checkbox}>
-
-                  {/* <div className={Styles.custom_checkbox}>
-                    <input
-                      type="checkbox"
-                      name="sample"
-                      id="sample"
-                      checked={isSample} //setSizeNotSure
-                      onChange={() => setIsSample(!isSample)}
-                    />
-                    <label htmlFor="sample" className={Styles.marinSpace}>
-                      This is a sample checkbox
-                    </label>
-                  </div> */}
-
                   <div className={Styles.centering}>
-
                     <label className={Styles.switch}>
-                      <input type="checkbox" />
-                      <span className={Styles.slider}></span> </label>
+                      <input
+                        type="checkbox"
+                        name="sample"
+                        id="sample"
+                        checked={isSample} //setSizeNotSure
+                        onChange={() => setIsSample(!isSample)}
+                      />
+                      <span className={Styles.slider}></span>{' '}
+                    </label>
                   </div>
                   <p> This is a sample checkbox</p>
                 </div>
@@ -600,10 +592,11 @@ const Product = ({ product, loading, error }) => {
                           ([key, val], index) =>
                             val !== undefined && (
                               <p
-                                className={`${Styles.btn} ${selectedCustomization === index
-                                  ? Styles.active
-                                  : ''
-                                  }`}
+                                className={`${Styles.btn} ${
+                                  selectedCustomization === index
+                                    ? Styles.active
+                                    : ''
+                                }`}
                                 onClick={() =>
                                   selectCustomizations(index, key, val)
                                 }
@@ -751,40 +744,40 @@ const Product = ({ product, loading, error }) => {
                   </div>
                 </div>
                 <div className={Styles.border_top}>
-                <div className={Styles.number_of_units}>
-                  <div className={Styles.common_header}>
-                    <p>Enter the number of units you need?</p>
-                    <Image
-                      src={images.Info_Icon}
-                      width={18}
-                      height={18}
-                      alt="info_icon"
-                    />
+                  <div className={Styles.number_of_units}>
+                    <div className={Styles.common_header}>
+                      <p>Enter the number of units you need?</p>
+                      <Image
+                        src={images.Info_Icon}
+                        width={18}
+                        height={18}
+                        alt="info_icon"
+                      />
+                    </div>
+
+                    <button>Price break</button>
                   </div>
 
-                  <button>Price break</button>
-                </div>
+                  <div className={Styles.input_data_required}>
+                    <input
+                      type="number"
+                      placeholder={product?.column_1_qty}
+                      name="orderQuantity"
+                      value={quantity}
+                      onChange={(e) => setQuantity(e.target.value)}
+                      onBlur={(e) => {
+                        if (quantity < actualMinQty) {
+                          setQuantity(actualMinQty)
+                        }
+                        // if (isSample > 3) {
+                        //   setSizeNotSureQuantity(3)
+                        // }
+                      }}
+                    />
 
-                <div className={Styles.input_data_required}>
-                  <input
-                    type="number"
-                    placeholder={product?.column_1_qty}
-                    name="orderQuantity"
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                    onBlur={(e) => {
-                      if (quantity < actualMinQty) {
-                        setQuantity(actualMinQty)
-                      }
-                      // if (isSample > 3) {
-                      //   setSizeNotSureQuantity(3)
-                      // }
-                    }}
-                  />
-
-                  <span>(minimum {+actualMinQty} units required)</span>
+                    <span>(minimum {+actualMinQty} units required)</span>
+                  </div>
                 </div>
-</div>
                 <div className={Styles.select_size_quantity}>
                   <div className={Styles.common_header}>
                     <p>Select sizes quantity</p>
@@ -828,44 +821,53 @@ const Product = ({ product, loading, error }) => {
                     <div className={Styles.centering}>
                       <label htmlFor="sizeCheckbox" className={Styles.switch}>
                         {' '}
-                        <input type="checkbox" />
-                        <span className={Styles.slider}></span> </label>
+                        <input
+                          type="checkbox"
+                          id="sizeCheckbox"
+                          checked={sizeNotSure} //setSizeNotSure
+                          onChange={() => setSizeNotSure(!sizeNotSure)}
+                        />
+                        <span className={Styles.slider}></span>{' '}
+                      </label>
                     </div>
                     <p> I don’t have sizes yet</p>
                   </div>
-
                 </div>
                 {/* </div> */}
                 <div className={Styles.position_sticky}>
-                {/* <div className={Styles.standard_down_line}></div> */}
+                  {/* <div className={Styles.standard_down_line}></div> */}
                   <div className={Styles.sticky_bottom}>
-                  <div className={Styles.standard_business_section}>
-                    <div className={Styles.common_header}>
-                      <p>Production time</p>
-                      <Image
-                        src={images.Info_Icon}
-                        width={18}
-                        height={18}
-                        alt="info_icon"
-                      />
+                    <div className={Styles.standard_business_section}>
+                      <div className={Styles.common_header}>
+                        <p>Production time</p>
+                        <Image
+                          src={images.Info_Icon}
+                          width={18}
+                          height={18}
+                          alt="info_icon"
+                        />
+                      </div>
+
+                      <p>
+                        <strong>Standard</strong> - 15{' '}
+                        <strong>Business days</strong>
+                      </p>
                     </div>
 
-                    <p><strong>Standard</strong> - 15 <strong>Business days</strong></p>
-                  </div>
-
-
-                
-                  <div className={Styles.price_section}>
-                    <p>{`Price ${totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
+                    <div className={Styles.price_section}>
+                      <p>{`Price ${
+                        totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
                       }/unit`}</p>
 
-                    <p>${quantity ? (quantity * +totalPrice).toFixed(2) : 0}</p>
-                  </div>
-                  <div className={Styles.add_to_bulk_container}>
-                    <button onClick={handleAddToCart}>
-                      Add to bulk estimate
-                    </button>
-                  </div>
+                      <p>
+                        ${quantity ? (quantity * +totalPrice).toFixed(2) : 0}
+                      </p>
+                    </div>
+                    <div className={Styles.add_to_bulk_container}>
+                      <button onClick={handleAddToCart}>
+                        Add to bulk estimate
+                      </button>
+                    </div>
                   </div>
                   <div className={Styles.total_estimate_container}>
                     <p className={Styles.total_estimate_container_text}>
