@@ -93,10 +93,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
               .slice(0, 7)
               .map(([key, value]) => (
                 <p
-                  style={{
-                    borderBottom:
-                      value.label === active ? '2px solid #A2D061' : '',
-                  }}
+                  className={value === active ? Styles.subCatgeory_Active : ''}
                   onClick={() => handleAddLists(key, value)}
                 >
                   {value ? JSON.parse(value) : ' '}
