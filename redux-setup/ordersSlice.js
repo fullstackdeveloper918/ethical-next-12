@@ -5,6 +5,7 @@ import { createSlice } from '@reduxjs/toolkit'
 // Define the initial state
 const initialState = {
   selectedId: null,
+  items: [],
   isEditable: false,
 }
 
@@ -13,6 +14,10 @@ const ordersSlice = createSlice({
   name: 'orders',
   initialState,
   reducers: {
+    addOrders(state, action) {
+      console.log(action.payload, 'helo paylaod')
+      state.items.push(action.payload)
+    },
     setSelectedEditId(state, action) {
       state.selectedId = action.payload
       state.isEditable = false
@@ -28,7 +33,11 @@ const ordersSlice = createSlice({
 })
 
 // Export actions and reducer
-export const { setSelectedEditId, setSelectedViewId, clearSelectedId } =
-  ordersSlice.actions
+export const {
+  addOrders,
+  setSelectedEditId,
+  setSelectedViewId,
+  clearSelectedId,
+} = ordersSlice.actions
 
 export default ordersSlice.reducer
