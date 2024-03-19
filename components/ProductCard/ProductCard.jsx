@@ -70,7 +70,7 @@ const ProductCard = ({ item, fromSingleProduct }) => {
               src={images.No_product}
               width={278}
               height={311}
-              alt="products_images"
+              alt={item?.product_title}
             />
           )}
           <div className={Styles.product_card_content}>
