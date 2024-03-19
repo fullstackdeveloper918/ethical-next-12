@@ -12,45 +12,32 @@ import {
   setSelectedEditId,
   setSelectedViewId,
 } from '../../../redux-setup/ordersSlice'
-import { Orders_Data } from '../../../constants/data'
+import { deleteOrder } from '../../../redux-setup/cartSlice'
 
 const Orders = () => {
   const router = useRouter()
   const [orders, setOrders] = useState([])
   const dispatch = useDispatch()
-  const inventory = useSelector((state) => state.submit.inventory)
-  console.log(inventory[0], 'inventory bro')
 
-  useEffect(() => {
-    const storedOrders = JSON.parse(localStorage.getItem('orders'))
+  const orderPlaced = useSelector((state) => state.cart.orderPlaced)
 
-    if (storedOrders && storedOrders.length > 0) {
-      setOrders(storedOrders)
-    } else {
-      // Initialize local storage with the data if it doesn't exist
-      localStorage.setItem('orders', JSON.stringify(Orders_Data))
-      setOrders(Orders_Data)
-    }
-  }, [])
+  console.log(orderPlaced, 'hello kismat')
 
-  const handleViewClicked = (id) => {
-    dispatch(setSelectedViewId(id))
-    router.push(`/super-admin/orders/view`)
-  }
+  // const handleViewClicked = (id) => {
+  //   // dispatch(setSelectedViewId(id))
+  //   router.push(`/super-admin/orders/view`)
+  // }
 
-  const handleEdit = (id) => {
-    dispatch(setSelectedEditId(id))
+  // const handleEdit = (id) => {
+  //   dispatch(setSelectedEditId(id))
 
-    router.push(`/super-admin/orders/edit`)
-  }
+  //   router.push(`/super-admin/orders/edit`)
+  // }
 
   const handleDelete = (id) => {
     console.log(id)
-    // Remove the order with the given id from local storage
-    const updatedOrders = orders.filter((order) => order.id !== id)
-    console.log(updatedOrders, 'updatedOredrs')
-    localStorage.setItem('orders', JSON.stringify(updatedOrders))
-    setOrders((prevOrders) => prevOrders.filter((order) => order.id !== id))
+    const filteredOrder = orderPlaced.filter((item, index) => index !== id)
+    dispatch(deleteOrder(id))
   }
 
   return (
@@ -67,46 +54,33 @@ const Orders = () => {
               <th>First Name</th>
               <th>Email</th>
               <th>Company Name</th>
-              <th>Billing Address</th>
-              <th>Title</th>
+
               <th>Action</th>
             </tr>
-            {inventory &&
-              inventory.map((data, index) => (
+            {orderPlaced &&
+              orderPlaced.map((item, index) => (
                 <>
-                  {console.log(data[1], 'data from id')}
                   <tr>
-                    <td>{data[0].selectedDate}</td>
-                    <td>{data[0].swagPack.toString()}</td>
-                    <td>{data[2].quantity}</td>
-
-                    <td>{data.Customer_First_Name}</td>
-                    <td>{data.Customer_Last_Name}</td>
-                    <td>{data.Customer_Phone}</td>
-                    <td>{data.Shipping_Address}</td>
-                    <td>{data.Billing_Address}</td>
-                    <td>{data.Order_Number}</td>
+                    <td>{item[0].selectedDate}</td>
+                    <td>{item[0].swagPack.toString()}</td>
+                    <td>{item[2].quantity}</td>
+                    <td>{item[1].address}</td>
+                    <td>{item[1].firstName}</td>
+                    <td>{item[1].email}</td>
+                    <td>{item[1].companyName}</td>
                     <td>
                       <div className={Styles.action_icons}>
                         <span>
-                          <FaEye
-                            fontSize={18}
-                            cursor="pointer"
-                            onClick={() => handleViewClicked(data.id)}
-                          />
+                          <FaEye fontSize={18} cursor="pointer" />
                         </span>
                         <span>
-                          <FaRegEdit
-                            fontSize={18}
-                            cursor="pointer"
-                            onClick={() => handleEdit(data.id)}
-                          />
+                          <FaRegEdit fontSize={18} cursor="pointer" />
                         </span>
                         <span>
                           <RiDeleteBin6Line
                             cursor="pointer"
                             fontSize={18}
-                            onClick={() => handleDelete(data.id)}
+                            onClick={() => handleDelete(index)}
                           />
                         </span>
                       </div>

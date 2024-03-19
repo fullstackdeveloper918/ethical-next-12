@@ -46,12 +46,14 @@ import Product_image from '../assets/product-img.png'
 import Second_proimg from '../assets/second_proimg.png'
 import Cross_icon from '../assets/headerPics/corss.svg'
 import GmailIcon from '../assets/gmail_icon.svg'
+import Orders_icon from '../assets/Orders_icon.svg'
 
 const images = {
   bag_image,
   GmailIcon,
   Cross_icon,
   Product_image,
+  Orders_icon,
   Second_proimg,
   pages,
   ethical_swag,

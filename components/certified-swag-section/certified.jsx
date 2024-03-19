@@ -56,9 +56,9 @@ const Certified = () => {
 
   return (
     <>
-      <div className={styles.heading}>
+      <h2 className={styles.heading}>
         Certified <span className={styles.heading_colored}>CORP SWAG</span>
-      </div>
+      </h2>
       <div className="" style={{ width: '100%' }}>
         {data && (
           <div className={styles.slider_space}>
