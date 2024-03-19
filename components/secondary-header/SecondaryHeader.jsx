@@ -82,9 +82,10 @@ const SecondaryHeader = () => {
       router.query.category.length > 0
     ) {
       let r = router.asPath.split('/').filter((item) => item !== '')
-      let category0 = r[1]
+      const newArray = r.map((item) => decodeURIComponent(item))
+      let category0 = newArray[1]
       let urlCategoryId = allCategories[category0]?.airtabelId
-      let getColllectionIdd = JSON.stringify(r[2])
+      let getColllectionIdd = decodeURIComponent(JSON.stringify(r[2]))
       let searchFromMain = allCategories[category0].matchingValues
       let collectionIdToUse = Object.keys(searchFromMain).find(
         (key) => searchFromMain[key] === getColllectionIdd
