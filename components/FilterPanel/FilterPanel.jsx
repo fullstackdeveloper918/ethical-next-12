@@ -82,6 +82,7 @@ const FilterPanel = ({ setActiveFilter }) => {
         <div className={Styles.filterPanel_ProductCollection_list}>
           {LIST().map((item, index) => (
             <>
+              {console.log(item.children, 'item all')}
               <div className={Styles.accordion}>
                 <div className={Styles.accordion_item}>
                   {/* <div className={Styles.horizontal}></div> */}
@@ -100,7 +101,7 @@ const FilterPanel = ({ setActiveFilter }) => {
                   <div className={Styles.open_accordionWrap}>
                     {isActive &&
                       openIndex === index &&
-                      item.children.map((child, index) => (
+                      Object.values(item.children).map((child, index) => (
                         <>
                           {item.label === 'Price' ? (
                             <>
@@ -141,15 +142,15 @@ const FilterPanel = ({ setActiveFilter }) => {
                                   <input
                                     type="checkbox"
                                     id={`checkbox_id_${index}`}
-                                    name={child.label}
-                                    checked={isChecked[item.label]}
+                                    name={child}
+                                    // checked={isChecked[item.label]}
                                     // onChange={handleCheckboxChange}
                                   />
                                   <label
                                     htmlFor={`checkbox_id_${index}`}
                                     // onClick={() => handleAddLists(child)}
                                   >
-                                    {child.label}
+                                    {child}
                                   </label>
                                 </li>
                               </div>

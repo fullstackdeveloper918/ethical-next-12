@@ -37,6 +37,7 @@ import {
 } from 'redux-setup/categorySlice'
 import { countries } from 'constants/data'
 import { debounce } from '@lib/utils'
+import { setAllFilters } from 'redux-setup/FiltersSlice'
 
 const SecondaryHeader = () => {
   const popupRef = useRef(null)
@@ -98,6 +99,7 @@ const SecondaryHeader = () => {
           swiftSwag !== `flexible` ? 1 : 0
         }${dateNameFilter ? `&${dateNameFilter}=1` : ''}`
         setUrl(route)
+        getSideFilters()
       }
     }
   }, [router.query, countryTosend, currentPage, swiftSwag, dateNameFilter])
@@ -121,6 +123,17 @@ const SecondaryHeader = () => {
   ] = useFetch(url, {
     method: 'get',
   })
+  const [
+    getSideFilters,
+    { response: filtersRes, loading: filtersLoading, error: filtersError },
+  ] = useFetch('sidebarfilter?category=apparel__category', {
+    method: 'get',
+  })
+  useEffect(() => {
+    if (filtersRes) {
+      dispatch(setAllFilters(filtersRes.data))
+    }
+  }, [filtersRes])
 
   useEffect(() => {
     dispatch(setProductsRes(productsRes))
@@ -220,7 +233,6 @@ const SecondaryHeader = () => {
     }
   }, [inputbtn])
   const optimizedFn = useCallback(debounce(handleChange), [])
-  console.log(data, 'data')
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
