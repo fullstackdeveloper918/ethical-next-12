@@ -25,7 +25,6 @@ import {
 import { useRouter } from 'next/router'
 import useFetch from '@lib/useFetch'
 import { selectCountry } from 'redux-setup/countrySlice'
-import { debounce } from '@lib/utils'
 import {
   addCategory,
   getAllCategories,
@@ -37,6 +36,7 @@ import {
   setProductsError,
 } from 'redux-setup/categorySlice'
 import { countries } from 'constants/data'
+import { debounce } from '@lib/utils'
 
 const SecondaryHeader = () => {
   const popupRef = useRef(null)
@@ -51,7 +51,6 @@ const SecondaryHeader = () => {
   const [country, setCountry] = useState('usa')
   const [screenSize, setScreenSize] = useState(992)
   const [showOnMobile, setShowOnMobile] = useState(false)
-  const [suggestions, setSuggestions] = useState([])
 
   const [countryTosend, setCountryToSend] = useState('usa')
   const [currentPage, setCurrentPage] = useState(1)
@@ -129,10 +128,6 @@ const SecondaryHeader = () => {
     dispatch(setProductsError(productsError))
   }, [productsRes, productsLoading, productsError])
 
-  const filteredProducts = data?.filter((product) =>
-    product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
-  )
-  const optimizedFn = useCallback(debounce(handleChange), [])
   const getSingleProductPageRoute =
     router.asPath.includes('/products/') ||
     router.asPath.includes('/contact') ||
@@ -181,9 +176,11 @@ const SecondaryHeader = () => {
   }
 
   const handleChange = (value) => {
-    fetch(`https://test.cybersify.tech/Eswag/public/api/products?q=${value}`)
+    fetch(
+      `https://test.cybersify.tech/Eswag/public/api/products?search_title=${value}`
+    )
       .then((res) => res.json())
-      .then((json) => setSuggestions(json.data.data))
+      .then((json) => setData(json.data.data))
   }
 
   const handleClick = (item) => {
@@ -222,7 +219,8 @@ const SecondaryHeader = () => {
       document.documentElement.classList.remove('inputAdded')
     }
   }, [inputbtn])
-
+  const optimizedFn = useCallback(debounce(handleChange), [])
+  console.log(data, 'data')
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
@@ -452,8 +450,8 @@ const SecondaryHeader = () => {
                   {showResults && (
                     <div className={styles.search_results}>
                       <ul>
-                        {filteredProducts?.length !== 0 ? (
-                          filteredProducts?.map((item) => (
+                        {data?.length !== 0 ? (
+                          data?.map((item) => (
                             <>
                               <li
                                 className={styles.search_productlist}
