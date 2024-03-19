@@ -5,9 +5,7 @@ const initialState = {
   getProductsRes: null,
   getProductsLoading: null,
   getProductsError: null,
-  categories: [],
   allCategories: {},
-  activeFilters: [],
   subCategoryOnTop: [],
   collectionForUrl: '',
   subCollectionForUrl: '',
@@ -17,20 +15,10 @@ const categorySlice = createSlice({
   name: 'category',
   initialState,
   reducers: {
-    addCategory(state, action) {
-      state.categories.push(action.payload)
-    },
-    clearCategories(state) {
-      state.categories = []
-    },
-
     getAllCategories: (state, action) => {
       state.allCategories = action.payload
     },
 
-    setActiveFilters: (state, action) => {
-      state.activeFilters = action.payload
-    },
     setSubCategoryOnTop: (state, action) => {
       state.subCategoryOnTop = action.payload
     },
@@ -54,10 +42,7 @@ const categorySlice = createSlice({
 })
 
 export const {
-  addCategory,
-  removeCategory,
   getAllCategories,
-  setActiveFilters,
   setSubCategoryOnTop,
   setCollectionForUrl,
   setSubCollectionForUrl,

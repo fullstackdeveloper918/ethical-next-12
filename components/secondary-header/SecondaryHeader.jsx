@@ -26,7 +26,6 @@ import { useRouter } from 'next/router'
 import useFetch from '@lib/useFetch'
 import { selectCountry } from 'redux-setup/countrySlice'
 import {
-  addCategory,
   getAllCategories,
   setSubCategoryOnTop,
   setCollectionForUrl,
@@ -151,13 +150,6 @@ const SecondaryHeader = () => {
     router.asPath.includes('/products') ||
     router.asPath.includes('/category')
 
-  const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
-    `/products?q=${searchProduct}`,
-    {
-      method: 'get',
-    }
-  )
-
   const [
     getCategories,
     {
@@ -194,11 +186,6 @@ const SecondaryHeader = () => {
     )
       .then((res) => res.json())
       .then((json) => setData(json.data.data))
-  }
-
-  const handleClick = (item) => {
-    dispatch(addCategory(item))
-    router.push('/products')
   }
 
   const handleCart = () => {

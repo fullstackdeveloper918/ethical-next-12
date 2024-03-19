@@ -30,7 +30,6 @@ export const LIST = () => {
     obj.children = value
     categoriesList.push(obj)
   })
-  console.log(allFilters, 'allFilters')
 
   return categoriesList
 }

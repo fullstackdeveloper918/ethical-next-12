@@ -54,7 +54,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
     const value = event.target.value
     dispatch(setSelectedOptionValue(value))
   }
-  
+
   useEffect(() => {
     dispatch(setSearchState(''))
   }, [])
@@ -66,9 +66,6 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
     setActive(value)
   }
 
-  useEffect(() => {
-    dispatch(setActiveFilters(filtersState))
-  }, [filtersState])
   return (
     <>
       {/* Filter Section */}
