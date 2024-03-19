@@ -88,19 +88,37 @@ const SecondaryHeader = () => {
     }
   }, [countryFromRedux])
 
+  // useEffect(() => {
+  //   if (countryTosend && productCategoryId) {
+  //     // let collectionId = allCategories[router.query.category[0]].airtabelId
+  //     const route = `/products?product_catogries=${productCategoryId}${
+  //       collectionId ? `&collection_ids=${collectionId}` : ''
+  //     }&page=${
+  //       currentPage ? currentPage : 1
+  //     }&pageSize=${10}&${countryTosend}=1&swift_tag=${
+  //       swiftSwag !== `flexible` ? 1 : 0
+  //     }`
+  //     setUrl(route)
+  //   }
+  // }, [countryTosend, swiftSwag, currentPage, router.query, collectionId])
+
   useEffect(() => {
-    if (countryTosend) {
-      let collectionId = allCategories[router.query.category[0]].airtabelId
-      const route = `/products?product_catogries=${collectionId}${
-        collectionId ? `&collection_ids=${collectionId}` : ''
-      }&page=${
+    if (
+      countryTosend &&
+      router.query.category &&
+      router.query.category.length
+    ) {
+      let urlCategoryId = allCategories[router.query.category[0]].airtabelId
+
+      const route = `/products?product_catogries=${urlCategoryId}&page=${
         currentPage ? currentPage : 1
       }&pageSize=${10}&${countryTosend}=1&swift_tag=${
         swiftSwag !== `flexible` ? 1 : 0
       }`
       setUrl(route)
     }
-  }, [countryTosend, swiftSwag, currentPage, router.query, collectionId])
+  }, [router.query, countryTosend, currentPage, swiftSwag])
+
   const handleSetSubCategory = (item) => {
     dispatch(setSubCategoryOnTop(allCategories[item]?.matchingValues))
     dispatch(setSubCategories(allCategories[item]?.matchingValues))
