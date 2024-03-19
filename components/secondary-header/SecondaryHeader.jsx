@@ -85,10 +85,12 @@ const SecondaryHeader = () => {
       let category0 = newArray[1]
       let urlCategoryId = allCategories[category0]?.airtabelId
       let getColllectionIdd = decodeURIComponent(JSON.stringify(r[2]))
-      let searchFromMain = allCategories[category0].matchingValues
-      let collectionIdToUse = Object.keys(searchFromMain).find(
-        (key) => searchFromMain[key] === getColllectionIdd
-      )
+      let searchFromMain = allCategories[category0]?.matchingValues
+      let collectionIdToUse =
+        searchFromMain &&
+        Object.keys(searchFromMain).find(
+          (key) => searchFromMain[key] === getColllectionIdd
+        )
       if (category0) {
         const route = `/products?product_catogries=${urlCategoryId}${
           collectionIdToUse ? `&collection_ids=${collectionIdToUse}` : ''

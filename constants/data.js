@@ -23,13 +23,14 @@ import Canada from '../assets/headerPics/canada-flag.svg'
 export const LIST = () => {
   const allFilters = useSelector((state) => state.filter.allFilters)
   let categoriesList = []
-  Object.entries(allFilters).map(([key, value]) => {
-    let obj = {}
-    obj.id = key
-    obj.label = key
-    obj.children = value
-    categoriesList.push(obj)
-  })
+  allFilters &&
+    Object.entries(allFilters).map(([key, value]) => {
+      let obj = {}
+      obj.id = key
+      obj.label = key
+      obj.children = value
+      categoriesList.push(obj)
+    })
 
   return categoriesList
 }
