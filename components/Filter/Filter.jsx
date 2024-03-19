@@ -54,7 +54,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
     const value = event.target.value
     dispatch(setSelectedOptionValue(value))
   }
-
+  
   useEffect(() => {
     dispatch(setSearchState(''))
   }, [])
@@ -107,7 +107,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
               id=""
               className={Styles.Select_inputs}
               value={selectedOptionValue}
-              // onChange={handleSelectChange}
+              onChange={handleSelectChange}
             >
               <option defaultValue value="">
                 Select an Option

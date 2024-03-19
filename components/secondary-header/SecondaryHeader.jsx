@@ -65,7 +65,7 @@ const SecondaryHeader = () => {
   const allCategories = useSelector((state) => state.category.allCategories)
 
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
-
+  const dateNameFilter = useSelector((state) => state.cart.selectedOptionValue)
   useEffect(() => {
     if (countryFromRedux) {
       setCountryToSend(
@@ -97,11 +97,11 @@ const SecondaryHeader = () => {
           currentPage ? currentPage : 1
         }&pageSize=${10}&${countryTosend}=1&swift_tag=${
           swiftSwag !== `flexible` ? 1 : 0
-        }`
+        }${dateNameFilter ? `&${dateNameFilter}=1` : ''}`
         setUrl(route)
       }
     }
-  }, [router.query, countryTosend, currentPage, swiftSwag])
+  }, [router.query, countryTosend, currentPage, swiftSwag, dateNameFilter])
 
   const handleSetSubCategory = (item) => {
     dispatch(setSubCategoryOnTop(allCategories[item]?.matchingValues))
