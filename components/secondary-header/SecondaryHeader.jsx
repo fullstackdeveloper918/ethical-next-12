@@ -101,9 +101,7 @@ const SecondaryHeader = () => {
       setUrl(route)
     }
   }, [countryTosend, swiftSwag, currentPage, router.query, collectionId])
-  console.log(router.query.category[0], 'rrrrr')
   const handleSetSubCategory = (item) => {
-    console.log(allCategories[item], 'all of me')
     dispatch(setSubCategoryOnTop(allCategories[item]?.matchingValues))
     dispatch(setSubCategories(allCategories[item]?.matchingValues))
     dispatch(setProductCategoryId(allCategories[item].airtabelId))
