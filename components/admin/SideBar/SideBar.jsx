@@ -6,44 +6,7 @@ import { Sidebar_Data } from '../../../constants/data'
 import { useRouter } from 'next/router'
 
 const SideBar = ({ data, imageData }) => {
-  const [isActive, setIsActive] = useState(0)
   const router = useRouter()
-
-  const sidebarContentMap = {
-    '/super-admin/admin': [0, 1, 2, 3, 4, 5, 6],
-    '/super-admin/dashboard': [0, 1, 2, 3, 4, 5, 6],
-    '/super-admin/customer': [0, 1, 2, 3, 4, 5, 6],
-    '/super-admin/invoice': [0, 1, 2, 3, 4, 5, 6],
-    '/super-admin/pages': [0, 1, 2, 3, 4, 5, 6],
-    '/super-admin/blog': [0, 1, 2, 3, 4, 5, 6],
-    '/super-admin/categories': [0, 1, 2, 3, 4, 5, 8, 6],
-    '/super-admin/orders': [0, 1, 2, 3, 4, 5, 6],
-    '/super-admin/users': [0, 1, 3, 4, 5, 6, 7, 9],
-    '/super-admin/add-users': [0, 1, 2, 3, 4, 5, 6, 9],
-    '/super-admin/add-roles': [0, 1, 2, 3, 4, 5, 6, 9],
-    '/company': [0, 7, 1, 2],
-    '/company/admin': [0, 1, 2, 10, 11],
-    '/company/admin/store-detail': [0, 1, 2, 10, 11],
-    '/company/admin/approval': [0, 7, 1, 2, 10, 11],
-    '/company/admin/delivered': [0, 7, 1, 2, 10, 11],
-    '/company/admin/edit-information': [0, 7, 1, 2, 10, 11],
-    '/company/admin/all-products': [0, 7, 1, 2, 10, 11],
-    '/company/admin/edit-product': [0, 7, 1, 2, 10, 11],
-    '/company/admin/invoice': [0, 7, 1, 2, 10, 11],
-    '/company/admin/order-detail': [0, 1, 2, 10, 11],
-    '/company/admin/order-status': [0, 7, 1, 2, 10, 11],
-    '/company/admin/payment': [0, 7, 1, 2, 10, 11],
-    '/company/admin/shipping-status': [0, 7, 1, 2, 10, 11],
-    '/company/admin/store-detail': [0, 1, 2, 10, 11],
-  }
-
-  const currentPage = router?.pathname
-
-  const handleClick = (item) => {
-    console.log(item, 'address')
-  }
-
-  const sidebarIndices = sidebarContentMap[currentPage] || []
 
   return (
     <>
@@ -61,7 +24,7 @@ const SideBar = ({ data, imageData }) => {
                 onClick={() => router.push('/')}
               />
             )}
-            {/*  */}
+
             {imageData === 'image' && (
               <>
                 <div className={Styles.User_info}>
@@ -70,37 +33,159 @@ const SideBar = ({ data, imageData }) => {
                 </div>
               </>
             )}
-            {/*  */}
+
             <div className={Styles.horizontal_line}></div>
             <div className={Styles.Sidebar_data}>
-              {sidebarIndices.map((item, index) => (
-                <>
-                  <div
-                    className={`${Styles.sidebar_data_content} ${
-                      isActive === index ? Styles.active : ''
-                    }`}
-                    key={index}
-                    onClick={() => setIsActive(index)}
-                  >
-                    <span className={Styles.sidebar_img}>
-                      <Image
-                        className={Styles.sidebar_icon}
-                        src={images.Livello_1}
-                        alt="icons"
-                        width={40}
-                        height={40}
-                      />
-                    </span>
+              <>
+                <div
+                  className={Styles.sidebar_data_content}
+                  onClick={() => setIsActive(index)}
+                >
+                  <span className={Styles.sidebar_img}>
+                    <Image
+                      className={Styles.sidebar_icon}
+                      src={images.Livello_1}
+                      alt="icons"
+                      width={40}
+                      height={40}
+                    />
+                  </span>
 
-                    <span
-                      className={Styles.Sidebar_links}
-                      onClick={() => handleClick(item)}
-                    >
-                      {Sidebar_Data[item].text}
-                    </span>
-                  </div>
-                </>
-              ))}
+                  <span
+                    className={Styles.Sidebar_links}
+                    onClick={() => handleClick(item)}
+                  >
+                    Dashboard
+                  </span>
+                </div>
+
+                <div
+                  className={Styles.sidebar_data_content}
+                  onClick={() => setIsActive(index)}
+                >
+                  <span className={Styles.sidebar_img}>
+                    <Image
+                      className={Styles.sidebar_icon}
+                      src={images.Livello_1}
+                      alt="icons"
+                      width={40}
+                      height={40}
+                    />
+                  </span>
+
+                  <span
+                    className={Styles.Sidebar_links}
+                    onClick={() => handleClick(item)}
+                  >
+                    Orders
+                  </span>
+                </div>
+                <div
+                  className={Styles.sidebar_data_content}
+                  onClick={() => setIsActive(index)}
+                >
+                  <span className={Styles.sidebar_img}>
+                    <Image
+                      className={Styles.sidebar_icon}
+                      src={images.Livello_1}
+                      alt="icons"
+                      width={40}
+                      height={40}
+                    />
+                  </span>
+
+                  <span
+                    className={Styles.Sidebar_links}
+                    onClick={() => handleClick(item)}
+                  >
+                    History
+                  </span>
+                </div>
+                <div
+                  className={Styles.sidebar_data_content}
+                  onClick={() => setIsActive(index)}
+                >
+                  <span className={Styles.sidebar_img}>
+                    <Image
+                      className={Styles.sidebar_icon}
+                      src={images.Livello_1}
+                      alt="icons"
+                      width={40}
+                      height={40}
+                    />
+                  </span>
+
+                  <span
+                    className={Styles.Sidebar_links}
+                    onClick={() => handleClick(item)}
+                  >
+                    Customers
+                  </span>
+                </div>
+                <div
+                  className={Styles.sidebar_data_content}
+                  onClick={() => setIsActive(index)}
+                >
+                  <span className={Styles.sidebar_img}>
+                    <Image
+                      className={Styles.sidebar_icon}
+                      src={images.Livello_1}
+                      alt="icons"
+                      width={40}
+                      height={40}
+                    />
+                  </span>
+
+                  <span
+                    className={Styles.Sidebar_links}
+                    onClick={() => handleClick(item)}
+                  >
+                    Pages
+                  </span>
+                </div>
+                <div
+                  className={Styles.sidebar_data_content}
+                  onClick={() => setIsActive(index)}
+                >
+                  <span className={Styles.sidebar_img}>
+                    <Image
+                      className={Styles.sidebar_icon}
+                      src={images.Livello_1}
+                      alt="icons"
+                      width={40}
+                      height={40}
+                    />
+                  </span>
+
+                  <span
+                    className={Styles.Sidebar_links}
+                    onClick={() => handleClick(item)}
+                  >
+                    Blogs
+                  </span>
+                </div>
+                <div
+                  className={Styles.sidebar_data_content}
+                  onClick={() => setIsActive(index)}
+                >
+                  <span className={Styles.sidebar_img}>
+                    <Image
+                      className={Styles.sidebar_icon}
+                      src={images.Livello_1}
+                      alt="icons"
+                      width={40}
+                      height={40}
+                    />
+                  </span>
+
+                  <span
+                    className={Styles.Sidebar_links}
+                    onClick={() => handleClick(item)}
+                  >
+                    Invoices
+                  </span>
+                </div>
+              </>
             </div>
           </div>
           <div className={Styles.bottom_container}>

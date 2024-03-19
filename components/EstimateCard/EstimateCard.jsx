@@ -16,6 +16,8 @@ import useFetch from '../../lib/useFetch'
 import { PDFViewer, pdf } from '@react-pdf/renderer'
 import Card from '@components/dummy/Card'
 import { saveAs } from 'file-saver'
+import { convertToObject } from 'typescript'
+// import { addOrders } from '../../redux-setup/ordersSlice'
 
 const EstimateCard = () => {
   const dispatch = useDispatch()
@@ -41,11 +43,17 @@ const EstimateCard = () => {
 
   const handleSubmit = () => {
     if (!userId) {
-      alert('Please Login To submit Estimate')
+      toast.error('Please login to submit estimate', {
+        position: 'top-center',
+      })
     } else if (!step1State && !setStep2State) {
-      alert('Please Complete All Steps to submit.')
+      toast.error('Please complete all steps to submit.', {
+        position: 'top-center',
+      })
     } else if (cartItems.length === 0) {
-      alert('Please Add something in your cart to place order')
+      toast.error('Please add something in your cart to place order', {
+        position: 'top-center',
+      })
     } else {
       loadQuery(data)
     }
@@ -55,6 +63,7 @@ const EstimateCard = () => {
     if (response) {
       console.log(response, 'response')
       toast.success('Your request has been submmitted successfully')
+      dispatch(setOrderPlaced(response?.data))
       dispatch(deleteAllCartItems())
       router.push('/thank-you')
     }
