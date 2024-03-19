@@ -132,11 +132,17 @@ const ProductCard = ({ item, fromSingleProduct }) => {
                 <Share setShareIcons={setShareIcons} item={item} />
               </>
             )}
-            <Link
-              href={fromSingleProduct ? `${item?.id}` : `product/${item?.id}`}
+
+            <button
+              className={Styles.viewProduct_btn}
+              onClick={() =>
+                router.push(
+                  fromSingleProduct ? `${item?.id}` : `/product/${item?.id}`
+                )
+              }
             >
-              <button className={Styles.viewProduct_btn}>View Product</button>
-            </Link>
+              View Product
+            </button>
           </div>
         </div>
       )}
