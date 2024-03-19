@@ -61,7 +61,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
 
   const handleAddLists = (key, value) => {
     dispatch(setSubCollectionForUrl(JSON.parse(value)))
-    router.push(`/category/${collectionForUrl}/collection/${JSON.parse(value)}`)
+    router.push(`/category/${collectionForUrl}/${JSON.parse(value)}`)
 
     setActive(value)
   }
