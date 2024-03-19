@@ -6,7 +6,6 @@ import { filterPrice } from '../../redux-setup/FiltersSlice'
 import { RxCross2 } from 'react-icons/rx'
 import { RxCross1 } from 'react-icons/rx'
 import { setActiveFilters } from 'redux-setup/categorySlice'
-import { clearSubCategories } from '../../redux-setup/categorySlice'
 
 const FilterPanel = ({ setActiveFilter }) => {
   const dispatch = useDispatch()
@@ -62,15 +61,13 @@ const FilterPanel = ({ setActiveFilter }) => {
     }
   }
 
-  const subCategories = useSelector((state) => state.category.subCategories)
-
   return (
     <>
-     <div className={Styles.filter_topwrapper}>
-              <h3>You’re viewing Swift Swag only products.</h3>
-              <button>view all product intstead?</button>
-             </div>
-             
+      <div className={Styles.filter_topwrapper}>
+        <h3>You’re viewing Swift Swag only products.</h3>
+        <button>view all product intstead?</button>
+      </div>
+
       <div className={Styles.filterPanel}>
         <div className={Styles.filterPanel_top}>
           {/* <h4
@@ -81,10 +78,8 @@ const FilterPanel = ({ setActiveFilter }) => {
             Clear All
           </h4> */}
         </div>
-       
-        <div className={Styles.filterPanel_ProductCollection_list}>
-             
 
+        <div className={Styles.filterPanel_ProductCollection_list}>
           {LIST().map((item, index) => (
             <>
               <div className={Styles.accordion}>

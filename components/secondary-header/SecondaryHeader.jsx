@@ -29,9 +29,6 @@ import { debounce } from '@lib/utils'
 import {
   addCategory,
   getAllCategories,
-  setCollectionId,
-  setProductCategoryId,
-  setSubCategories,
   setSubCategoryOnTop,
   setCollectionForUrl,
   setSubCollectionForUrl,
@@ -48,7 +45,6 @@ const SecondaryHeader = () => {
   const [showResults, setShowResults] = useState(false)
   const [searchProduct, setSearchProduct] = useState('')
   const [data, setData] = useState([])
-  const [category, setCategory] = useState([])
   const [showSearchInput, setShowSearchInput] = useState(false)
   const [openLinks, setOpenLinks] = useState(false)
   const [inputbtn, setInputBtn] = useState(false)
@@ -60,7 +56,6 @@ const SecondaryHeader = () => {
   const [countryTosend, setCountryToSend] = useState('usa')
   const [currentPage, setCurrentPage] = useState(1)
   const [url, setUrl] = useState('')
-  const [urlAbove, setUrlAbove] = useState()
 
   const wishlistItems = useSelector((state) => state.wishlist.items)
   const countryFromRedux = useSelector((state) => state.country.country)
@@ -68,16 +63,7 @@ const SecondaryHeader = () => {
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
   const allCategories = useSelector((state) => state.category.allCategories)
-  const productCategoryId = useSelector(
-    (state) => state.category.productCategoryId
-  )
-  const collectionForUrl = useSelector(
-    (state) => state.category.collectionForUrl
-  )
-  const subCollectionForUrl = useSelector(
-    (state) => state.category.subCollectionForUrl
-  )
-  const collectionId = useSelector((state) => state.category.collectionId)
+
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
 
   useEffect(() => {
@@ -88,42 +74,35 @@ const SecondaryHeader = () => {
     }
   }, [countryFromRedux])
 
-  // useEffect(() => {
-  //   if (countryTosend && productCategoryId) {
-  //     // let collectionId = allCategories[router.query.category[0]].airtabelId
-  //     const route = `/products?product_catogries=${productCategoryId}${
-  //       collectionId ? `&collection_ids=${collectionId}` : ''
-  //     }&page=${
-  //       currentPage ? currentPage : 1
-  //     }&pageSize=${10}&${countryTosend}=1&swift_tag=${
-  //       swiftSwag !== `flexible` ? 1 : 0
-  //     }`
-  //     setUrl(route)
-  //   }
-  // }, [countryTosend, swiftSwag, currentPage, router.query, collectionId])
-
   useEffect(() => {
     if (
+      allCategories &&
       countryTosend &&
       router.query.category &&
-      router.query.category.length
+      router.query.category.length > 0
     ) {
-      let urlCategoryId = allCategories[router.query.category[0]].airtabelId
-
-      const route = `/products?product_catogries=${urlCategoryId}&page=${
-        currentPage ? currentPage : 1
-      }&pageSize=${10}&${countryTosend}=1&swift_tag=${
-        swiftSwag !== `flexible` ? 1 : 0
-      }`
-      setUrl(route)
+      let category0 = router.query.category[0]
+      let urlCategoryId = allCategories[category0]?.airtabelId
+      let getColllectionIdd = JSON.stringify(router.query.category[2])
+      let searchFromMain = allCategories[category0].matchingValues
+      let collectionIdToUse = Object.keys(searchFromMain).find(
+        (key) => searchFromMain[key] === getColllectionIdd
+      )
+      if (category0) {
+        const route = `/products?product_catogries=${urlCategoryId}${
+          collectionIdToUse ? `&collection_ids=${collectionIdToUse}` : ''
+        }&page=${
+          currentPage ? currentPage : 1
+        }&pageSize=${10}&${countryTosend}=1&swift_tag=${
+          swiftSwag !== `flexible` ? 1 : 0
+        }`
+        setUrl(route)
+      }
     }
   }, [router.query, countryTosend, currentPage, swiftSwag])
 
   const handleSetSubCategory = (item) => {
     dispatch(setSubCategoryOnTop(allCategories[item]?.matchingValues))
-    dispatch(setSubCategories(allCategories[item]?.matchingValues))
-    dispatch(setProductCategoryId(allCategories[item].airtabelId))
-    dispatch(setCollectionId(null))
     dispatch(setCollectionForUrl(item))
     dispatch(setSubCollectionForUrl(null))
     router.push(`/category/${item}`)
@@ -241,14 +220,6 @@ const SecondaryHeader = () => {
       document.documentElement.classList.remove('inputAdded')
     }
   }, [inputbtn])
-
-  useEffect(() => {
-    if (Object.keys(allCategories).length > 0) {
-      if (!productCategoryId) {
-        dispatch(setProductCategoryId(allCategories.Bags.airtabelId))
-      }
-    }
-  }, [allCategories])
 
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>

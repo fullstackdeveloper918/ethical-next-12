@@ -26,7 +26,6 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
     (state) => state.cart.selectedOptionValue
   )
 
-  const subCategoryData = useSelector((state) => state.category.subCategories)
   const subCategoryOnTop = useSelector(
     (state) => state.category.subCategoryOnTop
   )
@@ -36,11 +35,6 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
   const subCollectionForUrl = useSelector(
     (state) => state.category.subCollectionForUrl
   )
-
-  const dataArray = Object.entries(subCategoryData).map(([key, value]) => ({
-    id: key,
-    category: value.replace(/"/g, ''), // Remove double quotes from the value
-  }))
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,15 +60,8 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
   }, [])
 
   const handleAddLists = (key, value) => {
-    dispatch(setCollectionId(key))
     dispatch(setSubCollectionForUrl(JSON.parse(value)))
     router.push(`/category/${collectionForUrl}/collection/${JSON.parse(value)}`)
-    // if (filtersState.includes(text?.apikey)) {
-    //   let f = filtersState.filter((item) => item !== text?.apikey)
-    //   setFiltersState(f)
-    // } else {
-    //   setFiltersState((prevC) => [...prevC, text?.apikey])
-    // }
 
     setActive(value)
   }
