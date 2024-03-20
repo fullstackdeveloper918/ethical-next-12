@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const FilterPanel = () => {
   const dispatch = useDispatch()
+  const [active, setActive] = useState(false)
   const [inputSlider, setInputSlider] = useState(0)
-  const [openIndex, setOpenIndex] = useState(0)
+  const [openIndex, setOpenIndex] = useState('')
   const [isActive, setIsActive] = useState(true)
 
   const toggleAccordion = (index) => {
@@ -16,10 +17,12 @@ const FilterPanel = () => {
 
   return (
     <>
-      <div className={Styles.filter_topwrapper}>
-        <h3>You’re viewing Swift Swag only products.</h3>
-        <button>view all product intstead?</button>
-      </div>
+      {active && (
+        <div className={Styles.filter_topwrapper}>
+          <h3>You’re viewing Swift Swag only products.</h3>
+          <button>view all product intstead?</button>
+        </div>
+      )}
 
       <div className={Styles.filterPanel}>
         <div className={Styles.filterPanel_top}>

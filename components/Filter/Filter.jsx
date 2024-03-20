@@ -36,8 +36,6 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
     (state) => state.category.subCollectionForUrl
   )
 
-  console.log(collectionForUrl, 'collectionForUrl')
-
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 100
