@@ -74,3 +74,28 @@
     @apply bg-background text-foreground;
   }
 }
+
+@media screen and (max-width: 1440px) and (min-width: 991px){
+  .Home_banner h1 {
+  font-size: 46px !important;
+  line-height: 58px !important;
+}
+
+.banner_subheding {
+  margin: 25px 0px 0px !important;
+}
+
+.banner_subheding span.builder-text.css-1qggkls {
+  font-size: 20px;
+}
+
+.banner_btn {
+  padding: 0px !important;
+  font-size: 19px !important;
+  min-height: 50px !important;
+  margin-top: 35px !important;
+  min-width: 160px !important;
+  width: 100% !important;
+  max-width: 160px !important;
+}
+}

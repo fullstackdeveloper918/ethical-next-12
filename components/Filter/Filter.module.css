@@ -1149,6 +1149,11 @@
   position: absolute;
   right: 0;
 }
+@media (max-width:1400px){
+  .collection_items {
+    height: 430px;
+  }
+}
 @media (max-width: 1200px) {
   .collection_items {
     padding: 1rem;
