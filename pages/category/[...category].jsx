@@ -37,7 +37,7 @@ const index = () => {
       <div className={Styles.collection_banner}>
         <div className={Styles.collection_banner_heading}>
           <h1>All Swag</h1>
-          <p>Home <span> ></span> All Swag</p>
+          <p>Home <span>{">"}</span> All Swag</p>
         </div>
 
       </div>
