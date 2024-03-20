@@ -36,6 +36,8 @@ const responsive = {
 }
 
 const Product = ({ product, loading, error }) => {
+  console.log(product, 'product single')
+
   const dispatch = useDispatch()
   const [openEmoji, setOpenEmoji] = useState(false)
   const [ReadMore, setIsReadMore] = useState(false)

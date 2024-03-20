@@ -22,6 +22,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 const productID = () => {
   const router = useRouter()
   const [writeReview, setWriteReview] = useState(false)
+  const [selectedItem, setSelectedItem] = useState('Product')
 
   const [openIndex, setOpenIndex] = useState(null)
   const { query } = router ?? {}
@@ -37,6 +38,7 @@ const productID = () => {
     review_title: '',
     review: '',
   })
+
   const country = useSelector((state) => state.country.country)
 
   const handleClick = (index) => {
@@ -52,6 +54,8 @@ const productID = () => {
         method: 'get',
       }
     )
+
+  console.log('data', singleProduct?.data.material_made)
 
   useEffect(() => {
     if (country && productID) {
@@ -107,6 +111,53 @@ const productID = () => {
       <PrimaryHeader />
       <SecondaryHeader />
       <Product product={singleProduct?.data} loading={loading} error={error} />
+      <section>
+        <div>
+          <ul style={{ cursor: 'pointer' }}>
+            <li onClick={() => setSelectedItem('Product')}>
+              Product Description
+            </li>
+            <li onClick={() => setSelectedItem('Dimensions')}>Dimensions</li>
+            <li onClick={() => setSelectedItem('Material')}>Material(s)</li>
+            <li>Imprint Information</li>
+            <li>Compliance</li>
+            <li onClick={() => setSelectedItem('Swift Swag')}>
+              Swift Swag Qualified
+            </li>
+          </ul>
+        </div>
+        <div>
+          {selectedItem === 'Product' && (
+            <li>{singleProduct?.data.product_description}</li>
+          )}
+          {selectedItem === 'Dimensions' && (
+            <li>{singleProduct?.data.product_dimensions}</li>
+          )}
+          {selectedItem === 'Material' && (
+            <li>{singleProduct?.data.material_made}</li>
+          )}
+          {selectedItem === 'Swift Swag' && (
+            <>
+              Swift Swag is our new service designed to serve your Swag needs
+              with quick turn-around. Production and delivery time: 10 business
+              days after proof approval and payment. Qualified Customization
+              Methods: 1-Color Print (e.g. screen printing and pad printing)
+              Laser Engraving Deboss Embroidery (apparel products only)
+              Exceptions apply. Please inquire about Embroidery and Full-Color
+              Customizations on Hard Goods and Drinkware with our team. Maximum
+              Quantity per order: Apparel: 100 units per item. Hard Goods: 600
+              units per item. For orders above these maximum quantities, please
+              contact our team. Additional Charges: USD $55 per item. If your
+              artwork file isn't ready for production, a fee will be added to
+              your order and it may add a day in production. Freight is
+              calculated after the order is submitted. The total amount will be
+              sent to you along with the virtual proof for approval. Questions
+              about Swift Swag? Contact us using the form below or email
+              info@ethicalswag.com
+            </>
+          )}
+        </div>
+      </section>
       <section className={Styles.product_section}>
         <div className={Styles.heading_content}>
           <h3>You may also like</h3>
