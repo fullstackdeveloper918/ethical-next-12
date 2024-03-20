@@ -207,6 +207,8 @@ const SecondaryHeader = () => {
     }
   }, [])
 
+  console.log(getSingleProductPageRoute, 'getSingleProductPageRoute')
+
   useEffect(() => {
     dispatch(selectCountry(country))
   }, [country])

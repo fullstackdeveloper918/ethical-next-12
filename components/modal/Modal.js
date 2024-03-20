@@ -116,7 +116,7 @@ const Modal = () => {
                     business days!
                   </p>
                   <div className={Style.label_field}>
-                    <button type="button" className={Style.Popup_btncalender}>
+                    <button type="button" className={Style.Popup_btncalender} onClick={() => setIsOpenModal(false)}>
                       Cancel
                     </button>
                     <button
