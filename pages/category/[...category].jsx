@@ -69,31 +69,25 @@ const index = () => {
       <div className={Styles.related_product_container}>
         <div className={Styles.related_product_content}>
           <div className={Styles.imgContent}>
-            <Image src={images.Cup1} width={400} height={400} alt="" />
+            <Image src={images.Related_product} width={400} height={400} alt="" />
           </div>
           <div className={Styles.textContent}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro unde
+            <h4>Related Product</h4>
+            <h2>Travel Bags & Accessories</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro unde
             voluptatum debitis incidunt, esse, modi tenetur sapiente dignissimos
             itaque dolore officiis praesentium similique cum ducimus. Nostrum
-            consectetur facilis iure fugiat. Quasi sit mollitia soluta at atque.
-            Accusamus quas facilis officiis dolores corporis, impedit eius ex at
-            fugit sint quisquam animi alias reiciendis temporibus molestiae
-            rerum laudantium quia maiores, exercitationem debitis? Consequuntur
-            cupiditate ut delectus recusandae minus mollitia, dolorem voluptas.
-            consectetur facilis iure fugiat. Quasi sit mollitia soluta at atque.
-            Accusamus quas facilis officiis dolores corporis, impedit eius ex at
-            fugit sint quisquam animi alias reiciendis temporibus molestiae
-            rerum laudantium quia maiores, exercitationem debitis? Consequuntur
-            cupiditate ut delectus recusandae minus mollitia, dolorem voluptas.
+            consectetur facilis iure fugiat.</p>
+            <button type='button'> Shop Now</button>
           </div>
         </div>
       </div>
 
       <div className={Styles.related_categories}>
-        <div className={Styles.content}>
-          <div>
+        <div className={Styles.content_wrapper}>
+          <div className={Styles.img_content_1}>
             <div className={Styles.imgContent}>
-              <Image src={images.Shirt} height={300} width={300} alt="" />
+              <Image src={images.all_tech} layout='fill' alt="" />
             </div>
             <div className={Styles.textContent}>
               <div>
@@ -103,9 +97,9 @@ const index = () => {
               <button>Shop Now</button>
             </div>
           </div>
-          <div>
+          <div className={Styles.img_content_2}>
             <div className={Styles.imgContent}>
-              <Image src={images.Shirt} height={300} width={300} alt="" />
+              <Image src={images.Drinkware} layout='fill' alt="" />
             </div>
             <div className={Styles.textContent}>
               <div>
