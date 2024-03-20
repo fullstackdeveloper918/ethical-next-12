@@ -7,7 +7,7 @@ const FilterPanel = () => {
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
   const [inputSlider, setInputSlider] = useState(0)
-  const [openIndex, setOpenIndex] = useState(0)
+  const [openIndex, setOpenIndex] = useState('')
   const [isActive, setIsActive] = useState(true)
 
   const toggleAccordion = (index) => {
