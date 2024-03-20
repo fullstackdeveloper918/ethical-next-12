@@ -38,6 +38,7 @@ const productID = () => {
     review: '',
   })
   const country = useSelector((state) => state.country.country)
+
   const handleClick = (index) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index))
   }

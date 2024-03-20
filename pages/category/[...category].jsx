@@ -11,22 +11,44 @@ import Image from 'next/image'
 import images from '../../constants/images'
 
 const index = () => {
-  const router = useRouter()
   const [totalData, setTotalData] = useState([])
+  const [relatedCategories, setRelatedCategories] = useState([])
   const [totalPages, setTotalPages] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
   const allCategories = useSelector((state) => state.category.allCategories)
-  const activeCategory = router?.asPath.split('/').pop()
 
-  console.log(activeCategory, 'activeCategory')
+  const collectionForUrl = useSelector(
+    (state) => state.category.collectionForUrl
+  )
+  console.log(collectionForUrl, 'collectionForUrl')
 
-  // console.log(
-  //   allCategories &&
-  //     Object.entries(allCategories).map(([key, value]) =>
-  //       console.log(key, 'key', value, 'value')
-  //     )
-  // )
+  useEffect(() => {
+    const generateRelatedCategories = () => {
+      const related =
+        allCategories &&
+        Object.keys(allCategories).filter(
+          (category) => (category === collectionForUrl, 'category')
+        )
+      if (related.length > 2) {
+        const randomIndices = []
+        while (randomIndices.length < 2) {
+          const randomIndex = Math.floor(Math.random() * related.length)
+          if (!randomIndices.includes(randomIndex)) {
+            randomIndices.push(randomIndex)
+          }
+        }
+        setRelatedCategories(randomIndices.map((index) => related[index]))
+      } else {
+        setRelatedCategories(related)
+      }
+    }
+
+    // Call the function to generate related categories
+    generateRelatedCategories()
+  }, [collectionForUrl])
+
+  console.log(relatedCategories, 'relatedCategories')
 
   const getProductsLoading = useSelector(
     (state) => state.category.getProductsLoading
