@@ -59,11 +59,11 @@ const SingleProduct = ({ product }) => {
           src={starProductsImage}
           width={220}
           height={220}
-          alt="product_image"
+          alt={product?.product_title}
           onError={handleImageOnError}
         />
       </div>
-      <div className={styles.product_name}>
+      <h3 className={styles.product_name}>
         {product?.product_title || 'No title received'}
         {/* {product?.emoji_ratings &&
           Object.entries(product?.emoji_ratings).map(([key, value]) => (
@@ -71,7 +71,7 @@ const SingleProduct = ({ product }) => {
               <p>{value}</p>
             </>
           ))} */}
-      </div>
+      </h3>
       <div className={styles.product_price} style={{ textAlign: 'center' }}>
         $
         {priceWithoutCustomizations

@@ -66,9 +66,6 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
     setActive(value)
   }
 
-  useEffect(() => {
-    dispatch(setActiveFilters(filtersState))
-  }, [filtersState])
   return (
     <>
       {/* Filter Section */}
@@ -107,7 +104,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
               id=""
               className={Styles.Select_inputs}
               value={selectedOptionValue}
-              // onChange={handleSelectChange}
+              onChange={handleSelectChange}
             >
               <option defaultValue value="">
                 Select an Option

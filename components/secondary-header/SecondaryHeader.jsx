@@ -25,9 +25,7 @@ import {
 import { useRouter } from 'next/router'
 import useFetch from '@lib/useFetch'
 import { selectCountry } from 'redux-setup/countrySlice'
-import { debounce } from '@lib/utils'
 import {
-  addCategory,
   getAllCategories,
   setSubCategoryOnTop,
   setCollectionForUrl,
@@ -37,6 +35,8 @@ import {
   setProductsError,
 } from 'redux-setup/categorySlice'
 import { countries } from 'constants/data'
+import { debounce } from '@lib/utils'
+import { setAllFilters } from 'redux-setup/FiltersSlice'
 
 const SecondaryHeader = () => {
   const popupRef = useRef(null)
@@ -51,7 +51,6 @@ const SecondaryHeader = () => {
   const [country, setCountry] = useState('usa')
   const [screenSize, setScreenSize] = useState(992)
   const [showOnMobile, setShowOnMobile] = useState(false)
-  const [suggestions, setSuggestions] = useState([])
 
   const [countryTosend, setCountryToSend] = useState('usa')
   const [currentPage, setCurrentPage] = useState(1)
@@ -65,7 +64,7 @@ const SecondaryHeader = () => {
   const allCategories = useSelector((state) => state.category.allCategories)
 
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
-
+  const dateNameFilter = useSelector((state) => state.cart.selectedOptionValue)
   useEffect(() => {
     if (countryFromRedux) {
       setCountryToSend(
@@ -82,13 +81,16 @@ const SecondaryHeader = () => {
       router.query.category.length > 0
     ) {
       let r = router.asPath.split('/').filter((item) => item !== '')
-      let category0 = r[1]
+      const newArray = r.map((item) => decodeURIComponent(item))
+      let category0 = newArray[1]
       let urlCategoryId = allCategories[category0]?.airtabelId
-      let getColllectionIdd = JSON.stringify(r[2])
-      let searchFromMain = allCategories[category0].matchingValues
-      let collectionIdToUse = Object.keys(searchFromMain).find(
-        (key) => searchFromMain[key] === getColllectionIdd
-      )
+      let getColllectionIdd = decodeURIComponent(JSON.stringify(r[2]))
+      let searchFromMain = allCategories[category0]?.matchingValues
+      let collectionIdToUse =
+        searchFromMain &&
+        Object.keys(searchFromMain).find(
+          (key) => searchFromMain[key] === getColllectionIdd
+        )
       if (category0) {
         const route = `/products?product_catogries=${urlCategoryId}${
           collectionIdToUse ? `&collection_ids=${collectionIdToUse}` : ''
@@ -96,11 +98,12 @@ const SecondaryHeader = () => {
           currentPage ? currentPage : 1
         }&pageSize=${10}&${countryTosend}=1&swift_tag=${
           swiftSwag !== `flexible` ? 1 : 0
-        }`
+        }${dateNameFilter ? `&${dateNameFilter}=1` : ''}`
         setUrl(route)
+        getSideFilters()
       }
     }
-  }, [router.query, countryTosend, currentPage, swiftSwag])
+  }, [router.query, countryTosend, currentPage, swiftSwag, dateNameFilter])
 
   const handleSetSubCategory = (item) => {
     dispatch(setSubCategoryOnTop(allCategories[item]?.matchingValues))
@@ -121,6 +124,17 @@ const SecondaryHeader = () => {
   ] = useFetch(url, {
     method: 'get',
   })
+  const [
+    getSideFilters,
+    { response: filtersRes, loading: filtersLoading, error: filtersError },
+  ] = useFetch('sidebarfilter?category=apparel__category', {
+    method: 'get',
+  })
+  useEffect(() => {
+    if (filtersRes) {
+      dispatch(setAllFilters(filtersRes.data))
+    }
+  }, [filtersRes])
 
   useEffect(() => {
     dispatch(setProductsRes(productsRes))
@@ -128,10 +142,6 @@ const SecondaryHeader = () => {
     dispatch(setProductsError(productsError))
   }, [productsRes, productsLoading, productsError])
 
-  const filteredProducts = data?.filter((product) =>
-    product?.title?.toLowerCase().includes(searchProduct.toLowerCase())
-  )
-  const optimizedFn = useCallback(debounce(handleChange), [])
   const getSingleProductPageRoute =
     router.asPath.includes('/products/') ||
     router.asPath.includes('/contact') ||
@@ -141,13 +151,6 @@ const SecondaryHeader = () => {
     router.asPath.includes('/billing-address') ||
     router.asPath.includes('/products') ||
     router.asPath.includes('/category')
-
-  const [loadQuery, { response, loading, error, errorMessage }] = useFetch(
-    `/products?q=${searchProduct}`,
-    {
-      method: 'get',
-    }
-  )
 
   const [
     getCategories,
@@ -180,14 +183,11 @@ const SecondaryHeader = () => {
   }
 
   const handleChange = (value) => {
-    fetch(`https://test.cybersify.tech/Eswag/public/api/products?q=${value}`)
+    fetch(
+      `https://test.cybersify.tech/Eswag/public/api/products?search_title=${value}`
+    )
       .then((res) => res.json())
-      .then((json) => setSuggestions(json.data.data))
-  }
-
-  const handleClick = (item) => {
-    dispatch(addCategory(item))
-    router.push('/products')
+      .then((json) => setData(json.data.data))
   }
 
   const handleCart = () => {
@@ -221,7 +221,7 @@ const SecondaryHeader = () => {
       document.documentElement.classList.remove('inputAdded')
     }
   }, [inputbtn])
-
+  const optimizedFn = useCallback(debounce(handleChange), [])
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
@@ -451,8 +451,8 @@ const SecondaryHeader = () => {
                   {showResults && (
                     <div className={styles.search_results}>
                       <ul>
-                        {filteredProducts?.length !== 0 ? (
-                          filteredProducts?.map((item) => (
+                        {data?.length !== 0 ? (
+                          data?.map((item) => (
                             <>
                               <li
                                 className={styles.search_productlist}

@@ -27,7 +27,14 @@ const cartSlice = createSlice({
         state.cartItems.push(action.payload)
       }
     },
+    deleteOrder: (state, action) => {
+      const orderId = action.payload
+      state.orderPlaced = state.orderPlaced.filter(
+        (order, index) => index !== orderId
+      )
+    },
     setOrderPlaced: (state, action) => {
+      console.log(action.payload, 'hello payload')
       state.orderPlaced.push(action.payload)
     },
     deleteCartItem: (state, action) => {
@@ -74,5 +81,6 @@ export const {
   setStep3State,
   setStep1State,
   setOrderPlaced,
+  deleteOrder,
 } = cartSlice.actions
 export default cartSlice.reducer
