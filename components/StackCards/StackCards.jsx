@@ -83,7 +83,6 @@ const Dummy = () => {
                   className={styles.list_explore}
                   >
                   
-                 
                     <div className={styles.flat_dis}>Flat 20% off</div>
                     <div className={styles.cardImg}><Image
                     src={card.img}

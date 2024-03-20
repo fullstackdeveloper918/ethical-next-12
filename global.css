@@ -143,8 +143,9 @@ span {
 }
 .container {
   width: 100%;
-  max-width: 1280px;
-  margin: 0px auto;
+  max-width: 1368px;
+  margin: 0 auto;
+  padding: 0px 15px;
 }
 
 .dropemnu_design::-webkit-scrollbar {

@@ -15,7 +15,7 @@ const Product = ({
   currentPage,
   loading,
 }) => {
-  const [activeFilter, setActiveFilter] = useState(true)
+  const [activeFilter, setActiveFilter] = useState(false)
 
   let length = getProductsRes?.data?.data?.length
 

@@ -50,10 +50,18 @@ import Orders_icon from '../assets/Orders_icon.svg'
 import cupImg from '../assets/Cup_img.png'
 import Tshirt from '../assets/T-shirt.png'
 import BottelImg from '../assets/bottel-img.png'
+import RelatedBg from '../assets/Related_Product.png'
+import Related_product from '../assets/Colection_image.png'
+import all_tech from '../assets/all_tech.png'
+import Drinkware from '../assets/Drinkware.png'
 
 
 const images = {
   bag_image,
+  all_tech,
+  Drinkware,
+  Related_product,
+  RelatedBg,
   BottelImg,
   GmailIcon,
   Tshirt,
