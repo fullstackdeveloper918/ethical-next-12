@@ -47,10 +47,17 @@ import Second_proimg from '../assets/second_proimg.png'
 import Cross_icon from '../assets/headerPics/corss.svg'
 import GmailIcon from '../assets/gmail_icon.svg'
 import Orders_icon from '../assets/Orders_icon.svg'
+import cupImg from '../assets/Cup_img.png'
+import Tshirt from '../assets/T-shirt.png'
+import BottelImg from '../assets/bottel-img.png'
+
 
 const images = {
   bag_image,
+  BottelImg,
   GmailIcon,
+  Tshirt,
+  cupImg,
   Cross_icon,
   Product_image,
   Orders_icon,

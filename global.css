@@ -450,7 +450,7 @@ button.react-calendar__tile.react-calendar__decade-view__years__year {
 }
 .react-calendar__tile--now {
   background: #a2d061 !important; 
-  color: #fff !important;
+  /* color: #fff !important; */
   border-radius: 5px !important;
 }
 .Modal_Calendar_wrapper__eCT1W button {
