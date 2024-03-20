@@ -497,7 +497,7 @@
 
   .header_menu {
     border-radius: 0px 0px 10px 10px;
-    padding: 10px;
+    padding: 15px 0px;
     /* box-shadow: 0 10px 20px rgb(0 0 0 / 8%); */
     text-align: center;
     display: flex;
@@ -520,7 +520,7 @@
     z-index: -1;
   }
   .shop_menu .header_menu span {
-    font-size: 13px;
+    font-size: 14px;
     min-height: auto;
     padding: 5px;
   }

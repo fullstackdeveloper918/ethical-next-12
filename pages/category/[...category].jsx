@@ -6,6 +6,7 @@ import SecondaryHeader from '@components/secondary-header/SecondaryHeader'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import Styles from '../../styles/category.module.css'
 
 const index = () => {
   const router = useRouter()
@@ -32,6 +33,15 @@ const index = () => {
       <PrimaryHeader />
       <SecondaryHeader />
       <Modal />
+<section className={Styles.conatainer_Sec}>
+      <div className={Styles.collection_banner}>
+        <div className={Styles.collection_banner_heading}>
+          <h1>All Swag</h1>
+          <p>Home <span> ></span> All Swag</p>
+        </div>
+
+      </div>
+      </section>
 
       <Product
         getProductsRes={getProductsRes}
