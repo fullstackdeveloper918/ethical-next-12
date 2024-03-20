@@ -1,34 +1,39 @@
-.conatainer_Sec{
-    max-width: 1368px;
-    width: 100%;
-    margin: 0px auto;
-    padding: 0px 15px;
+.conatainer_Sec {
+  max-width: 1368px;
+  width: 100%;
+  margin: 0px auto;
+  padding: 0px 15px;
 }
 
-.collection_banner{
-    background: url(/_next/static/media/collection_banner.5e803070.png);
-    min-height: 360px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
-    position: relative;
-    width: 100%;
-    margin: 20px auto 0px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
+.collection_banner {
+  background: url(/_next/static/media/collection_banner.5e803070.png);
+  min-height: 360px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  width: 100%;
+  margin: 20px auto 0px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
 }
-.collection_banner_heading{
-padding-left: 70px;
+.collection_banner_heading {
+  padding-left: 70px;
 }
 .collection_banner_heading h1 {
-    font-size: 46px;
-    font-weight: 600;
-    color: #fff;
+  font-size: 46px;
+  font-weight: 600;
+  color: #fff;
 }
-.collection_banner_heading p{
-    font-size: 22px;
-    font-weight: 500;
-    color: #fff;
-    font-family: poppins !important;
+.collection_banner_heading p {
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  font-family: poppins !important;
+}
+
+.related_product_container {
+  width: 100%;
+  background-image: url('../assets/');
 }

@@ -31,7 +31,6 @@ const ProductCard = ({ item, fromSingleProduct }) => {
     setSingleImage(item?.image)
   }, [item])
 
-  console.log(singleImage, 'kjchjvc')
   const addToWishlist = (item) => {
     const isInWishlist = wishListItems.some(
       (wishlistItem) => wishlistItem.id === item.id
