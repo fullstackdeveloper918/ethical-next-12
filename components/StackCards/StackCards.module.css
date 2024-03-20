@@ -255,13 +255,16 @@
     left: 33px;
   }
   .bottom_content h2 {
-    font-size: 33px;
+    font-size: 18px;
   }
   .bottom_content p {
     font-size: 15px;
   }
   .flat_dis {
     padding: 4px 16px;
+  }
+  .text ul {
+    height: 450px;
   }
 
 }
