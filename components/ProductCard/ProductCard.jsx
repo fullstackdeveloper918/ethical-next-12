@@ -25,10 +25,12 @@ const ProductCard = ({ item, fromSingleProduct }) => {
   const dispatch = useDispatch()
   const wishListItems = useSelector((state) => state.wishlist.items)
   const favoriteIconColor = useSelector((state) => state.wishlist.favoriteIcon)
+  const country = useSelector((state) => state.country.country)
 
   useEffect(() => {
     setSingleImage(item?.image)
-  }, [])
+  }, [item])
+
   const addToWishlist = (item) => {
     const isInWishlist = wishListItems.some(
       (wishlistItem) => wishlistItem.id === item.id
@@ -62,16 +64,11 @@ const ProductCard = ({ item, fromSingleProduct }) => {
               src={singleImage}
               width={278}
               height={311}
-              alt="products_images"
-              // onError={() => setSingleImage(images.No_product)}
+              alt={item?.product_title}
+              onError={() => setSingleImage(images.No_product)}
             />
           ) : (
-            <Image
-              src={images.No_product}
-              width={278}
-              height={311}
-              alt={item?.product_title}
-            />
+            <Image src={images.No_product} width={278} height={311} />
           )}
           <div className={Styles.product_card_content}>
             <h4 className={Styles.title}>{item?.product_title}</h4>

@@ -35,7 +35,6 @@ const FilterPanel = () => {
         <div className={Styles.filterPanel_ProductCollection_list}>
           {LIST().map((item, index) => (
             <>
-              {console.log(item, 'item all pp')}
               <div className={Styles.accordion}>
                 <div className={Styles.accordion_item}>
                   {/* <div className={Styles.horizontal}></div> */}

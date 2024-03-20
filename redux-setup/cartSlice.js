@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   cartItems: [],
   orderPlaced: [],
+  orderIndex: '',
   searchState: '',
   selectedOptionValue: '',
   reached2ndStep: false,
@@ -36,6 +37,9 @@ const cartSlice = createSlice({
     setOrderPlaced: (state, action) => {
       console.log(action.payload, 'hello payload')
       state.orderPlaced.push(action.payload)
+    },
+    findOrder: (state, action) => {
+      state.orderIndex = action.payload
     },
     deleteCartItem: (state, action) => {
       state.cartItems = state.cartItems.filter(
@@ -82,5 +86,6 @@ export const {
   setStep1State,
   setOrderPlaced,
   deleteOrder,
+  findOrder,
 } = cartSlice.actions
 export default cartSlice.reducer

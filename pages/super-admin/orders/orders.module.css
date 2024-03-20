@@ -45,9 +45,6 @@
   background-color: #f0f0f0;
 }
 
-.Orders_data_table table th:nth-child(2) {
-  text-align: center;
-}
 .Orders_data_table table th,
 .Orders_data_table table td {
   text-align: left;
@@ -60,7 +57,7 @@
 
 .Orders_data_table .action_icons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.6rem;
   align-items: center;
 }
