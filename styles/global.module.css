@@ -6,11 +6,11 @@
 }
 
 @media screen and (max-width:1400px) {
-  .container {
+  /* .container {
     max-width: 1200px;
-  }
+  } */
 }
-@media screen and (max-width:1300px) {
+/* @media screen and (max-width:1300px) {
   .container {
     max-width: 1024px;
   }
@@ -24,10 +24,10 @@
   .container {
     max-width: 800px;
   }
-}
+} */
 @media screen and (max-width:991px) {
   .container {
-    max-width: 93%;
+    max-width: 100%;
     
   }
 }

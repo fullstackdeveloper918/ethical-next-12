@@ -874,6 +874,6 @@
 
     }
     .mega_menu_open .header_menu_wrapper{
-      top:60px;
+      top:60px !important;
     }
   }
