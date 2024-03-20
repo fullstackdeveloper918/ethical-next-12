@@ -2,10 +2,24 @@ import React, { useEffect, useState } from 'react'
 import Styles from './orders.module.css'
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
-import { toast } from 'react-toastify'
 
 const slug = () => {
+  const [data, setData] = useState([])
   const orderPlaced = useSelector((state) => state.cart.orderPlaced)
+  const orderIndex = useSelector((state) => state.cart.orderIndex)
+  console.log(orderIndex, 'hello orderindex')
+
+  useEffect(() => {
+    console.log(orderIndex, 'o ara')
+    if (orderPlaced) {
+      const findOrder = orderPlaced.find(
+        (item, index) => item[2]?.id === orderIndex
+      )
+      setData(findOrder)
+    }
+  }, [])
+
+  console.log(data[1]?.singleAddress)
 
   return (
     <>
@@ -15,23 +29,39 @@ const slug = () => {
             <h3>Order Details</h3>
             <div className={Styles.input_field}>
               <label htmlFor="">Issue Date</label>
-              <input type="text" name="ORDER_ID" placeholder="Issue Date" />
+              <input
+                type="date"
+                name="ORDER_ID"
+                placeholder="Issue Date"
+                value={data[0]?.selectedDate}
+              />
             </div>
             <div className={Styles.input_field}>
               <label htmlFor="">Swag Pack</label>
-              <input type="text" name="Client_Linked" placeholder="Owner" />
+              <input
+                type="text"
+                name="Client_Linked"
+                placeholder="Owner"
+                value={data[0]?.swagPack.toString()}
+              />
             </div>
             <div className={Styles.input_field}>
               <label htmlFor="">Warehousing</label>
               <input
                 type="text"
-                name="Order_Line_Items"
-                placeholder="Activity Type"
+                name="warehousing"
+                placeholder="Warehousing"
+                value={data[0]?.Warehousing.toString()}
               />
             </div>
             <div className={Styles.input_field}>
               <label htmlFor="">Pick & Pack</label>
-              <input type="text" name="Customer_Email" placeholder="Status" />
+              <input
+                type="text"
+                name="pick_&_pack"
+                placeholder="Pick And Pack"
+                value={data[0]?.pickAndPack.toString()}
+              />
             </div>
 
             <h3>Shipping Details</h3>
@@ -39,25 +69,18 @@ const slug = () => {
               <label htmlFor="">Single Address</label>
               <input
                 type="text"
-                name="Shipping_First_Name"
-                placeholder="Shipping First Name"
+                name="address"
+                placeholder="Shipping Address"
+                value={data[1]?.singleAddress}
               />
             </div>
             <div className={Styles.input_field}>
               <label htmlFor="">First Name</label>
-              <input
-                type="text"
-                name="Shipping_Last_Name"
-                placeholder="Shipping Last Name"
-              />
+              <input type="text" name="firstName" placeholder="First Name" />
             </div>
             <div className={Styles.input_field}>
               <label htmlFor="">Last Name</label>
-              <input
-                type="text"
-                name="Shipping_Company"
-                placeholder="Shipping Company"
-              />
+              <input type="text" name="lastName" placeholder="Last Name" />
             </div>
             <div className={Styles.input_field}>
               <label htmlFor="">Shipping Address</label>
@@ -85,30 +108,26 @@ const slug = () => {
             </div>
 
             <h3>Estimate Details</h3>
+            <div className={Styles.input_field}>
+              <label htmlFor="">Customization</label>
+              <input
+                type="text"
+                name="customization"
+                placeholder="Customization"
+              />
+            </div>
 
             <div className={Styles.input_field}>
               <label htmlFor="">Quantity</label>
-              <input
-                type="text"
-                name="Billing_First_Name"
-                placeholder="Billing First Name"
-              />
+              <input type="text" name="quantity" placeholder="Quantity" />
             </div>
             <div className={Styles.input_field}>
               <label htmlFor="">Title</label>
-              <input
-                type="text"
-                name="Billing_Last_Name"
-                placeholder="Billing Last Name"
-              />
+              <input type="text" name="title" placeholder="Title" />
             </div>
             <div className={Styles.input_field}>
-              <label htmlFor="">Price Per Unit</label>
-              <input
-                type="text"
-                name="Billing_Phone"
-                placeholder="Billing Phone"
-              />
+              <label htmlFor="">Price</label>
+              <input type="text" name="price" placeholder="Price" />
             </div>
 
             <div className={Styles.input_field}>

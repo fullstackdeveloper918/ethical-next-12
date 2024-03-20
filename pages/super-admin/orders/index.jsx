@@ -12,7 +12,7 @@ import {
   setSelectedEditId,
   setSelectedViewId,
 } from '../../../redux-setup/ordersSlice'
-import { deleteOrder } from '../../../redux-setup/cartSlice'
+import { deleteOrder, findOrder } from '../../../redux-setup/cartSlice'
 
 const Orders = () => {
   const router = useRouter()
@@ -21,22 +21,19 @@ const Orders = () => {
 
   const orderPlaced = useSelector((state) => state.cart.orderPlaced)
 
-  console.log(orderPlaced, 'hello kismat')
-
   // const handleViewClicked = (id) => {
   //   // dispatch(setSelectedViewId(id))
   //   router.push(`/super-admin/orders/view`)
   // }
 
-  // const handleEdit = (id) => {
-  //   dispatch(setSelectedEditId(id))
-
-  //   router.push(`/super-admin/orders/edit`)
-  // }
+  const handleEdit = (id) => {
+    console.log(id, 'id bro')
+    dispatch(findOrder(id))
+    router.push(`/super-admin/orders/edit`)
+  }
 
   const handleDelete = (id) => {
     console.log(id)
-    const filteredOrder = orderPlaced.filter((item, index) => index !== id)
     dispatch(deleteOrder(id))
   }
 
@@ -61,20 +58,24 @@ const Orders = () => {
               orderPlaced.map((item, index) => (
                 <>
                   <tr>
-                    <td>{item[0].selectedDate}</td>
-                    <td>{item[0].swagPack.toString()}</td>
-                    <td>{item[2].quantity}</td>
-                    <td>{item[1].address}</td>
-                    <td>{item[1].firstName}</td>
-                    <td>{item[1].email}</td>
-                    <td>{item[1].companyName}</td>
+                    <td>{item[0]?.selectedDate}</td>
+                    <td>{item[0]?.swagPack.toString()}</td>
+                    <td>{item[2]?.quantity}</td>
+                    <td>{item[1]?.address}</td>
+                    <td>{item[1]?.firstName}</td>
+                    <td>{item[1]?.email}</td>
+                    <td>{item[1]?.companyName}</td>
                     <td>
                       <div className={Styles.action_icons}>
                         <span>
                           <FaEye fontSize={18} cursor="pointer" />
                         </span>
                         <span>
-                          <FaRegEdit fontSize={18} cursor="pointer" />
+                          <FaRegEdit
+                            fontSize={18}
+                            cursor="pointer"
+                            onClick={() => handleEdit(item[2].id)}
+                          />
                         </span>
                         <span>
                           <RiDeleteBin6Line
