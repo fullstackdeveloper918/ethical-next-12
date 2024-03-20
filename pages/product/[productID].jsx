@@ -114,14 +114,30 @@ const productID = () => {
       <section>
         <div>
           <ul style={{ cursor: 'pointer' }}>
-            <li onClick={() => setSelectedItem('Product')}>
+            <li
+              onClick={() => setSelectedItem('Product')}
+              style={{ color: selectedItem === 'Product' ? '#a2d061' : '' }}
+            >
               Product Description
             </li>
-            <li onClick={() => setSelectedItem('Dimensions')}>Dimensions</li>
-            <li onClick={() => setSelectedItem('Material')}>Material(s)</li>
+            <li
+              onClick={() => setSelectedItem('Dimensions')}
+              style={{ color: selectedItem === 'Dimensions' ? '#a2d061' : '' }}
+            >
+              Dimensions
+            </li>
+            <li
+              onClick={() => setSelectedItem('Material')}
+              style={{ color: selectedItem === 'Material' ? '#a2d061' : '' }}
+            >
+              Material(s)
+            </li>
             <li>Imprint Information</li>
             <li>Compliance</li>
-            <li onClick={() => setSelectedItem('Swift Swag')}>
+            <li
+              onClick={() => setSelectedItem('Swift Swag')}
+              style={{ color: selectedItem === 'Swift Swag' ? '#a2d061' : '' }}
+            >
               Swift Swag Qualified
             </li>
           </ul>
