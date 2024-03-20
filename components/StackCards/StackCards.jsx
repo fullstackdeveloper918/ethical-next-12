@@ -7,93 +7,106 @@ import CardFour from '../../assets/headerPics/card_four.png'
 import CardFive from '../../assets/headerPics/card_five.png'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import images from 'constants/images'
 
 let imagesList = [
   {
     id: 1,
-    img: CardOne,
+    img: images.Tshirt,
     className: '',
     textContent: '',
-    category: 'Cup design',
-    heading:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  },
-  {
-    id: 2,
-    img: CardTwo,
-    className: '',
-    category: 'Cup design',
-    heading:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  },
-  {
-    id: 3,
-    img: CardThree,
-    className: '',
-    category: 'Cup design',
-    heading:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  },
-  {
-    id: 4,
-    img: CardFour,
-    className: '',
     category: 'Make T-shirt design',
     heading:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
   {
-    id: 5,
-    img: CardFive,
+    id: 2,
+    img: images.BottelImg,
     className: '',
     category: 'Bottles package box',
     heading:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
+  {
+    id: 3,
+    img: images.cupImg,
+    className: '',
+    category: 'Cup design',
+    heading:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+  },
+  // {
+  //   id: 4,
+  //   img: CardFour,
+  //   className: '',
+  //   category: 'Make T-shirt design',
+  //   heading:
+  //     'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+  // },
+  // {
+  //   id: 5,
+  //   img: CardFive,
+  //   className: '',
+  //   category: 'Bottles package box',
+  //   heading:
+  //     'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+  // },
 ]
 
 const Dummy = () => {
-  const router = useRouter()
-  const [cards, setCards] = useState(imagesList)
-  const handleHover = (index) => {
-    const newCards = [...cards]
-    const temp = newCards[index]
-    newCards[index] = newCards[0]
-    newCards[0] = temp
-    setCards(newCards)
-  }
+  // const [activeCard, setActiveCard] = useState('')
+  // const router = useRouter()
+  // const [cards, setCards] = useState(imagesList)
+  // const handleHover = (index) => {
+  //   console.log(index)
+  //   setActiveCard(index)
+  //   const newCards = [...cards]
+  //   const temp = newCards[index]
+  //   newCards[index] = newCards[0]
+  //   newCards[0] = temp
+  //   setCards(newCards)
+  // }
+
+  
 
   return (
     <div>
       <div className={styles.text}>
         <ul className={styles.explor_imgSec}>
-          {cards.map((card, index) => (
-            <>
-              <li key={index} className={index ? styles.hello: ''}>
+          
+            {imagesList && imagesList.map((card,index) => (
+
+              
+              <>
+              <li key={index} className={styles.stack_card}>
                 <div
                   className={styles.list_explore}
-                  onMouseEnter={() => handleHover(index)}
-                >
-                  <Image
+                  >
+                  
+                 
+                    <div className={styles.flat_dis}>Flat 20% off</div>
+                    <div className={styles.cardImg}><Image
                     src={card.img}
                     alt=""
-                    height={600}
-                    width={600}
+                    height={200}
+                    width={200}
                     className={styles.cardImage}
-                    //  onClick={() => router.push('/products')}
-                  />
-                  <div>
-                    <div className={styles.flat_dis}>Flat 20% off</div>
+                    
+                    />
+                    </div>
                     <div className={styles.bottom_content}>
                       <h2>{card.category}</h2>
                       <p>{card.heading}</p>
                       <button>View Product</button>
-                    </div>
+                  
                   </div>
                 </div>
               </li>
-            </>
-          ))}
+             </>
+              )) 
+              }
+            
+        
         </ul>
       </div>
     </div>

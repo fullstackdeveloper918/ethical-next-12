@@ -404,6 +404,18 @@
     padding: 10px;
     font-size: 16px;
   }
+  
+  .mega_menu_open .header_menu_wrapper {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    top: 71px;
+    z-index: 1;
+  }
   .header .shop_menu {
     color: #000;
     font-size: 16px;
@@ -426,9 +438,6 @@
     width: 15px !important;
     top: 5px !important;
   }
-}
-
-@media (min-width: 768px) {
   .mobile_menu,
   .menu_cross,
   .primary_header_container {
@@ -450,6 +459,10 @@
     min-height: 45px;
     background: #fff;
   }
+}
+
+@media (min-width: 768px) {
+  
 
   .menu_center {
     display: flex;
@@ -491,7 +504,7 @@
     width: 100%;
     max-width: 100%;
     min-width: 100%;
-    top: 71px;
+    top: 60px !important;
     z-index: 1;
   }
 
@@ -852,3 +865,13 @@
       padding-top: 20px !important;
     }
   } */
+
+  @media (max-width:1440px) and (min-width:767px){
+
+  .mobile_menu,
+    .menu_cross,
+    .primary_header_container {
+      margin: 10px auto 0px !important;
+
+    }
+  }
