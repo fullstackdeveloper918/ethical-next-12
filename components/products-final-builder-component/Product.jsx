@@ -15,7 +15,7 @@ const Product = ({
   currentPage,
   loading,
 }) => {
-  const [activeFilter, setActiveFilter] = useState(true)
+  const [activeFilter, setActiveFilter] = useState(false)
 
   let length = getProductsRes?.data?.data?.length
 
@@ -34,7 +34,7 @@ const Product = ({
           />
           <Products response={getProductsRes} loading={loading} />
 
-          {getProductsRes && totalData > 10 && (
+          {/* {getProductsRes && totalData > 10 && (
             <div className={Styles.pagination_section}>
               <Pagination
                 page={currentPage}
@@ -44,7 +44,7 @@ const Product = ({
                 loading={loading}
               />
             </div>
-          )}
+          )} */}
         </section>
       </>
     </>
