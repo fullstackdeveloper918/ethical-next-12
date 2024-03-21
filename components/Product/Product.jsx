@@ -86,27 +86,33 @@ const Product = ({ product, loading, error }) => {
 
   useEffect(() => {
     const sizes = Object.keys(sizeQuantity)
-    const baseQuantity = Math.floor(quantity / sizes.length)
-    console.log(baseQuantity, 'baseQuantity')
-    let remainder = quantity % sizes.length
-    const remainderPriority = ['M', 'L']
+    const sizePriorities = {
+      M: 40,
+      L: 35,
+      XL: 25,
+      S: 10,
+    }
+
+    const totalPriorityQuantity = Object.values(sizePriorities).reduce(
+      (acc, curr) => acc + curr,
+      0
+    )
+
     const updatedSizeQuantity = {}
     sizes.forEach((size) => {
-      updatedSizeQuantity[size] = baseQuantity
+      updatedSizeQuantity[size] = Math.round(
+        (sizePriorities[size] / totalPriorityQuantity) * quantity
+      )
     })
-
-    let remainderDistributionCount = 0
-    while (remainder > 0) {
-      const sizeToUpdate =
-        remainderPriority[remainderDistributionCount % remainderPriority.length]
-      updatedSizeQuantity[sizeToUpdate] += 1
-      remainder--
-      remainderDistributionCount++
-    }
     setSizeQuantity(updatedSizeQuantity)
   }, [quantity])
 
-  console.log(quantity, 'qant')
+  // useEffect(() => {
+  //   if(sizeQuantity)
+  //   setQuantity(
+  //     sizeQuantity.S + sizeQuantity.M + sizeQuantity.L + sizeQuantity.XL
+  //   )
+  // }, [sizeQuantity])
 
   const country = useSelector((state) => state.country.country)
   const cartItems = useSelector((state) => state.cart.cartItems)
@@ -210,18 +216,42 @@ const Product = ({ product, loading, error }) => {
     }
   }, [openEmoji])
 
-  let handleQuantitySize = (e) => {
+  // let handleQuantitySize = (e) => {
+  //   if (e.target.value < 0) {
+  //     setSizeQuantity((prev) => ({
+  //       ...prev,
+  //       [e.target.name]: 0,
+  //     }))
+  //   } else {
+  //     setSizeQuantity((prev) => ({
+  //       ...prev,
+  //       [e.target.name]: e.target.value,
+  //     }))
+  //   }
+  //   setQuantity(sizeQuantity)
+  // }
+
+  const handleQuantitySize = (e) => {
+    let newSizeQuantity
     if (e.target.value < 0) {
-      setSizeQuantity((prev) => ({
-        ...prev,
+      newSizeQuantity = {
+        ...sizeQuantity,
         [e.target.name]: 0,
-      }))
+      }
     } else {
-      setSizeQuantity((prev) => ({
-        ...prev,
-        [e.target.name]: e.target.value,
-      }))
+      newSizeQuantity = {
+        ...sizeQuantity,
+        [e.target.name]: parseInt(e.target.value),
+      }
     }
+    setSizeQuantity(newSizeQuantity)
+
+    // Calculate total quantity
+    const totalQuantity = Object.values(newSizeQuantity).reduce(
+      (acc, curr) => acc + parseInt(curr),
+      0
+    )
+    setQuantity(totalQuantity)
   }
 
   const uploadFirstFile = (event) => {
@@ -411,7 +441,8 @@ const Product = ({ product, loading, error }) => {
                     {singleImage && (
                       <Image
                         src={singleImage}
-                        layout="fill"
+                        width={400}
+                        height={560}
                         style={{ mixBlendMode: 'color-burn' }}
                         alt="Single_Product_Image"
                         className={Styles.product_image}
@@ -419,7 +450,7 @@ const Product = ({ product, loading, error }) => {
                     )}
                   </div>
                   {imagesArray && imagesArray.length > 0 && (
-                    <div className={Styles.margin_top}>
+                    <div>
                       <Carousel
                         swipeable={false}
                         draggable={false}
@@ -817,33 +848,37 @@ const Product = ({ product, loading, error }) => {
                   </div>
                 </div>
                 <div className={Styles.select_size_quantity}>
-                  <div className={Styles.common_header}>
-                    <p>Select sizes quantity</p>
-                    <Image
-                      src={images.Info_Icon}
-                      width={18}
-                      height={18}
-                      alt="info_icon"
-                    />
-                  </div>
+                  {!sizeNotSure && (
+                    <>
+                      <div className={Styles.common_header}>
+                        <p>Select sizes quantity</p>
+                        <Image
+                          src={images.Info_Icon}
+                          width={18}
+                          height={18}
+                          alt="info_icon"
+                        />
+                      </div>
 
-                  <div className={Styles.inputs}>
-                    {Object.keys(sizeQuantity).map((key) => (
-                      <>
-                        <div className={Styles.size_div}>
-                          <label htmlFor="">{key}</label>
-                          <input
-                            placeholder={key}
-                            type="number"
-                            name={key}
-                            value={sizeQuantity[key]}
-                            onChange={handleQuantitySize}
-                            min="0"
-                          />
-                        </div>
-                      </>
-                    ))}
-                  </div>
+                      <div className={Styles.inputs}>
+                        {Object.keys(sizeQuantity).map((key) => (
+                          <>
+                            <div className={Styles.size_div}>
+                              <label htmlFor="">{key}</label>
+                              <input
+                                placeholder={key}
+                                type="number"
+                                name={key}
+                                value={sizeQuantity[key]}
+                                onChange={handleQuantitySize}
+                                min="0"
+                              />
+                            </div>
+                          </>
+                        ))}
+                      </div>
+                    </>
+                  )}
                   {/* <div className={Styles.custom_checkbox}> */}
                   {/* <input
                       type="checkbox"
@@ -858,7 +893,6 @@ const Product = ({ product, loading, error }) => {
                   <div className={Styles.flex_row}>
                     <div className={Styles.centering}>
                       <label htmlFor="sizeCheckbox" className={Styles.switch}>
-                        {' '}
                         <input
                           type="checkbox"
                           id="sizeCheckbox"

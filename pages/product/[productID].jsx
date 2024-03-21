@@ -55,8 +55,6 @@ const productID = () => {
       }
     )
 
-  console.log('data', singleProduct?.data.material_made)
-
   useEffect(() => {
     if (country && productID) {
       singleProductApi()
@@ -114,29 +112,37 @@ const productID = () => {
       <section className={Styles.singleProduct_dimensions}>
         <div className={Styles.product_list_wrapper}>
           <ul style={{ cursor: 'pointer' }}>
-            <li className={selectedItem === 'Product' ? Styles.active_product : ''}
+            <li
+              className={
+                selectedItem === 'Product' ? Styles.active_product : ''
+              }
               onClick={() => setSelectedItem('Product')}
-              
             >
               Product Description
             </li>
-            <li className={selectedItem === 'Dimensions' ? Styles.active_product : ''}
+            <li
+              className={
+                selectedItem === 'Dimensions' ? Styles.active_product : ''
+              }
               onClick={() => setSelectedItem('Dimensions')}
-             
             >
               Dimensions
             </li>
-            <li className={selectedItem === 'Material' ? Styles.active_product : ''}
+            <li
+              className={
+                selectedItem === 'Material' ? Styles.active_product : ''
+              }
               onClick={() => setSelectedItem('Material')}
-              
             >
               Material(s)
             </li>
             <li>Imprint Information</li>
             <li>Compliance</li>
-            <li className={selectedItem === 'Swift Swag' ? Styles.active_product : ''}
+            <li
+              className={
+                selectedItem === 'Swift Swag' ? Styles.active_product : ''
+              }
               onClick={() => setSelectedItem('Swift Swag')}
-              
             >
               Swift Swag Qualified
             </li>
