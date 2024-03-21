@@ -192,6 +192,11 @@
 }
 
 /* responsive */
+@media (max-width:1440px) and (min-width:767px){
+  .collection_banner {
+    margin: 10px auto 0px;
+  }
+}
 @media (max-width:1440px){
   .related_product_content .imgContent img{
     min-width: 440px !important;
