@@ -1,7 +1,8 @@
 import Styles from '../Filter/Filter.module.css'
 import React, { useEffect, useState } from 'react'
-import { LIST } from '../../constants/data'
 import { useDispatch, useSelector } from 'react-redux'
+import Dot from '@components/custom-colored-dot/Dot'
+import { setColorsObj, setShowAllFilters } from 'redux-setup/FiltersSlice'
 
 const FilterPanel = () => {
   const dispatch = useDispatch()
@@ -9,12 +10,51 @@ const FilterPanel = () => {
   const [inputSlider, setInputSlider] = useState(0)
   const [openIndex, setOpenIndex] = useState('')
   const [isActive, setIsActive] = useState(true)
+  const allFilters = useSelector((state) => state.filter.allFilters)
+  const showAllFilters = useSelector((state) => state.filter.showAllFilters)
+  const colorsObj = useSelector((state) => state.filter.colorsObj)
+  console.log(colorsObj, 'colorsObj final')
+
+  useEffect(() => {
+    let categoriesList = []
+    if (Object.keys(allFilters).length > 0) {
+      Object.entries(allFilters).map(([key, value]) => {
+        let obj = {}
+        obj.id = key
+        obj.label = key
+        obj.children = value
+        categoriesList.push(obj)
+      })
+      dispatch(setShowAllFilters(categoriesList))
+      let colors = categoriesList.filter((c) => c.label === 'Colors')
+      if (colors.length > 0) {
+        // let colorsObjToUse = colors[0].map((a) => a.children)
+        let colorsObjToUse = colors[0].children
+        dispatch(setColorsObj(colorsObjToUse))
+      } else {
+        dispatch(setColorsObj({}))
+      }
+    }
+  }, [allFilters])
 
   const toggleAccordion = (index) => {
     setOpenIndex(index)
     setIsActive(!isActive)
   }
+  // let colorsArray = LIST().filter((c) => c.label === 'Colors')
+  // console.log(colorsArray, 'colorsArraycolorsArray')
+  // console.log(
+  //   colorsArray.map((c) => c.children),
+  //   'colorsArraycolorsArray'
+  // )
 
+  // useEffect(() => {
+  //   let colorsArray = LIST().filter((c) => c.label === 'Colors')
+  //   if (colorsArray.length > 0) {
+  //     let a = colorsArray.map((c) => c.children)
+  //     console.log(a, 'final')
+  //   }
+  // }, [])
   return (
     <>
       {active && (
@@ -36,11 +76,10 @@ const FilterPanel = () => {
         </div>
 
         <div className={Styles.filterPanel_ProductCollection_list}>
-          {LIST().map((item, index) => (
-            <>
+          {showAllFilters.map((item, index) => {
+            return (
               <div className={Styles.accordion}>
                 <div className={Styles.accordion_item}>
-                  {/* <div className={Styles.horizontal}></div> */}
                   <div
                     className={Styles.items}
                     onClick={() => toggleAccordion(index)}
@@ -88,7 +127,20 @@ const FilterPanel = () => {
                               </div>
                             </>
                           ) : item.label === 'Colors' ? (
-                            <>{console.log(child, 'meeeee')}</>
+                            <>
+                              <div className={Styles.colors_container}>
+                                {Object.keys(colorsObj).length > 0 &&
+                                  Object.entries(colorsObj).map(
+                                    ([color, imageUrl]) => (
+                                      <Dot
+                                        color={color}
+                                        imageUrl={imageUrl}
+                                        fromFilters
+                                      />
+                                    )
+                                  )}
+                              </div>
+                            </>
                           ) : (
                             <>
                               <div className={Styles.custom_checkbox}>
@@ -100,13 +152,8 @@ const FilterPanel = () => {
                                     type="checkbox"
                                     id={`checkbox_id_${index}`}
                                     name={child}
-                                    // checked={isChecked[item.label]}
-                                    // onChange={handleCheckboxChange}
                                   />
-                                  <label
-                                    htmlFor={`checkbox_id_${index}`}
-                                    // onClick={() => handleAddLists(child)}
-                                  >
+                                  <label htmlFor={`checkbox_id_${index}`}>
                                     {child}
                                   </label>
                                 </li>
@@ -118,8 +165,8 @@ const FilterPanel = () => {
                   </div>
                 )}
               </div>
-            </>
-          ))}
+            )
+          })}
         </div>
       </div>
     </>

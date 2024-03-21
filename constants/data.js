@@ -31,7 +31,11 @@ export const LIST = () => {
       obj.children = value
       categoriesList.push(obj)
     })
-
+  console.log(categoriesList)
+  console.log(
+    categoriesList.filter((c) => c.label === 'Colors'),
+    'categoriesListf'
+  )
   return categoriesList
 }
 export const countries = [
