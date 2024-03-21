@@ -892,8 +892,11 @@ p.fw400 {
 }
 
 .add_color{
-  border: 1px solid #ececec;
-  width: 115px !important;
+     border: 1px solid #ececec;
+    width: 115px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .detail_page_wrapper li.activeGreen img{
   border:1px solid #a2d061 !important;
@@ -907,7 +910,7 @@ p.fw400 {
 
 .position_sticky{
   position: sticky;
-  bottom: 20px;
+  bottom: 0;
   background-color: #fff;
   padding-bottom: 10px;
   border-top: 1px solid #ececec;
@@ -1001,11 +1004,12 @@ p.fw400 {
   color: #7c7c7c;
   font-size: 15px;
 }
-
-
 .border_top{
   padding-bottom: 30px;
   border-bottom: 1px solid #ececec;
+}
+.margin_top {
+  margin-top: 20px !important;
 }
 
 @media (min-width:1440px){
