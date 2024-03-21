@@ -15,7 +15,7 @@ let imagesList = [
     img: images.Tshirt,
     className: '',
     textContent: '',
-    category: 'Make T-shirt design',
+    category: 'Make T-shirt Design',
     heading:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
@@ -23,7 +23,7 @@ let imagesList = [
     id: 2,
     img: images.BottelImg,
     className: '',
-    category: 'Bottles package box',
+    category: 'Bottles Package Design',
     heading:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
@@ -31,26 +31,26 @@ let imagesList = [
     id: 3,
     img: images.cupImg,
     className: '',
-    category: 'Cup design',
+    category: 'Cup Design',
     heading:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
-  // {
-  //   id: 4,
-  //   img: CardFour,
-  //   className: '',
-  //   category: 'Make T-shirt design',
-  //   heading:
-  //     'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  // },
-  // {
-  //   id: 5,
-  //   img: CardFive,
-  //   className: '',
-  //   category: 'Bottles package box',
-  //   heading:
-  //     'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  // },
+  {
+    id: 4,
+    img: images.BagImg,
+    className: '',
+    category: 'Computer Recycled Backpack design',
+    heading:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+  },
+  {
+    id: 5,
+    img: images.MobileImg,
+    className: '',
+    category: 'Mobile Cover desgin',
+    heading:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+  },
 ]
 
 const Dummy = () => {

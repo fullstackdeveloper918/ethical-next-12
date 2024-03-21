@@ -54,10 +54,14 @@ import RelatedBg from '../assets/Related_Product.png'
 import Related_product from '../assets/Colection_image.png'
 import all_tech from '../assets/all_tech.png'
 import Drinkware from '../assets/Drinkware.png'
+import BagImg from '../assets/bagImg.png'
+import MobileImg from '../assets/Mobile_cover.png'
 
 
 const images = {
   bag_image,
+  BagImg,
+  MobileImg,
   all_tech,
   Drinkware,
   Related_product,
