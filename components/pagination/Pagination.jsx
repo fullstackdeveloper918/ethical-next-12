@@ -2,24 +2,26 @@ import React, { useEffect, useState } from 'react'
 import Styles from './pagination.module.css'
 import { MdArrowBackIos } from 'react-icons/md'
 import { IoChevronForwardSharp } from 'react-icons/io5'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCurrentPage } from 'redux-setup/categorySlice'
 
-const Pagination = ({
-  page,
-  totalData,
-  totalPages,
-  setCurrentPage,
-  loading,
-}) => {
+const Pagination = () => {
+  const dispatch = useDispatch()
   const [arr, setArr] = useState([])
+  const loading = useSelector((state) => state.category.getProductsLoading)
+
+  const totalPages = useSelector((state) => state.category.totalPages)
+  const page = useSelector((state) => state.category.currentPage)
+  const totalData = useSelector((state) => state.category.totalData)
+  console.log({ totalData, totalPages, page })
 
   const handlePageChange = (val) => {
     if (val === 'prev') {
-      page != 1 && setCurrentPage((prev) => prev - 1)
+      page != 1 && dispatch(setCurrentPage((prev) => prev - 1))
     } else if (val === 'next') {
-      page != totalPages && setCurrentPage((prev) => prev + 1)
+      page != totalPages && dispatch(setCurrentPage((prev) => prev + 1))
     }
   }
-
   const noOfPages = () => {
     let a = []
     for (let i = 1; i <= totalPages; i++) {

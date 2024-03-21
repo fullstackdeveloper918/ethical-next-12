@@ -6,18 +6,14 @@ import Products from '../Products/Products'
 import global from '../../styles/global.module.css'
 import Styles from '../Filter/Filter.module.css'
 import Pagination from '../pagination/Pagination'
+import { useSelector, useDispatch } from 'react-redux'
 
-const Product = ({
-  getProductsRes,
-  totalData,
-  totalPages,
-  setCurrentPage,
-  currentPage,
-  loading,
-}) => {
+const Product = () => {
   const [activeFilter, setActiveFilter] = useState(false)
 
-  let length = getProductsRes?.data?.data?.length
+  const getProductsRes = useSelector((state) => state.category.getProductsRes)
+
+  const totalData = useSelector((state) => state.category.totalData)
 
   return (
     <>
@@ -32,19 +28,13 @@ const Product = ({
             activeFilter={activeFilter}
             setActiveFilter={setActiveFilter}
           />
-          <Products response={getProductsRes} loading={loading} />
+          <Products />
 
-          {/* {getProductsRes && totalData > 10 && (
+          {getProductsRes && totalData > 10 && (
             <div className={Styles.pagination_section}>
-              <Pagination
-                page={currentPage}
-                totalData={totalData}
-                totalPages={totalPages}
-                setCurrentPage={setCurrentPage}
-                loading={loading}
-              />
+              <Pagination />
             </div>
-          )} */}
+          )}
         </section>
       </>
     </>
