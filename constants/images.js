@@ -1,4 +1,4 @@
-import ethical_swag from '../assets/ethical_swag_logo.svg'
+import ethical_swag from '../assets//ethical_swag_new.svg'
 import Livello_1 from '../assets/Livello_1.svg'
 import Rectangle from '../assets/Rectangle 338.svg'
 import shirt from '../assets/image 20.svg'
@@ -11,7 +11,7 @@ import Cup2 from '../assets/cup 2.svg'
 import different_colors from '../assets/different_colors.svg'
 import cart_image from '../assets/cart_product_image.svg'
 import delete_icon from '../assets/delete_icon.svg'
-import EthicalLogo from '../assets/headerPics/ethical_logo.svg'
+import EthicalLogo from '../assets/ethical_swag_new.svg'
 import star from '../assets/star.svg'
 import shirt_small from '../assets/shirt_small.png'
 import Stack_Card1 from '../assets/Stack_Card1.png'
@@ -54,10 +54,14 @@ import RelatedBg from '../assets/Related_Product.png'
 import Related_product from '../assets/Colection_image.png'
 import all_tech from '../assets/all_tech.png'
 import Drinkware from '../assets/Drinkware.png'
+import BagImg from '../assets/bagImg.png'
+import MobileImg from '../assets/Mobile_cover.png'
 
 
 const images = {
   bag_image,
+  BagImg,
+  MobileImg,
   all_tech,
   Drinkware,
   Related_product,
