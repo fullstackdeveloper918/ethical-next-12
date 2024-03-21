@@ -5,17 +5,20 @@ import Product from '@components/products-final-builder-component/Product'
 import SecondaryHeader from '@components/secondary-header/SecondaryHeader'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Styles from '../../styles/category.module.css'
 import Image from 'next/image'
 import images from '../../constants/images'
+import {
+  setCurrentPage,
+  setTotalData,
+  setTotalPages,
+} from '../../redux-setup/categorySlice'
 
 const index = () => {
   const router = useRouter()
-  const [totalData, setTotalData] = useState([])
+  const dispatch = useDispatch()
   const [relatedCategories, setRelatedCategories] = useState([])
-  const [totalPages, setTotalPages] = useState('')
-  const [currentPage, setCurrentPage] = useState(1)
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
   const allCategories = useSelector((state) => state.category.allCategories)
 
@@ -48,17 +51,11 @@ const index = () => {
     generateRelatedCategories()
   }, [collectionForUrl])
 
-  const getProductsLoading = useSelector(
-    (state) => state.category.getProductsLoading
-  )
-  const getProductsError = useSelector(
-    (state) => state.category.getProductsError
-  )
   useEffect(() => {
     if (getProductsRes) {
-      setCurrentPage(getProductsRes?.data?.current_page)
-      setTotalData(getProductsRes?.data?.total)
-      setTotalPages(getProductsRes?.data?.last_page)
+      dispatch(setCurrentPage(getProductsRes?.data?.current_page))
+      dispatch(setTotalData(getProductsRes?.data?.total))
+      dispatch(setTotalPages(getProductsRes?.data?.last_page))
     }
   }, [getProductsRes])
   return (
@@ -83,14 +80,7 @@ const index = () => {
         </div>
       </section>
 
-      <Product
-        getProductsRes={getProductsRes}
-        totalData={totalData}
-        totalPages={totalPages}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-        loading={getProductsLoading}
-      />
+      <Product />
 
       <div className={Styles.related_product_container}>
         <div className={Styles.related_product_content}>

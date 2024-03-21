@@ -104,6 +104,7 @@ const SecondaryHeader = () => {
       }
     }
   }, [router.query, countryTosend, currentPage, swiftSwag, dateNameFilter])
+  console.log(currentPage, 'currentPagecurrentPage')
 
   const handleSetSubCategory = (item) => {
     dispatch(setSubCategoryOnTop(allCategories[item]?.matchingValues))
