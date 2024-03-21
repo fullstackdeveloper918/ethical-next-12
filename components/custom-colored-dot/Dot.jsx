@@ -31,7 +31,7 @@ const Dot = ({
     if (fromFilters) {
       return ''
     } else {
-      return selectedColor === color ? 'green' : ''
+      return selectedColor === color ? '#a2d061' : ''
     }
   }
   return (

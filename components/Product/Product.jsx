@@ -392,7 +392,7 @@ const Product = ({ product, loading, error }) => {
                     )}
                   </div>
                   {imagesArray && imagesArray.length > 0 && (
-                    <div>
+                    <div className={Styles.margin_top}>
                       <Carousel
                         swipeable={false}
                         draggable={false}
