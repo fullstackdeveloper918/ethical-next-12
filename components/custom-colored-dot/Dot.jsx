@@ -2,7 +2,27 @@ import Styles from './Dot.module.css'
 import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux'
 
-const Dot = ({ color, imageUrl, selectedColor, setSelectedColor }) => {
+const Dot = ({
+  color,
+  imageUrl,
+  selectedColor,
+  setSelectedColor,
+  fromFilters,
+}) => {
+  const handleSelect = () => {
+    if (fromFilters) {
+    } else {
+      setSelectedColor(color)
+    }
+  }
+
+  const setOutlineColor = () => {
+    if (fromFilters) {
+      return ''
+    } else {
+      return selectedColor === color ? 'green' : ''
+    }
+  }
   return (
     <>
       {color && (
@@ -10,9 +30,9 @@ const Dot = ({ color, imageUrl, selectedColor, setSelectedColor }) => {
           className={`${Styles.colored_dot}`}
           style={{
             background: color,
-            outlineColor: selectedColor === color ? 'green' : '',
+            outlineColor: setOutlineColor(),
           }}
-          onClick={() => setSelectedColor(color)}
+          onClick={handleSelect}
           title={color}
         ></div>
       )}

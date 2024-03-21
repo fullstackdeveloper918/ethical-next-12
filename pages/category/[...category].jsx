@@ -22,7 +22,6 @@ const index = () => {
   const collectionForUrl = useSelector(
     (state) => state.category.collectionForUrl
   )
-  console.log(collectionForUrl, 'collectionForUrl')
 
   useEffect(() => {
     const generateRelatedCategories = () => {
@@ -48,8 +47,6 @@ const index = () => {
     // Call the function to generate related categories
     generateRelatedCategories()
   }, [collectionForUrl])
-
-  console.log(relatedCategories, 'relatedCategories')
 
   const getProductsLoading = useSelector(
     (state) => state.category.getProductsLoading

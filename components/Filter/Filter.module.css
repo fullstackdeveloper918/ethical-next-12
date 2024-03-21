@@ -1196,3 +1196,11 @@
   border-bottom: 2px solid #a2d061;
   transition: 0.8s all ease-in-out;
 }
+
+.colors_container {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 0.7rem;
+  flex-wrap: wrap;
+}
