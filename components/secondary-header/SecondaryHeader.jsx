@@ -467,13 +467,14 @@ const SecondaryHeader = () => {
                     <div className={styles.search_results}>
                       <ul>
                         {data?.length !== 0 ? (
-                          data?.map((item) => (
+                          data?.map((item, i) => (
                             <>
                               <li
                                 className={styles.search_productlist}
                                 onClick={() =>
                                   router.push(`/product/${item?.id}`)
                                 }
+                                key={i}
                               >
                                 <Image
                                   src={item?.image}

@@ -113,9 +113,9 @@ const Home = () => {
                 </div>
                 {/* middle content*/}
                 <div className={Styles.bottom_Content}>
-                  {Orders_Preview.map((order) => (
+                  {Orders_Preview.map((order, i) => (
                     <>
-                      <div className={Styles.order_Content}>
+                      <div className={Styles.order_Content} key={i}>
                         <span>{order.icon}</span>
                         <div className={Styles.order_right_content}>
                           <p className={Styles.text}>{order.text}</p>
