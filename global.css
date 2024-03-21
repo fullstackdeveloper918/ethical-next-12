@@ -385,8 +385,15 @@ input[type='radio'] {
 /* responsive start */
 @media (max-width: 1440px) {
   .react-multiple-carousel__arrow {
-    top: 40px !important;
-  }
+    top: 50% !important;
+    transform: translateY(-50%);
+}
+}
+@media (max-width: 1366px) {
+  .react-multiple-carousel__arrow {
+    top: 50% !important;
+    transform: translateY(-50%);
+}
 }
 @media (min-width: 768px) {
   .filterPanel_top svg {

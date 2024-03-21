@@ -23,7 +23,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 7,
+    items: 5,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -79,6 +79,34 @@ const Product = ({ product, loading, error }) => {
     SizeQuantityL: 0,
     SizeQuantityXL: 0,
   })
+
+  const handleQuantity = (e) => {
+    setQuantity(e.target.value)
+  }
+
+  useEffect(() => {
+    const sizes = Object.keys(sizeQuantity)
+    const baseQuantity = Math.floor(quantity / sizes.length)
+    console.log(baseQuantity, 'baseQuantity')
+    let remainder = quantity % sizes.length
+    const remainderPriority = ['M', 'L']
+    const updatedSizeQuantity = {}
+    sizes.forEach((size) => {
+      updatedSizeQuantity[size] = baseQuantity
+    })
+
+    let remainderDistributionCount = 0
+    while (remainder > 0) {
+      const sizeToUpdate =
+        remainderPriority[remainderDistributionCount % remainderPriority.length]
+      updatedSizeQuantity[sizeToUpdate] += 1
+      remainder--
+      remainderDistributionCount++
+    }
+    setSizeQuantity(updatedSizeQuantity)
+  }, [quantity])
+
+  console.log(quantity, 'qant')
 
   const country = useSelector((state) => state.country.country)
   const cartItems = useSelector((state) => state.cart.cartItems)
@@ -383,8 +411,7 @@ const Product = ({ product, loading, error }) => {
                     {singleImage && (
                       <Image
                         src={singleImage}
-                        width={400}
-                        height={560}
+                        layout="fill"
                         style={{ mixBlendMode: 'color-burn' }}
                         alt="Single_Product_Image"
                         className={Styles.product_image}
@@ -775,7 +802,7 @@ const Product = ({ product, loading, error }) => {
                       placeholder={product?.column_1_qty}
                       name="orderQuantity"
                       value={quantity}
-                      onChange={(e) => setQuantity(e.target.value)}
+                      onChange={handleQuantity}
                       onBlur={(e) => {
                         if (quantity < actualMinQty) {
                           setQuantity(actualMinQty)

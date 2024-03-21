@@ -115,13 +115,15 @@
 .detail_page_right_section .title {
   margin-top: 1.2rem;
   width: 572px;
-  color: #111;
-  font-size: 26px;
+  color: #111; 
+  display: flex;
+  align-items: center;
+}
+.detail_page_right_section .title h4 {
+  font-size: 24px;
   font-style: normal;
   font-weight: 600;
   line-height: 36px;
-  display: flex;
-  align-items: center;
 }
 
 .detail_page_right_section .reviews {
@@ -656,6 +658,8 @@
   text-align: center;
   margin: 0 auto;
   color: #808080;
+  font-size: 14px;
+  line-height: 25px;
 }
 
 .total_estimate_container_text p {
@@ -920,6 +924,7 @@ p.fw400 {
 
 .sticky_bottom{
   display: flex;
+  align-items: flex-start;
 }
 
 .centering  {
@@ -956,6 +961,11 @@ p.fw400 {
   border: 1px solid #4A4A4A;
 }
 
+
+.centering  input:checked + .slider {
+  background: #a2d061;
+  border: 1px solid #a2d061;
+}
 .centering  .slider:before {
   position: absolute;
   content: "";
@@ -966,11 +976,6 @@ p.fw400 {
   bottom: 4px;
   transition: 0.4s;
   background: #4D4D4D;
-}
-
-.centering  input:checked + .slider {
-  background: #a2d061;
-  border: 1px solid #a2d061;
 }
 
 .centering  input:checked + .slider:before {
@@ -1003,13 +1008,14 @@ p.fw400 {
 .standard_business_section p strong{
   color: #7c7c7c;
   font-size: 15px;
+  font-weight: 500;
 }
 .border_top{
   padding-bottom: 30px;
   border-bottom: 1px solid #ececec;
 }
 .margin_top {
-  margin-top: 20px !important;
+  margin: 20px 10px 0!important;
 }
 
 @media (min-width:1440px){
@@ -1041,14 +1047,66 @@ p.fw400 {
   .detail_page_wrapper li img{
     width: 80px !important;
   }
+  
+.para_text .upload_logo > div {
+  min-height: 100px;
+}
 }
 @media screen and (max-width: 1370px) {
   
 .add_to_bulk_container button {
-  font-size: 16px;
-  
+  font-size: 14px;  
+  padding: 16px 0;
+}
+   .detail_page_right_section .title h4 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .standard_business_section p,
+  .price_section p:nth-child(2) {
+    font-size: 15px  !important;
+  }
+  .price_section p:nth-child(1),
+  .standard_business_section p:nth-child(1)
+   {
+    margin-bottom: 10px;
+    font-weight: 500 !important;
+    color: #000 !important;
+    opacity: 1;
+  }
+  .standard_business_section,
+  .price_section,.add_to_bulk_container {
+    margin-top: 20px;
+  }
+  .text_content p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .centering  .switch {
+    height: 25px;
+    width: 45px;
+  }
+  .centering  .slider:before {
+    height: 16px;
+    width: 16px;
+  }  
+.select_size_quantity .size_div {
+  min-width: 87px;
+  height: 35px;
+  font-size: 14px;
+}
+.para_text p {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+ }
+ .uploaded_content > p:first-child {
+margin-bottom: 5px !important;
+}
+.centering p, .input_data_required span{
+  font-size: 14px;
 }
 }
+
 @media screen and (max-width: 1200px) {
 .sticky_bottom{
   flex-wrap: wrap;
