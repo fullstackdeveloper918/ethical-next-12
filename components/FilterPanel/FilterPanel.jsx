@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Dot from '@components/custom-colored-dot/Dot'
 import { setColorsObj, setShowAllFilters } from 'redux-setup/FiltersSlice'
 
-const FilterPanel = () => {
+const FilterPanel = ({ setFilteredColors, filteredColors }) => {
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
   const [inputSlider, setInputSlider] = useState(0)
@@ -42,12 +42,13 @@ const FilterPanel = () => {
   }
 
   const handleCheckboxChange = (event) => {
-    const itemName = event.target.name
-    if (event.target.checked) {
-      setFilteredList([...filteredList, itemName])
-    } else {
-      setFilteredList(filteredList.filter((item) => item !== itemName))
-    }
+    const { name } = event.target
+    console.log(name, 'name')
+    // if (event.target.checked) {
+    //   setFilteredList([...filteredList, itemName])
+    // } else {
+    //   setFilteredList(filteredList.filter((item) => item !== itemName))
+    // }
   }
 
   return (
@@ -73,7 +74,7 @@ const FilterPanel = () => {
         <div className={Styles.filterPanel_ProductCollection_list}>
           {showAllFilters.map((item, index) => {
             return (
-              <div className={Styles.accordion}>
+              <div className={Styles.accordion} key={index}>
                 <div className={Styles.accordion_item}>
                   <div
                     className={Styles.items}
@@ -89,76 +90,46 @@ const FilterPanel = () => {
                 {isActive && openIndex === index && (
                   <div className={Styles.open_accordionWrap}>
                     {isActive &&
-                      openIndex === index &&
-                      Object.values(item.children).map((child, index) => (
-                      <>
-                        {item.label === 'Price' ? (
-                          <>
-                            <div
-                              className={
-                                Styles.filter_panel_price_input_section
-                              }
+                    openIndex === index &&
+                    item.label === 'Colors' ? (
+                      <div className={Styles.colors_container}>
+                        {Object.keys(colorsObj).length > 0 &&
+                          Object.entries(colorsObj).map(
+                            ([color, imageUrl], colorIndex) => (
+                              <Dot
+                                key={colorIndex}
+                                color={color}
+                                imageUrl={imageUrl}
+                                fromFilters
+                                filteredColors={filteredColors}
+                                setFilteredColors={setFilteredColors}
+                              />
+                            )
+                          )}
+                      </div>
+                    ) : (
+                      <div className={Styles.custom_checkbox}>
+                        {Object.values(item.children).map(
+                          (child, childIndex) => (
+                            <li
+                              key={childIndex}
+                              className={Styles.filterPanel_list_item}
                             >
                               <input
-                                type="range"
-                                className={Styles.filter_panel_price_input}
-                                min={child.minPrice}
-                                max={child.maxPrice}
-                                value={inputSlider}
-                                onChange={(e) =>
-                                    setInputSlider(e.target.value)
-                                  }
+                                type="checkbox"
+                                id={`checkbox_id_${childIndex}`}
+                                name={child}
+                                onChange={handleCheckboxChange}
+                                checked={filteredList.includes(child)}
                               />
-                              <div className={Styles.filter_panel_textInput}>
-                                <input
-                                  type="text"
-                                  value={inputSlider}
-                                  onChange={(e) =>
-                                    setInputSlider(e.target.value)
-                                  }
-                                />
-                                <p>${child.maxPrice}</p>
-                              </div>
-                            </div>
-                          </>
-                        ) : item.label === 'Colors' ? (
-                          <>
-                            <div className={Styles.colors_container}>
-                              {Object.keys(colorsObj).length > 0 &&
-                                Object.entries(colorsObj).map(
-                                  ([color, imageUrl]) => (
-                                    <Dot
-                                      color={color}
-                                      imageUrl={imageUrl}
-                                      fromFilters
-                                    />
-                                  )
-                                )}
-                            </div>
-                          </>
-                        ) : (
-                          <>
-                            <div className={Styles.custom_checkbox}>
-                              <li
-                                key={item.id}
-                                className={Styles.filterPanel_list_item}
-                              >
-                                <input
-                                  type="checkbox"
-                                  id={`checkbox_id_${index}`}
-                                  name={child}
-                                  onChange={handleCheckboxChange}
-                                  checked={filteredList.includes(child)}
-                                />
-                                <label htmlFor={`checkbox_id_${index}`}>
-                                  {child}
-                                </label>
-                              </li>
-                            </div>
-                          </>
+                              <label htmlFor={`checkbox_id_${childIndex}`}>
+                                {child}
+                              </label>
+                            </li>
+                          )
                         )}
-                      </>
-                    ))}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
