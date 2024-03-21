@@ -54,58 +54,32 @@ let imagesList = [
 ]
 
 const Dummy = () => {
-  // const [activeCard, setActiveCard] = useState('')
-  // const router = useRouter()
-  // const [cards, setCards] = useState(imagesList)
-  // const handleHover = (index) => {
-  //   console.log(index)
-  //   setActiveCard(index)
-  //   const newCards = [...cards]
-  //   const temp = newCards[index]
-  //   newCards[index] = newCards[0]
-  //   newCards[0] = temp
-  //   setCards(newCards)
-  // }
-
-  
-
   return (
     <div>
       <div className={styles.text}>
         <ul className={styles.explor_imgSec}>
-          
-            {imagesList && imagesList.map((card,index) => (
-
-              
-              <>
+          {imagesList &&
+            imagesList.map((card, index) => (
               <li key={index} className={styles.stack_card}>
-                <div
-                  className={styles.list_explore}
-                  >
-                  
-                    <div className={styles.flat_dis}>Flat 20% off</div>
-                    <div className={styles.cardImg}><Image
-                    src={card.img}
-                    alt=""
-                    height={200}
-                    width={200}
-                    className={styles.cardImage}
-                    
+                <div className={styles.list_explore}>
+                  <div className={styles.flat_dis}>Flat 20% off</div>
+                  <div className={styles.cardImg}>
+                    <Image
+                      src={card.img}
+                      alt=""
+                      height={200}
+                      width={200}
+                      className={styles.cardImage}
                     />
-                    </div>
-                    <div className={styles.bottom_content}>
-                      <h2>{card.category}</h2>
-                      <p>{card.heading}</p>
-                      <button>View Product</button>
-                  
+                  </div>
+                  <div className={styles.bottom_content}>
+                    <h2>{card.category}</h2>
+                    <p>{card.heading}</p>
+                    <button>View Product</button>
                   </div>
                 </div>
               </li>
-             </>
-              )) 
-              }
-            
-        
+            ))}
         </ul>
       </div>
     </div>

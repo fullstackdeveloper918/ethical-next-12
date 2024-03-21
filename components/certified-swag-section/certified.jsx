@@ -85,9 +85,7 @@ const Certified = () => {
             >
               {data?.length &&
                 data?.map((product) => (
-                  <>
-                    <SingleProduct product={product} key={product.id} />
-                  </>
+                  <SingleProduct product={product} key={product.id} />
                 ))}
             </Carousel>
           </div>
