@@ -42,6 +42,7 @@ const categorySlice = createSlice({
       state.getProductsError = action.payload
     },
     setCurrentPage: (state, action) => {
+      console.log(action.payload, 'aaa')
       state.currentPage = action.payload
     },
     setTotalPages: (state, action) => {

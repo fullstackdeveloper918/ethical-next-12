@@ -53,8 +53,8 @@ const SecondaryHeader = () => {
   const [showOnMobile, setShowOnMobile] = useState(false)
 
   const [countryTosend, setCountryToSend] = useState('usa')
-  const [currentPage, setCurrentPage] = useState(1)
   const [url, setUrl] = useState('')
+  const currentPage = useSelector((state) => state.category.currentPage)
 
   const wishlistItems = useSelector((state) => state.wishlist.items)
   const countryFromRedux = useSelector((state) => state.country.country)
@@ -65,6 +65,7 @@ const SecondaryHeader = () => {
 
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
   const dateNameFilter = useSelector((state) => state.cart.selectedOptionValue)
+
   useEffect(() => {
     if (countryFromRedux) {
       setCountryToSend(
