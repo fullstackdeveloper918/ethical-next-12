@@ -174,6 +174,14 @@ const Product = ({ product, loading, error }) => {
     }
   }, [product])
 
+  useEffect(() => {
+    if (openEmoji) {
+      document.documentElement.classList.add('open_emoji')
+    } else {
+      document.documentElement.classList.remove('open_emoji')
+    }
+  }, [openEmoji])
+
   let handleQuantitySize = (e) => {
     if (e.target.value < 0) {
       setSizeQuantity((prev) => ({
@@ -407,27 +415,30 @@ const Product = ({ product, loading, error }) => {
                         slidesToSlide={2}
                         className={Styles.product_slider}
                       >
-                        {imagesArray?.map((item, index) => (
-                          <div
-                            style={{
-                              border:
-                                singleImage === item ? '1px solid #a2d061' : '',
-                            }}
-                            className={Styles.add_color}
-                          >
-                            <Image
-                              src={item}
-                              width={100}
-                              height={100}
-                              alt="product_image"
+                        {imagesArray &&
+                          imagesArray?.map((item, index) => (
+                            <div
                               style={{
-                                cursor: 'pointer',
+                                border:
+                                  singleImage === item
+                                    ? '1px solid #a2d061'
+                                    : '',
                               }}
-                              onClick={() => updateImage(item)}
-                              className={Styles.product_images}
-                            />
-                          </div>
-                        ))}
+                              className={Styles.add_color}
+                            >
+                              <Image
+                                src={item}
+                                width={100}
+                                height={100}
+                                alt="product_image"
+                                style={{
+                                  cursor: 'pointer',
+                                }}
+                                onClick={() => updateImage(item)}
+                                className={Styles.product_images}
+                              />
+                            </div>
+                          ))}
                       </Carousel>
                     </div>
                   )}
