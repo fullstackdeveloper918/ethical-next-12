@@ -30,7 +30,7 @@ const Product = () => {
           />
           <Products />
 
-          {getProductsRes && totalData > 10 && (
+          {getProductsRes?.data?.data?.length > 0 && totalData > 10 && (
             <div className={Styles.pagination_section}>
               <Pagination />
             </div>

@@ -9,12 +9,14 @@ import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import Loaders from '@components/loaders/Loaders'
 
-const Products = ({ response, loading }) => {
+const Products = () => {
   const router = useRouter()
   const promotionalProduct = useSelector(
     (state) => state.random.singleProductPromotion
   )
+  const response = useSelector((state) => state.category.getProductsRes)
   let length = response?.data?.data?.length
+  const loading = useSelector((state) => state.category.getProductsLoading)
   return (
     <>
       {loading ? (
