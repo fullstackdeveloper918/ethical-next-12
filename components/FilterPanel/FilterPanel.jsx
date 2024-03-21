@@ -16,6 +16,7 @@ const FilterPanel = ({
   const [openIndex, setOpenIndex] = useState('')
   const [isActive, setIsActive] = useState(true)
   const [filteredList, setFilteredList] = useState([])
+  // const
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
   const colorsObj = useSelector((state) => state.filter.colorsObj)
@@ -45,15 +46,19 @@ const FilterPanel = ({
     setOpenIndex(index)
     setIsActive(!isActive)
   }
-
-  const handleCheckboxChange = (event) => {
+  // console.log(filteredProductType, 'filteredProductType')
+  const handleCheckboxChange = (event, item) => {
     const { name } = event.target
-    console.log(name, 'name')
-    // if (event.target.checked) {
-    //   setFilteredList([...filteredList, itemName])
-    // } else {
-    //   setFilteredList(filteredList.filter((item) => item !== itemName))
-    // }
+    console.log(name, item, 'name')
+    if (item === 'uniqueProductType') {
+      if (event.target.checked) {
+        setFilteredProductType([...filteredProductType, name])
+      } else {
+        setFilteredProductType(
+          filteredProductType.filter((item) => item !== name)
+        )
+      }
+    }
   }
   const handleClear = () => {
     setFilteredColors([])
@@ -129,8 +134,10 @@ const FilterPanel = ({
                                 type="checkbox"
                                 id={`checkbox_id_${childIndex}`}
                                 name={child}
-                                onChange={handleCheckboxChange}
-                                checked={filteredList.includes(child)}
+                                onChange={(e) =>
+                                  handleCheckboxChange(e, item.label)
+                                }
+                                checked={filteredProductType.includes(child)}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
                                 {child}
@@ -151,8 +158,8 @@ const FilterPanel = ({
                                 type="checkbox"
                                 id={`checkbox_id_${childIndex}`}
                                 name={child}
-                                onChange={handleCheckboxChange}
-                                checked={filteredList.includes(child)}
+                                // onChange={handleCheckboxChange}
+                                // checked={filteredList.includes(child)}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
                                 {child}

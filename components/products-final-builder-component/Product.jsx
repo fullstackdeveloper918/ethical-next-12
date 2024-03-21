@@ -13,6 +13,7 @@ const Product = () => {
   const [filteredColors, setFilteredColors] = useState([])
   const [filteredProductType, setFilteredProductType] = useState([])
   const [finalProducts, setFinalProducts] = useState([])
+  const [f, setF] = useState([])
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
 
   const totalData = useSelector((state) => state.category.totalData)
@@ -29,6 +30,17 @@ const Product = () => {
       setFinalProducts(getProductsRes?.data?.data)
     }
   }, [filteredColors, getProductsRes])
+
+  useEffect(() => {
+    if (
+      filteredProductType.length > 0 &&
+      getProductsRes?.data?.data?.length > 0
+    ) {
+      console.log(getProductsRes?.data?.data, 'from me')
+    } else if (filteredProductType.length === 0) {
+      setF(getProductsRes?.data?.data)
+    }
+  }, [filteredProductType, getProductsRes])
 
   return (
     <>
