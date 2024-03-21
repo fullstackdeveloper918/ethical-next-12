@@ -394,7 +394,52 @@ progress.progress_bar::-webkit-progress-bar {
   width: 100%;
   margin-top: 2rem;
 }
+.singleProduct_dimensions{
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  width: 100%;
+  max-width: 96%;
+  margin: 30px auto;
+  border-bottom: 0;
+  padding-bottom: 50px;
+}
+.product_list_wrapper{
+  background: #F7F7F7;
+  padding: 15px 22px;
+  max-width: 260px;
+  min-width: 260px;
+  width: 100%;
+  border-radius: 5px;
+}
+.product_list_wrapper ul li {
+  color: #111;
+  font-family: 'Poppins';
+  padding: 12px 18px;
+  transition: all .2s ease-in;
+}
+.product_list_wrapper ul li + li{
+  margin: 5px 0;
+}
+.product_description_details {
+background-color: #F7F7F7;
+padding: 30px;
+width: 100%;
+border-radius: 5px;
+}
 
+.active_product{
+  background-color: #fff;
+  border-radius: 6px;
+  color: #A2D061 !important;
+  font-weight: 600;
+}
+.active_product li{
+  font-size: 14px;
+  color: #282828;
+  line-height: 25px;
+  letter-spacing: 0.5px;
+}
 @media (min-width: 1440px) {
   .product_bottombtn {
     font-size: 14px;

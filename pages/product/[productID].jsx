@@ -111,38 +111,38 @@ const productID = () => {
       <PrimaryHeader />
       <SecondaryHeader />
       <Product product={singleProduct?.data} loading={loading} error={error} />
-      <section>
-        <div>
+      <section className={Styles.singleProduct_dimensions}>
+        <div className={Styles.product_list_wrapper}>
           <ul style={{ cursor: 'pointer' }}>
-            <li
+            <li className={selectedItem === 'Product' ? Styles.active_product : ''}
               onClick={() => setSelectedItem('Product')}
-              style={{ color: selectedItem === 'Product' ? '#a2d061' : '' }}
+              
             >
               Product Description
             </li>
-            <li
+            <li className={selectedItem === 'Dimensions' ? Styles.active_product : ''}
               onClick={() => setSelectedItem('Dimensions')}
-              style={{ color: selectedItem === 'Dimensions' ? '#a2d061' : '' }}
+             
             >
               Dimensions
             </li>
-            <li
+            <li className={selectedItem === 'Material' ? Styles.active_product : ''}
               onClick={() => setSelectedItem('Material')}
-              style={{ color: selectedItem === 'Material' ? '#a2d061' : '' }}
+              
             >
               Material(s)
             </li>
             <li>Imprint Information</li>
             <li>Compliance</li>
-            <li
+            <li className={selectedItem === 'Swift Swag' ? Styles.active_product : ''}
               onClick={() => setSelectedItem('Swift Swag')}
-              style={{ color: selectedItem === 'Swift Swag' ? '#a2d061' : '' }}
+              
             >
               Swift Swag Qualified
             </li>
           </ul>
         </div>
-        <div>
+        <div className={Styles.product_description_details}>
           {selectedItem === 'Product' && (
             <li>{singleProduct?.data.product_description}</li>
           )}
