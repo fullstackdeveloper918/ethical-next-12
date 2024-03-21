@@ -17,21 +17,17 @@ const Product = () => {
   const totalData = useSelector((state) => state.category.totalData)
 
   useEffect(() => {
-    if (filteredColors.length > 0) {
-      let result = getProductsRes?.data?.data
-        ?.map((item) => item.colours)
-        .filter((obj) => {
-          return Object.keys(obj).some((color) =>
-            filteredColors.includes(color)
-          )
-        })
+    if (filteredColors.length > 0 && getProductsRes?.data?.data?.length > 0) {
+      let result = getProductsRes?.data?.data?.filter((item) => {
+        return Object.keys(item.colours).some((color) =>
+          filteredColors.includes(color)
+        )
+      })
       setFinalProducts(result)
-    } else {
+    } else if (filteredColors.length === 0) {
       setFinalProducts(getProductsRes?.data?.data)
     }
   }, [filteredColors, getProductsRes])
-
-  console.log(finalProducts, 'finalProductsfinalProducts')
 
   return (
     <>
@@ -50,7 +46,7 @@ const Product = () => {
           />
           <Products finalProducts={finalProducts} />
 
-          {getProductsRes?.data?.data?.length > 0 && totalData > 10 && (
+          {getProductsRes?.data?.data?.length > 0 && totalData > 100 && (
             <div className={Styles.pagination_section}>
               <Pagination />
             </div>

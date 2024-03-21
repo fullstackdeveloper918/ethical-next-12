@@ -111,7 +111,7 @@ const SecondaryHeader = () => {
           collectionIdToUse ? `&collection_ids=${collectionIdToUse}` : ''
         }&page=${
           currentPage ? currentPage : 1
-        }&pageSize=${10}&${countryTosend}=1&swift_tag=${
+        }&pageSize=${100}&${countryTosend}=1&swift_tag=${
           swiftSwag !== `flexible` ? 1 : 0
         }${dateNameFilter ? `&${dateNameFilter}=1` : ''}`
         setUrl(route)

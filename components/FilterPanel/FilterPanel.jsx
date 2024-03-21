@@ -50,7 +50,9 @@ const FilterPanel = ({ setFilteredColors, filteredColors }) => {
     //   setFilteredList(filteredList.filter((item) => item !== itemName))
     // }
   }
-
+  const handleClear = () => {
+    setFilteredColors([])
+  }
   return (
     <>
       {active && (
@@ -62,13 +64,14 @@ const FilterPanel = ({ setFilteredColors, filteredColors }) => {
 
       <div className={Styles.filterPanel}>
         <div className={Styles.filterPanel_top}>
-          {/* <h4
+          <h4
             className={Styles.filterPanel_title}
             onClick={() => handleClear()}
             style={{ cursor: 'pointer' }}
           >
             Clear All
-          </h4> */}
+          </h4>
+          <p>{filteredColors.map((item) => item)}</p>
         </div>
 
         <div className={Styles.filterPanel_ProductCollection_list}>
