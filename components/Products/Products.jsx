@@ -15,8 +15,9 @@ const Products = () => {
     (state) => state.random.singleProductPromotion
   )
   const response = useSelector((state) => state.category.getProductsRes)
-  let length = response?.data?.data?.length
   const loading = useSelector((state) => state.category.getProductsLoading)
+
+  let length = response?.data?.data?.length
   return (
     <>
       {loading ? (
