@@ -11,6 +11,7 @@ import Image from 'next/image'
 import images from '../../constants/images'
 
 const index = () => {
+  const router = useRouter()
   const [totalData, setTotalData] = useState([])
   const [relatedCategories, setRelatedCategories] = useState([])
   const [totalPages, setTotalPages] = useState('')
@@ -71,9 +72,15 @@ const index = () => {
       <section className={Styles.conatainer_Sec}>
         <div className={Styles.collection_banner}>
           <div className={Styles.collection_banner_heading}>
-            <h1>All Swag</h1>
+            <h1>Category</h1>
             <p>
-              Home <span> {'>'}</span> All Swag
+              <span
+                onClick={() => router.push('/')}
+                style={{ cursor: 'pointer' }}
+              >
+                Home
+              </span>{' '}
+              <span> {'>'}</span> {collectionForUrl}
             </p>
           </div>
         </div>
@@ -91,16 +98,23 @@ const index = () => {
       <div className={Styles.related_product_container}>
         <div className={Styles.related_product_content}>
           <div className={Styles.imgContent}>
-            <Image src={images.Related_product} width={400} height={400} alt="" />
+            <Image
+              src={images.Related_product}
+              width={400}
+              height={400}
+              alt=""
+            />
           </div>
           <div className={Styles.textContent}>
             <h4>Related Product</h4>
             <h2>Travel Bags & Accessories</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro unde
-            voluptatum debitis incidunt, esse, modi tenetur sapiente dignissimos
-            itaque dolore officiis praesentium similique cum ducimus. Nostrum
-            consectetur facilis iure fugiat.</p>
-            <button type='button'> Shop Now</button>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
+              unde voluptatum debitis incidunt, esse, modi tenetur sapiente
+              dignissimos itaque dolore officiis praesentium similique cum
+              ducimus. Nostrum consectetur facilis iure fugiat.
+            </p>
+            <button type="button"> Shop Now</button>
           </div>
         </div>
       </div>
@@ -109,7 +123,7 @@ const index = () => {
         <div className={Styles.content_wrapper}>
           <div className={Styles.img_content_1}>
             <div className={Styles.imgContent}>
-              <Image src={images.all_tech} layout='fill' alt="" />
+              <Image src={images.all_tech} layout="fill" alt="" />
             </div>
             <div className={Styles.textContent}>
               <div>
@@ -121,7 +135,7 @@ const index = () => {
           </div>
           <div className={Styles.img_content_2}>
             <div className={Styles.imgContent}>
-              <Image src={images.Drinkware} layout='fill' alt="" />
+              <Image src={images.Drinkware} layout="fill" alt="" />
             </div>
             <div className={Styles.textContent}>
               <div>
