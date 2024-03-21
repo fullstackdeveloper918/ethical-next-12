@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import Dot from '@components/custom-colored-dot/Dot'
 import { setColorsObj, setShowAllFilters } from 'redux-setup/FiltersSlice'
 
-const FilterPanel = ({ setFilteredColors, filteredColors }) => {
+const FilterPanel = ({
+  setFilteredColors,
+  filteredColors,
+  filteredProductType,
+  setFilteredProductType,
+}) => {
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
   const [inputSlider, setInputSlider] = useState(0)
@@ -109,6 +114,30 @@ const FilterPanel = ({ setFilteredColors, filteredColors }) => {
                               />
                             )
                           )}
+                      </div>
+                    ) : isActive &&
+                      openIndex === index &&
+                      item.label === 'uniqueProductType' ? (
+                      <div className={Styles.custom_checkbox}>
+                        {Object.values(item.children).map(
+                          (child, childIndex) => (
+                            <li
+                              key={childIndex}
+                              className={Styles.filterPanel_list_item}
+                            >
+                              <input
+                                type="checkbox"
+                                id={`checkbox_id_${childIndex}`}
+                                name={child}
+                                onChange={handleCheckboxChange}
+                                checked={filteredList.includes(child)}
+                              />
+                              <label htmlFor={`checkbox_id_${childIndex}`}>
+                                {child}
+                              </label>
+                            </li>
+                          )
+                        )}
                       </div>
                     ) : (
                       <div className={Styles.custom_checkbox}>

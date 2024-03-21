@@ -18,6 +18,8 @@ const Filter = ({
   setActiveFilter,
   setFilteredColors,
   filteredColors,
+  setFilteredProductType,
+  filteredProductType,
 }) => {
   const [scrolled, setScrolled] = useState(false)
   const dispatch = useDispatch()
@@ -127,6 +129,8 @@ const Filter = ({
           <FilterPanel
             filteredColors={filteredColors}
             setFilteredColors={setFilteredColors}
+            setFilteredProductType={setFilteredProductType}
+            filteredProductType={filteredProductType}
           />
         )}
       </div>

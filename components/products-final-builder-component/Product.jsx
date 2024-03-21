@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 const Product = () => {
   const [activeFilter, setActiveFilter] = useState(false)
   const [filteredColors, setFilteredColors] = useState([])
+  const [filteredProductType, setFilteredProductType] = useState([])
   const [finalProducts, setFinalProducts] = useState([])
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
 
@@ -43,6 +44,8 @@ const Product = () => {
             setActiveFilter={setActiveFilter}
             filteredColors={filteredColors}
             setFilteredColors={setFilteredColors}
+            filteredProductType={filteredProductType}
+            setFilteredProductType={setFilteredProductType}
           />
           <Products finalProducts={finalProducts} />
 
