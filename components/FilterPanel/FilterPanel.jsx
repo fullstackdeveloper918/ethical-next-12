@@ -10,10 +10,10 @@ const FilterPanel = () => {
   const [inputSlider, setInputSlider] = useState(0)
   const [openIndex, setOpenIndex] = useState('')
   const [isActive, setIsActive] = useState(true)
+  const [filteredList, setFilteredList] = useState([])
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
   const colorsObj = useSelector((state) => state.filter.colorsObj)
-  console.log(colorsObj, 'colorsObj final')
 
   useEffect(() => {
     let categoriesList = []
@@ -28,7 +28,6 @@ const FilterPanel = () => {
       dispatch(setShowAllFilters(categoriesList))
       let colors = categoriesList.filter((c) => c.label === 'Colors')
       if (colors.length > 0) {
-        // let colorsObjToUse = colors[0].map((a) => a.children)
         let colorsObjToUse = colors[0].children
         dispatch(setColorsObj(colorsObjToUse))
       } else {
@@ -41,20 +40,16 @@ const FilterPanel = () => {
     setOpenIndex(index)
     setIsActive(!isActive)
   }
-  // let colorsArray = LIST().filter((c) => c.label === 'Colors')
-  // console.log(colorsArray, 'colorsArraycolorsArray')
-  // console.log(
-  //   colorsArray.map((c) => c.children),
-  //   'colorsArraycolorsArray'
-  // )
 
-  // useEffect(() => {
-  //   let colorsArray = LIST().filter((c) => c.label === 'Colors')
-  //   if (colorsArray.length > 0) {
-  //     let a = colorsArray.map((c) => c.children)
-  //     console.log(a, 'final')
-  //   }
-  // }, [])
+  const handleCheckboxChange = (event) => {
+    const itemName = event.target.name
+    if (event.target.checked) {
+      setFilteredList([...filteredList, itemName])
+    } else {
+      setFilteredList(filteredList.filter((item) => item !== itemName))
+    }
+  }
+
   return (
     <>
       {active && (
@@ -96,72 +91,74 @@ const FilterPanel = () => {
                     {isActive &&
                       openIndex === index &&
                       Object.values(item.children).map((child, index) => (
-                        <>
-                          {item.label === 'Price' ? (
-                            <>
-                              <div
-                                className={
-                                  Styles.filter_panel_price_input_section
-                                }
-                              >
+                      <>
+                        {item.label === 'Price' ? (
+                          <>
+                            <div
+                              className={
+                                Styles.filter_panel_price_input_section
+                              }
+                            >
+                              <input
+                                type="range"
+                                className={Styles.filter_panel_price_input}
+                                min={child.minPrice}
+                                max={child.maxPrice}
+                                value={inputSlider}
+                                onChange={(e) =>
+                                    setInputSlider(e.target.value)
+                                  }
+                              />
+                              <div className={Styles.filter_panel_textInput}>
                                 <input
-                                  type="range"
-                                  className={Styles.filter_panel_price_input}
-                                  min={child.minPrice}
-                                  max={child.maxPrice}
+                                  type="text"
                                   value={inputSlider}
                                   onChange={(e) =>
                                     setInputSlider(e.target.value)
                                   }
                                 />
-                                <div className={Styles.filter_panel_textInput}>
-                                  <input
-                                    type="text"
-                                    value={inputSlider}
-                                    onChange={(e) =>
-                                      setInputSlider(e.target.value)
-                                    }
-                                  />
-                                  <p>${child.maxPrice}</p>
-                                </div>
+                                <p>${child.maxPrice}</p>
                               </div>
-                            </>
-                          ) : item.label === 'Colors' ? (
-                            <>
-                              <div className={Styles.colors_container}>
-                                {Object.keys(colorsObj).length > 0 &&
-                                  Object.entries(colorsObj).map(
-                                    ([color, imageUrl]) => (
-                                      <Dot
-                                        color={color}
-                                        imageUrl={imageUrl}
-                                        fromFilters
-                                      />
-                                    )
-                                  )}
-                              </div>
-                            </>
-                          ) : (
-                            <>
-                              <div className={Styles.custom_checkbox}>
-                                <li
-                                  key={item.id}
-                                  className={Styles.filterPanel_list_item}
-                                >
-                                  <input
-                                    type="checkbox"
-                                    id={`checkbox_id_${index}`}
-                                    name={child}
-                                  />
-                                  <label htmlFor={`checkbox_id_${index}`}>
-                                    {child}
-                                  </label>
-                                </li>
-                              </div>
-                            </>
-                          )}
-                        </>
-                      ))}
+                            </div>
+                          </>
+                        ) : item.label === 'Colors' ? (
+                          <>
+                            <div className={Styles.colors_container}>
+                              {Object.keys(colorsObj).length > 0 &&
+                                Object.entries(colorsObj).map(
+                                  ([color, imageUrl]) => (
+                                    <Dot
+                                      color={color}
+                                      imageUrl={imageUrl}
+                                      fromFilters
+                                    />
+                                  )
+                                )}
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className={Styles.custom_checkbox}>
+                              <li
+                                key={item.id}
+                                className={Styles.filterPanel_list_item}
+                              >
+                                <input
+                                  type="checkbox"
+                                  id={`checkbox_id_${index}`}
+                                  name={child}
+                                  onChange={handleCheckboxChange}
+                                  checked={filteredList.includes(child)}
+                                />
+                                <label htmlFor={`checkbox_id_${index}`}>
+                                  {child}
+                                </label>
+                              </li>
+                            </div>
+                          </>
+                        )}
+                      </>
+                    ))}
                   </div>
                 )}
               </div>
