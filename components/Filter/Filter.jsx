@@ -97,6 +97,7 @@ const Filter = ({
               <p
                 className={value === active ? Styles.subCatgeory_Active : ''}
                 onClick={() => handleAddLists(key, value)}
+                key={value}
               >
                 {value ? JSON.parse(value) : ' '}
               </p>
