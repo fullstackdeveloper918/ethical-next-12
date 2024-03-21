@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import Loaders from '@components/loaders/Loaders'
 
-const Products = () => {
+const Products = ({ finalProducts }) => {
   const router = useRouter()
   const promotionalProduct = useSelector(
     (state) => state.random.singleProductPromotion
