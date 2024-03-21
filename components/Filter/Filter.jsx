@@ -13,7 +13,12 @@ import {
 } from 'redux-setup/categorySlice'
 import { useRouter } from 'next/router'
 
-const Filter = ({ activeFilter, setActiveFilter }) => {
+const Filter = ({
+  activeFilter,
+  setActiveFilter,
+  setFilteredColors,
+  filteredColors,
+}) => {
   const [scrolled, setScrolled] = useState(false)
   const dispatch = useDispatch()
   const router = useRouter()
@@ -86,16 +91,14 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
         </button>
         <div className={Styles.filter_input}>
           {Object.keys(subCategoryOnTop).length > 0 &&
-            Object.entries(subCategoryOnTop)
-              .slice(0, 7)
-              .map(([key, value]) => (
-                <p
-                  className={value === active ? Styles.subCatgeory_Active : ''}
-                  onClick={() => handleAddLists(key, value)}
-                >
-                  {value ? JSON.parse(value) : ' '}
-                </p>
-              ))}
+            Object.entries(subCategoryOnTop).map(([key, value]) => (
+              <p
+                className={value === active ? Styles.subCatgeory_Active : ''}
+                onClick={() => handleAddLists(key, value)}
+              >
+                {value ? JSON.parse(value) : ' '}
+              </p>
+            ))}
         </div>
         <div className={Styles.filter_select}>
           <div>
@@ -120,7 +123,12 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
         </div>
       </div>
       <div className={Styles.filter_panel_wrap}>
-        {activeFilter && <FilterPanel setActiveFilter={setActiveFilter} />}
+        {activeFilter && (
+          <FilterPanel
+            filteredColors={filteredColors}
+            setFilteredColors={setFilteredColors}
+          />
+        )}
       </div>
     </>
   )

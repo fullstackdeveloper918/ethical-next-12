@@ -8,9 +8,20 @@ const Dot = ({
   selectedColor,
   setSelectedColor,
   fromFilters,
+  filteredColors,
+  setFilteredColors,
 }) => {
-  const handleSelect = () => {
+  const handleSelect = (color) => {
     if (fromFilters) {
+      const index = filteredColors.indexOf(color)
+
+      if (index !== -1) {
+        const updatedColors = [...filteredColors]
+        updatedColors.splice(index, 1)
+        setFilteredColors(updatedColors)
+      } else {
+        setFilteredColors((prevColors) => [...prevColors, color])
+      }
     } else {
       setSelectedColor(color)
     }
@@ -32,7 +43,7 @@ const Dot = ({
             background: color,
             outlineColor: setOutlineColor(),
           }}
-          onClick={handleSelect}
+          onClick={() => handleSelect(color)}
           title={color}
         ></div>
       )}
