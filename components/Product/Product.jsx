@@ -411,8 +411,7 @@ const Product = ({ product, loading, error }) => {
                     {singleImage && (
                       <Image
                         src={singleImage}
-                        width={700}
-                        height={600}
+                        layout="fill"
                         style={{ mixBlendMode: 'color-burn' }}
                         alt="Single_Product_Image"
                         className={Styles.product_image}
