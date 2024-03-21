@@ -22,7 +22,6 @@ const index = () => {
   const collectionForUrl = useSelector(
     (state) => state.category.collectionForUrl
   )
-  console.log(collectionForUrl, 'collectionForUrl')
 
   useEffect(() => {
     const generateRelatedCategories = () => {
@@ -48,8 +47,6 @@ const index = () => {
     // Call the function to generate related categories
     generateRelatedCategories()
   }, [collectionForUrl])
-
-  console.log(relatedCategories, 'relatedCategories')
 
   const getProductsLoading = useSelector(
     (state) => state.category.getProductsLoading
@@ -121,30 +118,26 @@ const index = () => {
 
       <div className={Styles.related_categories}>
         <div className={Styles.content_wrapper}>
-          <div className={Styles.img_content_1}>
-            <div className={Styles.imgContent}>
-              <Image src={images.all_tech} layout="fill" alt="" />
-            </div>
-            <div className={Styles.textContent}>
-              <div>
-                <h3>Apparel</h3>
-                <p>2200 products</p>
-              </div>
-              <button>Shop Now</button>
-            </div>
-          </div>
-          <div className={Styles.img_content_2}>
-            <div className={Styles.imgContent}>
-              <Image src={images.Drinkware} layout="fill" alt="" />
-            </div>
-            <div className={Styles.textContent}>
-              <div>
-                <h3>Drinkware</h3>
-                <p>2200 products</p>
-              </div>
-              <button>Shop Now</button>
-            </div>
-          </div>
+          {relatedCategories &&
+            relatedCategories.map((data) => (
+              <>
+                <div className={Styles.img_content_1}>
+                  <div className={Styles.imgContent}>
+                    <Image src={images.all_tech} layout="fill" alt="" />
+                  </div>
+                  <div className={Styles.textContent}>
+                    <div>
+                      <h3>{data}</h3>
+                      <p>2200 products</p>
+                    </div>
+
+                    <button onClick={() => router.push(`/category/${data}`)}>
+                      Shop Now
+                    </button>
+                  </div>
+                </div>
+              </>
+            ))}
         </div>
       </div>
 
