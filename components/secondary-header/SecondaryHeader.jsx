@@ -286,7 +286,7 @@ const SecondaryHeader = () => {
                       <div
                         className={styles.header_menu_wrapper}
                         style={{
-                          top: getSingleProductPageRoute ? '121px' : '71px',
+                          top: getSingleProductPageRoute ? '121px' : '60px',
                         }}
                       >
                         <div className={styles.header_menu}>

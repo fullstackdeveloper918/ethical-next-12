@@ -436,28 +436,28 @@ const Product = ({ product, loading, error, productID }) => {
             <div className={Styles.detail_page_container}>
               <div className={Styles.detail_page_left_top}>
 
-                
+
 
                 <div className={Styles.sticky_sec}>
-                <div className={Styles.icon_wrapper}>
-                  <div className={Styles.border_svg}>
-                    <MdOutlineFavoriteBorder
-                      fontSize={25}
-                      className={Styles.icon} />
+                  <div className={Styles.icon_wrapper}>
+                    <div className={Styles.border_svg}>
+                      <MdOutlineFavoriteBorder
+                        fontSize={25}
+                        className={Styles.icon} />
 
+                    </div>
+                    <div className={Styles.border_svg}>
+                      <Image src={images.ZooomSvg}
+                        className={Styles.icon} />
+                    </div>
+                    <div className={Styles.border_svg}>
+                      <CiShare2
+                        fontSize={25}
+                        // color="#D3D3D3"
+                        className={Styles.icon}
+                      />
+                    </div>
                   </div>
-                  <div className={Styles.border_svg}>
-                   <Image src={images.ZooomSvg}
-                      className={Styles.icon} />
-                  </div>
-                  <div className={Styles.border_svg}>
-                    <CiShare2
-                      fontSize={25}
-                      // color="#D3D3D3"
-                      className={Styles.icon}                    
-                    />
-                  </div>
-                </div>
                   <div className={Styles.detail_page_image_content}>
                     {singleImage && (
                       <Image
@@ -539,10 +539,7 @@ const Product = ({ product, loading, error, productID }) => {
                 <div className={Styles.title}>
                   <h4>
                     {product?.product_title}
-                    {product?.emoji_ratings &&
-                      Object.entries(product?.emoji_ratings).map(
-                        ([key, value]) => <span>{value}</span>
-                      )}
+
                   </h4>
 
                   {/* <div className={Styles.reviews}>
@@ -563,14 +560,26 @@ const Product = ({ product, loading, error, productID }) => {
                 <div className={Styles.reviews}>
                   <h4>
                     527 Reviews{' '}
-                    <Image
+
+                   
+                  </h4>
+                  <span className={Styles.emoji_left_border}>
+
+                    {product?.emoji_ratings &&
+                      Object.entries(product?.emoji_ratings).map(
+                        ([key, value]) => (
+                          <>
+                            <span>{value}</span>
+                          </>
+                        ))}
+                  </span>
+                  <Image
                       src={images.Info_svg}
                       width={20}
                       height={20}
                       alt="info icon"
                       onClick={() => setOpenEmoji(true)}
                     />
-                  </h4>
                 </div>
                 <div className={Styles.text_content}>
                   {product?.product_description?.length < 200 ? (
@@ -684,8 +693,8 @@ const Product = ({ product, loading, error, productID }) => {
                             val !== undefined && (
                               <p
                                 className={`${Styles.btn} ${selectedCustomization === index
-                                    ? Styles.active
-                                    : ''
+                                  ? Styles.active
+                                  : ''
                                   }`}
                                 onClick={() =>
                                   selectCustomizations(index, key, val)
@@ -949,9 +958,8 @@ const Product = ({ product, loading, error, productID }) => {
                       </div>
 
                       <div className={Styles.price_section}>
-                        <p>{`Price ${
-                          totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
-                        }/unit`}</p>
+                        <p>{`Price ${totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
+                          }/unit`}</p>
                         <p>
                           ${quantity ? (quantity * +totalPrice).toFixed(2) : 0}
                         </p>
