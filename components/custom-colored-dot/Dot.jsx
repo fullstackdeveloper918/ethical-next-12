@@ -17,7 +17,7 @@ const Dot = ({
 
   const router = useRouter();
 
-  console.log(router.asPath() === `product/${productID}`, 'hello')
+  // console.log(router.asPath() === `product/${productID}`, 'hello')
 
   const handleSelect = (color) => {
     if (fromFilters) {

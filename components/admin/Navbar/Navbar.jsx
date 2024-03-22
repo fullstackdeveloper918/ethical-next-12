@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 const Navbar = ({ data, thumbnail }) => {
   const router = useRouter()
 
-  const heading = router.asPath.replace('/super-admin/', '')
+  // const heading = router.asPath.replace('/super-admin/', '')
 
   return (
     <>
