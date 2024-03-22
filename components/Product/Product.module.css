@@ -1384,7 +1384,7 @@ width: 100%;
       flex-wrap: nowrap;
     }
     .detail_page_image_content .product_big_image img{
-      width: 23vw !important;
+      width: 30vw !important;
     }
    
 }
@@ -1393,7 +1393,8 @@ width: 100%;
   .business_box{
     flex-wrap: wrap;
     align-items: baseline;
-  }}
+  }
+ }
 @media screen and (max-width: 767px) {
   .buttons {
     flex-wrap: wrap;
@@ -1465,7 +1466,9 @@ width: 100%;
   .business_box{
     width: 100%;
   }
-
+  .detail_page_image_content .product_big_image img{
+    width:  auto!important;
+  }
 }
 
 @media screen and (max-width: 545px) {
