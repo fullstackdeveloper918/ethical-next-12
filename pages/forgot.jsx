@@ -37,9 +37,7 @@ const forgot = () => {
     }
   }
 
-  const onResetPassword = async (values) => {
-    console.log('clkicked Password')
-  }
+  const onResetPassword = async (values) => {}
 
   return (
     <>

@@ -7,10 +7,8 @@ const slug = () => {
   const [data, setData] = useState([])
   const orderPlaced = useSelector((state) => state.cart.orderPlaced)
   const orderIndex = useSelector((state) => state.cart.orderIndex)
-  console.log(orderIndex, 'hello orderindex')
 
   useEffect(() => {
-    console.log(orderIndex, 'o ara')
     if (orderPlaced) {
       const findOrder = orderPlaced.find(
         (item, index) => item[2]?.id === orderIndex
@@ -18,8 +16,6 @@ const slug = () => {
       setData(findOrder)
     }
   }, [])
-
-  console.log(data[1]?.singleAddress)
 
   return (
     <>
