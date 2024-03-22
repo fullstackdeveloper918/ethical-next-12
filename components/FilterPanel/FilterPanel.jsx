@@ -120,7 +120,7 @@ const FilterPanel = ({
         </div>
 
         <div className={Styles.filterPanel_ProductCollection_list}>
-          {showAllFilters.map((item, index) => {
+          {showAllFilters?.map((item, index) => {
             return (
               <div className={Styles.accordion} key={index}>
                 <div className={Styles.accordion_item}>

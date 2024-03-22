@@ -406,7 +406,6 @@ const productID = () => {
             </Formik>
           </div>
           <div className={Styles.bottomContent}>
-            {' '}
             {reviews && reviews?.data?.productreview.length > 0 && (
               <>
                 <div className={Styles.leftContent}>
