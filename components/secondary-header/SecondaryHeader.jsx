@@ -69,7 +69,10 @@ const SecondaryHeader = () => {
 
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
   const dateNameFilter = useSelector((state) => state.cart.selectedOptionValue)
-
+  let route = router.asPath.split('/').filter((item) => item !== '')
+  const routeArray = route.map((item) => decodeURIComponent(item))
+  const urlCategory = routeArray[1]
+  let urlCategoryIdd = allCategories[urlCategory]?.airtabelId
   useEffect(() => {
     let r = router.asPath.split('/').filter((item) => item !== '')
     const newArray = r.map((item) => decodeURIComponent(item))
@@ -157,7 +160,7 @@ const SecondaryHeader = () => {
   const [
     getSideFilters,
     { response: filtersRes, loading: filtersLoading, error: filtersError },
-  ] = useFetch('sidebarfilter?category=apparel__category', {
+  ] = useFetch(`sidebarfilter?category=${urlCategoryIdd}`, {
     method: 'get',
   })
   useEffect(() => {
