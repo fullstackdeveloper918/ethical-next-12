@@ -34,7 +34,7 @@ product css
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 130px);
+  height: calc(100vh - 240px);
 }
 
 .detail_page_image_content .product_big_image img{
@@ -586,12 +586,10 @@ product css
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
-  line-height: 14px; /* 70% */
+  line-height: 14px; 
   text-transform: capitalize;
   cursor: pointer;
-  /* margin-bottom: 1.4rem; */
-  transition: all 0.3s ease;
-  
+  transition: all 0.3s ease;  
 }
 .add_to_bulk_container button:hover {
   background-color: transparent;
@@ -1041,7 +1039,7 @@ p.fw400 {
   border-bottom: 1px solid #ececec;
 }
 .margin_top {
-  margin: 20px 10px 0!important;
+  margin: 15px 10px 0!important;
 }
 .business_box{
   display: flex;
@@ -1159,6 +1157,11 @@ p.fw400 {
   .sticky_bottom {
     padding: 20px 0 10px;
 }}
+@media screen and (max-width: 1850px) {
+  .add_to_bulk_container button {
+    padding: 18px 0;
+    font-size: 16px;
+  }}
 @media screen and (max-width: 1700px) {
   /* .detail_page_image_content > span{
     max-height: 600px;
@@ -1171,7 +1174,18 @@ p.fw400 {
     font-size: 16px;
     font-weight: 600 !important;
   }
+  .add_color{
+   width: 100px !important;
 }
+.add_to_bulk_container button {
+  padding: 15px 0;
+  font-size: 16px;
+}
+}
+@media screen and (max-width: 1600px) {
+  .page_right_content{
+    height: calc(100vh - 30vh);
+  }}
 @media screen and (max-width: 1500px) {
   .detail_page_wrapper li img{
     width: 80px !important;
@@ -1285,6 +1299,9 @@ height: 35px;
 .border_svg svg{
   transform: scale(.8);
 }
+.detail_page_image_content .product_big_image img{
+  width: 25vw !important;
+}
 }
 
 @media screen and (max-width: 1366px) {
@@ -1294,6 +1311,9 @@ height: 35px;
   .add_color {
     max-width: 80px !important;
     width: 100% !important;
+}
+.detail_page_image_content {
+  height: calc(100vh - 220px);
 }
 
 }
@@ -1332,7 +1352,7 @@ width: 100%;
     width:100%;
   }
   .detail_page_image_content .product_big_image img{
-    width: 25vw !important;
+    width: 23vw !important;
   }
 }
 

@@ -11,10 +11,12 @@ import { toast } from 'react-toastify'
 import { MdOutlineFavoriteBorder } from 'react-icons/md'
 import { CiSearch } from 'react-icons/ci'
 import { CiShare2 } from 'react-icons/ci'
+
 // import '../../global.css'
 import {
   setDecorationItemObjSingleProductPage,
   setFinalDecorationKeyVal,
+  setIsProductPage
 } from 'redux-setup/randomSlice'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
@@ -424,6 +426,10 @@ const Product = ({ product, loading, error, productID }) => {
       setCartItemsSwiftSwag(cartItems[0].swiftSwag)
     }
   }, [cartItems])
+  useEffect(() => {
+    dispatch(setIsProductPage(true))
+  }, [])
+ 
   return (
     <>
       {loading ? (
@@ -628,6 +634,8 @@ const Product = ({ product, loading, error, productID }) => {
                                 setSelectedColor={setSelectedColor}
                                 selectedColor={selectedColor}
                                 productID={productID}
+                                fromSingleProduct
+
                               />
                             )
                           )}
