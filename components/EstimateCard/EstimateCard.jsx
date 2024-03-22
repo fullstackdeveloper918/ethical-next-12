@@ -79,7 +79,6 @@ const EstimateCard = () => {
   }, [cartItems])
 
   const downLoadPdf = async () => {
-    console.log('i am called')
     const blob = await pdf(<Card />).toBlob()
     saveAs(blob, 'untitled.pdf')
   }

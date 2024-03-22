@@ -13,14 +13,10 @@ const Dot = ({
   filteredColors,
   setFilteredColors,
   productID,
-  fromSingleProduct
 }) => {
-
-  const router = useRouter();
+  const router = useRouter()
   const isCategoryPage = useSelector((state) => state.random.isCategoryPage)
   let isProductPage = useSelector((state) => state.random.isProductPage)
-
-  // console.log(router.asPath() === `product/${productID}`, 'hello')
 
   const handleSelect = (color) => {
     if (fromFilters) {

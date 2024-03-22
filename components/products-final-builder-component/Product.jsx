@@ -18,12 +18,13 @@ const Product = () => {
   const [finalSwiftProducts, setFinalSwiftProducts] = useState([])
   const [finalDecorationProducts, setFinalDecorationProducts] = useState([])
   const [finalProductType, setFinalProductType] = useState([])
+  const [finalEmojiType, setFinalEmojiType] = useState([])
   const [finalProducts, setFinalProducts] = useState([])
   const [f, setF] = useState([])
   const [isSwiftSwag, setIsSwiftSwag] = useState(false)
   const [decorationsArray, setDecorationsArray] = useState([])
   const [productTypeArray, setProductTypeArray] = useState([])
-
+  const [emojiTypeArray, setEmojiTypeArray] = useState([])
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
 
   const totalData = useSelector((state) => state.category.totalData)
@@ -58,7 +59,7 @@ const Product = () => {
     } else if (getProductsRes?.data?.data?.length > 0) {
       setFinalSwiftProducts(finalColorFilteredProducts)
     }
-  }, [isSwiftSwag, finalColorFilteredProducts, filteredColors])
+  }, [isSwiftSwag, finalColorFilteredProducts])
 
   useEffect(() => {
     if (getProductsRes?.data?.data?.length > 0 && decorationsArray.length > 0) {
@@ -87,12 +88,25 @@ const Product = () => {
       setFinalProductType(finalDecorationProducts)
     }
   }, [productTypeArray, finalDecorationProducts])
+
+  useEffect(() => {
+    if (getProductsRes?.data?.data?.length > 0 && emojiTypeArray.length > 0) {
+      let result = finalProductType?.filter((item) => {
+        return emojiTypeArray.some((type) => item.emoji_ratings?.includes(type))
+      })
+      setFinalEmojiType(result)
+    } else if (getProductsRes?.data?.data?.length > 0) {
+      setFinalEmojiType(finalProductType)
+    }
+  }, [emojiTypeArray, finalProductType])
   // console.log(getProductsRes?.data?.data, 'quest to find swift_swag')
   // console.log(finalColorFilteredProducts, 'finalColorFilteredProducts')
   // console.log(finalSwiftProducts, 'finalSwiftProducts')
   // console.log(finalDecorationProducts, 'finalDecorationProducts')
   // console.log(productTypeArray, 'productTypeArray')
   // console.log(finalProductType, 'finalProductType')
+  // console.log(finalEmojiType, 'finalEmojiType')
+  // console.log(emojiTypeArray, 'emojiTypeArray')
 
   // useEffect(() => {
   //   if (filteredProductType.length > 0 && finalSwiftProducts?.length > 0) {
@@ -123,6 +137,8 @@ const Product = () => {
             decorationsArray={decorationsArray}
             productTypeArray={productTypeArray}
             setProductTypeArray={setProductTypeArray}
+            setEmojiTypeArray={setEmojiTypeArray}
+            emojiTypeArray={emojiTypeArray}
           />
           <Products finalProducts={finalProducts} />
 

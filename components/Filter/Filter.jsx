@@ -26,6 +26,8 @@ const Filter = ({
   decorationsArray,
   productTypeArray,
   setProductTypeArray,
+  emojiTypeArray,
+  setEmojiTypeArray,
 }) => {
   const [scrolled, setScrolled] = useState(false)
   const dispatch = useDispatch()
@@ -141,6 +143,8 @@ const Filter = ({
             decorationsArray={decorationsArray}
             productTypeArray={productTypeArray}
             setProductTypeArray={setProductTypeArray}
+            setEmojiTypeArray={setEmojiTypeArray}
+            emojiTypeArray={emojiTypeArray}
           />
         )}
       </div>

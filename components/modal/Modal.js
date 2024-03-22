@@ -73,7 +73,7 @@ const Modal = () => {
                             setIsOpenModal(false)
                           }}
                         >
-                          No, I have flexible with timeline
+                          No, I have a flexible timeline
                         </button>
                       </div>
                       <div>
@@ -116,7 +116,11 @@ const Modal = () => {
                     business days!
                   </p>
                   <div className={Style.label_field}>
-                    <button type="button" className={Style.Popup_btncalender} onClick={() => setIsOpenModal(false)}>
+                    <button
+                      type="button"
+                      className={Style.Popup_btncalender}
+                      onClick={() => setIsOpenModal(false)}
+                    >
                       Cancel
                     </button>
                     <button

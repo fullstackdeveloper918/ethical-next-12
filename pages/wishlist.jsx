@@ -16,8 +16,6 @@ const wishlist = () => {
   const userId = useSelector((state) => state.auth.userId)
   const router = useRouter()
 
-  console.log(userId, 'userid')
-
   useEffect(() => {
     if (!userId) {
       toast.error('Please login first')

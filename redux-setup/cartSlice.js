@@ -35,7 +35,6 @@ const cartSlice = createSlice({
       )
     },
     setOrderPlaced: (state, action) => {
-      console.log(action.payload, 'hello payload')
       state.orderPlaced.push(action.payload)
     },
     findOrder: (state, action) => {
