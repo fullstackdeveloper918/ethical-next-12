@@ -11,6 +11,8 @@ const FilterPanel = ({
   setFilteredProductType,
   isSwiftSwag,
   setIsSwiftSwag,
+  setDecorationsArray,
+  decorationsArray,
 }) => {
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
@@ -19,7 +21,6 @@ const FilterPanel = ({
   const [isActive, setIsActive] = useState(true)
   const [filteredList, setFilteredList] = useState([])
   const [swagRadio, setSwagRadio] = useState('No SwiftSwag')
-  const [decorationsArray, setDecorationsArray] = useState([])
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
   const colorsObj = useSelector((state) => state.filter.colorsObj)
@@ -74,20 +75,8 @@ const FilterPanel = ({
           }
         }
       })
-      // setDecorationsArray(newArray)
-      // if (event.target.checked) {
-      //   setFilteredProductType([...filteredProductType, name])
-      // } else {
-      //   setFilteredProductType(
-      //     filteredProductType.filter((item) => item !== name)
-      //   )
-      // }
     }
   }
-
-  useEffect(() => {
-    console.log(decorationsArray, 'decorationsArray')
-  }, [decorationsArray])
 
   const handleClear = () => {
     setFilteredColors([])
