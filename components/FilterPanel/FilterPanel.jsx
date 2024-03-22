@@ -4,13 +4,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import Dot from '@components/custom-colored-dot/Dot'
 import { setColorsObj, setShowAllFilters } from 'redux-setup/FiltersSlice'
 
-const FilterPanel = ({ setFilteredColors, filteredColors }) => {
+const FilterPanel = ({
+  setFilteredColors,
+  filteredColors,
+  filteredProductType,
+  setFilteredProductType,
+}) => {
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
   const [inputSlider, setInputSlider] = useState(0)
   const [openIndex, setOpenIndex] = useState('')
   const [isActive, setIsActive] = useState(true)
   const [filteredList, setFilteredList] = useState([])
+  // const
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
   const colorsObj = useSelector((state) => state.filter.colorsObj)
@@ -40,17 +46,23 @@ const FilterPanel = ({ setFilteredColors, filteredColors }) => {
     setOpenIndex(index)
     setIsActive(!isActive)
   }
-
-  const handleCheckboxChange = (event) => {
+  // console.log(filteredProductType, 'filteredProductType')
+  const handleCheckboxChange = (event, item) => {
     const { name } = event.target
-    console.log(name, 'name')
-    // if (event.target.checked) {
-    //   setFilteredList([...filteredList, itemName])
-    // } else {
-    //   setFilteredList(filteredList.filter((item) => item !== itemName))
-    // }
+    console.log(name, item, 'name')
+    if (item === 'uniqueProductType') {
+      if (event.target.checked) {
+        setFilteredProductType([...filteredProductType, name])
+      } else {
+        setFilteredProductType(
+          filteredProductType.filter((item) => item !== name)
+        )
+      }
+    }
   }
-
+  const handleClear = () => {
+    setFilteredColors([])
+  }
   return (
     <>
       {active && (
@@ -62,13 +74,14 @@ const FilterPanel = ({ setFilteredColors, filteredColors }) => {
 
       <div className={Styles.filterPanel}>
         <div className={Styles.filterPanel_top}>
-          {/* <h4
+          <h4
             className={Styles.filterPanel_title}
             onClick={() => handleClear()}
             style={{ cursor: 'pointer' }}
           >
             Clear All
-          </h4> */}
+          </h4>
+          <p>{filteredColors.map((item) => item)}</p>
         </div>
 
         <div className={Styles.filterPanel_ProductCollection_list}>
@@ -107,6 +120,32 @@ const FilterPanel = ({ setFilteredColors, filteredColors }) => {
                             )
                           )}
                       </div>
+                    ) : isActive &&
+                      openIndex === index &&
+                      item.label === 'uniqueProductType' ? (
+                      <div className={Styles.custom_checkbox}>
+                        {Object.values(item.children).map(
+                          (child, childIndex) => (
+                            <li
+                              key={childIndex}
+                              className={Styles.filterPanel_list_item}
+                            >
+                              <input
+                                type="checkbox"
+                                id={`checkbox_id_${childIndex}`}
+                                name={child}
+                                onChange={(e) =>
+                                  handleCheckboxChange(e, item.label)
+                                }
+                                checked={filteredProductType.includes(child)}
+                              />
+                              <label htmlFor={`checkbox_id_${childIndex}`}>
+                                {child}
+                              </label>
+                            </li>
+                          )
+                        )}
+                      </div>
                     ) : (
                       <div className={Styles.custom_checkbox}>
                         {Object.values(item.children).map(
@@ -119,8 +158,8 @@ const FilterPanel = ({ setFilteredColors, filteredColors }) => {
                                 type="checkbox"
                                 id={`checkbox_id_${childIndex}`}
                                 name={child}
-                                onChange={handleCheckboxChange}
-                                checked={filteredList.includes(child)}
+                                // onChange={handleCheckboxChange}
+                                // checked={filteredList.includes(child)}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
                                 {child}

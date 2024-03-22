@@ -47,7 +47,7 @@ const AddRoles = () => {
             </tr>
             {Array.from({ length: 8 }).map((data, index) => (
               <>
-                <tr>
+                <tr key={index}>
                   <td>
                     <input type="checkbox" name="" id="" />
                     {index === 0

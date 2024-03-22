@@ -80,12 +80,8 @@ const SingleProduct = ({ product }) => {
       </div>
       <div className={styles.colors_container}>
         {product?.colours &&
-          Object.entries(product?.colours).map(([color, imageUrl]) => {
-            return (
-              <div>
-                <Dot color={color} imageUrl={imageUrl} />
-              </div>
-            )
+          Object.entries(product?.colours).map(([color, imageUrl], i) => {
+            return <Dot color={color} imageUrl={imageUrl} key={i} />
           })}
       </div>
     </div>

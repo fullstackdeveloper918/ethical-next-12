@@ -18,6 +18,8 @@ const Filter = ({
   setActiveFilter,
   setFilteredColors,
   filteredColors,
+  setFilteredProductType,
+  filteredProductType,
 }) => {
   const [scrolled, setScrolled] = useState(false)
   const dispatch = useDispatch()
@@ -95,6 +97,7 @@ const Filter = ({
               <p
                 className={value === active ? Styles.subCatgeory_Active : ''}
                 onClick={() => handleAddLists(key, value)}
+                key={value}
               >
                 {value ? JSON.parse(value) : ' '}
               </p>
@@ -127,6 +130,8 @@ const Filter = ({
           <FilterPanel
             filteredColors={filteredColors}
             setFilteredColors={setFilteredColors}
+            setFilteredProductType={setFilteredProductType}
+            filteredProductType={filteredProductType}
           />
         )}
       </div>

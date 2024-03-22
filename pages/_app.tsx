@@ -16,6 +16,7 @@ import adminSlice from '../redux-setup/adminSlice'
 import tokenReducer from '../redux-setup/tokenSlice'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { StrictMode } from 'react'
 import {
   persistStore,
   persistReducer,
@@ -59,13 +60,13 @@ const store = configureStore({
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistStore(store)}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistStore(store)}>
+        <StrictMode>
           <Component {...pageProps} suppressHydrationWarning />
           <ToastContainer />
-        </PersistGate>
-      </Provider>
-    </div>
+        </StrictMode>
+      </PersistGate>
+    </Provider>
   )
 }

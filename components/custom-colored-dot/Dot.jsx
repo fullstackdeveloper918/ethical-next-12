@@ -1,5 +1,7 @@
 import Styles from './Dot.module.css'
+
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Dot = ({
@@ -10,7 +12,13 @@ const Dot = ({
   fromFilters,
   filteredColors,
   setFilteredColors,
+  productID
 }) => {
+
+  const router = useRouter();
+
+  // console.log(router.asPath() === `product/${productID}`, 'hello')
+
   const handleSelect = (color) => {
     if (fromFilters) {
       const index = filteredColors.indexOf(color)

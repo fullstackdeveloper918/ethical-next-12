@@ -111,7 +111,7 @@ const SecondaryHeader = () => {
           collectionIdToUse ? `&collection_ids=${collectionIdToUse}` : ''
         }&page=${
           currentPage ? currentPage : 1
-        }&pageSize=${10}&${countryTosend}=1&swift_tag=${
+        }&pageSize=${100}&${countryTosend}=1&swift_tag=${
           swiftSwag !== `flexible` ? 1 : 0
         }${dateNameFilter ? `&${dateNameFilter}=1` : ''}`
         setUrl(route)
@@ -467,13 +467,14 @@ const SecondaryHeader = () => {
                     <div className={styles.search_results}>
                       <ul>
                         {data?.length !== 0 ? (
-                          data?.map((item) => (
+                          data?.map((item, i) => (
                             <>
                               <li
                                 className={styles.search_productlist}
                                 onClick={() =>
                                   router.push(`/product/${item?.id}`)
                                 }
+                                key={i}
                               >
                                 <Image
                                   src={item?.image}

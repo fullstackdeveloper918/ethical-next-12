@@ -365,10 +365,11 @@ input[type='radio'] {
 }
 .react-multiple-carousel__arrow {
   background-color: #ffffffc7 !important;
-  border: 2px solid #a2d061 !important;
+  border: 2px solid #ffffffc7 !important;
 }
 .react-multiple-carousel__arrow:hover {
   background: #a2d061 !important;
+  border: 2px solid #a2d061 !important;
 }
 .react-multiple-carousel__arrow::before {
   color: #000 !important;
@@ -382,11 +383,45 @@ input[type='radio'] {
 .react-multi-carousel-dot-list {
   display: none !important;
 }
+.single_product_page .colored_dot {
+  width: 20px;
+  height: 20px;
+}
+body.single_product_page .colored_dot {
+  background: red;
+  width: 30px !important;
+  height: 30px !important;
+}
+@media (max-width:1440px){
+  .single_product_page .colored_dot {
+    width: 50px;
+    height:50px;
+  }
+
+}
+
 /* responsive start */
 @media (max-width: 1440px) {
   .react-multiple-carousel__arrow {
-    top: 40px !important;
-  }
+    top: 50% !important;
+    transform: translateY(-50%);
+}
+}
+@media (max-width: 1366px) {
+  .react-multiple-carousel__arrow {
+    top: 50% !important;
+    transform: translateY(-50%);
+    top: 50% !important;
+    transform: translateY(-50%);
+    min-width: 30px !important;
+    min-height: 30px !important
+}
+.react-multiple-carousel__arrow::before {
+  color: #000 !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+}
+
 }
 @media (min-width: 768px) {
   .filterPanel_top svg {

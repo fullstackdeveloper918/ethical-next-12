@@ -57,35 +57,33 @@ const DashBoard = () => {
                 <th>Status</th>
                 <th>Action</th>
               </tr>
-              {Dashboard_table.map((data) => (
-                <>
-                  <tr className={Styles.data_row}>
-                    <input
-                      type="checkbox"
-                      name=""
-                      id=""
-                      style={{ cursor: 'pointer' }}
-                    />
-                    <td>{data.SL}</td>
-                    <td>{data.Supplier}</td>
-                    <td>{data.Warehouse}</td>
-                    <td>{data.Grand_total}</td>
-                    <td>
-                      <span
-                        style={{
-                          backgroundColor: data.bgColor,
-                          color: '#fff',
-                          padding: '5px 10PX',
-                          borderRadius: '30PX',
-                          cursor: 'pointer',
-                        }}
-                      >
-                        {data.Status}
-                      </span>
-                    </td>
-                    <td style={{ cursor: 'pointer' }}>...</td>
-                  </tr>
-                </>
+              {Dashboard_table.map((data, i) => (
+                <tr key={i} className={Styles.data_row}>
+                  <input
+                    type="checkbox"
+                    name=""
+                    id=""
+                    style={{ cursor: 'pointer' }}
+                  />
+                  <td>{data.SL}</td>
+                  <td>{data.Supplier}</td>
+                  <td>{data.Warehouse}</td>
+                  <td>{data.Grand_total}</td>
+                  <td>
+                    <span
+                      style={{
+                        backgroundColor: data.bgColor,
+                        color: '#fff',
+                        padding: '5px 10PX',
+                        borderRadius: '30PX',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {data.Status}
+                    </span>
+                  </td>
+                  <td style={{ cursor: 'pointer' }}>...</td>
+                </tr>
               ))}
             </table>
           </div>
@@ -98,30 +96,28 @@ const DashBoard = () => {
                 <IoIosArrowForward />
               </div>
               <div className={Styles.horizonatal_line}></div>
-              {Dashboard_User_Data.map((userData) => (
-                <>
-                  <div className={Styles.user_Content}>
-                    <div className={Styles.left_content}>
-                      <div className={Styles.imgContent}>
-                        <Image
-                          src={userData.src}
-                          width={30}
-                          height={30}
-                          style={{ cursor: 'pointer' }}
-                        />
-                      </div>
-                      <div className={Styles.user_text_content}>
-                        <span className={Styles.userName}>{userData.Name}</span>
-                        <span className={Styles.user_message}>
-                          {userData.Message}
-                        </span>
-                      </div>
+              {Dashboard_User_Data.map((userData, i) => (
+                <div className={Styles.user_Content} key={i}>
+                  <div className={Styles.left_content}>
+                    <div className={Styles.imgContent}>
+                      <Image
+                        src={userData.src}
+                        width={30}
+                        height={30}
+                        style={{ cursor: 'pointer' }}
+                      />
                     </div>
-                    <div className={Styles.right_content}>
-                      <div className={Styles.right_content_dot}></div>
+                    <div className={Styles.user_text_content}>
+                      <span className={Styles.userName}>{userData.Name}</span>
+                      <span className={Styles.user_message}>
+                        {userData.Message}
+                      </span>
                     </div>
                   </div>
-                </>
+                  <div className={Styles.right_content}>
+                    <div className={Styles.right_content_dot}></div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -138,22 +134,19 @@ const DashBoard = () => {
                   <th>Price</th>
                 </tr>
                 {Application_Sales.map((item, index) => (
-                  <>
-                    <tr
-                      className={
-                        leftCardColor === index ? Styles.activeRow : ''
-                      }
-                      onClick={() => setLeftCard(index)}
-                    >
-                      <td>
-                        <p>{item.Application_Name}</p>
-                        <p>{item.Application_software}</p>
-                      </td>
-                      <td>{item.Sales}</td>
-                      <td>graph</td>
-                      <td>{item.Price}</td>
-                    </tr>
-                  </>
+                  <tr
+                    className={leftCardColor === index ? Styles.activeRow : ''}
+                    onClick={() => setLeftCard(index)}
+                    key={i}
+                  >
+                    <td>
+                      <p>{item.Application_Name}</p>
+                      <p>{item.Application_software}</p>
+                    </td>
+                    <td>{item.Sales}</td>
+                    <td>graph</td>
+                    <td>{item.Price}</td>
+                  </tr>
                 ))}
               </table>
             </div>
@@ -175,22 +168,19 @@ const DashBoard = () => {
                 <th>Price</th>
               </tr>
               {Application_Sales.map((item, index) => (
-                <>
-                  <tr
-                    className={
-                      bottomCardColor === index ? Styles.bottomRow : ''
-                    }
-                    onClick={() => setBottomCardColor(index)}
-                  >
-                    <td>
-                      <p>{item.Application_Name}</p>
-                      <p>{item.Application_software}</p>
-                    </td>
-                    <td>{item.Sales}</td>
-                    <td>graph</td>
-                    <td>{item.Price}</td>
-                  </tr>
-                </>
+                <tr
+                  className={bottomCardColor === index ? Styles.bottomRow : ''}
+                  onClick={() => setBottomCardColor(index)}
+                  key={i}
+                >
+                  <td>
+                    <p>{item.Application_Name}</p>
+                    <p>{item.Application_software}</p>
+                  </td>
+                  <td>{item.Sales}</td>
+                  <td>graph</td>
+                  <td>{item.Price}</td>
+                </tr>
               ))}
             </table>
           </div>

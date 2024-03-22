@@ -33,6 +33,9 @@
   align-items: center;
   height: calc(100vh - 150px);
 }
+.detail_page_image_content > span{
+  max-height: 700px;
+}
 
 .detail_page_left_top .images_container {
   max-width: 95%;
@@ -115,13 +118,15 @@
 .detail_page_right_section .title {
   margin-top: 1.2rem;
   width: 572px;
-  color: #111;
-  font-size: 26px;
+  color: #111; 
+  display: flex;
+  align-items: center;
+}
+.detail_page_right_section .title h4 {
+  font-size: 24px;
   font-style: normal;
   font-weight: 600;
   line-height: 36px;
-  display: flex;
-  align-items: center;
 }
 
 .detail_page_right_section .reviews {
@@ -487,7 +492,7 @@
   /* display: flex;
   justify-content: space-between;
   align-items: center; */
-  width: 33%;
+  /* width: 33%; */
   margin-top: 30px;
 }
 
@@ -520,7 +525,7 @@
   /* display: flex;
   justify-content: space-between;
   align-items: center; */
-  width: 33%;
+  /* width: 33%; */
   margin-top: 2rem;
   padding: 0 15px;
 }
@@ -548,7 +553,7 @@
 .add_to_bulk_container {
   /* width: 100%; */
   margin-top: 30px;
-  width: 33%;
+  width: 30%;
 }
 
 .add_to_bulk_container button {
@@ -656,6 +661,8 @@
   text-align: center;
   margin: 0 auto;
   color: #808080;
+  font-size: 14px;
+  line-height: 25px;
 }
 
 .total_estimate_container_text p {
@@ -832,8 +839,8 @@ p.fw400 {
   position: absolute;
   left: 0;
   top: 0px;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border: 1px solid #000;
   border-radius: 50%;
   /* background-color: ; */
@@ -920,6 +927,8 @@ p.fw400 {
 
 .sticky_bottom{
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .centering  {
@@ -949,13 +958,18 @@ p.fw400 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: transparent;
+  background: #e5e5e5;
   border-radius: 40px;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border: 1px solid #4A4A4A;
 }
 
+
+.centering  input:checked + .slider {
+  background: #a2d061;
+  border: 1px solid #a2d061;
+}
 .centering  .slider:before {
   position: absolute;
   content: "";
@@ -966,11 +980,6 @@ p.fw400 {
   bottom: 4px;
   transition: 0.4s;
   background: #4D4D4D;
-}
-
-.centering  input:checked + .slider {
-  background: #a2d061;
-  border: 1px solid #a2d061;
 }
 
 .centering  input:checked + .slider:before {
@@ -1003,15 +1012,34 @@ p.fw400 {
 .standard_business_section p strong{
   color: #7c7c7c;
   font-size: 15px;
+  font-weight: 500;
 }
 .border_top{
   padding-bottom: 30px;
   border-bottom: 1px solid #ececec;
 }
 .margin_top {
-  margin-top: 20px !important;
+  margin: 20px 10px 0!important;
+}
+.business_box{
+  display: flex;
+  width: 56%;
+  justify-content: space-between;
 }
 
+.sticky_bottom{
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.font_weight{
+  color: #111;
+  font-family: 'Poppins';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+  margin-bottom: 1rem;
+}
 @media (min-width:1440px){
   .custom_checkbox label:before {
     left: 0;
@@ -1026,7 +1054,7 @@ p.fw400 {
     line-height: 28px
   }
   .para_text p, .number_of_units p, .select_size_quantity p, .standard_business_section p:nth-child(1), .cart_left_swift h6 {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 18px;
   }
   .custom_checkbox label {
@@ -1037,18 +1065,121 @@ p.fw400 {
 
 }
 
+@media screen and (max-width: 1700px) {
+  .detail_page_image_content > span{
+    max-height: 600px;
+  }
+  .add_to_bulk_container button {
+    font-size: 16px;  
+    padding: 16px 0;
+  }
+ .para_text p.font_weight{
+    font-size: 16px;
+    font-weight: 600 !important;
+  }
+}
 @media screen and (max-width: 1500px) {
   .detail_page_wrapper li img{
     width: 80px !important;
   }
+  
+.para_text .upload_logo > div {
+  min-height: 100px;
 }
-@media screen and (max-width: 1370px) {
+.detail_page_image_content > span{
+  max-height:85%;
+}
+
+}
+@media screen and (max-width: 1440px) {
   
 .add_to_bulk_container button {
+  font-size: 14px;  
+  padding: 16px 0;
+}
+   .detail_page_right_section .title h4 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .standard_business_section p,
+  .price_section p:nth-child(2) {
+    font-size: 13px  !important;
+  }
+  .price_section p:nth-child(1),
+  .standard_business_section p:nth-child(1)
+   {
+    margin-bottom: 0;
+    font-weight: 500 !important;
+    color: #000 !important;
+    opacity: 1;
+    font-size: 13px !important;
+  }
+  .standard_business_section,
+  .price_section {
+    margin-top: 10px;
+  }
+  .add_to_bulk_container{
+    margin: 10px 0 0;
+  }
+  .text_content p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .centering  .switch {
+    height: 25px;
+    width: 45px;
+  }
+  .centering  .slider:before {
+    height: 16px;
+    width: 16px;
+  }  
+.select_size_quantity .size_div {
+  min-width: 87px;
+  height: 35px;
+  font-size: 14px;
+}
+.para_text p {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+ }
+ .uploaded_content > p:first-child {
+margin-bottom: 5px !important;
+}
+.centering p, .input_data_required span{
+  font-size: 14px;
+}
+.standard_business_section p strong{
+  font-size: 13px;
+}
+.business_box{
+ flex-wrap: wrap;
+}
+.standard_business_section,.price_section{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+}
+.business_box{
+  width: 68%;
+}
+.price_section{
+  margin: 5px 0 0 ;
+}
+.input_data_required input[type='number'],
+.flex_row p,
+.input_checkbox p {
+font-size: 14px;
+}
+.sticky_bottom{
+ padding-top: 10px;
+}
+.para_text p.font_weight{
   font-size: 16px;
-  
+  font-weight: 600 !important;
 }
 }
+
 @media screen and (max-width: 1200px) {
 .sticky_bottom{
   flex-wrap: wrap;
@@ -1093,7 +1224,7 @@ width: 100%;
     text-align: center !important;
   }
   .detail_page_right_section {
-    padding: 3rem 0;
+    padding:  0;
     max-width: 90%;
   }
   .add_to_bulk_container {
@@ -1115,7 +1246,7 @@ width: 100%;
       
     }
     .standard_business_section,.price_section {
-      width: 30%
+      width: 92%
     }
     .sticky_bottom{
       gap: 0;
@@ -1123,8 +1254,14 @@ width: 100%;
     .sticky_bottom{
       flex-wrap: nowrap;
     }
+   
 }
 
+@media screen and (max-width: 980px) {
+  .business_box{
+    flex-wrap: wrap;
+    align-items: baseline;
+  }}
 @media screen and (max-width: 767px) {
   .buttons {
     flex-wrap: wrap;
@@ -1186,9 +1323,19 @@ width: 100%;
     
   }
   .standard_business_section,.price_section {
-    width: 48%;
+    width: 100%;
   }
+  .product_list_wrapper{
+    max-width: 220px;
+    min-width: 220px;
+    padding: 15px ;
+  }
+  .business_box{
+    width: 100%;
+  }
+
 }
+
 @media screen and (max-width: 545px) {
   .add_to_bulk_container button {
     padding: 16px;

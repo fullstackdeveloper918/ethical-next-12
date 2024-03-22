@@ -11,27 +11,36 @@ import { useSelector, useDispatch } from 'react-redux'
 const Product = () => {
   const [activeFilter, setActiveFilter] = useState(false)
   const [filteredColors, setFilteredColors] = useState([])
+  const [filteredProductType, setFilteredProductType] = useState([])
   const [finalProducts, setFinalProducts] = useState([])
+  const [f, setF] = useState([])
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
 
   const totalData = useSelector((state) => state.category.totalData)
 
   useEffect(() => {
-    if (filteredColors.length > 0) {
-      let result = getProductsRes?.data?.data
-        ?.map((item) => item.colours)
-        .filter((obj) => {
-          return Object.keys(obj).some((color) =>
-            filteredColors.includes(color)
-          )
-        })
+    if (filteredColors.length > 0 && getProductsRes?.data?.data?.length > 0) {
+      let result = getProductsRes?.data?.data?.filter((item) => {
+        return Object.keys(item.colours).some((color) =>
+          filteredColors.includes(color)
+        )
+      })
       setFinalProducts(result)
-    } else {
+    } else if (filteredColors.length === 0) {
       setFinalProducts(getProductsRes?.data?.data)
     }
   }, [filteredColors, getProductsRes])
 
-  console.log(finalProducts, 'finalProductsfinalProducts')
+  useEffect(() => {
+    if (
+      filteredProductType.length > 0 &&
+      getProductsRes?.data?.data?.length > 0
+    ) {
+      console.log(getProductsRes?.data?.data, 'from me')
+    } else if (filteredProductType.length === 0) {
+      setF(getProductsRes?.data?.data)
+    }
+  }, [filteredProductType, getProductsRes])
 
   return (
     <>
@@ -47,10 +56,12 @@ const Product = () => {
             setActiveFilter={setActiveFilter}
             filteredColors={filteredColors}
             setFilteredColors={setFilteredColors}
+            filteredProductType={filteredProductType}
+            setFilteredProductType={setFilteredProductType}
           />
           <Products finalProducts={finalProducts} />
 
-          {getProductsRes?.data?.data?.length > 0 && totalData > 10 && (
+          {getProductsRes?.data?.data?.length > 0 && totalData > 100 && (
             <div className={Styles.pagination_section}>
               <Pagination />
             </div>

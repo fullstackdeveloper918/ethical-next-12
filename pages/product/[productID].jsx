@@ -108,7 +108,7 @@ const productID = () => {
     <>
       <PrimaryHeader />
       <SecondaryHeader />
-      <Product product={singleProduct?.data} loading={loading} error={error} />
+      <Product product={singleProduct?.data} loading={loading} error={error} productID={productID} />
       <section className={Styles.singleProduct_dimensions}>
         <div className={Styles.product_list_wrapper}>
           <ul style={{ cursor: 'pointer' }}>
@@ -190,9 +190,9 @@ const productID = () => {
 
         <div className={Styles.product_card_container}>
           {data?.length > 0 &&
-            data?.slice(0, 5).map((item) => (
+            data?.slice(0, 5).map((item, i) => (
               <>
-                <div className={Styles.product_content}>
+                <div className={Styles.product_content} key={i}>
                   <ProductCard item={item} key={item.id} fromSingleProduct />
                 </div>
               </>
@@ -444,9 +444,9 @@ const productID = () => {
                     <div className={Styles.rightBottomContent}>
                       {Review_Progress(
                         reviews?.data?.ratings?.percentage_data
-                      ).map((data) => (
+                      ).map((data, i) => (
                         <>
-                          <div className={Styles.bottom_content}>
+                          <div className={Styles.bottom_content} key={i}>
                             <h3>{data.number}</h3>
                             <progress
                               max="100"

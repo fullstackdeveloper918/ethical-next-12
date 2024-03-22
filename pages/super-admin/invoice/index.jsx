@@ -36,45 +36,43 @@ const Invoice = () => {
               <th>Status</th>
               <th>Action</th>
             </tr>
-            {Invoice_Data.map((data) => (
-              <>
-                <tr>
-                  <td>
-                    <input type="checkbox" name="" id="" />
-                    {data.invoice}
-                  </td>
-                  <td>{data.customer}</td>
-                  <td>{data.category}</td>
-                  <td>{data.issue_Date}</td>
-                  <td>{data.due_Date}</td>
-                  <td>{data.amount}</td>
-                  <td>
-                    <button
-                      style={{
-                        backgroundColor: getStatusColor(data.status),
-                        color: '#fff',
-                        padding: '3px 15px',
-                        borderRadius: '10px',
-                      }}
-                    >
-                      {data.status}
-                    </button>
-                  </td>
-                  <td>
-                    <div className={Styles.action_icons}>
-                      <span>
-                        <FaEye fontSize={18} />
-                      </span>
-                      <span>
-                        <FaRegEdit fontSize={18} />
-                      </span>
-                      <span>
-                        <RiDeleteBin6Line fontSize={18} />
-                      </span>
-                    </div>
-                  </td>
-                </tr>
-              </>
+            {Invoice_Data.map((data, i) => (
+              <tr key={i}>
+                <td>
+                  <input type="checkbox" name="" id="" />
+                  {data.invoice}
+                </td>
+                <td>{data.customer}</td>
+                <td>{data.category}</td>
+                <td>{data.issue_Date}</td>
+                <td>{data.due_Date}</td>
+                <td>{data.amount}</td>
+                <td>
+                  <button
+                    style={{
+                      backgroundColor: getStatusColor(data.status),
+                      color: '#fff',
+                      padding: '3px 15px',
+                      borderRadius: '10px',
+                    }}
+                  >
+                    {data.status}
+                  </button>
+                </td>
+                <td>
+                  <div className={Styles.action_icons}>
+                    <span>
+                      <FaEye fontSize={18} />
+                    </span>
+                    <span>
+                      <FaRegEdit fontSize={18} />
+                    </span>
+                    <span>
+                      <RiDeleteBin6Line fontSize={18} />
+                    </span>
+                  </div>
+                </td>
+              </tr>
             ))}
           </table>
           {/* Pagination section */}
