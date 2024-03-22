@@ -12,12 +12,16 @@ const Product = () => {
   const [activeFilter, setActiveFilter] = useState(false)
   const [filteredColors, setFilteredColors] = useState([])
   const [filteredProductType, setFilteredProductType] = useState([])
+  const [finalColorFilteredProducts, setFinalColorFilteredProducts] = useState(
+    []
+  )
+  const [finalSwiftProducts, setFinalSwiftProducts] = useState([])
   const [finalProducts, setFinalProducts] = useState([])
   const [f, setF] = useState([])
+  const [isSwiftSwag, setIsSwiftSwag] = useState(false)
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
 
   const totalData = useSelector((state) => state.category.totalData)
-
   useEffect(() => {
     if (filteredColors.length > 0 && getProductsRes?.data?.data?.length > 0) {
       let result = getProductsRes?.data?.data?.filter((item) => {
@@ -26,11 +30,28 @@ const Product = () => {
         )
       })
       setFinalProducts(result)
+      setFinalColorFilteredProducts(result)
     } else if (filteredColors.length === 0) {
       setFinalProducts(getProductsRes?.data?.data)
+      setFinalColorFilteredProducts(getProductsRes?.data?.data)
     }
   }, [filteredColors, getProductsRes])
 
+  useEffect(() => {
+    if (finalColorFilteredProducts?.length > 0 && isSwiftSwag) {
+      let result = getProductsRes?.data?.data?.filter((item) => {
+        return item.swift_tag == 1
+      })
+
+      console.log(result, 'swift swag products')
+      setFinalSwiftProducts(result)
+    } else if (getProductsRes?.data?.data?.length > 0 && !isSwiftSwag) {
+      setFinalSwiftProducts(finalColorFilteredProducts)
+    }
+  }, [isSwiftSwag, finalColorFilteredProducts])
+  console.log(getProductsRes?.data?.data, 'quest to find swift_swag')
+  // console.log(finalColorFilteredProducts, 'finalColorFilteredProducts')
+  // console.log(finalSwiftProducts, 'finalSwiftProducts')
   useEffect(() => {
     if (
       filteredProductType.length > 0 &&
@@ -58,6 +79,8 @@ const Product = () => {
             setFilteredColors={setFilteredColors}
             filteredProductType={filteredProductType}
             setFilteredProductType={setFilteredProductType}
+            isSwiftSwag={isSwiftSwag}
+            setIsSwiftSwag={setIsSwiftSwag}
           />
           <Products finalProducts={finalProducts} />
 

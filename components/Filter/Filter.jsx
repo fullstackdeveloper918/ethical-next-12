@@ -20,6 +20,8 @@ const Filter = ({
   filteredColors,
   setFilteredProductType,
   filteredProductType,
+  setIsSwiftSwag,
+  isSwiftSwag,
 }) => {
   const [scrolled, setScrolled] = useState(false)
   const dispatch = useDispatch()
@@ -38,9 +40,6 @@ const Filter = ({
   )
   const collectionForUrl = useSelector(
     (state) => state.category.collectionForUrl
-  )
-  const subCollectionForUrl = useSelector(
-    (state) => state.category.subCollectionForUrl
   )
 
   useEffect(() => {
@@ -132,6 +131,8 @@ const Filter = ({
             setFilteredColors={setFilteredColors}
             setFilteredProductType={setFilteredProductType}
             filteredProductType={filteredProductType}
+            isSwiftSwag={isSwiftSwag}
+            setIsSwiftSwag={setIsSwiftSwag}
           />
         )}
       </div>
