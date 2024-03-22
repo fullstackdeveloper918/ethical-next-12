@@ -1014,7 +1014,7 @@ const Product = ({ product, loading, error, productID }) => {
                         <p>
                           $
                           {isSample
-                            ? 3 * col1Price
+                            ? (3 * col1Price).toFixed(2)
                             : (quantity * +totalPrice).toFixed(2)}
                         </p>
                       </div>
