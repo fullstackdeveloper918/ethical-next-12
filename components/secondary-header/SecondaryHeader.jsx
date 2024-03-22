@@ -68,24 +68,22 @@ const SecondaryHeader = () => {
   const allCategories = useSelector((state) => state.category.allCategories)
 
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
-  console.log(isProductPage, 'isProductPage')
   const dateNameFilter = useSelector((state) => state.cart.selectedOptionValue)
 
-useEffect(() => {
-  let r = router.asPath.split('/').filter((item) => item !== '')
-  const newArray = r.map((item) => decodeURIComponent(item))
-  if(newArray[0] === 'category' ){
-    dispatch(setIsCategoryPage(true))
-  }else{
-    dispatch(setIsCategoryPage(false))
-  }
-  if(newArray[0] === 'product' ){
-    dispatch(setIsProductPage(true))
-  }else{
-    dispatch(setIsProductPage(false))
-  }
-
-}, [router.asPath])
+  useEffect(() => {
+    let r = router.asPath.split('/').filter((item) => item !== '')
+    const newArray = r.map((item) => decodeURIComponent(item))
+    if (newArray[0] === 'category') {
+      dispatch(setIsCategoryPage(true))
+    } else {
+      dispatch(setIsCategoryPage(false))
+    }
+    if (newArray[0] === 'product') {
+      dispatch(setIsProductPage(true))
+    } else {
+      dispatch(setIsProductPage(false))
+    }
+  }, [router.asPath])
   useEffect(() => {
     if (countryFromRedux) {
       setCountryToSend(

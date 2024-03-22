@@ -84,10 +84,6 @@ const Product = () => {
   //   }
   // }, [filteredProductType, getProductsRes])
 
-  // useEffect(() => {
-  //   // let supplierFees =
-  //   // country === 'usa' ? item?.supplier_fees_usd : item?.supplier_fees_cad
-
   return (
     <>
       <>
