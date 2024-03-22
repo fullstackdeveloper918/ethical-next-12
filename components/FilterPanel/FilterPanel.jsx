@@ -19,8 +19,7 @@ const FilterPanel = ({
   const [isActive, setIsActive] = useState(true)
   const [filteredList, setFilteredList] = useState([])
   const [swagRadio, setSwagRadio] = useState('No SwiftSwag')
-
-  // const
+  const [decorationsArray, setDecorationsArray] = useState([])
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
   const colorsObj = useSelector((state) => state.filter.colorsObj)
@@ -50,11 +49,10 @@ const FilterPanel = ({
     setOpenIndex(index)
     setIsActive(!isActive)
   }
-  // console.log(filteredProductType, 'filteredProductType')
+
   const handleCheckboxChange = (event, item) => {
-    const { name } = event.target
-    console.log(name, item, 'name')
-    if (item === 'uniqueProductType') {
+    const { name, checked } = event.target
+    if (item.label === 'uniqueProductType') {
       if (event.target.checked) {
         setFilteredProductType([...filteredProductType, name])
       } else {
@@ -62,8 +60,35 @@ const FilterPanel = ({
           filteredProductType.filter((item) => item !== name)
         )
       }
+    } else if (item.label === 'Decoration') {
+      console.log(item, 'full on')
+      Object.keys(item.children).forEach((key) => {
+        if (item.children[key] === name) {
+          const index = decorationsArray.indexOf(key)
+
+          if (index !== -1) {
+            let a = decorationsArray.filter((item) => item !== key)
+            setDecorationsArray(a)
+          } else {
+            setDecorationsArray([...decorationsArray, key])
+          }
+        }
+      })
+      // setDecorationsArray(newArray)
+      // if (event.target.checked) {
+      //   setFilteredProductType([...filteredProductType, name])
+      // } else {
+      //   setFilteredProductType(
+      //     filteredProductType.filter((item) => item !== name)
+      //   )
+      // }
     }
   }
+
+  useEffect(() => {
+    console.log(decorationsArray, 'decorationsArray')
+  }, [decorationsArray])
+
   const handleClear = () => {
     setFilteredColors([])
   }
@@ -155,9 +180,7 @@ const FilterPanel = ({
                                 type="checkbox"
                                 id={`checkbox_id_${childIndex}`}
                                 name={child}
-                                onChange={(e) =>
-                                  handleCheckboxChange(e, item.label)
-                                }
+                                onChange={(e) => handleCheckboxChange(e, item)}
                                 checked={filteredProductType.includes(child)}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
@@ -184,6 +207,31 @@ const FilterPanel = ({
                                 value={child}
                                 checked={swagRadio === child}
                                 onChange={handleSwagChange}
+                              />
+                              <label htmlFor={`checkbox_id_${childIndex}`}>
+                                {child}
+                              </label>
+                            </li>
+                          )
+                        )}
+                      </div>
+                    ) : isActive &&
+                      openIndex === index &&
+                      item.label === 'Decoration' ? (
+                      <div className={Styles.custom_checkbox}>
+                        {Object.values(item.children).map(
+                          (child, childIndex) => (
+                            <li
+                              key={childIndex}
+                              className={Styles.filterPanel_list_item}
+                            >
+                              <input
+                                type="checkbox"
+                                id={`checkbox_id_${childIndex}`}
+                                name={child}
+                                value={child}
+                                // checked={decorations.includes(child)}
+                                onChange={(e) => handleCheckboxChange(e, item)}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
                                 {child}
