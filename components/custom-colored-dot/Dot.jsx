@@ -45,9 +45,7 @@ const Dot = ({
     <>
       {color && (
         <div
-          className={`${Styles.colored_dot} ${
-            isCategoryPage === true ? Styles.categorydot_wrap : ''
-          }${isProductPage === true ? Styles.product_color : ''}`}
+          className={`${Styles.colored_dot} ${isCategoryPage === true ? Styles.categorydot_wrap : ''}${fromSingleProduct && Styles.product_color}`}
           style={{
             background: color,
             outlineColor: setOutlineColor(),

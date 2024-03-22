@@ -21,7 +21,8 @@ const index = () => {
   const [relatedCategories, setRelatedCategories] = useState([])
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
   const allCategories = useSelector((state) => state.category.allCategories)
-
+  const isCategoryPage = useSelector((state) => state.random.isCategoryPage)
+// isCategoryPage === true ?
   const collectionForUrl = useSelector(
     (state) => state.category.collectionForUrl
   )
@@ -31,7 +32,7 @@ const index = () => {
       const related =
         allCategories &&
         Object.keys(allCategories).filter(
-          (category) => (category !== collectionForUrl, 'category')
+          (category) => (category === collectionForUrl, 'category')
         )
       if (related.length > 2) {
         const randomIndices = []
@@ -49,7 +50,7 @@ const index = () => {
 
     // Call the function to generate related categories
     generateRelatedCategories()
-  }, [collectionForUrl, allCategories])
+  }, [collectionForUrl])
 
   useEffect(() => {
     if (getProductsRes) {
@@ -84,40 +85,25 @@ const index = () => {
 
       <div className={Styles.related_product_container}>
         <div className={Styles.related_product_content}>
-          {allCategories &&
-            Object.keys(allCategories).map(
-              (key) =>
-                key === 'Bags' && (
-                  <>
-                    <div className={Styles.imgContent}>
-                      <Image
-                        src={images.bag_image}
-                        width={400}
-                        height={400}
-                        alt=""
-                      />
-                    </div>
-                    <div className={Styles.textContent}>
-                      <h4>Related Product</h4>
-                      <h2>{key}</h2>
-                      <p>
-                        Bags refer to a category of products that are designed
-                        for carrying and storing various items. They come in a
-                        wide range of styles, sizes, and materials, each
-                        catering to specific needs and preferences
-                      </p>
-
-                      <button
-                        type="button"
-                        onClick={() => router.push(`/category/${key}`)}
-                      >
-                        {' '}
-                        Shop Now
-                      </button>
-                    </div>
-                  </>
-                )
-            )}
+          <div className={Styles.imgContent}>
+            <Image
+              src={images.Related_product}
+              width={400}
+              height={400}
+              alt=""
+            />
+          </div>
+          <div className={Styles.textContent}>
+            <h4>Related Product</h4>
+            <h2>Travel Bags & Accessories</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
+              unde voluptatum debitis incidunt, esse, modi tenetur sapiente
+              dignissimos itaque dolore officiis praesentium similique cum
+              ducimus. Nostrum consectetur facilis iure fugiat.
+            </p>
+            <button type="button"> Shop Now</button>
+          </div>
         </div>
       </div>
 
@@ -128,16 +114,12 @@ const index = () => {
               <>
                 <div className={Styles.img_content_1}>
                   <div className={Styles.imgContent}>
-                    <Image
-                      src={allCategories[data].image}
-                      layout="fill"
-                      alt=""
-                    />
+                    <Image src={images.all_tech} layout="fill" alt="" />
                   </div>
                   <div className={Styles.textContent}>
                     <div>
                       <h3>{data}</h3>
-                      <p>{allCategories[data]?.count} Products</p>
+                      <p>2200 products</p>
                     </div>
 
                     <button onClick={() => router.push(`/category/${data}`)}>

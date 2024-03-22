@@ -82,7 +82,7 @@ const SecondaryHeader = () => {
       dispatch(setIsCategoryPage(false))
     }
     if (newArray[0] === 'product') {
-      dispatch(setIsProductPage(true))
+      
     } else {
       dispatch(setIsProductPage(false))
     }
