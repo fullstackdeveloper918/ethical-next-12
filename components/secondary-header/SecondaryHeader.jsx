@@ -128,9 +128,9 @@ useEffect(() => {
           collectionIdToUse ? `&collection_ids=${collectionIdToUse}` : ''
         }&page=${
           currentPage ? currentPage : 1
-        }&pageSize=${100}&${countryTosend}=1&swift_tag=${
-          swiftSwag !== `flexible` ? 1 : 0
-        }${dateNameFilter ? `&${dateNameFilter}=1` : ''}`
+        }&pageSize=${100}&${countryTosend}=1${
+          dateNameFilter ? `&${dateNameFilter}=1` : ''
+        }`
         setUrl(route)
         getSideFilters()
       }

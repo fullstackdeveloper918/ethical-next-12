@@ -55,8 +55,6 @@ const productID = () => {
       }
     )
 
-  console.log('data', singleProduct?.data.material_made)
-
   useEffect(() => {
     if (country && productID) {
       singleProductApi()
@@ -105,12 +103,18 @@ const productID = () => {
       productId: productID,
     }
     reviewsApiPost(data)
+    setWriteReview(false)
   }
   return (
     <>
       <PrimaryHeader />
       <SecondaryHeader />
-      <Product product={singleProduct?.data} loading={loading} error={error} productID={productID} />
+      <Product
+        product={singleProduct?.data}
+        loading={loading}
+        error={error}
+        productID={productID}
+      />
       <section className={Styles.singleProduct_dimensions}>
         <div className={Styles.product_list_wrapper}>
           <ul style={{ cursor: 'pointer' }}>
@@ -402,7 +406,6 @@ const productID = () => {
             </Formik>
           </div>
           <div className={Styles.bottomContent}>
-            {' '}
             {reviews && reviews?.data?.productreview.length > 0 && (
               <>
                 <div className={Styles.leftContent}>

@@ -17,7 +17,8 @@ const wishlistSlice = createSlice({
         (item) => item.id === newItem.id
       )
       if (!isItemInWishlist) {
-        state.items.push({ ...newItem, itemAdded: true }) // Set itemAdded to true for the new item
+        state.items.push({ ...newItem, itemAdded: true })
+        // Set itemAdded to true for the new item
       }
     },
     setFavroiteIcon(state, action) {

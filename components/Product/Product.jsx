@@ -8,6 +8,9 @@ import Dot from '../custom-colored-dot/Dot'
 import { RxCross2 } from 'react-icons/rx'
 import { setCartItems } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
+import { MdOutlineFavoriteBorder } from 'react-icons/md'
+import { CiSearch } from 'react-icons/ci'
+import { CiShare2 } from 'react-icons/ci'
 // import '../../global.css'
 import {
   setDecorationItemObjSingleProductPage,
@@ -39,8 +42,7 @@ const responsive = {
 
 const Product = ({ product, loading, error, productID }) => {
   const dispatch = useDispatch()
-  
-  
+
   const [openEmoji, setOpenEmoji] = useState(false)
   const [ReadMore, setIsReadMore] = useState(false)
 
@@ -90,22 +92,24 @@ const Product = ({ product, loading, error, productID }) => {
 
   useEffect(() => {
     const sizes = Object.keys(sizeQuantity)
-    const baseQuantity = Math.floor(quantity / sizes.length)
-    let remainder = quantity % sizes.length
-    const remainderPriority = ['M', 'L']
+    const sizePriorities = {
+      M: 40,
+      L: 35,
+      XL: 25,
+      S: 10,
+    }
+
+    const totalPriorityQuantity = Object.values(sizePriorities).reduce(
+      (acc, curr) => acc + curr,
+      0
+    )
+
     const updatedSizeQuantity = {}
     sizes.forEach((size) => {
-      updatedSizeQuantity[size] = baseQuantity
+      updatedSizeQuantity[size] = Math.round(
+        (sizePriorities[size] / totalPriorityQuantity) * quantity
+      )
     })
-
-    let remainderDistributionCount = 0
-    while (remainder > 0) {
-      const sizeToUpdate =
-        remainderPriority[remainderDistributionCount % remainderPriority.length]
-      updatedSizeQuantity[sizeToUpdate] += 1
-      remainder--
-      remainderDistributionCount++
-    }
     setSizeQuantity(updatedSizeQuantity)
   }, [quantity])
 
@@ -150,8 +154,8 @@ const Product = ({ product, loading, error, productID }) => {
         ? product?.ltm_usd.replace(/[^\d]/g, '')
         : 0
       : product?.ltm_cad
-      ? product?.ltm_cad.replace(/[^\d]/g, '')
-      : 0
+        ? product?.ltm_cad.replace(/[^\d]/g, '')
+        : 0
   let supplierFees =
     country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
   const getPrice = () => {
@@ -211,18 +215,43 @@ const Product = ({ product, loading, error, productID }) => {
     }
   }, [openEmoji])
 
-  let handleQuantitySize = (e) => {
+  // let handleQuantitySize = (e) => {
+  //   if (e.target.value < 0) {
+  //     setSizeQuantity((prev) => ({
+  //       ...prev,
+  //       [e.target.name]: 0,
+  //     }))
+  //   } else {
+  //     setSizeQuantity((prev) => ({
+  //       ...prev,
+  //       [e.target.name]: e.target.value,
+  //     }))
+  //   }
+  //   setQuantity(sizeQuantity)
+  // }
+
+
+  const handleQuantitySize = (e) => {
+    let newSizeQuantity
     if (e.target.value < 0) {
-      setSizeQuantity((prev) => ({
-        ...prev,
+      newSizeQuantity = {
+        ...sizeQuantity,
         [e.target.name]: 0,
-      }))
+      }
     } else {
-      setSizeQuantity((prev) => ({
-        ...prev,
-        [e.target.name]: e.target.value,
-      }))
+      newSizeQuantity = {
+        ...sizeQuantity,
+        [e.target.name]: parseInt(e.target.value),
+      }
     }
+    setSizeQuantity(newSizeQuantity)
+
+    // Calculate total quantity
+    const totalQuantity = Object.values(newSizeQuantity).reduce(
+      (acc, curr) => acc + parseInt(curr),
+      0
+    )
+    setQuantity(totalQuantity)
   }
 
   const uploadFirstFile = (event) => {
@@ -408,16 +437,38 @@ const Product = ({ product, loading, error, productID }) => {
             <div className={Styles.detail_page_container}>
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
+                  <div className={Styles.icon_wrapper}>
+                    <div className={Styles.border_svg}>
+                      <MdOutlineFavoriteBorder
+                        fontSize={25}
+                        className={Styles.icon} />
+
+                    </div>
+                    <div className={Styles.border_svg}>
+                      <Image src={images.ZooomSvg}
+                        className={Styles.icon} />
+                    </div>
+                    <div className={Styles.border_svg}>
+                      <CiShare2
+                        fontSize={25}
+                        // color="#D3D3D3"
+                        className={Styles.icon}
+                      />
+                    </div>
+                  </div>
                   <div className={Styles.detail_page_image_content}>
+                    <div className={Styles.product_big_image}>
                     {singleImage && (
                       <Image
                         src={singleImage}
-                        layout="fill"
+                        width={400}
+                        height={560}
                         style={{ mixBlendMode: 'color-burn' }}
                         alt="Single_Product_Image"
                         className={Styles.product_image}
                       />
                     )}
+                    </div>
                   </div>
                   {imagesArray && imagesArray.length > 0 && (
                     <div className={Styles.margin_top}>
@@ -474,6 +525,7 @@ const Product = ({ product, loading, error, productID }) => {
               </div>
 
               <div className={Styles.detail_page_right_section}>
+                <div className={Styles.page_right_content}>
                 <div className={Styles.certBy}>
                   {product?.certBy &&
                     JSON.parse(product?.certBy).map((data) => (
@@ -485,13 +537,11 @@ const Product = ({ product, loading, error, productID }) => {
                     ))}
                 </div>
 
+              
                 <div className={Styles.title}>
                   <h4>
                     {product?.product_title}
-                    {product?.emoji_ratings &&
-                      Object.entries(product?.emoji_ratings).map(
-                        ([key, value]) => <span>{value}</span>
-                      )}
+
                   </h4>
 
                   {/* <div className={Styles.reviews}>
@@ -512,14 +562,26 @@ const Product = ({ product, loading, error, productID }) => {
                 <div className={Styles.reviews}>
                   <h4>
                     527 Reviews{' '}
-                    <Image
+
+                   
+                  </h4>
+                  <span className={Styles.emoji_left_border}>
+
+                    {product?.emoji_ratings &&
+                      Object.entries(product?.emoji_ratings).map(
+                        ([key, value]) => (
+                          <>
+                            <span>{value}</span>
+                          </>
+                        ))}
+                  </span>
+                  <Image
                       src={images.Info_svg}
                       width={20}
                       height={20}
                       alt="info icon"
                       onClick={() => setOpenEmoji(true)}
                     />
-                  </h4>
                 </div>
                 <div className={Styles.text_content}>
                   {product?.product_description?.length < 200 ? (
@@ -632,11 +694,10 @@ const Product = ({ product, loading, error, productID }) => {
                           ([key, val], index) =>
                             val !== undefined && (
                               <p
-                                className={`${Styles.btn} ${
-                                  selectedCustomization === index
-                                    ? Styles.active
-                                    : ''
-                                }`}
+                                className={`${Styles.btn} ${selectedCustomization === index
+                                  ? Styles.active
+                                  : ''
+                                  }`}
                                 onClick={() =>
                                   selectCustomizations(index, key, val)
                                 }
@@ -714,7 +775,7 @@ const Product = ({ product, loading, error, productID }) => {
                 </div> */}
                 <div className={Styles.para_text}>
                   <div className={Styles.common_header}>
-                    <p class={Styles.font_weight}>
+                    <p className={Styles.font_weight}>
                       Upload Logo/ Artwork{' '}
                       <span className={Styles.fw400}>
                         (.AI or .EPS vector format)
@@ -819,33 +880,37 @@ const Product = ({ product, loading, error, productID }) => {
                   </div>
                 </div>
                 <div className={Styles.select_size_quantity}>
-                  <div className={Styles.common_header}>
-                    <p>Select sizes quantity</p>
-                    <Image
-                      src={images.Info_Icon}
-                      width={18}
-                      height={18}
-                      alt="info_icon"
-                    />
-                  </div>
+                  {!sizeNotSure && (
+                    <>
+                      <div className={Styles.common_header}>
+                        <p>Select sizes quantity</p>
+                        <Image
+                          src={images.Info_Icon}
+                          width={18}
+                          height={18}
+                          alt="info_icon"
+                        />
+                      </div>
 
-                  <div className={Styles.inputs}>
-                    {Object.keys(sizeQuantity).map((key) => (
-                      <>
-                        <div className={Styles.size_div}>
-                          <label htmlFor="">{key}</label>
-                          <input
-                            placeholder={key}
-                            type="number"
-                            name={key}
-                            value={sizeQuantity[key]}
-                            onChange={handleQuantitySize}
-                            min="0"
-                          />
-                        </div>
-                      </>
-                    ))}
-                  </div>
+                      <div className={Styles.inputs}>
+                        {Object.keys(sizeQuantity).map((key) => (
+                          <>
+                            <div className={Styles.size_div}>
+                              <label htmlFor="">{key}</label>
+                              <input
+                                placeholder={key}
+                                type="number"
+                                name={key}
+                                value={sizeQuantity[key]}
+                                onChange={handleQuantitySize}
+                                min="0"
+                              />
+                            </div>
+                          </>
+                        ))}
+                      </div>
+                    </>
+                  )}
                   {/* <div className={Styles.custom_checkbox}> */}
                   {/* <input
                       type="checkbox"
@@ -860,7 +925,6 @@ const Product = ({ product, loading, error, productID }) => {
                   <div className={Styles.flex_row}>
                     <div className={Styles.centering}>
                       <label htmlFor="sizeCheckbox" className={Styles.switch}>
-                        {' '}
                         <input
                           type="checkbox"
                           id="sizeCheckbox"
@@ -873,37 +937,36 @@ const Product = ({ product, loading, error, productID }) => {
                     <p> I don’t have sizes yet</p>
                   </div>
                 </div>
+                </div>
                 {/* </div> */}
                 <div className={Styles.position_sticky}>
                   {/* <div className={Styles.standard_down_line}></div> */}
                   <div className={Styles.sticky_bottom}>
                     <div className={Styles.business_box}>
-                    <div className={Styles.standard_business_section}>
-                      <div className={Styles.common_header}>
-                        <p>Production time</p>
-                        <Image
-                          src={images.Info_Icon}
-                          width={18}
-                          height={18}
-                          alt="info_icon"
-                        />
+                      <div className={Styles.standard_business_section}>
+                        <div className={Styles.common_header}>
+                          <p>Production time</p>
+                          <Image
+                            src={images.Info_Icon}
+                            width={18}
+                            height={18}
+                            alt="info_icon"
+                          />
+                        </div>
+
+                        <p>
+                          <strong>Standard</strong> - 15{' '}
+                          <strong>Business days</strong>
+                        </p>
                       </div>
 
-                      <p>
-                        <strong>Standard</strong> - 15{' '}
-                        <strong>Business days</strong>
-                      </p>
-                    </div>
-
-                    <div className={Styles.price_section}>
-                      <p>{`Price ${
-                        totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
-                      }/unit`}</p>
-
-                      <p>
-                        ${quantity ? (quantity * +totalPrice).toFixed(2) : 0}
-                      </p>
-                    </div>
+                      <div className={Styles.price_section}>
+                        <p>{`Price ${totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
+                          }/unit`}</p>
+                        <p>
+                          ${quantity ? (quantity * +totalPrice).toFixed(2) : 0}
+                        </p>
+                      </div>
                     </div>
                     <div className={Styles.add_to_bulk_container}>
                       <button onClick={handleAddToCart}>
@@ -911,38 +974,38 @@ const Product = ({ product, loading, error, productID }) => {
                       </button>
                     </div>
                   </div>
-                  <div className={Styles.total_estimate_container}>
-                    <p className={Styles.total_estimate_container_text}>
-                      Total estimate doesn't include taxes and shipping fees.
-                      Payment is made after mockups are approved.
-                    </p>
-                  </div>
-                  <div className={Styles.bottom_icons}>
-                    <div className={Styles.container}>
-                      <div className={Styles.content}>
-                        <span>
-                          <Image
-                            src={images.Fast_Delivery_Icon}
-                            width={30}
-                            height={30}
-                            alt="Fast_Delivery_Icon"
-                          />
-                        </span>
-                        <span>Fast Delivery</span>
-                      </div>
-                      <div className={Styles.content}>
-                        <span>
-                          <Image
-                            src={images.Replacement_Icon}
-                            width={30}
-                            height={30}
-                            alt="Replacement_Icon"
-                          />
-                        </span>
-                        <span>30 Days Replacement</span>
-                      </div>
+                  {/* <div className={Styles.total_estimate_container}>
+                      <p className={Styles.total_estimate_container_text}>
+                        Total estimate doesn't include taxes and shipping fees.
+                        Payment is made after mockups are approved.
+                      </p>
                     </div>
-                  </div>
+                    <div className={Styles.bottom_icons}>
+                      <div className={Styles.container}>
+                        <div className={Styles.content}>
+                          <span>
+                            <Image
+                              src={images.Fast_Delivery_Icon}
+                              width={30}
+                              height={30}
+                              alt="Fast_Delivery_Icon"
+                            />
+                          </span>
+                          <span>Fast Delivery</span>
+                        </div>
+                        <div className={Styles.content}>
+                          <span>
+                            <Image
+                              src={images.Replacement_Icon}
+                              width={30}
+                              height={30}
+                              alt="Replacement_Icon"
+                            />
+                          </span>
+                          <span>30 Days Replacement</span>
+                        </div>
+                      </div>
+                    </div> */}
                 </div>
               </div>
             </div>
