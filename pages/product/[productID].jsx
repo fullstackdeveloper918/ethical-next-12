@@ -142,8 +142,6 @@ const productID = () => {
             >
               Material(s)
             </li>
-            <li>Imprint Information</li>
-            <li>Compliance</li>
             <li
               className={
                 selectedItem === 'Swift Swag' ? Styles.active_product : ''

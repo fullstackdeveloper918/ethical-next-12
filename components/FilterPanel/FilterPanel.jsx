@@ -13,6 +13,8 @@ const FilterPanel = ({
   setIsSwiftSwag,
   setDecorationsArray,
   decorationsArray,
+  setProductTypeArray,
+  productTypeArray,
 }) => {
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
@@ -50,19 +52,23 @@ const FilterPanel = ({
     setOpenIndex(index)
     setIsActive(!isActive)
   }
-
   const handleCheckboxChange = (event, item) => {
     const { name, checked } = event.target
     if (item.label === 'uniqueProductType') {
-      if (event.target.checked) {
-        setFilteredProductType([...filteredProductType, name])
-      } else {
-        setFilteredProductType(
-          filteredProductType.filter((item) => item !== name)
-        )
-      }
-    } else if (item.label === 'Decoration') {
       console.log(item, 'full on')
+      Object.keys(item.children).forEach((key) => {
+        if (item.children[key] === name) {
+          const index = productTypeArray.indexOf(key)
+
+          if (index !== -1) {
+            let a = productTypeArray.filter((item) => item !== key)
+            setProductTypeArray(a)
+          } else {
+            setProductTypeArray([...productTypeArray, key])
+          }
+        }
+      })
+    } else if (item.label === 'Decoration') {
       Object.keys(item.children).forEach((key) => {
         if (item.children[key] === name) {
           const index = decorationsArray.indexOf(key)
@@ -170,7 +176,7 @@ const FilterPanel = ({
                                 id={`checkbox_id_${childIndex}`}
                                 name={child}
                                 onChange={(e) => handleCheckboxChange(e, item)}
-                                checked={filteredProductType.includes(child)}
+                                // checked={filteredProductType.includes(child)}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
                                 {child}
