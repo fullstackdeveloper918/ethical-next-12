@@ -38,6 +38,7 @@ import {
 import { countries } from 'constants/data'
 import { debounce } from '@lib/utils'
 import { setAllFilters } from 'redux-setup/FiltersSlice'
+import { setIsCategoryPage, setIsProductPage } from 'redux-setup/randomSlice'
 
 const SecondaryHeader = () => {
   const popupRef = useRef(null)
@@ -67,8 +68,24 @@ const SecondaryHeader = () => {
   const allCategories = useSelector((state) => state.category.allCategories)
 
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
+  console.log(isProductPage, 'isProductPage')
   const dateNameFilter = useSelector((state) => state.cart.selectedOptionValue)
 
+useEffect(() => {
+  let r = router.asPath.split('/').filter((item) => item !== '')
+  const newArray = r.map((item) => decodeURIComponent(item))
+  if(newArray[0] === 'category' ){
+    dispatch(setIsCategoryPage(true))
+  }else{
+    dispatch(setIsCategoryPage(false))
+  }
+  if(newArray[0] === 'product' ){
+    dispatch(setIsProductPage(true))
+  }else{
+    dispatch(setIsProductPage(false))
+  }
+
+}, [router.asPath])
   useEffect(() => {
     if (countryFromRedux) {
       setCountryToSend(
@@ -286,7 +303,7 @@ const SecondaryHeader = () => {
                       <div
                         className={styles.header_menu_wrapper}
                         style={{
-                          top: getSingleProductPageRoute ? '121px' : '60px',
+                          top: getSingleProductPageRoute ? '111px' : '60px',
                         }}
                       >
                         <div className={styles.header_menu}>

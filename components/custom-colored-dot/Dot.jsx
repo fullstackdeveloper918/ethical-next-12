@@ -16,6 +16,8 @@ const Dot = ({
 }) => {
 
   const router = useRouter();
+  const isCategoryPage = useSelector((state) => state.random.isCategoryPage)
+  let isProductPage = useSelector((state) => state.random.isProductPage)
 
   // console.log(router.asPath() === `product/${productID}`, 'hello')
 
@@ -46,10 +48,11 @@ const Dot = ({
     <>
       {color && (
         <div
-          className={`${Styles.colored_dot}`}
+          className={`${Styles.colored_dot} ${isCategoryPage === true ? Styles.categorydot_wrap : ''}${isProductPage === true ? Styles.product_color : ''}`}
           style={{
             background: color,
             outlineColor: setOutlineColor(),
+            // color: isCategoryPage === true ? 'red': 'pink'
           }}
           onClick={() => handleSelect(color)}
           title={color}

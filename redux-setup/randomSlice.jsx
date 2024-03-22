@@ -5,6 +5,8 @@ const initialState = {
   decorationItemObjSingleProductPage: {},
   finalDecorationKeyVal: {},
   swiftSwag: '',
+  isCategoryPage: "",
+  isProductPage: "",
 }
 
 export const RandomSlice = createSlice({
@@ -23,6 +25,12 @@ export const RandomSlice = createSlice({
     setSwiftSwagTime: (state, action) => {
       state.swiftSwag = action.payload
     },
+    setIsCategoryPage: (state, action) => {
+      state.isCategoryPage = action.payload
+    },
+    setIsProductPage: (state, action) => {
+      state.isProductPage = action.payload
+    },
   },
 })
 
@@ -31,5 +39,7 @@ export const {
   setDecorationItemObjSingleProductPage,
   setFinalDecorationKeyVal,
   setSwiftSwagTime,
+  setIsCategoryPage,
+  setIsProductPage
 } = RandomSlice.actions
 export default RandomSlice.reducer
