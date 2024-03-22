@@ -4,8 +4,9 @@
   padding-bottom: 20px;
 }
 .footer_container {
-  width: 90%;
+  width: 100%;
   margin: auto;
+  max-width: 1600px;
 }
 .main_footer_container {
   display: flex;
