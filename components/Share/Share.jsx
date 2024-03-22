@@ -8,8 +8,6 @@ function Share({ link, description, setShareIcons, item }) {
   const [copied, setCopied] = useState(false)
   const url = window.location.href
 
-  console.log(item, 'currentitem')
-
   function ShareWebAPI() {
     if (navigator.share) {
       navigator

@@ -27,13 +27,11 @@ const Orders = () => {
   // }
 
   const handleEdit = (id) => {
-    console.log(id, 'id bro')
     dispatch(findOrder(id))
     router.push(`/super-admin/orders/edit`)
   }
 
   const handleDelete = (id) => {
-    console.log(id)
     dispatch(deleteOrder(id))
   }
 

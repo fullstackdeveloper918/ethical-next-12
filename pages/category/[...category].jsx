@@ -26,9 +26,6 @@ const index = () => {
     (state) => state.category.collectionForUrl
   )
 
-  console.log(relatedCategories, 'relatedCategories')
-  console.log(collectionForUrl, 'collectionForUrl')
-
   useEffect(() => {
     const generateRelatedCategories = () => {
       const related =

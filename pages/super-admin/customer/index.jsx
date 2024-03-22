@@ -11,10 +11,7 @@ const Customer = () => {
   const dispatch = useDispatch()
   const recentCustomers = useSelector((state) => state.admin.recentCustomers)
 
-  console.log(recentCustomers, 'recenetcutomers')
-
   const handleDelete = (customerId) => {
-    console.log(customerId, 'bro')
     dispatch(deleteCustomer(customerId))
   }
 
