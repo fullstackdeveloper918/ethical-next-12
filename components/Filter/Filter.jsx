@@ -22,6 +22,8 @@ const Filter = ({
   filteredProductType,
   setIsSwiftSwag,
   isSwiftSwag,
+  setDecorationsArray,
+  decorationsArray,
 }) => {
   const [scrolled, setScrolled] = useState(false)
   const dispatch = useDispatch()
@@ -133,6 +135,8 @@ const Filter = ({
             filteredProductType={filteredProductType}
             isSwiftSwag={isSwiftSwag}
             setIsSwiftSwag={setIsSwiftSwag}
+            setDecorationsArray={setDecorationsArray}
+            decorationsArray={decorationsArray}
           />
         )}
       </div>

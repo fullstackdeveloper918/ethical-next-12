@@ -97,10 +97,7 @@ export default function Page({ page }) {
       </>
     )
   }
-  console.log(
-    JSON.parse(document.getElementById('__NEXT_DATA__').textContent),
-    'ppplllsss'
-  )
+
   return (
     <>
       <Head>

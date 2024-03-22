@@ -70,21 +70,20 @@ const SecondaryHeader = () => {
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
   const dateNameFilter = useSelector((state) => state.cart.selectedOptionValue)
 
-useEffect(() => {
-  let r = router.asPath.split('/').filter((item) => item !== '')
-  const newArray = r.map((item) => decodeURIComponent(item))
-  if(newArray[0] === 'category' ){
-    dispatch(setIsCategoryPage(true))
-  }else{
-    dispatch(setIsCategoryPage(false))
-  }
-  if(newArray[0] === 'product' ){
-    dispatch(setIsProductPage(true))
-  }else{
-    dispatch(setIsProductPage(false))
-  }
-
-}, [router.asPath])
+  useEffect(() => {
+    let r = router.asPath.split('/').filter((item) => item !== '')
+    const newArray = r.map((item) => decodeURIComponent(item))
+    if (newArray[0] === 'category') {
+      dispatch(setIsCategoryPage(true))
+    } else {
+      dispatch(setIsCategoryPage(false))
+    }
+    if (newArray[0] === 'product') {
+      dispatch(setIsProductPage(true))
+    } else {
+      dispatch(setIsProductPage(false))
+    }
+  }, [router.asPath])
   useEffect(() => {
     if (countryFromRedux) {
       setCountryToSend(
@@ -174,7 +173,7 @@ useEffect(() => {
   }, [productsRes, productsLoading, productsError])
 
   const getSingleProductPageRoute =
-    router.asPath.includes('/products/') ||
+    router.asPath.includes('/product/') ||
     router.asPath.includes('/contact') ||
     router.asPath.includes('/wishlist') ||
     router.asPath.includes('/cart') ||
