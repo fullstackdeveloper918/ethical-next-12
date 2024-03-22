@@ -21,7 +21,11 @@
   border-radius: 10px;
   border: 1px solid #0003 !important;
 }
-
+.colored_dot{
+  width: 30px;
+    height: 30px;
+    margin-left: 5px;
+}
 
 @media (max-width:1440px){
   .colored_dot {
@@ -34,5 +38,17 @@
   .colored_dot.active {
     outline-color: red;
     outline-offset: 3px;
+  } 
+}
+@media (max-width:1366px){
+  .colored_dot{
+    width: 25px;
+      height:25px;
+  }
+}
+@media (max-width:1024px){
+  .colored_dot{
+    width: 20px;
+      height:20px;
   }
 }

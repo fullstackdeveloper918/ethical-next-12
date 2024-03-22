@@ -173,7 +173,7 @@ const SecondaryHeader = () => {
   }, [productsRes, productsLoading, productsError])
 
   const getSingleProductPageRoute =
-    router.asPath.includes('/products/') ||
+    router.asPath.includes('/product/') ||
     router.asPath.includes('/contact') ||
     router.asPath.includes('/wishlist') ||
     router.asPath.includes('/cart') ||
