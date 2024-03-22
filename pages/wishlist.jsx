@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PrimaryHeader from '../components/primary-header/PrimaryHeader'
 import SecondaryHeader from '../components/secondary-header/SecondaryHeader'
 import Footer from '../components/footer/Footer'
@@ -8,9 +8,22 @@ import Image from 'next/image'
 import { useSelector } from 'react-redux'
 import EmptyContainer from '../components/EmptyContainer/EmptyContainer'
 import ProductCard from '../components/ProductCard/ProductCard'
+import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 const wishlist = () => {
   const wishlistItems = useSelector((state) => state.wishlist.items)
+  const userId = useSelector((state) => state.auth.userId)
+  const router = useRouter()
+
+  console.log(userId, 'userid')
+
+  useEffect(() => {
+    if (!userId) {
+      toast.error('Please login first')
+      router.push('/login')
+    }
+  }, [userId])
 
   return (
     <>

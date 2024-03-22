@@ -56,6 +56,8 @@ import all_tech from '../assets/all_tech.png'
 import Drinkware from '../assets/Drinkware.png'
 import BagImg from '../assets/bagImg.png'
 import MobileImg from '../assets/Mobile_cover.png'
+import ZooomSvg from '../assets/zoom.svg'
+
 
 
 const images = {
@@ -117,6 +119,7 @@ const images = {
   Wire_transfer_icon,
   Browse_file,
   Info_svg,
+  ZooomSvg,
 }
 
 export default images

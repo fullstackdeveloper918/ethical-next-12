@@ -103,6 +103,7 @@ const productID = () => {
       productId: productID,
     }
     reviewsApiPost(data)
+    setWriteReview(false)
   }
   return (
     <>
