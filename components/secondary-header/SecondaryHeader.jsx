@@ -68,7 +68,6 @@ const SecondaryHeader = () => {
   const allCategories = useSelector((state) => state.category.allCategories)
 
   let swiftSwag = useSelector((state) => state.random.swiftSwag)
-  console.log(isProductPage, 'isProductPage')
   const dateNameFilter = useSelector((state) => state.cart.selectedOptionValue)
 
 useEffect(() => {
