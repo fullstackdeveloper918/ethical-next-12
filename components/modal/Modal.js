@@ -73,7 +73,7 @@ const Modal = () => {
                             setIsOpenModal(false)
                           }}
                         >
-                          No, I have flexible with timeline
+                          No, I have a flexible timeline
                         </button>
                       </div>
                       <div>
