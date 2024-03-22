@@ -26,7 +26,6 @@ const login = () => {
     'formdata'
   )
 
-  console.log(response, 'response from login')
   // useEffect(() => {
   //   const token = localStorage.getItem('token_swag')
   //   if (token) {

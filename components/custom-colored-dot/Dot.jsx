@@ -12,14 +12,11 @@ const Dot = ({
   fromFilters,
   filteredColors,
   setFilteredColors,
-  productID
+  productID,
 }) => {
-
-  const router = useRouter();
+  const router = useRouter()
   const isCategoryPage = useSelector((state) => state.random.isCategoryPage)
   let isProductPage = useSelector((state) => state.random.isProductPage)
-
-  // console.log(router.asPath() === `product/${productID}`, 'hello')
 
   const handleSelect = (color) => {
     if (fromFilters) {
@@ -48,7 +45,9 @@ const Dot = ({
     <>
       {color && (
         <div
-          className={`${Styles.colored_dot} ${isCategoryPage === true ? Styles.categorydot_wrap : ''}${isProductPage === true ? Styles.product_color : ''}`}
+          className={`${Styles.colored_dot} ${
+            isCategoryPage === true ? Styles.categorydot_wrap : ''
+          }${isProductPage === true ? Styles.product_color : ''}`}
           style={{
             background: color,
             outlineColor: setOutlineColor(),

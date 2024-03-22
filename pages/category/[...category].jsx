@@ -26,9 +26,6 @@ const index = () => {
     (state) => state.category.collectionForUrl
   )
 
-  console.log(relatedCategories, 'relatedCategories')
-  console.log(collectionForUrl, 'collectionForUrl')
-
   useEffect(() => {
     const generateRelatedCategories = () => {
       const related =
@@ -103,6 +100,12 @@ const index = () => {
                     <div className={Styles.textContent}>
                       <h4>Related Product</h4>
                       <h2>{key}</h2>
+                      <p>
+                        Bags refer to a category of products that are designed
+                        for carrying and storing various items. They come in a
+                        wide range of styles, sizes, and materials, each
+                        catering to specific needs and preferences
+                      </p>
 
                       <button
                         type="button"

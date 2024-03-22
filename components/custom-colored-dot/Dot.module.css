@@ -21,7 +21,7 @@
   border-radius: 10px;
   border: 1px solid #0003 !important;
 }
-.colored_dot{
+.product_color{
   width: 30px;
     height: 30px;
     margin-left: 5px;
@@ -41,13 +41,13 @@
   } 
 }
 @media (max-width:1366px){
-  .colored_dot{
+  .product_color{
     width: 25px;
       height:25px;
   }
 }
 @media (max-width:1024px){
-  .colored_dot{
+  .product_color{
     width: 20px;
       height:20px;
   }

@@ -15,7 +15,6 @@ const ordersSlice = createSlice({
   initialState,
   reducers: {
     addOrders(state, action) {
-      console.log(action.payload, 'helo paylaod')
       state.items.push(action.payload)
     },
     setSelectedEditId(state, action) {
