@@ -91,7 +91,6 @@ const Product = ({ product, loading, error, productID }) => {
   useEffect(() => {
     const sizes = Object.keys(sizeQuantity)
     const baseQuantity = Math.floor(quantity / sizes.length)
-    console.log(baseQuantity, 'baseQuantity')
     let remainder = quantity % sizes.length
     const remainderPriority = ['M', 'L']
     const updatedSizeQuantity = {}
@@ -109,8 +108,6 @@ const Product = ({ product, loading, error, productID }) => {
     }
     setSizeQuantity(updatedSizeQuantity)
   }, [quantity])
-
-  console.log(quantity, 'qant')
 
   const country = useSelector((state) => state.country.country)
   const cartItems = useSelector((state) => state.cart.cartItems)

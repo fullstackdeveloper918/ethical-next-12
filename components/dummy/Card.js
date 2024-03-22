@@ -12,7 +12,6 @@ import {
   Image,
   Link,
 } from '@react-pdf/renderer'
-import PDFTable from './PdfTable'
 
 const styles = StyleSheet.create({
   page: {
@@ -40,19 +39,19 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
   },
-  heading_text:{
-   textAlign:'center',
-   fontSize: '12',
-   fontWeight: 'normal',
-    marginBottom: 10,
-  },
-  pdf_wrapper:{
-    textAlign:'left',
+  heading_text: {
+    textAlign: 'center',
     fontSize: '12',
     fontWeight: 'normal',
-     maxWidth:'800',
-     listStyle: 'disc',
-     marginBottom: 10,
+    marginBottom: 10,
+  },
+  pdf_wrapper: {
+    textAlign: 'left',
+    fontSize: '12',
+    fontWeight: 'normal',
+    maxWidth: '800',
+    listStyle: 'disc',
+    marginBottom: 10,
   },
   heading_wrapper: {
     display: 'flex',
@@ -62,36 +61,36 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: '20',
   },
-  disc_wrap:{
-  width:'5',
-  height:'5',
-  backgroundColor:'#000'
+  disc_wrap: {
+    width: '5',
+    height: '5',
+    backgroundColor: '#000',
   },
-  pdfafter_wrapper:{
-    textAlign:'center',
+  pdfafter_wrapper: {
+    textAlign: 'center',
     fontSize: '12',
     fontWeight: 'normal',
-     marginBottom: 10,
-     maxWidth:'800',
-     listStyle: 'disc',
+    marginBottom: 10,
+    maxWidth: '800',
+    listStyle: 'disc',
   },
-  pdfafter_wrapper_1:{
-    textAlign:'center',
+  pdfafter_wrapper_1: {
+    textAlign: 'center',
     fontSize: '12',
     fontWeight: 'normal',
-     marginBottom: 10,
-     maxWidth:'800',
-     listStyle: 'disc',
- marginTop: '40',
+    marginBottom: 10,
+    maxWidth: '800',
+    listStyle: 'disc',
+    marginTop: '40',
   },
-  pdfbottom_content:{
-    textAlign:'left',
+  pdfbottom_content: {
+    textAlign: 'left',
     fontSize: '12',
     fontWeight: 'normal',
-     marginBottom: 10,
- marginTop: '40',
+    marginBottom: 10,
+    marginTop: '40',
   },
-  product_content:{
+  product_content: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -99,18 +98,18 @@ const styles = StyleSheet.create({
     gap: '20',
     marginTop: '20',
   },
-  content_wrap:{
-    textAlign:'left',
+  content_wrap: {
+    textAlign: 'left',
     fontSize: '12',
     fontWeight: 'normal',
   },
-  content_wrapDescription:{
-    textAlign:'left',
+  content_wrapDescription: {
+    textAlign: 'left',
     fontSize: '9',
     fontWeight: 'normal',
     marginTop: '10',
   },
-  content_wrap:{
+  content_wrap: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flexStart',
@@ -150,9 +149,7 @@ const Card = () => {
           <Text style={styles.heading}>My Enhanukujced PDFplzz</Text>
           <Image style={styles.imgg} src={EthicalLogo} /> */}
 
-          <Text style={styles.heading_text}>
-            Also please note:
-          </Text>
+          <Text style={styles.heading_text}>Also please note:</Text>
           <Text style={styles.pdf_wrapper}>
             <Text style={styles.disc_wrap}></Text>
             Prices described in this estimate don't include taxes, duties (when
@@ -187,24 +184,22 @@ const Card = () => {
           </Text>
 
           <Text style={styles.heading_wrapper}>BULK ESTIMATE</Text>
-          
-          
+
           <Image
             style={styles.imgg}
             src={
               'https://fastly.picsum.photos/id/1050/200/300.jpg?hmac=mMZp1DAD5EpHCZh-YBwfvrg5w327V3DoJQ8CmRAKF70'
             }
           />
-         
-         
+
           <Text style={styles.content_wrap}>
             A great "back to school" gift, this 2-in-1 sandwich bag and placemat
             i...
           </Text>
 
-          <Text style={styles.content_wrapDescription}>Price : Starting at $5.47</Text>
-       
-         
+          <Text style={styles.content_wrapDescription}>
+            Price : Starting at $5.47
+          </Text>
 
           {/* <PDFTable
             tableHeaders={[
@@ -215,7 +210,7 @@ const Card = () => {
             data={tableData}
             heading="Employee Details"
           /> */}
-         
+
           <Text style={styles.pdfbottom_content}>
             Shipping to one or multiple locations will be estimated by our team
             when after you let us you know the shipping addresses. You will be

@@ -29,9 +29,7 @@ const SuperAdmin = () => {
               <div className={Styles.dashboad_wrapper}>
                 <div className={Styles.cards_container}>
                   {SuperAdmin_Cards.map((card) => (
-                    <>
-                      <Card card={card} key={card.id} />
-                    </>
+                    <Card card={card} key={card.id} />
                   ))}
                 </div>
                 {/* Active Users */}
@@ -134,9 +132,9 @@ const SuperAdmin = () => {
                       </div>
                       {/* middle content*/}
                       <div className={Styles.bottom_Content}>
-                        {Orders_Preview.map((order) => (
+                        {Orders_Preview.map((order, i) => (
                           <>
-                            <div className={Styles.order_Content}>
+                            <div className={Styles.order_Content} key={i}>
                               <span>{order.icon}</span>
                               <div className={Styles.order_right_content}>
                                 <p className={Styles.text}>{order.text}</p>

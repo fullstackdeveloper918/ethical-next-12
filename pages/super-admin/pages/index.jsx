@@ -16,34 +16,32 @@ const BlogPost = () => {
               <th>Name</th>
               <th>Action</th>
             </tr>
-            {Array.from({ length: 13 }).map((data) => (
-              <>
-                <tr>
-                  <td>
-                    <div className={Styles.name_cell}>
-                      <input type="checkbox" name="" id="" />
-                      <span>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor.
-                      </span>
-                    </div>
-                  </td>
+            {Array.from({ length: 13 }).map((data, i) => (
+              <tr key={i}>
+                <td>
+                  <div className={Styles.name_cell}>
+                    <input type="checkbox" name="" id="" />
+                    <span>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor.
+                    </span>
+                  </div>
+                </td>
 
-                  <td>
-                    <div className={Styles.action_icons}>
-                      <span>
-                        <FaEye fontSize={18} />
-                      </span>
-                      <span>
-                        <FaRegEdit fontSize={18} />
-                      </span>
-                      <span>
-                        <RiDeleteBin6Line fontSize={18} />
-                      </span>
-                    </div>
-                  </td>
-                </tr>
-              </>
+                <td>
+                  <div className={Styles.action_icons}>
+                    <span>
+                      <FaEye fontSize={18} />
+                    </span>
+                    <span>
+                      <FaRegEdit fontSize={18} />
+                    </span>
+                    <span>
+                      <RiDeleteBin6Line fontSize={18} />
+                    </span>
+                  </div>
+                </td>
+              </tr>
             ))}
           </table>
           {/* Pagination section */}

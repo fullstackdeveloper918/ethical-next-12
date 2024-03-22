@@ -57,7 +57,7 @@ const Orders = () => {
             {orderPlaced &&
               orderPlaced.map((item, index) => (
                 <>
-                  <tr>
+                  <tr key={index}>
                     <td>{item[0]?.selectedDate}</td>
                     <td>{item[0]?.swagPack.toString()}</td>
                     <td>{item[2]?.quantity}</td>

@@ -33,7 +33,7 @@ const Customer = () => {
             </tr>
             {recentCustomers.map((customer, index) => (
               <>
-                <tr>
+                <tr key={index}>
                   <td>{customer.name}</td>
                   <td>ApiPending</td>
                   <td>{customer.email}</td>

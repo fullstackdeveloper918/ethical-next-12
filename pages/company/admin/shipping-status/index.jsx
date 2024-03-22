@@ -69,21 +69,19 @@ const ShippingStatus = () => {
                       <th>Price</th>
                     </tr>
                     {Array.from({ length: 2 }).map((item, index) => (
-                      <>
-                        <tr>
-                          <td>
-                            <Image
-                              src={images.shirt_small}
-                              width={50}
-                              height={50}
-                              alt="image"
-                            />
-                          </td>
-                          <td>Men’s Organic Cotton Hoodie</td>
-                          <td>200 packs</td>
-                          <td>$20000.00</td>
-                        </tr>
-                      </>
+                      <tr key={i}>
+                        <td>
+                          <Image
+                            src={images.shirt_small}
+                            width={50}
+                            height={50}
+                            alt="image"
+                          />
+                        </td>
+                        <td>Men’s Organic Cotton Hoodie</td>
+                        <td>200 packs</td>
+                        <td>$20000.00</td>
+                      </tr>
                     ))}
                   </table>
                 </div>

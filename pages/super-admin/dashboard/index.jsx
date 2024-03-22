@@ -187,50 +187,48 @@ const Dashboard = () => {
                             <th>Price</th>
                             <th>Action</th>
                           </tr>
-                          {recentProductsAll.map((item) => (
-                            <>
-                              <tr>
-                                <td>{item.product_title}</td>
-                                <td>
-                                  <span>
-                                    <Image
-                                      src={item?.image}
-                                      width={25}
-                                      height={25}
-                                      icon="product"
-                                      // onError={}
-                                    />
-                                  </span>
-                                </td>
-                                <td>
-                                  <div className={Styles.status}>
-                                    <div>
-                                      <span>
-                                        <GoDotFill color="#a2d061" />
-                                      </span>
-                                    </div>
-                                    <div>
-                                      <span>In Stock</span>
-                                    </div>
+                          {recentProductsAll.map((item, i) => (
+                            <tr key={i}>
+                              <td>{item.product_title}</td>
+                              <td>
+                                <span>
+                                  <Image
+                                    src={item?.image}
+                                    width={25}
+                                    height={25}
+                                    icon="product"
+                                    // onError={}
+                                  />
+                                </span>
+                              </td>
+                              <td>
+                                <div className={Styles.status}>
+                                  <div>
+                                    <span>
+                                      <GoDotFill color="#a2d061" />
+                                    </span>
                                   </div>
-                                </td>
-                                <td>${item.column_1_retail_price_cad}</td>
-                                <td>
-                                  <div className={Styles.status}>
-                                    <div className={Styles.action}>
-                                      <span>
-                                        <FaRegEdit fontSize={18} />
-                                      </span>
-                                    </div>
-                                    <div>
-                                      <span>
-                                        <RiDeleteBin6Line fontSize={18} />
-                                      </span>
-                                    </div>
+                                  <div>
+                                    <span>In Stock</span>
                                   </div>
-                                </td>
-                              </tr>
-                            </>
+                                </div>
+                              </td>
+                              <td>${item.column_1_retail_price_cad}</td>
+                              <td>
+                                <div className={Styles.status}>
+                                  <div className={Styles.action}>
+                                    <span>
+                                      <FaRegEdit fontSize={18} />
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <span>
+                                      <RiDeleteBin6Line fontSize={18} />
+                                    </span>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
                           ))}
                         </table>
                       </div>
