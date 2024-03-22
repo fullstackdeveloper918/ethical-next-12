@@ -860,8 +860,9 @@ const Product = ({ product, loading, error, productID }) => {
                     <input
                       type="number"
                       placeholder={product?.column_1_qty}
+                      disabled={isSample}
                       name="orderQuantity"
-                      value={quantity}
+                      value={isSample ? '3' : quantity}
                       onChange={handleQuantity}
                       onBlur={(e) => {
                         if (quantity < actualMinQty) {
@@ -873,7 +874,9 @@ const Product = ({ product, loading, error, productID }) => {
                       }}
                     />
 
-                    <span>(minimum {+actualMinQty} units required)</span>
+                    <span>
+                      (minimum {isSample ? '3' : +actualMinQty} units required)
+                    </span>
                   </div>
                 </div>
                 <div className={Styles.select_size_quantity}>
