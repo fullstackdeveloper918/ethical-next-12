@@ -21,7 +21,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 const productID = () => {
   const router = useRouter()
-  const [writeReview, setWriteReview] = useState(false)
+  const [writeReview, setWriteReview] = useState(true)
   const [selectedItem, setSelectedItem] = useState('Product')
 
   const [openIndex, setOpenIndex] = useState(null)
@@ -288,7 +288,7 @@ const productID = () => {
           <div className={Styles.top_content}>
             <h2>Product Review</h2>
             <button onClick={() => setWriteReview(!writeReview)}>
-              {writeReview ? 'Cancel' : 'Write a review'}
+              Write a review
             </button>
           </div>
           {/* Write a Review Section */}
@@ -388,7 +388,7 @@ const productID = () => {
                       <p>
                         How we use your data: We’ll only contact you about the
                         review you left, and only if necessary. By submitting
-                        your review, you agree to Judge.me’s terms and
+                        your review, you agree terms and
                         conditions and privacy policy.
                       </p>
                     </div>

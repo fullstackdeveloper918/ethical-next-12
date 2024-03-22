@@ -1173,6 +1173,12 @@
   .collection_items {
     padding: 1rem;
   }
+  .collection_items {
+    min-height: 400px;
+  }
+  .category_section .collection_wrapper {
+    margin-left: 28%;
+  }
   .product_card_content > .title {
     font-size: 14px;
     line-height: 24px;

@@ -40,7 +40,11 @@
   color: #fff;
   transition: .5s all ease-in-out;
 }
-
+@media (max-width:1200px){
+  .cart_left_butttons .button {
+    min-height: 49px;
+  }
+}
 
 @media screen and (max-width:991px) {
   .cart_left_butttons {

@@ -640,6 +640,7 @@ product css
   gap: 20px;
   margin: 20px 0 0;
   padding-bottom: 20px;
+  flex-wrap: wrap;
 }
 .colors_container .colours {
 width: 50px;
@@ -1205,8 +1206,8 @@ p.fw400 {
 @media screen and (max-width: 1440px) {
   
 .add_to_bulk_container button {
-  font-size: 14px;  
-  padding: 16px 0;
+  font-size: 13px;  
+  padding: 16px 5;
 }
    .detail_page_right_section .title h4 {
     font-size: 20px;
@@ -1317,23 +1318,24 @@ height: 35px;
 }
 
 }
-@media screen and (max-width: 1200px) {
-.sticky_bottom{
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.add_to_bulk_container {
-width: 100%;
-  
-}
-.standard_business_section,.price_section {
-  width: 48%;
-}
-}
+/* @media screen and (max-width: 1200px) {
+
+} */
 @media screen and (max-width: 1199px) {
   .sticky_bottom,
   .business_box{
     width: 100%;
+  }
+  .sticky_bottom{
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .add_to_bulk_container {
+  width: 100%;
+    
+  }
+  .standard_business_section,.price_section {
+    width: 100%
   }
 }
 @media screen and (max-width: 1160px) {
