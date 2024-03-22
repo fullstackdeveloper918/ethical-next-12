@@ -8,12 +8,10 @@ import { useRouter } from 'next/router'
 const Navbar = ({ data, thumbnail }) => {
   const router = useRouter()
 
-  // const heading = router.asPath.replace('/super-admin/', '')
-
   return (
     <>
       <div className={Styles.navbar_container}>
-        <h2>{heading.charAt(0).toUpperCase() + heading.slice(1)}</h2>
+        <h2>{data}</h2>
         <div className={Styles.icons}>
           {router.asPath === '/super-admin/customer' && (
             <>
