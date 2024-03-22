@@ -13,6 +13,7 @@ const Dot = ({
   filteredColors,
   setFilteredColors,
   productID,
+  fromSingleProduct
 }) => {
   const router = useRouter()
   const isCategoryPage = useSelector((state) => state.random.isCategoryPage)
