@@ -39,8 +39,8 @@ const responsive = {
 
 const Product = ({ product, loading, error, productID }) => {
   const dispatch = useDispatch()
-  
-  
+
+  console.log(product, 'product')
   const [openEmoji, setOpenEmoji] = useState(false)
   const [ReadMore, setIsReadMore] = useState(false)
 
@@ -878,32 +878,32 @@ const Product = ({ product, loading, error, productID }) => {
                   {/* <div className={Styles.standard_down_line}></div> */}
                   <div className={Styles.sticky_bottom}>
                     <div className={Styles.business_box}>
-                    <div className={Styles.standard_business_section}>
-                      <div className={Styles.common_header}>
-                        <p>Production time</p>
-                        <Image
-                          src={images.Info_Icon}
-                          width={18}
-                          height={18}
-                          alt="info_icon"
-                        />
+                      <div className={Styles.standard_business_section}>
+                        <div className={Styles.common_header}>
+                          <p>Production time</p>
+                          <Image
+                            src={images.Info_Icon}
+                            width={18}
+                            height={18}
+                            alt="info_icon"
+                          />
+                        </div>
+
+                        <p>
+                          <strong>Standard</strong> - 15{' '}
+                          <strong>Business days</strong>
+                        </p>
                       </div>
 
-                      <p>
-                        <strong>Standard</strong> - 15{' '}
-                        <strong>Business days</strong>
-                      </p>
-                    </div>
+                      <div className={Styles.price_section}>
+                        <p>{`Price ${
+                          totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
+                        }/unit`}</p>
 
-                    <div className={Styles.price_section}>
-                      <p>{`Price ${
-                        totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
-                      }/unit`}</p>
-
-                      <p>
-                        ${quantity ? (quantity * +totalPrice).toFixed(2) : 0}
-                      </p>
-                    </div>
+                        <p>
+                          ${quantity ? (quantity * +totalPrice).toFixed(2) : 0}
+                        </p>
+                      </div>
                     </div>
                     <div className={Styles.add_to_bulk_container}>
                       <button onClick={handleAddToCart}>
