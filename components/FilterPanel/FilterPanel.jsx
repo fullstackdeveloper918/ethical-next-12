@@ -15,6 +15,8 @@ const FilterPanel = ({
   decorationsArray,
   setProductTypeArray,
   productTypeArray,
+  emojiTypeArray,
+  setEmojiTypeArray,
 }) => {
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
@@ -55,7 +57,6 @@ const FilterPanel = ({
   const handleCheckboxChange = (event, item) => {
     const { name, checked } = event.target
     if (item.label === 'uniqueProductType') {
-      console.log(item, 'full on')
       Object.keys(item.children).forEach((key) => {
         if (item.children[key] === name) {
           const index = productTypeArray.indexOf(key)
@@ -81,9 +82,22 @@ const FilterPanel = ({
           }
         }
       })
+    } else if (item.label === 'Emoji ratings') {
+      console.log(item, 'itemitem')
+      Object.keys(item.children).forEach((key) => {
+        if (item.children[key] === name) {
+          const index = emojiTypeArray.indexOf(key)
+          if (index !== -1) {
+            let a = emojiTypeArray.filter((item) => item !== key)
+            setEmojiTypeArray(a)
+          } else {
+            setEmojiTypeArray([...emojiTypeArray, key])
+          }
+        }
+      })
     }
   }
-
+  console.log(emojiTypeArray, 'emojiTypeArray')
   const handleClear = () => {
     setFilteredColors([])
   }
@@ -227,6 +241,30 @@ const FilterPanel = ({
                                 value={child}
                                 // checked={decorations.includes(child)}
                                 onChange={(e) => handleCheckboxChange(e, item)}
+                              />
+                              <label htmlFor={`checkbox_id_${childIndex}`}>
+                                {child}
+                              </label>
+                            </li>
+                          )
+                        )}
+                      </div>
+                    ) : isActive &&
+                      openIndex === index &&
+                      item.label === 'Emoji ratings' ? (
+                      <div className={Styles.custom_checkbox}>
+                        {Object.values(item.children).map(
+                          (child, childIndex) => (
+                            <li
+                              key={childIndex}
+                              className={Styles.filterPanel_list_item}
+                            >
+                              <input
+                                type="checkbox"
+                                id={`checkbox_id_${childIndex}`}
+                                name={child}
+                                onChange={(e) => handleCheckboxChange(e, item)}
+                                // checked={filteredProductType.includes(child)}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
                                 {child}
