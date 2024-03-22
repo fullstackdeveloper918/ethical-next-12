@@ -1,20 +1,21 @@
-.conatainer_Sec, .related_categories {
+.conatainer_Sec {
   max-width: 98%;
   width: 100%;
   margin: 0px auto;
-  padding: 0px 15px;
+  /* padding: 0px 15px; */
 }
 
 .collection_banner {
-  background: url('../assets/headerPics/collection_banner.png');
+  background: url(/_next/static/media/collection_banner.5e803070.png);
   min-height: 360px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
   position: relative;
+  background-position: center;
   width: 100%;
-  margin: 20px auto 0px;
-  border-radius: 30px;
+  margin: 10px auto 0px;
+  border-radius: 30px !important;
   display: flex;
   align-items: center;
 }
@@ -36,8 +37,8 @@
 
 
 /* .related_product_container */
-.related_product_container {
-  max-width: 1368px;
+.related_product_container, .related_categories {
+  max-width: 1600px;
   width: 100%;
   margin: 0px auto;
   padding: 0px 15px;
@@ -154,13 +155,12 @@
  .related_categories {
   margin: 60px auto;
 }
-.related_categories  .img_content_1 .textContent{
+.related_categories .content_wrapper>div.img_content_1:first-child .textContent{
   background: #F65275;
 }
-.related_categories  .img_content_2 .textContent{
+.related_categories .content_wrapper>div.img_content_1:last-child  .textContent{
   background: #D19000;
 }
-
 .related_categories .textContent h3{
  font-size: 30px;
  font-weight: 500;
@@ -182,11 +182,11 @@
   transition: all .5s ease-in-out;
 
 }
-.related_categories  .img_content_1 .textContent button:hover{
+.related_categories .content_wrapper>div.img_content_1:first-child  .textContent button:hover{
   background: #fff;
   color: #F65275;
 }
-.related_categories  .img_content_2 .textContent button:hover{
+.related_categories .content_wrapper>div.img_content_1:last-child  .textContent button:hover{
   background: #fff;
   color: #D19000;
 }
