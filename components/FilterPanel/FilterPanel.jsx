@@ -97,7 +97,6 @@ const FilterPanel = ({
       })
     }
   }
-  console.log(emojiTypeArray, 'emojiTypeArray')
   const handleClear = () => {
     setFilteredColors([])
   }
@@ -193,7 +192,7 @@ const FilterPanel = ({
                                 // checked={filteredProductType.includes(child)}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
-                                {child}
+                                {child && JSON.parse(child)}
                               </label>
                             </li>
                           )
@@ -243,7 +242,7 @@ const FilterPanel = ({
                                 onChange={(e) => handleCheckboxChange(e, item)}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
-                                {child}
+                                {child && JSON.parse(child)}
                               </label>
                             </li>
                           )

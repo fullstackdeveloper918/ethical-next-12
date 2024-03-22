@@ -59,7 +59,7 @@ const Product = () => {
     } else if (getProductsRes?.data?.data?.length > 0) {
       setFinalSwiftProducts(finalColorFilteredProducts)
     }
-  }, [isSwiftSwag, finalColorFilteredProducts, filteredColors])
+  }, [isSwiftSwag, finalColorFilteredProducts])
 
   useEffect(() => {
     if (getProductsRes?.data?.data?.length > 0 && decorationsArray.length > 0) {
