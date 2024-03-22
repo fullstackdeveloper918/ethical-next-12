@@ -21,7 +21,6 @@ const index = () => {
   const [relatedCategories, setRelatedCategories] = useState([])
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
   const allCategories = useSelector((state) => state.category.allCategories)
-  console.log(allCategories, 'all categories')
 
   const collectionForUrl = useSelector(
     (state) => state.category.collectionForUrl

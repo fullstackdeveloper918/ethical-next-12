@@ -8,7 +8,7 @@
   outline-offset: 3px;
   position: relative;
 }
-
+.dot_wrap{background-color: red;}
 .colored_dot.active {
   outline-color: red;
   outline-offset: 3px;

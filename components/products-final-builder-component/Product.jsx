@@ -16,17 +16,17 @@ const Product = () => {
     []
   )
   const [finalSwiftProducts, setFinalSwiftProducts] = useState([])
+  const [finalDecorationProducts, setFinalDecorationProducts] = useState([])
   const [finalProducts, setFinalProducts] = useState([])
   const [f, setF] = useState([])
   const [isSwiftSwag, setIsSwiftSwag] = useState(false)
+  const [decorationsArray, setDecorationsArray] = useState([])
 
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
 
   const totalData = useSelector((state) => state.category.totalData)
   const country = useSelector((state) => state.country.country)
-  // console.log(country, 'country')
 
-  // console.log(getProductsRes?.data?.data, 'for decoration')
   useEffect(() => {
     setIsSwiftSwag(false)
   }, [getProductsRes?.data?.data])
@@ -57,34 +57,32 @@ const Product = () => {
       setFinalSwiftProducts(finalColorFilteredProducts)
     }
   }, [isSwiftSwag, finalColorFilteredProducts, filteredColors])
+
+  useEffect(() => {
+    if (getProductsRes?.data?.data?.length > 0 && decorationsArray.length > 0) {
+      let result = finalSwiftProducts?.filter((item) => {
+        let supplierFees =
+          country === 'usa' ? item?.supplier_fees_usd : item?.supplier_fees_cad
+        return decorationsArray.some((decoration) =>
+          supplierFees?.includes(decoration)
+        )
+      })
+      setFinalDecorationProducts(result)
+    } else if (getProductsRes?.data?.data?.length > 0) {
+      setFinalDecorationProducts(finalSwiftProducts)
+    }
+  }, [decorationsArray, finalSwiftProducts])
   // console.log(getProductsRes?.data?.data, 'quest to find swift_swag')
   // console.log(finalColorFilteredProducts, 'finalColorFilteredProducts')
   // console.log(finalSwiftProducts, 'finalSwiftProducts')
-
-  useEffect(() => {
-    if (filteredProductType.length > 0 && finalSwiftProducts?.length > 0) {
-    } else if (filteredProductType.length === 0) {
-      setF(getProductsRes?.data?.data)
-    }
-  }, [filteredProductType, getProductsRes])
+  // console.log(finalDecorationProducts, 'finalDecorationProducts')
 
   // useEffect(() => {
-  //   // let supplierFees =
-  //   // country === 'usa' ? item?.supplier_fees_usd : item?.supplier_fees_cad
-
-  //   if (getProductsRes?.data?.data?.length > 0) {
-  //     let resultArray = getProductsRes?.data?.data.map((item) => {
-  //       return {
-  //         id: item.id,
-  //         supplierFees:
-  //           item.country === 'usa'
-  //             ? item.supplier_fees_usd
-  //             : item.supplier_fees_cad,
-  //       }
-  //     })
-  //     console.log(resultArray, 'resultArray')
+  //   if (filteredProductType.length > 0 && finalSwiftProducts?.length > 0) {
+  //   } else if (filteredProductType.length === 0) {
+  //     setF(getProductsRes?.data?.data)
   //   }
-  // }, [getProductsRes?.data?.data])
+  // }, [filteredProductType, getProductsRes])
 
   return (
     <>
@@ -104,6 +102,8 @@ const Product = () => {
             setFilteredProductType={setFilteredProductType}
             isSwiftSwag={isSwiftSwag}
             setIsSwiftSwag={setIsSwiftSwag}
+            setDecorationsArray={setDecorationsArray}
+            decorationsArray={decorationsArray}
           />
           <Products finalProducts={finalProducts} />
 
