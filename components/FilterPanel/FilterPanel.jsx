@@ -23,7 +23,6 @@ const FilterPanel = ({
   const [inputSlider, setInputSlider] = useState(0)
   const [openIndex, setOpenIndex] = useState('')
   const [isActive, setIsActive] = useState(true)
-  const [filteredList, setFilteredList] = useState([])
   const [swagRadio, setSwagRadio] = useState('No SwiftSwag')
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)

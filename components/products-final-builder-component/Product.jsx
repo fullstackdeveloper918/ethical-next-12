@@ -140,7 +140,7 @@ const Product = () => {
             setEmojiTypeArray={setEmojiTypeArray}
             emojiTypeArray={emojiTypeArray}
           />
-          <Products finalProducts={finalProducts} />
+          <Products finalProducts={finalEmojiType} />
 
           {getProductsRes?.data?.data?.length > 0 && totalData > 100 && (
             <div className={Styles.pagination_section}>
