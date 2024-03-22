@@ -166,6 +166,14 @@ const EstimateCard = () => {
                   >
                     Submit Estimate Request
                   </button>
+                  <>
+                    <div>
+                      <p>
+                        Total estimate doesn't include taxes and shipping fees.
+                        Payment is made after mockups are approved.
+                      </p>
+                    </div>
+                  </>
                   <div className={Styles.estimate_clear_content}>
                     <button
                       className={Styles.estimate_clear_btn}
