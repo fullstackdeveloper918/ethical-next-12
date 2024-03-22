@@ -26,19 +26,6 @@ const Product = () => {
   const country = useSelector((state) => state.country.country)
   // console.log(country, 'country')
 
-  useEffect(() => {
-    // let supplierFees =
-    // country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
-
-    if (getProductsRes?.data?.data?.length > 0) {
-      let result = getProductsRes?.data?.data?.filter((item) => {
-        return Object.keys(item.colours).some((color) =>
-          filteredColors.includes(color)
-        )
-      })
-    } else if (filteredColors.length === 0) {
-    }
-  }, [getProductsRes?.data?.data])
   // console.log(getProductsRes?.data?.data, 'for decoration')
   useEffect(() => {
     setIsSwiftSwag(false)
@@ -70,15 +57,34 @@ const Product = () => {
       setFinalSwiftProducts(finalColorFilteredProducts)
     }
   }, [isSwiftSwag, finalColorFilteredProducts, filteredColors])
-  console.log(getProductsRes?.data?.data, 'quest to find swift_swag')
-  console.log(finalColorFilteredProducts, 'finalColorFilteredProducts')
-  console.log(finalSwiftProducts, 'finalSwiftProducts')
+  // console.log(getProductsRes?.data?.data, 'quest to find swift_swag')
+  // console.log(finalColorFilteredProducts, 'finalColorFilteredProducts')
+  // console.log(finalSwiftProducts, 'finalSwiftProducts')
+
   useEffect(() => {
     if (filteredProductType.length > 0 && finalSwiftProducts?.length > 0) {
     } else if (filteredProductType.length === 0) {
       setF(getProductsRes?.data?.data)
     }
   }, [filteredProductType, getProductsRes])
+
+  // useEffect(() => {
+  //   // let supplierFees =
+  //   // country === 'usa' ? item?.supplier_fees_usd : item?.supplier_fees_cad
+
+  //   if (getProductsRes?.data?.data?.length > 0) {
+  //     let resultArray = getProductsRes?.data?.data.map((item) => {
+  //       return {
+  //         id: item.id,
+  //         supplierFees:
+  //           item.country === 'usa'
+  //             ? item.supplier_fees_usd
+  //             : item.supplier_fees_cad,
+  //       }
+  //     })
+  //     console.log(resultArray, 'resultArray')
+  //   }
+  // }, [getProductsRes?.data?.data])
 
   return (
     <>
