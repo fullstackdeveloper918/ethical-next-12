@@ -9,6 +9,7 @@ import { RxCross2 } from 'react-icons/rx'
 import { setCartItems } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
 import { MdOutlineFavoriteBorder } from 'react-icons/md'
+import Share from '../Share/Share'
 import { CiSearch } from 'react-icons/ci'
 import { CiShare2 } from 'react-icons/ci'
 // import '../../global.css'
@@ -45,7 +46,7 @@ const Product = ({ product, loading, error, productID }) => {
 
   const [openEmoji, setOpenEmoji] = useState(false)
   const [ReadMore, setIsReadMore] = useState(false)
-
+  const [shareIcons, setShareIcons] = useState(false)
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
   const [selectedCustomization, setSelectedCustomization] = useState()
   const [choosenCustomization, setChoosenCustomization] = useState(null)
@@ -451,8 +452,14 @@ const Product = ({ product, loading, error, productID }) => {
                         fontSize={25}
                         // color="#D3D3D3"
                         className={Styles.icon}
+                        onClick={() => setShareIcons(true)}
                       />
                     </div>
+                    {shareIcons && (
+                      <>
+                        <Share setShareIcons={setShareIcons} item={product} />
+                      </>
+                    )}
                   </div>
                   <div className={Styles.detail_page_image_content}>
                     {singleImage && (
