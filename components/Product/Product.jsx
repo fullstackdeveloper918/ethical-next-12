@@ -455,11 +455,6 @@ const Product = ({ product, loading, error, productID }) => {
                         onClick={() => setShareIcons(true)}
                       />
                     </div>
-                    {shareIcons && (
-                      <>
-                        <Share setShareIcons={setShareIcons} item={product} />
-                      </>
-                    )}
                   </div>
                   <div className={Styles.detail_page_image_content}>
                     {singleImage && (
@@ -1014,6 +1009,11 @@ const Product = ({ product, loading, error, productID }) => {
       )}
       {openEmoji && (
         <EmojiModal EmojiModal={EmojiModal} setOpenEmoji={setOpenEmoji} />
+      )}
+      {shareIcons && (
+        <>
+          <Share setShareIcons={setShareIcons} item={product} />
+        </>
       )}
     </>
   )
