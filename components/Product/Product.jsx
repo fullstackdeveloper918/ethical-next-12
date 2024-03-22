@@ -8,6 +8,7 @@ import Dot from '../custom-colored-dot/Dot'
 import { RxCross2 } from 'react-icons/rx'
 import { setCartItems } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
+// import '../../global.css'
 import {
   setDecorationItemObjSingleProductPage,
   setFinalDecorationKeyVal,
@@ -15,6 +16,7 @@ import {
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import EmojiModal from '../EmojiModal/EmojiModal'
+import { useRouter } from 'next/router'
 
 const responsive = {
   superLargeDesktop: {
@@ -23,11 +25,11 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5,
+    items: 7,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 5,
+    items: 6,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -35,8 +37,10 @@ const responsive = {
   },
 }
 
-const Product = ({ product, loading, error }) => {
+const Product = ({ product, loading, error, productID }) => {
   const dispatch = useDispatch()
+  
+  
   const [openEmoji, setOpenEmoji] = useState(false)
   const [ReadMore, setIsReadMore] = useState(false)
 
@@ -573,6 +577,7 @@ const Product = ({ product, loading, error }) => {
                               imageUrl={imageUrl}
                               setSelectedColor={setSelectedColor}
                               selectedColor={selectedColor}
+                              productID={productID}
                             />
                           )
                         )}
@@ -584,7 +589,7 @@ const Product = ({ product, loading, error }) => {
                 {product?.swift_tag == 1 && (
                   <div className={Styles.cart_left_swift}>
                     <div className={Styles.common_header}>
-                      <h6>Swift swag</h6>
+                      <h6>Swift Swag</h6>
                       <Image
                         src={images.Info_Icon}
                         width={18}
@@ -712,7 +717,7 @@ const Product = ({ product, loading, error }) => {
                 </div> */}
                 <div className={Styles.para_text}>
                   <div className={Styles.common_header}>
-                    <p>
+                    <p class={Styles.font_weight}>
                       Upload Logo/ Artwork{' '}
                       <span className={Styles.fw400}>
                         (.AI or .EPS vector format)
@@ -875,6 +880,7 @@ const Product = ({ product, loading, error }) => {
                 <div className={Styles.position_sticky}>
                   {/* <div className={Styles.standard_down_line}></div> */}
                   <div className={Styles.sticky_bottom}>
+                    <div className={Styles.business_box}>
                     <div className={Styles.standard_business_section}>
                       <div className={Styles.common_header}>
                         <p>Production time</p>
@@ -900,6 +906,7 @@ const Product = ({ product, loading, error }) => {
                       <p>
                         ${quantity ? (quantity * +totalPrice).toFixed(2) : 0}
                       </p>
+                    </div>
                     </div>
                     <div className={Styles.add_to_bulk_container}>
                       <button onClick={handleAddToCart}>
