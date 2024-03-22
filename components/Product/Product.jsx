@@ -8,6 +8,9 @@ import Dot from '../custom-colored-dot/Dot'
 import { RxCross2 } from 'react-icons/rx'
 import { setCartItems } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
+import { MdOutlineFavoriteBorder } from 'react-icons/md'
+import { CiSearch } from 'react-icons/ci'
+import { CiShare2 } from 'react-icons/ci'
 // import '../../global.css'
 import {
   setDecorationItemObjSingleProductPage,
@@ -433,6 +436,24 @@ const Product = ({ product, loading, error, productID }) => {
             <div className={Styles.detail_page_container}>
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
+                  <div className={Styles.icon_wrapper}>
+                    <div className={Styles.border_svg}>
+                      <MdOutlineFavoriteBorder
+                        fontSize={25}
+                        className={Styles.icon}
+                      />
+                    </div>
+                    <div className={Styles.border_svg}>
+                      <Image src={images.ZooomSvg} className={Styles.icon} />
+                    </div>
+                    <div className={Styles.border_svg}>
+                      <CiShare2
+                        fontSize={25}
+                        // color="#D3D3D3"
+                        className={Styles.icon}
+                      />
+                    </div>
+                  </div>
                   <div className={Styles.detail_page_image_content}>
                     {singleImage && (
                       <Image
@@ -932,7 +953,6 @@ const Product = ({ product, loading, error, productID }) => {
                         <p>{`Price ${
                           totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
                         }/unit`}</p>
-
                         <p>
                           ${quantity ? (quantity * +totalPrice).toFixed(2) : 0}
                         </p>
@@ -944,42 +964,38 @@ const Product = ({ product, loading, error, productID }) => {
                       </button>
                     </div>
                   </div>
-                  {!isSample && (
-                    <>
-                      <div className={Styles.total_estimate_container}>
-                        <p className={Styles.total_estimate_container_text}>
-                          Total estimate doesn't include taxes and shipping
-                          fees. Payment is made after mockups are approved.
-                        </p>
-                      </div>
-                      <div className={Styles.bottom_icons}>
-                        <div className={Styles.container}>
-                          <div className={Styles.content}>
-                            <span>
-                              <Image
-                                src={images.Fast_Delivery_Icon}
-                                width={30}
-                                height={30}
-                                alt="Fast_Delivery_Icon"
-                              />
-                            </span>
-                            <span>Fast Delivery</span>
-                          </div>
-                          <div className={Styles.content}>
-                            <span>
-                              <Image
-                                src={images.Replacement_Icon}
-                                width={30}
-                                height={30}
-                                alt="Replacement_Icon"
-                              />
-                            </span>
-                            <span>30 Days Replacement</span>
-                          </div>
+                  {/* <div className={Styles.total_estimate_container}>
+                      <p className={Styles.total_estimate_container_text}>
+                        Total estimate doesn't include taxes and shipping fees.
+                        Payment is made after mockups are approved.
+                      </p>
+                    </div>
+                    <div className={Styles.bottom_icons}>
+                      <div className={Styles.container}>
+                        <div className={Styles.content}>
+                          <span>
+                            <Image
+                              src={images.Fast_Delivery_Icon}
+                              width={30}
+                              height={30}
+                              alt="Fast_Delivery_Icon"
+                            />
+                          </span>
+                          <span>Fast Delivery</span>
+                        </div>
+                        <div className={Styles.content}>
+                          <span>
+                            <Image
+                              src={images.Replacement_Icon}
+                              width={30}
+                              height={30}
+                              alt="Replacement_Icon"
+                            />
+                          </span>
+                          <span>30 Days Replacement</span>
                         </div>
                       </div>
-                    </>
-                  )}
+                    </div> */}
                 </div>
               </div>
             </div>

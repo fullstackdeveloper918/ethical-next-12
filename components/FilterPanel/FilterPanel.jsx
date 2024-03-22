@@ -9,6 +9,8 @@ const FilterPanel = ({
   filteredColors,
   filteredProductType,
   setFilteredProductType,
+  isSwiftSwag,
+  setIsSwiftSwag,
 }) => {
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
@@ -16,6 +18,8 @@ const FilterPanel = ({
   const [openIndex, setOpenIndex] = useState('')
   const [isActive, setIsActive] = useState(true)
   const [filteredList, setFilteredList] = useState([])
+  const [swagRadio, setSwagRadio] = useState('No SwiftSwag')
+
   // const
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
@@ -63,6 +67,23 @@ const FilterPanel = ({
   const handleClear = () => {
     setFilteredColors([])
   }
+
+  const handleSwagChange = (event) => {
+    if (event.target.value === 'SwiftSwag') {
+      setSwagRadio('SwiftSwag')
+    } else if (event.target.value === 'No SwiftSwag') {
+      setSwagRadio('No SwiftSwag')
+    }
+  }
+
+  useEffect(() => {
+    if (swagRadio === 'No SwiftSwag') {
+      setIsSwiftSwag(false)
+    } else if (swagRadio === 'SwiftSwag') {
+      setIsSwiftSwag(true)
+    }
+  }, [swagRadio])
+
   return (
     <>
       {active && (
@@ -138,6 +159,31 @@ const FilterPanel = ({
                                   handleCheckboxChange(e, item.label)
                                 }
                                 checked={filteredProductType.includes(child)}
+                              />
+                              <label htmlFor={`checkbox_id_${childIndex}`}>
+                                {child}
+                              </label>
+                            </li>
+                          )
+                        )}
+                      </div>
+                    ) : isActive &&
+                      openIndex === index &&
+                      item.label === 'Swift swag' ? (
+                      <div className={Styles.custom_checkbox}>
+                        {Object.values(item.children).map(
+                          (child, childIndex) => (
+                            <li
+                              key={childIndex}
+                              className={Styles.filterPanel_list_item}
+                            >
+                              <input
+                                type="checkbox"
+                                id={`checkbox_id_${childIndex}`}
+                                name={child}
+                                value={child}
+                                checked={swagRadio === child}
+                                onChange={handleSwagChange}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
                                 {child}
