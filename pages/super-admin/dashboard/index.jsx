@@ -54,8 +54,6 @@ const Dashboard = () => {
     }
   )
 
-  console.log(productsResponse, 'productsResponse')
-
   useEffect(() => {
     count()
     recentProducts()
@@ -71,7 +69,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (productsResponse) {
       dispatch(getRecentProducts(productsResponse.data))
-      console.log(productsResponse, 'kjckbcdbs')
+
       setSingleImage(productsResponse.images)
     }
   }, [productsResponse])

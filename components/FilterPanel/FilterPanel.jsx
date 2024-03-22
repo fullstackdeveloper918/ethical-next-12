@@ -62,7 +62,6 @@ const FilterPanel = ({
         )
       }
     } else if (item.label === 'Decoration') {
-      console.log(item, 'full on')
       Object.keys(item.children).forEach((key) => {
         if (item.children[key] === name) {
           const index = decorationsArray.indexOf(key)

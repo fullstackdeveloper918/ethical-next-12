@@ -72,10 +72,6 @@ const Product = () => {
       setFinalDecorationProducts(finalSwiftProducts)
     }
   }, [decorationsArray, finalSwiftProducts])
-  // console.log(getProductsRes?.data?.data, 'quest to find swift_swag')
-  // console.log(finalColorFilteredProducts, 'finalColorFilteredProducts')
-  // console.log(finalSwiftProducts, 'finalSwiftProducts')
-  // console.log(finalDecorationProducts, 'finalDecorationProducts')
 
   // useEffect(() => {
   //   if (filteredProductType.length > 0 && finalSwiftProducts?.length > 0) {
