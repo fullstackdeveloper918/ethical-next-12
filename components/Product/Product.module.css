@@ -1,3 +1,5 @@
+product css
+
 .detail_page_wrapper {
   width: 100%;
   overflow: hidden;
@@ -34,12 +36,21 @@
   align-items: center;
   height: calc(100vh - 130px);
 }
-.detail_page_image_content .product_big_image span{
+/* .detail_page_image_content .product_big_image span{
   max-height: 90%;
   top: 50% !important;
   position: absolute;
   transform: translateY(-50%);
   height: 80% !important;
+  mix-blend-mode: color-burn;
+} */
+
+.detail_page_image_content span{
+  max-height: 90%;
+  top: 50% !important;
+  /* position: absolute; */
+  transform: translateY(-50%);
+  height:90% !important;
   mix-blend-mode: color-burn;
 }
 

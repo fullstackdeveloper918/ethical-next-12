@@ -9,7 +9,6 @@ import { RxCross2 } from 'react-icons/rx'
 import { setCartItems } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
 import { MdOutlineFavoriteBorder } from 'react-icons/md'
-import Share from '../Share/Share'
 import { CiSearch } from 'react-icons/ci'
 import { CiShare2 } from 'react-icons/ci'
 // import '../../global.css'
@@ -46,7 +45,7 @@ const Product = ({ product, loading, error, productID }) => {
 
   const [openEmoji, setOpenEmoji] = useState(false)
   const [ReadMore, setIsReadMore] = useState(false)
-  const [shareIcons, setShareIcons] = useState(false)
+
   const [uploadFirstLogo, setUploadFirstLogo] = useState('')
   const [selectedCustomization, setSelectedCustomization] = useState()
   const [choosenCustomization, setChoosenCustomization] = useState(null)
@@ -54,7 +53,7 @@ const Product = ({ product, loading, error, productID }) => {
   const [imagesArray, setImagesArray] = useState([])
   const [singleImage, setSingleImage] = useState('')
   const [nameOfDecorations, setNameOfDecorations] = useState([])
-  const [sizeNotSure, setSizeNotSure] = useState(false)
+  const [sizeNotSure, setSizeNotSure] = useState(true)
   const [isSample, setIsSample] = useState(false)
   const [swiftSwag, setSwiftSwag] = useState(false)
   const [selectedColor, setSelectedColor] = useState(null)
@@ -155,8 +154,8 @@ const Product = ({ product, loading, error, productID }) => {
         ? product?.ltm_usd.replace(/[^\d]/g, '')
         : 0
       : product?.ltm_cad
-      ? product?.ltm_cad.replace(/[^\d]/g, '')
-      : 0
+        ? product?.ltm_cad.replace(/[^\d]/g, '')
+        : 0
   let supplierFees =
     country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
   const getPrice = () => {
@@ -230,6 +229,7 @@ const Product = ({ product, loading, error, productID }) => {
   //   }
   //   setQuantity(sizeQuantity)
   // }
+
 
   const handleQuantitySize = (e) => {
     let newSizeQuantity
@@ -441,27 +441,23 @@ const Product = ({ product, loading, error, productID }) => {
                     <div className={Styles.border_svg}>
                       <MdOutlineFavoriteBorder
                         fontSize={25}
-                        className={Styles.icon}
-                      />
+                        className={Styles.icon} />
+
                     </div>
                     <div className={Styles.border_svg}>
-                      <Image src={images.ZooomSvg} className={Styles.icon} />
+                      <Image src={images.ZooomSvg}
+                        className={Styles.icon} />
                     </div>
                     <div className={Styles.border_svg}>
                       <CiShare2
                         fontSize={25}
                         // color="#D3D3D3"
                         className={Styles.icon}
-                        onClick={() => setShareIcons(true)}
                       />
                     </div>
-                    {shareIcons && (
-                      <>
-                        <Share setShareIcons={setShareIcons} item={product} />
-                      </>
-                    )}
                   </div>
                   <div className={Styles.detail_page_image_content}>
+                    <div className={Styles.product_big_image}>
                     {singleImage && (
                       <Image
                         src={singleImage}
@@ -472,9 +468,10 @@ const Product = ({ product, loading, error, productID }) => {
                         className={Styles.product_image}
                       />
                     )}
+                    </div>
                   </div>
                   {imagesArray && imagesArray.length > 0 && (
-                    <div>
+                    <div className={Styles.margin_top}>
                       <Carousel
                         swipeable={false}
                         draggable={false}
@@ -528,6 +525,7 @@ const Product = ({ product, loading, error, productID }) => {
               </div>
 
               <div className={Styles.detail_page_right_section}>
+                <div className={Styles.page_right_content}>
                 <div className={Styles.certBy}>
                   {product?.certBy &&
                     JSON.parse(product?.certBy).map((data) => (
@@ -539,6 +537,7 @@ const Product = ({ product, loading, error, productID }) => {
                     ))}
                 </div>
 
+              
                 <div className={Styles.title}>
                   <h4>
                     {product?.product_title}
@@ -695,11 +694,10 @@ const Product = ({ product, loading, error, productID }) => {
                           ([key, val], index) =>
                             val !== undefined && (
                               <p
-                                className={`${Styles.btn} ${
-                                  selectedCustomization === index
-                                    ? Styles.active
-                                    : ''
-                                }`}
+                                className={`${Styles.btn} ${selectedCustomization === index
+                                  ? Styles.active
+                                  : ''
+                                  }`}
                                 onClick={() =>
                                   selectCustomizations(index, key, val)
                                 }
@@ -775,81 +773,77 @@ const Product = ({ product, loading, error, productID }) => {
                     </div>
                   </div>
                 </div> */}
-                {!isSample && (
-                  <div className={Styles.para_text}>
-                    <div className={Styles.common_header}>
-                      <p class={Styles.font_weight}>
-                        Upload Logo/ Artwork{' '}
-                        <span className={Styles.fw400}>
-                          (.AI or .EPS vector format)
-                        </span>
-                      </p>
-                      <Image
-                        src={images.Info_Icon}
-                        width={18}
-                        height={18}
-                        alt="info_icon"
-                      />
-                    </div>
+                <div className={Styles.para_text}>
+                  <div className={Styles.common_header}>
+                    <p className={Styles.font_weight}>
+                      Upload Logo/ Artwork{' '}
+                      <span className={Styles.fw400}>
+                        (.AI or .EPS vector format)
+                      </span>
+                    </p>
+                    <Image
+                      src={images.Info_Icon}
+                      width={18}
+                      height={18}
+                      alt="info_icon"
+                    />
+                  </div>
 
-                    <div className={Styles.upload_logo}>
-                      <div>
-                        {uploadFirstLogo ? (
-                          <>
-                            <div className={Styles.position_relative}>
-                              <Image
-                                src={URL.createObjectURL(uploadFirstLogo)}
-                                width={150}
-                                height={150}
-                              />
-                              <RxCross2
-                                onClick={() => removeLogo(setUploadFirstLogo)}
-                                className={Styles.cross_logo}
-                              />
-                            </div>
-                          </>
-                        ) : (
-                          <>
-                            <label
-                              htmlFor="file1"
-                              className={Styles.uploaded_content}
-                            >
-                              <p>
-                                <span className={Styles.colorLight}>
-                                  Drop your
-                                </span>
-                                front
-                                <span className={Styles.colorLight}>
-                                  design
-                                </span>
-                              </p>
-                              <p className={Styles.fw400}>
-                                <span
-                                  className={`${Styles.colorLight} ${Styles.fw400}`}
-                                >
-                                  or
-                                </span>
-                                browse
-                                <span
-                                  className={`${Styles.colorLight} ${Styles.fw400}`}
-                                >
-                                  your files
-                                </span>
-                              </p>
-                              <input
-                                type="file"
-                                name=""
-                                id="file1"
-                                accept=".svg,.jpg,.jpeg .eps, .cdr, .ai, .pdf, image/svg+xml, application/postscript, application/pdf,image/jpeg, image/png"
-                                onChange={uploadFirstFile}
-                              />
-                            </label>
-                          </>
-                        )}
-                      </div>
+                  <div className={Styles.upload_logo}>
+                    <div>
+                      {uploadFirstLogo ? (
+                        <>
+                          <div className={Styles.position_relative}>
+                            <Image
+                              src={URL.createObjectURL(uploadFirstLogo)}
+                              width={150}
+                              height={150}
+                            />
+                            <RxCross2
+                              onClick={() => removeLogo(setUploadFirstLogo)}
+                              className={Styles.cross_logo}
+                            />
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <label
+                            htmlFor="file1"
+                            className={Styles.uploaded_content}
+                          >
+                            <p>
+                              <span className={Styles.colorLight}>
+                                Drop your
+                              </span>
+                              front
+                              <span className={Styles.colorLight}>design</span>
+                            </p>
+                            <p className={Styles.fw400}>
+                              <span
+                                className={`${Styles.colorLight} ${Styles.fw400}`}
+                              >
+                                or
+                              </span>
+                              browse
+                              <span
+                                className={`${Styles.colorLight} ${Styles.fw400}`}
+                              >
+                                your files
+                              </span>
+                            </p>
+                            <input
+                              type="file"
+                              name=""
+                              id="file1"
+                              accept=".svg,.jpg,.jpeg .eps, .cdr, .ai, .pdf, image/svg+xml, application/postscript, application/pdf,image/jpeg, image/png"
+                              onChange={uploadFirstFile}
+                            />
+                          </label>
+                        </>
+                      )}
                     </div>
                   </div>
-                )}
+                </div>
                 <div className={Styles.border_top}>
                   <div className={Styles.number_of_units}>
                     <div className={Styles.common_header}>
@@ -942,6 +936,7 @@ const Product = ({ product, loading, error, productID }) => {
                     </div>
                     <p> I don’t have sizes yet</p>
                   </div>
+                </div>
                 </div>
                 {/* </div> */}
                 <div className={Styles.position_sticky}>
