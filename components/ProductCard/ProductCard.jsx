@@ -95,7 +95,7 @@ const ProductCard = ({ item, fromSingleProduct }) => {
           </div>
           <div className={Styles.hidden_icons}>
             <div className={Styles.icons}>
-              <span
+              {/* <span
                 className={Styles.border_svg}
                 style={{ backgroundColor: favoriteIconColor ? '#A2D061' : '' }}
               >
@@ -107,7 +107,7 @@ const ProductCard = ({ item, fromSingleProduct }) => {
                   }`}
                   onClick={() => addToWishlist(item)}
                 />
-              </span>
+              </span> */}
               {/* <span className={Styles.border_svg}>
                 <CiSearch
                   fontSize={25}

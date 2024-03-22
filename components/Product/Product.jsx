@@ -16,7 +16,7 @@ import { CiShare2 } from 'react-icons/ci'
 import {
   setDecorationItemObjSingleProductPage,
   setFinalDecorationKeyVal,
-  setIsProductPage
+  setIsProductPage,
 } from 'redux-setup/randomSlice'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
@@ -90,8 +90,35 @@ const Product = ({ product, loading, error, productID }) => {
 
   console.log(finalDecorationKeyVal, 'finalDecorationKeyVal')
 
+  // const handleQuantity = (e) => {
+  //   if (isSample) {
+  //     setQuantity(e.target.value > 3 ? 3 : e.target.value)
+  //   } else {
+  //     setQuantity(e.target.value)
+  //   }
+  // }
+  // const handleQuantity = (e) => {
+  //   const value = parseInt(e.target.value) // Parse value to integer
+  //   if (isSample) {
+  //     setQuantity(value > 3 ? 3 : value)
+  //   } else {
+  //     setQuantity(value)
+  //   }
+  // }
+
   const handleQuantity = (e) => {
-    setQuantity(e.target.value)
+    const value = parseInt(e.target.value) // Parse value to integer
+    if (isSample) {
+      if (value <= 0) {
+        setQuantity(0) // Ensure quantity is not negative
+      } else if (value > 3) {
+        setQuantity(3) // Limit quantity to 3
+      } else {
+        setQuantity(value)
+      }
+    } else {
+      setQuantity(value)
+    }
   }
 
   useEffect(() => {
@@ -118,6 +145,7 @@ const Product = ({ product, loading, error, productID }) => {
   }, [quantity])
 
   const country = useSelector((state) => state.country.country)
+
   const cartItems = useSelector((state) => state.cart.cartItems)
   const decorations = useSelector(
     (state) => state.random.decorationItemObjSingleProductPage
@@ -431,7 +459,7 @@ const Product = ({ product, loading, error, productID }) => {
   useEffect(() => {
     dispatch(setIsProductPage(true))
   }, [])
- 
+
   return (
     <>
       {loading ? (
@@ -445,15 +473,15 @@ const Product = ({ product, loading, error, productID }) => {
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
                   <div className={Styles.icon_wrapper}>
-                    <div className={Styles.border_svg}>
+                    {/* <div className={Styles.border_svg}>
                       <MdOutlineFavoriteBorder
                         fontSize={25}
                         className={Styles.icon}
                       />
-                    </div>
-                    <div className={Styles.border_svg}>
+                    </div> */}
+                    {/* <div className={Styles.border_svg}>
                       <Image src={images.ZooomSvg} className={Styles.icon} />
-                    </div>
+                    </div> */}
                     <div className={Styles.border_svg}>
                       <CiShare2
                         fontSize={25}
@@ -637,7 +665,6 @@ const Product = ({ product, loading, error, productID }) => {
                                 selectedColor={selectedColor}
                                 productID={productID}
                                 fromSingleProduct
-
                               />
                             )
                           )}
@@ -869,8 +896,7 @@ const Product = ({ product, loading, error, productID }) => {
                     <div className={Styles.input_data_required}>
                       <input
                         type="number"
-                        placeholder={product?.column_1_qty}
-                        disabled={isSample}
+                        // placeholder={product?.column_1_qty}
                         name="orderQuantity"
                         value={isSample ? '3' : quantity}
                         onChange={handleQuantity}
@@ -890,8 +916,11 @@ const Product = ({ product, loading, error, productID }) => {
                       </span>
                     </div>
                   </div>
+                  {console.log(sizeNotSure, 'sizeNotSure')}
                   <div className={Styles.select_size_quantity}>
-                    {!sizeNotSure && (
+                    {sizeNotSure || isSample ? (
+                      ''
+                    ) : (
                       <>
                         <div className={Styles.common_header}>
                           <p>Select sizes quantity</p>
@@ -933,20 +962,25 @@ const Product = ({ product, loading, error, productID }) => {
                       {' '}
                       Not sure about size yet
                     </label> */}
-                    <div className={Styles.flex_row}>
-                      <div className={Styles.centering}>
-                        <label htmlFor="sizeCheckbox" className={Styles.switch}>
-                          <input
-                            type="checkbox"
-                            id="sizeCheckbox"
-                            checked={sizeNotSure} //setSizeNotSure
-                            onChange={() => setSizeNotSure(!sizeNotSure)}
-                          />
-                          <span className={Styles.slider}></span>{' '}
-                        </label>
+                    {!isSample && (
+                      <div className={Styles.flex_row}>
+                        <div className={Styles.centering}>
+                          <label
+                            htmlFor="sizeCheckbox"
+                            className={Styles.switch}
+                          >
+                            <input
+                              type="checkbox"
+                              id="sizeCheckbox"
+                              checked={sizeNotSure} //setSizeNotSure
+                              onChange={() => setSizeNotSure(!sizeNotSure)}
+                            />
+                            <span className={Styles.slider}></span>{' '}
+                          </label>
+                        </div>
+                        <p> I don’t have sizes yet</p>
                       </div>
-                      <p> I don’t have sizes yet</p>
-                    </div>
+                    )}
                   </div>
                 </div>
                 {/* </div> */}
@@ -972,11 +1006,16 @@ const Product = ({ product, loading, error, productID }) => {
                       </div>
 
                       <div className={Styles.price_section}>
-                        <p>{`Price ${
-                          totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
-                        }/unit`}</p>
+                        {!isSample && (
+                          <p>{`Price ${
+                            totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
+                          }/unit`}</p>
+                        )}
                         <p>
-                          ${quantity ? (quantity * +totalPrice).toFixed(2) : 0}
+                          $
+                          {isSample
+                            ? 3 * col1Price
+                            : (quantity * +totalPrice).toFixed(2)}
                         </p>
                       </div>
                     </div>

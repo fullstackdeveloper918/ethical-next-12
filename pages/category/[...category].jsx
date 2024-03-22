@@ -22,7 +22,7 @@ const index = () => {
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
   const allCategories = useSelector((state) => state.category.allCategories)
   const isCategoryPage = useSelector((state) => state.random.isCategoryPage)
-// isCategoryPage === true ?
+  // isCategoryPage === true ?
   const collectionForUrl = useSelector(
     (state) => state.category.collectionForUrl
   )
@@ -95,14 +95,16 @@ const index = () => {
           </div>
           <div className={Styles.textContent}>
             <h4>Related Product</h4>
-            <h2>Travel Bags & Accessories</h2>
+            <h2>Bags</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-              unde voluptatum debitis incidunt, esse, modi tenetur sapiente
-              dignissimos itaque dolore officiis praesentium similique cum
-              ducimus. Nostrum consectetur facilis iure fugiat.
+              Bags refer to a category of products that are designed for
+              carrying and storing various items. They come in a wide range of
+              styles, sizes, and materials, each catering to specific needs and
+              preferences
             </p>
-            <button type="button"> Shop Now</button>
+            <button type="button" onClick={() => router.push(`/category/bags`)}>
+              Shop Now
+            </button>
           </div>
         </div>
       </div>
@@ -114,12 +116,16 @@ const index = () => {
               <>
                 <div className={Styles.img_content_1}>
                   <div className={Styles.imgContent}>
-                    <Image src={images.all_tech} layout="fill" alt="" />
+                    <Image
+                      src={allCategories[data].image}
+                      layout="fill"
+                      alt=""
+                    />
                   </div>
                   <div className={Styles.textContent}>
                     <div>
                       <h3>{data}</h3>
-                      <p>2200 products</p>
+                      {/* {allCategories && <p>{allCategories[data].count}</p>} */}
                     </div>
 
                     <button onClick={() => router.push(`/category/${data}`)}>
