@@ -1205,8 +1205,8 @@ p.fw400 {
 @media screen and (max-width: 1440px) {
   
 .add_to_bulk_container button {
-  font-size: 14px;  
-  padding: 16px 0;
+  font-size: 13px;  
+  padding: 16px 5;
 }
    .detail_page_right_section .title h4 {
     font-size: 20px;
