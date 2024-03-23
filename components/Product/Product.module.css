@@ -1317,23 +1317,24 @@ height: 35px;
 }
 
 }
-@media screen and (max-width: 1200px) {
-.sticky_bottom{
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.add_to_bulk_container {
-width: 100%;
-  
-}
-.standard_business_section,.price_section {
-  width: 48%;
-}
-}
+/* @media screen and (max-width: 1200px) {
+
+} */
 @media screen and (max-width: 1199px) {
   .sticky_bottom,
   .business_box{
     width: 100%;
+  }
+  .sticky_bottom{
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .add_to_bulk_container {
+  width: 100%;
+    
+  }
+  .standard_business_section,.price_section {
+    width: 100%
   }
 }
 @media screen and (max-width: 1160px) {

@@ -25,8 +25,8 @@
   align-items: center;
   color: #fff;
   width: 100%;
-  max-width: 1368px;
-  padding: 0 15px;
+  max-width: 98%;
+  /* padding: 0 15px; */
   margin: 0 auto;
   font-family: 'DM Sans' !important;
   font-size: 14px;
@@ -447,7 +447,7 @@
     color: #fff;
     width: 100%;
     max-width: 98%;
-    padding: 0 15px;
+    /* padding: 0 15px; */
     margin: 10px auto 0px;
     font-family: 'DM Sans' !important;
     font-size: 14px;
