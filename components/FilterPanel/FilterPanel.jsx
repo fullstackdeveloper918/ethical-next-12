@@ -53,7 +53,7 @@ const FilterPanel = ({
     } else {
       setOpenIndex([...openIndex, index])
     }
-    setIsActive(!isActive)
+    // setIsActive(!isActive)
   }
   console.log(openIndex, 'openIndex')
   const handleCheckboxChange = (event, item) => {
@@ -167,7 +167,7 @@ const FilterPanel = ({
                   >
                     <div>{item.label}</div>
                     <div className={Styles.accordion_icon}>
-                      {/* {isActive && openIndex?.includes(index) ? '-' : '+'} */}
+                      {openIndex?.includes(index) ? '-' : '+'}
                     </div>
                   </div>
                 </div>
