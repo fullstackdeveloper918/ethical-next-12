@@ -40,6 +40,7 @@ const FilterPanel = ({
   const handleCheckboxChange = (event, item) => {
     const { name } = event.target
     if (item.label === 'uniqueProductType') {
+      console.log(item.children, 'from uniqueProductType')
       Object.keys(item.children).forEach((key) => {
         if (item.children[key] === name) {
           const index = productTypeArray.indexOf(key)
@@ -91,6 +92,18 @@ const FilterPanel = ({
     }
   }
 
+  const badge = (item, array) => {
+    return <div onClick={() => console.log({ item, array })}>{item}</div>
+  }
+
+  useEffect(() => {
+    let uniqueProductTypeObj = showAllFilters.filter(
+      (item) => item.label === 'uniqueProductType'
+    )
+    let obj = uniqueProductTypeObj[0].children
+    const newArray = productTypeArray.map((productId) => obj[productId])
+  }, [productTypeArray])
+
   useEffect(() => {
     let arr = []
     if (showAllFilters.length > 0) {
@@ -103,6 +116,10 @@ const FilterPanel = ({
       setAllFiltersLengthArray(arr)
     }
   }, [showAllFilters])
+  // console.log(
+  //   showAllFilters.filter((item) => item.label === 'uniqueProductType'),
+  //   'showAllFilters'
+  // )
 
   useEffect(() => {
     setOpenIndex(allFiltersLengthArray)
@@ -129,6 +146,12 @@ const FilterPanel = ({
     }
   }, [allFilters])
 
+  useEffect(() => {
+    // allFilteredStateValuesArray
+    let arr = []
+    // arr.push()
+  }, [swiftSwag])
+
   return (
     <>
       {active && (
@@ -148,6 +171,11 @@ const FilterPanel = ({
             Clear All
           </h4>
           <p>{filteredColors.map((item) => item)}</p>
+          <p>
+            {productTypeArray &&
+              productTypeArray.length > 0 &&
+              productTypeArray.map((item) => badge(item, productTypeArray))}
+          </p>
 
           {/* {allFilteredStateValuesArray &&
             allFilteredStateValuesArray.length > 0 && (

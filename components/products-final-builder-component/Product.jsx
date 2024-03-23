@@ -1,6 +1,5 @@
 'use client'
-import React, { useState, useEffect, useCallback } from 'react'
-import Loaders from '../loaders/Loaders'
+import React, { useState, useEffect } from 'react'
 import Filter from '../Filter/Filter'
 import Products from '../Products/Products'
 import global from '../../styles/global.module.css'

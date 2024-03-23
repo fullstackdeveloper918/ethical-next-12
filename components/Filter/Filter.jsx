@@ -26,7 +26,6 @@ const Filter = ({
   const router = useRouter()
 
   const [active, setActive] = useState('')
-  const [filtersState, setFiltersState] = useState([])
 
   const selectedOptionValue = useSelector(
     (state) => state.cart.selectedOptionValue
