@@ -55,7 +55,7 @@ const Product = ({ product, loading, error, productID }) => {
   const [imagesArray, setImagesArray] = useState([])
   const [singleImage, setSingleImage] = useState('')
   const [nameOfDecorations, setNameOfDecorations] = useState([])
-  const [sizeNotSure, setSizeNotSure] = useState(true)
+  const [sizeNotSure, setSizeNotSure] = useState(false)
   const [isSample, setIsSample] = useState(false)
   const [swiftSwag, setSwiftSwag] = useState(false)
   const [selectedColor, setSelectedColor] = useState(null)
@@ -986,42 +986,6 @@ const Product = ({ product, loading, error, productID }) => {
                       </button>
                     </div>
                   </div>
-                  {!isSample && (
-                    <>
-                      <div className={Styles.total_estimate_container}>
-                        <p className={Styles.total_estimate_container_text}>
-                          Total estimate doesn't include taxes and shipping
-                          fees. Payment is made after mockups are approved.
-                        </p>
-                      </div>
-                      <div className={Styles.bottom_icons}>
-                        <div className={Styles.container}>
-                          <div className={Styles.content}>
-                            <span>
-                              <Image
-                                src={images.Fast_Delivery_Icon}
-                                width={30}
-                                height={30}
-                                alt="Fast_Delivery_Icon"
-                              />
-                            </span>
-                            <span>Fast Delivery</span>
-                          </div>
-                          <div className={Styles.content}>
-                            <span>
-                              <Image
-                                src={images.Replacement_Icon}
-                                width={30}
-                                height={30}
-                                alt="Replacement_Icon"
-                              />
-                            </span>
-                            <span>30 Days Replacement</span>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}
                 </div>
               </div>
             </div>
