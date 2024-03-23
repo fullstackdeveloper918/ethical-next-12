@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Style from './Modal.module.css'
-import { setSwiftSwagTime } from 'redux-setup/randomSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { useRouter } from 'next/router'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
+import { setSwiftSwag } from 'redux-setup/FiltersSlice'
+import { toast } from 'react-toastify'
+
 const Modal = () => {
   const dispatch = useDispatch()
 
@@ -13,16 +14,7 @@ const Modal = () => {
   const [minDate, setMinDate] = useState(new Date())
   const [value, onChange] = useState(null)
   const [isOpenCalender, setIsOpenCalender] = useState(false)
-  const handleSubmit = () => {
-    dispatch(setSwiftSwagTime(selectedOption))
-    if (selectedOption === 'within10Days') {
-      setIsOpenCalender(true)
-    } else {
-      setIsOpenModal(false)
-    }
-  }
-
-  let swiftSwag = useSelector((state) => state.random.swiftSwag)
+  let swiftSwag = useSelector((state) => state.filter.swiftSwag)
   useEffect(() => {
     if (swiftSwag === '') {
       setIsOpenModal(true)
@@ -30,12 +22,18 @@ const Modal = () => {
   }, [])
   useEffect(() => {
     let minSelectableDate = new Date()
-    if (selectedOption === 'within10Days') {
-    } else if (selectedOption === 'flexible') {
-      minSelectableDate.setDate(minSelectableDate.getDate() + 10)
-    }
+    minSelectableDate.setDate(minSelectableDate.getDate() + 10)
     setMinDate(minSelectableDate)
   }, [selectedOption])
+
+  const handleCloseModal = () => {
+    if (value === null) {
+      toast.error('Please select date from calender')
+    } else {
+      dispatch(setSwiftSwag(true))
+      setIsOpenModal(false)
+    }
+  }
   return (
     <>
       {isOpenModal && !isOpenCalender && (
@@ -68,8 +66,7 @@ const Modal = () => {
                           type="button"
                           className={Style.Popup_btnone}
                           onClick={() => {
-                            setSelectedOption('flexible')
-                            dispatch(setSwiftSwagTime('flexible'))
+                            dispatch(setSwiftSwag(false))
                             setIsOpenModal(false)
                           }}
                         >
@@ -81,7 +78,6 @@ const Modal = () => {
                           type="button"
                           className={Style.Popup_btntwo}
                           onClick={() => {
-                            setSelectedOption('within10Days')
                             setIsOpenCalender(true)
                           }}
                         >
@@ -119,13 +115,14 @@ const Modal = () => {
                     <button
                       type="button"
                       className={Style.Popup_btncalender}
-                      onClick={() => setIsOpenModal(false)}
+                      onClick={() => setIsOpenCalender(false)}
                     >
                       Cancel
                     </button>
                     <button
                       type="button"
                       className={Style.Popup_btncalenderTwo}
+                      onClick={handleCloseModal}
                     >
                       Continue
                     </button>

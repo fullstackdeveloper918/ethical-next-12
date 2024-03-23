@@ -20,11 +20,12 @@ const FilterPanel = ({
   const [inputSlider, setInputSlider] = useState(0)
   const [openIndex, setOpenIndex] = useState([])
   const [allFiltersLengthArray, setAllFiltersLengthArray] = useState(0)
-  const [isActive, setIsActive] = useState(true)
   const [swagRadio, setSwagRadio] = useState('No SwiftSwag')
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
-
+  const colorsObj = useSelector((state) => state.filter.colorsObj)
+  const swiftSwag = useSelector((state) => state.filter.swiftSwag)
+  console.log(swiftSwag, 'swiftSwag')
   useEffect(() => {
     let categoriesList = []
     if (Object.keys(allFilters).length > 0) {
@@ -53,9 +54,7 @@ const FilterPanel = ({
     } else {
       setOpenIndex([...openIndex, index])
     }
-    // setIsActive(!isActive)
   }
-  console.log(openIndex, 'openIndex')
   const handleCheckboxChange = (event, item) => {
     const { name, checked } = event.target
     if (item.label === 'uniqueProductType') {
@@ -167,15 +166,19 @@ const FilterPanel = ({
                   >
                     <div>{item.label}</div>
                     <div className={Styles.accordion_icon}>
-                      {openIndex?.includes(index) ? '-' : '+'}
+                      {openIndex.length > 0
+                        ? openIndex?.includes(index)
+                          ? '-'
+                          : '+'
+                        : null}
                     </div>
                   </div>
                 </div>
 
-                {/* {isActive && openIndex === index && (
+                {openIndex.length > 0 && openIndex.includes(index) && (
                   <div className={Styles.open_accordionWrap}>
-                    {isActive &&
-                    openIndex === index &&
+                    {openIndex.length > 0 &&
+                    openIndex.includes(index) &&
                     item.label === 'Colors' ? (
                       <div className={Styles.colors_container}>
                         {Object.keys(colorsObj).length > 0 &&
@@ -192,8 +195,8 @@ const FilterPanel = ({
                             )
                           )}
                       </div>
-                    ) : isActive &&
-                      openIndex === index &&
+                    ) : openIndex.length > 0 &&
+                      openIndex.includes(index) &&
                       item.label === 'uniqueProductType' ? (
                       <div className={Styles.custom_checkbox}>
                         {Object.values(item.children).map(
@@ -216,8 +219,8 @@ const FilterPanel = ({
                           )
                         )}
                       </div>
-                    ) : isActive &&
-                      openIndex === index &&
+                    ) : openIndex.length > 0 &&
+                      openIndex.includes(index) &&
                       item.label === 'Swift swag' ? (
                       <div className={Styles.custom_checkbox}>
                         {Object.values(item.children).map(
@@ -241,8 +244,8 @@ const FilterPanel = ({
                           )
                         )}
                       </div>
-                    ) : isActive &&
-                      openIndex === index &&
+                    ) : openIndex.length > 0 &&
+                      openIndex.includes(index) &&
                       item.label === 'Decoration' ? (
                       <div className={Styles.custom_checkbox}>
                         {Object.values(item.children).map(
@@ -266,8 +269,8 @@ const FilterPanel = ({
                           )
                         )}
                       </div>
-                    ) : isActive &&
-                      openIndex === index &&
+                    ) : openIndex.length > 0 &&
+                      openIndex.includes(index) &&
                       item.label === 'Emoji ratings' ? (
                       <div className={Styles.custom_checkbox}>
                         {Object.values(item.children).map(
@@ -290,31 +293,9 @@ const FilterPanel = ({
                           )
                         )}
                       </div>
-                    ) : (
-                      <div className={Styles.custom_checkbox}>
-                        {Object.values(item.children).map(
-                          (child, childIndex) => (
-                            <li
-                              key={childIndex}
-                              className={Styles.filterPanel_list_item}
-                            >
-                              <input
-                                type="checkbox"
-                                id={`checkbox_id_${childIndex}`}
-                                name={child}
-                                // onChange={handleCheckboxChange}
-                                // checked={filteredList.includes(child)}
-                              />
-                              <label htmlFor={`checkbox_id_${childIndex}`}>
-                                {child}
-                              </label>
-                            </li>
-                          )
-                        )}
-                      </div>
-                    )}
+                    ) : null}
                   </div>
-                )} */}
+                )}
               </div>
             )
           })}

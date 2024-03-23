@@ -5,6 +5,7 @@ const initialState = {
   allFilters: {},
   showAllFilters: [],
   colorsObj: {},
+  swiftSwag: '',
 }
 
 export const FiltersSlice = createSlice({
@@ -23,9 +24,17 @@ export const FiltersSlice = createSlice({
     setColorsObj: (state, action) => {
       state.colorsObj = action.payload
     },
+    setSwiftSwag: (state, action) => {
+      state.swiftSwag = action.payload
+    },
   },
 })
 
-export const { filterPrice, setAllFilters, setShowAllFilters, setColorsObj } =
-  FiltersSlice.actions
+export const {
+  filterPrice,
+  setAllFilters,
+  setShowAllFilters,
+  setColorsObj,
+  setSwiftSwag,
+} = FiltersSlice.actions
 export default FiltersSlice.reducer
