@@ -28,7 +28,6 @@ const Filter = ({
   const [active, setActive] = useState('')
   const [filtersState, setFiltersState] = useState([])
 
-  const searchState = useSelector((state) => state.cart.searchState)
   const selectedOptionValue = useSelector(
     (state) => state.cart.selectedOptionValue
   )

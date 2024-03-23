@@ -13,11 +13,10 @@ const Dot = ({
   filteredColors,
   setFilteredColors,
   productID,
-  fromSingleProduct
+  fromSingleProduct,
 }) => {
   const router = useRouter()
   const isCategoryPage = useSelector((state) => state.random.isCategoryPage)
-  let isProductPage = useSelector((state) => state.random.isProductPage)
 
   const handleSelect = (color) => {
     if (fromFilters) {
@@ -37,7 +36,7 @@ const Dot = ({
 
   const setOutlineColor = () => {
     if (fromFilters) {
-      return ''
+      return filteredColors.includes(color) && '#a2d061'
     } else {
       return selectedColor === color ? '#a2d061' : ''
     }
@@ -46,10 +45,14 @@ const Dot = ({
     <>
       {color && (
         <div
-          className={`${Styles.colored_dot} ${isCategoryPage === true ? Styles.categorydot_wrap : ''}${fromSingleProduct && Styles.product_color}`}
+          className={`${Styles.colored_dot} ${
+            isCategoryPage === true ? Styles.categorydot_wrap : ''
+          }${fromSingleProduct && Styles.product_color}`}
           style={{
             background: color,
             outlineColor: setOutlineColor(),
+            outlineWidth: '2px',
+            outlineOffset: '-2px',
             // color: isCategoryPage === true ? 'red': 'pink'
           }}
           onClick={() => handleSelect(color)}

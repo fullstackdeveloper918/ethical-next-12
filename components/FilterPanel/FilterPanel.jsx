@@ -22,31 +22,12 @@ const FilterPanel = ({
   const [active, setActive] = useState(false)
   const [openIndex, setOpenIndex] = useState([])
   const [allFiltersLengthArray, setAllFiltersLengthArray] = useState(0)
+  const [allFilteredStateValuesArray, setAllFilteredStateValuesArray] =
+    useState([])
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
   const colorsObj = useSelector((state) => state.filter.colorsObj)
   const swiftSwag = useSelector((state) => state.filter.swiftSwag)
-
-  useEffect(() => {
-    let categoriesList = []
-    if (Object.keys(allFilters).length > 0) {
-      Object.entries(allFilters).map(([key, value]) => {
-        let obj = {}
-        obj.id = key
-        obj.label = key
-        obj.children = value
-        categoriesList.push(obj)
-      })
-      dispatch(setShowAllFilters(categoriesList))
-      let colors = categoriesList.filter((c) => c.label === 'Colors')
-      if (colors.length > 0) {
-        let colorsObjToUse = colors[0].children
-        dispatch(setColorsObj(colorsObjToUse))
-      } else {
-        dispatch(setColorsObj({}))
-      }
-    }
-  }, [allFilters])
 
   const toggleAccordion = (index) => {
     if (openIndex.includes(index)) {
@@ -126,6 +107,28 @@ const FilterPanel = ({
   useEffect(() => {
     setOpenIndex(allFiltersLengthArray)
   }, [allFiltersLengthArray])
+
+  useEffect(() => {
+    let categoriesList = []
+    if (Object.keys(allFilters).length > 0) {
+      Object.entries(allFilters).map(([key, value]) => {
+        let obj = {}
+        obj.id = key
+        obj.label = key
+        obj.children = value
+        categoriesList.push(obj)
+      })
+      dispatch(setShowAllFilters(categoriesList))
+      let colors = categoriesList.filter((c) => c.label === 'Colors')
+      if (colors.length > 0) {
+        let colorsObjToUse = colors[0].children
+        dispatch(setColorsObj(colorsObjToUse))
+      } else {
+        dispatch(setColorsObj({}))
+      }
+    }
+  }, [allFilters])
+
   return (
     <>
       {active && (
@@ -145,6 +148,11 @@ const FilterPanel = ({
             Clear All
           </h4>
           <p>{filteredColors.map((item) => item)}</p>
+
+          {/* {allFilteredStateValuesArray &&
+            allFilteredStateValuesArray.length > 0 && (
+              <p>{allFilteredStateValuesArray.map((item) => item)}</p>
+            )} */}
         </div>
 
         <div className={Styles.filterPanel_ProductCollection_list}>
