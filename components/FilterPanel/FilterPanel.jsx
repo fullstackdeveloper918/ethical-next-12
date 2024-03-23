@@ -2,12 +2,15 @@ import Styles from '../Filter/Filter.module.css'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Dot from '@components/custom-colored-dot/Dot'
-import { setColorsObj, setShowAllFilters } from 'redux-setup/FiltersSlice'
+import {
+  setColorsObj,
+  setShowAllFilters,
+  setSwiftSwag,
+} from 'redux-setup/FiltersSlice'
 
 const FilterPanel = ({
   setFilteredColors,
   filteredColors,
-  setIsSwiftSwag,
   setDecorationsArray,
   decorationsArray,
   setProductTypeArray,
@@ -17,15 +20,13 @@ const FilterPanel = ({
 }) => {
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
-  const [inputSlider, setInputSlider] = useState(0)
   const [openIndex, setOpenIndex] = useState([])
   const [allFiltersLengthArray, setAllFiltersLengthArray] = useState(0)
-  const [swagRadio, setSwagRadio] = useState('No SwiftSwag')
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
   const colorsObj = useSelector((state) => state.filter.colorsObj)
   const swiftSwag = useSelector((state) => state.filter.swiftSwag)
-  console.log(swiftSwag, 'swiftSwag')
+
   useEffect(() => {
     let categoriesList = []
     if (Object.keys(allFilters).length > 0) {
@@ -56,7 +57,7 @@ const FilterPanel = ({
     }
   }
   const handleCheckboxChange = (event, item) => {
-    const { name, checked } = event.target
+    const { name } = event.target
     if (item.label === 'uniqueProductType') {
       Object.keys(item.children).forEach((key) => {
         if (item.children[key] === name) {
@@ -84,7 +85,6 @@ const FilterPanel = ({
         }
       })
     } else if (item.label === 'Emoji ratings') {
-      console.log(item, 'itemitem')
       Object.keys(item.children).forEach((key) => {
         if (item.children[key] === name) {
           const index = emojiTypeArray.indexOf(key)
@@ -103,20 +103,12 @@ const FilterPanel = ({
   }
 
   const handleSwagChange = (event) => {
-    if (event.target.value === 'SwiftSwag') {
-      setSwagRadio('SwiftSwag')
-    } else if (event.target.value === 'No SwiftSwag') {
-      setSwagRadio('No SwiftSwag')
+    if (event.target.value === 'true') {
+      dispatch(setSwiftSwag(true))
+    } else if (event.target.value === 'false') {
+      dispatch(setSwiftSwag(false))
     }
   }
-
-  useEffect(() => {
-    if (swagRadio === 'No SwiftSwag') {
-      setIsSwiftSwag(false)
-    } else if (swagRadio === 'SwiftSwag') {
-      setIsSwiftSwag(true)
-    }
-  }, [swagRadio])
 
   useEffect(() => {
     let arr = []
@@ -224,24 +216,27 @@ const FilterPanel = ({
                       item.label === 'Swift swag' ? (
                       <div className={Styles.custom_checkbox}>
                         {Object.values(item.children).map(
-                          (child, childIndex) => (
-                            <li
-                              key={childIndex}
-                              className={Styles.filterPanel_list_item}
-                            >
-                              <input
-                                type="checkbox"
-                                id={`checkbox_id_${childIndex}`}
-                                name={child}
-                                value={child}
-                                checked={swagRadio === child}
-                                onChange={handleSwagChange}
-                              />
-                              <label htmlFor={`checkbox_id_${childIndex}`}>
-                                {child}
-                              </label>
-                            </li>
-                          )
+                          (child, childIndex) => {
+                            let val = child === 'SwiftSwag'
+                            return (
+                              <li
+                                key={childIndex}
+                                className={Styles.filterPanel_list_item}
+                              >
+                                <input
+                                  type="radio"
+                                  id={`checkbox_id_${childIndex}`}
+                                  name="radioSwiftSwag"
+                                  value={val}
+                                  checked={swiftSwag == val}
+                                  onChange={handleSwagChange}
+                                />
+                                <label htmlFor={`checkbox_id_${childIndex}`}>
+                                  {child}
+                                </label>
+                              </li>
+                            )
+                          }
                         )}
                       </div>
                     ) : openIndex.length > 0 &&

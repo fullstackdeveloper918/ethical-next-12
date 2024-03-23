@@ -11,7 +11,6 @@ import { useSelector, useDispatch } from 'react-redux'
 const Product = () => {
   const [activeFilter, setActiveFilter] = useState(true)
   const [filteredColors, setFilteredColors] = useState([])
-  const [filteredProductType, setFilteredProductType] = useState([])
   const [finalColorFilteredProducts, setFinalColorFilteredProducts] = useState(
     []
   )
@@ -20,8 +19,6 @@ const Product = () => {
   const [finalProductType, setFinalProductType] = useState([])
   const [finalEmojiType, setFinalEmojiType] = useState([])
   const [finalProducts, setFinalProducts] = useState([])
-  const [f, setF] = useState([])
-  const [isSwiftSwag, setIsSwiftSwag] = useState(false)
   const [decorationsArray, setDecorationsArray] = useState([])
   const [productTypeArray, setProductTypeArray] = useState([])
   const [emojiTypeArray, setEmojiTypeArray] = useState([])
@@ -29,10 +26,7 @@ const Product = () => {
 
   const totalData = useSelector((state) => state.category.totalData)
   const country = useSelector((state) => state.country.country)
-
-  useEffect(() => {
-    setIsSwiftSwag(false)
-  }, [getProductsRes?.data?.data])
+  const swiftSwag = useSelector((state) => state.filter.swiftSwag)
 
   useEffect(() => {
     if (filteredColors.length > 0 && getProductsRes?.data?.data?.length > 0) {
@@ -50,7 +44,7 @@ const Product = () => {
   }, [filteredColors, getProductsRes])
 
   useEffect(() => {
-    if (getProductsRes?.data?.data?.length > 0 && isSwiftSwag) {
+    if (getProductsRes?.data?.data?.length > 0 && swiftSwag) {
       let result = finalColorFilteredProducts?.filter((item) => {
         return item.swift_tag == 1
       })
@@ -59,7 +53,7 @@ const Product = () => {
     } else if (getProductsRes?.data?.data?.length > 0) {
       setFinalSwiftProducts(finalColorFilteredProducts)
     }
-  }, [isSwiftSwag, finalColorFilteredProducts])
+  }, [swiftSwag, finalColorFilteredProducts])
 
   useEffect(() => {
     if (getProductsRes?.data?.data?.length > 0 && decorationsArray.length > 0) {
@@ -99,22 +93,6 @@ const Product = () => {
       setFinalEmojiType(finalProductType)
     }
   }, [emojiTypeArray, finalProductType])
-  // console.log(getProductsRes?.data?.data, 'quest to find swift_swag')
-  // console.log(finalColorFilteredProducts, 'finalColorFilteredProducts')
-  // console.log(finalSwiftProducts, 'finalSwiftProducts')
-  // console.log(finalDecorationProducts, 'finalDecorationProducts')
-  // console.log(productTypeArray, 'productTypeArray')
-  // console.log(finalProductType, 'finalProductType')
-  // console.log(finalEmojiType, 'finalEmojiType')
-  // console.log(emojiTypeArray, 'emojiTypeArray')
-
-  // useEffect(() => {
-  //   if (filteredProductType.length > 0 && finalSwiftProducts?.length > 0) {
-  //   } else if (filteredProductType.length === 0) {
-  //     setF(getProductsRes?.data?.data)
-  //   }
-  // }, [filteredProductType, getProductsRes])
-
   return (
     <>
       <>
@@ -129,10 +107,6 @@ const Product = () => {
             setActiveFilter={setActiveFilter}
             filteredColors={filteredColors}
             setFilteredColors={setFilteredColors}
-            filteredProductType={filteredProductType}
-            setFilteredProductType={setFilteredProductType}
-            isSwiftSwag={isSwiftSwag}
-            setIsSwiftSwag={setIsSwiftSwag}
             setDecorationsArray={setDecorationsArray}
             decorationsArray={decorationsArray}
             productTypeArray={productTypeArray}

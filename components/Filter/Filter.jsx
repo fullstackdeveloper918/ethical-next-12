@@ -6,11 +6,7 @@ import FilterPanel from '../FilterPanel/FilterPanel'
 import images from '../../constants/images'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchState, setSelectedOptionValue } from 'redux-setup/cartSlice'
-import {
-  setActiveFilters,
-  setCollectionId,
-  setSubCollectionForUrl,
-} from 'redux-setup/categorySlice'
+import { setSubCollectionForUrl } from 'redux-setup/categorySlice'
 import { useRouter } from 'next/router'
 
 const Filter = ({
@@ -18,10 +14,6 @@ const Filter = ({
   setActiveFilter,
   setFilteredColors,
   filteredColors,
-  setFilteredProductType,
-  filteredProductType,
-  setIsSwiftSwag,
-  isSwiftSwag,
   setDecorationsArray,
   decorationsArray,
   productTypeArray,
@@ -135,10 +127,6 @@ const Filter = ({
           <FilterPanel
             filteredColors={filteredColors}
             setFilteredColors={setFilteredColors}
-            setFilteredProductType={setFilteredProductType}
-            filteredProductType={filteredProductType}
-            isSwiftSwag={isSwiftSwag}
-            setIsSwiftSwag={setIsSwiftSwag}
             setDecorationsArray={setDecorationsArray}
             decorationsArray={decorationsArray}
             productTypeArray={productTypeArray}
