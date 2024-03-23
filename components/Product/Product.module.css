@@ -640,6 +640,7 @@ product css
   gap: 20px;
   margin: 20px 0 0;
   padding-bottom: 20px;
+  flex-wrap: wrap;
 }
 .colors_container .colours {
 width: 50px;
