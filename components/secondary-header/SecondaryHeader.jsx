@@ -71,7 +71,6 @@ const SecondaryHeader = () => {
   const dateNameFilter = useSelector((state) => state.cart.selectedOptionValue)
   let route = router.asPath.split('/').filter((item) => item !== '')
   const routeArray = route.map((item) => decodeURIComponent(item))
-  console.log(routeArray, 'routeArray from personal')
   const urlCategory = routeArray[1]
   let urlCategoryIdd = allCategories[urlCategory]?.airtabelId
   useEffect(() => {

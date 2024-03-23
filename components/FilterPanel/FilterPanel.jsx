@@ -7,9 +7,6 @@ import { setColorsObj, setShowAllFilters } from 'redux-setup/FiltersSlice'
 const FilterPanel = ({
   setFilteredColors,
   filteredColors,
-  filteredProductType,
-  setFilteredProductType,
-  isSwiftSwag,
   setIsSwiftSwag,
   setDecorationsArray,
   decorationsArray,
@@ -21,12 +18,12 @@ const FilterPanel = ({
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
   const [inputSlider, setInputSlider] = useState(0)
-  const [openIndex, setOpenIndex] = useState('')
+  const [openIndex, setOpenIndex] = useState([])
+  const [allFiltersLengthArray, setAllFiltersLengthArray] = useState(0)
   const [isActive, setIsActive] = useState(true)
   const [swagRadio, setSwagRadio] = useState('No SwiftSwag')
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
-  const colorsObj = useSelector((state) => state.filter.colorsObj)
 
   useEffect(() => {
     let categoriesList = []
@@ -50,9 +47,15 @@ const FilterPanel = ({
   }, [allFilters])
 
   const toggleAccordion = (index) => {
-    setOpenIndex(index)
+    if (openIndex.includes(index)) {
+      let filteredIndex = openIndex.filter((item) => item !== index)
+      setOpenIndex(filteredIndex)
+    } else {
+      setOpenIndex([...openIndex, index])
+    }
     setIsActive(!isActive)
   }
+  console.log(openIndex, 'openIndex')
   const handleCheckboxChange = (event, item) => {
     const { name, checked } = event.target
     if (item.label === 'uniqueProductType') {
@@ -116,6 +119,22 @@ const FilterPanel = ({
     }
   }, [swagRadio])
 
+  useEffect(() => {
+    let arr = []
+    if (showAllFilters.length > 0) {
+      for (let i = 0; i < showAllFilters.length; i++) {
+        const element = [i]
+        arr.push(i)
+      }
+      setAllFiltersLengthArray(arr)
+    } else {
+      setAllFiltersLengthArray(arr)
+    }
+  }, [showAllFilters])
+
+  useEffect(() => {
+    setOpenIndex(allFiltersLengthArray)
+  }, [allFiltersLengthArray])
   return (
     <>
       {active && (
@@ -148,12 +167,12 @@ const FilterPanel = ({
                   >
                     <div>{item.label}</div>
                     <div className={Styles.accordion_icon}>
-                      {isActive && openIndex === index ? '-' : '+'}
+                      {/* {isActive && openIndex?.includes(index) ? '-' : '+'} */}
                     </div>
                   </div>
                 </div>
 
-                {isActive && openIndex === index && (
+                {/* {isActive && openIndex === index && (
                   <div className={Styles.open_accordionWrap}>
                     {isActive &&
                     openIndex === index &&
@@ -295,7 +314,7 @@ const FilterPanel = ({
                       </div>
                     )}
                   </div>
-                )}
+                )} */}
               </div>
             )
           })}

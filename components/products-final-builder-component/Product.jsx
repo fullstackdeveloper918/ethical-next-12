@@ -9,7 +9,7 @@ import Pagination from '../pagination/Pagination'
 import { useSelector, useDispatch } from 'react-redux'
 
 const Product = () => {
-  const [activeFilter, setActiveFilter] = useState(false)
+  const [activeFilter, setActiveFilter] = useState(true)
   const [filteredColors, setFilteredColors] = useState([])
   const [filteredProductType, setFilteredProductType] = useState([])
   const [finalColorFilteredProducts, setFinalColorFilteredProducts] = useState(
