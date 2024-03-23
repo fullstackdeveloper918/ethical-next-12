@@ -1173,6 +1173,9 @@
   .collection_items {
     padding: 1rem;
   }
+  .category_section .collection_wrapper {
+    margin-left: 28%;
+  }
   .product_card_content > .title {
     font-size: 14px;
     line-height: 24px;

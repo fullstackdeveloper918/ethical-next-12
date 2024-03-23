@@ -52,3 +52,9 @@
       height:20px;
   }
 }
+@media (max-width:1200px){
+  .colored_dot {
+    width: 14px;
+    height: 14px;
+  }
+}
