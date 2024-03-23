@@ -22,6 +22,9 @@ const Product = () => {
   const [decorationsArray, setDecorationsArray] = useState([])
   const [productTypeArray, setProductTypeArray] = useState([])
   const [emojiTypeArray, setEmojiTypeArray] = useState([])
+
+  const [page, setPage] = useState(1)
+  const [paginatedProducts, setPaginatedProducts] = useState([])
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
 
   const totalData = useSelector((state) => state.category.totalData)
@@ -93,6 +96,7 @@ const Product = () => {
       setFinalEmojiType(finalProductType)
     }
   }, [emojiTypeArray, finalProductType])
+
   return (
     <>
       <>
@@ -114,11 +118,21 @@ const Product = () => {
             setEmojiTypeArray={setEmojiTypeArray}
             emojiTypeArray={emojiTypeArray}
           />
-          <Products finalProducts={finalEmojiType} />
+          <Products
+            finalProducts={
+              finalEmojiType.length > 10 ? paginatedProducts : finalEmojiType
+            }
+          />
 
-          {getProductsRes?.data?.data?.length > 0 && totalData > 100 && (
+          {finalEmojiType.length > 10 && (
             <div className={Styles.pagination_section}>
-              <Pagination />
+              <Pagination
+                products={finalEmojiType}
+                paginatedProducts={paginatedProducts}
+                setPaginatedProducts={setPaginatedProducts}
+                page={page}
+                setPage={setPage}
+              />
             </div>
           )}
         </section>

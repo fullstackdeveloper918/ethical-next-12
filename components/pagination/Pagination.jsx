@@ -2,21 +2,29 @@ import React, { useEffect, useState } from 'react'
 import Styles from './pagination.module.css'
 import { MdArrowBackIos } from 'react-icons/md'
 import { IoChevronForwardSharp } from 'react-icons/io5'
-import { useSelector, useDispatch } from 'react-redux'
-import { setCurrentPage } from 'redux-setup/categorySlice'
 
-const Pagination = () => {
-  const dispatch = useDispatch()
+const Pagination = ({
+  products,
+  page,
+  setPage,
+  paginatedProducts,
+  setPaginatedProducts,
+}) => {
   const [arr, setArr] = useState([])
-  const loading = useSelector((state) => state.category.getProductsLoading)
-  const totalPages = useSelector((state) => state.category.totalPages)
-  const page = useSelector((state) => state.category.currentPage)
+  const [totalPages, setTotalPages] = useState(1)
+  let itemsPerPage = 10
+  const paginate = () => {
+    const startIndex = (page - 1) * itemsPerPage
+    const endIndex = startIndex + itemsPerPage
+    let paginated = products.slice(startIndex, endIndex)
+    setPaginatedProducts(paginated)
+  }
 
   const handlePageChange = (val) => {
     if (val === 'prev') {
-      page != 1 && dispatch(setCurrentPage(page - 1))
+      page != 1 && setPage(page - 1)
     } else if (val === 'next') {
-      page != totalPages && dispatch(setCurrentPage(page + 1))
+      page != totalPages && setPage(page + 1)
     }
   }
   const noOfPages = () => {
@@ -33,35 +41,37 @@ const Pagination = () => {
     }
   }, [totalPages])
 
+  useEffect(() => {
+    const pages = Math.ceil(products.length / itemsPerPage)
+    setTotalPages(pages)
+  }, [products, itemsPerPage])
+
+  useEffect(() => {
+    paginate()
+  }, [totalPages, products, page, itemsPerPage])
+
   return (
     <>
       <div className={Styles.pagination_container}>
         <div className={Styles.pagination_content}>
           <button
             onClick={() => handlePageChange('prev')}
-            disabled={page == 1 || loading}
+            disabled={page === 1}
             style={{
-              opacity: page == 1 || loading ? '0.7' : '1',
-              cursor: 'pointer',
+              opacity: page === 1 ? '0.7' : '1',
+              cursor: page === 1 ? 'not-allowed' : 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '3px',
             }}
           >
             <MdArrowBackIos cursor="pointer" />
-          </button>
-          <button
-            onClick={() => handlePageChange('prev')}
-            disabled={page == 1 || loading}
-            style={{
-              opacity: page == 1 || loading ? '0.7' : '1',
-              cursor: 'pointer',
-            }}
-          >
             Previous
           </button>
 
           {arr.map((item, i) => (
             <button
-              onClick={() => dispatch(setCurrentPage(i + 1))}
-              disabled={loading}
+              onClick={() => setPage(i + 1)}
               className={page === i + 1 ? Styles.current_page : ''}
               key={i}
             >
@@ -70,22 +80,16 @@ const Pagination = () => {
           ))}
           <button
             onClick={() => handlePageChange('next')}
-            disabled={loading}
+            disabled={page === totalPages}
             style={{
-              opacity: page == totalPages || loading ? '0.7' : '1',
-              cursor: 'pointer',
+              opacity: page == totalPages ? '0.7' : '1',
+              cursor: page == totalPages ? 'not-allowed' : 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '3px',
             }}
           >
             Next
-          </button>
-          <button
-            onClick={() => handlePageChange('next')}
-            disabled={loading}
-            style={{
-              opacity: page == totalPages || loading ? '0.7' : '1',
-              cursor: 'pointer',
-            }}
-          >
             <IoChevronForwardSharp cursor="pointer" />
           </button>
         </div>
