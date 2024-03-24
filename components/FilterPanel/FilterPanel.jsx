@@ -26,6 +26,7 @@ const FilterPanel = ({
     useState([])
   const [clearUniqueProduct, setClearUniqueProduct] = useState([])
   const [clearDecorationProduct, setClearDecorationProduct] = useState([])
+  const [clearEmojiProduct, setClearEmojiProduct] = useState([])
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
   const colorsObj = useSelector((state) => state.filter.colorsObj)
@@ -130,6 +131,19 @@ const FilterPanel = ({
     })
     setClearDecorationProduct(finalDecoration)
   }, [decorationsArray])
+
+  useEffect(() => {
+    let emojiObj = showAllFilters.filter(
+      (item) => item.label === 'Emoji ratings'
+    )
+    let obj = emojiObj[0].children
+    const finalEmoji = emojiTypeArray.map((productId) => {
+      const key = productId
+      const value = obj[productId]
+      return { key, value }
+    })
+    setClearEmojiProduct(finalEmoji)
+  }, [emojiTypeArray])
   useEffect(() => {
     let arr = []
     if (showAllFilters.length > 0) {
@@ -167,6 +181,7 @@ const FilterPanel = ({
       }
     }
   }, [allFilters])
+
   return (
     <>
       {active && (
@@ -195,6 +210,12 @@ const FilterPanel = ({
               clearDecorationProduct.length > 0 &&
               clearDecorationProduct.map((item) =>
                 badge(item, decorationsArray, setDecorationsArray)
+              )}
+
+            {clearEmojiProduct &&
+              clearEmojiProduct.length > 0 &&
+              clearEmojiProduct.map((item) =>
+                badge(item, emojiTypeArray, setEmojiTypeArray)
               )}
           </p>
         </div>
