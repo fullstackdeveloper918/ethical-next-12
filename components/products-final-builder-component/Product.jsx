@@ -1,15 +1,14 @@
 'use client'
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import Filter from '../Filter/Filter'
 import Products from '../Products/Products'
 import global from '../../styles/global.module.css'
 import Styles from '../Filter/Filter.module.css'
 import Pagination from '../pagination/Pagination'
-import { useSelector, useDispatch } from 'react-redux'
 
 const Product = () => {
   const [activeFilter, setActiveFilter] = useState(true)
-  const [filteredColors, setFilteredColors] = useState([])
   const [finalColorFilteredProducts, setFinalColorFilteredProducts] = useState(
     []
   )
@@ -17,16 +16,13 @@ const Product = () => {
   const [finalDecorationProducts, setFinalDecorationProducts] = useState([])
   const [finalProductType, setFinalProductType] = useState([])
   const [finalEmojiType, setFinalEmojiType] = useState([])
-  const [finalProducts, setFinalProducts] = useState([])
   const [decorationsArray, setDecorationsArray] = useState([])
   const [productTypeArray, setProductTypeArray] = useState([])
   const [emojiTypeArray, setEmojiTypeArray] = useState([])
-
+  const [filteredColors, setFilteredColors] = useState([])
   const [page, setPage] = useState(1)
   const [paginatedProducts, setPaginatedProducts] = useState([])
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
-
-  const totalData = useSelector((state) => state.category.totalData)
   const country = useSelector((state) => state.country.country)
   const swiftSwag = useSelector((state) => state.filter.swiftSwag)
 
@@ -37,10 +33,8 @@ const Product = () => {
           filteredColors.includes(color)
         )
       })
-      setFinalProducts(result)
       setFinalColorFilteredProducts(result)
     } else if (filteredColors.length === 0) {
-      setFinalProducts(getProductsRes?.data?.data)
       setFinalColorFilteredProducts(getProductsRes?.data?.data)
     }
   }, [filteredColors, getProductsRes])
@@ -98,44 +92,42 @@ const Product = () => {
 
   return (
     <>
-      <>
-        <section
-          className={`${global.container} ${
-            activeFilter ? Styles.category_section : ''
-          }`}
-          style={{ overflow: 'hidden' }}
-        >
-          <Filter
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
-            filteredColors={filteredColors}
-            setFilteredColors={setFilteredColors}
-            setDecorationsArray={setDecorationsArray}
-            decorationsArray={decorationsArray}
-            productTypeArray={productTypeArray}
-            setProductTypeArray={setProductTypeArray}
-            setEmojiTypeArray={setEmojiTypeArray}
-            emojiTypeArray={emojiTypeArray}
-          />
-          <Products
-            finalProducts={
-              finalEmojiType.length > 10 ? paginatedProducts : finalEmojiType
-            }
-          />
+      <section
+        className={`${global.container} ${
+          activeFilter ? Styles.category_section : ''
+        }`}
+        style={{ overflow: 'hidden' }}
+      >
+        <Filter
+          activeFilter={activeFilter}
+          setActiveFilter={setActiveFilter}
+          filteredColors={filteredColors}
+          setFilteredColors={setFilteredColors}
+          setDecorationsArray={setDecorationsArray}
+          decorationsArray={decorationsArray}
+          productTypeArray={productTypeArray}
+          setProductTypeArray={setProductTypeArray}
+          setEmojiTypeArray={setEmojiTypeArray}
+          emojiTypeArray={emojiTypeArray}
+        />
+        <Products
+          finalProducts={
+            finalEmojiType.length > 10 ? paginatedProducts : finalEmojiType
+          }
+        />
 
-          {finalEmojiType.length > 10 && (
-            <div className={Styles.pagination_section}>
-              <Pagination
-                products={finalEmojiType}
-                paginatedProducts={paginatedProducts}
-                setPaginatedProducts={setPaginatedProducts}
-                page={page}
-                setPage={setPage}
-              />
-            </div>
-          )}
-        </section>
-      </>
+        {finalEmojiType.length > 10 && (
+          <div className={Styles.pagination_section}>
+            <Pagination
+              products={finalEmojiType}
+              paginatedProducts={paginatedProducts}
+              setPaginatedProducts={setPaginatedProducts}
+              page={page}
+              setPage={setPage}
+            />
+          </div>
+        )}
+      </section>
     </>
   )
 }

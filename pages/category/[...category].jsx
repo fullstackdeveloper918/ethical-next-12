@@ -5,14 +5,13 @@ import Product from '@components/products-final-builder-component/Product'
 import SecondaryHeader from '@components/secondary-header/SecondaryHeader'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Styles from '../../styles/category.module.css'
 import Image from 'next/image'
 import images from '../../constants/images'
 
 const index = () => {
   const router = useRouter()
-  const dispatch = useDispatch()
   const [relatedCategories, setRelatedCategories] = useState([])
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
   const allCategories = useSelector((state) => state.category.allCategories)

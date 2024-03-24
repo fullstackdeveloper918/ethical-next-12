@@ -1,12 +1,11 @@
 'use client'
-import React, { useState } from 'react'
-import Styles from '../Filter/Filter.module.css'
+import React from 'react'
 import Image from 'next/image'
-import Featured_product from '../../assets/headerPics/main-product.png'
-import PromotionImg from '../../assets/products_promotion.svg'
-import ProductCard from '../ProductCard/ProductCard'
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
+import Styles from '../Filter/Filter.module.css'
+import PromotionImg from '../../assets/products_promotion.svg'
+import ProductCard from '../ProductCard/ProductCard'
 import Loaders from '@components/loaders/Loaders'
 
 const Products = ({ finalProducts }) => {
@@ -16,7 +15,6 @@ const Products = ({ finalProducts }) => {
   )
   const response = useSelector((state) => state.category.getProductsRes)
   const loading = useSelector((state) => state.category.getProductsLoading)
-  let length = response?.data?.data?.length
   let finalProductsLength = finalProducts?.length
   return (
     <>
