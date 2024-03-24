@@ -345,22 +345,28 @@ const FilterPanel = ({
                       <div className={Styles.custom_checkbox}>
                         {Object.values(item.children).map(
                           (child, childIndex) => (
-                            <li
-                              key={childIndex}
-                              className={Styles.filterPanel_list_item}
-                            >
-                              <input
-                                type="checkbox"
-                                id={`checkbox_id_${childIndex}`}
-                                name={child}
-                                value={child}
-                                // checked={decorations.includes(child)}
-                                onChange={(e) => handleCheckboxChange(e, item)}
-                              />
-                              <label htmlFor={`checkbox_id_${childIndex}`}>
-                                {child && JSON.parse(child)}
-                              </label>
-                            </li>
+                            <>
+                              {child !== null && (
+                                <li
+                                  key={childIndex}
+                                  className={Styles.filterPanel_list_item}
+                                >
+                                  <input
+                                    type="checkbox"
+                                    id={`checkbox_id_${childIndex}`}
+                                    name={child}
+                                    value={child}
+                                    // checked={decorations.includes(child)}
+                                    onChange={(e) =>
+                                      handleCheckboxChange(e, item)
+                                    }
+                                  />
+                                  <label htmlFor={`checkbox_id_${childIndex}`}>
+                                    {child && JSON.parse(child)}
+                                  </label>
+                                </li>
+                              )}
+                            </>
                           )
                         )}
                       </div>
