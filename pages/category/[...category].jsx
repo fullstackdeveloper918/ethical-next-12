@@ -9,11 +9,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import Styles from '../../styles/category.module.css'
 import Image from 'next/image'
 import images from '../../constants/images'
-import {
-  setCurrentPage,
-  setTotalData,
-  setTotalPages,
-} from '../../redux-setup/categorySlice'
 
 const index = () => {
   const router = useRouter()
@@ -21,8 +16,6 @@ const index = () => {
   const [relatedCategories, setRelatedCategories] = useState([])
   const getProductsRes = useSelector((state) => state.category.getProductsRes)
   const allCategories = useSelector((state) => state.category.allCategories)
-  const isCategoryPage = useSelector((state) => state.random.isCategoryPage)
-  // isCategoryPage === true ?
   const collectionForUrl = useSelector(
     (state) => state.category.collectionForUrl
   )
@@ -52,13 +45,6 @@ const index = () => {
     generateRelatedCategories()
   }, [collectionForUrl])
 
-  useEffect(() => {
-    if (getProductsRes) {
-      dispatch(setCurrentPage(getProductsRes?.data?.current_page))
-      dispatch(setTotalData(getProductsRes?.data?.total))
-      dispatch(setTotalPages(getProductsRes?.data?.last_page))
-    }
-  }, [getProductsRes])
   return (
     <div>
       <PrimaryHeader />

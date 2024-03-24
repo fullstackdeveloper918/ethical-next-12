@@ -9,9 +9,6 @@ const initialState = {
   subCategoryOnTop: [],
   collectionForUrl: '',
   subCollectionForUrl: '',
-  totalPages: 1,
-  currentPage: 1,
-  totalData: 0,
 }
 
 const categorySlice = createSlice({
@@ -41,15 +38,6 @@ const categorySlice = createSlice({
     setProductsError: (state, action) => {
       state.getProductsError = action.payload
     },
-    setCurrentPage: (state, action) => {
-      state.currentPage = action.payload
-    },
-    setTotalPages: (state, action) => {
-      state.totalPages = action.payload
-    },
-    setTotalData: (state, action) => {
-      state.totalData = action.payload
-    },
   },
 })
 
@@ -61,9 +49,6 @@ export const {
   setProductsRes,
   setProductsLoading,
   setProductsError,
-  setCurrentPage,
-  setTotalPages,
-  setTotalData,
 } = categorySlice.actions
 
 export default categorySlice.reducer

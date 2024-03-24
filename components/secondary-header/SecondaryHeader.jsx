@@ -33,7 +33,6 @@ import {
   setProductsRes,
   setProductsLoading,
   setProductsError,
-  setCurrentPage,
 } from 'redux-setup/categorySlice'
 import { countries } from 'constants/data'
 import { debounce } from '@lib/utils'
@@ -56,7 +55,6 @@ const SecondaryHeader = () => {
 
   const [countryTosend, setCountryToSend] = useState('usa')
   const [url, setUrl] = useState('')
-  const [cat, setCat] = useState('')
   const [subCat, setSubCat] = useState('')
   const currentPage = useSelector((state) => state.category.currentPage)
 
@@ -104,19 +102,10 @@ const SecondaryHeader = () => {
       let r = router.asPath.split('/').filter((item) => item !== '')
       const newArray = r.map((item) => decodeURIComponent(item))
 
-      if (newArray[1] !== cat) {
-        dispatch(setCurrentPage(1))
-      }
       let category0 = newArray[1]
-      setCat(category0)
       let urlCategoryId = allCategories[category0]?.airtabelId
       let getColllectionIdd = decodeURIComponent(JSON.stringify(r[2]))
 
-      if (getColllectionIdd !== subCat) {
-        dispatch(setCurrentPage(1))
-      }
-
-      setSubCat(getColllectionIdd)
       let searchFromMain = allCategories[category0]?.matchingValues
       let collectionIdToUse =
         searchFromMain &&
@@ -126,16 +115,12 @@ const SecondaryHeader = () => {
       if (category0) {
         const route = `/products?product_catogries=${urlCategoryId}${
           collectionIdToUse ? `&collection_ids=${collectionIdToUse}` : ''
-        }&page=${
-          currentPage ? currentPage : 1
-        }&pageSize=${100}&${countryTosend}=1${
-          dateNameFilter ? `&${dateNameFilter}=1` : ''
-        }`
+        }${dateNameFilter ? `&${dateNameFilter}=1` : ''}`
         setUrl(route)
         getSideFilters()
       }
     }
-  }, [router.asPath, countryTosend, currentPage, swiftSwag, dateNameFilter])
+  }, [router.asPath, countryTosend, dateNameFilter])
 
   const handleSetSubCategory = (item) => {
     dispatch(setSubCategoryOnTop(allCategories[item]?.matchingValues))
