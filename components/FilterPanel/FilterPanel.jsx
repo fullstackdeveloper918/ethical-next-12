@@ -25,6 +25,7 @@ const FilterPanel = ({
   const [allFilteredStateValuesArray, setAllFilteredStateValuesArray] =
     useState([])
   const [clearUniqueProduct, setClearUniqueProduct] = useState([])
+  const [clearDecorationProduct, setClearDecorationProduct] = useState([])
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
   const colorsObj = useSelector((state) => state.filter.colorsObj)
@@ -89,6 +90,8 @@ const FilterPanel = ({
   }
 
   const badge = (item, array, setArrName) => {
+    console.log(item, array, 'iitteemm from badge')
+
     return (
       <div onClick={() => handleClear(item, array, setArrName)}>
         {item?.value}
@@ -97,7 +100,7 @@ const FilterPanel = ({
   }
 
   const handleClear = (item, array, setArrName) => {
-    console.log(item, array, setArrName, 'iitteemm')
+    console.log(item, array, 'iitteemm')
     let ar = array.filter((ar) => ar !== item.key)
     setArrName(ar)
   }
@@ -115,6 +118,18 @@ const FilterPanel = ({
     setClearUniqueProduct(finalUnique)
   }, [productTypeArray])
 
+  useEffect(() => {
+    let decorationObj = showAllFilters.filter(
+      (item) => item.label === 'Decoration'
+    )
+    let obj = decorationObj[0].children
+    const finalDecoration = decorationsArray.map((productId) => {
+      const key = productId
+      const value = obj[productId]
+      return { key, value }
+    })
+    setClearDecorationProduct(finalDecoration)
+  }, [decorationsArray])
   useEffect(() => {
     let arr = []
     if (showAllFilters.length > 0) {
@@ -152,8 +167,6 @@ const FilterPanel = ({
       }
     }
   }, [allFilters])
-  // console.log(clearUniqueProduct, 'clearUniqueProduct')
-  console.log(productTypeArray, 'productTypeArray')
   return (
     <>
       {active && (
@@ -177,6 +190,11 @@ const FilterPanel = ({
               clearUniqueProduct.length > 0 &&
               clearUniqueProduct.map((item) =>
                 badge(item, productTypeArray, setProductTypeArray)
+              )}
+            {clearDecorationProduct &&
+              clearDecorationProduct.length > 0 &&
+              clearDecorationProduct.map((item) =>
+                badge(item, decorationsArray, setDecorationsArray)
               )}
           </p>
         </div>
