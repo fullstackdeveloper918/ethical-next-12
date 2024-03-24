@@ -16,7 +16,6 @@ import { CiShare2 } from 'react-icons/ci'
 import {
   setDecorationItemObjSingleProductPage,
   setFinalDecorationKeyVal,
-  setIsProductPage,
 } from 'redux-setup/randomSlice'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
@@ -456,9 +455,6 @@ const Product = ({ product, loading, error, productID }) => {
       setCartItemsSwiftSwag(cartItems[0].swiftSwag)
     }
   }, [cartItems])
-  useEffect(() => {
-    dispatch(setIsProductPage(true))
-  }, [])
 
   return (
     <>

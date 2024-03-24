@@ -11,10 +11,8 @@ import { FaChevronDown } from 'react-icons/fa'
 import CrossIcon from '../../assets/headerPics/corss.svg'
 import Humburg from '../../assets/headerPics/menu-bar.png'
 import { RxCross2 } from 'react-icons/rx'
-import Image from 'next/image'
-import { Button } from '@/components/ui/button'
-import { useDispatch, useSelector } from 'react-redux'
 import styles from './secondaryHeader.module.css'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,8 +20,14 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import useFetch from '@lib/useFetch'
+import { debounce } from '@lib/utils'
+import { countries } from 'constants/data'
+import { useDispatch, useSelector } from 'react-redux'
+import { setAllFilters } from 'redux-setup/FiltersSlice'
+import { setIsCategoryPage } from 'redux-setup/randomSlice'
 import { selectCountry } from 'redux-setup/countrySlice'
 import {
   getAllCategories,
@@ -34,29 +38,21 @@ import {
   setProductsLoading,
   setProductsError,
 } from 'redux-setup/categorySlice'
-import { countries } from 'constants/data'
-import { debounce } from '@lib/utils'
-import { setAllFilters } from 'redux-setup/FiltersSlice'
-import { setIsCategoryPage, setIsProductPage } from 'redux-setup/randomSlice'
-
 const SecondaryHeader = () => {
   const popupRef = useRef(null)
   const dispatch = useDispatch()
   const router = useRouter()
   const [showResults, setShowResults] = useState(false)
-  const [searchProduct, setSearchProduct] = useState('')
   const [data, setData] = useState([])
   const [showSearchInput, setShowSearchInput] = useState(false)
   const [openLinks, setOpenLinks] = useState(false)
   const [inputbtn, setInputBtn] = useState(false)
   const [country, setCountry] = useState('usa')
+  const [countryTosend, setCountryToSend] = useState('usa')
   const [screenSize, setScreenSize] = useState(992)
   const [showOnMobile, setShowOnMobile] = useState(false)
 
-  const [countryTosend, setCountryToSend] = useState('usa')
   const [url, setUrl] = useState('')
-  const [subCat, setSubCat] = useState('')
-  const currentPage = useSelector((state) => state.category.currentPage)
 
   const wishlistItems = useSelector((state) => state.wishlist.items)
   const countryFromRedux = useSelector((state) => state.country.country)
@@ -64,63 +60,23 @@ const SecondaryHeader = () => {
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
   const allCategories = useSelector((state) => state.category.allCategories)
-
-  let swiftSwag = useSelector((state) => state.random.swiftSwag)
   const dateNameFilter = useSelector((state) => state.cart.selectedOptionValue)
+  const optimizedFn = useCallback(debounce(handleChange), [])
+
   let route = router.asPath.split('/').filter((item) => item !== '')
   const routeArray = route.map((item) => decodeURIComponent(item))
   const urlCategory = routeArray[1]
   let urlCategoryIdd = allCategories[urlCategory]?.airtabelId
-  useEffect(() => {
-    let r = router.asPath.split('/').filter((item) => item !== '')
-    const newArray = r.map((item) => decodeURIComponent(item))
-    if (newArray[0] === 'category') {
-      dispatch(setIsCategoryPage(true))
-    } else {
-      dispatch(setIsCategoryPage(false))
-    }
-    if (newArray[0] === 'product') {
-    } else {
-      dispatch(setIsProductPage(false))
-    }
-  }, [router.asPath])
-  useEffect(() => {
-    if (countryFromRedux) {
-      setCountryToSend(
-        countryFromRedux === 'usa' ? 'available_in_usa' : 'available_in_canada'
-      )
-    }
-  }, [countryFromRedux])
 
-  useEffect(() => {
-    if (
-      allCategories &&
-      countryTosend &&
-      router.query.category &&
-      router.query.category.length > 0
-    ) {
-      let r = router.asPath.split('/').filter((item) => item !== '')
-      const newArray = r.map((item) => decodeURIComponent(item))
-
-      let category0 = newArray[1]
-      let urlCategoryId = allCategories[category0]?.airtabelId
-      let getColllectionIdd = decodeURIComponent(JSON.stringify(r[2]))
-
-      let searchFromMain = allCategories[category0]?.matchingValues
-      let collectionIdToUse =
-        searchFromMain &&
-        Object.keys(searchFromMain).find(
-          (key) => searchFromMain[key] === getColllectionIdd
-        )
-      if (category0) {
-        const route = `/products?product_catogries=${urlCategoryId}${
-          collectionIdToUse ? `&collection_ids=${collectionIdToUse}` : ''
-        }${dateNameFilter ? `&${dateNameFilter}=1` : ''}`
-        setUrl(route)
-        getSideFilters()
-      }
-    }
-  }, [router.asPath, countryTosend, dateNameFilter])
+  const getSingleProductPageRoute =
+    router.asPath.includes('/product/') ||
+    router.asPath.includes('/contact') ||
+    router.asPath.includes('/wishlist') ||
+    router.asPath.includes('/cart') ||
+    router.asPath.includes('/shipping') ||
+    router.asPath.includes('/billing-address') ||
+    router.asPath.includes('/products') ||
+    router.asPath.includes('/category')
 
   const handleSetSubCategory = (item) => {
     dispatch(setSubCategoryOnTop(allCategories[item]?.matchingValues))
@@ -128,12 +84,6 @@ const SecondaryHeader = () => {
     dispatch(setSubCollectionForUrl(null))
     router.push(`/category/${item}`)
   }
-
-  useEffect(() => {
-    if (url) {
-      getProducts()
-    }
-  }, [url])
 
   const [
     getProducts,
@@ -147,28 +97,6 @@ const SecondaryHeader = () => {
   ] = useFetch(`sidebarfilter?category=${urlCategoryIdd}`, {
     method: 'get',
   })
-  useEffect(() => {
-    if (filtersRes) {
-      dispatch(setAllFilters(filtersRes.data))
-    }
-  }, [filtersRes])
-
-  useEffect(() => {
-    dispatch(setProductsRes(productsRes))
-    dispatch(setProductsLoading(productsLoading))
-    dispatch(setProductsError(productsError))
-  }, [productsRes, productsLoading, productsError])
-
-  const getSingleProductPageRoute =
-    router.asPath.includes('/product/') ||
-    router.asPath.includes('/contact') ||
-    router.asPath.includes('/wishlist') ||
-    router.asPath.includes('/cart') ||
-    router.asPath.includes('/shipping') ||
-    router.asPath.includes('/billing-address') ||
-    router.asPath.includes('/products') ||
-    router.asPath.includes('/category')
-
   const [
     getCategories,
     {
@@ -179,16 +107,6 @@ const SecondaryHeader = () => {
   ] = useFetch(`category`, {
     method: 'get',
   })
-
-  useEffect(() => {
-    getCategories()
-  }, [])
-
-  useEffect(() => {
-    if (categoriesRes?.data) {
-      dispatch(getAllCategories(categoriesRes?.data))
-    }
-  }, [categoriesRes])
 
   const handleResize = () => {
     setScreenSize(window.innerWidth)
@@ -238,7 +156,83 @@ const SecondaryHeader = () => {
       document.documentElement.classList.remove('inputAdded')
     }
   }, [inputbtn])
-  const optimizedFn = useCallback(debounce(handleChange), [])
+
+  useEffect(() => {
+    let r = router.asPath.split('/').filter((item) => item !== '')
+    const newArray = r.map((item) => decodeURIComponent(item))
+    if (newArray[0] === 'category') {
+      dispatch(setIsCategoryPage(true))
+    } else {
+      dispatch(setIsCategoryPage(false))
+    }
+  }, [router.asPath])
+
+  useEffect(() => {
+    if (countryFromRedux) {
+      setCountryToSend(
+        countryFromRedux === 'usa' ? 'available_in_usa' : 'available_in_canada'
+      )
+    }
+  }, [countryFromRedux])
+
+  useEffect(() => {
+    if (
+      allCategories &&
+      countryTosend &&
+      router.query.category &&
+      router.query.category.length > 0
+    ) {
+      let r = router.asPath.split('/').filter((item) => item !== '')
+      const newArray = r.map((item) => decodeURIComponent(item))
+
+      let category0 = newArray[1]
+      let urlCategoryId = allCategories[category0]?.airtabelId
+      let getColllectionIdd = decodeURIComponent(JSON.stringify(r[2]))
+
+      let searchFromMain = allCategories[category0]?.matchingValues
+      let collectionIdToUse =
+        searchFromMain &&
+        Object.keys(searchFromMain).find(
+          (key) => searchFromMain[key] === getColllectionIdd
+        )
+      if (category0) {
+        const route = `/products?product_catogries=${urlCategoryId}${
+          collectionIdToUse ? `&collection_ids=${collectionIdToUse}` : ''
+        }${dateNameFilter ? `&${dateNameFilter}=1` : ''}`
+        setUrl(route)
+        getSideFilters()
+      }
+    }
+  }, [router.asPath, countryTosend, dateNameFilter])
+
+  useEffect(() => {
+    if (url) {
+      getProducts()
+    }
+  }, [url])
+
+  useEffect(() => {
+    if (filtersRes) {
+      dispatch(setAllFilters(filtersRes.data))
+    }
+  }, [filtersRes])
+
+  useEffect(() => {
+    dispatch(setProductsRes(productsRes))
+    dispatch(setProductsLoading(productsLoading))
+    dispatch(setProductsError(productsError))
+  }, [productsRes, productsLoading, productsError])
+
+  useEffect(() => {
+    getCategories()
+  }, [])
+
+  useEffect(() => {
+    if (categoriesRes?.data) {
+      dispatch(getAllCategories(categoriesRes?.data))
+    }
+  }, [categoriesRes])
+
   return (
     <div className={`${styles.header} ${openLinks ? styles.open_Sidebar : ''}`}>
       <div className={styles.primary_header_container}>
@@ -281,9 +275,6 @@ const SecondaryHeader = () => {
                     onMouseLeave={() => setOpenLinks(false)}
                   >
                     Shop
-                    {/* <span>
-                      <FaChevronDown fontSize={12} />
-                    </span> */}
                     {allCategories && (
                       <div
                         className={styles.header_menu_wrapper}
@@ -300,17 +291,6 @@ const SecondaryHeader = () => {
                               >
                                 {item}
                               </span>
-                              {/* <ul>
-                              {Object.entries(category[item].matchingValues)
-                                .slice(0, 5)
-                                .map(([subCategoryId, subCategory]) => (
-                                  <>
-                                  <li key={subCategoryId}>
-                                  {JSON.parse(subCategory)}
-                                  </li>
-                                  </>
-                                  ))}
-                                </ul> */}
                             </div>
                           ))}
                         </div>
@@ -414,11 +394,7 @@ const SecondaryHeader = () => {
                   <div className={styles.countries_dropdown_container}>
                     {countries.map((c, i) => {
                       return (
-                        <DropdownMenuRadioItem
-                          value={c.country}
-                          key={i}
-                          // style={{ display: "none" }}
-                        >
+                        <DropdownMenuRadioItem value={c.country} key={i}>
                           <Image
                             src={c.imageSrc}
                             width={30}
