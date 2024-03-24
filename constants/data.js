@@ -14,26 +14,9 @@ import { HiSquare3Stack3D } from 'react-icons/hi2'
 import { BsFillBoxFill } from 'react-icons/bs'
 import { CiUser } from 'react-icons/ci'
 import { IoKeyOutline } from 'react-icons/io5'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import Usa from '../assets/headerPics/use_flag.svg'
 import Canada from '../assets/headerPics/canada-flag.svg'
-// list
 
-export const LIST = () => {
-  const allFilters = useSelector((state) => state.filter.allFilters)
-  let categoriesList = []
-  allFilters &&
-    Object.entries(allFilters).map(([key, value]) => {
-      let obj = {}
-      obj.id = key
-      obj.label = key
-      obj.children = value
-      categoriesList.push(obj)
-    })
-
-  return categoriesList
-}
 export const countries = [
   {
     id: 1,

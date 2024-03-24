@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  Price: null,
   allFilters: {},
   showAllFilters: [],
   colorsObj: {},
@@ -12,9 +11,6 @@ export const FiltersSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
-    filterPrice: (state, action) => {
-      state.Price = action.payload
-    },
     setAllFilters: (state, action) => {
       state.allFilters = action.payload
     },
@@ -30,11 +26,6 @@ export const FiltersSlice = createSlice({
   },
 })
 
-export const {
-  filterPrice,
-  setAllFilters,
-  setShowAllFilters,
-  setColorsObj,
-  setSwiftSwag,
-} = FiltersSlice.actions
+export const { setAllFilters, setShowAllFilters, setColorsObj, setSwiftSwag } =
+  FiltersSlice.actions
 export default FiltersSlice.reducer

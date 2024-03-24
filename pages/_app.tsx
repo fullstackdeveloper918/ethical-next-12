@@ -13,7 +13,6 @@ import randomSlice from '../redux-setup/randomSlice'
 import wishlistSlice from '../redux-setup/wishlistSlice'
 import filterSlice from '../redux-setup/FiltersSlice'
 import adminSlice from '../redux-setup/adminSlice'
-import tokenReducer from '../redux-setup/tokenSlice'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { StrictMode } from 'react'
@@ -37,7 +36,6 @@ const combinedReducer = combineReducers({
   country: countrySlice,
   auth: authSlice,
   filter: filterSlice,
-  token: tokenReducer,
   cart: cartSlice,
   random: randomSlice,
   admin: adminSlice,

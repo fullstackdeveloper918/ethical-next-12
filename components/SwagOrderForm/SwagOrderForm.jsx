@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Styles from './SwagOrderForm.module.css'
-import { swagFormData } from '../../redux-setup/formSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import {
