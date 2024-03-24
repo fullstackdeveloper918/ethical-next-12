@@ -118,9 +118,12 @@ const FilterPanel = ({
     }
   }
 
-  const handleClear = (item, array, setArrName) => {
-    let ar = array.filter((ar) => ar !== item.key)
-    setArrName(ar)
+  const handleClear = () => {
+    dispatch(setSwiftSwag(false))
+    setDecorationsArray([])
+    setProductTypeArray([])
+    setEmojiTypeArray([])
+    setFilteredColors([])
   }
 
   useEffect(() => {
@@ -211,7 +214,7 @@ const FilterPanel = ({
         <div className={Styles.filterPanel_top}>
           <h4
             className={Styles.filterPanel_title}
-            onClick={() => handleClear()}
+            onClick={handleClear}
             style={{ cursor: 'pointer' }}
           >
             Clear All
