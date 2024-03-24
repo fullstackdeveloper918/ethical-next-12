@@ -91,13 +91,17 @@ const FilterPanel = ({
   }
 
   const badge = (item, array, setArrName) => {
-    console.log(item, array, 'iitteemm from badge')
-
-    return (
-      <div onClick={() => handleClear(item, array, setArrName)}>
-        {item?.value}
-      </div>
-    )
+    if (item.key === 'swiftSwag') {
+      return (
+        <div onClick={() => dispatch(setSwiftSwag(false))}>{item?.value}</div>
+      )
+    } else {
+      return (
+        <div onClick={() => handleClear(item, array, setArrName)}>
+          {item?.value}
+        </div>
+      )
+    }
   }
 
   const handleClear = (item, array, setArrName) => {
@@ -181,7 +185,6 @@ const FilterPanel = ({
       }
     }
   }, [allFilters])
-
   return (
     <>
       {active && (
@@ -201,6 +204,8 @@ const FilterPanel = ({
             Clear All
           </h4>
           <p>
+            {swiftSwag &&
+              badge({ key: 'swiftSwag', value: 'swiftSwag' }, [], null)}
             {clearUniqueProduct &&
               clearUniqueProduct.length > 0 &&
               clearUniqueProduct.map((item) =>
