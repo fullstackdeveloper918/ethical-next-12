@@ -90,22 +90,35 @@ const FilterPanel = ({
     }
   }
 
-  const badge = (item, array, setArrName) => {
+  const badge = (item, array, setArrName, color) => {
+    const alphabetRegex = /[a-zA-Z]/
     if (item.key === 'swiftSwag') {
       return (
         <div onClick={() => dispatch(setSwiftSwag(false))}>{item?.value}</div>
       )
+    } else if (item === 'color') {
+      return (
+        <div
+          onClick={() => {
+            let a = array.filter((i) => i !== color)
+            setArrName(a)
+          }}
+        >
+          {color}
+        </div>
+      )
     } else {
       return (
         <div onClick={() => handleClear(item, array, setArrName)}>
-          {item?.value}
+          {item?.value && alphabetRegex.test(item?.value)
+            ? JSON.parse(item?.value)
+            : item?.value}
         </div>
       )
     }
   }
 
   const handleClear = (item, array, setArrName) => {
-    console.log(item, array, 'iitteemm')
     let ar = array.filter((ar) => ar !== item.key)
     setArrName(ar)
   }
@@ -221,6 +234,12 @@ const FilterPanel = ({
               clearEmojiProduct.length > 0 &&
               clearEmojiProduct.map((item) =>
                 badge(item, emojiTypeArray, setEmojiTypeArray)
+              )}
+
+            {filteredColors &&
+              filteredColors.length > 0 &&
+              filteredColors.map((item) =>
+                badge('color', filteredColors, setFilteredColors, item)
               )}
           </p>
         </div>
