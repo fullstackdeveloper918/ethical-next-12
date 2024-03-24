@@ -38,7 +38,7 @@
   color: #545454;
   transition: 0.5s all;
 }
-.filter_input p :hover{
+.filter_input p :hover {
   border-bottom: 1px solid #a2d061;
 }
 .filter_input p.active {
@@ -354,7 +354,7 @@
   display: inline-block;
   margin-right: 10px;
   display: flex;
-    align-content: center;
+  align-content: center;
   margin-left: 12px;
 }
 
@@ -1013,8 +1013,8 @@
   margin-top: 2.5rem;
   border: 1px solid #d8d8d8;
   border-radius: 30px;
-  min-height: 460px;
-  max-height: 460px;
+  /* min-height: 460px; */
+  max-height: 1400px;
   overflow-y: auto;
 }
 
@@ -1164,7 +1164,7 @@
   position: absolute;
   right: 0;
 }
-@media (max-width:1400px){
+@media (max-width: 1400px) {
   .collection_items {
     min-height: 430px;
   }

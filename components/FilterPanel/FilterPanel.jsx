@@ -24,11 +24,11 @@ const FilterPanel = ({
   const [allFiltersLengthArray, setAllFiltersLengthArray] = useState(0)
   const [allFilteredStateValuesArray, setAllFilteredStateValuesArray] =
     useState([])
+  const [clearUniqueProduct, setClearUniqueProduct] = useState([])
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
   const colorsObj = useSelector((state) => state.filter.colorsObj)
   const swiftSwag = useSelector((state) => state.filter.swiftSwag)
-
   const toggleAccordion = (index) => {
     if (openIndex.includes(index)) {
       let filteredIndex = openIndex.filter((item) => item !== index)
@@ -40,7 +40,6 @@ const FilterPanel = ({
   const handleCheckboxChange = (event, item) => {
     const { name } = event.target
     if (item.label === 'uniqueProductType') {
-      console.log(item.children, 'from uniqueProductType')
       Object.keys(item.children).forEach((key) => {
         if (item.children[key] === name) {
           const index = productTypeArray.indexOf(key)
@@ -80,9 +79,6 @@ const FilterPanel = ({
       })
     }
   }
-  const handleClear = () => {
-    setFilteredColors([])
-  }
 
   const handleSwagChange = (event) => {
     if (event.target.value === 'true') {
@@ -92,8 +88,18 @@ const FilterPanel = ({
     }
   }
 
-  const badge = (item, array) => {
-    return <div onClick={() => console.log({ item, array })}>{item}</div>
+  const badge = (item, array, setArrName) => {
+    return (
+      <div onClick={() => handleClear(item, array, setArrName)}>
+        {item?.value}
+      </div>
+    )
+  }
+
+  const handleClear = (item, array, setArrName) => {
+    console.log(item, array, setArrName, 'iitteemm')
+    let ar = array.filter((ar) => ar !== item.key)
+    setArrName(ar)
   }
 
   useEffect(() => {
@@ -101,7 +107,12 @@ const FilterPanel = ({
       (item) => item.label === 'uniqueProductType'
     )
     let obj = uniqueProductTypeObj[0].children
-    const newArray = productTypeArray.map((productId) => obj[productId])
+    const finalUnique = productTypeArray.map((productId) => {
+      const key = productId
+      const value = obj[productId]
+      return { key, value }
+    })
+    setClearUniqueProduct(finalUnique)
   }, [productTypeArray])
 
   useEffect(() => {
@@ -116,10 +127,6 @@ const FilterPanel = ({
       setAllFiltersLengthArray(arr)
     }
   }, [showAllFilters])
-  // console.log(
-  //   showAllFilters.filter((item) => item.label === 'uniqueProductType'),
-  //   'showAllFilters'
-  // )
 
   useEffect(() => {
     setOpenIndex(allFiltersLengthArray)
@@ -145,13 +152,8 @@ const FilterPanel = ({
       }
     }
   }, [allFilters])
-
-  useEffect(() => {
-    // allFilteredStateValuesArray
-    let arr = []
-    // arr.push()
-  }, [swiftSwag])
-
+  // console.log(clearUniqueProduct, 'clearUniqueProduct')
+  console.log(productTypeArray, 'productTypeArray')
   return (
     <>
       {active && (
@@ -170,17 +172,13 @@ const FilterPanel = ({
           >
             Clear All
           </h4>
-          <p>{filteredColors.map((item) => item)}</p>
           <p>
-            {productTypeArray &&
-              productTypeArray.length > 0 &&
-              productTypeArray.map((item) => badge(item, productTypeArray))}
+            {clearUniqueProduct &&
+              clearUniqueProduct.length > 0 &&
+              clearUniqueProduct.map((item) =>
+                badge(item, productTypeArray, setProductTypeArray)
+              )}
           </p>
-
-          {/* {allFilteredStateValuesArray &&
-            allFilteredStateValuesArray.length > 0 && (
-              <p>{allFilteredStateValuesArray.map((item) => item)}</p>
-            )} */}
         </div>
 
         <div className={Styles.filterPanel_ProductCollection_list}>
