@@ -1,19 +1,18 @@
+import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
 import Footer from '@components/footer/Footer'
 import Modal from '@components/modal/Modal'
 import PrimaryHeader from '@components/primary-header/PrimaryHeader'
-import Product from '@components/products-final-builder-component/Product'
 import SecondaryHeader from '@components/secondary-header/SecondaryHeader'
-import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import Styles from '../../styles/category.module.css'
+import Product from '@components/products-final-builder-component/Product'
 import Image from 'next/image'
 import images from '../../constants/images'
+import Styles from '../../styles/category.module.css'
 
 const index = () => {
   const router = useRouter()
   const [relatedCategories, setRelatedCategories] = useState([])
-  const getProductsRes = useSelector((state) => state.category.getProductsRes)
   const allCategories = useSelector((state) => state.category.allCategories)
   const collectionForUrl = useSelector(
     (state) => state.category.collectionForUrl
