@@ -101,7 +101,7 @@ const index = () => {
                 <div className={Styles.img_content_1}>
                   <div className={Styles.imgContent}>
                     <Image
-                      src={allCategories[data].image}
+                      src={allCategories[data]?.image}
                       layout="fill"
                       alt=""
                     />

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
 import Styles from './../Filter/Filter.module.css'
 import Dot from '../custom-colored-dot/Dot'
 import Image from 'next/image'
 import { MdOutlineFavoriteBorder } from 'react-icons/md'
-import { CiSearch } from 'react-icons/ci'
 import { CiShare2 } from 'react-icons/ci'
 import Share from '../../components/Share/Share'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,6 +22,11 @@ const ProductCard = ({ item, fromSingleProduct }) => {
   const router = useRouter()
   const dispatch = useDispatch()
   const wishListItems = useSelector((state) => state.wishlist.items)
+  const isInWishlist = wishListItems.some(
+    (wishlistItem) => wishlistItem.id === item.id
+  )
+
+  console.log(wishListItems)
   const favoriteIconColor = useSelector((state) => state.wishlist.favoriteIcon)
   const country = useSelector((state) => state.country.country)
 
@@ -37,7 +40,6 @@ const ProductCard = ({ item, fromSingleProduct }) => {
     )
     if (isInWishlist) {
       // If the item is already in the wishlist, remove it
-      dispatch(setFavroiteIcon(false))
       dispatch(removeItemFromWishlist(item.id))
       toast.success('Item removed from wishlist', {
         position: 'top-center',
@@ -46,7 +48,6 @@ const ProductCard = ({ item, fromSingleProduct }) => {
     } else {
       // Otherwise, add the item to the wishlist
       dispatch(addItemToWishlist(item))
-      dispatch(setFavroiteIcon(true))
       toast.success('Item added to wishlist', {
         position: 'top-center',
         autoClose: 5500,
@@ -95,19 +96,19 @@ const ProductCard = ({ item, fromSingleProduct }) => {
           </div>
           <div className={Styles.hidden_icons}>
             <div className={Styles.icons}>
-              {/* <span
+              <span
                 className={Styles.border_svg}
-                style={{ backgroundColor: favoriteIconColor ? '#A2D061' : '' }}
+                style={{ backgroundColor: isInWishlist ? '#A2D061' : '' }}
               >
                 <MdOutlineFavoriteBorder
                   fontSize={25}
                   // color="#D3D3D3"
                   className={`${Styles.icon} ${
-                    favoriteIconColor ? Styles.favActive : ''
+                    isInWishlist ? Styles.favActive : ''
                   }`}
                   onClick={() => addToWishlist(item)}
                 />
-              </span> */}
+              </span>
               {/* <span className={Styles.border_svg}>
                 <CiSearch
                   fontSize={25}
