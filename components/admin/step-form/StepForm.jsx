@@ -48,7 +48,25 @@ const StepForm = () => {
               <div className={Styles.inner_circle}></div>
             </span>
             <div>
+              <h6> In Production </h6>
+              {/* <p>Dec 2, 2023</p> */}
+            </div>
+          </div>
+          <div className={Styles.steps_number}>
+            <span>
+              <div className={Styles.inner_circle}></div>
+            </span>
+            <div>
               <h6> Shipping Status </h6>
+              {/* <p>Dec 2, 2023</p> */}
+            </div>
+          </div>
+          <div className={Styles.steps_number}>
+            <span>
+              <div className={Styles.inner_circle}></div>
+            </span>
+            <div>
+              <h6> Order Status </h6>
               {/* <p>Dec 2, 2023</p> */}
             </div>
           </div>

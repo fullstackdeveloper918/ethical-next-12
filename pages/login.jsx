@@ -60,10 +60,10 @@ const login = () => {
     //   router.push(`/`)
     // }
 
-    // if (error) {
-    //   console.log(error, 'errorMessage')
-    //   toast.error(error.message)
-    // }
+    if (error) {
+      console.log(error, 'errorMessage')
+      toast.error(error.message)
+    }
   }, [response, error])
 
   const onSubmit = async (values) => {
