@@ -341,7 +341,7 @@ const Product = ({ product, loading, error, productID }) => {
     if (cartItemsSwiftSwag === null || cartItemsSwiftSwag === swiftSwag) {
       setCartState({
         quantity: quantity,
-        image: setImagesArray[0],
+        image: imagesArray[0],
         heading: product?.product_description,
         pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
         id: product.id,
@@ -355,7 +355,7 @@ const Product = ({ product, loading, error, productID }) => {
       dispatch(
         setCartItems({
           quantity: quantity,
-          image: setImagesArray[0],
+          image: imagesArray[0],
           heading: product?.product_description,
           pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
           id: product.id,
@@ -892,15 +892,17 @@ const Product = ({ product, loading, error, productID }) => {
                         type="number"
                         // placeholder={product?.column_1_qty}
                         name="orderQuantity"
-                        value={isSample ? '3' : quantity}
+                        // value={isSample ? '3' : quantity}
+                        value={quantity}
                         onChange={handleQuantity}
                         onBlur={(e) => {
-                          if (quantity < actualMinQty) {
+                          if (isSample) {
+                            quantity < 3
+                              ? setQuantity(quantity)
+                              : setQuantity(3)
+                          } else if (quantity < actualMinQty) {
                             setQuantity(actualMinQty)
                           }
-                          // if (isSample > 3) {
-                          //   setSizeNotSureQuantity(3)
-                          // }
                         }}
                       />
 

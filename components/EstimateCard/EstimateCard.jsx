@@ -28,12 +28,11 @@ const EstimateCard = () => {
   const step2State = useSelector((state) => state.cart.step2State)
   const cartItems = useSelector((state) => state.cart.cartItems)
   const userId = useSelector((state) => state.auth.userId)
-
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))
   }
-
-  let data = [step1State, step2State, cartItems].flat()
+  let addressArr = [step2State]
+  let data = [step1State, addressArr, cartItems]
   const [loadQuery, { response, loading, error }] = useFetch(
     `/bulkestimate/${userId}`,
     {
@@ -82,7 +81,6 @@ const EstimateCard = () => {
     const blob = await pdf(<Card />).toBlob()
     saveAs(blob, 'untitled.pdf')
   }
-
   return (
     <>
       <div className={Styles.estimate_wrapper}>
