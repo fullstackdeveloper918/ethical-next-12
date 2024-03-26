@@ -6,7 +6,7 @@ import Styles from './Product.module.css'
 import Loaders from '../../components/loaders/Loaders'
 import Dot from '../custom-colored-dot/Dot'
 import { RxCross2 } from 'react-icons/rx'
-import { setCartItems } from '../../redux-setup/cartSlice'
+import { setCartItems, setProductLogo } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
 import { MdOutlineFavoriteBorder } from 'react-icons/md'
 import { CiSearch } from 'react-icons/ci'
@@ -284,6 +284,7 @@ const Product = ({ product, loading, error, productID }) => {
 
   const uploadFirstFile = (event) => {
     setUploadFirstLogo(event.target.files[0])
+    dispatch(setProductLogo(event.target.files[0]))
   }
 
   const removeLogo = (state) => {
@@ -341,7 +342,7 @@ const Product = ({ product, loading, error, productID }) => {
     if (cartItemsSwiftSwag === null || cartItemsSwiftSwag === swiftSwag) {
       setCartState({
         quantity: quantity,
-        image: imagesArray[0],
+        image: imagesArray && imagesArray.length > 0 && imagesArray[0],
         heading: product?.product_description,
         pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
         id: product.id,
@@ -355,7 +356,7 @@ const Product = ({ product, loading, error, productID }) => {
       dispatch(
         setCartItems({
           quantity: quantity,
-          image: imagesArray[0],
+          image: imagesArray && imagesArray.length > 0 && imagesArray[0],
           heading: product?.product_description,
           pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
           id: product.id,
@@ -400,8 +401,12 @@ const Product = ({ product, loading, error, productID }) => {
       )
       setSingleImage(
         country === 'usa'
-          ? product?.images_us && product?.images_us[0]
-          : product?.images_ca && product?.images_ca[0]
+          ? product?.images_us &&
+              product?.images_us?.length > 0 &&
+              product?.images_us[0]
+          : product?.images_ca &&
+              product?.images_ca?.length > 0 &&
+              product?.images_ca[0]
       )
     }
   }, [product])
@@ -524,6 +529,7 @@ const Product = ({ product, loading, error, productID }) => {
                         className={Styles.product_slider}
                       >
                         {imagesArray &&
+                          imagesArray?.length > 0 &&
                           imagesArray?.map((item, index) => (
                             <div
                               style={{
@@ -725,7 +731,8 @@ const Product = ({ product, loading, error, productID }) => {
                                       selectCustomizations(index, key, val)
                                     }
                                   >
-                                    {val && JSON.parse(val?.decoration_type)}
+                                    {val?.decoration_type &&
+                                      JSON.parse(val?.decoration_type)}
                                   </p>
                                 )
                             )}
@@ -803,7 +810,8 @@ const Product = ({ product, loading, error, productID }) => {
                         <p className={Styles.font_weight}>
                           Upload Logo/ Artwork{' '}
                           <span className={Styles.fw400}>
-                            (.AI or .EPS vector format)
+                            (.AI, .svg, .jpg, .ai,image/jpeg, image/png, .pdf or
+                            .EPS vector format)
                           </span>
                         </p>
                         <Image

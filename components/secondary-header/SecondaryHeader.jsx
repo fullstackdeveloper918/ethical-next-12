@@ -50,7 +50,7 @@ const SecondaryHeader = () => {
   const [showSearchInput, setShowSearchInput] = useState(false)
   const [openLinks, setOpenLinks] = useState(false)
   const [inputbtn, setInputBtn] = useState(false)
-  const [country, setCountry] = useState('')
+  const [country, setCountry] = useState('usa')
   const [countryTosend, setCountryToSend] = useState('usa')
   const [screenSize, setScreenSize] = useState(992)
   const [showOnMobile, setShowOnMobile] = useState(false)
@@ -67,9 +67,6 @@ const SecondaryHeader = () => {
     (state) => state.cart.selectedNameDateFilterValue
   )
 
-  const isSingleProductPage = useSelector(
-    (state) => state.random.isSingleProductPage
-  )
   const optimizedFn = useCallback(debounce(handleChange), [])
 
   let route = router.asPath.split('/').filter((item) => item !== '')
@@ -160,14 +157,19 @@ const SecondaryHeader = () => {
       dispatch(selectCountry(country))
     }
   }, [country])
+
   useEffect(() => {
-    if (countryFromRedux && isSingleProductPage) {
-      router.push('/')
-      setCountry(countryFromRedux)
-    } else if (countryFromRedux && !isSingleProductPage) {
-      setCountry(countryFromRedux)
-    }
-  }, [countryFromRedux])
+    setCountry(countryFromRedux)
+  }, [])
+
+  // useEffect(() => {
+  //   if (countryFromRedux && isSingleProductPage) {
+  //     router.push('/')
+  //     setCountry(countryFromRedux)
+  //   } else if (countryFromRedux && !isSingleProductPage) {
+  //     setCountry(countryFromRedux)
+  //   }
+  // }, [countryFromRedux])
 
   useEffect(() => {
     if (inputbtn) {

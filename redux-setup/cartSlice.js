@@ -11,6 +11,7 @@ const initialState = {
   step1State: null,
   step2State: null,
   step3State: null,
+  productLogo: null,
 }
 const cartSlice = createSlice({
   name: 'cart',
@@ -69,6 +70,9 @@ const cartSlice = createSlice({
     setStep3State: (state, action) => {
       state.step3State = action.payload
     },
+    setProductLogo: (state, action) => {
+      state.productLogo = action.payload
+    },
   },
 })
 
@@ -86,5 +90,6 @@ export const {
   setOrderPlaced,
   deleteOrder,
   findOrder,
+  setProductLogo,
 } = cartSlice.actions
 export default cartSlice.reducer

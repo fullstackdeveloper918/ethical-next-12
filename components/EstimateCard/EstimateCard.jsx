@@ -27,18 +27,22 @@ const EstimateCard = () => {
   const step1State = useSelector((state) => state.cart.step1State)
   const step2State = useSelector((state) => state.cart.step2State)
   const cartItems = useSelector((state) => state.cart.cartItems)
+  const productLogo = useSelector((state) => state.cart.productLogo)
+
   const userId = useSelector((state) => state.auth.userId)
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))
   }
   let addressArr = [step2State]
-  let data = [step1State, addressArr, cartItems]
+  let data = [step1State, addressArr, cartItems, { userId: userId }]
   const [loadQuery, { response, loading, error }] = useFetch(
     `/bulkestimate/${userId}`,
     {
       method: 'post',
-    }
+    },
+    'formdata'
   )
+  console.log(cartItems, 'cartItems final test for formData')
 
   const handleSubmit = () => {
     if (!userId) {
@@ -54,7 +58,19 @@ const EstimateCard = () => {
         position: 'top-center',
       })
     } else {
-      loadQuery(data)
+      const formData = new FormData()
+
+      cartItems.forEach((item, index) => {
+        Object.keys(item).forEach((key) => {
+          formData.append(`${key}_${index}`, item[key])
+        })
+      })
+
+      formData.append('step1State', JSON.stringify(step1State))
+      formData.append('address', JSON.stringify(addressArr[0]))
+      formData.append('userId', userId)
+
+      loadQuery(formData)
     }
   }
 
