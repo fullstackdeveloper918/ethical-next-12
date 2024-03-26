@@ -341,7 +341,7 @@ const Product = ({ product, loading, error, productID }) => {
     if (cartItemsSwiftSwag === null || cartItemsSwiftSwag === swiftSwag) {
       setCartState({
         quantity: quantity,
-        image: setImagesArray[0],
+        image: imagesArray[0],
         heading: product?.product_description,
         pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
         id: product.id,
@@ -355,7 +355,7 @@ const Product = ({ product, loading, error, productID }) => {
       dispatch(
         setCartItems({
           quantity: quantity,
-          image: setImagesArray[0],
+          image: imagesArray[0],
           heading: product?.product_description,
           pricePerUnit: totalPrice === Infinity ? 0 : totalPrice.toFixed(2),
           id: product.id,
