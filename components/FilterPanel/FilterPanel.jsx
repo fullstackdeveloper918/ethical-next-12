@@ -137,20 +137,21 @@ const FilterPanel = ({
     let uniqueProductTypeObj = showAllFilters.filter(
       (item) => item.label === 'uniqueProductType'
     )
-    let obj = uniqueProductTypeObj[0].children
+    let obj =
+      uniqueProductTypeObj.length > 0 && uniqueProductTypeObj[0].children
     const finalUnique = productTypeArray.map((productId) => {
       const key = productId
       const value = obj[productId]
       return { key, value }
     })
     setClearUniqueProduct(finalUnique)
-  }, [productTypeArray])
+  }, [productTypeArray, showAllFilters])
 
   useEffect(() => {
     let decorationObj = showAllFilters.filter(
       (item) => item.label === 'Decoration'
     )
-    let obj = decorationObj[0].children
+    let obj = decorationObj.length > 0 && decorationObj[0].children
     const finalDecoration = decorationsArray.map((productId) => {
       const key = productId
       const value = obj[productId]
@@ -163,7 +164,7 @@ const FilterPanel = ({
     let emojiObj = showAllFilters.filter(
       (item) => item.label === 'Emoji ratings'
     )
-    let obj = emojiObj[0].children
+    let obj = emojiObj.length > 0 && emojiObj[0].children
     const finalEmoji = emojiTypeArray.map((productId) => {
       const key = productId
       const value = obj[productId]
