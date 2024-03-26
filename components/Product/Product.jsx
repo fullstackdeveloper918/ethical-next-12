@@ -87,35 +87,9 @@ const Product = ({ product, loading, error, productID }) => {
     SizeQuantityXL: 0,
   })
 
-  // const handleQuantity = (e) => {
-  //   if (isSample) {
-  //     setQuantity(e.target.value > 3 ? 3 : e.target.value)
-  //   } else {
-  //     setQuantity(e.target.value)
-  //   }
-  // }
-  // const handleQuantity = (e) => {
-  //   const value = parseInt(e.target.value) // Parse value to integer
-  //   if (isSample) {
-  //     setQuantity(value > 3 ? 3 : value)
-  //   } else {
-  //     setQuantity(value)
-  //   }
-  // }
-
   const handleQuantity = (e) => {
-    const value = parseInt(e.target.value) // Parse value to integer
-    if (isSample) {
-      if (value <= 0) {
-        setQuantity(0) // Ensure quantity is not negative
-      } else if (value > 3) {
-        setQuantity(3) // Limit quantity to 3
-      } else {
-        setQuantity(value)
-      }
-    } else {
-      setQuantity(value)
-    }
+    const value = parseInt(e.target.value)
+    setQuantity(value)
   }
 
   useEffect(() => {
@@ -217,10 +191,12 @@ const Product = ({ product, loading, error, productID }) => {
     }
   }
   useEffect(() => {
-    if (product && actualMinQty) {
+    if (isSample) {
+      setQuantity(3)
+    } else if (product && actualMinQty && !isSample) {
       setQuantity(actualMinQty)
     }
-  }, [product, actualMinQty])
+  }, [product, actualMinQty, isSample])
   useEffect(() => {
     if (product) {
       getPrice()
@@ -908,16 +884,16 @@ const Product = ({ product, loading, error, productID }) => {
                             quantity < 3
                               ? setQuantity(quantity)
                               : setQuantity(3)
-                          } else if (quantity < actualMinQty) {
+                          } else if (!isSample && quantity < actualMinQty) {
                             setQuantity(actualMinQty)
                           }
                         }}
                       />
-
-                      <span>
-                        (minimum {isSample ? '3' : +actualMinQty} units
-                        required)
-                      </span>
+                      {isSample ? (
+                        <span>(maximum 3 units allowed for sample)</span>
+                      ) : (
+                        <span>(minimum {+actualMinQty} units required)</span>
+                      )}
                     </div>
                   </div>
                   <div className={Styles.select_size_quantity}>
