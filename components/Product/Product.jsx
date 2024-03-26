@@ -87,8 +87,6 @@ const Product = ({ product, loading, error, productID }) => {
     SizeQuantityXL: 0,
   })
 
-  console.log(finalDecorationKeyVal, 'finalDecorationKeyVal')
-
   // const handleQuantity = (e) => {
   //   if (isSample) {
   //     setQuantity(e.target.value > 3 ? 3 : e.target.value)
@@ -403,7 +401,7 @@ const Product = ({ product, loading, error, productID }) => {
       setSingleImage(
         country === 'usa'
           ? product?.images_us && product?.images_us[0]
-          : product?.images_ca[0]
+          : product?.images_ca && product?.images_ca[0]
       )
     }
   }, [product])
@@ -912,7 +910,6 @@ const Product = ({ product, loading, error, productID }) => {
                       </span>
                     </div>
                   </div>
-                  {console.log(sizeNotSure, 'sizeNotSure')}
                   <div className={Styles.select_size_quantity}>
                     {sizeNotSure || isSample ? (
                       ''

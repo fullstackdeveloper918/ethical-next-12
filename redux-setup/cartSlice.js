@@ -5,7 +5,7 @@ const initialState = {
   orderPlaced: [],
   orderIndex: '',
   searchState: '',
-  selectedOptionValue: '',
+  selectedNameDateFilterValue: '',
   reached2ndStep: false,
   reached3rdStep: false,
   step1State: null,
@@ -51,8 +51,8 @@ const cartSlice = createSlice({
     setSearchState: (state, action) => {
       state.searchState = action.payload
     },
-    setSelectedOptionValue: (state, action) => {
-      state.selectedOptionValue = action.payload
+    setSelectedNameDateFilterValue: (state, action) => {
+      state.selectedNameDateFilterValue = action.payload
     },
     setreached2ndStep: (state, action) => {
       state.reached2ndStep = action.payload
@@ -77,7 +77,7 @@ export const {
   deleteCartItem,
   deleteAllCartItems,
   setSearchState,
-  setSelectedOptionValue,
+  setSelectedNameDateFilterValue,
   setreached2ndStep,
   setreached3rdStep,
   setStep2State,

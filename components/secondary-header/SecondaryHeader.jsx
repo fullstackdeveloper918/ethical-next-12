@@ -27,7 +27,10 @@ import { debounce } from '@lib/utils'
 import { countries } from 'constants/data'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAllFilters } from 'redux-setup/FiltersSlice'
-import { setIsCategoryPage } from 'redux-setup/randomSlice'
+import {
+  setIsCategoryPage,
+  setIsSingleProductPage,
+} from 'redux-setup/randomSlice'
 import { selectCountry } from 'redux-setup/countrySlice'
 import {
   getAllCategories,
@@ -47,7 +50,7 @@ const SecondaryHeader = () => {
   const [showSearchInput, setShowSearchInput] = useState(false)
   const [openLinks, setOpenLinks] = useState(false)
   const [inputbtn, setInputBtn] = useState(false)
-  const [country, setCountry] = useState('usa')
+  const [country, setCountry] = useState('')
   const [countryTosend, setCountryToSend] = useState('usa')
   const [screenSize, setScreenSize] = useState(992)
   const [showOnMobile, setShowOnMobile] = useState(false)
@@ -60,7 +63,13 @@ const SecondaryHeader = () => {
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
   const allCategories = useSelector((state) => state.category.allCategories)
-  const dateNameFilter = useSelector((state) => state.cart.selectedOptionValue)
+  const selectedNameDateFilterValue = useSelector(
+    (state) => state.cart.selectedNameDateFilterValue
+  )
+
+  const isSingleProductPage = useSelector(
+    (state) => state.random.isSingleProductPage
+  )
   const optimizedFn = useCallback(debounce(handleChange), [])
 
   let route = router.asPath.split('/').filter((item) => item !== '')
@@ -143,8 +152,22 @@ const SecondaryHeader = () => {
   }, [])
 
   useEffect(() => {
-    dispatch(selectCountry(country))
+    dispatch(setIsSingleProductPage(router.asPath.includes('/product/')))
+  }, [router.asPath])
+
+  useEffect(() => {
+    if (country) {
+      dispatch(selectCountry(country))
+    }
   }, [country])
+  useEffect(() => {
+    if (countryFromRedux && isSingleProductPage) {
+      router.push('/')
+      setCountry(countryFromRedux)
+    } else if (countryFromRedux && !isSingleProductPage) {
+      setCountry(countryFromRedux)
+    }
+  }, [countryFromRedux])
 
   useEffect(() => {
     if (inputbtn) {
@@ -174,7 +197,7 @@ const SecondaryHeader = () => {
       )
     }
   }, [countryFromRedux])
-
+  console.log(countryFromRedux, 'countryFromRedux')
   useEffect(() => {
     if (
       allCategories &&
@@ -198,12 +221,14 @@ const SecondaryHeader = () => {
       if (category0) {
         const route = `/products?product_catogries=${urlCategoryId}${
           collectionIdToUse ? `&collection_ids=${collectionIdToUse}` : ''
-        }${dateNameFilter ? `&${dateNameFilter}=1` : ''}`
+        }${
+          selectedNameDateFilterValue ? `&${selectedNameDateFilterValue}=1` : ''
+        }&${countryTosend}=1`
         setUrl(route)
         getSideFilters()
       }
     }
-  }, [router.asPath, countryTosend, dateNameFilter])
+  }, [router.asPath, countryTosend, selectedNameDateFilterValue])
 
   useEffect(() => {
     if (url) {

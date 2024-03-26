@@ -5,6 +5,7 @@ const initialState = {
   decorationItemObjSingleProductPage: {},
   finalDecorationKeyVal: {},
   isCategoryPage: '',
+  isSingleProductPage: '',
 }
 
 export const RandomSlice = createSlice({
@@ -24,6 +25,9 @@ export const RandomSlice = createSlice({
     setIsCategoryPage: (state, action) => {
       state.isCategoryPage = action.payload
     },
+    setIsSingleProductPage: (state, action) => {
+      state.isSingleProductPage = action.payload
+    },
   },
 })
 
@@ -32,5 +36,6 @@ export const {
   setDecorationItemObjSingleProductPage,
   setFinalDecorationKeyVal,
   setIsCategoryPage,
+  setIsSingleProductPage,
 } = RandomSlice.actions
 export default RandomSlice.reducer

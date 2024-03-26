@@ -5,7 +5,10 @@ import Image from 'next/image'
 import FilterPanel from '../FilterPanel/FilterPanel'
 import images from '../../constants/images'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSearchState, setSelectedOptionValue } from 'redux-setup/cartSlice'
+import {
+  setSearchState,
+  setSelectedNameDateFilterValue,
+} from 'redux-setup/cartSlice'
 import { setSubCollectionForUrl } from 'redux-setup/categorySlice'
 import { useRouter } from 'next/router'
 
@@ -54,7 +57,7 @@ const Filter = ({
 
   const handleSelectChange = (event) => {
     const value = event.target.value
-    dispatch(setSelectedOptionValue(value))
+    dispatch(setSelectedNameDateFilterValue(value))
   }
 
   useEffect(() => {
