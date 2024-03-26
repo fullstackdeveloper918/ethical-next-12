@@ -13,13 +13,14 @@ const Pagination = ({
   const [arr, setArr] = useState([])
   const [totalPages, setTotalPages] = useState(1)
   let itemsPerPage = 10
-  const paginate = () => {
-    const startIndex = (page - 1) * itemsPerPage
+  const paginate = (val) => {
+    const startIndex = val ? 0 : (page - 1) * itemsPerPage
+
     const endIndex = startIndex + itemsPerPage
+
     let paginated = products.slice(startIndex, endIndex)
     setPaginatedProducts(paginated)
   }
-  // console.log(products, 'productsss from pagination')
   const handlePageChange = (val) => {
     if (val === 'prev') {
       page != 1 && setPage(page - 1)
@@ -45,14 +46,16 @@ const Pagination = ({
     const pages = Math.ceil(products.length / itemsPerPage)
     setTotalPages(pages)
   }, [products, itemsPerPage])
-
+  useEffect(() => {
+    paginate('setpage1')
+  }, [totalPages, products])
   useEffect(() => {
     paginate()
-  }, [totalPages, products, page, itemsPerPage])
+  }, [page, itemsPerPage])
 
   return (
     <>
-      {paginatedProducts.length > 10 && (
+      {paginatedProducts.length > 9 && (
         <div className={Styles.pagination_container}>
           <div className={Styles.pagination_content}>
             <button

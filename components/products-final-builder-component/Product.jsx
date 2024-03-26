@@ -27,32 +27,31 @@ const Product = () => {
   const swiftSwag = useSelector((state) => state.filter.swiftSwag)
 
   useEffect(() => {
-    if (filteredColors.length > 0 && getProductsRes?.data?.data?.length > 0) {
-      let result = getProductsRes?.data?.data?.filter((item) => {
+    if (filteredColors.length > 0 && getProductsRes?.data?.length > 0) {
+      let result = getProductsRes?.data?.filter((item) => {
         return Object.keys(item.colours).some((color) =>
           filteredColors.includes(color)
         )
       })
       setFinalColorFilteredProducts(result)
     } else if (filteredColors.length === 0) {
-      setFinalColorFilteredProducts(getProductsRes?.data?.data)
+      setFinalColorFilteredProducts(getProductsRes?.data)
     }
   }, [filteredColors, getProductsRes])
-
   useEffect(() => {
-    if (getProductsRes?.data?.data?.length > 0 && swiftSwag) {
+    if (getProductsRes?.data?.length > 0 && swiftSwag) {
       let result = finalColorFilteredProducts?.filter((item) => {
         return item.swift_tag == 1
       })
 
       setFinalSwiftProducts(result)
-    } else if (getProductsRes?.data?.data?.length > 0) {
+    } else if (getProductsRes?.data?.length > 0) {
       setFinalSwiftProducts(finalColorFilteredProducts)
     }
   }, [swiftSwag, finalColorFilteredProducts])
 
   useEffect(() => {
-    if (getProductsRes?.data?.data?.length > 0 && decorationsArray.length > 0) {
+    if (getProductsRes?.data?.length > 0 && decorationsArray.length > 0) {
       let result = finalSwiftProducts?.filter((item) => {
         let supplierFees =
           country === 'usa' ? item?.supplier_fees_usd : item?.supplier_fees_cad
@@ -61,31 +60,31 @@ const Product = () => {
         )
       })
       setFinalDecorationProducts(result)
-    } else if (getProductsRes?.data?.data?.length > 0) {
+    } else if (getProductsRes?.data?.length > 0) {
       setFinalDecorationProducts(finalSwiftProducts)
     }
   }, [decorationsArray, finalSwiftProducts])
 
   useEffect(() => {
-    if (getProductsRes?.data?.data?.length > 0 && productTypeArray.length > 0) {
+    if (getProductsRes?.data?.length > 0 && productTypeArray.length > 0) {
       let result = finalDecorationProducts?.filter((item) => {
         return productTypeArray.some((type) =>
           item.product_type?.includes(type)
         )
       })
       setFinalProductType(result)
-    } else if (getProductsRes?.data?.data?.length > 0) {
+    } else if (getProductsRes?.data?.length > 0) {
       setFinalProductType(finalDecorationProducts)
     }
   }, [productTypeArray, finalDecorationProducts])
 
   useEffect(() => {
-    if (getProductsRes?.data?.data?.length > 0 && emojiTypeArray.length > 0) {
+    if (getProductsRes?.data?.length > 0 && emojiTypeArray.length > 0) {
       let result = finalProductType?.filter((item) => {
         return emojiTypeArray.some((type) => item.emoji_ratings?.includes(type))
       })
       setFinalEmojiType(result)
-    } else if (getProductsRes?.data?.data?.length > 0) {
+    } else if (getProductsRes?.data?.length > 0) {
       setFinalEmojiType(finalProductType)
     }
   }, [emojiTypeArray, finalProductType])
@@ -110,12 +109,7 @@ const Product = () => {
           setEmojiTypeArray={setEmojiTypeArray}
           emojiTypeArray={emojiTypeArray}
         />
-        <Products
-          finalProducts={
-            finalEmojiType.length > 10 ? paginatedProducts : finalEmojiType
-          }
-        />
-        {/* {finalEmojiType.length > 10 && ( */}
+        <Products finalProducts={paginatedProducts} />
         <div className={Styles.pagination_section}>
           <Pagination
             products={finalEmojiType}
