@@ -73,7 +73,9 @@ const SecondaryHeader = () => {
   const routeArray = route.map((item) => decodeURIComponent(item))
   const urlCategory = routeArray[1]
   let urlCategoryIdd = allCategories[urlCategory]?.airtabelId
-
+  const isSingleProductPage = useSelector(
+    (state) => state.random.isSingleProductPage
+  )
   const getSingleProductPageRoute =
     router.asPath.includes('/product/') ||
     router.asPath.includes('/contact') ||
@@ -392,49 +394,56 @@ const SecondaryHeader = () => {
         </div>
 
         <div className={styles.container_3}>
-          <div className="">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className={`${styles.language_dropdown} ${styles.desktop_menu}`}
-                >
-                  <span className="flag-img">
-                    <Image
-                      src={country === 'canada' ? Canada : Usa}
-                      width={28}
-                      height={20}
-                      alt="like"
-                    />
-                  </span>
-                  <span className={styles.dropdown_icon}>
-                    <Image src={downIcon} width={14} height={14} alt="search" />
-                  </span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className={styles.language_wrapdropdown}>
-                <DropdownMenuRadioGroup
-                  value={country}
-                  onValueChange={setCountry}
-                >
-                  <div className={styles.countries_dropdown_container}>
-                    {countries.map((c, i) => {
-                      return (
-                        <DropdownMenuRadioItem value={c.country} key={i}>
-                          <Image
-                            src={c.imageSrc}
-                            width={30}
-                            height={22}
-                            alt="like"
-                          />
-                        </DropdownMenuRadioItem>
-                      )
-                    })}
-                  </div>
-                </DropdownMenuRadioGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+          {!isSingleProductPage && (
+            <div className="">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className={`${styles.language_dropdown} ${styles.desktop_menu}`}
+                  >
+                    <span className="flag-img">
+                      <Image
+                        src={country === 'canada' ? Canada : Usa}
+                        width={28}
+                        height={20}
+                        alt="like"
+                      />
+                    </span>
+                    <span className={styles.dropdown_icon}>
+                      <Image
+                        src={downIcon}
+                        width={14}
+                        height={14}
+                        alt="search"
+                      />
+                    </span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className={styles.language_wrapdropdown}>
+                  <DropdownMenuRadioGroup
+                    value={country}
+                    onValueChange={setCountry}
+                  >
+                    <div className={styles.countries_dropdown_container}>
+                      {countries.map((c, i) => {
+                        return (
+                          <DropdownMenuRadioItem value={c.country} key={i}>
+                            <Image
+                              src={c.imageSrc}
+                              width={30}
+                              height={22}
+                              alt="like"
+                            />
+                          </DropdownMenuRadioItem>
+                        )
+                      })}
+                    </div>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          )}
           <div className={styles.header_searchicon}>
             <span>
               <Image
