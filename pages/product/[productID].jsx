@@ -388,8 +388,8 @@ const productID = () => {
                       <p>
                         How we use your data: We’ll only contact you about the
                         review you left, and only if necessary. By submitting
-                        your review, you agree terms and
-                        conditions and privacy policy.
+                        your review, you agree terms and conditions and privacy
+                        policy.
                       </p>
                     </div>
 
