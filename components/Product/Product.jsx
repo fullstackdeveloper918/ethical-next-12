@@ -892,15 +892,17 @@ const Product = ({ product, loading, error, productID }) => {
                         type="number"
                         // placeholder={product?.column_1_qty}
                         name="orderQuantity"
-                        value={isSample ? '3' : quantity}
+                        // value={isSample ? '3' : quantity}
+                        value={quantity}
                         onChange={handleQuantity}
                         onBlur={(e) => {
-                          if (quantity < actualMinQty) {
+                          if (isSample) {
+                            quantity < 3
+                              ? setQuantity(quantity)
+                              : setQuantity(3)
+                          } else if (quantity < actualMinQty) {
                             setQuantity(actualMinQty)
                           }
-                          // if (isSample > 3) {
-                          //   setSizeNotSureQuantity(3)
-                          // }
                         }}
                       />
 
