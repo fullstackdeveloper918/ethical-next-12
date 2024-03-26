@@ -21,11 +21,6 @@ const Orders = () => {
 
   const orderPlaced = useSelector((state) => state.cart.orderPlaced)
 
-  // const handleViewClicked = (id) => {
-  //   // dispatch(setSelectedViewId(id))
-  //   router.push(`/super-admin/orders/view`)
-  // }
-
   const handleEdit = (id) => {
     dispatch(findOrder(id))
     router.push(`/super-admin/orders/edit`)
