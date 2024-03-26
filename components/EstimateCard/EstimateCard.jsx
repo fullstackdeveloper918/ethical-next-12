@@ -27,17 +27,20 @@ const EstimateCard = () => {
   const step1State = useSelector((state) => state.cart.step1State)
   const step2State = useSelector((state) => state.cart.step2State)
   const cartItems = useSelector((state) => state.cart.cartItems)
+  const productLogo = useSelector((state) => state.cart.productLogo)
+
   const userId = useSelector((state) => state.auth.userId)
   const handleDelete = (val) => {
     dispatch(deleteCartItem(val))
   }
   let addressArr = [step2State]
-  let data = [step1State, addressArr, cartItems]
+  let data = [step1State, addressArr, cartItems, { userId: userId }]
   const [loadQuery, { response, loading, error }] = useFetch(
     `/bulkestimate/${userId}`,
     {
       method: 'post',
-    }
+    },
+    'formdata'
   )
 
   const handleSubmit = () => {
@@ -54,7 +57,9 @@ const EstimateCard = () => {
         position: 'top-center',
       })
     } else {
-      loadQuery(data)
+      const formData = new FormData()
+      formData.append('logo', productLogo)
+      loadQuery(formData)
     }
   }
 
