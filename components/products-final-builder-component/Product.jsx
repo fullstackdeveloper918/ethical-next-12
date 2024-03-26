@@ -115,18 +115,16 @@ const Product = () => {
             finalEmojiType.length > 10 ? paginatedProducts : finalEmojiType
           }
         />
-
-        {finalEmojiType.length > 10 && (
-          <div className={Styles.pagination_section}>
-            <Pagination
-              products={finalEmojiType}
-              paginatedProducts={paginatedProducts}
-              setPaginatedProducts={setPaginatedProducts}
-              page={page}
-              setPage={setPage}
-            />
-          </div>
-        )}
+        {/* {finalEmojiType.length > 10 && ( */}
+        <div className={Styles.pagination_section}>
+          <Pagination
+            products={finalEmojiType}
+            paginatedProducts={paginatedProducts}
+            setPaginatedProducts={setPaginatedProducts}
+            page={page}
+            setPage={setPage}
+          />
+        </div>
       </section>
     </>
   )

@@ -197,7 +197,6 @@ const SecondaryHeader = () => {
       )
     }
   }, [countryFromRedux])
-  console.log(countryFromRedux, 'countryFromRedux')
   useEffect(() => {
     if (
       allCategories &&

@@ -19,7 +19,7 @@ const Pagination = ({
     let paginated = products.slice(startIndex, endIndex)
     setPaginatedProducts(paginated)
   }
-
+  // console.log(products, 'productsss from pagination')
   const handlePageChange = (val) => {
     if (val === 'prev') {
       page != 1 && setPage(page - 1)
@@ -52,48 +52,50 @@ const Pagination = ({
 
   return (
     <>
-      <div className={Styles.pagination_container}>
-        <div className={Styles.pagination_content}>
-          <button
-            onClick={() => handlePageChange('prev')}
-            disabled={page === 1}
-            style={{
-              opacity: page === 1 ? '0.7' : '1',
-              cursor: page === 1 ? 'not-allowed' : 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '3px',
-            }}
-          >
-            <MdArrowBackIos cursor="pointer" />
-            Previous
-          </button>
-
-          {arr.map((item, i) => (
+      {paginatedProducts.length > 10 && (
+        <div className={Styles.pagination_container}>
+          <div className={Styles.pagination_content}>
             <button
-              onClick={() => setPage(i + 1)}
-              className={page === i + 1 ? Styles.current_page : ''}
-              key={i}
+              onClick={() => handlePageChange('prev')}
+              disabled={page === 1}
+              style={{
+                opacity: page === 1 ? '0.7' : '1',
+                cursor: page === 1 ? 'not-allowed' : 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '3px',
+              }}
             >
-              {item}
+              <MdArrowBackIos cursor="pointer" />
+              Previous
             </button>
-          ))}
-          <button
-            onClick={() => handlePageChange('next')}
-            disabled={page === totalPages}
-            style={{
-              opacity: page == totalPages ? '0.7' : '1',
-              cursor: page == totalPages ? 'not-allowed' : 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '3px',
-            }}
-          >
-            Next
-            <IoChevronForwardSharp cursor="pointer" />
-          </button>
+
+            {arr.map((item, i) => (
+              <button
+                onClick={() => setPage(i + 1)}
+                className={page === i + 1 ? Styles.current_page : ''}
+                key={i}
+              >
+                {item}
+              </button>
+            ))}
+            <button
+              onClick={() => handlePageChange('next')}
+              disabled={page === totalPages}
+              style={{
+                opacity: page == totalPages ? '0.7' : '1',
+                cursor: page == totalPages ? 'not-allowed' : 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '3px',
+              }}
+            >
+              Next
+              <IoChevronForwardSharp cursor="pointer" />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </>
   )
 }
