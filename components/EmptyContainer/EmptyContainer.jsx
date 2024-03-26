@@ -11,7 +11,7 @@ const EmptyContainer = ({ data }) => {
         <h2 className={Styles.title}>Hey, your {data} is Empty!</h2>
         <button
           className={Styles.shop_product_btn}
-          onClick={() => router.push('/products')}
+          onClick={() => router.push('/category/Drinkware')}
         >
           Shop Products
         </button>

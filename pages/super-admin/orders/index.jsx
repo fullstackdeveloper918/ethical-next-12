@@ -91,7 +91,7 @@ const Orders = () => {
           {/* Pagination section */}
           <div className={Styles.pagination_container}>
             <div className={Styles.pagination_content}>
-              <Pagination />
+              {/* <Pagination /> */}
             </div>
           </div>
         </div>
