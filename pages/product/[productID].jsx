@@ -103,8 +103,14 @@ const productID = () => {
       productId: productID,
     }
     reviewsApiPost(data)
+
     setWriteReview(false)
   }
+  useEffect(() => {
+    if (reviewsApiPostRes) {
+      reviewsApi()
+    }
+  }, [reviewsApiPostRes])
   return (
     <>
       <PrimaryHeader />

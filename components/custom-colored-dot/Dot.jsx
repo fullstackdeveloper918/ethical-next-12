@@ -51,8 +51,8 @@ const Dot = ({
           style={{
             background: color,
             outlineColor: setOutlineColor(),
-            outlineWidth: '2px',
-            outlineOffset: '-2px',
+            outlineWidth: '1px',
+            // outlineOffset: '-2px',
             // color: isCategoryPage === true ? 'red': 'pink'
           }}
           onClick={() => handleSelect(color)}
