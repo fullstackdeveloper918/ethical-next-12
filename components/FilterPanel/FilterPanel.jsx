@@ -26,6 +26,7 @@ const FilterPanel = ({
     useState([])
   const [clearUniqueProduct, setClearUniqueProduct] = useState([])
   const [clearDecorationProduct, setClearDecorationProduct] = useState([])
+  const [decoProductClear, setDecoProductClear] = useState([])
   const [clearEmojiProduct, setClearEmojiProduct] = useState([])
   const [renderDecoObj, setRenderDecoObj] = useState({})
   const allFilters = useSelector((state) => state.filter.allFilters)
@@ -40,7 +41,6 @@ const FilterPanel = ({
       setOpenIndex([...openIndex, index])
     }
   }
-  console.log(decorationsArray, 'decorationsArray')
   const handleCheckboxChange = (event, item) => {
     const { name } = event.target
     if (item.label === 'uniqueProductType') {
@@ -60,7 +60,6 @@ const FilterPanel = ({
       let arr = []
       Object.keys(item.children).forEach((key) => {
         if (item.children[key] === name) {
-          console.log({ key, name }, 'Decoration')
           arr.push(key)
           const index = decorationsArray.indexOf(key)
 
@@ -113,7 +112,7 @@ const FilterPanel = ({
       )
     } else {
       return (
-        <div onClick={() => handleClear(item, array, setArrName)}>
+        <div onClick={() => handleClear(item, array, setArrName, color)}>
           {item?.value && alphabetRegex.test(item?.value)
             ? JSON.parse(item?.value)
             : item?.value}
@@ -122,9 +121,24 @@ const FilterPanel = ({
     }
   }
 
-  const handleClear = (item, array, setArrName) => {
-    let ar = array.filter((ar) => ar !== item.key)
-    setArrName(ar)
+  const handleClear = (item, array, setArrName, color) => {
+    if (color === 'decoration') {
+      let decorationObj = showAllFilters.filter(
+        (item) => item.label === 'Decoration'
+      )
+      let obj = decorationObj.length > 0 && decorationObj[0].children
+      const keysWithSameValue = []
+      for (const key in obj) {
+        if (obj[key] === item.value) {
+          keysWithSameValue.push(key)
+        }
+      }
+      let ar = array.filter((item) => !keysWithSameValue.includes(item))
+      setArrName(ar)
+    } else {
+      let ar = array.filter((ar) => ar !== item.key)
+      setArrName(ar)
+    }
   }
 
   const handleClearAll = () => {
@@ -154,6 +168,7 @@ const FilterPanel = ({
       (item) => item.label === 'Decoration'
     )
     let obj = decorationObj.length > 0 && decorationObj[0].children
+
     const finalDecoration = decorationsArray.map((productId) => {
       const key = productId
       const value = obj[productId]
@@ -161,7 +176,18 @@ const FilterPanel = ({
     })
     setClearDecorationProduct(finalDecoration)
   }, [decorationsArray])
-
+  useEffect(() => {
+    const uniqueValuesSet = new Set()
+    const arr = []
+    clearDecorationProduct.forEach((obj) => {
+      const { key, value } = obj
+      if (!uniqueValuesSet.has(value)) {
+        uniqueValuesSet.add(value)
+        arr.push({ key, value })
+      }
+    })
+    setDecoProductClear(arr)
+  }, [clearDecorationProduct])
   useEffect(() => {
     let emojiObj = showAllFilters.filter(
       (item) => item.label === 'Emoji ratings'
@@ -259,10 +285,10 @@ const FilterPanel = ({
               clearUniqueProduct.map((item) =>
                 badge(item, productTypeArray, setProductTypeArray)
               )}
-            {clearDecorationProduct &&
-              clearDecorationProduct.length > 0 &&
-              clearDecorationProduct.map((item) =>
-                badge(item, decorationsArray, setDecorationsArray)
+            {decoProductClear &&
+              decoProductClear.length > 0 &&
+              decoProductClear.map((item) =>
+                badge(item, decorationsArray, setDecorationsArray, 'decoration')
               )}
 
             {clearEmojiProduct &&
