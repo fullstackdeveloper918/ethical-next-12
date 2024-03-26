@@ -42,6 +42,7 @@ const EstimateCard = () => {
     },
     'formdata'
   )
+  console.log(cartItems, 'cartItems final test for formData')
 
   const handleSubmit = () => {
     if (!userId) {
@@ -58,7 +59,17 @@ const EstimateCard = () => {
       })
     } else {
       const formData = new FormData()
-      formData.append('logo', productLogo)
+
+      cartItems.forEach((item, index) => {
+        Object.keys(item).forEach((key) => {
+          formData.append(`${key}_${index}`, item[key])
+        })
+      })
+
+      formData.append('step1State', JSON.stringify(step1State))
+      formData.append('address', JSON.stringify(addressArr[0]))
+      formData.append('userId', userId)
+
       loadQuery(formData)
     }
   }
