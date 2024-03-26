@@ -26,7 +26,6 @@ const ProductCard = ({ item, fromSingleProduct }) => {
     (wishlistItem) => wishlistItem.id === item.id
   )
 
-  console.log(wishListItems)
   const favoriteIconColor = useSelector((state) => state.wishlist.favoriteIcon)
   const country = useSelector((state) => state.country.country)
 

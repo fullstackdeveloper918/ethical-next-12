@@ -1009,7 +1009,7 @@
   margin-top: 2.5rem;
   border: 1px solid #d8d8d8;
   border-radius: 30px;
-  /* min-height: 460px; */
+  min-height: 1000px;
   max-height: 1400px;
   overflow-y: auto;
 }

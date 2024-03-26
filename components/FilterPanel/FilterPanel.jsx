@@ -40,6 +40,7 @@ const FilterPanel = ({
       setOpenIndex([...openIndex, index])
     }
   }
+  console.log(decorationsArray, 'decorationsArray')
   const handleCheckboxChange = (event, item) => {
     const { name } = event.target
     if (item.label === 'uniqueProductType') {
@@ -56,15 +57,18 @@ const FilterPanel = ({
         }
       })
     } else if (item.label === 'Decoration') {
+      let arr = []
       Object.keys(item.children).forEach((key) => {
         if (item.children[key] === name) {
+          console.log({ key, name }, 'Decoration')
+          arr.push(key)
           const index = decorationsArray.indexOf(key)
 
           if (index !== -1) {
-            let a = decorationsArray.filter((item) => item !== key)
+            let a = decorationsArray.filter((item) => !arr.includes(item))
             setDecorationsArray(a)
           } else {
-            setDecorationsArray([...decorationsArray, key])
+            setDecorationsArray([...decorationsArray, ...arr])
           }
         }
       })
