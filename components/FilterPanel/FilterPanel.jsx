@@ -57,7 +57,6 @@ const FilterPanel = ({
       })
     } else if (item.label === 'Decoration') {
       Object.keys(item.children).forEach((key) => {
-        let a = []
         if (item.children[key] === name) {
           const index = decorationsArray.indexOf(key)
 
@@ -83,7 +82,6 @@ const FilterPanel = ({
       })
     }
   }
-
   const handleSwagChange = (event) => {
     if (event.target.value === 'true') {
       dispatch(setSwiftSwag(true))
@@ -321,8 +319,8 @@ const FilterPanel = ({
                       openIndex.includes(index) &&
                       item.label === 'uniqueProductType' ? (
                       <div className={Styles.custom_checkbox}>
-                        {Object.values(item.children).map(
-                          (child, childIndex) => (
+                        {Object.entries(item.children).map(
+                          ([key, child], childIndex) => (
                             <li
                               key={childIndex}
                               className={Styles.filterPanel_list_item}
@@ -332,7 +330,7 @@ const FilterPanel = ({
                                 id={`checkbox_id_${childIndex}`}
                                 name={child}
                                 onChange={(e) => handleCheckboxChange(e, item)}
-                                // checked={filteredProductType.includes(child)}
+                                checked={productTypeArray.includes(key)}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
                                 {child && JSON.parse(child)}
@@ -373,8 +371,8 @@ const FilterPanel = ({
                       openIndex.includes(index) &&
                       item.label === 'Decoration' ? (
                       <div className={Styles.custom_checkbox}>
-                        {Object.values(renderDecoObj).map(
-                          (child, childIndex) => (
+                        {Object.entries(renderDecoObj).map(
+                          ([key, child], childIndex) => (
                             <li
                               key={childIndex}
                               className={Styles.filterPanel_list_item}
@@ -384,7 +382,7 @@ const FilterPanel = ({
                                 id={`checkbox_id_${childIndex}`}
                                 name={child}
                                 value={child}
-                                // checked={decorations.includes(child)}
+                                checked={decorationsArray.includes(key)}
                                 onChange={(e) => handleCheckboxChange(e, item)}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
@@ -398,8 +396,8 @@ const FilterPanel = ({
                       openIndex.includes(index) &&
                       item.label === 'Emoji ratings' ? (
                       <div className={Styles.custom_checkbox}>
-                        {Object.values(item.children).map(
-                          (child, childIndex) => (
+                        {Object.entries(item.children).map(
+                          ([key, child], childIndex) => (
                             <li
                               key={childIndex}
                               className={Styles.filterPanel_list_item}
@@ -409,7 +407,7 @@ const FilterPanel = ({
                                 id={`checkbox_id_${childIndex}`}
                                 name={child}
                                 onChange={(e) => handleCheckboxChange(e, item)}
-                                // checked={filteredProductType.includes(child)}
+                                checked={emojiTypeArray.includes(key)}
                               />
                               <label htmlFor={`checkbox_id_${childIndex}`}>
                                 {child}
