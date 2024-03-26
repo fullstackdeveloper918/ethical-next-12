@@ -104,12 +104,12 @@ const Product = ({ product, loading, error, productID }) => {
   // }
 
   const handleQuantity = (e) => {
-    const value = parseInt(e.target.value) // Parse value to integer
+    const value = parseInt(e.target.value)
     if (isSample) {
       if (value <= 0) {
-        setQuantity(0) // Ensure quantity is not negative
+        setQuantity(0)
       } else if (value > 3) {
-        setQuantity(3) // Limit quantity to 3
+        setQuantity(3)
       } else {
         setQuantity(value)
       }
