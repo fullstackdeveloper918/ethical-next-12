@@ -27,6 +27,7 @@ const FilterPanel = ({
   const [clearUniqueProduct, setClearUniqueProduct] = useState([])
   const [clearDecorationProduct, setClearDecorationProduct] = useState([])
   const [clearEmojiProduct, setClearEmojiProduct] = useState([])
+  const [renderDecoObj, setRenderDecoObj] = useState({})
   const allFilters = useSelector((state) => state.filter.allFilters)
   const showAllFilters = useSelector((state) => state.filter.showAllFilters)
   const colorsObj = useSelector((state) => state.filter.colorsObj)
@@ -56,6 +57,7 @@ const FilterPanel = ({
       })
     } else if (item.label === 'Decoration') {
       Object.keys(item.children).forEach((key) => {
+        let a = []
         if (item.children[key] === name) {
           const index = decorationsArray.indexOf(key)
 
@@ -118,7 +120,12 @@ const FilterPanel = ({
     }
   }
 
-  const handleClear = () => {
+  const handleClear = (item, array, setArrName) => {
+    let ar = array.filter((ar) => ar !== item.key)
+    setArrName(ar)
+  }
+
+  const handleClearAll = () => {
     dispatch(setSwiftSwag(false))
     setDecorationsArray([])
     setProductTypeArray([])
@@ -201,12 +208,34 @@ const FilterPanel = ({
       }
     }
   }, [allFilters])
+
+  useEffect(() => {
+    if (showAllFilters.length > 0) {
+      let decoObj = showAllFilters.filter((i) => i.label === 'Decoration')[0]
+      let children = decoObj.children
+      let uniqueValues = {}
+      for (let key in children) {
+        let value = children[key]
+        if (!uniqueValues[value] && value !== null) {
+          uniqueValues[value] = key
+        }
+      }
+      const reversedObj = {}
+      for (const key in uniqueValues) {
+        const value = uniqueValues[key]
+        reversedObj[value] = key
+      }
+      setRenderDecoObj(reversedObj)
+    }
+  }, [showAllFilters])
   return (
     <>
-      {active && (
+      {swiftSwag && (
         <div className={Styles.filter_topwrapper}>
           <h3>You’re viewing Swift Swag only products.</h3>
-          <button>view all product intstead?</button>
+          <button onClick={() => dispatch(setSwiftSwag(false))}>
+            view all product intstead?
+          </button>
         </div>
       )}
 
@@ -214,7 +243,7 @@ const FilterPanel = ({
         <div className={Styles.filterPanel_top}>
           <h4
             className={Styles.filterPanel_title}
-            onClick={handleClear}
+            onClick={handleClearAll}
             style={{ cursor: 'pointer' }}
           >
             Clear All
@@ -343,30 +372,24 @@ const FilterPanel = ({
                       openIndex.includes(index) &&
                       item.label === 'Decoration' ? (
                       <div className={Styles.custom_checkbox}>
-                        {Object.values(item.children).map(
+                        {Object.values(renderDecoObj).map(
                           (child, childIndex) => (
-                            <>
-                              {child !== null && (
-                                <li
-                                  key={childIndex}
-                                  className={Styles.filterPanel_list_item}
-                                >
-                                  <input
-                                    type="checkbox"
-                                    id={`checkbox_id_${childIndex}`}
-                                    name={child}
-                                    value={child}
-                                    // checked={decorations.includes(child)}
-                                    onChange={(e) =>
-                                      handleCheckboxChange(e, item)
-                                    }
-                                  />
-                                  <label htmlFor={`checkbox_id_${childIndex}`}>
-                                    {child && JSON.parse(child)}
-                                  </label>
-                                </li>
-                              )}
-                            </>
+                            <li
+                              key={childIndex}
+                              className={Styles.filterPanel_list_item}
+                            >
+                              <input
+                                type="checkbox"
+                                id={`checkbox_id_${childIndex}`}
+                                name={child}
+                                value={child}
+                                // checked={decorations.includes(child)}
+                                onChange={(e) => handleCheckboxChange(e, item)}
+                              />
+                              <label htmlFor={`checkbox_id_${childIndex}`}>
+                                {child && JSON.parse(child)}
+                              </label>
+                            </li>
                           )
                         )}
                       </div>
