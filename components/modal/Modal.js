@@ -5,10 +5,11 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import { setSwiftSwag } from 'redux-setup/FiltersSlice'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/router'
 
 const Modal = () => {
   const dispatch = useDispatch()
-
+  const router = useRouter()
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [selectedOption, setSelectedOption] = useState('flexible')
   const [minDate, setMinDate] = useState(new Date())
@@ -32,6 +33,7 @@ const Modal = () => {
     } else {
       dispatch(setSwiftSwag(true))
       setIsOpenModal(false)
+      router.push('/category/Apparel')
     }
   }
   return (
@@ -68,6 +70,7 @@ const Modal = () => {
                           onClick={() => {
                             dispatch(setSwiftSwag(false))
                             setIsOpenModal(false)
+                            router.push('/category/Apparel')
                           }}
                         >
                           No, I have a flexible timeline
