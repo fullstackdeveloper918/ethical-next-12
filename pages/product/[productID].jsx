@@ -55,7 +55,10 @@ const productID = () => {
       }
     )
 
-  console.log(singleProduct, 'singleProduct')
+  console.log(
+    singleProduct && JSON.parse(singleProduct?.data?.product_catogries)[0],
+    'singleProduct'
+  )
 
   useEffect(() => {
     if (country && productID) {
@@ -67,14 +70,14 @@ const productID = () => {
   useEffect(() => {
     if (country) {
       fetch(
-        `https://test.cybersify.tech/Eswag/public/api/products?created_at_desc=1&${
-          country === 'usa' ? `available_in_usa=1` : `available_in_canada=1`
-        }`
+        `https://test.cybersify.tech/Eswag/public/api/products?product_catogries=${
+          singleProduct && JSON.parse(singleProduct?.data?.product_catogries)[0]
+        }&${country === 'usa' ? `available_in_usa=1` : `available_in_canada=1`}`
       )
         .then((res) => res.json())
-        .then((data) => setData(data?.data?.data))
+        .then((data) => setData(data?.data))
     }
-  }, [country])
+  }, [country, singleProduct])
 
   const [
     reviewsApi,
@@ -108,6 +111,9 @@ const productID = () => {
 
     setWriteReview(false)
   }
+
+  console.log(data, 'datagrkjfkj')
+
   useEffect(() => {
     if (reviewsApiPostRes) {
       reviewsApi()
