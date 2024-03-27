@@ -8,7 +8,9 @@
   outline-offset: 3px;
   position: relative;
 }
-.dot_wrap{background-color: red;}
+.dot_wrap {
+  background-color: red;
+}
 .colored_dot.active {
   outline-color: red;
   outline-offset: 3px;
@@ -21,47 +23,48 @@
   border-radius: 10px;
   border: 1px solid #0003 !important;
 }
-.product_color{
+.product_color {
   width: 30px;
-    height: 30px;
-    margin-left: 5px;
+  height: 30px;
+  margin-left: 5px;
+  outline-offset: 4px;
 }
 
-@media (max-width:1440px){
+@media (max-width: 1440px) {
   .colored_dot {
     width: 14px;
     height: 14px;
     outline: 1px solid #d0d0cc;
     outline-offset: 4px;
   }
-  
+
   .colored_dot.active {
     outline-color: red;
     outline-offset: 3px;
-  } 
+  }
 }
-@media (max-width:1366px){
-  .product_color{
+@media (max-width: 1366px) {
+  .product_color {
     width: 25px;
-      height:25px;
+    height: 25px;
   }
 }
 
-@media (max-width:1024px){
-  .product_color{
-    width: 20px ;
-      height:20px ;
+@media (max-width: 1024px) {
+  .product_color {
+    width: 20px;
+    height: 20px;
   }
 }
-@media (max-width:1200px){
+@media (max-width: 1200px) {
   .colored_dot {
     width: 14px;
     height: 14px;
   }
 }
-@media (max-width:1200px){
-  .product_color{
+@media (max-width: 1200px) {
+  .product_color {
     width: 20px;
-      height:20px;
+    height: 20px;
   }
 }
