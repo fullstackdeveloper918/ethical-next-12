@@ -446,7 +446,7 @@ const SecondaryHeader = () => {
               </DropdownMenu>
             </div>
           )}
-          <div className={styles.header_searchicon}>
+          {/* <div className={styles.header_searchicon}>
             <span>
               <Image
                 src={searchImg}
@@ -518,7 +518,7 @@ const SecondaryHeader = () => {
                 </div>
               </div>
             </span>
-          </div>
+          </div> */}
           {screenSize > 767 && (
             <div
               className=""

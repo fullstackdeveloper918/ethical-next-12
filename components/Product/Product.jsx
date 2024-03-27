@@ -6,6 +6,10 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 import Styles from './Product.module.css'
 import Loaders from '../../components/loaders/Loaders'
 import Dot from '../custom-colored-dot/Dot'
+import {
+  addItemToWishlist,
+  removeItemFromWishlist,
+} from '../../redux-setup/wishlistSlice'
 import { RxCross2 } from 'react-icons/rx'
 import { setCartItems, setProductLogo } from '../../redux-setup/cartSlice'
 import { toast } from 'react-toastify'
@@ -87,6 +91,7 @@ const Product = ({ product, loading, error, productID }) => {
     SizeQuantityL: 0,
     SizeQuantityXL: 0,
   })
+  const wishListItems = useSelector((state) => state.wishlist.items)
 
   const handleQuantity = (e) => {
     const value = parseInt(e.target.value)
@@ -115,6 +120,30 @@ const Product = ({ product, loading, error, productID }) => {
     })
     setSizeQuantity(updatedSizeQuantity)
   }, [quantity])
+
+  const addToWishlist = (item) => {
+    const isInWishlist = wishListItems.some(
+      (wishlistItem) => wishlistItem.id === item.id
+    )
+    if (isInWishlist) {
+      // If the item is already in the wishlist, remove it
+      dispatch(removeItemFromWishlist(item.id))
+      toast.success('Item removed from wishlist', {
+        position: 'top-center',
+        autoClose: 5000,
+      })
+    } else {
+      // Otherwise, add the item to the wishlist
+      dispatch(addItemToWishlist(item))
+      toast.success('Item added to wishlist', {
+        position: 'top-center',
+        autoClose: 5500,
+      })
+    }
+  }
+  const isInWishlist = wishListItems.some(
+    (wishlistItem) => wishlistItem.id === product?.id
+  )
 
   const country = useSelector((state) => state.country.country)
 
@@ -452,10 +481,18 @@ const Product = ({ product, loading, error, productID }) => {
                     {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                       <>
                         <div className={Styles.icon_wrapper}>
-                          <div className={Styles.border_svg}>
+                          <div
+                            className={Styles.border_svg}
+                            style={{
+                              backgroundColor: isInWishlist ? '#A2D061' : '',
+                            }}
+                          >
                             <MdOutlineFavoriteBorder
                               fontSize={25}
-                              className={Styles.icon}
+                              className={`${Styles.icon} ${
+                                isInWishlist ? Styles.favActive : ''
+                              }`}
+                              onClick={() => addToWishlist(product)}
                             />
                           </div>
                           <div

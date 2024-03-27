@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   addItemToWishlist,
   removeItemFromWishlist,
-  setFavroiteIcon,
 } from '../../redux-setup/wishlistSlice'
 import images from 'constants/images'
 import Loaders from '@components/loaders/Loaders'
