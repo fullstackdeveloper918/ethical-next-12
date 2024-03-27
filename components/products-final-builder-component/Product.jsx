@@ -92,7 +92,7 @@ const Product = () => {
   return (
     <>
       <section
-        className={`${global.container} ${
+        className={`${global.category_container} ${
           activeFilter ? Styles.category_section : ''
         }`}
         style={{ overflow: 'hidden' }}

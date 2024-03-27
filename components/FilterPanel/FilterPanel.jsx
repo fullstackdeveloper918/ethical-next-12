@@ -19,6 +19,8 @@ const FilterPanel = ({
   productTypeArray,
   emojiTypeArray,
   setEmojiTypeArray,
+  activeFilter,
+  setActiveFilter
 }) => {
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
@@ -310,6 +312,14 @@ const FilterPanel = ({
 
       <div className={Styles.filterPanel}>
         <div className={Styles.filterPanel_top}>
+          <span className={Styles.mobile_crossbtn}
+          onClick={() => setActiveFilter(false)}
+          
+          ><Image 
+        src={images.Cross_icon}
+        width={12}
+        height={12}
+        className={Styles.crosse_color} /></span>
           <h4
             className={Styles.filterPanel_title}
             onClick={handleClearAll}
