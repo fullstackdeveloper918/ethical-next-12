@@ -123,7 +123,7 @@ const PrimaryHeader = () => {
                     </span> */}
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className={styles.header_menu}>
+                  {/* <DropdownMenuContent className={styles.header_menu}>
                     <DropdownMenuRadioItem
                       value="top"
                       className={styles.shop_submenu}
@@ -136,7 +136,7 @@ const PrimaryHeader = () => {
                     >
                       Settings
                     </DropdownMenuRadioItem>
-                  </DropdownMenuContent>
+                  </DropdownMenuContent> */}
                 </DropdownMenu>
                 <button onClick={logout} style={{ cursor: 'pointer' }}>
                   logout
