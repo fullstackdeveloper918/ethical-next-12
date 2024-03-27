@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import images from '../../constants/images'
 import { useDispatch, useSelector } from 'react-redux'
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 import Styles from './Product.module.css'
 import Loaders from '../../components/loaders/Loaders'
 import Dot from '../custom-colored-dot/Dot'
@@ -447,92 +448,118 @@ const Product = ({ product, loading, error, productID }) => {
             <div className={Styles.detail_page_container}>
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
-                  <div className={Styles.icon_wrapper}>
-                    {/* <div className={Styles.border_svg}>
-                      <MdOutlineFavoriteBorder
-                        fontSize={25}
-                        className={Styles.icon}
-                      />
-                    </div> */}
-                    {/* <div className={Styles.border_svg}>
-                      <Image src={images.ZooomSvg} className={Styles.icon} />
-                    </div> */}
-                    <div className={Styles.border_svg}>
-                      <CiShare2
-                        fontSize={25}
-                        // color="#D3D3D3"
-                        className={Styles.icon}
-                        onClick={() => setShareIcons(true)}
-                      />
-                    </div>
-                  </div>
-                  <div className={Styles.detail_page_image_content}>
-                    <div className={Styles.product_big_image}>
-                      {singleImage && (
-                        <Image
-                          src={singleImage}
-                          width={400}
-                          height={560}
-                          style={{ mixBlendMode: 'color-burn' }}
-                          alt="Single_Product_Image"
-                          className={Styles.product_image}
-                        />
-                      )}
-                    </div>
-                  </div>
-                  {imagesArray && imagesArray.length > 0 && (
-                    <div className={Styles.margin_top}>
-                      <Carousel
-                        swipeable={false}
-                        draggable={false}
-                        showDots={true}
-                        responsive={responsive}
-                        ssr={false} // means to render carousel on server-side.
-                        infinite={true}
-                        // autoPlay={this.props.deviceType !== 'mobile' ? true : false}
-                        // autoPlay
-                        autoPlaySpeed={1000}
-                        arrows={true}
-                        keyBoardControl={true}
-                        customTransition="all .5s"
-                        transitionDuration={500}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={['tablet', 'mobile']}
-                        // deviceType={this.props.deviceType}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px"
-                        slidesToSlide={2}
-                        className={Styles.product_slider}
-                      >
-                        {imagesArray &&
-                          imagesArray?.length > 0 &&
-                          imagesArray?.map((item, index) => (
-                            <div
-                              style={{
-                                border:
-                                  singleImage === item
-                                    ? '1px solid #a2d061'
-                                    : '',
-                              }}
-                              className={Styles.add_color}
+                  <TransformWrapper
+                  // initialScale={1}
+                  // initialPositionX={200}
+                  // initialPositionY={100}
+                  >
+                    {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+                      <>
+                        <div className={Styles.icon_wrapper}>
+                          <div className={Styles.border_svg}>
+                            <MdOutlineFavoriteBorder
+                              fontSize={25}
+                              className={Styles.icon}
+                            />
+                          </div>
+                          <div className={Styles.border_svg}>
+                            <Image
+                              src={images.ZooomSvg}
+                              className={Styles.icon}
+                              onClick={() => zoomIn()}
+                            />
+                          </div>
+                          <div className={Styles.border_svg}>
+                            <Image
+                              src={images.ZooomSvg}
+                              className={Styles.icon}
+                              onClick={() => zoomOut()}
+                            />
+                          </div>
+                          <div className={Styles.border_svg}>
+                            <CiShare2
+                              fontSize={25}
+                              // color="#D3D3D3"
+                              className={Styles.icon}
+                              onClick={() => setShareIcons(true)}
+                            />
+                          </div>
+                        </div>
+                        <div className={Styles.detail_page_image_content}>
+                          <div className={Styles.product_big_image}>
+                            <>
+                              <TransformComponent>
+                                {singleImage && (
+                                  <Image
+                                    src={singleImage}
+                                    width={400}
+                                    height={560}
+                                    style={{ mixBlendMode: 'color-burn' }}
+                                    alt="Single_Product_Image"
+                                    className={Styles.product_image}
+                                  />
+                                )}
+                              </TransformComponent>
+                            </>
+                          </div>
+                        </div>
+                        {imagesArray && imagesArray.length > 0 && (
+                          <div className={Styles.margin_top}>
+                            <Carousel
+                              swipeable={false}
+                              draggable={false}
+                              showDots={true}
+                              responsive={responsive}
+                              ssr={false} // means to render carousel on server-side.
+                              infinite={true}
+                              // autoPlay={this.props.deviceType !== 'mobile' ? true : false}
+                              // autoPlay
+                              autoPlaySpeed={1000}
+                              arrows={true}
+                              keyBoardControl={true}
+                              customTransition="all .5s"
+                              transitionDuration={500}
+                              containerClass="carousel-container"
+                              removeArrowOnDeviceType={['tablet', 'mobile']}
+                              // deviceType={this.props.deviceType}
+                              dotListClass="custom-dot-list-style"
+                              itemClass="carousel-item-padding-40-px"
+                              slidesToSlide={2}
+                              className={Styles.product_slider}
                             >
-                              <Image
-                                src={item}
-                                width={100}
-                                height={100}
-                                alt="product_image"
-                                style={{
-                                  cursor: 'pointer',
-                                }}
-                                onClick={() => updateImage(item)}
-                                className={Styles.product_images}
-                              />
-                            </div>
-                          ))}
-                      </Carousel>
-                    </div>
-                  )}
+                              {imagesArray &&
+                                imagesArray?.length > 0 &&
+                                imagesArray?.map((item, index) => (
+                                  <div
+                                    style={{
+                                      border:
+                                        singleImage === item
+                                          ? '1px solid #a2d061'
+                                          : '',
+                                    }}
+                                    className={Styles.add_color}
+                                  >
+                                    <Image
+                                      src={item}
+                                      width={100}
+                                      height={100}
+                                      alt="product_image"
+                                      style={{
+                                        cursor: 'pointer',
+                                      }}
+                                      onClick={() => updateImage(item)}
+                                      className={Styles.product_images}
+                                    />
+                                  </div>
+                                ))}
+                            </Carousel>
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </TransformWrapper>
                 </div>
+                {/*  */}
               </div>
 
               <div className={Styles.detail_page_right_section}>
@@ -897,7 +924,11 @@ const Product = ({ product, loading, error, productID }) => {
                     </div>
                   </div>
                   <div className={Styles.select_size_quantity}>
-                    {sizeNotSure || isSample ? (
+                    {(product &&
+                      JSON.parse(product.product_catogries)[0] !==
+                        'rec69XOh569fKbqwT') ||
+                    sizeNotSure ||
+                    isSample ? (
                       ''
                     ) : (
                       <>
@@ -930,18 +961,13 @@ const Product = ({ product, loading, error, productID }) => {
                         </div>
                       </>
                     )}
-                    {/* <div className={Styles.custom_checkbox}> */}
-                    {/* <input
-                      type="checkbox"
-                      id="sizeCheckbox"
-                      checked={sizeNotSure} //setSizeNotSure
-                      onChange={() => setSizeNotSure(!sizeNotSure)}
-                    />
-                    <label htmlFor="sizeCheckbox">
-                      {' '}
-                      Not sure about size yet
-                    </label> */}
-                    {!isSample && (
+
+                    {isSample ||
+                    (product &&
+                      JSON.parse(product.product_catogries)[0] !==
+                        'rec69XOh569fKbqwT') ? (
+                      ''
+                    ) : (
                       <div className={Styles.flex_row}>
                         <div className={Styles.centering}>
                           <label
