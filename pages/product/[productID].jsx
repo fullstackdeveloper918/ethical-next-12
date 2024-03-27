@@ -115,13 +115,15 @@ const productID = () => {
       values.review_title = ''
       setWriteReview(false)
     } catch (err) {
-      console.log(err)
+      console.log(err, 'hello error')
     }
   }
 
   useEffect(() => {
     if (reviewsApiPostRes) {
       reviewsApi()
+    } else {
+      console.log('error from res')
     }
   }, [reviewsApiPostRes])
   return (
