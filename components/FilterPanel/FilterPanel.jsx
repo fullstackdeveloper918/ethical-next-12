@@ -20,7 +20,7 @@ const FilterPanel = ({
   emojiTypeArray,
   setEmojiTypeArray,
   activeFilter,
-  setActiveFilter
+  setActiveFilter,
 }) => {
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
@@ -312,21 +312,30 @@ const FilterPanel = ({
 
       <div className={Styles.filterPanel}>
         <div className={Styles.filterPanel_top}>
-          <span className={Styles.mobile_crossbtn}
-          onClick={() => setActiveFilter(false)}
-          
-          ><Image 
-        src={images.Cross_icon}
-        width={12}
-        height={12}
-        className={Styles.crosse_color} /></span>
-          <h4
-            className={Styles.filterPanel_title}
-            onClick={handleClearAll}
-            style={{ cursor: 'pointer' }}
+          <span
+            className={Styles.mobile_crossbtn}
+            onClick={() => setActiveFilter(false)}
           >
-            Clear All
-          </h4>
+            <Image
+              src={images.Cross_icon}
+              width={12}
+              height={12}
+              className={Styles.crosse_color}
+            />
+          </span>
+          {(productTypeArray.length != 0 ||
+            emojiTypeArray.length != 0 ||
+            decorationsArray.length != 0 ||
+            filteredColors.length != 0 ||
+            swiftSwag === true) && (
+            <h4
+              className={Styles.filterPanel_title}
+              onClick={handleClearAll}
+              style={{ cursor: 'pointer' }}
+            >
+              Clear All
+            </h4>
+          )}
           <p className={Styles.select_colorDiv}>
             {swiftSwag &&
               badge({ key: 'swiftSwag', value: 'swiftSwag' }, [], null)}

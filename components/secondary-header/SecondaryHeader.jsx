@@ -41,6 +41,7 @@ import {
   setProductsLoading,
   setProductsError,
 } from 'redux-setup/categorySlice'
+import { deleteAllCartItems } from 'redux-setup/cartSlice'
 const SecondaryHeader = () => {
   const popupRef = useRef(null)
   const dispatch = useDispatch()
@@ -84,7 +85,6 @@ const SecondaryHeader = () => {
     router.asPath.includes('/cart') ||
     router.asPath.includes('/shipping') ||
     router.asPath.includes('/billing-address') ||
-    router.asPath.includes('/products') ||
     router.asPath.includes('/category')
 
   const handleSetSubCategory = (item) => {
@@ -157,23 +157,8 @@ const SecondaryHeader = () => {
   }, [router.asPath])
 
   useEffect(() => {
-    if (country) {
-      dispatch(selectCountry(country))
-    }
-  }, [country])
-
-  useEffect(() => {
     setCountry(countryFromRedux)
   }, [])
-
-  // useEffect(() => {
-  //   if (countryFromRedux && isSingleProductPage) {
-  //     router.push('/')
-  //     setCountry(countryFromRedux)
-  //   } else if (countryFromRedux && !isSingleProductPage) {
-  //     setCountry(countryFromRedux)
-  //   }
-  // }, [countryFromRedux])
 
   useEffect(() => {
     if (inputbtn) {
@@ -425,7 +410,11 @@ const SecondaryHeader = () => {
                 <DropdownMenuContent className={styles.language_wrapdropdown}>
                   <DropdownMenuRadioGroup
                     value={country}
-                    onValueChange={setCountry}
+                    onValueChange={(newValue) => {
+                      setCountry(newValue)
+                      dispatch(selectCountry(newValue))
+                      dispatch(deleteAllCartItems())
+                    }}
                   >
                     <div className={styles.countries_dropdown_container}>
                       {countries.map((c, i) => {

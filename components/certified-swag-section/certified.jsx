@@ -49,11 +49,9 @@ const Certified = () => {
       dispatch(setSingleProductPromotion(response?.data?.data[0]))
     }
   }, [response])
-console.log(data, 'dadadadada')
   const promotionalProduct = useSelector(
     (state) => state.random.singleProductPromotion
   )
-
   return (
     <>
       <h2 className={styles.heading}>
@@ -94,8 +92,7 @@ console.log(data, 'dadadadada')
       <div
         className={styles.btn}
         style={{ cursor: 'pointer' }}
-        onClick={() => router.push('/category/Apparel')
-      }
+        onClick={() => router.push('/category/Apparel')}
       >
         View All
       </div>

@@ -7,8 +7,8 @@ import linkdin from '../../assets/footerPics/linkdin.svg'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import youtube from '../../assets/footerPics/youtube.svg'
 import Link from 'next/link'
-import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa6";
+import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa'
+import { FaYoutube } from 'react-icons/fa6'
 import banks from '../../assets/footerPics/banks.svg'
 import {
   initialValuesNewLetter,
@@ -104,46 +104,36 @@ const Footer = () => {
 
             <div className={styles.social_links}>
               <a href="https://www.facebook.com/ethicalswag" target="_blank">
-               
-                  <FaFacebookF />
-                
-                
+                <FaFacebookF />
               </a>
               <a
                 href="https://www.linkedin.com/company/ethical-swag/"
                 target="_blank"
               >
-             
-                
-                  <FaLinkedinIn />
-           
+                <FaLinkedinIn />
               </a>
               <a href="https://www.instagram.com/ethicalswag/" target="_blank">
-                
-                 
-                  <FaInstagram />
-               
+                <FaInstagram />
               </a>
               <a href="https://www.youtube.com/channel/UCLQe2_4Tf2k8BOsgM8bWOjA">
-               
-                
-                  <FaYoutube />
-                
+                <FaYoutube />
               </a>
             </div>
           </div>
           <div className={styles.container_column_2}>
             <div className={styles.heading_footer_2}>Quick Links</div>
             <div className="">
-              <span className={styles.footer_li}
+              <span
+                className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
-                onClick={() => router.push('/products')}
+                onClick={() => router.push('/category/Apparel')}
               >
                 Swag Packs
               </span>
             </div>
             <div className="">
-              <span className={styles.footer_li}
+              <span
+                className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/about-us')}
               >
@@ -151,7 +141,8 @@ const Footer = () => {
               </span>
             </div>
             <div className="">
-              <span className={styles.footer_li}
+              <span
+                className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/blog')}
               >
@@ -159,7 +150,8 @@ const Footer = () => {
               </span>
             </div>
             <div className="">
-              <span className={styles.footer_li}
+              <span
+                className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/services')}
               >
@@ -167,7 +159,8 @@ const Footer = () => {
               </span>
             </div>
             <div className="">
-              <span className={styles.footer_li}
+              <span
+                className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/what-to-expect')}
               >
@@ -175,7 +168,8 @@ const Footer = () => {
               </span>
             </div>
             <div className="">
-              <span className={styles.footer_li}
+              <span
+                className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/contact')}
               >
@@ -183,7 +177,8 @@ const Footer = () => {
               </span>
             </div>
             <div className="">
-              <span className={styles.footer_li}
+              <span
+                className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
                 onClick={() => router.push('/privacy-policy')}
               >
@@ -195,7 +190,8 @@ const Footer = () => {
             <div className={styles.column_1}>
               <div className={styles.heading_footer_2}>Customer Support</div>
               <div className="">
-                <span className={styles.footer_li}
+                <span
+                  className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/faq')}
                 >
@@ -203,7 +199,8 @@ const Footer = () => {
                 </span>
               </div>
               <div>
-                <span className={styles.footer_li}
+                <span
+                  className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/terms-of-service')}
                 >
@@ -211,7 +208,8 @@ const Footer = () => {
                 </span>
               </div>
               <div>
-                <span className={styles.footer_li}
+                <span
+                  className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/privacy-policy')}
                 >
@@ -221,24 +219,25 @@ const Footer = () => {
             </div>
             <div className={styles.column_2}>
               <div className={styles.heading_footer_2}>Reach Out</div>
-              <div  className={styles.footer_li}>
-              <Link
-               href='mailto:info+swagpackca@ethicalswag.com'
-                target="_blank"
-                style={{ textTransform: 'lowercase' }}
-              >
-                info@ethicalswag.com
-              </Link>
+              <div className={styles.footer_li}>
+                <Link
+                  href="mailto:info+swagpackca@ethicalswag.com"
+                  target="_blank"
+                  style={{ textTransform: 'lowercase' }}
+                >
+                  info@ethicalswag.com
+                </Link>
               </div>
-              <div  className={styles.footer_li}>1-877-206-6998</div>
-              <div  className={styles.footer_li}>1-902-500-1086</div>
+              <div className={styles.footer_li}>1-877-206-6998</div>
+              <div className={styles.footer_li}>1-902-500-1086</div>
             </div>
           </div>
           <div className={styles.container_column_4}>
             <div className={styles.column_4_1st_part}>
               <div className={styles.heading_footer_2}>Sustainability</div>
               <div>
-                <span className={styles.footer_li}
+                <span
+                  className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/faq')}
                 >
@@ -246,7 +245,8 @@ const Footer = () => {
                 </span>
               </div>
               <div>
-                <span className={styles.footer_li}
+                <span
+                  className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/terms-of-service')}
                 >
@@ -254,7 +254,8 @@ const Footer = () => {
                 </span>
               </div>
               <div className="">
-                <span className={styles.footer_li}
+                <span
+                  className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/privacy-policy')}
                 >
@@ -265,7 +266,8 @@ const Footer = () => {
             <div className={styles.column_4_2nd_part}>
               <div className={styles.heading_footer_2}>Resources</div>
               <div className="">
-                <span className={styles.footer_li}
+                <span
+                  className={styles.footer_li}
                   style={{ cursor: 'pointer' }}
                   onClick={() => router.push('/what-to-expect')}
                 >

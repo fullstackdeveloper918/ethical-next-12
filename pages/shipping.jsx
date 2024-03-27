@@ -17,7 +17,7 @@ const shipping = () => {
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   useEffect(() => {
     if (!reached2ndStep) {
-      router.push('/products')
+      router.push('/category/Apparel')
     }
   }, [reached2ndStep])
 
