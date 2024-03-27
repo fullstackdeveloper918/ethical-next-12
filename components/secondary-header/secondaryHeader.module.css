@@ -830,6 +830,11 @@
   .shop_submenu {
     justify-content: flex-start !important;
   }
+  .primary_header_container {
+    width: 100%;
+    max-width: 95%;
+
+  }
 }
 
 @media (max-width: 641px) {

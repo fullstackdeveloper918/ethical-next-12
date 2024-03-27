@@ -77,8 +77,12 @@
   justify-content: flex-start;
   padding-top: 15px;
   position: relative;
+  flex-wrap: wrap;
 }
-
+.inputContainer div{
+  width: 100%;
+  max-width: 200px;
+}
 .inputContainer input {
   background: transparent;
   border: 1px solid #fff;
@@ -87,7 +91,7 @@
   padding-left: 1rem;
   font-size: 12px;
   width: 100%;
-  max-width: 160px;
+  /* max-width: 160px; */
 }
 
 .inputContainer button {

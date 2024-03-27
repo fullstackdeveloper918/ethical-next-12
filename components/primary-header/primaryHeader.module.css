@@ -139,6 +139,10 @@
     .container_right .search_container, .container_left .tap_annument {
       display: none;
   }
+  .primary_header_container {
+    width: 100%;
+    max-width: 95%;
+  }
   }
 
 
