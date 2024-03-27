@@ -27,7 +27,6 @@ import 'react-multi-carousel/lib/styles.css'
 import EmojiModal from '../EmojiModal/EmojiModal'
 import { useRouter } from 'next/router'
 import Share from '../Share/Share'
-import { removeItemFromWishlist } from '../../redux-setup/wishlistSlice'
 
 const responsive = {
   superLargeDesktop: {
