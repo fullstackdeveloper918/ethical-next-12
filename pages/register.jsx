@@ -4,6 +4,8 @@ import Image from 'next/image'
 import images from '../constants/images'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import useFetch from '../lib/useFetch'
+import { FaEye } from 'react-icons/fa'
+import { FaEyeSlash } from 'react-icons/fa6'
 import Styles from '../styles/Login.module.css'
 import { toast } from 'react-toastify'
 import {
@@ -16,6 +18,7 @@ import { setuserId } from '../redux-setup/authSlice'
 const register = () => {
   const router = useRouter()
   const [terms, setTerms] = useState(false)
+  const [showEye, setShowEye] = useState(false)
 
   const [loadQuery, { response, loading, error }] = useFetch(
     `/auth/register`,
@@ -120,11 +123,27 @@ const register = () => {
 
                   <div className={Styles.input_box}>
                     <Field
-                      type="password"
+                      type={showEye ? 'text' : 'password'}
                       id="password"
                       name="password"
                       placeholder="Enter password"
                     />
+                    {showEye ? (
+                      <FaEyeSlash
+                        fontSize={20}
+                        cursor="pointer"
+                        onClick={() => setShowEye(false)}
+                        className={Styles.login_eye}
+                      />
+                    ) : (
+                      <FaEye
+                        fontSize={20}
+                        cursor="pointer"
+                        onClick={() => setShowEye(true)}
+                        className={Styles.login_eye}
+                      />
+                    )}
+
                     <ErrorMessage
                       name="password"
                       component="div"
@@ -133,7 +152,7 @@ const register = () => {
                   </div>
                   <div className={Styles.input_box}>
                     <Field
-                      type="password"
+                      type={showEye ? 'text' : 'password'}
                       id="c_password"
                       name="c_password"
                       placeholder="Confirm password"

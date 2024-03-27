@@ -31,6 +31,7 @@
   width: 100%;
   margin-top: 0;
   padding: 8px 0;
+  position: relative;
 }
 .input_box input {
   height: 60px;
@@ -44,7 +45,12 @@
   transition: all 0.3s ease;
   background-color: #f7f7f7d7;
 }
-
+.login_eye {
+  position: absolute;
+  right: 20px;
+  transform: translateY(-50%);
+  top: 50%;
+}
 .input_radio_content {
   margin-top: 1rem;
   display: flex;
@@ -141,7 +147,7 @@
   top: 0;
   width: 20px;
   height: 20px;
-  border: 1px solid #CACACA;
+  border: 1px solid #cacaca;
   border-radius: 50%;
   background-color: #f9f9f9;
 }
@@ -177,19 +183,17 @@
   color: #949090;
 }
 .registered_text span {
-  font-weight: 500 ; 
+  font-weight: 500;
   margin-left: 2px;
 }
 
-
-@media screen and (max-width:1200px) {
+@media screen and (max-width: 1200px) {
   .login_container {
-    min-width:60%;
+    min-width: 60%;
     padding-block: 30px;
-    }
-  
+  }
 }
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 1024px) {
   .form .input_box {
     padding: 6px 0;
   }
@@ -203,49 +207,44 @@
     font-size: 18px;
   }
 }
-@media screen and (max-width:991px) {
+@media screen and (max-width: 991px) {
   .login_container {
-    min-width:60%
-    }
-    
+    min-width: 60%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .login_container {
+    min-width: 70%;
+  }
+  .form {
+    padding-inline: 15px;
+    margin-top: 15px;
+  }
+  .input_box button {
+    margin-top: 1.7rem;
+  }
+  .registered_text {
+    font-size: 14px;
+  }
 
+  .input_box input {
+    height: 50px;
+    padding-left: 15px;
+    font-size: 14px;
+  }
+  .input_box button {
+    padding: 12px 0;
+    font-size: 16px;
+  }
 }
-@media screen and (max-width:767px) {
+@media screen and (max-width: 545px) {
   .login_container {
-    min-width:70%
-    }
-    .form {
-      padding-inline: 15px;
-      margin-top: 15px;
-    }
-    .input_box button {
-      margin-top: 1.7rem;
-    }
-    .registered_text {
-      font-size: 14px;
-    }
-    
-
-.input_box input {
-  height: 50px;
-  padding-left: 15px;
-  font-size: 14px;
+    min-width: 90%;
+  }
 }
-.input_box button {
-  padding: 12px 0;
-  font-size: 16px;
-}
-}
-@media screen and (max-width:545px) {
+@media screen and (max-width: 380px) {
   .login_container {
-    min-width:90%
-    }
-   
-}
-@media screen and (max-width:380px) {
-  .login_container {
-    min-width:85%;
+    min-width: 85%;
     max-width: 94%;
-    }
-   
+  }
 }
