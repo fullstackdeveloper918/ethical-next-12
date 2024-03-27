@@ -3,7 +3,7 @@ import Style from './Modal.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
-import { setSwiftSwag } from 'redux-setup/FiltersSlice'
+import { setDate, setSwiftSwag } from 'redux-setup/FiltersSlice'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 
@@ -16,6 +16,7 @@ const Modal = () => {
   const [value, onChange] = useState(null)
   const [isOpenCalender, setIsOpenCalender] = useState(false)
   let swiftSwag = useSelector((state) => state.filter.swiftSwag)
+  let date = useSelector((state) => state.filter.date)
   useEffect(() => {
     if (swiftSwag === '') {
       setIsOpenModal(true)
@@ -36,6 +37,12 @@ const Modal = () => {
       router.push('/category/Apparel')
     }
   }
+
+  useEffect(() => {
+    if (value) {
+      dispatch(setDate(value))
+    }
+  }, [value])
   return (
     <>
       {isOpenModal && !isOpenCalender && (
