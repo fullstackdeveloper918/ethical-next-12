@@ -16,6 +16,8 @@ const Products = ({ finalProducts }) => {
   const response = useSelector((state) => state.category.getProductsRes)
   const loading = useSelector((state) => state.category.getProductsLoading)
 
+  console.log(finalProducts.length, 'helo')
+
   return (
     <>
       {loading && (
@@ -24,7 +26,7 @@ const Products = ({ finalProducts }) => {
         </>
       )}
 
-      {!loading && finalProducts ? (
+      {!loading && finalProducts.length > 0 && (
         <div
           className={Styles.collection_wrapper}
           style={{ marginBottom: '30px' }}
@@ -72,19 +74,25 @@ const Products = ({ finalProducts }) => {
             ))}
           </div>
         </div>
-      ) : (
+      )}
+
+      {!loading && finalProducts.length === 0 && (
         <div
           className={Styles.collection_wrapper}
-          style={{
-            marginBottom: '30px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: '3rem',
-            color: '#a2d061',
-          }}
+          style={{ marginBottom: '30px' }}
         >
-          No Products Found
+          <div
+            className={Styles.collection_container}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              fontSize: '3rem',
+              color: '#a2d061',
+            }}
+          >
+            No Products Found
+          </div>
         </div>
       )}
     </>

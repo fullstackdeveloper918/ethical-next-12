@@ -59,6 +59,8 @@ const SecondaryHeader = () => {
 
   const wishlistItems = useSelector((state) => state.wishlist.items)
   const countryFromRedux = useSelector((state) => state.country.country)
+
+  console.log(countryFromRedux, 'countryFromRedux')
   const cartItems = useSelector((state) => state.cart.cartItems.length)
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
