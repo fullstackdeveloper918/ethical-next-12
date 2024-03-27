@@ -71,6 +71,7 @@
     "react-share": "^5.1.0",
     "react-to-pdf": "^1.0.1",
     "react-toastify": "^10.0.4",
+    "react-zoom-pan-pinch": "^3.4.3",
     "redux-persist": "^5.10.0",
     "shadcn-ui": "^0.8.0",
     "tailwind-merge": "^2.2.1",
