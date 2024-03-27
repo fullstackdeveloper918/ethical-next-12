@@ -16,8 +16,6 @@ const Products = ({ finalProducts }) => {
   const response = useSelector((state) => state.category.getProductsRes)
   const loading = useSelector((state) => state.category.getProductsLoading)
 
-  console.log(finalProducts.length, 'helo')
-
   return (
     <>
       {loading && (

@@ -183,7 +183,6 @@ const FilterPanel = ({
     setEmojiTypeArray([])
     setFilteredColors([])
   }
-  console.log(showAllFilters, 'showAllFilters')
   useEffect(() => {
     if (showAllFilters) {
       let uniqueProductTypeObj = showAllFilters?.filter(
