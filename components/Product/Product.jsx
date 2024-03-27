@@ -448,11 +448,7 @@ const Product = ({ product, loading, error, productID }) => {
             <div className={Styles.detail_page_container}>
               <div className={Styles.detail_page_left_top}>
                 <div className={Styles.sticky_sec}>
-                  <TransformWrapper
-                  // initialScale={1}
-                  // initialPositionX={200}
-                  // initialPositionY={100}
-                  >
+                  <TransformWrapper>
                     {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                       <>
                         <div className={Styles.icon_wrapper}>
@@ -462,18 +458,24 @@ const Product = ({ product, loading, error, productID }) => {
                               className={Styles.icon}
                             />
                           </div>
-                          <div className={Styles.border_svg}>
+                          <div
+                            className={Styles.border_svg}
+                            onClick={() => zoomIn()}
+                          >
                             <Image
                               src={images.ZooomSvg}
                               className={Styles.icon}
-                              onClick={() => zoomIn()}
                             />
                           </div>
-                          <div className={Styles.border_svg}>
+                          <div
+                            className={Styles.border_svg}
+                            onClick={() => zoomOut()}
+                          >
                             <Image
-                              src={images.ZooomSvg}
+                              width={20}
+                              height={20}
+                              src={images.Zoom_Out}
                               className={Styles.icon}
-                              onClick={() => zoomOut()}
                             />
                           </div>
                           <div className={Styles.border_svg}>

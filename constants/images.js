@@ -57,11 +57,11 @@ import Drinkware from '../assets/Drinkware.png'
 import BagImg from '../assets/bagImg.png'
 import MobileImg from '../assets/Mobile_cover.png'
 import ZooomSvg from '../assets/zoom.svg'
-
-
+import Zoom_Out from '../assets/zoom_out.svg'
 
 const images = {
   bag_image,
+  Zoom_Out,
   BagImg,
   MobileImg,
   all_tech,
