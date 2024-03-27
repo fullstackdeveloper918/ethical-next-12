@@ -575,7 +575,9 @@ cursor: pointer;
 .swift_swagDiv li.filterPanel_list_item {
   padding-left: 25px;
 }
-
+.swift_swagDiv li.filterPanel_list_item label {
+  cursor: pointer;
+}
 /* responsive start */
 @media only screen and (max-width: 1400px) {
   .category_section .collection_wrapper {
