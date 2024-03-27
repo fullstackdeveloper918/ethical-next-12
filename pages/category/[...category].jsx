@@ -17,6 +17,7 @@ const index = () => {
   const collectionForUrl = useSelector(
     (state) => state.category.collectionForUrl
   )
+  const swiftSwag = useSelector((state) => state.filter.swiftSwag)
 
   useEffect(() => {
     const generateRelatedCategories = () => {
@@ -51,7 +52,10 @@ const index = () => {
       <section className={Styles.conatainer_Sec}>
         <div className={Styles.collection_banner}>
           <div className={Styles.collection_banner_heading}>
-            <h1>Category</h1>
+            <h1>{swiftSwag ? 'Swift Swag' : 'Category'}</h1>
+            {swiftSwag && (
+              <p>Your swag produced and delivered in 10 business days!</p>
+            )}
             <p>
               <span
                 onClick={() => router.push('/')}

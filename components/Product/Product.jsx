@@ -23,6 +23,7 @@ import 'react-multi-carousel/lib/styles.css'
 import EmojiModal from '../EmojiModal/EmojiModal'
 import { useRouter } from 'next/router'
 import Share from '../Share/Share'
+import { removeItemFromWishlist } from '../../redux-setup/wishlistSlice'
 
 const responsive = {
   superLargeDesktop: {
@@ -119,6 +120,10 @@ const Product = ({ product, loading, error, productID }) => {
   const country = useSelector((state) => state.country.country)
 
   const cartItems = useSelector((state) => state.cart.cartItems)
+
+  useEffect(() => {
+    cartItems.map((obj) => dispatch(removeItemFromWishlist(obj.id)))
+  }, [cartItems])
   const decorations = useSelector(
     (state) => state.random.decorationItemObjSingleProductPage
   )
