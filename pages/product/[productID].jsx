@@ -17,11 +17,13 @@ import {
   initialValuesWriteReview,
   validationSchemaWriteReview,
 } from '../../lib/validationSchemas'
+import { toast } from 'react-toastify'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 const productID = () => {
   const router = useRouter()
   const [writeReview, setWriteReview] = useState(true)
+  const [isButtonClicked, setIsButtonClicked] = useState(false)
   const [selectedItem, setSelectedItem] = useState('Product')
 
   const [openIndex, setOpenIndex] = useState(null)
@@ -54,11 +56,6 @@ const productID = () => {
         method: 'get',
       }
     )
-
-  console.log(
-    singleProduct && JSON.parse(singleProduct?.data?.product_catogries)[0],
-    'singleProduct'
-  )
 
   useEffect(() => {
     if (country && productID) {
@@ -98,21 +95,29 @@ const productID = () => {
   })
 
   const onSubmit = async (values) => {
-    let data = {
-      name: values.name,
-      email: values.email,
-      rate: starRatings,
-      review_title: values.review_title,
-      review: values.review,
-      userId: '',
-      productId: productID,
+    try {
+      let data = {
+        name: values.name,
+        email: values.email,
+        rate: starRatings,
+        review_title: values.review_title,
+        review: values.review,
+        userId: '',
+        productId: productID,
+      }
+      reviewsApiPost(data)
+      toast.success('Review Saved Successfully', {
+        position: 'top-center',
+      })
+      values.name = ''
+      values.email = ''
+      values.review = ''
+      values.review_title = ''
+      setWriteReview(false)
+    } catch (err) {
+      console.log(err)
     }
-    reviewsApiPost(data)
-
-    setWriteReview(false)
   }
-
-  console.log(data, 'datagrkjfkj')
 
   useEffect(() => {
     if (reviewsApiPostRes) {
