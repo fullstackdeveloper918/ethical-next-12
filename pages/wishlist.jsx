@@ -22,7 +22,6 @@ const wishlist = () => {
       router.push('/login')
     }
   }, [userId])
-
   return (
     <>
       <PrimaryHeader />

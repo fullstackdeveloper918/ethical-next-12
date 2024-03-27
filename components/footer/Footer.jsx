@@ -129,7 +129,7 @@ const Footer = () => {
               <span
                 className={styles.footer_li}
                 style={{ cursor: 'pointer' }}
-                onClick={() => router.push('/products')}
+                onClick={() => router.push('/category/Apparel')}
               >
                 Swag Packs
               </span>

@@ -8,7 +8,7 @@ import Styles from '../Filter/Filter.module.css'
 import Pagination from '../pagination/Pagination'
 
 const Product = () => {
-  const [activeFilter, setActiveFilter] = useState(true)
+  const [activeFilter, setActiveFilter] = useState(false)
   const [finalColorFilteredProducts, setFinalColorFilteredProducts] = useState(
     []
   )
@@ -92,7 +92,7 @@ const Product = () => {
   return (
     <>
       <section
-        className={`${global.container} ${
+        className={`${global.category_container} ${
           activeFilter ? Styles.category_section : ''
         }`}
         style={{ overflow: 'hidden' }}

@@ -124,7 +124,7 @@ const Filter = ({
         </div>
       </div>
       <div className={Styles.filter_panel_wrap}>
-        {activeFilter && (
+         
           <FilterPanel
             filteredColors={filteredColors}
             setFilteredColors={setFilteredColors}
@@ -134,8 +134,10 @@ const Filter = ({
             setProductTypeArray={setProductTypeArray}
             setEmojiTypeArray={setEmojiTypeArray}
             emojiTypeArray={emojiTypeArray}
+            setActiveFilter={setActiveFilter}
+            activeFilter={activeFilter}
           />
-        )}
+        
       </div>
     </>
   )

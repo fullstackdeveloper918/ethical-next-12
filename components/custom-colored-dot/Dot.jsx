@@ -41,6 +41,13 @@ const Dot = ({
       return selectedColor === color ? '#a2d061' : ''
     }
   }
+  const setOutlineWidth = () => {
+    if (fromFilters) {
+      return filteredColors.includes(color) && '2px'
+    } else {
+      return '1px'
+    }
+  }
   return (
     <>
       {color && (
@@ -51,7 +58,7 @@ const Dot = ({
           style={{
             background: color,
             outlineColor: setOutlineColor(),
-            outlineWidth: '1px',
+            outlineWidth: '2px',
             // outlineOffset: '-2px',
             // color: isCategoryPage === true ? 'red': 'pink'
           }}

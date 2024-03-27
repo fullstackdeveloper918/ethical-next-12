@@ -19,6 +19,8 @@ const FilterPanel = ({
   productTypeArray,
   emojiTypeArray,
   setEmojiTypeArray,
+  activeFilter,
+  setActiveFilter,
 }) => {
   const dispatch = useDispatch()
   const [active, setActive] = useState(false)
@@ -99,11 +101,19 @@ const FilterPanel = ({
     const alphabetRegex = /[a-zA-Z]/
     if (item.key === 'swiftSwag') {
       return (
-        <span onClick={() => dispatch(setSwiftSwag(false))}  className={Styles.select_color} >{item?.value} <span className={Styles.cross_selectItems}><Image 
-        src={images.Cross_icon}
-        width={10}
-        height={10}
-        className={Styles.crosse_color} /></span>
+        <span
+          onClick={() => dispatch(setSwiftSwag(false))}
+          className={Styles.select_color}
+        >
+          {item?.value}{' '}
+          <span className={Styles.cross_selectItems}>
+            <Image
+              src={images.Cross_icon}
+              width={10}
+              height={10}
+              className={Styles.crosse_color}
+            />
+          </span>
         </span>
       )
     } else if (item === 'color') {
@@ -113,26 +123,36 @@ const FilterPanel = ({
             let a = array.filter((i) => i !== color)
             setArrName(a)
           }}
-          className={Styles.select_color}>
+          className={Styles.select_color}
+        >
           {color}
-          <span className={Styles.cross_selectItems}><Image 
-        src={images.Cross_icon}
-        width={20}
-        height={20}
-        className={Styles.crosse_color} /> </span>
+          <span className={Styles.cross_selectItems}>
+            <Image
+              src={images.Cross_icon}
+              width={20}
+              height={20}
+              className={Styles.crosse_color}
+            />{' '}
+          </span>
         </span>
       )
     } else {
       return (
-        <span onClick={() => handleClear(item, array, setArrName, color)} className={Styles.select_color}>
+        <span
+          onClick={() => handleClear(item, array, setArrName, color)}
+          className={Styles.select_color}
+        >
           {item?.value && alphabetRegex.test(item?.value)
             ? JSON.parse(item?.value)
             : item?.value}
-             <span className={Styles.cross_selectItems}><Image 
-        src={images.Cross_icon}
-        width={20}
-        height={20}
-        className={Styles.crosse_color} /></span>
+          <span className={Styles.cross_selectItems}>
+            <Image
+              src={images.Cross_icon}
+              width={20}
+              height={20}
+              className={Styles.crosse_color}
+            />
+          </span>
         </span>
       )
     }
@@ -165,34 +185,37 @@ const FilterPanel = ({
     setEmojiTypeArray([])
     setFilteredColors([])
   }
-
   useEffect(() => {
-    let uniqueProductTypeObj = showAllFilters.filter(
-      (item) => item.label === 'uniqueProductType'
-    )
-    let obj =
-      uniqueProductTypeObj.length > 0 && uniqueProductTypeObj[0].children
-    const finalUnique = productTypeArray.map((productId) => {
-      const key = productId
-      const value = obj[productId]
-      return { key, value }
-    })
-    setClearUniqueProduct(finalUnique)
+    if (showAllFilters) {
+      let uniqueProductTypeObj = showAllFilters?.filter(
+        (item) => item.label === 'uniqueProductType'
+      )
+      let obj =
+        uniqueProductTypeObj.length > 0 && uniqueProductTypeObj[0].children
+      const finalUnique = productTypeArray.map((productId) => {
+        const key = productId
+        const value = obj[productId]
+        return { key, value }
+      })
+      setClearUniqueProduct(finalUnique)
+    }
   }, [productTypeArray, showAllFilters])
 
   useEffect(() => {
-    let decorationObj = showAllFilters.filter(
-      (item) => item.label === 'Decoration'
-    )
-    let obj = decorationObj.length > 0 && decorationObj[0].children
+    if (showAllFilters) {
+      let decorationObj = showAllFilters?.filter(
+        (item) => item.label === 'Decoration'
+      )
+      let obj = decorationObj.length > 0 && decorationObj[0].children
 
-    const finalDecoration = decorationsArray.map((productId) => {
-      const key = productId
-      const value = obj[productId]
-      return { key, value }
-    })
-    setClearDecorationProduct(finalDecoration)
-  }, [decorationsArray])
+      const finalDecoration = decorationsArray.map((productId) => {
+        const key = productId
+        const value = obj[productId]
+        return { key, value }
+      })
+      setClearDecorationProduct(finalDecoration)
+    }
+  }, [decorationsArray, showAllFilters])
   useEffect(() => {
     const uniqueValuesSet = new Set()
     const arr = []
@@ -206,20 +229,22 @@ const FilterPanel = ({
     setDecoProductClear(arr)
   }, [clearDecorationProduct])
   useEffect(() => {
-    let emojiObj = showAllFilters.filter(
-      (item) => item.label === 'Emoji ratings'
-    )
-    let obj = emojiObj.length > 0 && emojiObj[0].children
-    const finalEmoji = emojiTypeArray.map((productId) => {
-      const key = productId
-      const value = obj[productId]
-      return { key, value }
-    })
-    setClearEmojiProduct(finalEmoji)
-  }, [emojiTypeArray])
+    if (showAllFilters) {
+      let emojiObj = showAllFilters.filter(
+        (item) => item.label === 'Emoji ratings'
+      )
+      let obj = emojiObj.length > 0 && emojiObj[0].children
+      const finalEmoji = emojiTypeArray.map((productId) => {
+        const key = productId
+        const value = obj[productId]
+        return { key, value }
+      })
+      setClearEmojiProduct(finalEmoji)
+    }
+  }, [emojiTypeArray, showAllFilters])
   useEffect(() => {
     let arr = []
-    if (showAllFilters.length > 0) {
+    if (showAllFilters && showAllFilters.length > 0) {
       for (let i = 0; i < showAllFilters.length; i++) {
         const element = [i]
         arr.push(i)
@@ -256,7 +281,7 @@ const FilterPanel = ({
   }, [allFilters])
 
   useEffect(() => {
-    if (showAllFilters.length > 0) {
+    if (showAllFilters && showAllFilters.length > 0) {
       let decoObj = showAllFilters.filter((i) => i.label === 'Decoration')[0]
       let children = decoObj.children
       let uniqueValues = {}
@@ -287,13 +312,30 @@ const FilterPanel = ({
 
       <div className={Styles.filterPanel}>
         <div className={Styles.filterPanel_top}>
-          <h4
-            className={Styles.filterPanel_title}
-            onClick={handleClearAll}
-            style={{ cursor: 'pointer' }}
+          <span
+            className={Styles.mobile_crossbtn}
+            onClick={() => setActiveFilter(false)}
           >
-            Clear All
-          </h4>
+            <Image
+              src={images.Cross_icon}
+              width={12}
+              height={12}
+              className={Styles.crosse_color}
+            />
+          </span>
+          {(productTypeArray.length != 0 ||
+            emojiTypeArray.length != 0 ||
+            decorationsArray.length != 0 ||
+            filteredColors.length != 0 ||
+            swiftSwag === true) && (
+            <h4
+              className={Styles.filterPanel_title}
+              onClick={handleClearAll}
+              style={{ cursor: 'pointer' }}
+            >
+              Clear All
+            </h4>
+          )}
           <p className={Styles.select_colorDiv}>
             {swiftSwag &&
               badge({ key: 'swiftSwag', value: 'swiftSwag' }, [], null)}
@@ -389,32 +431,32 @@ const FilterPanel = ({
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
                       item.label === 'Swift swag' ? (
-                        <div className={Styles.swift_swagDiv}>
-                      <div className={Styles.input_checkbox}>
-                        {Object.values(item.children).map(
-                          (child, childIndex) => {
-                            let val = child === 'SwiftSwag'
-                            return (
-                              <li
-                                key={childIndex}
-                                className={Styles.filterPanel_list_item}
-                              >
-                                <input
-                                  type="radio"
-                                  id={`checkbox_id_${child}`}
-                                  name="radioSwiftSwag"
-                                  value={val}
-                                  checked={swiftSwag == val}
-                                  onChange={handleSwagChange}
-                                />
-                                <label htmlFor={`checkbox_id_${child}`}>
-                                  {child}
-                                </label>
-                              </li>
-                            )
-                          }
-                        )}
-                      </div>
+                      <div className={Styles.swift_swagDiv}>
+                        <div className={Styles.input_checkbox}>
+                          {Object.values(item.children).map(
+                            (child, childIndex) => {
+                              let val = child === 'SwiftSwag'
+                              return (
+                                <li
+                                  key={childIndex}
+                                  className={Styles.filterPanel_list_item}
+                                >
+                                  <input
+                                    type="radio"
+                                    id={`checkbox_id_${child}`}
+                                    name="radioSwiftSwag"
+                                    value={val}
+                                    checked={swiftSwag == val}
+                                    onChange={handleSwagChange}
+                                  />
+                                  <label htmlFor={`checkbox_id_${child}`}>
+                                    {child}
+                                  </label>
+                                </li>
+                              )
+                            }
+                          )}
+                        </div>
                       </div>
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&

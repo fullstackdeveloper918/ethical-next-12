@@ -116,6 +116,11 @@ const styles = StyleSheet.create({
     marginTop: '20px',
     gap: '15px',
   },
+  container: {
+    flexDirection: 'row', // Arrange children horizontally
+    alignItems: 'center', // Align children vertically
+    marginBottom: 10, // Add some margin at the bottom
+  },
 })
 
 const tableData = [
@@ -222,6 +227,13 @@ const Card = () => {
             when after you let us you know the shipping addresses. You will be
             billed according to the price practiced at the time of shipping.
           </Text>
+          <View style={styles.container}>
+            <Image
+              style={styles.image}
+              src="https://fastly.picsum.photos/id/1050/200/300.jpg?hmac=mMZp1DAD5EpHCZh-YBwfvrg5w327V3DoJQ8CmRAKF70"
+            />
+            <Text style={styles.text}>Some text content here... with love</Text>
+          </View>
         </View>
       </Page>
     </Document>

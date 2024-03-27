@@ -230,6 +230,13 @@
   color: #fff;
   font-size: 1.1rem;
 }
+@media (max-width:1440px){
+  .estimate_bottom_btn {
+    line-height: 49px;
+    font-size: 16px;
+
+  }
+}
 
 @media screen and (max-width: 1340px) {
   .estimate_wrapper {

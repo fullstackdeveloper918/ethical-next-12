@@ -27,6 +27,7 @@ import 'react-multi-carousel/lib/styles.css'
 import EmojiModal from '../EmojiModal/EmojiModal'
 import { useRouter } from 'next/router'
 import Share from '../Share/Share'
+import { removeItemFromWishlist } from '../../redux-setup/wishlistSlice'
 
 const responsive = {
   superLargeDesktop: {
@@ -148,6 +149,10 @@ const Product = ({ product, loading, error, productID }) => {
   const country = useSelector((state) => state.country.country)
 
   const cartItems = useSelector((state) => state.cart.cartItems)
+
+  useEffect(() => {
+    cartItems.map((obj) => dispatch(removeItemFromWishlist(obj.id)))
+  }, [cartItems])
   const decorations = useSelector(
     (state) => state.random.decorationItemObjSingleProductPage
   )
@@ -184,10 +189,10 @@ const Product = ({ product, loading, error, productID }) => {
   let ltm_price =
     country === 'usa'
       ? product?.ltm_usd
-        ? product?.ltm_usd.replace(/[^\d]/g, '')
+        ? JSON.parse(product?.ltm_usd)[0]
         : 0
       : product?.ltm_cad
-      ? product?.ltm_cad.replace(/[^\d]/g, '')
+      ? JSON.parse(product?.ltm_cad)[0]
       : 0
   let supplierFees =
     country === 'usa' ? product?.supplier_fees_usd : product?.supplier_fees_cad
@@ -195,6 +200,7 @@ const Product = ({ product, loading, error, productID }) => {
     if (isProductIncludesltm_final) {
       if (+quantity < +product?.column_1_qty) {
         setPriceWithoutCustomizations(+col1Price + ltm_price / +quantity)
+        console.log({ col1Price, ltm_price, quantity })
       } else if (+quantity < +col2Qty) {
         setPriceWithoutCustomizations(+col1Price)
       } else if (+quantity < +col3Qty) {
@@ -1050,15 +1056,17 @@ const Product = ({ product, loading, error, productID }) => {
                       </div>
 
                       <div className={Styles.price_section}>
-                        {!isSample && (
+                        {!isSample ? (
                           <p>{`Price ${
                             totalPrice === Infinity ? 0 : totalPrice.toFixed(2)
                           }/unit`}</p>
+                        ) : (
+                          <p>{`Price ${col1Price ? col1Price : 0}/unit`}</p>
                         )}
                         <p>
                           $
                           {isSample
-                            ? (3 * col1Price).toFixed(2)
+                            ? (quantity * col1Price).toFixed(2)
                             : (quantity * +totalPrice).toFixed(2)}
                         </p>
                       </div>

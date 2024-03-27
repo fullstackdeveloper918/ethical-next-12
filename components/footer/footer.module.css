@@ -26,10 +26,15 @@
 .inputContainer .error {
   color: red;
   line-height: 16px;
-  margin-top: 16px;
-  position: absolute;
+  margin-top: 10px;
+  /* position: absolute; */
+  font-size: 12px;
 }
-
+.main_footer_container>div:first-child {
+  flex: 33%;
+  width: 100%;
+  max-width: 30%;
+}
 .container_column_1 {
   display: flex;
   flex-direction: column;
@@ -77,8 +82,12 @@
   justify-content: flex-start;
   padding-top: 15px;
   position: relative;
+  flex-wrap: wrap;
 }
-
+.inputContainer div{
+  width: 100%;
+  max-width: 200px;
+}
 .inputContainer input {
   background: transparent;
   border: 1px solid #fff;
@@ -87,7 +96,7 @@
   padding-left: 1rem;
   font-size: 12px;
   width: 100%;
-  max-width: 160px;
+  /* max-width: 160px; */
 }
 
 .inputContainer button {
@@ -175,10 +184,16 @@ font-weight: 500;
 @media (max-width: 768px) {
   .footer_container .main_footer_container {
     flex-direction: column;
+    padding-bottom: 20px;
   }
   .footer_container .banks_main_container {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .main_footer_container>div:first-child {
+    flex: 100%;
+    width: 100%;
+    max-width: 100%;
   }
 }
 @media (max-width: 479) {

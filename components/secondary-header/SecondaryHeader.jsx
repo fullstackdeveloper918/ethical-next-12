@@ -41,6 +41,7 @@ import {
   setProductsLoading,
   setProductsError,
 } from 'redux-setup/categorySlice'
+import { deleteAllCartItems } from 'redux-setup/cartSlice'
 const SecondaryHeader = () => {
   const popupRef = useRef(null)
   const dispatch = useDispatch()
@@ -60,7 +61,6 @@ const SecondaryHeader = () => {
   const wishlistItems = useSelector((state) => state.wishlist.items)
   const countryFromRedux = useSelector((state) => state.country.country)
 
-  console.log(countryFromRedux, 'countryFromRedux')
   const cartItems = useSelector((state) => state.cart.cartItems.length)
   const reached2ndStep = useSelector((state) => state.cart.reached2ndStep)
   const reached3rdStep = useSelector((state) => state.cart.reached3rdStep)
@@ -69,7 +69,7 @@ const SecondaryHeader = () => {
     (state) => state.cart.selectedNameDateFilterValue
   )
 
-  const optimizedFn = useCallback(debounce(handleChange), [])
+  // const optimizedFn = useCallback(debounce(handleChange()), [])
 
   let route = router.asPath.split('/').filter((item) => item !== '')
   const routeArray = route.map((item) => decodeURIComponent(item))
@@ -85,7 +85,6 @@ const SecondaryHeader = () => {
     router.asPath.includes('/cart') ||
     router.asPath.includes('/shipping') ||
     router.asPath.includes('/billing-address') ||
-    router.asPath.includes('/products') ||
     router.asPath.includes('/category')
 
   const handleSetSubCategory = (item) => {
@@ -129,10 +128,11 @@ const SecondaryHeader = () => {
 
   const handleChange = (value) => {
     fetch(
-      `https://test.cybersify.tech/Eswag/public/api/products?search_title=${value}`
+      `https://test.cybersify.tech/Eswag/public/api/products?product_title=${value}`
     )
       .then((res) => res.json())
-      .then((json) => setData(json.data.data))
+      .then((json) => console.log(json, 'hello ?'))
+    // .then((json) => setData(json.data.data))
   }
 
   const handleCart = () => {
@@ -157,23 +157,8 @@ const SecondaryHeader = () => {
   }, [router.asPath])
 
   useEffect(() => {
-    if (country) {
-      dispatch(selectCountry(country))
-    }
-  }, [country])
-
-  useEffect(() => {
     setCountry(countryFromRedux)
   }, [])
-
-  // useEffect(() => {
-  //   if (countryFromRedux && isSingleProductPage) {
-  //     router.push('/')
-  //     setCountry(countryFromRedux)
-  //   } else if (countryFromRedux && !isSingleProductPage) {
-  //     setCountry(countryFromRedux)
-  //   }
-  // }, [countryFromRedux])
 
   useEffect(() => {
     if (inputbtn) {
@@ -425,7 +410,11 @@ const SecondaryHeader = () => {
                 <DropdownMenuContent className={styles.language_wrapdropdown}>
                   <DropdownMenuRadioGroup
                     value={country}
-                    onValueChange={setCountry}
+                    onValueChange={(newValue) => {
+                      setCountry(newValue)
+                      dispatch(selectCountry(newValue))
+                      dispatch(deleteAllCartItems())
+                    }}
                   >
                     <div className={styles.countries_dropdown_container}>
                       {countries.map((c, i) => {
@@ -466,7 +455,7 @@ const SecondaryHeader = () => {
                     type="search"
                     placeholder="Search"
                     // value={searchProduct}
-                    onChange={(e) => optimizedFn(e.target.value)}
+                    onChange={(e) => handleChange(e.target.value)}
                   />
 
                   <span>

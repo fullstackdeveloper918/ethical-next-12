@@ -10,9 +10,12 @@ import Button from '../Button/Button'
 import { useRouter } from 'next/router'
 import { setStep1State, setreached2ndStep } from '../../redux-setup/cartSlice'
 import { GrEdit } from 'react-icons/gr'
-
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css'
 const SwagOrderForm = ({ isBilling }) => {
   const router = useRouter()
+  const [value, onChange] = useState(date)
+  let date = useSelector((state) => state.filter.date)
 
   const dispatch = useDispatch()
   const onSubmit = async (values) => {

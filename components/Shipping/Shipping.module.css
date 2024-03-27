@@ -82,7 +82,17 @@
   padding-left: 10px;
   margin-bottom: 10px;
 }
-
+@media (max-width:1440px){
+  .form_inputs input {
+    padding: 12px 18px;
+height: 49px;
+font-size: 14px;
+margin-bottom: 10px;
+  }
+  .form_inputs.flexInputs {
+    margin-bottom: 5px;
+  }
+}
 @media screen and (max-width: 1340px) {
   .title {
     font-size: 24px;
@@ -149,7 +159,7 @@
   color: #fff;
   position: absolute;
   line-height: 18px;
-  left: 6px;
+  left: 7px;
   top: 4px;
   width: 6px;
   height: 10px;
