@@ -55,6 +55,8 @@ const productID = () => {
       }
     )
 
+  console.log(singleProduct, 'singleProduct')
+
   useEffect(() => {
     if (country && productID) {
       singleProductApi()
@@ -65,7 +67,7 @@ const productID = () => {
   useEffect(() => {
     if (country) {
       fetch(
-        `https://test.cybersify.tech/Eswag/public/api/${products}${
+        `https://test.cybersify.tech/Eswag/public/api/products?created_at_desc=1&${
           country === 'usa' ? `available_in_usa=1` : `available_in_canada=1`
         }`
       )
