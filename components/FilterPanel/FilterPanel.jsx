@@ -2,11 +2,13 @@ import Styles from '../Filter/Filter.module.css'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Dot from '@components/custom-colored-dot/Dot'
+import Image from 'next/image'
 import {
   setColorsObj,
   setShowAllFilters,
   setSwiftSwag,
 } from 'redux-setup/FiltersSlice'
+import images from 'constants/images'
 
 const FilterPanel = ({
   setFilteredColors,
@@ -97,26 +99,41 @@ const FilterPanel = ({
     const alphabetRegex = /[a-zA-Z]/
     if (item.key === 'swiftSwag') {
       return (
-        <div onClick={() => dispatch(setSwiftSwag(false))}>{item?.value}</div>
+        <span onClick={() => dispatch(setSwiftSwag(false))}  className={Styles.select_color} >{item?.value} <span className={Styles.cross_selectItems}><Image 
+        src={images.Cross_icon}
+        width={10}
+        height={10}
+        className={Styles.crosse_color} /></span>
+        </span>
       )
     } else if (item === 'color') {
       return (
-        <div
+        <span
           onClick={() => {
             let a = array.filter((i) => i !== color)
             setArrName(a)
           }}
-        >
+          className={Styles.select_color}>
           {color}
-        </div>
+          <span className={Styles.cross_selectItems}><Image 
+        src={images.Cross_icon}
+        width={20}
+        height={20}
+        className={Styles.crosse_color} /> </span>
+        </span>
       )
     } else {
       return (
-        <div onClick={() => handleClear(item, array, setArrName, color)}>
+        <span onClick={() => handleClear(item, array, setArrName, color)} className={Styles.select_color}>
           {item?.value && alphabetRegex.test(item?.value)
             ? JSON.parse(item?.value)
             : item?.value}
-        </div>
+             <span className={Styles.cross_selectItems}><Image 
+        src={images.Cross_icon}
+        width={20}
+        height={20}
+        className={Styles.crosse_color} /></span>
+        </span>
       )
     }
   }
@@ -277,7 +294,7 @@ const FilterPanel = ({
           >
             Clear All
           </h4>
-          <p>
+          <p className={Styles.select_colorDiv}>
             {swiftSwag &&
               badge({ key: 'swiftSwag', value: 'swiftSwag' }, [], null)}
             {clearUniqueProduct &&
@@ -357,12 +374,12 @@ const FilterPanel = ({
                             >
                               <input
                                 type="checkbox"
-                                id={`checkbox_id_${childIndex}`}
+                                id={`checkbox_id_${key}`}
                                 name={child}
                                 onChange={(e) => handleCheckboxChange(e, item)}
                                 checked={productTypeArray.includes(key)}
                               />
-                              <label htmlFor={`checkbox_id_${childIndex}`}>
+                              <label htmlFor={`checkbox_id_${key}`}>
                                 {child && JSON.parse(child)}
                               </label>
                             </li>
@@ -372,7 +389,8 @@ const FilterPanel = ({
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
                       item.label === 'Swift swag' ? (
-                      <div className={Styles.custom_checkbox}>
+                        <div className={Styles.swift_swagDiv}>
+                      <div className={Styles.input_checkbox}>
                         {Object.values(item.children).map(
                           (child, childIndex) => {
                             let val = child === 'SwiftSwag'
@@ -383,19 +401,20 @@ const FilterPanel = ({
                               >
                                 <input
                                   type="radio"
-                                  id={`checkbox_id_${childIndex}`}
+                                  id={`checkbox_id_${child}`}
                                   name="radioSwiftSwag"
                                   value={val}
                                   checked={swiftSwag == val}
                                   onChange={handleSwagChange}
                                 />
-                                <label htmlFor={`checkbox_id_${childIndex}`}>
+                                <label htmlFor={`checkbox_id_${child}`}>
                                   {child}
                                 </label>
                               </li>
                             )
                           }
                         )}
+                      </div>
                       </div>
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
@@ -409,13 +428,13 @@ const FilterPanel = ({
                             >
                               <input
                                 type="checkbox"
-                                id={`checkbox_id_${childIndex}`}
+                                id={`checkbox_id_${key}`}
                                 name={child}
                                 value={child}
                                 checked={decorationsArray.includes(key)}
                                 onChange={(e) => handleCheckboxChange(e, item)}
                               />
-                              <label htmlFor={`checkbox_id_${childIndex}`}>
+                              <label htmlFor={`checkbox_id_${key}`}>
                                 {child && JSON.parse(child)}
                               </label>
                             </li>
@@ -434,12 +453,12 @@ const FilterPanel = ({
                             >
                               <input
                                 type="checkbox"
-                                id={`checkbox_id_${childIndex}`}
+                                id={`checkbox_id_${key}`}
                                 name={child}
                                 onChange={(e) => handleCheckboxChange(e, item)}
                                 checked={emojiTypeArray.includes(key)}
                               />
-                              <label htmlFor={`checkbox_id_${childIndex}`}>
+                              <label htmlFor={`checkbox_id_${key}`}>
                                 {child}
                               </label>
                             </li>
