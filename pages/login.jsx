@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import images from '../constants/images'
 import axios from 'axios'
+import { FaEye } from 'react-icons/fa'
+import { FaEyeSlash } from 'react-icons/fa6'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import useFetch from '../lib/useFetch'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,6 +17,7 @@ import { data } from 'autoprefixer'
 
 const login = () => {
   const dispatch = useDispatch()
+  const [showEye, setShowEye] = useState(false)
   const router = useRouter()
   const [terms, setTerms] = useState(false)
 
@@ -115,12 +118,27 @@ const login = () => {
 
                     <div className={Styles.input_box}>
                       <Field
-                        type="password"
+                        type={showEye ? 'text' : 'password'}
                         id="password"
                         name="password"
                         placeholder="Enter Password"
                         autocomplete="off"
                       />
+                      {showEye ? (
+                        <FaEyeSlash
+                          fontSize={20}
+                          cursor="pointer"
+                          onClick={() => setShowEye(false)}
+                          className={Styles.login_eye}
+                        />
+                      ) : (
+                        <FaEye
+                          fontSize={20}
+                          cursor="pointer"
+                          onClick={() => setShowEye(true)}
+                          className={Styles.login_eye}
+                        />
+                      )}
                       <ErrorMessage
                         name="password"
                         component="div"
