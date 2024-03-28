@@ -47,9 +47,10 @@ const SecondaryHeader = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [showResults, setShowResults] = useState(false)
-  const [data, setData] = useState([])
+  const [searchItems, setSearchItems] = useState([])
   const [showSearchInput, setShowSearchInput] = useState(false)
   const [openLinks, setOpenLinks] = useState(false)
+  const [searchProduct, setSearchProduct] = useState('')
   const [inputbtn, setInputBtn] = useState(false)
   const [country, setCountry] = useState('usa')
   const [countryTosend, setCountryToSend] = useState('usa')
@@ -68,8 +69,6 @@ const SecondaryHeader = () => {
   const selectedNameDateFilterValue = useSelector(
     (state) => state.cart.selectedNameDateFilterValue
   )
-
-  // const optimizedFn = useCallback(debounce(handleChange()), [])
 
   let route = router.asPath.split('/').filter((item) => item !== '')
   const routeArray = route.map((item) => decodeURIComponent(item))
@@ -126,14 +125,28 @@ const SecondaryHeader = () => {
     setInputBtn(boolean)
   }
 
-  const handleChange = (value) => {
-    fetch(
-      `https://test.cybersify.tech/Eswag/public/api/products?product_title=${value}`
-    )
-      .then((res) => res.json())
-      .then((json) => console.log(json, 'hello ?'))
-    // .then((json) => setData(json.data.data))
+  const handleChange = (e) => {
+    const text = e.target.value
+    if (text) {
+      setSearchProduct(text)
+      setShowResults(true)
+    }
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetch(
+        `https://test.cybersify.tech/Eswag/public/api/serach?query=${searchProduct}&${
+          country === 'usa' ? 'available_in_usa=1' : 'available_in_canada=1'
+        }`
+      )
+        .then((res) => res.json())
+        .then((searchData) => setSearchItems(searchData?.data?.data))
+    }, 1500)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [searchProduct])
 
   const handleCart = () => {
     if (reached3rdStep) {
@@ -144,6 +157,8 @@ const SecondaryHeader = () => {
       router.push('/cart')
     }
   }
+
+  console.log(searchItems, 'searchitems')
 
   useEffect(() => {
     window.addEventListener('resize', handleResize)
@@ -435,7 +450,7 @@ const SecondaryHeader = () => {
               </DropdownMenu>
             </div>
           )}
-          {/* <div className={styles.header_searchicon}>
+          <div className={styles.header_searchicon}>
             <span>
               <Image
                 src={searchImg}
@@ -450,12 +465,12 @@ const SecondaryHeader = () => {
                   showSearchInput ? styles.show_input : ''
                 }`}
               >
-                <div className={styles.centerField} ref={popupRef}>
+                <div className={styles.centerField}>
                   <input
                     type="search"
                     placeholder="Search"
-                    // value={searchProduct}
-                    onChange={(e) => handleChange(e.target.value)}
+                    value={searchProduct}
+                    onChange={handleChange}
                   />
 
                   <span>
@@ -468,46 +483,44 @@ const SecondaryHeader = () => {
                   </span>
 
                   {showResults && (
-                    <div className={styles.search_results}>
-                      <ul>
-                        {data?.length !== 0 ? (
-                          data?.map((item, i) => (
-                            <>
-                              <li
-                                className={styles.search_productlist}
-                                onClick={() =>
-                                  router.push(`/product/${item?.id}`)
-                                }
-                                key={i}
-                              >
-                                <Image
-                                  src={item?.image}
-                                  width={80}
-                                  height={80}
-                                />
-                                <div className={styles.search_productcontent}>
-                                  <h4>{item?.title}</h4>
-                                  <p>
-                                    {(item?.product_description).slice(0, 100)}
-                                  </p>
-                                </div>
-                              </li>
-                            </>
-                          ))
-                        ) : (
-                          <>
-                            <h4 className={styles.empty_Products}>
-                              No products available
-                            </h4>
-                          </>
-                        )}
-                      </ul>
-                    </div>
+                    <>
+                      <div className={styles.search_results}>
+                        <ul>
+                          {searchItems &&
+                            searchItems.map((item, i) => (
+                              <>
+                                <li
+                                  className={styles.search_productlist}
+                                  onClick={() =>
+                                    router.push(`/product/${item?.id}`)
+                                  }
+                                  key={i}
+                                >
+                                  <Image
+                                    src={item?.image}
+                                    width={80}
+                                    height={80}
+                                  />
+                                  <div className={styles.search_productcontent}>
+                                    <h4>{item?.title}</h4>
+                                    <p>
+                                      {(item?.product_description).slice(
+                                        0,
+                                        100
+                                      )}
+                                    </p>
+                                  </div>
+                                </li>
+                              </>
+                            ))}
+                        </ul>
+                      </div>
+                    </>
                   )}
                 </div>
               </div>
             </span>
-          </div> */}
+          </div>
           {screenSize > 767 && (
             <div
               className=""
