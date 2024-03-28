@@ -12,7 +12,7 @@ const Modal = () => {
   const router = useRouter()
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [value, onChange] = useState(
-    new Date().setDate(new Date().getDate() + 11)
+    new Date(new Date().setDate(new Date().getDate() + 11))
   )
   const [isOpenCalender, setIsOpenCalender] = useState(false)
   let swiftSwag = useSelector((state) => state.filter.swiftSwag)
@@ -22,22 +22,16 @@ const Modal = () => {
       setIsOpenModal(true)
     }
   }, [])
-
   const handleCloseModal = () => {
     if (value === null) {
       toast.error('Please select date from calender')
     } else {
       dispatch(setSwiftSwag(true))
+      dispatch(setDate(value))
       setIsOpenModal(false)
       router.push('/category/Apparel')
     }
   }
-
-  useEffect(() => {
-    if (value) {
-      dispatch(setDate(value))
-    }
-  }, [value])
   const tileDisabled = ({ date, view }) => {
     return (
       view === 'month' && date < new Date().setDate(new Date().getDate() + 10)

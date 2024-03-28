@@ -14,7 +14,7 @@ import {
 } from '../../redux-setup/cartSlice'
 import useFetch from '../../lib/useFetch'
 import { PDFViewer, pdf } from '@react-pdf/renderer'
-import Card from '@components/dummy/Card'
+// import Card from '@components/dummy/Card'
 import { saveAs } from 'file-saver'
 import { convertToObject } from 'typescript'
 // import { addOrders } from '../../redux-setup/ordersSlice'
@@ -96,8 +96,8 @@ const EstimateCard = () => {
   }, [cartItems])
 
   const downLoadPdf = async () => {
-    const blob = await pdf(<Card />).toBlob()
-    saveAs(blob, 'untitled.pdf')
+    // const blob = await pdf(<Card />).toBlob()
+    // saveAs(blob, 'untitled.pdf')
   }
   return (
     <>
@@ -172,7 +172,7 @@ const EstimateCard = () => {
                   <button
                     className={Styles.estimate_bottom_btn}
                     type="button"
-                    onClick={downLoadPdf}
+                    // onClick={downLoadPdf}
                   >
                     Save a .pdf for later
                   </button>
@@ -198,13 +198,13 @@ const EstimateCard = () => {
                       Clear Orders
                     </button>
                   </div>
-                  <div style={{ height: '0px', overflow: 'hidden' }}>
+                  {/* <div style={{ height: '0px', overflow: 'hidden' }}>
                     <div id="invoice-container">
                       <PDFViewer height={1000} width={2000}>
                         <Card />
                       </PDFViewer>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </>
             ) : (

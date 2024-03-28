@@ -214,7 +214,6 @@ const Product = ({ product, loading, error, productID }) => {
     if (isProductIncludesltm_final) {
       if (+quantity < +product?.column_1_qty) {
         setPriceWithoutCustomizations(+col1Price + ltm_price / +quantity)
-        console.log({ col1Price, ltm_price, quantity })
       } else if (+quantity < +col2Qty) {
         setPriceWithoutCustomizations(+col1Price)
       } else if (+quantity < +col3Qty) {

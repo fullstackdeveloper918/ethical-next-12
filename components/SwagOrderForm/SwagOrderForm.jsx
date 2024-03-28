@@ -1,49 +1,52 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Styles from './SwagOrderForm.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import {
-  initialValuesSwagOrderForm1stStep,
-  validationSchemaSwagOrderForm1stStep,
-} from '../../lib/validationSchemas'
+import { initialValuesSwagOrderForm1stStep } from '../../lib/validationSchemas'
 import Button from '../Button/Button'
 import { useRouter } from 'next/router'
 import { setStep1State, setreached2ndStep } from '../../redux-setup/cartSlice'
+import { setDate } from 'redux-setup/FiltersSlice'
 import { GrEdit } from 'react-icons/gr'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 const SwagOrderForm = ({ isBilling }) => {
   const router = useRouter()
-  const [value, onChange] = useState(date)
+  const dispatch = useDispatch()
+  const [value, onChange] = useState(
+    date ? date : new Date(new Date().setDate(new Date().getDate() + 11))
+  )
+  const [isCalenderOpen, setIsCalenderOpen] = useState(false)
   let date = useSelector((state) => state.filter.date)
 
-  const dispatch = useDispatch()
   const onSubmit = async (values) => {
-    if (values.selectedDate) {
+    if (date) {
       dispatch(setreached2ndStep(true))
       dispatch(setStep1State(values))
       router.push('/shipping')
     }
-    // try {
-    //   let formData = new FormData()
-    //   formData.append('email', values.email)
-    //   formData.append('password', values.password)
-
-    //   loadQuery(formData)
-    // } catch (error) {
-    //   console.log(error, 'from login api')
-    // }
-  }
-  const getTodayDate = () => {
-    const today = new Date()
-    const year = today.getFullYear().toString()
-    const month = (today.getMonth() + 1).toString().padStart(2, '0')
-
-    const day = today.getDate().toString().padStart(2, '0')
-    return `${year + '-' + month + '-' + day}`
   }
 
   const step1State = useSelector((state) => state.cart.step1State)
+  const handleDateFormat = (dates) => {
+    return dates.toLocaleDateString('en-IN', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    })
+  }
+
+  const tileDisabled = ({ date, view }) => {
+    return (
+      view === 'month' && date < new Date().setDate(new Date().getDate() + 10)
+    )
+  }
+
+  const handleDateChange = (date) => {
+    setIsCalenderOpen(false)
+    onChange(date)
+    dispatch(setDate(value))
+  }
 
   return (
     <>
@@ -58,19 +61,27 @@ const SwagOrderForm = ({ isBilling }) => {
               <Form>
                 <div className={Styles.SwagOrder_faqInput}>
                   <p>When do you need this order? *</p>
-                  <Field
+                  <p
+                    className=""
+                    onClick={() => setIsCalenderOpen(!isCalenderOpen)}
+                  >
+                    selected date:{handleDateFormat(date)}
+                  </p>
+                  {isCalenderOpen && (
+                    <Calendar
+                      onChange={handleDateChange}
+                      value={value}
+                      tileDisabled={tileDisabled}
+                    />
+                  )}
+                  {/* <Field
                     type="date"
                     id="selectedDate"
                     name="selectedDate"
                     autocomplete="off"
                     min={getTodayDate()}
-                    disabled={isBilling}
-                  />
-                  <ErrorMessage
-                    name="selectedDate"
-                    component="div"
-                    className={Styles.error}
-                  />
+                    disabled
+                  /> */}
                 </div>
 
                 {isBilling && (
@@ -176,12 +187,7 @@ const SwagOrderForm = ({ isBilling }) => {
                     </div>
                   </div>
                 </div>
-                {!isBilling && (
-                  <Button
-                    onClick={onSubmit}
-                    disabled={values.selectedDate == ''}
-                  />
-                )}
+                {!isBilling && <Button onClick={onSubmit} disabled={!date} />}
               </Form>
             </>
           )}
