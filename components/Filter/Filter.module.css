@@ -453,7 +453,6 @@
   text-decoration: underline;
 }
 
-
 /* badge */
 .filterPanel_top {
   border-bottom: 1px solid #d9d9d9;
@@ -464,13 +463,13 @@
   z-index: 1;
   padding-top: 25px;
 }
-.select_colorDiv{
+.select_colorDiv {
   padding: 10px 25px 0px;
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
 }
-.select_color{
+.select_color {
   border: 1px solid #a2d0611a;
   padding: 5px 6px 5px 10px;
   border-radius: 30px;
@@ -485,7 +484,7 @@
   max-width: fit-content;
   cursor: pointer;
 }
-.cross_selectItems{
+.cross_selectItems {
   background-color: #a2d061;
   border-radius: 30px;
   display: flex;
@@ -495,7 +494,7 @@
   cursor: pointer;
   height: 22px;
 }
-.select_color img{
+.select_color img {
   cursor: pointer;
   width: 12px !important;
   height: 12px !important;
@@ -522,7 +521,7 @@
   flex-wrap: wrap;
   padding: 0px 25px 10px;
 }
-.swift_swagDiv .custom_checkbox label{
+.swift_swagDiv .custom_checkbox label {
   padding-left: 0px;
 }
 
@@ -537,7 +536,7 @@
   cursor: pointer;
 }
 
-.swift_swagDiv .input_checkbox  input[type='radio']:before {
+.swift_swagDiv .input_checkbox input[type='radio']:before {
   content: '';
   display: block;
   width: 10px;
@@ -548,18 +547,17 @@
   cursor: pointer;
 }
 
-.swift_swagDiv .input_checkbox  input[type="radio"]:checked:before {
+.swift_swagDiv .input_checkbox input[type='radio']:checked:before {
   background: #a2d061;
   cursor: pointer;
-  
 }
 
-.swift_swagDiv .input_checkbox  input[type="radio"]:checked {
-border-color:#a2d061;
-cursor: pointer;
+.swift_swagDiv .input_checkbox input[type='radio']:checked {
+  border-color: #a2d061;
+  cursor: pointer;
 }
 
-.swift_swagDiv .input_checkbox  .checkbox label {
+.swift_swagDiv .input_checkbox .checkbox label {
   margin-bottom: 20px !important;
   cursor: pointer;
 }
@@ -573,8 +571,13 @@ cursor: pointer;
   font-family: 'DM Sans', sans-serif;
   text-transform: capitalize;
 }
-.custom_checkbox>li:first-child,
-.input_checkbox>li:first-child {
+.see_all {
+  padding-left: 15px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.custom_checkbox > li:first-child,
+.input_checkbox > li:first-child {
   padding-top: 2px;
 }
 .swift_swagDiv li.filterPanel_list_item {
@@ -583,7 +586,7 @@ cursor: pointer;
 .swift_swagDiv li.filterPanel_list_item label {
   cursor: pointer;
 }
-.mobile_crossbtn{
+.mobile_crossbtn {
   position: absolute;
   top: 20px;
   right: 10px;
@@ -596,10 +599,10 @@ cursor: pointer;
   align-items: center;
   justify-content: center;
 }
-.mobile_crossbtn img{
+.mobile_crossbtn img {
   /* filter: invert(1); */
   width: 22px !important;
-  height:22px !important;
+  height: 22px !important;
 }
 /* responsive start */
 
@@ -643,7 +646,7 @@ cursor: pointer;
     font-size: 19px !important;
   }
   .filter_panel_wrap .filterPanel {
-    margin-top: 0px;
+    margin-top: 20px;
   }
   .filter_panel_wrap .filterPanel {
     width: 100%;
@@ -670,8 +673,8 @@ cursor: pointer;
     margin-left: 38%;
   } */
 }
-@media (min-width:767px){
-  .mobile_crossbtn{
+@media (min-width: 767px) {
+  .mobile_crossbtn {
     display: none;
   }
 }
@@ -683,7 +686,7 @@ cursor: pointer;
     z-index: 1;
     overflow: scroll;
   }
-  .select_colorDiv{
+  .select_colorDiv {
     padding: 0px 0px 0px 25px;
   }
   .filter_select > div {
@@ -763,6 +766,9 @@ cursor: pointer;
   .badget {
     left: 15px;
   }
+  .see_all {
+    padding-left: 10px;
+  }
 }
 @media (max-width: 768px) {
   /* .category_section .collection_wrapper {
@@ -809,8 +815,13 @@ cursor: pointer;
     transform: translateX(-100%) !important;
     transition: 0.5s all ease-in-out;
   }
-}
 
+  .category_section .filter_panel_wrap {
+    padding: 0;
+  }
+  .filterPanel {
+  border: 0;}
+}
 @media only screen and (max-width: 576px) {
   .collection_Single {
     flex-direction: column;
@@ -1338,6 +1349,9 @@ cursor: pointer;
   position: absolute;
   right: 0;
 }
+.color_all{
+  padding-left: 22px
+}
 @media (max-width: 1400px) {
   .collection_items {
     min-height: 430px;
@@ -1358,6 +1372,11 @@ cursor: pointer;
     max-width: 80%;
   }
 }
+@media screen and (max-width: 768px) {
+  .filterPanel {
+    border: 0;
+  }
+}
 @media screen and (max-width: 767px) {
   .filterPanel_list_item {
     padding: 10px;
@@ -1375,4 +1394,3 @@ cursor: pointer;
     display: none;
   }
 }
-

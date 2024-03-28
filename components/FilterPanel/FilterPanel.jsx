@@ -30,6 +30,12 @@ const FilterPanel = ({
     useState([])
   const [clearUniqueProduct, setClearUniqueProduct] = useState([])
   const [showall, setShowAll] = useState('')
+  const [isShowAllColoursFilters, setIsShowAllColoursFilters] = useState(false)
+  const [isShowAllUniqueFilters, setIsShowAllUniqueFilters] = useState(false)
+  const [isShowAllDecorationFilters, setIsShowAllDecorationFilters] =
+    useState(false)
+  const [isShowAllEmojiFilters, setIsShowAllEmojiFilters] = useState(false)
+
   const [clearDecorationProduct, setClearDecorationProduct] = useState([])
   const [decoProductClear, setDecoProductClear] = useState([])
   const [clearEmojiProduct, setClearEmojiProduct] = useState([])
@@ -261,22 +267,24 @@ const FilterPanel = ({
   }, [allFiltersLengthArray])
 
   useEffect(() => {
-    let categoriesList = []
-    if (Object.keys(allFilters).length > 0) {
-      Object.entries(allFilters).map(([key, value]) => {
-        let obj = {}
-        obj.id = key
-        obj.label = key
-        obj.children = value
-        categoriesList.push(obj)
-      })
-      dispatch(setShowAllFilters(categoriesList))
-      let colors = categoriesList.filter((c) => c.label === 'Colors')
-      if (colors.length > 0) {
-        let colorsObjToUse = colors[0].children
-        dispatch(setColorsObj(colorsObjToUse))
-      } else {
-        dispatch(setColorsObj({}))
+    if (allFilters) {
+      let categoriesList = []
+      if (Object.keys(allFilters).length > 0) {
+        Object.entries(allFilters).map(([key, value]) => {
+          let obj = {}
+          obj.id = key
+          obj.label = key
+          obj.children = value
+          categoriesList.push(obj)
+        })
+        dispatch(setShowAllFilters(categoriesList))
+        let colors = categoriesList.filter((c) => c.label === 'Colors')
+        if (colors.length > 0) {
+          let colorsObjToUse = colors[0].children
+          dispatch(setColorsObj(colorsObjToUse))
+        } else {
+          dispatch(setColorsObj({}))
+        }
       }
     }
   }, [allFilters])
@@ -312,23 +320,23 @@ const FilterPanel = ({
       )}
 
       <div className={Styles.filterPanel}>
-        <div className={Styles.filterPanel_top}>
-          <span
-            className={Styles.mobile_crossbtn}
-            onClick={() => setActiveFilter(false)}
-          >
-            <Image
-              src={images.Cross_icon}
-              width={12}
-              height={12}
-              className={Styles.crosse_color}
-            />
-          </span>
-          {(productTypeArray.length != 0 ||
-            emojiTypeArray.length != 0 ||
-            decorationsArray.length != 0 ||
-            filteredColors.length != 0 ||
-            swiftSwag === true) && (
+        <span
+          className={Styles.mobile_crossbtn}
+          onClick={() => setActiveFilter(false)}
+        >
+          <Image
+            src={images.Cross_icon}
+            width={12}
+            height={12}
+            className={Styles.crosse_color}
+          />
+        </span>
+        {(productTypeArray.length != 0 ||
+          emojiTypeArray.length != 0 ||
+          decorationsArray.length != 0 ||
+          filteredColors.length != 0 ||
+          swiftSwag === true) && (
+          <div className={Styles.filterPanel_top}>
             <h4
               className={Styles.filterPanel_title}
               onClick={handleClearAll}
@@ -336,34 +344,46 @@ const FilterPanel = ({
             >
               Clear All
             </h4>
-          )}
-          <p className={Styles.select_colorDiv}>
-            {swiftSwag &&
-              badge({ key: 'swiftSwag', value: 'swiftSwag' }, [], null)}
-            {clearUniqueProduct &&
-              clearUniqueProduct.length > 0 &&
-              clearUniqueProduct.map((item) =>
-                badge(item, productTypeArray, setProductTypeArray)
-              )}
-            {decoProductClear &&
-              decoProductClear.length > 0 &&
-              decoProductClear.map((item) =>
-                badge(item, decorationsArray, setDecorationsArray, 'decoration')
-              )}
 
-            {clearEmojiProduct &&
-              clearEmojiProduct.length > 0 &&
-              clearEmojiProduct.map((item) =>
-                badge(item, emojiTypeArray, setEmojiTypeArray)
-              )}
+            {(swiftSwag ||
+              clearUniqueProduct ||
+              decoProductClear ||
+              clearEmojiProduct ||
+              filteredColors) && (
+              <p className={Styles.select_colorDiv}>
+                {swiftSwag &&
+                  badge({ key: 'swiftSwag', value: 'swiftSwag' }, [], null)}
+                {clearUniqueProduct &&
+                  clearUniqueProduct.length > 0 &&
+                  clearUniqueProduct.map((item) =>
+                    badge(item, productTypeArray, setProductTypeArray)
+                  )}
+                {decoProductClear &&
+                  decoProductClear.length > 0 &&
+                  decoProductClear.map((item) =>
+                    badge(
+                      item,
+                      decorationsArray,
+                      setDecorationsArray,
+                      'decoration'
+                    )
+                  )}
 
-            {filteredColors &&
-              filteredColors.length > 0 &&
-              filteredColors.map((item) =>
-                badge('color', filteredColors, setFilteredColors, item)
-              )}
-          </p>
-        </div>
+                {clearEmojiProduct &&
+                  clearEmojiProduct.length > 0 &&
+                  clearEmojiProduct.map((item) =>
+                    badge(item, emojiTypeArray, setEmojiTypeArray)
+                  )}
+
+                {filteredColors &&
+                  filteredColors.length > 0 &&
+                  filteredColors.map((item) =>
+                    badge('color', filteredColors, setFilteredColors, item)
+                  )}
+              </p>
+            )}
+          </div>
+        )}
 
         <div className={Styles.filterPanel_ProductCollection_list}>
           {showAllFilters?.map((item, index) => {
@@ -374,13 +394,13 @@ const FilterPanel = ({
                     className={Styles.items}
                     onClick={() => toggleAccordion(index)}
                   >
-                    <div>{item.label}</div>
+                    <div>
+                      {item.label === 'uniqueProductType'
+                        ? 'Product type'
+                        : item.label}
+                    </div>
                     <div className={Styles.accordion_icon}>
-                      {openIndex.length > 0
-                        ? openIndex?.includes(index)
-                          ? '-'
-                          : '+'
-                        : null}
+                      {openIndex?.includes(index) ? '-' : '+'}
                     </div>
                   </div>
                 </div>
@@ -390,32 +410,41 @@ const FilterPanel = ({
                     {openIndex.length > 0 &&
                     openIndex.includes(index) &&
                     item.label === 'Colors' ? (
-                      <div className={Styles.colors_container}>
-                        {Object.keys(colorsObj).length > 0 &&
-                          Object.entries(colorsObj)
-                            .slice(0, showall === item.label ? undefined : 6)
-                            .map(([color, imageUrl], colorIndex) => (
-                              <>
-                                <Dot
-                                  key={colorIndex}
-                                  color={color}
-                                  imageUrl={imageUrl}
-                                  fromFilters
-                                  filteredColors={filteredColors}
-                                  setFilteredColors={setFilteredColors}
-                                />
-                              </>
-                            ))}
-                        <span onClick={() => setShowAll('Colors')}>
-                          See All
-                        </span>
-                      </div>
+                      <>
+                        <div className={Styles.colors_container}>
+                          {Object.keys(colorsObj).length > 0 &&
+                            Object.entries(colorsObj)
+                              .slice(0, isShowAllColoursFilters ? undefined : 6)
+                              .map(([color, imageUrl], colorIndex) => (
+                                <>
+                                  <Dot
+                                    key={colorIndex}
+                                    color={color}
+                                    imageUrl={imageUrl}
+                                    fromFilters
+                                    filteredColors={filteredColors}
+                                    setFilteredColors={setFilteredColors}
+                                  />
+                                </>
+                              ))}
+                          <button
+                            className={Styles.see_all}
+                            onClick={() =>
+                              setIsShowAllColoursFilters(
+                                !isShowAllColoursFilters
+                              )
+                            }
+                          >
+                            {isShowAllColoursFilters ? 'See Less' : 'See All'}
+                          </button>
+                        </div>
+                      </>
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
                       item.label === 'uniqueProductType' ? (
                       <div className={Styles.custom_checkbox}>
                         {Object.entries(item.children)
-                          .slice(0, showall === item.label ? undefined : 6)
+                          .slice(0, isShowAllUniqueFilters ? undefined : 6)
                           .map(([key, child], childIndex) => (
                             <>
                               <li
@@ -437,9 +466,14 @@ const FilterPanel = ({
                               </li>
                             </>
                           ))}
-                        <span onClick={() => setShowAll('uniqueProductType')}>
-                          See All
-                        </span>
+                        <button
+                          className={Styles.see_all}
+                          onClick={() =>
+                            setIsShowAllUniqueFilters(!isShowAllUniqueFilters)
+                          }
+                        >
+                          {isShowAllUniqueFilters ? 'See Less' : 'See All'}
+                        </button>
                       </div>
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
@@ -465,7 +499,10 @@ const FilterPanel = ({
                                       onChange={handleSwagChange}
                                     />
                                     <label htmlFor={`checkbox_id_${child}`}>
-                                      {child && child.toLowerCase()}
+                                      {/* {child && child.toLowerCase()} */}
+                                      {child === 'SwiftSwag'
+                                        ? ' Swift Swag'
+                                        : 'No swift swag'}
                                     </label>
                                   </li>
                                 </>
@@ -478,7 +515,8 @@ const FilterPanel = ({
                       item.label === 'Decoration' ? (
                       <div className={Styles.custom_checkbox}>
                         {Object.entries(renderDecoObj)
-                          .slice(0, showall === item.label ? undefined : 6)
+                          .slice(0, isShowAllDecorationFilters ? undefined : 6)
+
                           .map(([key, child], childIndex) => (
                             <>
                               <li
@@ -501,16 +539,23 @@ const FilterPanel = ({
                               </li>
                             </>
                           ))}
-                        <span onClick={() => setShowAll('Decoration')}>
-                          See All
-                        </span>
+                        <button
+                          className={Styles.see_all}
+                          onClick={() =>
+                            setIsShowAllDecorationFilters(
+                              !isShowAllDecorationFilters
+                            )
+                          }
+                        >
+                          {isShowAllDecorationFilters ? 'See Less' : 'See All'}
+                        </button>
                       </div>
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
                       item.label === 'Emoji ratings' ? (
                       <div className={Styles.custom_checkbox}>
                         {Object.entries(item.children)
-                          .slice(0, showall === item.label ? undefined : 6)
+                          .slice(0, isShowAllEmojiFilters ? undefined : 6)
                           .map(([key, child], childIndex) => (
                             <li
                               key={childIndex}
@@ -528,9 +573,14 @@ const FilterPanel = ({
                               </label>
                             </li>
                           ))}
-                        <span onClick={() => setShowAll('Emoji ratings')}>
-                          See All
-                        </span>
+                        <button
+                          className={Styles.see_all}
+                          onClick={() =>
+                            setIsShowAllEmojiFilters(!isShowAllEmojiFilters)
+                          }
+                        >
+                          {isShowAllEmojiFilters ? 'See Less' : 'See All'}
+                        </button>
                       </div>
                     ) : null}
                   </div>

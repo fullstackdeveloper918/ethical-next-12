@@ -93,8 +93,12 @@
   }
   .headingContainer {
     margin-bottom: 30px;
-  }
+  }  
+.popup {
+  max-height: 80%;
 }
+}
+
 @media screen and (max-width: 991px) {
   .popup {
     width: 80%;
@@ -115,5 +119,11 @@
   }
   .headingContainer {
     align-items: baseline;
+  }
+}
+@media screen and (max-width: 480px) {
+  .popup h2 {
+    font-size: 24px;
+    line-height: 26px;
   }
 }

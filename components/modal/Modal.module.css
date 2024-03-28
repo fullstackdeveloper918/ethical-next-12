@@ -16,6 +16,7 @@
   background: rgba(56, 56, 56, 0.1);
   -webkit-backdrop-filter: blur(25.100000381469727px);
   backdrop-filter: blur(25.100000381469727px);
+  z-index: 9;
 }
 
 .modal_content{
