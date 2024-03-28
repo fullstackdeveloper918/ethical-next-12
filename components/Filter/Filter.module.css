@@ -573,6 +573,9 @@ cursor: pointer;
   font-family: 'DM Sans', sans-serif;
   text-transform: capitalize;
 }
+.see_all{
+  padding-left: 15px;
+}
 .custom_checkbox>li:first-child,
 .input_checkbox>li:first-child {
   padding-top: 2px;
@@ -762,6 +765,9 @@ cursor: pointer;
   }
   .badget {
     left: 15px;
+  }
+  .see_all{
+    padding-left: 10px;
   }
 }
 @media (max-width: 768px) {

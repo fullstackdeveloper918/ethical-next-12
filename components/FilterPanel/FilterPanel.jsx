@@ -437,7 +437,7 @@ const FilterPanel = ({
                               </li>
                             </>
                           ))}
-                        <span onClick={() => setShowAll('uniqueProductType')}>
+                        <span className={Styles.see_all}  onClick={() => setShowAll('uniqueProductType')}>
                           See All
                         </span>
                       </div>
@@ -501,7 +501,7 @@ const FilterPanel = ({
                               </li>
                             </>
                           ))}
-                        <span onClick={() => setShowAll('Decoration')}>
+                        <span className={Styles.see_all}  onClick={() => setShowAll('Decoration')}>
                           See All
                         </span>
                       </div>
@@ -528,7 +528,7 @@ const FilterPanel = ({
                               </label>
                             </li>
                           ))}
-                        <span onClick={() => setShowAll('Emoji ratings')}>
+                        <span className={Styles.see_all} onClick={() => setShowAll('Emoji ratings')}>
                           See All
                         </span>
                       </div>
