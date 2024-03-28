@@ -69,6 +69,7 @@ const Product = ({ product, loading, error, productID }) => {
     useState(0)
   const [customizationPrice, setCustomizationPrice] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
+  const [isSizesTotal, setIsSizesTotal] = useState(false)
   const [sizeQuantity, setSizeQuantity] = useState({
     S: 0,
     M: 0,
@@ -96,29 +97,33 @@ const Product = ({ product, loading, error, productID }) => {
   const handleQuantity = (e) => {
     const value = parseInt(e.target.value)
     setQuantity(value)
+    setIsSizesTotal(true)
   }
 
   useEffect(() => {
-    const sizes = Object.keys(sizeQuantity)
-    const sizePriorities = {
-      M: 40,
-      L: 30,
-      XL: 20,
-      S: 10,
-    }
+    if (isSizesTotal) {
+      const sizes = Object.keys(sizeQuantity)
+      const sizePriorities = {
+        M: 40,
+        L: 30,
+        XL: 20,
+        S: 10,
+      }
 
-    const totalPriorityQuantity = Object.values(sizePriorities).reduce(
-      (acc, curr) => acc + curr,
-      0
-    )
-
-    const updatedSizeQuantity = {}
-    sizes.forEach((size) => {
-      updatedSizeQuantity[size] = Math.round(
-        (sizePriorities[size] / totalPriorityQuantity) * quantity
+      const totalPriorityQuantity = Object.values(sizePriorities).reduce(
+        (acc, curr) => acc + curr,
+        0
       )
-    })
-    setSizeQuantity(updatedSizeQuantity)
+
+      const updatedSizeQuantity = {}
+      sizes.forEach((size) => {
+        updatedSizeQuantity[size] = Math.round(
+          (sizePriorities[size] / totalPriorityQuantity) * quantity
+        )
+      })
+      setSizeQuantity(updatedSizeQuantity)
+      setIsSizesTotal(false)
+    }
   }, [quantity])
 
   const addToWishlist = (item) => {
@@ -265,23 +270,7 @@ const Product = ({ product, loading, error, productID }) => {
     }
   }, [openEmoji])
 
-  // let handleQuantitySize = (e) => {
-  //   if (e.target.value < 0) {
-  //     setSizeQuantity((prev) => ({
-  //       ...prev,
-  //       [e.target.name]: 0,
-  //     }))
-  //   } else {
-  //     setSizeQuantity((prev) => ({
-  //       ...prev,
-  //       [e.target.name]: e.target.value,
-  //     }))
-  //   }
-  //   setQuantity(sizeQuantity)
-  // }
-
   const handleQuantitySize = (e, key) => {
-    console.log(key, 'you')
     let newSizeQuantity
     if (key === 'S') {
       if (e.target.value < 0) {
@@ -335,49 +324,12 @@ const Product = ({ product, loading, error, productID }) => {
         }
       }
     }
-    console.log(newSizeQuantity, 'newSizeQuantity')
     setSizeQuantity(newSizeQuantity)
     const totalQuantity = Object.values(newSizeQuantity).reduce(
       (acc, curr) => acc + parseInt(curr),
       0
     )
-    console.log(totalQuantity, 'toayla')
     setQuantity(totalQuantity)
-    //  const totalQuantity = Object.values(newSizeQuantity).reduce((acc,curr) => acc+curr, 0);
-    //   console.log(totalQuantity, 'total')
-
-    // const totalQuantity = Object.values(newSizeQuantity).reduce(
-    //   (acc, curr) => acc + parseInt(curr),
-    //   0
-    // )
-    // console.log(totalQuantity, 'total')
-    // const totalQuantity = Object.values(newSizeQuantity).reduce(
-    //   (acc, curr) => acc + parseInt(curr),
-    //   0
-    // )
-    // setQuantity(totalQuantity)
-
-    // let newSizeQuantity
-    // if (e.target.value < 0) {
-    //   newSizeQuantity = {
-    //     ...sizeQuantity,
-    //     [e.target.name]: 0,
-    //   }
-    // } else {
-    //   newSizeQuantity = {
-    //     ...sizeQuantity,
-    //     [e.target.name]: parseInt(e.target.value),
-    //   }
-    // }
-    // console.log([e.target.name], newSizeQuantity)
-    // setSizeQuantity(newSizeQuantity)
-
-    // // Calculate total quantity
-    // const totalQuantity = Object.values(newSizeQuantity).reduce(
-    //   (acc, curr) => acc + parseInt(curr),
-    //   0
-    // )
-    // setQuantity(totalQuantity)
   }
 
   const uploadFirstFile = (event) => {
@@ -1019,9 +971,7 @@ const Product = ({ product, loading, error, productID }) => {
                     <div className={Styles.input_data_required}>
                       <input
                         type="number"
-                        // placeholder={product?.column_1_qty}
                         name="orderQuantity"
-                        // value={isSample ? '3' : quantity}
                         value={quantity}
                         onChange={handleQuantity}
                         onBlur={(e) => {

@@ -158,8 +158,6 @@ const SecondaryHeader = () => {
     }
   }
 
-  console.log(searchItems, 'searchitems')
-
   useEffect(() => {
     window.addEventListener('resize', handleResize)
     return () => {
