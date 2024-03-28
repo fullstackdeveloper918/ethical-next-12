@@ -400,11 +400,7 @@ const FilterPanel = ({
                         : item.label}
                     </div>
                     <div className={Styles.accordion_icon}>
-                      {openIndex.length > 0
-                        ? openIndex?.includes(index)
-                          ? '-'
-                          : '+'
-                        : null}
+                      {openIndex?.includes(index) ? '-' : '+'}
                     </div>
                   </div>
                 </div>
