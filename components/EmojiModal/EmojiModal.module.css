@@ -93,8 +93,12 @@
   }
   .headingContainer {
     margin-bottom: 30px;
-  }
+  }  
+.popup {
+  max-height: 80%;
 }
+}
+
 @media screen and (max-width: 991px) {
   .popup {
     width: 80%;
