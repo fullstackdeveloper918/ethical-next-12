@@ -27,29 +27,42 @@ const ProductCard = ({ item, fromSingleProduct }) => {
 
   const favoriteIconColor = useSelector((state) => state.wishlist.favoriteIcon)
   const country = useSelector((state) => state.country.country)
+  const cartItems = useSelector((state) => state.cart.cartItems)
+
+  console.log(cartItems, 'cartitems')
 
   useEffect(() => {
     setSingleImage(item?.image)
   }, [item])
 
   const addToWishlist = (item) => {
-    const isInWishlist = wishListItems.some(
-      (wishlistItem) => wishlistItem.id === item.id
+    const existedWishlistItem = cartItems.some(
+      (cartItem) => cartItem.id === item.id
     )
-    if (isInWishlist) {
-      // If the item is already in the wishlist, remove it
-      dispatch(removeItemFromWishlist(item.id))
-      toast.success('Item removed from wishlist', {
+
+    if (existedWishlistItem) {
+      toast.error('Item is already in cart', {
         position: 'top-center',
-        autoClose: 5000,
       })
     } else {
-      // Otherwise, add the item to the wishlist
-      dispatch(addItemToWishlist(item))
-      toast.success('Item added to wishlist', {
-        position: 'top-center',
-        autoClose: 5500,
-      })
+      const isInWishlist = wishListItems.some(
+        (wishlistItem) => wishlistItem.id === item.id
+      )
+      if (isInWishlist) {
+        // If the item is already in the wishlist, remove it
+        dispatch(removeItemFromWishlist(item.id))
+        toast.success('Item removed from wishlist', {
+          position: 'top-center',
+          autoClose: 5000,
+        })
+      } else {
+        // Otherwise, add the item to the wishlist
+        dispatch(addItemToWishlist(item))
+        toast.success('Item added to wishlist', {
+          position: 'top-center',
+          autoClose: 5500,
+        })
+      }
     }
   }
   return (

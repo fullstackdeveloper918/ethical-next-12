@@ -29,6 +29,7 @@ const FilterPanel = ({
   const [allFilteredStateValuesArray, setAllFilteredStateValuesArray] =
     useState([])
   const [clearUniqueProduct, setClearUniqueProduct] = useState([])
+  const [showall, setShowAll] = useState('')
   const [clearDecorationProduct, setClearDecorationProduct] = useState([])
   const [decoProductClear, setDecoProductClear] = useState([])
   const [clearEmojiProduct, setClearEmojiProduct] = useState([])
@@ -391,104 +392,126 @@ const FilterPanel = ({
                     item.label === 'Colors' ? (
                       <div className={Styles.colors_container}>
                         {Object.keys(colorsObj).length > 0 &&
-                          Object.entries(colorsObj).map(
-                            ([color, imageUrl], colorIndex) => (
-                              <Dot
-                                key={colorIndex}
-                                color={color}
-                                imageUrl={imageUrl}
-                                fromFilters
-                                filteredColors={filteredColors}
-                                setFilteredColors={setFilteredColors}
-                              />
-                            )
-                          )}
+                          Object.entries(colorsObj)
+                            .slice(0, showall === item.label ? undefined : 6)
+                            .map(([color, imageUrl], colorIndex) => (
+                              <>
+                                <Dot
+                                  key={colorIndex}
+                                  color={color}
+                                  imageUrl={imageUrl}
+                                  fromFilters
+                                  filteredColors={filteredColors}
+                                  setFilteredColors={setFilteredColors}
+                                />
+                              </>
+                            ))}
+                        <span onClick={() => setShowAll('Colors')}>
+                          See All
+                        </span>
                       </div>
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
                       item.label === 'uniqueProductType' ? (
                       <div className={Styles.custom_checkbox}>
-                        {Object.entries(item.children).map(
-                          ([key, child], childIndex) => (
-                            <li
-                              key={childIndex}
-                              className={Styles.filterPanel_list_item}
-                            >
-                              <input
-                                type="checkbox"
-                                id={`checkbox_id_${key}`}
-                                name={child}
-                                onChange={(e) => handleCheckboxChange(e, item)}
-                                checked={productTypeArray.includes(key)}
-                              />
-                              <label htmlFor={`checkbox_id_${key}`}>
-                                {child && JSON.parse(child)}
-                              </label>
-                            </li>
-                          )
-                        )}
+                        {Object.entries(item.children)
+                          .slice(0, showall === item.label ? undefined : 6)
+                          .map(([key, child], childIndex) => (
+                            <>
+                              <li
+                                key={childIndex}
+                                className={Styles.filterPanel_list_item}
+                              >
+                                <input
+                                  type="checkbox"
+                                  id={`checkbox_id_${key}`}
+                                  name={child}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, item)
+                                  }
+                                  checked={productTypeArray.includes(key)}
+                                />
+                                <label htmlFor={`checkbox_id_${key}`}>
+                                  {child && JSON.parse(child)}
+                                </label>
+                              </li>
+                            </>
+                          ))}
+                        <span onClick={() => setShowAll('uniqueProductType')}>
+                          See All
+                        </span>
                       </div>
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
                       item.label === 'Swift swag' ? (
                       <div className={Styles.swift_swagDiv}>
                         <div className={Styles.input_checkbox}>
-                          {Object.values(item.children).map(
-                            (child, childIndex) => {
+                          {Object.values(item.children)
+                            .slice(0, showall ? undefined : 6)
+                            .map((child, childIndex) => {
                               let val = child === 'SwiftSwag'
                               return (
-                                <li
-                                  key={childIndex}
-                                  className={Styles.filterPanel_list_item}
-                                >
-                                  <input
-                                    type="radio"
-                                    id={`checkbox_id_${child}`}
-                                    name="radioSwiftSwag"
-                                    value={val}
-                                    checked={swiftSwag == val}
-                                    onChange={handleSwagChange}
-                                  />
-                                  <label htmlFor={`checkbox_id_${child}`}>
-                                    {child}
-                                  </label>
-                                </li>
+                                <>
+                                  <li
+                                    key={childIndex}
+                                    className={Styles.filterPanel_list_item}
+                                  >
+                                    <input
+                                      type="radio"
+                                      id={`checkbox_id_${child}`}
+                                      name="radioSwiftSwag"
+                                      value={val}
+                                      checked={swiftSwag == val}
+                                      onChange={handleSwagChange}
+                                    />
+                                    <label htmlFor={`checkbox_id_${child}`}>
+                                      {child && child.toLowerCase()}
+                                    </label>
+                                  </li>
+                                </>
                               )
-                            }
-                          )}
+                            })}
                         </div>
                       </div>
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
                       item.label === 'Decoration' ? (
                       <div className={Styles.custom_checkbox}>
-                        {Object.entries(renderDecoObj).map(
-                          ([key, child], childIndex) => (
-                            <li
-                              key={childIndex}
-                              className={Styles.filterPanel_list_item}
-                            >
-                              <input
-                                type="checkbox"
-                                id={`checkbox_id_${key}`}
-                                name={child}
-                                value={child}
-                                checked={decorationsArray.includes(key)}
-                                onChange={(e) => handleCheckboxChange(e, item)}
-                              />
-                              <label htmlFor={`checkbox_id_${key}`}>
-                                {child && JSON.parse(child)}
-                              </label>
-                            </li>
-                          )
-                        )}
+                        {Object.entries(renderDecoObj)
+                          .slice(0, showall === item.label ? undefined : 6)
+                          .map(([key, child], childIndex) => (
+                            <>
+                              <li
+                                key={childIndex}
+                                className={Styles.filterPanel_list_item}
+                              >
+                                <input
+                                  type="checkbox"
+                                  id={`checkbox_id_${key}`}
+                                  name={child}
+                                  value={child}
+                                  checked={decorationsArray.includes(key)}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, item)
+                                  }
+                                />
+                                <label htmlFor={`checkbox_id_${key}`}>
+                                  {child && JSON.parse(child)}
+                                </label>
+                              </li>
+                            </>
+                          ))}
+                        <span onClick={() => setShowAll('Decoration')}>
+                          See All
+                        </span>
                       </div>
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
                       item.label === 'Emoji ratings' ? (
                       <div className={Styles.custom_checkbox}>
-                        {Object.entries(item.children).map(
-                          ([key, child], childIndex) => (
+                        {Object.entries(item.children)
+                          .slice(0, showall === item.label ? undefined : 6)
+                          .map(([key, child], childIndex) => (
                             <li
                               key={childIndex}
                               className={Styles.filterPanel_list_item}
@@ -504,8 +527,10 @@ const FilterPanel = ({
                                 {child}
                               </label>
                             </li>
-                          )
-                        )}
+                          ))}
+                        <span onClick={() => setShowAll('Emoji ratings')}>
+                          See All
+                        </span>
                       </div>
                     ) : null}
                   </div>

@@ -8,7 +8,7 @@ import Styles from '../Filter/Filter.module.css'
 import Pagination from '../pagination/Pagination'
 
 const Product = () => {
-  const [activeFilter, setActiveFilter] = useState(false)
+  const [activeFilter, setActiveFilter] = useState(true)
   const [finalColorFilteredProducts, setFinalColorFilteredProducts] = useState(
     []
   )
