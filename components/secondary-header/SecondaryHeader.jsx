@@ -120,9 +120,22 @@ const SecondaryHeader = () => {
     setScreenSize(window.innerWidth)
   }
 
+  const sendToProduct = (item) => {
+    router.push(`/product/${item}`)
+    setShowResults(false)
+    setShowSearchInput(false)
+  }
+
   const handleInput = (boolean) => {
-    setShowSearchInput(boolean)
-    setInputBtn(boolean)
+    if (boolean === true) {
+      setShowSearchInput(true)
+      setInputBtn(true)
+    } else if (boolean === false) {
+      setShowSearchInput(false)
+      setInputBtn(false)
+      setShowResults(false)
+      setSearchProduct('')
+    }
   }
 
   const handleChange = (e) => {
@@ -134,17 +147,19 @@ const SecondaryHeader = () => {
   }
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      fetch(
-        `https://test.cybersify.tech/Eswag/public/api/serach?query=${searchProduct}&${
-          country === 'usa' ? 'available_in_usa=1' : 'available_in_canada=1'
-        }`
-      )
-        .then((res) => res.json())
-        .then((searchData) => setSearchItems(searchData?.data?.data))
-    }, 1500)
-    return () => {
-      clearTimeout(timer)
+    if (searchProduct.trim() !== '') {
+      const timer = setTimeout(() => {
+        fetch(
+          `https://test.cybersify.tech/Eswag/public/api/serach?query=${searchProduct}&${
+            country === 'usa' ? 'available_in_usa=1' : 'available_in_canada=1'
+          }`
+        )
+          .then((res) => res.json())
+          .then((searchData) => setSearchItems(searchData?.data?.data))
+      }, 1500)
+      return () => {
+        clearTimeout(timer)
+      }
     }
   }, [searchProduct])
 
@@ -467,7 +482,7 @@ const SecondaryHeader = () => {
               >
                 <div className={styles.centerField}>
                   <input
-                    type="search"
+                    type="text"
                     placeholder="Search"
                     value={searchProduct}
                     onChange={handleChange}
@@ -491,9 +506,7 @@ const SecondaryHeader = () => {
                               <>
                                 <li
                                   className={styles.search_productlist}
-                                  onClick={() =>
-                                    router.push(`/product/${item?.id}`)
-                                  }
+                                  onClick={() => sendToProduct(item?.id)}
                                   key={i}
                                 >
                                   <Image
