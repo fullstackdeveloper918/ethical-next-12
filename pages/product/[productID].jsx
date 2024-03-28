@@ -138,7 +138,7 @@ const productID = () => {
       />
       <section className={Styles.singleProduct_dimensions}>
         <div className={Styles.product_list_wrapper}>
-          <ul style={{ cursor: 'pointer' }}>
+          <ul style={{ cursor: 'pointer' }} className={Styles.singleProduct_list}>
             <li
               className={
                 selectedItem === 'Product' ? Styles.active_product : ''

@@ -402,30 +402,40 @@ const FilterPanel = ({
                     {openIndex.length > 0 &&
                     openIndex.includes(index) &&
                     item.label === 'Colors' ? (
-                      <div className={Styles.colors_container}>
-                        {Object.keys(colorsObj).length > 0 &&
-                          Object.entries(colorsObj)
-                            .slice(0, isShowAllColoursFilters ? undefined : 6)
-                            .map(([color, imageUrl], colorIndex) => (
-                              <>
-                                <Dot
-                                  key={colorIndex}
-                                  color={color}
-                                  imageUrl={imageUrl}
-                                  fromFilters
-                                  filteredColors={filteredColors}
-                                  setFilteredColors={setFilteredColors}
-                                />
-                              </>
-                            ))}
-                        <button
-                          onClick={() =>
-                            setIsShowAllColoursFilters(!isShowAllColoursFilters)
-                          }
+                      <>
+                        <div className={Styles.colors_container}>
+                          {Object.keys(colorsObj).length > 0 &&
+                            Object.entries(colorsObj)
+                              .slice(0, isShowAllColoursFilters ? undefined : 6)
+                              .map(([color, imageUrl], colorIndex) => (
+                                <>
+                                  <Dot
+                                    key={colorIndex}
+                                    color={color}
+                                    imageUrl={imageUrl}
+                                    fromFilters
+                                    filteredColors={filteredColors}
+                                    setFilteredColors={setFilteredColors}
+                                  />
+                                </>
+                              ))}
+                          <button
+                            onClick={() =>
+                              setIsShowAllColoursFilters(
+                                !isShowAllColoursFilters
+                              )
+                            }
+                          >
+                            {isShowAllColoursFilters ? 'See Less' : 'See All'}
+                          </button>
+                        </div>
+                        <span
+                          onClick={() => setShowAll('Colors')}
+                          className={`${Styles.color_all} ${Styles.see_all} `}
                         >
-                          {isShowAllColoursFilters ? 'See Less' : 'See All'}
-                        </button>
-                      </div>
+                          See All
+                        </span>
+                      </>
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
                       item.label === 'uniqueProductType' ? (
