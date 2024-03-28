@@ -187,6 +187,36 @@
   margin-left: 2px;
 }
 
+@media (max-width:1440px){
+  .input_box input {
+    height: 49px;
+    font-size: 14px;
+  }
+  .registered_text {
+    font-size: 14px;
+  }
+  .login_container {
+    min-width: 460px;
+    padding-block: 20px;
+  }
+  .input_radio_content {
+    margin-top: 2px;
+  }
+  .form {
+    margin-top: 10px;
+    padding-inline: 30px;
+  }
+  .input_box button {
+    margin-top: 10px;
+    padding: 6px 0;
+    height: 49px;
+    font-size: 16px;
+  }
+  .error {
+font-size: 13px;
+  }
+}
+
 @media screen and (max-width: 1200px) {
   .login_container {
     min-width: 60%;

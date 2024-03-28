@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: '70px',
+    marginTop: '10px',
     flexWrap: 'wrap',
     gap: '20',
   },
@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
     fontSize: '12',
     fontWeight: 'normal',
     marginBottom: 10,
-    marginTop: '40',
+    marginTop: '10',
+    lineHeight:'22',
   },
   product_content: {
     display: 'flex',
@@ -116,10 +117,26 @@ const styles = StyleSheet.create({
     marginTop: '20px',
     gap: '15px',
   },
+  content_wrap_title:{
+    textAlign: 'left',
+    fontSize: '10',
+    fontWeight: 'normal',
+  },
+  content_wrapDescription:{
+    textAlign: 'left',
+    fontSize: '6',
+    fontWeight: 'normal',
+  },
   container: {
     flexDirection: 'row', // Arrange children horizontally
     alignItems: 'center', // Align children vertically
     marginBottom: 10, // Add some margin at the bottom
+  },
+  Product_pdf:{
+    flexDirection: 'row', // Arrange children horizontally
+    alignItems: 'center', // Align children vertically
+    marginBottom: 10,
+    gap:20,
   },
 })
 
@@ -148,7 +165,7 @@ const Card = () => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View>
+        
           {/* <Image src={EthicalLogo} style={{ height: 40, width: 40 }} />
 
           <Text style={styles.heading}>My Enhanukujced PDFplzz</Text>
@@ -190,14 +207,15 @@ const Card = () => {
 
           <Text style={styles.heading_wrapper}>BULK ESTIMATE</Text>
 
+          <View style={styles.Product_pdf}>
           <Image
             style={styles.imgg}
             src={
               'https://fastly.picsum.photos/id/1050/200/300.jpg?hmac=mMZp1DAD5EpHCZh-YBwfvrg5w327V3DoJQ8CmRAKF70'
             }
           />
-
-          <Text style={styles.content_wrap}>
+         <View>
+          <Text style={styles.content_wrap_title}>
             A great "back to school" gift, this 2-in-1 sandwich bag and placemat
             i...
           </Text>
@@ -205,6 +223,8 @@ const Card = () => {
           <Text style={styles.content_wrapDescription}>
             Price : Starting at $5.47
           </Text>
+          </View>
+          </View>
 
           {/* <PDFTable
             tableHeaders={[
@@ -227,14 +247,14 @@ const Card = () => {
             when after you let us you know the shipping addresses. You will be
             billed according to the price practiced at the time of shipping.
           </Text>
-          <View style={styles.container}>
+          {/* <View style={styles.container}>
             <Image
               style={styles.image}
               src="https://fastly.picsum.photos/id/1050/200/300.jpg?hmac=mMZp1DAD5EpHCZh-YBwfvrg5w327V3DoJQ8CmRAKF70"
             />
             <Text style={styles.text}>Some text content here... with love</Text>
-          </View>
-        </View>
+          </View> */}
+  
       </Page>
     </Document>
   )
