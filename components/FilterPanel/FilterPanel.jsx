@@ -45,7 +45,7 @@ const FilterPanel = ({
   const colorsObj = useSelector((state) => state.filter.colorsObj)
   const swiftSwag = useSelector((state) => state.filter.swiftSwag)
   const toggleAccordion = (index) => {
-    if (openIndex.includes(index)) {
+    if (openIndex && openIndex.includes(index)) {
       let filteredIndex = openIndex.filter((item) => item !== index)
       setOpenIndex(filteredIndex)
     } else {
@@ -400,7 +400,7 @@ const FilterPanel = ({
                         : item.label}
                     </div>
                     <div className={Styles.accordion_icon}>
-                      {openIndex?.includes(index) ? '-' : '+'}
+                      {openIndex && openIndex?.includes(index) ? '-' : '+'}
                     </div>
                   </div>
                 </div>
