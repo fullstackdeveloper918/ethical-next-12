@@ -1089,7 +1089,7 @@ const Product = ({ product, loading, error, productID }) => {
                           <p>{`Price ${col1Price ? col1Price : 0}/unit`}</p>
                         )}
                         <p>
-                          $
+                          total Price $
                           {isSample
                             ? (quantity * col1Price).toFixed(2)
                             : (quantity * +totalPrice).toFixed(2)}
