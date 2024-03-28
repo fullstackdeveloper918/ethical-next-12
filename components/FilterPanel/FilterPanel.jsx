@@ -390,6 +390,7 @@ const FilterPanel = ({
                     {openIndex.length > 0 &&
                     openIndex.includes(index) &&
                     item.label === 'Colors' ? (
+                      <>
                       <div className={Styles.colors_container}>
                         {Object.keys(colorsObj).length > 0 &&
                           Object.entries(colorsObj)
@@ -406,10 +407,12 @@ const FilterPanel = ({
                                 />
                               </>
                             ))}
-                        <span onClick={() => setShowAll('Colors')}>
-                          See All
-                        </span>
+                       
                       </div>
+                       <span onClick={() => setShowAll('Colors')} className={`${Styles.color_all} ${Styles.see_all} `}  >                
+                       See All
+                     </span>
+                                  </>
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
                       item.label === 'uniqueProductType' ? (
@@ -437,10 +440,11 @@ const FilterPanel = ({
                               </li>
                             </>
                           ))}
-                        <span className={Styles.see_all}  onClick={() => setShowAll('uniqueProductType')}>
-                          See All
-                        </span>
+                         <span className={Styles.see_all}   onClick={() => setShowAll('uniqueProductType')}>
+                       See All
+                     </span>
                       </div>
+                     
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
                       item.label === 'Swift swag' ? (

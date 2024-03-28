@@ -1427,6 +1427,9 @@ p.fw400 {
   .detail_page_image_content .product_big_image img {
     width: 30vw !important;
   }
+  .page_right_content {
+    height: 100%;
+  }
 }
 
 @media screen and (max-width: 980px) {
