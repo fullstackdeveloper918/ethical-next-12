@@ -29,10 +29,10 @@
 
 @media (max-width:1440px){
   .colored_dot {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     outline: 1px solid #d0d0cc;
-    outline-offset: 2px;
+    outline-offset: 4px;
   }
   
   .colored_dot.active {

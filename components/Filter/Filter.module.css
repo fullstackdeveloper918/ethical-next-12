@@ -862,7 +862,7 @@ cursor: pointer;
 /* Products css starts here */
 .collection_wrapper {
   width: 100%;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   padding-bottom: 40px;
   transition: 0.3s all ease-in-out;
 }

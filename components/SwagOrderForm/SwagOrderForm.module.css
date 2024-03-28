@@ -209,6 +209,12 @@
   display: flex;
   align-content: center;
 }
+@media (max-width:1440px){
+  .SwagOrder_faqInput > input{
+    height: 49px;
+    font-size: 14px;
+  }
+}
 @media (max-width:991px){
   .SwagOrder_FAQ button{
     margin: 20px 0px 0px !important;

@@ -34,6 +34,9 @@ product css .detail_page_wrapper {
   align-items: center;
   height: calc(100vh - 240px);
 }
+.detail_page_image_content .product_big_image{
+  mix-blend-mode: color-burn;
+}
 
 .detail_page_image_content .product_big_image img {
   max-height: 90%;
@@ -805,6 +808,7 @@ product css .detail_page_wrapper {
 
 .fw400 {
   font-weight: 400;
+  line-height: 22px;
 }
 
 .colorLight {
@@ -935,7 +939,7 @@ p.fw400 {
   bottom: 0;
   background-color: #fff;
   padding-bottom: 10px;
-  border-top: 1px solid #ececec;
+  /* border-top: 1px solid #ececec; */
   /* margin: 30px 0; */
   /* padding-top: 30px; */
 }
@@ -1083,7 +1087,7 @@ p.fw400 {
 }
 .border_svg svg,
 .border_svg img {
-  transform: scale(0.9);
+  transform: scale(0.8);
   transition: all.3s ease-in;
   fill: #949090 !important;
 }
@@ -1205,6 +1209,13 @@ p.fw400 {
   .add_to_bulk_container button {
     font-size: 13px;
     padding: 16px 5;
+  }
+  .icon_wrapper {
+    top: 20px;
+    right: 20px;
+  }
+  .detail_page_container {
+    margin-bottom: 0rem;
   }
   .detail_page_right_section .title h4 {
     font-size: 20px;
