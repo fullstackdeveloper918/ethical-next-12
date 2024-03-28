@@ -117,6 +117,7 @@ const Modal = () => {
                     value={value}
                     minDate={minDate}
                   />
+                  {console.log(minDate, 'min date')}
                   <p>
                     *Swift Swag we can produce and deliver your order in 10
                     business days!
