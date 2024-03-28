@@ -320,23 +320,23 @@ const FilterPanel = ({
       )}
 
       <div className={Styles.filterPanel}>
-        <div className={Styles.filterPanel_top}>
-          <span
-            className={Styles.mobile_crossbtn}
-            onClick={() => setActiveFilter(false)}
-          >
-            <Image
-              src={images.Cross_icon}
-              width={12}
-              height={12}
-              className={Styles.crosse_color}
-            />
-          </span>
-          {(productTypeArray.length != 0 ||
-            emojiTypeArray.length != 0 ||
-            decorationsArray.length != 0 ||
-            filteredColors.length != 0 ||
-            swiftSwag === true) && (
+        <span
+          className={Styles.mobile_crossbtn}
+          onClick={() => setActiveFilter(false)}
+        >
+          <Image
+            src={images.Cross_icon}
+            width={12}
+            height={12}
+            className={Styles.crosse_color}
+          />
+        </span>
+        {(productTypeArray.length != 0 ||
+          emojiTypeArray.length != 0 ||
+          decorationsArray.length != 0 ||
+          filteredColors.length != 0 ||
+          swiftSwag === true) && (
+          <div className={Styles.filterPanel_top}>
             <h4
               className={Styles.filterPanel_title}
               onClick={handleClearAll}
@@ -344,34 +344,46 @@ const FilterPanel = ({
             >
               Clear All
             </h4>
-          )}
-          <p className={Styles.select_colorDiv}>
-            {swiftSwag &&
-              badge({ key: 'swiftSwag', value: 'swiftSwag' }, [], null)}
-            {clearUniqueProduct &&
-              clearUniqueProduct.length > 0 &&
-              clearUniqueProduct.map((item) =>
-                badge(item, productTypeArray, setProductTypeArray)
-              )}
-            {decoProductClear &&
-              decoProductClear.length > 0 &&
-              decoProductClear.map((item) =>
-                badge(item, decorationsArray, setDecorationsArray, 'decoration')
-              )}
 
-            {clearEmojiProduct &&
-              clearEmojiProduct.length > 0 &&
-              clearEmojiProduct.map((item) =>
-                badge(item, emojiTypeArray, setEmojiTypeArray)
-              )}
+            {(swiftSwag ||
+              clearUniqueProduct ||
+              decoProductClear ||
+              clearEmojiProduct ||
+              filteredColors) && (
+              <p className={Styles.select_colorDiv}>
+                {swiftSwag &&
+                  badge({ key: 'swiftSwag', value: 'swiftSwag' }, [], null)}
+                {clearUniqueProduct &&
+                  clearUniqueProduct.length > 0 &&
+                  clearUniqueProduct.map((item) =>
+                    badge(item, productTypeArray, setProductTypeArray)
+                  )}
+                {decoProductClear &&
+                  decoProductClear.length > 0 &&
+                  decoProductClear.map((item) =>
+                    badge(
+                      item,
+                      decorationsArray,
+                      setDecorationsArray,
+                      'decoration'
+                    )
+                  )}
 
-            {filteredColors &&
-              filteredColors.length > 0 &&
-              filteredColors.map((item) =>
-                badge('color', filteredColors, setFilteredColors, item)
-              )}
-          </p>
-        </div>
+                {clearEmojiProduct &&
+                  clearEmojiProduct.length > 0 &&
+                  clearEmojiProduct.map((item) =>
+                    badge(item, emojiTypeArray, setEmojiTypeArray)
+                  )}
+
+                {filteredColors &&
+                  filteredColors.length > 0 &&
+                  filteredColors.map((item) =>
+                    badge('color', filteredColors, setFilteredColors, item)
+                  )}
+              </p>
+            )}
+          </div>
+        )}
 
         <div className={Styles.filterPanel_ProductCollection_list}>
           {showAllFilters?.map((item, index) => {
