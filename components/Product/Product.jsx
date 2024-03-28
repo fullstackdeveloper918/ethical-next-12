@@ -102,8 +102,8 @@ const Product = ({ product, loading, error, productID }) => {
     const sizes = Object.keys(sizeQuantity)
     const sizePriorities = {
       M: 40,
-      L: 35,
-      XL: 25,
+      L: 30,
+      XL: 20,
       S: 10,
     }
 
@@ -150,6 +150,7 @@ const Product = ({ product, loading, error, productID }) => {
       }
     }
   }
+
   const isInWishlist = wishListItems.some(
     (wishlistItem) => wishlistItem.id === product?.id
   )
@@ -279,27 +280,104 @@ const Product = ({ product, loading, error, productID }) => {
   //   setQuantity(sizeQuantity)
   // }
 
-  const handleQuantitySize = (e) => {
+  const handleQuantitySize = (e, key) => {
+    console.log(key, 'you')
     let newSizeQuantity
-    if (e.target.value < 0) {
-      newSizeQuantity = {
-        ...sizeQuantity,
-        [e.target.name]: 0,
-      }
-    } else {
-      newSizeQuantity = {
-        ...sizeQuantity,
-        [e.target.name]: parseInt(e.target.value),
+    if (key === 'S') {
+      if (e.target.value < 0) {
+        newSizeQuantity = {
+          ...sizeQuantity,
+          [e.target.name]: 0,
+        }
+      } else {
+        newSizeQuantity = {
+          ...sizeQuantity,
+          [e.target.name]: parseInt(e.target.value),
+        }
       }
     }
+    if (key === 'L') {
+      if (e.target.value < 0) {
+        newSizeQuantity = {
+          ...sizeQuantity,
+          [e.target.name]: 0,
+        }
+      } else {
+        newSizeQuantity = {
+          ...sizeQuantity,
+          [e.target.name]: parseInt(e.target.value),
+        }
+      }
+    }
+    if (key === 'M') {
+      if (e.target.value < 0) {
+        newSizeQuantity = {
+          ...sizeQuantity,
+          [e.target.name]: 0,
+        }
+      } else {
+        newSizeQuantity = {
+          ...sizeQuantity,
+          [e.target.name]: parseInt(e.target.value),
+        }
+      }
+    }
+    if (key === 'XL') {
+      if (e.target.value < 0) {
+        newSizeQuantity = {
+          ...sizeQuantity,
+          [e.target.name]: 0,
+        }
+      } else {
+        newSizeQuantity = {
+          ...sizeQuantity,
+          [e.target.name]: parseInt(e.target.value),
+        }
+      }
+    }
+    console.log(newSizeQuantity, 'newSizeQuantity')
     setSizeQuantity(newSizeQuantity)
-
-    // Calculate total quantity
     const totalQuantity = Object.values(newSizeQuantity).reduce(
       (acc, curr) => acc + parseInt(curr),
       0
     )
+    console.log(totalQuantity, 'toayla')
     setQuantity(totalQuantity)
+    //  const totalQuantity = Object.values(newSizeQuantity).reduce((acc,curr) => acc+curr, 0);
+    //   console.log(totalQuantity, 'total')
+
+    // const totalQuantity = Object.values(newSizeQuantity).reduce(
+    //   (acc, curr) => acc + parseInt(curr),
+    //   0
+    // )
+    // console.log(totalQuantity, 'total')
+    // const totalQuantity = Object.values(newSizeQuantity).reduce(
+    //   (acc, curr) => acc + parseInt(curr),
+    //   0
+    // )
+    // setQuantity(totalQuantity)
+
+    // let newSizeQuantity
+    // if (e.target.value < 0) {
+    //   newSizeQuantity = {
+    //     ...sizeQuantity,
+    //     [e.target.name]: 0,
+    //   }
+    // } else {
+    //   newSizeQuantity = {
+    //     ...sizeQuantity,
+    //     [e.target.name]: parseInt(e.target.value),
+    //   }
+    // }
+    // console.log([e.target.name], newSizeQuantity)
+    // setSizeQuantity(newSizeQuantity)
+
+    // // Calculate total quantity
+    // const totalQuantity = Object.values(newSizeQuantity).reduce(
+    //   (acc, curr) => acc + parseInt(curr),
+    //   0
+    // )
+    // setQuantity(totalQuantity)
   }
 
   const uploadFirstFile = (event) => {
@@ -992,7 +1070,7 @@ const Product = ({ product, loading, error, productID }) => {
                                   type="number"
                                   name={key}
                                   value={sizeQuantity[key]}
-                                  onChange={handleQuantitySize}
+                                  onChange={(e) => handleQuantitySize(e, key)}
                                   min="0"
                                 />
                               </div>
