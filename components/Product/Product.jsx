@@ -979,7 +979,10 @@ const Product = ({ product, loading, error, productID }) => {
                             quantity < 3 && quantity > 0
                               ? setQuantity(quantity)
                               : setQuantity(3)
-                          } else if (!isSample && quantity < actualMinQty) {
+                          } else if (
+                            !isSample &&
+                            (quantity < actualMinQty || !quantity)
+                          ) {
                             setQuantity(actualMinQty)
                           }
                         }}
