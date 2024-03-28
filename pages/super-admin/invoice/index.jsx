@@ -75,12 +75,12 @@ const Invoice = () => {
               </tr>
             ))}
           </table>
-          {/* Pagination section */}
-          <div className={Styles.pagination_container}>
+
+          {/* <div className={Styles.pagination_container}>
             <div className={Styles.pagination_content}>
               <Pagination />
             </div>
-          </div>
+          </div> */}
         </div>
       </Layout>
     </>

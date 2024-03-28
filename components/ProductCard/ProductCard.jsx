@@ -29,8 +29,6 @@ const ProductCard = ({ item, fromSingleProduct }) => {
   const country = useSelector((state) => state.country.country)
   const cartItems = useSelector((state) => state.cart.cartItems)
 
-  console.log(cartItems, 'cartitems')
-
   useEffect(() => {
     setSingleImage(item?.image)
   }, [item])

@@ -56,11 +56,11 @@ const Customer = () => {
           </table>
         </div>
         {/* Pagination section */}
-        <div className={Styles.pagination_container}>
+        {/* <div className={Styles.pagination_container}>
           <div className={Styles.pagination_content}>
             <Pagination />
           </div>
-        </div>
+        </div> */}
       </Layout>
     </>
   )
