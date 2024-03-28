@@ -213,7 +213,7 @@ const EstimateCard = () => {
                   <div>Your Cart is Empty!</div>
                   <button
                     className={Styles.shop_products}
-                    onClick={() => router.push('/products')}
+                    onClick={() => router.push('/category/Apparel')}
                   >
                     Shop Products
                   </button>
