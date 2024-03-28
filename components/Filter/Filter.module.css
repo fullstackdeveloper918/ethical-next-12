@@ -575,6 +575,13 @@
   padding-left: 15px;
   text-decoration: underline;
   cursor: pointer;
+  color: #a1d65c;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  padding-top: 10px;
+  
 }
 .custom_checkbox > li:first-child,
 .input_checkbox > li:first-child {

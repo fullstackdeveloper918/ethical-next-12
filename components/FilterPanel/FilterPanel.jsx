@@ -427,17 +427,15 @@ const FilterPanel = ({
                                   />
                                 </>
                               ))}
-                          <button
-                            className={Styles.see_all}
-                            onClick={() =>
-                              setIsShowAllColoursFilters(
-                                !isShowAllColoursFilters
-                              )
-                            }
-                          >
-                            {isShowAllColoursFilters ? 'See Less' : 'See All'}
-                          </button>
                         </div>
+                        <button
+                          className={Styles.see_all}
+                          onClick={() =>
+                            setIsShowAllColoursFilters(!isShowAllColoursFilters)
+                          }
+                        >
+                          {isShowAllColoursFilters ? 'See Less' : 'See All'}
+                        </button>
                       </>
                     ) : openIndex.length > 0 &&
                       openIndex.includes(index) &&
