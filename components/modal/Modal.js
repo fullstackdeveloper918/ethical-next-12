@@ -11,9 +11,9 @@ const Modal = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [isOpenModal, setIsOpenModal] = useState(false)
-  const [selectedOption, setSelectedOption] = useState('flexible')
-  const [minDate, setMinDate] = useState(new Date())
-  const [value, onChange] = useState(null)
+  const [value, onChange] = useState(
+    new Date().setDate(new Date().getDate() + 11)
+  )
   const [isOpenCalender, setIsOpenCalender] = useState(false)
   let swiftSwag = useSelector((state) => state.filter.swiftSwag)
   let date = useSelector((state) => state.filter.date)
@@ -22,11 +22,6 @@ const Modal = () => {
       setIsOpenModal(true)
     }
   }, [])
-  useEffect(() => {
-    let minSelectableDate = new Date()
-    minSelectableDate.setDate(minSelectableDate.getDate() + 10)
-    setMinDate(minSelectableDate)
-  }, [selectedOption])
 
   const handleCloseModal = () => {
     if (value === null) {
@@ -43,6 +38,11 @@ const Modal = () => {
       dispatch(setDate(value))
     }
   }, [value])
+  const tileDisabled = ({ date, view }) => {
+    return (
+      view === 'month' && date < new Date().setDate(new Date().getDate() + 10)
+    )
+  }
   return (
     <>
       {isOpenModal && !isOpenCalender && (
@@ -115,9 +115,8 @@ const Modal = () => {
                   <Calendar
                     onChange={onChange}
                     value={value}
-                    minDate={minDate}
+                    tileDisabled={tileDisabled}
                   />
-                  {console.log(minDate, 'min date')}
                   <p>
                     *Swift Swag we can produce and deliver your order in 10
                     business days!
