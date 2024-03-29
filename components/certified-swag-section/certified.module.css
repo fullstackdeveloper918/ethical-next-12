@@ -14,7 +14,7 @@
     line-height: 133.38%; /* 61.355px */
     letter-spacing: 0.46px;
     text-transform: uppercase;  text-align: center;
-    margin: 50px 0 10px;
+    font-weight: 500;   margin: 50px 0 10px;
 }
 
 .heading_colored{
@@ -22,7 +22,7 @@
     font-family: 'Poppins';
     font-size: 46px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 600;   
     line-height: 133.38%;
     letter-spacing: 0.46px;
     text-transform: uppercase;
@@ -87,4 +87,9 @@ padding: 10px 0 0 0;
   .slider_space{
     margin-bottom: 10px;
 }
+
+  .heading, .heading_colored{
+    font-size: 32px;
+    font-weight: 600;
+  }
 }
